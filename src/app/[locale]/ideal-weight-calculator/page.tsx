@@ -79,9 +79,11 @@ export default function IdealWeightCalculatorPage() {
   const [currentWeightLbs, setCurrentWeightLbs] = useState(180);
   const [currentWeightKg, setCurrentWeightKg] = useState(82);
   
-  // Height
+  // Height - Using string state to allow empty input
   const [heightFeet, setHeightFeet] = useState(5);
   const [heightInches, setHeightInches] = useState(10);
+  const [heightInchesInput, setHeightInchesInput] = useState("10"); // String for controlled input
+  const [heightFeetInput, setHeightFeetInput] = useState("5"); // String for controlled input
   const [heightCm, setHeightCm] = useState(178);
   
   // Frame Size
@@ -423,6 +425,14 @@ export default function IdealWeightCalculatorPage() {
         Skip to calculator
       </a>
 
+      {/* ═══════════════════════════════════════════════════════════════════════════
+          MOBILE STICKY HEADER AD - Fixed at top (like OmniCalculator)
+      ═══════════════════════════════════════════════════════════════════════════ */}
+      <div className="md:hidden fixed top-16 left-0 right-0 z-30 bg-slate-100 border-b border-slate-200">
+        <div className="py-2 px-4">
+          <AdBlock slot="calculator-mobile-header" />
+        </div>
+      </div>
 
       {/* Side Skyscraper Ads - Fixed on sides (desktop only) */}
       <SideSkyscraperAds />
@@ -443,7 +453,11 @@ export default function IdealWeightCalculatorPage() {
         }}
       />
 
-      <main id="main-content" className="min-h-screen bg-white pt-16 pb-24 md:pb-0">
+      {/* Add padding-top for mobile sticky header ad */}
+      <main id="main-content" className="min-h-screen bg-white pt-16 md:pt-16 pb-40 md:pb-0">
+        {/* Extra padding on mobile for sticky header ad */}
+        <div className="md:hidden h-16" />
+        
         {/* ─────────────────────────────────────────────────────────────────────────
             HERO SECTION
         ───────────────────────────────────────────────────────────────────────── */}
@@ -475,11 +489,6 @@ export default function IdealWeightCalculatorPage() {
                 <h1 className="text-3xl md:text-4xl font-bold text-slate-900">Ideal Weight Calculator</h1>
                 <p className="text-slate-600 mt-1">Calculate your ideal body weight using 5 scientific formulas</p>
               </div>
-            </div>
-
-            {/* Mobile Ad - Between title and calculator */}
-            <div className="md:hidden mt-6">
-              <AdBlock slot="calculator-mobile-top" />
             </div>
           </div>
         </section>
@@ -581,11 +590,22 @@ export default function IdealWeightCalculatorPage() {
                       <input
                         id="age-input"
                         type="number"
+                        inputMode="numeric"
                         min="18"
                         max="80"
                         value={age}
-                        onChange={(e) => handleInputChange(setAge, Math.max(18, Math.min(80, Number(e.target.value) || 18)))}
-                        className="w-16 bg-transparent text-right font-bold text-blue-600 focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          if (val === '') {
+                            handleInputChange(setAge, 18);
+                          } else {
+                            const num = parseInt(val, 10);
+                            if (!isNaN(num)) {
+                              handleInputChange(setAge, Math.max(18, Math.min(80, num)));
+                            }
+                          }
+                        }}
+                        className="w-12 bg-transparent text-right font-bold text-blue-600 focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                       />
                       <span className="text-slate-600 ml-1">years</span>
                     </div>
@@ -596,7 +616,7 @@ export default function IdealWeightCalculatorPage() {
                     max="80"
                     value={age}
                     onChange={(e) => handleInputChange(setAge, Number(e.target.value))}
-                    className="range-slider w-full"
+                    className="range-slider-small w-full"
                     aria-label="Age slider"
                   />
                   <div className="flex justify-between text-xs text-slate-600 mt-1">
@@ -616,10 +636,36 @@ export default function IdealWeightCalculatorPage() {
                           <input
                             id="height-feet"
                             type="number"
+                            inputMode="numeric"
                             min="4"
                             max="7"
-                            value={heightFeet}
-                            onChange={(e) => handleInputChange(setHeightFeet, Math.max(4, Math.min(7, Number(e.target.value) || 5)))}
+                            value={heightFeetInput}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              setHeightFeetInput(val);
+                              if (val === '') {
+                                // Allow empty, but don't update calculation yet
+                                return;
+                              }
+                              const num = parseInt(val, 10);
+                              if (!isNaN(num) && num >= 4 && num <= 7) {
+                                handleInputChange(setHeightFeet, num);
+                              }
+                            }}
+                            onBlur={() => {
+                              // On blur, validate and reset if empty or invalid
+                              const num = parseInt(heightFeetInput, 10);
+                              if (isNaN(num) || num < 4) {
+                                setHeightFeetInput("4");
+                                handleInputChange(setHeightFeet, 4);
+                              } else if (num > 7) {
+                                setHeightFeetInput("7");
+                                handleInputChange(setHeightFeet, 7);
+                              } else {
+                                setHeightFeetInput(num.toString());
+                                handleInputChange(setHeightFeet, num);
+                              }
+                            }}
                             className="w-full bg-slate-100 rounded-lg px-4 py-3 font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                           />
                           <span className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-600">ft</span>
@@ -631,10 +677,37 @@ export default function IdealWeightCalculatorPage() {
                           <input
                             id="height-inches"
                             type="number"
+                            inputMode="numeric"
                             min="0"
                             max="11"
-                            value={heightInches}
-                            onChange={(e) => handleInputChange(setHeightInches, Math.max(0, Math.min(11, Number(e.target.value) || 0)))}
+                            value={heightInchesInput}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              setHeightInchesInput(val);
+                              if (val === '') {
+                                // Allow empty
+                                return;
+                              }
+                              const num = parseInt(val, 10);
+                              // Only allow 0-11
+                              if (!isNaN(num) && num >= 0 && num <= 11) {
+                                handleInputChange(setHeightInches, num);
+                              }
+                            }}
+                            onBlur={() => {
+                              // On blur, validate and reset if invalid
+                              const num = parseInt(heightInchesInput, 10);
+                              if (isNaN(num) || num < 0) {
+                                setHeightInchesInput("0");
+                                handleInputChange(setHeightInches, 0);
+                              } else if (num > 11) {
+                                setHeightInchesInput("11");
+                                handleInputChange(setHeightInches, 11);
+                              } else {
+                                setHeightInchesInput(num.toString());
+                                handleInputChange(setHeightInches, num);
+                              }
+                            }}
                             className="w-full bg-slate-100 rounded-lg px-4 py-3 font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                           />
                           <span className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-600">in</span>
@@ -648,10 +721,21 @@ export default function IdealWeightCalculatorPage() {
                         <input
                           id="height-cm"
                           type="number"
+                          inputMode="numeric"
                           min="120"
                           max="220"
                           value={heightCm}
-                          onChange={(e) => handleInputChange(setHeightCm, Math.max(120, Math.min(220, Number(e.target.value) || 170)))}
+                          onChange={(e) => {
+                            const val = e.target.value;
+                            if (val === '') {
+                              handleInputChange(setHeightCm, 120);
+                            } else {
+                              const num = parseInt(val, 10);
+                              if (!isNaN(num)) {
+                                handleInputChange(setHeightCm, Math.max(120, Math.min(220, num)));
+                              }
+                            }
+                          }}
                           className="w-full bg-slate-100 rounded-lg px-4 py-3 font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                         />
                         <span className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-600">cm</span>
@@ -669,15 +753,27 @@ export default function IdealWeightCalculatorPage() {
                     <input
                       id="current-weight"
                       type="number"
+                      inputMode="numeric"
                       min={unitSystem === "imperial" ? 88 : 40}
                       max={unitSystem === "imperial" ? 440 : 200}
                       value={unitSystem === "imperial" ? currentWeightLbs : currentWeightKg}
                       onChange={(e) => {
-                        const val = Number(e.target.value) || 0;
-                        if (unitSystem === "imperial") {
-                          handleInputChange(setCurrentWeightLbs, Math.max(88, Math.min(440, val)));
+                        const val = e.target.value;
+                        if (val === '') {
+                          if (unitSystem === "imperial") {
+                            handleInputChange(setCurrentWeightLbs, 88);
+                          } else {
+                            handleInputChange(setCurrentWeightKg, 40);
+                          }
                         } else {
-                          handleInputChange(setCurrentWeightKg, Math.max(40, Math.min(200, val)));
+                          const num = parseInt(val, 10);
+                          if (!isNaN(num)) {
+                            if (unitSystem === "imperial") {
+                              handleInputChange(setCurrentWeightLbs, Math.max(88, Math.min(440, num)));
+                            } else {
+                              handleInputChange(setCurrentWeightKg, Math.max(40, Math.min(200, num)));
+                            }
+                          }
                         }
                       }}
                       className="w-full bg-transparent font-bold text-slate-800 focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
@@ -697,7 +793,7 @@ export default function IdealWeightCalculatorPage() {
                         handleInputChange(setCurrentWeightKg, val);
                       }
                     }}
-                    className="range-slider w-full mt-2"
+                    className="range-slider-small w-full mt-3"
                     aria-label="Current weight slider"
                   />
                   <div className="flex justify-between text-xs text-slate-600 mt-1">
@@ -762,16 +858,21 @@ export default function IdealWeightCalculatorPage() {
                           <input
                             id="wrist-input"
                             type="number"
+                            inputMode="decimal"
                             step="0.1"
                             min={unitSystem === "imperial" ? 5 : 12}
                             max={unitSystem === "imperial" ? 9 : 23}
                             value={unitSystem === "imperial" ? wristIn : wristCm}
                             onChange={(e) => {
-                              const val = Number(e.target.value) || 0;
-                              if (unitSystem === "imperial") {
-                                handleInputChange(setWristIn, Math.max(5, Math.min(9, val)));
-                              } else {
-                                handleInputChange(setWristCm, Math.max(12, Math.min(23, val)));
+                              const val = e.target.value;
+                              if (val === '') return;
+                              const num = parseFloat(val);
+                              if (!isNaN(num)) {
+                                if (unitSystem === "imperial") {
+                                  handleInputChange(setWristIn, Math.max(5, Math.min(9, num)));
+                                } else {
+                                  handleInputChange(setWristCm, Math.max(12, Math.min(23, num)));
+                                }
                               }
                             }}
                             className="w-full bg-transparent font-bold text-slate-800 focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
@@ -799,7 +900,7 @@ export default function IdealWeightCalculatorPage() {
                               onClick={() => handleInputChange(setManualFrameSize, manualFrameSize === size ? null : size)}
                               role="radio"
                               aria-checked={manualFrameSize === size}
-                              className={`py-2 px-3 rounded-lg text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 capitalize ${
+                              className={`py-2 px-3 rounded-lg text-sm font-medium capitalize transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                                 manualFrameSize === size
                                   ? "bg-blue-600 text-white"
                                   : "bg-slate-100 text-slate-700 hover:bg-slate-200"
@@ -814,24 +915,26 @@ export default function IdealWeightCalculatorPage() {
                       {/* Weight Loss Rate */}
                       <div>
                         <div className="flex justify-between items-center mb-2">
-                          <label htmlFor="rate-input" className="font-medium text-slate-700">
+                          <label htmlFor="weight-loss-rate" className="font-medium text-slate-700">
                             Weight Change Rate
                           </label>
-                          <div className="flex items-center bg-slate-100 rounded-lg px-3 py-1">
-                            <input
-                              id="rate-input"
-                              type="number"
-                              min="0.5"
-                              max="2"
-                              step="0.5"
-                              value={weightLossRate}
-                              onChange={(e) => handleInputChange(setWeightLossRate, Math.max(0.5, Math.min(2, Number(e.target.value) || 1)))}
-                              className="w-12 bg-transparent text-right font-bold text-blue-600 focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                            />
-                            <span className="text-slate-600 ml-1">lbs/wk</span>
-                          </div>
+                          <span className="text-sm font-bold text-blue-600">{weightLossRate} lb/week</span>
                         </div>
-                        <p className="text-xs text-slate-600">Recommended: 0.5-2 lbs per week for safe weight loss</p>
+                        <input
+                          id="weight-loss-rate"
+                          type="range"
+                          min="0.5"
+                          max="2"
+                          step="0.5"
+                          value={weightLossRate}
+                          onChange={(e) => handleInputChange(setWeightLossRate, Number(e.target.value))}
+                          className="range-slider-small w-full"
+                          aria-label="Weight loss rate slider"
+                        />
+                        <div className="flex justify-between text-xs text-slate-600 mt-1">
+                          <span>0.5 lb</span>
+                          <span>2 lb</span>
+                        </div>
                       </div>
                     </div>
                   )}
@@ -839,276 +942,140 @@ export default function IdealWeightCalculatorPage() {
               </div>
 
               {/* ═══════════════════════════════════════════════════════════════════
-                  RIGHT COLUMN - RESULTS (hidden on mobile, shown via sticky bar)
+                  RIGHT COLUMN - RESULTS (Desktop Only)
               ═══════════════════════════════════════════════════════════════════ */}
               <div ref={resultsRef} className="hidden lg:block">
-                {/* Main Result */}
-                <div 
-                  className="bg-slate-50 rounded-2xl border border-slate-200 p-6 md:p-8 mb-4"
-                  role="region"
-                  aria-label="Ideal Weight Results"
-                  aria-live="polite"
-                >
-                  <p className="text-sm text-slate-600 mb-1">Your Ideal Weight (Average)</p>
-                  <p className="text-4xl md:text-5xl font-bold text-slate-900 mb-2">
-                    {formatWeight(averageIdealWeight)}
-                  </p>
-                  
-                  {/* Healthy Range */}
-                  <div className="flex items-center gap-2 text-sm text-slate-600 mb-4">
-                    <span>Healthy Range:</span>
-                    <span className="font-medium text-blue-600">
-                      {formatWeight(adjustedBMIRange.min)} - {formatWeight(adjustedBMIRange.max)}
-                    </span>
+                <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl border border-blue-100 p-6 md:p-8 sticky top-24">
+                  <h2 className="text-xl font-bold text-slate-900 mb-6">Your Ideal Weight</h2>
+
+                  {/* Main Result */}
+                  <div className="text-center py-6 mb-6 bg-white rounded-xl border border-slate-200">
+                    <p className="text-sm text-slate-600 mb-2">Average of 5 Formulas</p>
+                    <p className="text-5xl font-bold text-slate-900 mb-2">
+                      {formatWeight(averageIdealWeight)}
+                    </p>
+                    <p className="text-sm text-slate-600">
+                      Healthy Range: <span className="font-medium text-blue-600">{formatWeight(adjustedBMIRange.min)} - {formatWeight(adjustedBMIRange.max)}</span>
+                    </p>
                   </div>
 
-                  {/* Weight Difference */}
-                  <div className={`p-4 rounded-xl ${needsToLose ? "bg-amber-50 border border-amber-200" : weightDifference < 0 ? "bg-blue-50 border border-blue-200" : "bg-green-50 border border-green-200"}`}>
+                  {/* Weight Difference Card */}
+                  <div className={`p-4 rounded-xl mb-6 ${
+                    needsToLose 
+                      ? "bg-amber-50 border border-amber-200" 
+                      : weightDifference < 0 
+                        ? "bg-blue-50 border border-blue-200" 
+                        : "bg-green-50 border border-green-200"
+                  }`}>
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="text-sm text-slate-600">
                           {needsToLose ? "Weight to Lose" : weightDifference < 0 ? "Weight to Gain" : "At Ideal Weight!"}
                         </p>
-                        <p className={`text-2xl font-bold ${needsToLose ? "text-amber-800" : weightDifference < 0 ? "text-blue-700" : "text-green-700"}`}>
+                        <p className={`text-3xl font-bold ${
+                          needsToLose 
+                            ? "text-amber-800" 
+                            : weightDifference < 0 
+                              ? "text-blue-700" 
+                              : "text-green-700"
+                        }`}>
                           {Math.abs(weightDifference) < 1 ? "✓" : formatWeight(Math.abs(weightDifference))}
                         </p>
                       </div>
                       {Math.abs(weightDifference) >= 1 && (
                         <div className="text-right">
-                          <p className="text-sm text-slate-600">Timeline</p>
-                          <p className="text-xl font-bold text-slate-800">~{weeksToGoal} weeks</p>
+                          <p className="text-sm text-slate-600">Estimated Timeline</p>
+                          <p className="text-2xl font-bold text-slate-800">~{weeksToGoal} weeks</p>
                           <p className="text-xs text-slate-600">at {weightLossRate} lb/week</p>
                         </div>
                       )}
                     </div>
                   </div>
-                </div>
 
-                {/* Healthy Weight Range Visual */}
-                <div className="bg-white rounded-2xl border border-slate-200 p-6 mb-4">
-                  <h3 className="font-bold text-slate-900 mb-4"><span aria-hidden="true">📊 </span>Healthy Weight Range</h3>
-                  <div className="relative h-8 bg-slate-100 rounded-full overflow-hidden mb-2">
-                    {/* Healthy zone */}
-                    <div 
-                      className="absolute h-full bg-green-200"
-                      style={{ 
-                        left: `${Math.max(0, ((formatWeightNumber(adjustedBMIRange.min) - 100) / 200) * 100)}%`,
-                        width: `${((formatWeightNumber(adjustedBMIRange.max) - formatWeightNumber(adjustedBMIRange.min)) / 200) * 100}%`
-                      }}
-                    />
-                    {/* Current weight marker */}
-                    <div 
-                      className="absolute top-0 bottom-0 w-1 bg-blue-600"
-                      style={{ 
-                        left: `${Math.min(100, Math.max(0, ((formatWeightNumber(currentWeightKgCalc) - 100) / 200) * 100))}%`
-                      }}
-                    />
-                    {/* Ideal weight marker */}
-                    <div 
-                      className="absolute top-0 bottom-0 w-1 bg-green-600"
-                      style={{ 
-                        left: `${Math.min(100, Math.max(0, ((formatWeightNumber(averageIdealWeight) - 100) / 200) * 100))}%`
-                      }}
-                    />
-                  </div>
-                  <div className="flex justify-between text-xs text-slate-600">
-                    <span>100 {weightUnit}</span>
-                    <span>300 {weightUnit}</span>
-                  </div>
-                  <div className="flex items-center gap-4 mt-3 text-xs">
-                    <div className="flex items-center gap-1">
-                      <span className="w-3 h-3 bg-blue-600 rounded-full"></span>
-                      <span>Current: {formatWeight(currentWeightKgCalc)}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <span className="w-3 h-3 bg-green-600 rounded-full"></span>
-                      <span>Ideal: {formatWeight(averageIdealWeight)}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <span className="w-3 h-3 bg-green-200 rounded-full"></span>
-                      <span>Healthy Zone</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Formula Comparison */}
-                <div className="bg-white rounded-2xl border border-slate-200 p-6 mb-4">
-                  <h3 className="font-bold text-slate-900 mb-4"><span aria-hidden="true">📈 </span>Formula Comparison</h3>
-                  <div className="space-y-3">
-                    {formulaResults.map((result) => {
-                      const maxWeight = Math.max(...formulaResults.map(r => r.weight));
-                      const percentage = (result.weight / maxWeight) * 100;
-                      
-                      return (
-                        <div key={result.name}>
-                          <div className="flex justify-between text-sm mb-1">
-                            <div>
-                              <span className="font-medium text-slate-700">{result.name}</span>
-                              <span className="text-slate-400 text-xs ml-2">{result.description}</span>
-                            </div>
-                            <span className="font-bold text-slate-800">{formatWeight(result.weight)}</span>
+                  {/* Formula Comparison */}
+                  <div className="mb-6">
+                    <h3 className="font-semibold text-slate-900 mb-3">Formula Comparison</h3>
+                    <div className="bg-white rounded-xl border border-slate-200 divide-y divide-slate-100">
+                      {formulaResults.map((result) => (
+                        <div key={result.name} className="flex justify-between items-center px-4 py-3">
+                          <div>
+                            <span className="font-medium text-slate-800">{result.name}</span>
+                            <p className="text-xs text-slate-500">{result.description}</p>
                           </div>
-                          <div className="h-3 bg-slate-100 rounded-full overflow-hidden">
-                            <div 
-                              className="h-full bg-blue-500 transition-all duration-500"
-                              style={{ width: `${percentage}%` }}
-                              role="progressbar"
-                              aria-valuenow={result.weight}
-                              aria-valuemin={0}
-                              aria-valuemax={maxWeight}
-                              aria-label={`${result.name}: ${formatWeight(result.weight)}`}
-                            />
-                          </div>
+                          <span className="font-bold text-slate-900">{formatWeight(result.weight)}</span>
                         </div>
-                      );
-                    })}
+                      ))}
+                    </div>
                   </div>
-                  <p className="text-xs text-slate-600 mt-4">
-                    Results adjusted for {frameSize} frame and {buildType} build type
-                  </p>
-                </div>
 
-                {/* Actions */}
-                <div className="bg-white rounded-2xl border border-slate-200 p-6">
+                  {/* Quick Stats */}
+                  <div className="grid grid-cols-2 gap-4 mb-6">
+                    <div className="bg-white rounded-xl border border-slate-200 p-4 text-center">
+                      <p className="text-xs text-slate-600 mb-1">Frame Size</p>
+                      <p className="text-lg font-bold text-slate-900 capitalize">{frameSize}</p>
+                    </div>
+                    <div className="bg-white rounded-xl border border-slate-200 p-4 text-center">
+                      <p className="text-xs text-slate-600 mb-1">Build Type</p>
+                      <p className="text-lg font-bold text-slate-900 capitalize">{buildType}</p>
+                    </div>
+                  </div>
+
+                  {/* Action Buttons */}
                   <div className="grid grid-cols-2 gap-3">
                     <button 
                       onClick={saveToHistory}
                       disabled={saveStatus === "saving" || !session}
-                      className="flex items-center justify-center gap-2 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 font-medium transition-colors disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      aria-label="Save to history"
+                      className="flex items-center justify-center gap-2 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 font-medium transition-colors disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                     >
-                      {saveStatus === "saving" ? "Saving..." : saveStatus === "saved" ? "✓ Saved" : "💾 Save"}
+                      {saveStatus === "saving" ? "Saving..." : saveStatus === "saved" ? "✓ Saved" : "💾 Save Results"}
                     </button>
                     <button 
-                      className="flex items-center justify-center gap-2 py-3 bg-white border border-slate-200 rounded-xl hover:bg-slate-50 font-medium text-slate-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      aria-label="Export to PDF (PRO feature)"
+                      className="flex items-center justify-center gap-2 py-3 bg-slate-100 text-slate-700 rounded-xl hover:bg-slate-200 font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                     >
-                      📄 PDF <span className="text-xs bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full">PRO</span>
+                      📤 Share
                     </button>
                   </div>
                 </div>
               </div>
             </div>
-
-            {/* AdBlock Bottom - Centered */}
-            <div className="mt-8 flex justify-center">
-              <AdBlock slot="calculator-bottom" />
-            </div>
-
-
-            {/* Mobile Ad - Bottom */}
-            <div className="md:hidden mt-6">
-              <AdBlock slot="calculator-mobile-bottom" />
-            </div>
-            {/* ═══════════════════════════════════════════════════════════════════
-                INFO CARDS
-            ═══════════════════════════════════════════════════════════════════ */}
-            <div className="grid md:grid-cols-2 gap-6 mt-8">
-              <div className="bg-white rounded-2xl border border-slate-200 p-6">
-                <h3 className="text-lg font-bold text-slate-900 mb-4"><span aria-hidden="true">📏 </span>About the Formulas</h3>
-                <ul className="space-y-3 text-slate-600">
-                  <li className="flex items-start gap-2">
-                    <span className="text-blue-500 mt-1">•</span>
-                    <span><strong>Robinson (1983):</strong> Most commonly used in clinical settings</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-blue-500 mt-1">•</span>
-                    <span><strong>Miller (1983):</strong> Tends to give lower estimates, good for smaller frames</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-blue-500 mt-1">•</span>
-                    <span><strong>Devine (1974):</strong> Original medical formula, still widely referenced</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-blue-500 mt-1">•</span>
-                    <span><strong>Hamwi (1964):</strong> The first ideal weight formula developed</span>
-                  </li>
-                </ul>
-              </div>
-              <div className="bg-white rounded-2xl border border-slate-200 p-6">
-                <h3 className="text-lg font-bold text-slate-900 mb-4"><span aria-hidden="true">⚠️ </span>Important Considerations</h3>
-                <ul className="space-y-2 text-slate-600">
-                  <li className="flex items-start gap-2">
-                    <span className="text-amber-500 mt-1">!</span>
-                    <span>These are estimates - individual healthy weights vary</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-amber-500 mt-1">!</span>
-                    <span>Athletes may exceed ideal weights due to muscle mass</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-amber-500 mt-1">!</span>
-                    <span>Body fat percentage is often more meaningful</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-amber-500 mt-1">!</span>
-                    <span>Consult a healthcare provider for personalized advice</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
           </div>
         </section>
 
         {/* ─────────────────────────────────────────────────────────────────────────
-            EXAMPLE CALCULATION
+            EDUCATIONAL CONTENT & SIDEBAR
         ───────────────────────────────────────────────────────────────────────── */}
-        <section className="bg-slate-50 py-12">
-          <div className="container mx-auto px-4 max-w-6xl">
-            <h2 className="text-2xl font-bold text-slate-900 mb-4"><span aria-hidden="true">📊 </span>Example Calculation</h2>
-            <p className="text-slate-600 mb-6">
-              30-year-old male, 5&apos;10&quot; (70 inches), medium frame, average build
-            </p>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-white rounded-xl p-5">
-                <h4 className="font-bold text-slate-800 mb-3">Robinson Formula</h4>
-                <div className="bg-slate-50 rounded-lg p-3 font-mono text-sm text-slate-700">
-                  <p>Base = 52 kg (for 5 feet)</p>
-                  <p>+ 1.9 kg × 10 inches = 19 kg</p>
-                  <p className="font-bold text-blue-600 mt-2">Ideal = 71 kg (157 lbs)</p>
-                </div>
-              </div>
-              <div className="bg-white rounded-xl p-5">
-                <h4 className="font-bold text-slate-800 mb-3">Devine Formula</h4>
-                <div className="bg-slate-50 rounded-lg p-3 font-mono text-sm text-slate-700">
-                  <p>Base = 50 kg (for 5 feet)</p>
-                  <p>+ 2.3 kg × 10 inches = 23 kg</p>
-                  <p className="font-bold text-blue-600 mt-2">Ideal = 73 kg (161 lbs)</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ─────────────────────────────────────────────────────────────────────────
-            EDUCATIONAL CONTENT + SIDEBAR
-        ───────────────────────────────────────────────────────────────────────── */}
-        <section className="py-12">
+        <section className="py-8 md:py-12 bg-slate-50">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="grid lg:grid-cols-3 gap-8">
-              {/* Main Content - 2 columns */}
+              {/* Educational Content - 2 columns */}
               <div className="lg:col-span-2 space-y-8">
-                {/* What is Ideal Weight */}
-                <div>
-                  <h2 className="text-2xl font-bold text-slate-900 mb-4">What is Ideal Body Weight?</h2>
-                  <p className="text-slate-600 mb-4">
-                    Ideal body weight (IBW) is a theoretical weight that is associated with the lowest risk of health problems for a person of a given height. However, it&apos;s important to understand that IBW formulas were originally developed for calculating medication dosages, not for determining aesthetic or fitness goals.
-                  </p>
-                  <p className="text-slate-600 mb-4">
-                    There is no single &quot;perfect&quot; weight for any individual. Healthy weight exists as a range, and factors like muscle mass, bone density, age, and overall health matter more than hitting a specific number on the scale.
-                  </p>
-                </div>
-
-                {/* Why Different Results */}
-                <div>
-                  <h2 className="text-2xl font-bold text-slate-900 mb-4">Why Do Formulas Give Different Results?</h2>
-                  <p className="text-slate-600 mb-4">
-                    Each formula was developed by different researchers for different purposes and populations. The variation between formulas actually gives you a realistic range to consider rather than a single target number. Most experts recommend focusing on the healthy BMI range (18.5-24.9) rather than any single formula&apos;s result.
-                  </p>
+                {/* About Section */}
+                <div className="bg-white rounded-2xl border border-slate-200 p-6 md:p-8">
+                  <h2 className="text-2xl font-bold text-slate-900 mb-4">Understanding Ideal Weight</h2>
+                  <div className="prose prose-slate max-w-none">
+                    <p>
+                      Your ideal weight depends on many factors including height, gender, age, body frame size, and muscle mass.
+                      This calculator uses five scientifically-developed formulas to estimate your ideal body weight and provides
+                      an average for a more balanced perspective.
+                    </p>
+                    <h3 className="text-lg font-semibold mt-4 mb-2">The Formulas Used</h3>
+                    <ul className="list-disc pl-5 space-y-1">
+                      <li><strong>Robinson Formula (1983):</strong> Most commonly cited in medical literature</li>
+                      <li><strong>Miller Formula (1983):</strong> Better suited for smaller frames</li>
+                      <li><strong>Devine Formula (1974):</strong> Standard in pharmaceutical dosing</li>
+                      <li><strong>Hamwi Formula (1964):</strong> Original ideal weight formula</li>
+                      <li><strong>BMI Range:</strong> Based on healthy BMI of 18.5-24.9</li>
+                    </ul>
+                    <h3 className="text-lg font-semibold mt-4 mb-2">Frame Size & Build Type</h3>
+                    <p>
+                      We adjust results based on your frame size (determined by wrist circumference) and build type.
+                      Larger frames and more muscular builds naturally support higher weights while remaining healthy.
+                    </p>
+                  </div>
                 </div>
 
                 {/* FAQ Section */}
-                <div>
+                <div className="bg-white rounded-2xl border border-slate-200 p-6 md:p-8">
                   <h2 className="text-2xl font-bold text-slate-900 mb-6">Frequently Asked Questions</h2>
                   <div className="space-y-4">
                     {faqs.map((faq, index) => (
@@ -1149,6 +1116,15 @@ export default function IdealWeightCalculatorPage() {
           </div>
         </section>
       </main>
+
+      {/* ═══════════════════════════════════════════════════════════════════════════
+          MOBILE STICKY FOOTER AD - Fixed above results bar (like OmniCalculator)
+      ═══════════════════════════════════════════════════════════════════════════ */}
+      <div className="md:hidden fixed bottom-[72px] left-0 right-0 z-20 bg-slate-100 border-t border-slate-200">
+        <div className="py-2 px-4">
+          <AdBlock slot="calculator-mobile-footer" />
+        </div>
+      </div>
 
       {/* ═══════════════════════════════════════════════════════════════════════════
           MOBILE STICKY RESULTS BAR - Fixed at bottom on mobile
@@ -1279,6 +1255,105 @@ export default function IdealWeightCalculatorPage() {
         )}
       </div>
 
+      {/* ═══════════════════════════════════════════════════════════════════════════
+          CUSTOM SLIDER STYLES - Smaller for mobile
+      ═══════════════════════════════════════════════════════════════════════════ */}
+      <style jsx global>{`
+        /* Small slider for mobile - doesn't overlap with inputs */
+        .range-slider-small {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 100%;
+          height: 6px;
+          border-radius: 9999px;
+          background: #e2e8f0;
+          outline: none;
+          cursor: pointer;
+        }
+
+        .range-slider-small::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          background: #2563eb;
+          border: 3px solid white;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+          cursor: grab;
+          margin-top: -7px;
+          transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .range-slider-small::-moz-range-thumb {
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          background: #2563eb;
+          border: 3px solid white;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+          cursor: grab;
+          transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .range-slider-small::-webkit-slider-runnable-track {
+          height: 6px;
+          border-radius: 9999px;
+          background: #e2e8f0;
+        }
+
+        .range-slider-small::-moz-range-track {
+          height: 6px;
+          border-radius: 9999px;
+          background: #e2e8f0;
+        }
+
+        .range-slider-small:hover::-webkit-slider-thumb {
+          transform: scale(1.1);
+          box-shadow: 0 3px 8px rgba(37, 99, 235, 0.3);
+        }
+
+        .range-slider-small:hover::-moz-range-thumb {
+          transform: scale(1.1);
+          box-shadow: 0 3px 8px rgba(37, 99, 235, 0.3);
+        }
+
+        .range-slider-small:active::-webkit-slider-thumb {
+          cursor: grabbing;
+          transform: scale(1.15);
+        }
+
+        .range-slider-small:active::-moz-range-thumb {
+          cursor: grabbing;
+          transform: scale(1.15);
+        }
+
+        .range-slider-small:focus {
+          outline: none;
+        }
+
+        .range-slider-small:focus::-webkit-slider-thumb {
+          box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3), 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        .range-slider-small:focus::-moz-range-thumb {
+          box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3), 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Mobile optimization - slightly larger touch target but still small */
+        @media (max-width: 768px) {
+          .range-slider-small::-webkit-slider-thumb {
+            width: 24px;
+            height: 24px;
+            margin-top: -9px;
+          }
+
+          .range-slider-small::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+          }
+        }
+      `}</style>
     </>
   );
 }
