@@ -1,0 +1,199 @@
+{
+  "meta": {
+    "title": "Calculadora de Hipoteca - Pago Mensual y Amortización | Kalcufy",
+    "description": "Calculadora de hipoteca gratuita para estimar pagos mensuales, interés total y tabla de amortización. Incluye impuestos, seguro y PMI."
+  },
+  "calculator": {
+    "title": "Calculadora de Hipoteca",
+    "subtitle": "Calcula tus pagos mensuales de hipoteca",
+    "breadcrumb": "Hipoteca",
+    "loanDetails": "Detalles del Préstamo",
+    "inputs": {
+      "homePrice": "Precio de la Vivienda",
+      "downPayment": "Enganche",
+      "interestRate": "Tasa de Interés",
+      "loanTerm": "Plazo del Préstamo",
+      "propertyTax": "Impuesto Predial / año",
+      "insurance": "Seguro / año",
+      "years": "años",
+      "currencySymbol": "$",
+      "rangeMin": "$50K",
+      "rangeMax": "$2M"
+    },
+    "ranges": {
+      "min50k": "$50K",
+      "max2m": "$2M",
+      "min0": "0%",
+      "max50": "50%",
+      "min1": "1%",
+      "max15": "15%"
+    },
+    "advanced": {
+      "title": "Costos Adicionales y Pagos Extra",
+      "pmiRate": "Tasa PMI (% / año)",
+      "pmiHelp": "Aplica si el enganche es < 20%",
+      "hoaFees": "Cuota HOA / mes",
+      "extraMonthly": "Pago Mensual Extra",
+      "extraHelp": "Paga tu hipoteca más rápido",
+      "loanStartDate": "Fecha de Inicio del Préstamo",
+      "loanStartHelp": "¿Cuándo comenzará tu préstamo?"
+    },
+    "results": {
+      "monthlyPayment": "Pago Mensual Total",
+      "perMonth": "/mes",
+      "payoff": "Liquidación",
+      "principal": "Capital",
+      "interest": "Interés",
+      "tax": "Impuesto",
+      "insuranceLabel": "Seguro",
+      "insurance": "Seguro",
+      "pmi": "PMI",
+      "component": "Componente",
+      "monthly": "Mensual",
+      "total": "Total",
+      "principalInterest": "Capital e Interés",
+      "propertyTax": "Impuesto Predial",
+      "homeInsurance": "Seguro de Vivienda",
+      "loanAmount": "Monto del Préstamo",
+      "totalInterest": "Interés Total",
+      "payoffDate": "Fecha de Liquidación",
+      "totalPayments": "Total de Pagos"
+    },
+    "buttons": {
+      "viewAmortization": "Ver Tabla de Amortización",
+      "save": "Guardar",
+      "pdf": "PDF",
+      "excel": "Excel",
+      "downloadPdf": "Descargar PDF",
+      "downloadExcel": "Descargar Excel"
+    },
+    "modal": {
+      "title": "Tabla de Amortización",
+      "year": "Año",
+      "principal": "Capital",
+      "interest": "Interés",
+      "balance": "Saldo"
+    },
+    "favorites": {
+      "add": "Agregar a favoritos",
+      "remove": "Quitar de favoritos"
+    },
+    "saving": {
+      "saving": "Guardando...",
+      "saved": "Guardado",
+      "error": "Error al guardar"
+    }
+  },
+  "info": {
+    "trueCost": {
+      "title": "Entendiendo el Costo Real",
+      "intro": "El costo real de una vivienda va más allá del precio de compra. Considera estos factores:",
+      "closingCosts": "Costos de Cierre:",
+      "closingCostsDesc": "Típicamente 2-5% del precio de la vivienda",
+      "propertyTaxes": "Impuestos Prediales:",
+      "propertyTaxesDesc": "Varían por ubicación, generalmente 1-2% anual",
+      "maintenance": "Mantenimiento:",
+      "maintenanceDesc": "Presupuesta 1-2% del valor de la vivienda por año",
+      "pmi": "PMI:",
+      "pmiDesc": "Requerido si el enganche es menor al 20%"
+    },
+    "rates": {
+      "title": "Tasas Hipotecarias Promedio",
+      "creditScore": "Puntaje Crediticio",
+      "thirtyYear": "30 Años",
+      "fifteenYear": "15 Años",
+      "disclaimer": "*Tasas a 2024. Las tasas reales pueden variar."
+    },
+    "example": {
+      "title": "Ejemplo de Cálculo",
+      "intro": "Supongamos que estás comprando una vivienda de",
+      "home": "vivienda",
+      "with": "con",
+      "down": "de enganche",
+      "interestRate": "tasa de interés",
+      "and": "y un",
+      "term": "plazo",
+      "homePriceLabel": "Precio de Vivienda",
+      "downPaymentLabel": "Enganche",
+      "loanAmountLabel": "Monto del Préstamo",
+      "monthlyPI": "Pago Mensual C&I",
+      "totalInterestLabel": "Interés Total",
+      "totalCost": "Costo Total",
+      "conclusion": "¡En 30 años, pagarás más en intereses que el monto original del préstamo! Por eso, incluso pequeñas reducciones en la tasa o pagos extra pueden ahorrarte decenas de miles de dólares."
+    }
+  },
+  "education": {
+    "title": "¿Qué es una Hipoteca?",
+    "content1": "Una hipoteca es un préstamo utilizado para comprar o mantener una casa, terreno u otros tipos de bienes raíces. El prestatario acepta pagar al prestamista a lo largo del tiempo, típicamente en una serie de pagos regulares divididos en capital e interés. La propiedad sirve como garantía para asegurar el préstamo.",
+    "content2": "La mayoría de las hipotecas son \"amortizables\", lo que significa que cada pago cubre tanto interés como capital. Los primeros pagos son principalmente interés; los últimos pagos son principalmente capital. Entender esto te ayuda a tomar decisiones más inteligentes sobre pagos extra y refinanciamiento.",
+    "formula": {
+      "title": "La Fórmula",
+      "m": "Pago mensual",
+      "p": "Capital (monto del préstamo)",
+      "r": "Tasa de interés mensual (tasa anual ÷ 12)",
+      "n": "Número total de pagos (años × 12)"
+    },
+    "calculation": {
+      "title": "Tu Cálculo",
+      "for": "Para una vivienda de",
+      "homeWith": "con",
+      "downAt": "de enganche al",
+      "for2": "por",
+      "loanAmountCalc": "Monto del Préstamo",
+      "addTax": "Agrega impuesto predial",
+      "andInsurance": "y seguro",
+      "forTotal": "para un total de"
+    },
+    "tips": {
+      "title": "Consejos para Ahorrar",
+      "tip1": {
+        "title": "Aporta 20% de Enganche",
+        "description": "Evita el PMI y obtén mejores tasas."
+      },
+      "tip2": {
+        "title": "Compara Varios Prestamistas",
+        "description": "Incluso 0.25% de diferencia ahorra miles."
+      },
+      "tip3": {
+        "title": "Considera Plazo de 15 Años",
+        "description": "Tasas más bajas, ahorro masivo en intereses."
+      },
+      "tip4": {
+        "title": "Haz Pagos Extra",
+        "description": "Un pago extra al año = 4-5 años menos."
+      }
+    },
+    "faqTitle": "Preguntas Frecuentes"
+  },
+  "faq": [
+    {
+      "question": "¿Cuánta casa puedo pagar?",
+      "answer": "Una guía común es que tus costos mensuales de vivienda (incluyendo hipoteca, impuestos, seguro) no deben exceder el 28% de tu ingreso mensual bruto. Los prestamistas también evalúan tu relación deuda-ingreso total, que típicamente debe estar por debajo del 36%."
+    },
+    {
+      "question": "¿Qué puntaje crediticio necesito para una hipoteca?",
+      "answer": "Para préstamos convencionales, típicamente necesitas un puntaje crediticio de al menos 620. Los préstamos FHA pueden aceptar puntajes tan bajos como 500 con 10% de enganche, o 580 con 3.5% de enganche. Puntajes más altos obtienen mejores tasas de interés."
+    },
+    {
+      "question": "¿Qué es el PMI y cómo puedo evitarlo?",
+      "answer": "El Seguro Hipotecario Privado (PMI) protege al prestamista si incumples. Se requiere cuando aportas menos del 20% de enganche. Puedes evitarlo haciendo un enganche del 20%, usando un préstamo piggyback, o eligiendo una opción de PMI pagado por el prestamista."
+    },
+    {
+      "question": "¿Tasa fija vs ajustable - cuál es mejor?",
+      "answer": "Las tasas fijas ofrecen estabilidad en los pagos y son mejores si planeas quedarte a largo plazo o las tasas están bajas. Los ARMs comienzan más bajos y pueden ser mejores si planeas vender o refinanciar en 5-7 años, o si se espera que las tasas bajen."
+    },
+    {
+      "question": "¿Debería pagar puntos para reducir mi tasa?",
+      "answer": "Pagar puntos (interés prepagado) puede reducir tu tasa, pero toma tiempo recuperar la inversión. Divide el costo de los puntos entre el ahorro mensual para encontrar tu punto de equilibrio. Si planeas quedarte más tiempo, los puntos pueden valer la pena."
+    }
+  ],
+  "sidebar": {
+    "financeTitle": "Calculadoras Financieras",
+    "healthTitle": "Calculadoras de Salud"
+  },
+  "common": {
+    "home": "Inicio",
+    "calculators": "Calculadoras",
+    "pro": "PRO"
+  }
+}

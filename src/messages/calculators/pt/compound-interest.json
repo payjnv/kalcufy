@@ -1,0 +1,179 @@
+{
+  "meta": {
+    "title": "Calculadora de Juros Compostos - Calcular Crescimento | Kalcufy",
+    "description": "Calculadora gratuita de juros compostos para ver como seu dinheiro cresce ao longo do tempo."
+  },
+  "calculator": {
+    "title": "Calculadora de Juros Compostos",
+    "subtitle": "Veja como seu dinheiro cresce com juros compostos",
+    "breadcrumb": "Juros Compostos",
+    "investmentDetails": "Detalhes do Investimento",
+    "inputs": {
+      "initialInvestment": "Investimento Inicial",
+      "monthlyContribution": "Contribuição Mensal",
+      "annualInterestRate": "Taxa de Juros Anual",
+      "investmentPeriod": "Período de Investimento",
+      "compoundFrequency": "Frequência de Capitalização",
+      "contributionTiming": "Momento da Contribuição",
+      "contributionTimingHelp": "Quando você faz suas contribuições?",
+      "advancedOptions": "Opções Avançadas",
+      "taxRate": "Taxa de Imposto sobre Juros",
+      "taxRateHelp": "Aplicado aos juros ganhos (ex. 25% taxa marginal)",
+      "inflationRate": "Taxa de Inflação Esperada",
+      "inflationRateHelp": "A inflação média é ~3% ao ano"
+    },
+    "frequency": {
+      "yearly": "Anual",
+      "quarterly": "Trimestral",
+      "monthly": "Mensal",
+      "daily": "Diário"
+    },
+    "timing": {
+      "beginning": "Início do Período",
+      "end": "Fim do Período"
+    },
+    "results": {
+      "futureValue": "Valor Futuro",
+      "totalContributions": "Total de Contribuições",
+      "totalInterest": "Total de Juros Ganhos",
+      "inflationAdjusted": "Valor Ajustado pela Inflação",
+      "inflationAdjustedHelp": "Poder de compra em dólares de hoje",
+      "growthBreakdown": "Detalhamento do Crescimento",
+      "contributions": "Contribuições",
+      "interest": "Juros"
+    },
+    "table": {
+      "title": "Crescimento Ano a Ano",
+      "year": "Ano",
+      "contributions": "Contribuições",
+      "interestEarned": "Juros Ganhos",
+      "balance": "Saldo"
+    },
+    "buttons": {
+      "viewGrowth": "Ver Crescimento Ano a Ano",
+      "pdf": "PDF",
+      "excel": "Excel",
+      "save": "Salvar",
+      "downloadPdf": "Baixar PDF",
+      "downloadExcel": "Baixar Excel"
+    },
+    "status": {
+      "saving": "Salvando...",
+      "saved": "Salvo",
+      "error": "Erro ao salvar"
+    },
+    "favorites": {
+      "add": "Adicionar aos favoritos",
+      "remove": "Remover dos favoritos"
+    }
+  },
+  "education": {
+    "title": "Entendendo os Juros Compostos",
+    "faqTitle": "Perguntas Frequentes",
+    "einsteinQuote": "Dizem que Albert Einstein chamou os juros compostos de \"a oitava maravilha do mundo\", afirmando que aqueles que entendem ganham, enquanto aqueles que não entendem pagam. Esta calculadora ajuda você a visualizar como seu dinheiro pode crescer exponencialmente ao longo do tempo.",
+    "powerOfTime": {
+      "title": "O Poder de Começar Cedo",
+      "description": "O tempo é o fator mais importante nos juros compostos. Considere:",
+      "startAt": "Comece aos",
+      "by65": "aos 65",
+      "yearsEarlier": "10 anos antes",
+      "canMean": "pode significar 2x o saldo final!"
+    },
+    "ruleOf72": {
+      "title": "Regra do 72: Anos para Dobrar",
+      "interestRate": "Taxa de Juros",
+      "yearsToDouble": "Anos para Dobrar",
+      "becomes": "$10K Se Torna",
+      "formula": "Fórmula: 72 ÷ Taxa de Juros = Anos para Dobrar"
+    },
+    "exampleCalculation": {
+      "title": "Exemplo de Cálculo",
+      "letsCalculate": "Vamos calcular o valor futuro de",
+      "with": "com",
+      "contributionsAt": "contribuições a",
+      "interest": "juros",
+      "compoundedMonthlyFor": "capitalizados mensalmente por",
+      "initialInvestment": "Investimento Inicial",
+      "monthlyContribution": "Contribuição Mensal",
+      "totalContributions": "Total de Contribuições",
+      "interestRate": "Taxa de Juros",
+      "periods": "Períodos",
+      "futureValue": "Valor Futuro",
+      "youInvested": "Você investiu",
+      "andEarned": "e ganhou",
+      "inInterest": "em juros",
+      "thatsA": "isso é um",
+      "returnOn": "de retorno sobre suas contribuições!"
+    },
+    "formula": {
+      "title": "A Fórmula",
+      "finalAmount": "Montante final (valor futuro)",
+      "principal": "Capital (investimento inicial)",
+      "annualRate": "Taxa de juros anual (em decimal)",
+      "compoundsPerYear": "Número de vezes que os juros são capitalizados por ano",
+      "numberOfYears": "Número de anos"
+    },
+    "tips": {
+      "title": "Maximize Seus Juros Compostos",
+      "tip1": {
+        "title": "Comece Cedo",
+        "description": "O tempo é mais poderoso do que o valor que você investe. Começar 10 anos antes pode dobrar seu saldo final."
+      },
+      "tip2": {
+        "title": "Contribua Regularmente",
+        "description": "Contribuições mensais consistentes se capitalizam ao longo do tempo, transformando pequenas quantias em riqueza significativa."
+      },
+      "tip3": {
+        "title": "Reinvista os Ganhos",
+        "description": "Nunca retire seus juros. Deixe-os capitalizar e gerar seus próprios retornos."
+      },
+      "tip4": {
+        "title": "Busque Maiores Retornos",
+        "description": "Mesmo 1-2% a mais de retorno faz uma diferença enorme ao longo de décadas. Considere fundos de índice ou investimentos diversificados."
+      }
+    },
+    "sections": [
+      {
+        "title": "O que são Juros Compostos?",
+        "content": "Juros compostos são juros calculados sobre o capital inicial e os juros acumulados de períodos anteriores. Diferente dos juros simples (que são calculados apenas sobre o capital), os juros compostos criam um efeito \"bola de neve\" onde seus ganhos geram seus próprios ganhos."
+      },
+      {
+        "title": "A Regra do 72",
+        "content": "Uma forma rápida de estimar quanto tempo leva para dobrar seu dinheiro: divida 72 pela sua taxa de juros. Com 8% de juros, seu dinheiro dobra em aproximadamente 9 anos."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "O que são juros compostos?",
+      "answer": "Juros compostos são juros calculados sobre o capital inicial e os juros acumulados de períodos anteriores. Isso cria um efeito bola de neve onde seu dinheiro cresce mais rápido ao longo do tempo, tornando-se uma ferramenta poderosa para construir riqueza."
+    },
+    {
+      "question": "Qual a diferença entre juros compostos e juros simples?",
+      "answer": "Juros simples são calculados apenas sobre o capital inicial, enquanto juros compostos são calculados sobre o capital mais os juros já ganhos. A longo prazo, juros compostos resultam em retornos significativamente maiores."
+    },
+    {
+      "question": "O que é a Regra do 72?",
+      "answer": "A Regra do 72 é uma forma rápida de estimar quanto tempo leva para dobrar seu dinheiro. Simplesmente divida 72 pela sua taxa de juros para obter os anos aproximados. A 7%, leva cerca de 10 anos; a 10%, cerca de 7 anos."
+    },
+    {
+      "question": "A frequência de capitalização importa?",
+      "answer": "Sim! Capitalização mais frequente gera maiores retornos. Capitalização diária rende mais que mensal, que rende mais que anual. No entanto, a diferença geralmente é pequena para taxas de juros típicas."
+    },
+    {
+      "question": "Por que o momento da contribuição importa?",
+      "answer": "Contribuir no início de cada período (anuidade antecipada) rende um pouco mais que contribuir no final (anuidade vencida), porque seu dinheiro tem mais tempo para capitalizar. Ao longo de décadas, isso pode somar milhares de dólares."
+    }
+  ],
+  "common": {
+    "home": "Início",
+    "calculators": "Calculadoras",
+    "year": "ano",
+    "years": "anos",
+    "month": "mês",
+    "at": "a",
+    "pro": "PRO",
+    "financialCalculators": "Calculadoras Financeiras",
+    "healthCalculators": "Calculadoras de Saúde"
+  }
+}

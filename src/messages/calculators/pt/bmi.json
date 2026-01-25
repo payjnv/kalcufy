@@ -1,0 +1,67 @@
+{
+  "meta": {
+    "title": "Calculadora de IMC - Índice de Massa Corporal | Kalcufy",
+    "description": "Calculadora gratuita de IMC para verificar seu índice de massa corporal, entender sua categoria de peso e obter insights de saúde."
+  },
+  "calculator": {
+    "title": "Calculadora de IMC",
+    "subtitle": "Calcule seu Índice de Massa Corporal",
+    "breadcrumb": "IMC",
+    "details": "Suas Informações",
+    "inputs": {
+      "height": "Altura",
+      "weight": "Peso",
+      "age": "Idade",
+      "gender": "Gênero",
+      "male": "Masculino",
+      "female": "Feminino",
+      "feet": "pés",
+      "inches": "pol",
+      "cm": "cm",
+      "lbs": "lbs",
+      "kg": "kg"
+    },
+    "units": {
+      "imperial": "Imperial (pés/lbs)",
+      "metric": "Métrico (cm/kg)"
+    },
+    "results": {
+      "yourBMI": "Seu IMC",
+      "category": "Categoria",
+      "healthyRange": "Faixa de Peso Saudável",
+      "underweight": "Abaixo do Peso",
+      "normal": "Normal",
+      "overweight": "Sobrepeso",
+      "obese": "Obesidade"
+    },
+    "categories": {
+      "underweight": { "range": "Abaixo de 18.5", "description": "Você pode estar abaixo do peso. Considere consultar um profissional de saúde." },
+      "normal": { "range": "18.5 - 24.9", "description": "Você está com peso saudável. Mantenha seu estilo de vida atual." },
+      "overweight": { "range": "25.0 - 29.9", "description": "Você pode estar com sobrepeso. Considere mudanças no estilo de vida." },
+      "obese": { "range": "30.0 ou mais", "description": "Faixa de obesidade. Consulte um profissional de saúde." }
+    },
+    "buttons": { "save": "Salvar", "pdf": "PDF" },
+    "favorites": { "add": "Adicionar aos favoritos", "remove": "Remover dos favoritos" },
+    "saving": { "saving": "Salvando...", "saved": "Salvo", "error": "Erro ao salvar" }
+  },
+  "education": {
+    "title": "Entendendo o IMC",
+    "content1": "O Índice de Massa Corporal (IMC) é uma medida simples que usa altura e peso para estimar gordura corporal. Embora não seja perfeito, é uma ferramenta útil de triagem.",
+    "content2": "O IMC não considera massa muscular, densidade óssea ou distribuição de gordura. Atletas podem ter IMC alto apesar de baixa gordura corporal.",
+    "tips": {
+      "title": "Dicas de Saúde",
+      "tip1": { "title": "O IMC é uma Ferramenta de Triagem", "description": "Não é uma ferramenta de diagnóstico. Consulte profissionais de saúde." },
+      "tip2": { "title": "Considere Outras Métricas", "description": "Circunferência da cintura e percentual de gordura fornecem insights adicionais." },
+      "tip3": { "title": "Foque na Saúde Geral", "description": "Dieta, exercício e saúde mental importam tanto quanto o peso." },
+      "tip4": { "title": "Acompanhe o Progresso", "description": "Medições individuais importam menos que tendências." }
+    },
+    "faqTitle": "Perguntas Frequentes"
+  },
+  "faq": [
+    { "question": "Quão preciso é o IMC?", "answer": "O IMC é útil mas tem limitações. Pode superestimar gordura corporal em atletas e subestimá-la em idosos que perderam massa muscular." },
+    { "question": "Qual é um IMC saudável?", "answer": "Um IMC entre 18.5 e 24.9 é considerado saudável para a maioria dos adultos. Porém, o peso ótimo pode variar por idade, gênero e composição corporal." },
+    { "question": "Devo confiar apenas no IMC?", "answer": "Não. O IMC deve ser um de vários indicadores de saúde. Considere também circunferência da cintura, percentual de gordura, pressão arterial e colesterol." }
+  ],
+  "sidebar": { "financeTitle": "Calculadoras Financeiras", "healthTitle": "Calculadoras de Saúde" },
+  "common": { "home": "Início", "calculators": "Calculadoras", "pro": "PRO" }
+}

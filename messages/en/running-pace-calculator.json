@@ -1,0 +1,155 @@
+{
+  "meta": {
+    "title": "Running Pace Calculator - VDOT, Training Paces & Race Predictions",
+    "description": "Calculate your running pace, predict race times, get personalized training paces with VDOT scores, weather adjustments, and split times for any distance."
+  },
+  "calculator": {
+    "title": "Running Pace Calculator",
+    "subtitle": "Calculate pace, predict races, and optimize your training with VDOT analysis"
+  },
+  "form": {
+    "calculationType": "Calculation Type",
+    "distance": "Distance",
+    "customDistance": "Custom Distance",
+    "time": "Time",
+    "pace": "Pace",
+    "hours": "Hours",
+    "minutes": "Minutes",
+    "seconds": "Seconds",
+    "perMile": "per mile",
+    "perKm": "per km",
+    "unit": "Unit",
+    "miles": "Miles",
+    "kilometers": "Kilometers",
+    "meters": "Meters",
+    "calculate": "Calculate",
+    "reset": "Reset",
+    "advancedOptions": "Advanced Options",
+    "temperature": "Temperature",
+    "humidity": "Humidity",
+    "altitude": "Altitude",
+    "weight": "Weight (for calories)",
+    "age": "Age (for age-grading)"
+  },
+  "results": {
+    "title": "Your Results",
+    "pace": "Pace",
+    "time": "Time",
+    "distance": "Distance",
+    "speed": "Speed",
+    "vdotScore": "VDOT Score",
+    "caloriesBurned": "Estimated Calories",
+    "ageGradedTime": "Age-Graded Time",
+    "ageGradedPercent": "Age-Graded %",
+    "weatherAdjusted": "Weather-Adjusted Pace"
+  },
+  "trainingPaces": {
+    "title": "Training Paces",
+    "description": "Based on your VDOT score, here are your recommended training paces:",
+    "easy": "Easy / Recovery",
+    "easyDesc": "Conversational pace for recovery runs",
+    "marathon": "Marathon Pace",
+    "marathonDesc": "Goal pace for marathon racing",
+    "threshold": "Threshold / Tempo",
+    "thresholdDesc": "Comfortably hard for tempo runs",
+    "interval": "Interval (VO2max)",
+    "intervalDesc": "Hard effort for track intervals",
+    "repetition": "Repetition",
+    "repetitionDesc": "Fast pace for speed work"
+  },
+  "racePredictions": {
+    "title": "Race Time Predictions",
+    "description": "Equivalent performances at other distances:",
+    "distance": "Distance",
+    "predictedTime": "Predicted Time",
+    "requiredPace": "Required Pace"
+  },
+  "splits": {
+    "title": "Split Times",
+    "mile": "Mile",
+    "km": "Kilometer",
+    "split": "Split",
+    "cumulative": "Cumulative",
+    "evenSplits": "Even Splits",
+    "negativeSplits": "Negative Splits",
+    "negativeSplitDesc": "Start slower, finish faster (recommended for racing)"
+  },
+  "distances": {
+    "custom": "Custom",
+    "1mile": "1 Mile",
+    "5k": "5K",
+    "10k": "10K",
+    "halfMarathon": "Half Marathon",
+    "marathon": "Marathon",
+    "50k": "50K Ultra",
+    "100k": "100K Ultra"
+  },
+  "infoCards": {
+    "vdot": {
+      "title": "What is VDOT?",
+      "content": "VDOT is a measure of your running fitness developed by coach Jack Daniels. It estimates your VO2max based on race performance and helps determine optimal training paces."
+    },
+    "negativeSplits": {
+      "title": "Why Negative Splits?",
+      "content": "Running the second half of a race faster than the first helps conserve energy early and finish strong. Most world records are set with negative splits."
+    },
+    "weather": {
+      "title": "Weather Impact",
+      "content": "Heat and humidity significantly affect performance. For every 10°F above 55°F, expect pace to slow by 1.5-3%. Our calculator adjusts predictions accordingly."
+    },
+    "trainingZones": {
+      "title": "Training Zone Benefits",
+      "content": "Easy runs build aerobic base, tempo runs improve lactate threshold, and intervals boost VO2max. A balanced training plan includes all zones."
+    }
+  },
+  "example": {
+    "title": "Example Calculation",
+    "scenario": "A runner completes a 10K in 50:00",
+    "results": "This equals an 8:03/mile pace, VDOT of 41.2, and predicts a 3:56 marathon time.",
+    "trainingPaces": "Recommended easy pace: 9:45-10:30/mile, Tempo: 7:33/mile"
+  },
+  "educational": {
+    "title": "Understanding Running Pace & Performance",
+    "content": "Running pace is the foundation of training and racing strategy. Whether you're preparing for your first 5K or chasing a marathon PR, understanding your pace helps you train smarter and race better.",
+    "sections": [
+      {
+        "title": "The Science of Pacing",
+        "content": "Your running pace is determined by your aerobic capacity (VO2max), lactate threshold, and running economy. The VDOT system combines these factors into a single score that predicts performance across distances."
+      },
+      {
+        "title": "Training by Pace",
+        "content": "Different training paces target different physiological systems. Easy runs at 65-75% effort build mitochondria and capillaries. Tempo runs at 85-90% effort improve your lactate threshold. Intervals at 95-100% effort boost your VO2max."
+      },
+      {
+        "title": "Race Day Strategy",
+        "content": "The key to successful racing is even or negative splits. Starting too fast leads to glycogen depletion and muscle fatigue. Use the first miles to settle into rhythm, then gradually increase effort in the final third."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "How accurate are race time predictions?",
+      "answer": "Predictions are most accurate when based on recent race times (within 4-6 weeks) at distances close to your goal race. A 10K time predicts a half marathon better than it predicts a marathon."
+    },
+    {
+      "question": "What's a good VDOT score?",
+      "answer": "VDOT scores typically range from 30 (beginner) to 85 (elite). A recreational runner might score 35-45, a competitive amateur 50-60, and elite runners 70+."
+    },
+    {
+      "question": "How much does heat affect my pace?",
+      "answer": "Research shows performance decreases 1.5-3% for every 10°F above 55°F. At 85°F with high humidity, expect to run 6-12% slower than cool weather."
+    },
+    {
+      "question": "Should I train by pace or heart rate?",
+      "answer": "Both have value. Pace is better for track workouts and races. Heart rate is useful for easy runs, especially in heat or when fatigued, as it accounts for daily variations in fitness."
+    },
+    {
+      "question": "How do I improve my VDOT score?",
+      "answer": "Consistent training with proper periodization improves VDOT 2-5 points per year for newer runners. Key workouts include tempo runs, VO2max intervals, and long runs."
+    },
+    {
+      "question": "What pace should I run my long runs?",
+      "answer": "Long runs should be at easy pace, typically 1-2 minutes per mile slower than marathon pace. You should be able to hold a conversation throughout."
+    }
+  ]
+}

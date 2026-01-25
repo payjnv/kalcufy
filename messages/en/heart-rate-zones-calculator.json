@@ -1,0 +1,157 @@
+{
+  "meta": {
+    "title": "Heart Rate Zones Calculator - Karvonen Formula Training Zones",
+    "description": "Calculate your personalized heart rate training zones using the Karvonen formula. Get optimal zones for fat burning, endurance, tempo, and VO2max training."
+  },
+  "calculator": {
+    "title": "Heart Rate Zones Calculator",
+    "subtitle": "Find your optimal training zones with the Karvonen formula"
+  },
+  "form": {
+    "age": "Age",
+    "restingHeartRate": "Resting Heart Rate",
+    "maxHeartRate": "Maximum Heart Rate",
+    "useEstimated": "Use Estimated Max HR",
+    "enterManual": "Enter Known Max HR",
+    "bpm": "bpm",
+    "years": "years",
+    "fitnessLevel": "Fitness Level",
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced",
+    "athlete": "Athlete",
+    "calculate": "Calculate Zones",
+    "reset": "Reset",
+    "measureRHR": "How to measure resting heart rate"
+  },
+  "results": {
+    "title": "Your Heart Rate Zones",
+    "maxHR": "Maximum Heart Rate",
+    "restingHR": "Resting Heart Rate",
+    "heartRateReserve": "Heart Rate Reserve",
+    "zone": "Zone",
+    "range": "Heart Rate Range",
+    "effort": "Effort Level",
+    "benefits": "Training Benefits"
+  },
+  "zones": {
+    "zone1": {
+      "name": "Zone 1 - Recovery",
+      "intensity": "50-60%",
+      "effort": "Very Light",
+      "benefits": "Active recovery, warm-up, cool-down",
+      "description": "Conversational pace. Use for recovery days and warm-ups.",
+      "duration": "20-60 minutes"
+    },
+    "zone2": {
+      "name": "Zone 2 - Aerobic Base",
+      "intensity": "60-70%",
+      "effort": "Light",
+      "benefits": "Fat burning, endurance building, aerobic capacity",
+      "description": "Comfortable pace you can maintain for hours. Builds your aerobic engine.",
+      "duration": "45-180 minutes"
+    },
+    "zone3": {
+      "name": "Zone 3 - Tempo",
+      "intensity": "70-80%",
+      "effort": "Moderate",
+      "benefits": "Improved efficiency, moderate aerobic training",
+      "description": "Comfortably hard. You can speak in short sentences.",
+      "duration": "30-60 minutes"
+    },
+    "zone4": {
+      "name": "Zone 4 - Threshold",
+      "intensity": "80-90%",
+      "effort": "Hard",
+      "benefits": "Increased lactate threshold, speed endurance",
+      "description": "Hard effort. Speaking is difficult. Improves your race pace.",
+      "duration": "10-30 minutes"
+    },
+    "zone5": {
+      "name": "Zone 5 - VO2max",
+      "intensity": "90-100%",
+      "effort": "Maximum",
+      "benefits": "Maximum performance, anaerobic capacity, speed",
+      "description": "All-out effort. Used for intervals and sprints.",
+      "duration": "1-5 minutes (intervals)"
+    }
+  },
+  "weeklyPlan": {
+    "title": "Suggested Weekly Training Distribution",
+    "description": "Based on your fitness level, here's how to distribute your training:",
+    "zone1Percent": "Zone 1 (Recovery)",
+    "zone2Percent": "Zone 2 (Aerobic)",
+    "zone3Percent": "Zone 3 (Tempo)",
+    "zone4Percent": "Zone 4 (Threshold)",
+    "zone5Percent": "Zone 5 (VO2max)",
+    "totalHours": "Recommended Weekly Hours"
+  },
+  "infoCards": {
+    "karvonen": {
+      "title": "The Karvonen Formula",
+      "content": "Target HR = ((Max HR - Resting HR) × Intensity%) + Resting HR. This method accounts for your fitness level through resting heart rate, giving more personalized zones than simple percentage methods."
+    },
+    "rhr": {
+      "title": "Measuring Resting Heart Rate",
+      "content": "Measure your resting heart rate first thing in the morning, before getting out of bed. Take measurements for 3-5 days and use the average. Lower RHR generally indicates better cardiovascular fitness."
+    },
+    "maxhr": {
+      "title": "Finding Your Max Heart Rate",
+      "content": "The 220-age formula is an estimate. For accuracy, perform a max HR test: after warming up, run 3-4 intervals of 2-3 minutes at increasing intensity, with the final interval all-out."
+    },
+    "zone2": {
+      "title": "Why Zone 2 Matters",
+      "content": "80% of your training should be in Zone 2. This builds mitochondrial density, capillary networks, and fat-burning capacity - the foundation of endurance performance."
+    }
+  },
+  "example": {
+    "title": "Example Calculation",
+    "scenario": "A 35-year-old with resting HR of 60 bpm",
+    "results": "Max HR: 185 bpm, Heart Rate Reserve: 125 bpm",
+    "zones": "Zone 2 (aerobic): 135-148 bpm, Zone 4 (threshold): 160-173 bpm"
+  },
+  "educational": {
+    "title": "Heart Rate Training: The Science of Zones",
+    "content": "Heart rate training zones help you train at the right intensity for your goals. Each zone targets different energy systems and physiological adaptations.",
+    "sections": [
+      {
+        "title": "Why Heart Rate Zones Matter",
+        "content": "Training intensity determines adaptation. Too hard too often leads to overtraining and injury. Too easy means slow progress. Heart rate zones ensure you're training at the right intensity for each workout's purpose."
+      },
+      {
+        "title": "The 80/20 Rule",
+        "content": "Elite athletes spend 80% of their training time in Zones 1-2 (easy) and only 20% in Zones 4-5 (hard). This polarized approach maximizes adaptation while preventing burnout. Most recreational athletes train too hard too often."
+      },
+      {
+        "title": "Heart Rate Variability",
+        "content": "Your heart rate varies day to day based on sleep, stress, hydration, and recovery. If your heart rate is unusually high during easy efforts, consider taking a recovery day. Listen to your body along with the numbers."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Why is my heart rate high on easy runs?",
+      "answer": "Several factors elevate heart rate: heat, humidity, dehydration, caffeine, poor sleep, stress, or incomplete recovery. If consistently high, take extra recovery days or reduce training load."
+    },
+    {
+      "question": "Is the 220-age formula accurate?",
+      "answer": "It's a rough estimate with standard deviation of 10-12 bpm. For precise training, test your actual max HR or use recent race data to calibrate your zones."
+    },
+    {
+      "question": "How long should I train in each zone?",
+      "answer": "Zone 2: 45-180 minutes builds endurance. Zone 4: 10-30 total minutes improves threshold. Zone 5: 3-8 minutes total (in intervals) for VO2max. Zone 1: Use for warm-up, cool-down, and recovery days."
+    },
+    {
+      "question": "What's heart rate reserve (HRR)?",
+      "answer": "HRR is the difference between your max and resting heart rate. It represents your 'usable' heart rate range. The Karvonen formula uses HRR for more personalized training zones."
+    },
+    {
+      "question": "Should I train by heart rate or perceived effort?",
+      "answer": "Use both together. Heart rate provides objective data, while perceived effort accounts for factors like heat and fatigue. Learn to correlate your feelings with heart rate data."
+    },
+    {
+      "question": "How often should I recalculate my zones?",
+      "answer": "Recalculate every 3-6 months or after significant fitness changes. As fitness improves, resting heart rate typically decreases, shifting your zones slightly."
+    }
+  ]
+}

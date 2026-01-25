@@ -1,0 +1,114 @@
+{
+  "meta": {
+    "title": "One Rep Max (1RM) Calculator - Free Online Tool",
+    "description": "Calculate your one rep max using 7 scientific formulas. Compare Epley, Brzycki, and more. Get training percentages, warm-up protocols, and strength standards."
+  },
+  "calculator": {
+    "title": "One Rep Max Calculator",
+    "subtitle": "Estimate your 1RM using 7 scientific formulas",
+    "unitSystem": "Unit System",
+    "imperial": "Imperial (lb)",
+    "metric": "Metric (kg)",
+    "exercise": "Exercise",
+    "benchPress": "Bench Press",
+    "squat": "Back Squat",
+    "deadlift": "Deadlift",
+    "overheadPress": "Overhead Press",
+    "otherExercise": "Other Exercise",
+    "weightLifted": "Weight Lifted",
+    "repsPerformed": "Reps Performed",
+    "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
+    "bodyweight": "Bodyweight",
+    "advancedOptions": "Advanced Options",
+    "preferredFormula": "Preferred Formula",
+    "estimated1RM": "Estimated One Rep Max",
+    "usingFormula": "Using {formula} formula",
+    "strengthLevel": "Strength Level",
+    "timesBodyweight": "× bodyweight",
+    "allFormulas": "All 7 Formulas",
+    "average": "Average",
+    "trainingLoads": "Training Loads",
+    "warmupProtocol": "Warm-up Protocol",
+    "set": "Set",
+    "reps": "reps",
+    "strengthStandards": "Strength Standards",
+    "level": "Level",
+    "forWeight": "For {weight}",
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced",
+    "elite": "Elite",
+    "untrained": "Untrained",
+    "save": "Save",
+    "saving": "Saving...",
+    "saved": "Saved!",
+    "pdf": "PDF",
+    "excel": "Excel",
+    "pro": "PRO"
+  },
+  "education": {
+    "title": "Understanding One Rep Max",
+    "sections": [
+      {
+        "title": "What is a One Rep Max?",
+        "content": "Your one-rep max (1RM) is the maximum weight you can lift for a single repetition with proper form. It's the gold standard for measuring maximal strength and is widely used by coaches, athletes, and fitness enthusiasts to program training intensity."
+      },
+      {
+        "title": "Why Estimate Instead of Test?",
+        "content": "Testing your actual 1RM carries injury risk, requires extensive warm-up, proper spotters, and significant neurological demand. Estimation from submaximal lifts (using 3-10 reps) provides sufficiently accurate data for training purposes with much lower risk."
+      },
+      {
+        "title": "The 7 Formulas Explained",
+        "content": "Epley and Brzycki are the most popular formulas, accurate for 1-10 reps. Wathen is NSCA-recommended for explosive athletes. Mayhew was developed from NFL Combine data. Lombardi works better for higher rep ranges. Each formula has strengths depending on the lift and rep range used."
+      },
+      {
+        "title": "Using Your 1RM for Training",
+        "content": "Once you know your 1RM, use percentages to program your training: 85-95% for strength (1-5 reps), 70-85% for hypertrophy (6-12 reps), and 50-70% for muscular endurance (15+ reps). Most periodized programs prescribe weights as percentages of 1RM."
+      },
+      {
+        "title": "Strength Standards Explained",
+        "content": "Strength standards compare your lift to others at your bodyweight. They're based on data from millions of lifters and help you set realistic goals. Standards differ by gender due to physiological differences in muscle mass and body composition."
+      },
+      {
+        "title": "Tips for Accurate Estimates",
+        "content": "For best accuracy: use 3-6 reps, lift to technical failure (not absolute failure), use compound movements, ensure you're well-rested, and test after a proper warm-up. Estimates become less accurate above 10 reps due to fatigue factors."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "What is a One Rep Max (1RM)?",
+      "answer": "A one-rep max is the maximum weight you can lift for a single repetition with proper form. It's used to measure strength, program training intensity, and track progress over time. Rather than risking injury by testing directly, you can estimate it from submaximal lifts."
+    },
+    {
+      "question": "Which 1RM formula is most accurate?",
+      "answer": "For 1-5 reps, Epley and Brzycki are most accurate with errors under 5%. For 6-10 reps, Brzycki and Wathen work well. For higher reps (10+), Mayhew is more accurate but all formulas lose precision. Using the average of multiple formulas provides the best overall estimate."
+    },
+    {
+      "question": "Why shouldn't I test my actual 1RM?",
+      "answer": "Testing actual 1RM carries significant injury risk, especially without proper spotters and technique. It also requires extensive warm-up, is neurologically demanding, and takes considerable recovery time. For most training purposes, estimates from 3-10 rep sets are sufficient and much safer."
+    },
+    {
+      "question": "How accurate are these 1RM estimates?",
+      "answer": "For reps under 10, estimates are typically within 2-5% of actual 1RM for trained individuals. Accuracy depends on training experience, exercise type (compound lifts are more accurate), and whether you lifted to true failure. Accuracy decreases significantly above 10 reps."
+    },
+    {
+      "question": "What are good strength standards to aim for?",
+      "answer": "General benchmarks for men: Beginner (1× BW bench, 1.25× squat, 1.5× deadlift), Intermediate (1× bench, 1.5× squat, 2× deadlift), Advanced (1.5× bench, 2× squat, 2.5× deadlift), Elite (2× bench, 2.5× squat, 3× deadlift). Women's standards are typically 50-65% of men's values."
+    },
+    {
+      "question": "How do I use my 1RM for training?",
+      "answer": "Use percentages of your 1RM: 85-95% for maximal strength (1-5 reps), 70-85% for hypertrophy (6-12 reps), 50-70% for muscular endurance (12+ reps), and 30-60% for power training with explosive movements. Most periodized programs prescribe weights this way."
+    },
+    {
+      "question": "How often should I re-test my 1RM?",
+      "answer": "Re-estimate every 4-8 weeks during a training cycle, or whenever you notice your rep maxes improving significantly. Beginners may need more frequent updates (every 2-4 weeks) as they progress faster. Avoid testing during high-fatigue periods or deload weeks."
+    },
+    {
+      "question": "Does 1RM differ between exercises?",
+      "answer": "Yes, significantly. Most people deadlift more than they squat, and squat more than they bench. Typical ratios are approximately Deadlift:Squat:Bench = 3.5:3:2. Individual variations occur based on body proportions, training history, and muscle fiber composition."
+    }
+  ]
+}

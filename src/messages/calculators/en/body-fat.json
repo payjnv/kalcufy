@@ -1,0 +1,115 @@
+{
+  "meta": {
+    "title": "Body Fat Calculator - Calculate Your Body Fat Percentage",
+    "description": "Free body fat calculator using Navy, BMI, and Army methods. Get accurate body fat percentage, lean mass, fat mass, and personalized fat loss goals."
+  },
+  "calculator": {
+    "title": "Body Fat Calculator",
+    "subtitle": "Calculate your body fat percentage using multiple methods"
+  },
+  "inputs": {
+    "unitSystem": "Unit System",
+    "imperial": "Imperial (lb, in)",
+    "metric": "Metric (kg, cm)",
+    "biologicalSex": "Biological Sex",
+    "male": "Male",
+    "female": "Female",
+    "age": "Age",
+    "years": "years",
+    "weight": "Weight",
+    "height": "Height",
+    "neck": "Neck Circumference",
+    "neckHelp": "Measure just below the Adam's apple",
+    "waist": "Waist Circumference",
+    "waistHelpMale": "Measure at navel (belly button)",
+    "waistHelpFemale": "Measure at narrowest point",
+    "hip": "Hip Circumference",
+    "hipHelp": "Measure at widest point of hips/buttocks"
+  },
+  "methods": {
+    "title": "Calculation Method",
+    "navy": "Navy Method",
+    "navyDesc": "Most accurate (uses measurements)",
+    "bmi": "BMI Method",
+    "bmiDesc": "Less accurate (no measurements)",
+    "army": "Army Method",
+    "armyDesc": "Military standard"
+  },
+  "results": {
+    "title": "Your Body Fat Percentage",
+    "fatMass": "Fat Mass",
+    "leanMass": "Lean Mass",
+    "comparison": "Methods Comparison",
+    "comparisonNote": "Different methods may show slightly different results. Navy method is generally most accurate.",
+    "goalAnalysis": "Goal Analysis",
+    "currentBF": "Current Body Fat",
+    "goalBF": "Goal Body Fat",
+    "fatToLose": "Fat to Lose",
+    "goalWeight": "Goal weight"
+  },
+  "categories": {
+    "title": "Body Fat Categories",
+    "essential": "Essential Fat",
+    "athletes": "Athletes",
+    "fitness": "Fitness",
+    "average": "Average",
+    "obese": "Obese"
+  },
+  "advanced": {
+    "title": "Advanced Options",
+    "goalBodyFat": "Goal Body Fat %",
+    "goalBodyFatOptional": "(optional)",
+    "goalBodyFatHelp": "Enter to see how much fat you need to lose"
+  },
+  "education": {
+    "whatIs": "What is Body Fat Percentage?",
+    "whatIsContent": "Body fat percentage is the total mass of fat divided by total body mass, multiplied by 100. It's a more accurate indicator of health and fitness than weight alone because it distinguishes between fat and lean tissue.",
+    "methodsTitle": "Calculation Methods Explained",
+    "navyTitle": "Navy Method (Recommended)",
+    "navyContent": "Uses circumference measurements (neck, waist, and hip for women) along with height. Developed by the U.S. Navy, this method is accurate for most people.",
+    "bmiTitle": "BMI Method",
+    "bmiContent": "Estimates body fat from BMI, age, and gender. Less accurate because BMI doesn't distinguish between muscle and fat.",
+    "armyTitle": "Army Method",
+    "armyContent": "Similar to Navy method, used by the U.S. Army for fitness assessments. Uses the same measurements but a slightly different formula."
+  },
+  "howToMeasure": {
+    "title": "How to Measure",
+    "neck": "Neck: Measure just below the Adam's apple, tape sloping down slightly at front",
+    "waistMale": "Waist (Men): Measure at navel (belly button) level, keep tape horizontal",
+    "waistFemale": "Waist (Women): Measure at narrowest point, usually above belly button",
+    "hip": "Hip (Women): Measure at widest point of hips and buttocks"
+  },
+  "tips": {
+    "title": "Tips for Accuracy",
+    "tip1": "Measure in the morning before eating or drinking",
+    "tip2": "Keep the tape snug but not compressing the skin",
+    "tip3": "Take multiple measurements and use the average",
+    "tip4": "Measure at the same time of day for tracking"
+  },
+  "faq": [
+    {
+      "question": "What is body fat percentage?",
+      "answer": "Body fat percentage is the total mass of fat divided by total body mass, multiplied by 100. It includes essential fat (necessary for life) and storage fat. A healthy body fat percentage varies by gender, age, and fitness level."
+    },
+    {
+      "question": "Which method is most accurate?",
+      "answer": "The Navy Method using body measurements is generally most accurate for the average person without specialized equipment. For athletes with low body fat, the Army method may be more accurate. The BMI method is least accurate but requires no measurements."
+    },
+    {
+      "question": "How do I measure my waist correctly?",
+      "answer": "For men: Measure at the navel (belly button) level. For women: Measure at the narrowest point of your waist, usually just above the belly button. Keep the tape horizontal and snug but not compressing the skin."
+    },
+    {
+      "question": "How do I measure my neck correctly?",
+      "answer": "Measure around your neck just below the larynx (Adam's apple) with the tape sloping slightly downward at the front. Keep your head straight and look forward during measurement."
+    },
+    {
+      "question": "What is a healthy body fat percentage?",
+      "answer": "For men, 14-17% is considered 'fitness' level, while 18-24% is 'average'. For women, 21-24% is 'fitness' level, while 25-31% is 'average'. Athletes typically have lower percentages: 6-13% for men and 14-20% for women."
+    },
+    {
+      "question": "How often should I measure body fat?",
+      "answer": "Measure once every 2-4 weeks at the same time of day (preferably morning before eating) for consistent results. Body fat changes slowly, so daily measurements are unnecessary and may show misleading fluctuations."
+    }
+  ]
+}

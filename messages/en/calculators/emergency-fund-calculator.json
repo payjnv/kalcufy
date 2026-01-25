@@ -1,0 +1,36 @@
+{
+  "meta": {
+    "title": "Emergency Fund Calculator - How Much Do You Need?",
+    "description": "Free emergency fund calculator to determine how much you need for financial security. Calculate your target based on monthly expenses and track your progress."
+  },
+  "calculator": {
+    "title": "Emergency Fund Calculator",
+    "subtitle": "Calculate how much you need for financial security"
+  },
+  "faq": [
+    {
+      "question": "How much should I have in my emergency fund?",
+      "answer": "Most financial experts recommend 3-6 months of essential expenses. If you have a stable job with dual income, 3 months may suffice. If you're self-employed, a single earner, or in an unstable industry, aim for 6-12 months."
+    },
+    {
+      "question": "What counts as an 'emergency'?",
+      "answer": "True emergencies include job loss, medical emergencies, urgent car repairs, essential home repairs (broken furnace, roof leak), and unexpected travel for family emergencies. Sales, vacations, and predictable expenses like car maintenance are NOT emergencies."
+    },
+    {
+      "question": "Where should I keep my emergency fund?",
+      "answer": "Keep your emergency fund in a high-yield savings account. It should be liquid (accessible within 1-3 days), FDIC insured, and separate from your checking account to avoid temptation. Don't invest it in stocks—volatility could mean losses when you need it most."
+    },
+    {
+      "question": "Should I pay off debt or build an emergency fund first?",
+      "answer": "Start with a $1,000 mini emergency fund, then focus on paying off high-interest debt. Once debt is under control, build your full emergency fund. Having some savings prevents new debt when emergencies occur."
+    },
+    {
+      "question": "How do I build an emergency fund on a tight budget?",
+      "answer": "Start small—even $25-50 per paycheck adds up. Automate transfers to a separate savings account. Use windfalls (tax refunds, bonuses, gifts) to boost your fund. Temporarily cut non-essential expenses until you reach at least $1,000."
+    },
+    {
+      "question": "Should I include rent/mortgage in emergency fund calculations?",
+      "answer": "Yes! Housing is typically your largest essential expense. Your emergency fund should cover ALL necessary expenses to maintain your household if you lose income, including housing, utilities, food, insurance, and minimum debt payments."
+    }
+  ]
+}

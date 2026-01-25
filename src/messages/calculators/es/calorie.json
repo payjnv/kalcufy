@@ -1,0 +1,64 @@
+{
+  "meta": {
+    "title": "Calculadora de Calorías - Necesidades Diarias | Kalcufy",
+    "description": "Calculadora gratuita de calorías para encontrar tus necesidades diarias para perder peso, mantener o ganar músculo según tu nivel de actividad."
+  },
+  "calculator": {
+    "title": "Calculadora de Calorías",
+    "subtitle": "Calcula tus necesidades calóricas diarias",
+    "breadcrumb": "Calorías",
+    "details": "Tu Información",
+    "inputs": {
+      "age": "Edad",
+      "gender": "Género",
+      "male": "Masculino",
+      "female": "Femenino",
+      "height": "Altura",
+      "weight": "Peso",
+      "activityLevel": "Nivel de Actividad",
+      "goal": "Objetivo"
+    },
+    "activityLevels": {
+      "sedentary": "Sedentario (poco o nada de ejercicio)",
+      "light": "Ligero (ejercicio 1-3 días/semana)",
+      "moderate": "Moderado (ejercicio 3-5 días/semana)",
+      "active": "Activo (ejercicio 6-7 días/semana)",
+      "veryActive": "Muy Activo (ejercicio intenso diario)"
+    },
+    "goals": {
+      "lose": "Perder Peso",
+      "maintain": "Mantener Peso",
+      "gain": "Ganar Peso"
+    },
+    "results": {
+      "bmr": "Metabolismo Basal",
+      "maintenance": "Calorías de Mantenimiento",
+      "target": "Calorías Objetivo",
+      "protein": "Proteína Recomendada",
+      "water": "Agua Recomendada"
+    },
+    "buttons": { "save": "Guardar", "pdf": "PDF" },
+    "favorites": { "add": "Agregar a favoritos", "remove": "Quitar de favoritos" },
+    "saving": { "saving": "Guardando...", "saved": "Guardado", "error": "Error al guardar" }
+  },
+  "education": {
+    "title": "Entendiendo las Calorías",
+    "content1": "Las calorías son unidades de energía. Tu cuerpo quema calorías solo para funcionar (TMB) más calorías adicionales por actividad. El balance determina cambios de peso.",
+    "content2": "Para perder peso, apunta a un déficit de 500 calorías diarias para perder ~0.5 kg por semana. Para ganar músculo, agrega 300-500 calorías sobre el mantenimiento con entrenamiento de fuerza.",
+    "tips": {
+      "title": "Consejos de Nutrición",
+      "tip1": { "title": "Calorías que Entran vs Salen", "description": "El control de peso se reduce al balance energético." },
+      "tip2": { "title": "Pérdida de Peso Segura", "description": "Apunta a 0.5-1 kg por semana. Pérdida más rápida a menudo significa perder músculo." },
+      "tip3": { "title": "La Proteína Importa", "description": "Mayor proteína ayuda a preservar músculo durante pérdida de peso." },
+      "tip4": { "title": "Rastrea tu Consumo", "description": "La gente a menudo subestima las calorías consumidas en 20-50%." }
+    },
+    "faqTitle": "Preguntas Frecuentes"
+  },
+  "faq": [
+    { "question": "¿Qué tan precisa es esta calculadora?", "answer": "Las calculadoras estiman con 10-15% de precisión. Rastrea tu consumo real y cambios de peso, luego ajusta según resultados reales." },
+    { "question": "¿Debo comer las calorías del ejercicio?", "answer": "Para perder peso, come aproximadamente la mitad de las calorías del ejercicio. Los rastreadores de ejercicio a menudo sobreestiman las calorías quemadas." },
+    { "question": "¿Por qué mi mantenimiento es tan alto/bajo?", "answer": "El mantenimiento varía ampliamente según altura, peso, edad y especialmente nivel de actividad. Más músculo también aumenta el metabolismo." }
+  ],
+  "sidebar": { "financeTitle": "Calculadoras Financieras", "healthTitle": "Calculadoras de Salud" },
+  "common": { "home": "Inicio", "calculators": "Calculadoras", "pro": "PRO", "years": "años", "grams": "g", "liters": "L" }
+}

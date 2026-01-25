@@ -1,0 +1,63 @@
+{
+  "meta": {
+    "title": "Calculadora de Poupança - Juros Compostos | Kalcufy",
+    "description": "Calculadora gratuita de poupança para projetar crescimento com juros compostos, depósitos regulares e ajuste de inflação."
+  },
+  "calculator": {
+    "title": "Calculadora de Poupança",
+    "subtitle": "Calcule o crescimento da sua poupança",
+    "breadcrumb": "Poupança",
+    "savingsDetails": "Detalhes da Poupança",
+    "inputs": {
+      "initialDeposit": "Depósito Inicial",
+      "monthlyContribution": "Aporte Mensal",
+      "interestRate": "Taxa de Juros Anual",
+      "years": "Período de Tempo",
+      "compoundFrequency": "Frequência de Capitalização"
+    },
+    "frequency": {
+      "daily": "Diária",
+      "monthly": "Mensal",
+      "quarterly": "Trimestral",
+      "annually": "Anual"
+    },
+    "advanced": {
+      "title": "Opções Avançadas",
+      "inflationRate": "Taxa de Inflação",
+      "inflationHelp": "Ajustar pelo poder de compra",
+      "taxRate": "Taxa de Imposto sobre Juros",
+      "taxHelp": "Imposto federal + estadual sobre juros"
+    },
+    "results": {
+      "futureValue": "Valor Futuro",
+      "totalContributions": "Total de Aportes",
+      "totalInterest": "Juros Totais Ganhos",
+      "inflationAdjusted": "Valor Ajustado pela Inflação",
+      "effectiveRate": "Taxa Efetiva Anual"
+    },
+    "buttons": { "viewGrowth": "Ver Gráfico de Crescimento", "save": "Salvar", "pdf": "PDF", "excel": "Excel" },
+    "modal": { "title": "Crescimento da Poupança", "year": "Ano", "deposits": "Depósitos", "interest": "Juros", "balance": "Saldo" },
+    "favorites": { "add": "Adicionar aos favoritos", "remove": "Remover dos favoritos" },
+    "saving": { "saving": "Salvando...", "saved": "Salvo", "error": "Erro ao salvar" }
+  },
+  "education": {
+    "title": "O Poder dos Juros Compostos",
+    "content1": "Juros compostos é quando você ganha juros tanto sobre seu depósito inicial quanto sobre os juros já acumulados. Isso cria crescimento exponencial ao longo do tempo.",
+    "content2": "Quanto mais frequente a capitalização, mais você ganha. Capitalização diária rende ligeiramente mais que mensal, que rende mais que anual.",
+    "tips": {
+      "title": "Dicas de Poupança",
+      "tip1": { "title": "Comece Cedo", "description": "O tempo é sua maior vantagem com juros compostos." },
+      "tip2": { "title": "Seja Consistente", "description": "Depósitos regulares amplificam o crescimento composto." },
+      "tip3": { "title": "Compare Taxas", "description": "Taxa maior significa mais juros ganhos." },
+      "tip4": { "title": "Considere a Inflação", "description": "Garanta que sua taxa supere a inflação para crescimento real." }
+    },
+    "faqTitle": "Perguntas Frequentes"
+  },
+  "faq": [
+    { "question": "Qual a diferença entre taxa nominal e efetiva?", "answer": "A taxa nominal é o juro simples. A taxa efetiva inclui capitalização, mostrando o que você realmente ganha. Sempre compare taxas efetivas." },
+    { "question": "Com que frequência devo depositar?", "answer": "Depósitos mais frequentes maximizam o crescimento composto. Mensal é ideal para a maioria, alinhado com salários." },
+    { "question": "Devo considerar a inflação?", "answer": "Sim! Se a inflação é 3% e sua poupança rende 2%, você está perdendo poder de compra. Busque taxas que superem a inflação." }
+  ],
+  "sidebar": { "financeTitle": "Calculadoras Financeiras", "healthTitle": "Calculadoras de Saúde" },
+  "common": { "home": "Início", "calculators": "Calculadoras", "pro": "PRO", "years": "anos" }
+}

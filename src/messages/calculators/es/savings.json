@@ -1,0 +1,63 @@
+{
+  "meta": {
+    "title": "Calculadora de Ahorros - Interés Compuesto | Kalcufy",
+    "description": "Calculadora gratuita de ahorros para proyectar el crecimiento con interés compuesto, depósitos regulares y ajuste por inflación."
+  },
+  "calculator": {
+    "title": "Calculadora de Ahorros",
+    "subtitle": "Calcula el crecimiento de tus ahorros",
+    "breadcrumb": "Ahorros",
+    "savingsDetails": "Detalles del Ahorro",
+    "inputs": {
+      "initialDeposit": "Depósito Inicial",
+      "monthlyContribution": "Aporte Mensual",
+      "interestRate": "Tasa de Interés Anual (TAE)",
+      "years": "Período de Tiempo",
+      "compoundFrequency": "Frecuencia de Capitalización"
+    },
+    "frequency": {
+      "daily": "Diaria",
+      "monthly": "Mensual",
+      "quarterly": "Trimestral",
+      "annually": "Anual"
+    },
+    "advanced": {
+      "title": "Opciones Avanzadas",
+      "inflationRate": "Tasa de Inflación",
+      "inflationHelp": "Ajustar por poder adquisitivo",
+      "taxRate": "Tasa de Impuesto sobre Intereses",
+      "taxHelp": "Impuesto federal + estatal sobre intereses"
+    },
+    "results": {
+      "futureValue": "Valor Futuro",
+      "totalContributions": "Total de Aportes",
+      "totalInterest": "Interés Total Ganado",
+      "inflationAdjusted": "Valor Ajustado por Inflación",
+      "effectiveRate": "Tasa Efectiva Anual"
+    },
+    "buttons": { "viewGrowth": "Ver Gráfico de Crecimiento", "save": "Guardar", "pdf": "PDF", "excel": "Excel" },
+    "modal": { "title": "Crecimiento del Ahorro", "year": "Año", "deposits": "Depósitos", "interest": "Interés", "balance": "Saldo" },
+    "favorites": { "add": "Agregar a favoritos", "remove": "Quitar de favoritos" },
+    "saving": { "saving": "Guardando...", "saved": "Guardado", "error": "Error al guardar" }
+  },
+  "education": {
+    "title": "El Poder del Interés Compuesto",
+    "content1": "El interés compuesto es cuando ganas interés tanto sobre tu depósito inicial como sobre el interés que ya has ganado. Esto crea crecimiento exponencial con el tiempo.",
+    "content2": "Mientras más frecuentemente se capitaliza el interés, más ganas. La capitalización diaria gana ligeramente más que la mensual, que gana más que la anual.",
+    "tips": {
+      "title": "Consejos de Ahorro",
+      "tip1": { "title": "Empieza Temprano", "description": "El tiempo es tu mayor ventaja con el interés compuesto." },
+      "tip2": { "title": "Sé Consistente", "description": "Los depósitos regulares amplifican el crecimiento compuesto." },
+      "tip3": { "title": "Compara TAE", "description": "Mayor TAE significa más interés ganado." },
+      "tip4": { "title": "Considera la Inflación", "description": "Asegúrate que tu tasa supere la inflación para crecimiento real." }
+    },
+    "faqTitle": "Preguntas Frecuentes"
+  },
+  "faq": [
+    { "question": "¿Cuál es la diferencia entre tasa nominal y TAE?", "answer": "La tasa nominal es el interés simple. La TAE incluye la capitalización, mostrando lo que realmente ganas. Siempre compara TAE para cuentas de ahorro." },
+    { "question": "¿Con qué frecuencia debo aportar?", "answer": "Aportes más frecuentes maximizan el crecimiento compuesto. Mensual es ideal para la mayoría, alineado con los pagos de nómina." },
+    { "question": "¿Debo considerar la inflación?", "answer": "¡Sí! Si la inflación es 3% y tus ahorros ganan 2%, estás perdiendo poder adquisitivo. Busca tasas que superen la inflación." }
+  ],
+  "sidebar": { "financeTitle": "Calculadoras Financieras", "healthTitle": "Calculadoras de Salud" },
+  "common": { "home": "Inicio", "calculators": "Calculadoras", "pro": "PRO", "years": "años" }
+}

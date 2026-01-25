@@ -1,0 +1,36 @@
+{
+  "meta": {
+    "title": "Caloric Deficit Calculator - Weight Loss & TDEE Planner",
+    "description": "Calculate your ideal calorie intake for weight loss, maintenance, or muscle gain. Get personalized TDEE, macro targets, meal plans, and timeline to reach your goal weight."
+  },
+  "calculator": {
+    "title": "Caloric Deficit Calculator",
+    "subtitle": "Calculate your ideal calorie intake for weight loss, maintenance, or muscle gain with personalized macro targets"
+  },
+  "faq": [
+    {
+      "question": "How much of a caloric deficit is too much?",
+      "answer": "Don't go below 1200 calories (women) or 1500 calories (men) without medical supervision. Deficits larger than 1000 calories/day can trigger metabolic adaptation and muscle loss."
+    },
+    {
+      "question": "Why am I not losing weight in a deficit?",
+      "answer": "Common reasons include underestimating food intake, overestimating exercise calories, water retention, or metabolic adaptation. Track accurately for 2-3 weeks before adjusting."
+    },
+    {
+      "question": "Should I eat back exercise calories?",
+      "answer": "If you're at a moderate deficit (500 cal), eating back half your exercise calories prevents excessive restriction. Listen to your hunger signals."
+    },
+    {
+      "question": "How do I break a weight loss plateau?",
+      "answer": "Try recalculating TDEE at your new weight, take a diet break at maintenance, increase protein, change your exercise routine, or slightly adjust your deficit."
+    },
+    {
+      "question": "Is it better to cut carbs or fat?",
+      "answer": "For weight loss, total calories matter most. Keep protein high (0.7-1g per pound), then adjust carbs and fats based on preference and energy needs."
+    },
+    {
+      "question": "How accurate is the TDEE calculation?",
+      "answer": "TDEE formulas estimate within 10-15% for most people. Use it as a starting point, then adjust based on real-world results over 2-4 weeks."
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "meta": {
+    "title": "Calculadora de Jubilación - Planifica tu Futuro | Kalcufy",
+    "description": "Calculadora gratuita de jubilación para estimar cuánto necesitas ahorrar, proyectar tus ingresos y planificar un futuro seguro."
+  },
+  "calculator": {
+    "title": "Calculadora de Jubilación",
+    "subtitle": "Planifica tus ahorros para la jubilación",
+    "breadcrumb": "Jubilación",
+    "retirementDetails": "Detalles de Jubilación",
+    "inputs": {
+      "currentAge": "Edad Actual",
+      "retirementAge": "Edad de Jubilación",
+      "currentSavings": "Ahorros Actuales",
+      "monthlyContribution": "Aporte Mensual",
+      "expectedReturn": "Rendimiento Esperado (%)",
+      "retirementIncome": "Ingreso Mensual Deseado",
+      "inflationRate": "Tasa de Inflación (%)"
+    },
+    "results": {
+      "totalAtRetirement": "Total al Jubilarte",
+      "monthlyIncome": "Ingreso Mensual Estimado",
+      "yearsOfIncome": "Años de Ingreso",
+      "savingsGap": "Brecha de Ahorro",
+      "onTrack": "¡Vas por buen camino!",
+      "needMore": "Necesitas ahorrar más"
+    },
+    "buttons": { "viewProjection": "Ver Proyección", "save": "Guardar", "pdf": "PDF", "excel": "Excel" },
+    "modal": { "title": "Proyección de Jubilación", "age": "Edad", "savings": "Ahorros", "contributions": "Aportes" },
+    "favorites": { "add": "Agregar a favoritos", "remove": "Quitar de favoritos" },
+    "saving": { "saving": "Guardando...", "saved": "Guardado", "error": "Error al guardar" }
+  },
+  "education": {
+    "title": "Planificando la Jubilación",
+    "content1": "La clave para una jubilación cómoda es empezar temprano. Gracias al interés compuesto, el dinero ahorrado en tus 20s puede crecer significativamente más que el ahorrado en tus 40s.",
+    "content2": "Una regla común es apuntar al 70-80% de tu ingreso pre-jubilación. Considera Seguro Social, pensiones y ahorros personales en tu planificación.",
+    "tips": {
+      "title": "Consejos de Planificación",
+      "tip1": { "title": "Empieza Ahora", "description": "Cada año que esperas te cuesta significativamente en crecimiento compuesto." },
+      "tip2": { "title": "Maximiza el Match del 401(k)", "description": "Dinero gratis de tu empleador - no lo dejes en la mesa." },
+      "tip3": { "title": "Diversifica Inversiones", "description": "Distribuye el riesgo en diferentes tipos de activos." },
+      "tip4": { "title": "Cuenta con Gastos Médicos", "description": "Los costos médicos suelen aumentar en la jubilación." }
+    },
+    "faqTitle": "Preguntas Frecuentes"
+  },
+  "faq": [
+    { "question": "¿Cuánto necesito para jubilarme?", "answer": "Una regla común es 25x tus gastos anuales. Si gastas $50,000/año, apunta a $1.25 millones. Esto sigue la regla del 4%." },
+    { "question": "¿Qué rendimiento debo esperar?", "answer": "Históricamente, un portafolio diversificado rinde 6-8% anual después de inflación. Sé conservador en tus estimaciones." },
+    { "question": "¿Cuándo debo empezar a ahorrar?", "answer": "¡Ahora! Empezar a los 25 vs 35 puede significar cientos de miles más al jubilarte por el crecimiento compuesto." }
+  ],
+  "sidebar": { "financeTitle": "Calculadoras Financieras", "healthTitle": "Calculadoras de Salud" },
+  "common": { "home": "Inicio", "calculators": "Calculadoras", "pro": "PRO", "years": "años" }
+}

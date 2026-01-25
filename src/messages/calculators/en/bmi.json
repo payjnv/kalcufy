@@ -1,0 +1,67 @@
+{
+  "meta": {
+    "title": "BMI Calculator - Body Mass Index | Kalcufy",
+    "description": "Free BMI calculator to check your body mass index, understand your weight category, and get health insights."
+  },
+  "calculator": {
+    "title": "BMI Calculator",
+    "subtitle": "Calculate your Body Mass Index",
+    "breadcrumb": "BMI",
+    "details": "Your Information",
+    "inputs": {
+      "height": "Height",
+      "weight": "Weight",
+      "age": "Age",
+      "gender": "Gender",
+      "male": "Male",
+      "female": "Female",
+      "feet": "ft",
+      "inches": "in",
+      "cm": "cm",
+      "lbs": "lbs",
+      "kg": "kg"
+    },
+    "units": {
+      "imperial": "Imperial (ft/lbs)",
+      "metric": "Metric (cm/kg)"
+    },
+    "results": {
+      "yourBMI": "Your BMI",
+      "category": "Category",
+      "healthyRange": "Healthy Weight Range",
+      "underweight": "Underweight",
+      "normal": "Normal",
+      "overweight": "Overweight",
+      "obese": "Obese"
+    },
+    "categories": {
+      "underweight": { "range": "Below 18.5", "description": "You may be underweight. Consider consulting a healthcare provider." },
+      "normal": { "range": "18.5 - 24.9", "description": "You're at a healthy weight. Maintain your current lifestyle." },
+      "overweight": { "range": "25.0 - 29.9", "description": "You may be overweight. Consider lifestyle changes." },
+      "obese": { "range": "30.0 and above", "description": "Obesity range. Consult a healthcare provider for guidance." }
+    },
+    "buttons": { "save": "Save", "pdf": "PDF" },
+    "favorites": { "add": "Add to favorites", "remove": "Remove from favorites" },
+    "saving": { "saving": "Saving...", "saved": "Saved", "error": "Error saving" }
+  },
+  "education": {
+    "title": "Understanding BMI",
+    "content1": "Body Mass Index (BMI) is a simple measure using height and weight to estimate body fat. While not perfect, it's a useful screening tool for weight categories.",
+    "content2": "BMI doesn't account for muscle mass, bone density, or fat distribution. Athletes may have high BMI despite low body fat. Use it as one of many health indicators.",
+    "tips": {
+      "title": "Health Tips",
+      "tip1": { "title": "BMI is a Screening Tool", "description": "It's not a diagnostic tool. Consult healthcare providers for complete assessment." },
+      "tip2": { "title": "Consider Other Metrics", "description": "Waist circumference and body fat percentage provide additional insights." },
+      "tip3": { "title": "Focus on Overall Health", "description": "Diet, exercise, and mental health matter as much as weight." },
+      "tip4": { "title": "Track Progress Over Time", "description": "Single measurements matter less than trends." }
+    },
+    "faqTitle": "Frequently Asked Questions"
+  },
+  "faq": [
+    { "question": "How accurate is BMI?", "answer": "BMI is a useful screening tool but has limitations. It may overestimate body fat in athletes and underestimate it in older adults who have lost muscle mass." },
+    { "question": "What's a healthy BMI?", "answer": "A BMI between 18.5 and 24.9 is considered healthy for most adults. However, optimal weight can vary based on age, gender, and body composition." },
+    { "question": "Should I only rely on BMI?", "answer": "No. BMI should be one of several health indicators. Consider waist circumference, body fat percentage, blood pressure, and cholesterol levels too." }
+  ],
+  "sidebar": { "financeTitle": "Financial Calculators", "healthTitle": "Health Calculators" },
+  "common": { "home": "Home", "calculators": "Calculators", "pro": "PRO" }
+}

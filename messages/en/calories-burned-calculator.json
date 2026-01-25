@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "title": "Calories Burned Calculator - Exercise Calorie Counter by Activity",
+    "description": "Calculate calories burned for 50+ activities including running, cycling, swimming, HIIT, and more. Uses MET values for accurate results based on your weight and duration."
+  },
+  "calculator": {
+    "title": "Calories Burned Calculator",
+    "subtitle": "Calculate calories burned for any activity based on MET values and your body weight"
+  },
+  "faq": [
+    {
+      "question": "How accurate are calorie burn calculations?",
+      "answer": "MET-based calculations provide reasonable estimates within 10-20% accuracy. Individual factors like fitness level, body composition, and genetics can cause variations."
+    },
+    {
+      "question": "Does muscle burn more calories than fat?",
+      "answer": "Yes, muscle tissue is more metabolically active. Each pound of muscle burns approximately 6-7 calories per day at rest, while fat burns about 2-3 calories."
+    },
+    {
+      "question": "What is the afterburn effect?",
+      "answer": "EPOC (Excess Post-Exercise Oxygen Consumption) refers to increased calorie burning after exercise ends. High-intensity exercise can elevate metabolism for 24-48 hours."
+    },
+    {
+      "question": "Is cardio or weight training better for burning calories?",
+      "answer": "Cardio typically burns more during the workout, while weight training builds muscle that increases long-term calorie burn. The best approach combines both."
+    },
+    {
+      "question": "How many calories should I burn per workout?",
+      "answer": "For general health, aim to burn 200-300 calories per session. For weight loss, 300-500+ calories per workout combined with a calorie deficit is effective."
+    }
+  ]
+}

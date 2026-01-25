@@ -1,0 +1,53 @@
+{
+  "meta": {
+    "title": "Calculadora de Préstamo de Auto - Pagos Mensuales | Kalcufy",
+    "description": "Calculadora gratuita de préstamo de auto para estimar pagos mensuales, interés total y comparar opciones de financiamiento."
+  },
+  "calculator": {
+    "title": "Calculadora de Préstamo de Auto",
+    "subtitle": "Calcula tus pagos mensuales del auto",
+    "breadcrumb": "Préstamo Auto",
+    "loanDetails": "Detalles del Préstamo",
+    "inputs": {
+      "vehiclePrice": "Precio del Vehículo",
+      "downPayment": "Enganche",
+      "tradeInValue": "Valor de Intercambio",
+      "salesTax": "Tasa de Impuesto",
+      "interestRate": "Tasa de Interés (TAE)",
+      "loanTerm": "Plazo del Préstamo",
+      "months": "meses"
+    },
+    "results": {
+      "monthlyPayment": "Pago Mensual",
+      "perMonth": "/mes",
+      "loanAmount": "Monto del Préstamo",
+      "totalInterest": "Interés Total",
+      "totalCost": "Costo Total",
+      "payoffDate": "Fecha de Liquidación"
+    },
+    "buttons": { "viewSchedule": "Ver Calendario de Pagos", "save": "Guardar", "pdf": "PDF", "excel": "Excel" },
+    "modal": { "title": "Calendario de Pagos", "month": "Mes", "payment": "Pago", "principal": "Capital", "interest": "Interés", "balance": "Saldo" },
+    "favorites": { "add": "Agregar a favoritos", "remove": "Quitar de favoritos" },
+    "saving": { "saving": "Guardando...", "saved": "Guardado", "error": "Error al guardar" }
+  },
+  "education": {
+    "title": "Entendiendo los Préstamos de Auto",
+    "content1": "Un préstamo de auto es un préstamo garantizado usado para comprar un vehículo. El auto sirve como garantía, lo que típicamente resulta en tasas de interés más bajas comparado con préstamos sin garantía.",
+    "content2": "Los préstamos de auto típicamente van de 24 a 84 meses. Plazos más cortos significan pagos mensuales más altos pero menos interés total pagado.",
+    "tips": {
+      "title": "Consejos Inteligentes para Comprar Auto",
+      "tip1": { "title": "Obtén Pre-Aprobación", "description": "Conoce tu tasa antes de visitar el concesionario." },
+      "tip2": { "title": "Negocia el Precio Primero", "description": "Enfócate en el precio total, no el pago mensual." },
+      "tip3": { "title": "Considera el Costo Total", "description": "Plazos más largos cuestan más en intereses." },
+      "tip4": { "title": "Revisa tu Crédito", "description": "Mejor crédito significa mejores tasas." }
+    },
+    "faqTitle": "Preguntas Frecuentes"
+  },
+  "faq": [
+    { "question": "¿Qué es una buena tasa para un préstamo de auto?", "answer": "Las buenas tasas dependen del puntaje crediticio y plazo. Crédito excelente (750+) puede obtener 4-6% para autos nuevos. Crédito promedio (650-699) típicamente ve 7-10%." },
+    { "question": "¿Debería elegir un plazo más largo?", "answer": "Plazos más largos reducen pagos mensuales pero aumentan el interés total. Un préstamo de 72 meses puede costar miles más que uno de 48 meses." },
+    { "question": "¿Tasas de auto nuevo vs usado?", "answer": "Los préstamos de autos nuevos típicamente tienen tasas más bajas que los usados. La diferencia es usualmente 1-3 puntos porcentuales." }
+  ],
+  "sidebar": { "financeTitle": "Calculadoras Financieras", "healthTitle": "Calculadoras de Salud" },
+  "common": { "home": "Inicio", "calculators": "Calculadoras", "pro": "PRO" }
+}

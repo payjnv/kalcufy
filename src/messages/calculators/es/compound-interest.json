@@ -1,0 +1,179 @@
+{
+  "meta": {
+    "title": "Calculadora de Interés Compuesto - Calcular Crecimiento | Kalcufy",
+    "description": "Calculadora gratuita de interés compuesto para ver cómo crece tu dinero con el tiempo."
+  },
+  "calculator": {
+    "title": "Calculadora de Interés Compuesto",
+    "subtitle": "Mira cómo crece tu dinero con el interés compuesto",
+    "breadcrumb": "Interés Compuesto",
+    "investmentDetails": "Detalles de Inversión",
+    "inputs": {
+      "initialInvestment": "Inversión Inicial",
+      "monthlyContribution": "Aportación Mensual",
+      "annualInterestRate": "Tasa de Interés Anual",
+      "investmentPeriod": "Período de Inversión",
+      "compoundFrequency": "Frecuencia de Capitalización",
+      "contributionTiming": "Momento de Aportación",
+      "contributionTimingHelp": "¿Cuándo realizas tus aportaciones?",
+      "advancedOptions": "Opciones Avanzadas",
+      "taxRate": "Tasa de Impuestos sobre Intereses",
+      "taxRateHelp": "Aplicado a los intereses ganados (ej. 25% tasa marginal)",
+      "inflationRate": "Tasa de Inflación Esperada",
+      "inflationRateHelp": "La inflación promedio es ~3% anual"
+    },
+    "frequency": {
+      "yearly": "Anual",
+      "quarterly": "Trimestral",
+      "monthly": "Mensual",
+      "daily": "Diario"
+    },
+    "timing": {
+      "beginning": "Inicio del Período",
+      "end": "Fin del Período"
+    },
+    "results": {
+      "futureValue": "Valor Futuro",
+      "totalContributions": "Total Aportaciones",
+      "totalInterest": "Total Intereses Ganados",
+      "inflationAdjusted": "Valor Ajustado por Inflación",
+      "inflationAdjustedHelp": "Poder adquisitivo en dólares de hoy",
+      "growthBreakdown": "Desglose del Crecimiento",
+      "contributions": "Aportaciones",
+      "interest": "Intereses"
+    },
+    "table": {
+      "title": "Crecimiento Año por Año",
+      "year": "Año",
+      "contributions": "Aportaciones",
+      "interestEarned": "Intereses Ganados",
+      "balance": "Saldo"
+    },
+    "buttons": {
+      "viewGrowth": "Ver Crecimiento Año por Año",
+      "pdf": "PDF",
+      "excel": "Excel",
+      "save": "Guardar",
+      "downloadPdf": "Descargar PDF",
+      "downloadExcel": "Descargar Excel"
+    },
+    "status": {
+      "saving": "Guardando...",
+      "saved": "Guardado",
+      "error": "Error al guardar"
+    },
+    "favorites": {
+      "add": "Agregar a favoritos",
+      "remove": "Quitar de favoritos"
+    }
+  },
+  "education": {
+    "title": "Entendiendo el Interés Compuesto",
+    "faqTitle": "Preguntas Frecuentes",
+    "einsteinQuote": "Se dice que Albert Einstein llamó al interés compuesto \"la octava maravilla del mundo\", afirmando que quienes lo entienden lo ganan, mientras que quienes no lo pagan. Esta calculadora te ayuda a visualizar cómo tu dinero puede crecer exponencialmente con el tiempo.",
+    "powerOfTime": {
+      "title": "El Poder de Empezar Temprano",
+      "description": "El tiempo es el factor más importante en el interés compuesto. Considera:",
+      "startAt": "Empieza a los",
+      "by65": "a los 65",
+      "yearsEarlier": "10 años antes",
+      "canMean": "puede significar ¡2x el saldo final!"
+    },
+    "ruleOf72": {
+      "title": "Regla del 72: Años para Duplicar",
+      "interestRate": "Tasa de Interés",
+      "yearsToDouble": "Años para Duplicar",
+      "becomes": "$10K Se Convierte",
+      "formula": "Fórmula: 72 ÷ Tasa de Interés = Años para Duplicar"
+    },
+    "exampleCalculation": {
+      "title": "Ejemplo de Cálculo",
+      "letsCalculate": "Calculemos el valor futuro de",
+      "with": "con",
+      "contributionsAt": "aportaciones al",
+      "interest": "interés",
+      "compoundedMonthlyFor": "capitalizado mensualmente por",
+      "initialInvestment": "Inversión Inicial",
+      "monthlyContribution": "Aportación Mensual",
+      "totalContributions": "Total Aportaciones",
+      "interestRate": "Tasa de Interés",
+      "periods": "Períodos",
+      "futureValue": "Valor Futuro",
+      "youInvested": "Invertiste",
+      "andEarned": "y ganaste",
+      "inInterest": "en intereses",
+      "thatsA": "¡eso es un",
+      "returnOn": "de retorno sobre tus aportaciones!"
+    },
+    "formula": {
+      "title": "La Fórmula",
+      "finalAmount": "Monto final (valor futuro)",
+      "principal": "Capital (inversión inicial)",
+      "annualRate": "Tasa de interés anual (en decimal)",
+      "compoundsPerYear": "Número de veces que se capitaliza por año",
+      "numberOfYears": "Número de años"
+    },
+    "tips": {
+      "title": "Maximiza Tu Interés Compuesto",
+      "tip1": {
+        "title": "Empieza Temprano",
+        "description": "El tiempo es más poderoso que la cantidad que inviertes. Empezar 10 años antes puede duplicar tu saldo final."
+      },
+      "tip2": {
+        "title": "Aporta Regularmente",
+        "description": "Las aportaciones mensuales consistentes se capitalizan con el tiempo, convirtiendo pequeñas cantidades en riqueza significativa."
+      },
+      "tip3": {
+        "title": "Reinvierte las Ganancias",
+        "description": "Nunca retires tus intereses. Déjalos capitalizarse y generar sus propios rendimientos."
+      },
+      "tip4": {
+        "title": "Busca Mayores Rendimientos",
+        "description": "Incluso 1-2% más de rendimiento hace una diferencia masiva a lo largo de décadas. Considera fondos indexados o inversiones diversificadas."
+      }
+    },
+    "sections": [
+      {
+        "title": "¿Qué es el Interés Compuesto?",
+        "content": "El interés compuesto es el interés calculado sobre el capital inicial y los intereses acumulados de períodos anteriores. A diferencia del interés simple (que solo se calcula sobre el capital), el interés compuesto crea un efecto \"bola de nieve\" donde tus ganancias generan sus propias ganancias."
+      },
+      {
+        "title": "La Regla del 72",
+        "content": "Una forma rápida de estimar cuánto tiempo toma duplicar tu dinero: divide 72 entre tu tasa de interés. Con 8% de interés, tu dinero se duplica en aproximadamente 9 años."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "¿Qué es el interés compuesto?",
+      "answer": "El interés compuesto es el interés calculado sobre el capital inicial y los intereses acumulados de períodos anteriores. Esto crea un efecto bola de nieve donde tu dinero crece más rápido con el tiempo, convirtiéndolo en una poderosa herramienta para construir riqueza."
+    },
+    {
+      "question": "¿Cuál es la diferencia entre interés compuesto e interés simple?",
+      "answer": "El interés simple se calcula solo sobre el capital inicial, mientras que el interés compuesto se calcula sobre el capital más los intereses ya ganados. A largo plazo, el interés compuesto resulta en rendimientos significativamente mayores."
+    },
+    {
+      "question": "¿Qué es la Regla del 72?",
+      "answer": "La Regla del 72 es una forma rápida de estimar cuánto tiempo toma duplicar tu dinero. Simplemente divide 72 entre tu tasa de interés para obtener los años aproximados. Al 7%, toma unos 10 años; al 10%, unos 7 años."
+    },
+    {
+      "question": "¿Importa la frecuencia de capitalización?",
+      "answer": "¡Sí! Una capitalización más frecuente genera mayores rendimientos. La capitalización diaria rinde más que la mensual, que rinde más que la anual. Sin embargo, la diferencia suele ser pequeña para tasas de interés típicas."
+    },
+    {
+      "question": "¿Por qué importa el momento de la aportación?",
+      "answer": "Aportar al inicio de cada período (anualidad anticipada) genera un poco más que aportar al final (anualidad vencida), porque tu dinero tiene más tiempo para capitalizarse. A lo largo de décadas, esto puede sumar miles de dólares."
+    }
+  ],
+  "common": {
+    "home": "Inicio",
+    "calculators": "Calculadoras",
+    "year": "año",
+    "years": "años",
+    "month": "mes",
+    "at": "al",
+    "pro": "PRO",
+    "financialCalculators": "Calculadoras Financieras",
+    "healthCalculators": "Calculadoras de Salud"
+  }
+}

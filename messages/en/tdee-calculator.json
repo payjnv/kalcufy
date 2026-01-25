@@ -1,0 +1,148 @@
+{
+  "meta": {
+    "title": "TDEE Calculator - Calculate Your Total Daily Energy Expenditure",
+    "description": "Free TDEE calculator to determine your total daily energy expenditure. Includes BMR calculation, activity level adjustments, weekly calorie view, and goals for weight loss or muscle gain."
+  },
+  "calculator": {
+    "title": "TDEE Calculator",
+    "subtitle": "Calculate your Total Daily Energy Expenditure"
+  },
+  "inputs": {
+    "unitSystem": "Unit System",
+    "imperial": "Imperial (lb, ft)",
+    "metric": "Metric (kg, cm)",
+    "biologicalSex": "Biological Sex",
+    "male": "Male",
+    "female": "Female",
+    "age": "Age",
+    "years": "years",
+    "weight": "Weight",
+    "height": "Height",
+    "feet": "ft",
+    "inches": "in",
+    "cm": "cm",
+    "kg": "kg",
+    "lbs": "lbs"
+  },
+  "activity": {
+    "label": "Activity Level",
+    "sedentary": "Sedentary",
+    "sedentaryDesc": "Little or no exercise, desk job",
+    "light": "Lightly Active",
+    "lightDesc": "Light exercise 1-3 days/week",
+    "moderate": "Moderately Active",
+    "moderateDesc": "Moderate exercise 3-5 days/week",
+    "active": "Active",
+    "activeDesc": "Hard exercise 6-7 days/week",
+    "veryActive": "Very Active",
+    "veryActiveDesc": "Hard daily exercise + physical job",
+    "extraActive": "Extra Active",
+    "extraActiveDesc": "Athlete or very hard exercise twice/day"
+  },
+  "goal": {
+    "label": "Your Goal",
+    "lose": "Lose Fat",
+    "maintain": "Maintain",
+    "gain": "Build Muscle"
+  },
+  "advanced": {
+    "title": "Advanced Options",
+    "formula": "BMR Formula",
+    "mifflin": "Mifflin-St Jeor",
+    "harris": "Harris-Benedict",
+    "katch": "Katch-McArdle",
+    "katchNote": "Enter body fat % below to use Katch-McArdle",
+    "bodyFat": "Body Fat %",
+    "bodyFatOptional": "(optional)",
+    "bodyFatHint": "Improves accuracy if known. Use our Body Fat Calculator.",
+    "pregnancy": "Pregnancy Status",
+    "notPregnant": "Not Pregnant",
+    "trimester1": "1st Trimester",
+    "trimester2": "2nd Trimester",
+    "trimester3": "3rd Trimester",
+    "breastfeeding": "Breastfeeding",
+    "breastfeedingNo": "No",
+    "breastfeedingExclusive": "Exclusive",
+    "breastfeedingPartial": "Partial",
+    "caloriesAdded": "calories/day added"
+  },
+  "results": {
+    "title": "Your Daily Energy Expenditure (TDEE)",
+    "calPerDay": "cal/day",
+    "toLoseWeight": "To lose weight:",
+    "toBuildMuscle": "To build muscle:",
+    "toMaintain": "To maintain:",
+    "bmrResting": "BMR (Resting)",
+    "weeklyTDEE": "Weekly TDEE",
+    "activityMultiplier": "Activity Multiplier",
+    "weeklyGoal": "Weekly Goal",
+    "tdeeBreakdown": "TDEE Breakdown",
+    "bmr": "BMR",
+    "exercise": "Exercise",
+    "tef": "TEF",
+    "weeklyView": "Weekly Calorie View",
+    "weeklyTotal": "Weekly Total:",
+    "calorieTargets": "Calorie Targets by Goal",
+    "aggressiveLoss": "Aggressive Loss (-1000 cal)",
+    "moderateLoss": "Moderate Loss (-500 cal)",
+    "maintainWeight": "Maintain Weight",
+    "leanGain": "Lean Gain (+250 cal)",
+    "muscleGain": "Muscle Gain (+500 cal)",
+    "formulaComparison": "BMR Formula Comparison"
+  },
+  "education": {
+    "whatIsTDEE": "What is TDEE?",
+    "whatIsTDEEContent": "TDEE stands for Total Daily Energy Expenditure. It represents the total number of calories your body burns in a 24-hour period, accounting for all activities from breathing and digesting food to exercising and walking.",
+    "components": "Components of TDEE",
+    "bmrComponent": "Basal Metabolic Rate (BMR) - 60-70%",
+    "bmrComponentDesc": "The calories your body needs to perform basic life-sustaining functions like breathing, circulation, cell production, and nutrient processing while at complete rest.",
+    "activityComponent": "Physical Activity - 15-30%",
+    "activityComponentDesc": "All calories burned through movement, including exercise, walking, standing, and daily activities. This is the most variable component.",
+    "tefComponent": "Thermic Effect of Food (TEF) - 10%",
+    "tefComponentDesc": "The energy required to digest, absorb, and metabolize the food you eat. Protein has the highest thermic effect at 20-30%.",
+    "activityLevels": "Activity Levels Explained",
+    "understanding": "Understanding TDEE",
+    "tips": "Tips for Accuracy"
+  },
+  "example": {
+    "title": "Example TDEE Calculation",
+    "description": "Let's calculate the TDEE for a 30-year-old male, 5'10\" (178 cm), 170 lbs (77 kg), who exercises 3-5 days per week.",
+    "step1Title": "Step 1: Calculate BMR",
+    "step1Desc": "Using Mifflin-St Jeor formula:",
+    "step2Title": "Step 2: Calculate TDEE",
+    "step2Desc": "Multiply by activity factor (1.55 for moderate):"
+  },
+  "sidebar": {
+    "healthCalcs": "Health Calculators",
+    "financeCalcs": "Financial Calculators",
+    "macroTitle": "Calculate Your Macros",
+    "macroDesc": "Now that you know your TDEE, calculate the optimal protein, carbs, and fat for your goals.",
+    "macroButton": "Try Macro Calculator →"
+  },
+  "faq": [
+    {
+      "question": "What is TDEE?",
+      "answer": "TDEE (Total Daily Energy Expenditure) is the total number of calories you burn each day. It includes your Basal Metabolic Rate (BMR), the calories burned through physical activity, and the thermic effect of food (energy used to digest food)."
+    },
+    {
+      "question": "How is TDEE different from BMR?",
+      "answer": "BMR (Basal Metabolic Rate) is the calories your body burns at complete rest just to maintain vital functions. TDEE adds your activity level on top of BMR, giving you the total calories you burn in a day including exercise and daily activities."
+    },
+    {
+      "question": "How accurate is the TDEE calculation?",
+      "answer": "TDEE calculations are estimates based on formulas. Actual energy expenditure varies based on genetics, muscle mass, hormones, and other factors. Use your calculated TDEE as a starting point and adjust based on real-world results over 2-4 weeks."
+    },
+    {
+      "question": "How do I use TDEE for weight loss?",
+      "answer": "To lose weight, eat fewer calories than your TDEE. A deficit of 500 calories per day typically results in about 1 pound of weight loss per week. Don't go below 1,200 calories (women) or 1,500 calories (men) without medical supervision."
+    },
+    {
+      "question": "How do I use TDEE for muscle gain?",
+      "answer": "To build muscle, eat slightly more than your TDEE (a surplus of 250-500 calories) while following a strength training program. This provides the extra energy needed for muscle growth while minimizing fat gain."
+    },
+    {
+      "question": "Why does pregnancy affect TDEE?",
+      "answer": "Pregnancy increases calorie needs to support fetal growth and development. The 2nd trimester requires about 340 extra calories, and the 3rd trimester requires about 450 extra calories. Always consult your healthcare provider for personalized advice."
+    }
+  ]
+}

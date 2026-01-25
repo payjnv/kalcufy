@@ -1,0 +1,36 @@
+{
+  "meta": {
+    "title": "CD Calculator - Certificate of Deposit Interest Calculator",
+    "description": "Free CD calculator to estimate earnings on your certificate of deposit. Compare terms, compounding frequencies, and see your maturity date and total interest."
+  },
+  "calculator": {
+    "title": "CD Calculator",
+    "subtitle": "Calculate Certificate of Deposit earnings and compare terms"
+  },
+  "faq": [
+    {
+      "question": "What is a Certificate of Deposit (CD)?",
+      "answer": "A CD is a savings product where you deposit money for a fixed term (3 months to 5+ years) at a guaranteed interest rate. In exchange for locking up your money, you typically earn higher interest than regular savings accounts. CDs are FDIC insured up to $250,000."
+    },
+    {
+      "question": "What's the difference between APY and APR?",
+      "answer": "APY (Annual Percentage Yield) includes the effect of compounding interest, while APR (Annual Percentage Rate) is the simple interest rate without compounding. For CDs, always look at the APY—it shows what you'll actually earn. A higher compounding frequency means slightly more earnings."
+    },
+    {
+      "question": "What happens if I withdraw early from a CD?",
+      "answer": "Early withdrawal typically incurs a penalty, usually 3-12 months of interest depending on the CD term. For short-term CDs (under 1 year), the penalty is usually 3 months of interest. For longer terms, it can be 6-12 months. Some banks offer no-penalty CDs with lower rates."
+    },
+    {
+      "question": "Are CDs a good investment?",
+      "answer": "CDs are low-risk savings vehicles, not investments. They're ideal for money you won't need for a specific period and want to keep safe. They're not designed to beat inflation long-term but offer guaranteed returns and FDIC insurance. Consider CDs for emergency funds, short-term goals, or the conservative portion of your portfolio."
+    },
+    {
+      "question": "What is a CD ladder?",
+      "answer": "A CD ladder is a strategy where you split your money across multiple CDs with different maturity dates. For example, put $10,000 into 1-year, 2-year, 3-year, 4-year, and 5-year CDs. As each matures, reinvest in a new 5-year CD. This provides regular access to funds while capturing higher long-term rates."
+    },
+    {
+      "question": "Is CD interest taxable?",
+      "answer": "Yes, CD interest is taxable as ordinary income in the year it's earned (even if you don't withdraw it). You'll receive a 1099-INT from the bank if you earn $10 or more in interest. Consider this when comparing CDs to tax-advantaged accounts like IRAs."
+    }
+  ]
+}

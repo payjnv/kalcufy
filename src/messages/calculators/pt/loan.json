@@ -1,0 +1,164 @@
+{
+  "meta": {
+    "title": "Calculadora de Empréstimos - Parcelas e Juros | Kalcufy",
+    "description": "Calculadora de empréstimos gratuita para estimar parcelas mensais, juros totais e data de quitação. Inclui taxas e pagamentos extras."
+  },
+  "calculator": {
+    "title": "Calculadora de Empréstimos",
+    "subtitle": "Calcule suas parcelas e custo total do empréstimo",
+    "breadcrumb": "Empréstimo",
+    "loanDetails": "Detalhes do Empréstimo",
+    "inputs": {
+      "loanAmount": "Valor do Empréstimo",
+      "interestRate": "Taxa de Juros",
+      "loanTerm": "Prazo do Empréstimo",
+      "years": "anos"
+    },
+    "ranges": {
+      "min1k": "$1.000",
+      "max100k": "$100.000",
+      "min1": "1%",
+      "max30": "30%",
+      "min1yr": "1 ano",
+      "max7yr": "7 anos"
+    },
+    "advanced": {
+      "title": "Taxas e Pagamentos Extras",
+      "originationFee": "Taxa de Abertura (%)",
+      "originationHelp": "Taxa cobrada pelo credor para processar o empréstimo",
+      "extraPayment": "Pagamento Mensal Extra",
+      "extraHelp": "Valor adicional para quitar o principal mais rápido",
+      "startDate": "Data de Início do Empréstimo",
+      "startHelp": "Quando seu empréstimo começará?"
+    },
+    "results": {
+      "monthlyPayment": "Parcela Mensal",
+      "perMonth": "/mês",
+      "payoff": "Quitação",
+      "months": "meses",
+      "principal": "Principal",
+      "interest": "Juros",
+      "fees": "Taxas",
+      "total": "Total",
+      "totalInterest": "Juros Totais",
+      "totalCost": "Custo Total",
+      "actualAPR": "CET Real",
+      "payoffDate": "Data de Quitação",
+      "interestSaved": "Juros Economizados"
+    },
+    "buttons": {
+      "viewSchedule": "Ver Cronograma de Pagamentos",
+      "save": "Salvar",
+      "pdf": "PDF",
+      "excel": "Excel",
+      "downloadPdf": "Baixar PDF",
+      "downloadExcel": "Baixar Excel"
+    },
+    "modal": {
+      "title": "Cronograma de Pagamentos",
+      "year": "Ano",
+      "principalPaid": "Principal Pago",
+      "interestPaid": "Juros Pagos",
+      "balance": "Saldo"
+    },
+    "favorites": {
+      "add": "Adicionar aos favoritos",
+      "remove": "Remover dos favoritos"
+    },
+    "saving": {
+      "saving": "Salvando...",
+      "saved": "Salvo",
+      "error": "Erro ao salvar"
+    }
+  },
+  "info": {
+    "trueCost": {
+      "title": "Entendendo os Custos do Empréstimo",
+      "intro": "O custo real de um empréstimo inclui mais do que apenas o principal:",
+      "interest": "Juros:",
+      "interestDesc": "O custo de emprestar, baseado no CET e prazo",
+      "fees": "Taxas de Abertura:",
+      "feesDesc": "Tipicamente 1-8% do valor do empréstimo",
+      "prepayment": "Multas por Quitação Antecipada:",
+      "prepaymentDesc": "Alguns empréstimos cobram por quitar antes"
+    },
+    "rates": {
+      "title": "Taxas Médias de Empréstimos Pessoais",
+      "creditScore": "Score de Crédito",
+      "aprRange": "Faixa de CET",
+      "disclaimer": "*Taxas de 2024. Taxas reais podem variar."
+    }
+  },
+  "education": {
+    "title": "O que é um Empréstimo Pessoal?",
+    "content1": "Um empréstimo pessoal é dinheiro emprestado de um banco, cooperativa de crédito ou credor online que você paga em parcelas mensais fixas durante um período definido, tipicamente de 1 a 7 anos. Diferente de financiamentos imobiliários ou de veículos, empréstimos pessoais geralmente não são garantidos.",
+    "content2": "Empréstimos pessoais podem ser usados para quase tudo: consolidação de dívidas, reformas, despesas médicas, casamentos ou emergências. Como não são garantidos, as taxas de juros são tipicamente mais altas que empréstimos garantidos mas menores que cartões de crédito.",
+    "formula": {
+      "title": "A Fórmula",
+      "m": "Parcela mensal",
+      "p": "Principal (valor do empréstimo)",
+      "r": "Taxa de juros mensal (taxa anual ÷ 12)",
+      "n": "Número total de parcelas (anos × 12)"
+    },
+    "calculation": {
+      "title": "Seu Cálculo",
+      "for": "Para um empréstimo de",
+      "loanAt": "a",
+      "forYears": "por",
+      "monthlyRate": "Taxa Mensal",
+      "numPayments": "Número de Parcelas",
+      "payments": "parcelas"
+    },
+    "tips": {
+      "title": "Dicas para Empréstimos Inteligentes",
+      "tip1": {
+        "title": "Verifique seu Score Primeiro",
+        "description": "Scores mais altos conseguem taxas menores. Verifique gratuitamente antes de solicitar."
+      },
+      "tip2": {
+        "title": "Compare Vários Credores",
+        "description": "As taxas variam muito. Obtenha cotações de bancos, cooperativas e credores online."
+      },
+      "tip3": {
+        "title": "Escolha Prazos Mais Curtos",
+        "description": "Parcelas maiores mas muito menos juros totais pagos."
+      },
+      "tip4": {
+        "title": "Cuidado com as Taxas",
+        "description": "Taxas de abertura adicionam custo. Compare CET, não apenas taxa de juros."
+      }
+    },
+    "faqTitle": "Perguntas Frequentes"
+  },
+  "faq": [
+    {
+      "question": "Qual score de crédito preciso para um empréstimo pessoal?",
+      "answer": "A maioria dos credores prefere um score de 670 ou mais para as melhores taxas. Porém, alguns credores oferecem empréstimos com scores tão baixos quanto 580, embora com taxas mais altas."
+    },
+    {
+      "question": "Qual a diferença entre CET e taxa de juros?",
+      "answer": "A taxa de juros é o custo de emprestar o principal. O CET inclui a taxa de juros mais quaisquer taxas, dando o custo real do empréstimo. Sempre compare CET ao pesquisar."
+    },
+    {
+      "question": "Devo quitar meu empréstimo antes?",
+      "answer": "Se seu empréstimo não tem multa por quitação antecipada, pagar extra pode economizar dinheiro significativo em juros. Mesmo pequenos pagamentos extras se acumulam."
+    },
+    {
+      "question": "Taxa fixa vs variável - qual é melhor?",
+      "answer": "Taxas fixas oferecem parcelas previsíveis. Taxas variáveis podem começar menores mas podem aumentar. Fixa é geralmente melhor para empréstimos de longo prazo."
+    },
+    {
+      "question": "Como funcionam as taxas de abertura?",
+      "answer": "Taxas de abertura (tipicamente 1-8%) são cobradas pelos credores para processar seu empréstimo. Geralmente são deduzidas do valor do empréstimo."
+    }
+  ],
+  "sidebar": {
+    "financeTitle": "Calculadoras Financeiras",
+    "healthTitle": "Calculadoras de Saúde"
+  },
+  "common": {
+    "home": "Início",
+    "calculators": "Calculadoras",
+    "pro": "PRO"
+  }
+}

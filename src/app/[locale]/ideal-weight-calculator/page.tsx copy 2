@@ -1,0 +1,1283 @@
+"use client";
+
+import { useState, useEffect, useRef } from "react";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import Link from "next/link";
+import { useLocale } from "next-intl";
+import { useSession } from "next-auth/react";
+import AdBlock from "@/components/ads/AdBlock";
+import { useCalcTranslations } from "@/lib/useCalcTranslations";
+import CalculatorSidebar from "@/components/CalculatorSidebar";
+import SideSkyscraperAds from "@/components/ads/SideSkyscraperAds";
+
+// =============================================================================
+// CALCULATOR CONSTANTS
+// =============================================================================
+const CALCULATOR_SLUG = "ideal-weight-calculator";
+const CALCULATOR_NAME = "Ideal Weight Calculator";
+const CALCULATOR_CATEGORY = "health";
+
+// =============================================================================
+// TYPES
+// =============================================================================
+type UnitSystem = "metric" | "imperial";
+type Gender = "male" | "female";
+type FrameSize = "small" | "medium" | "large";
+type BuildType = "lean" | "average" | "athletic" | "muscular";
+
+interface FormulaResult {
+  name: string;
+  weight: number;
+  description: string;
+}
+
+// =============================================================================
+// FRAME SIZE THRESHOLDS (wrist circumference in inches)
+// =============================================================================
+const FRAME_SIZE_THRESHOLDS = {
+  male: { small: 6.5, large: 7.5 },
+  female: { small: 5.5, large: 6.5 },
+};
+
+// =============================================================================
+// BUILD TYPE ADJUSTMENTS
+// =============================================================================
+const BUILD_ADJUSTMENTS: Record<BuildType, { label: string; adjustment: number; description: string }> = {
+  lean: { label: "Lean", adjustment: -0.05, description: "Minimal muscle, slim build" },
+  average: { label: "Average", adjustment: 0, description: "Typical body composition" },
+  athletic: { label: "Athletic", adjustment: 0.05, description: "Active, some muscle" },
+  muscular: { label: "Muscular", adjustment: 0.10, description: "Significant muscle mass" },
+};
+
+// =============================================================================
+// FRAME SIZE ADJUSTMENTS
+// =============================================================================
+const FRAME_ADJUSTMENTS: Record<FrameSize, number> = {
+  small: -0.10,
+  medium: 0,
+  large: 0.10,
+};
+
+// =============================================================================
+// MAIN COMPONENT
+// =============================================================================
+export default function IdealWeightCalculatorPage() {
+  const locale = useLocale();
+  const { data: session } = useSession();
+  const { t, translations } = useCalcTranslations(locale, CALCULATOR_SLUG);
+  const hasTrackedView = useRef(false);
+  const hasTrackedCalculation = useRef(false);
+  const resultsRef = useRef<HTMLDivElement>(null);
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  // STATE - Inputs
+  // ─────────────────────────────────────────────────────────────────────────────
+  const [unitSystem, setUnitSystem] = useState<UnitSystem>("imperial");
+  const [gender, setGender] = useState<Gender>("male");
+  const [age, setAge] = useState(30);
+  
+  // Current Weight
+  const [currentWeightLbs, setCurrentWeightLbs] = useState(180);
+  const [currentWeightKg, setCurrentWeightKg] = useState(82);
+  
+  // Height
+  const [heightFeet, setHeightFeet] = useState(5);
+  const [heightInches, setHeightInches] = useState(10);
+  const [heightCm, setHeightCm] = useState(178);
+  
+  // Frame Size
+  const [wristIn, setWristIn] = useState(7);
+  const [wristCm, setWristCm] = useState(17.8);
+  const [manualFrameSize, setManualFrameSize] = useState<FrameSize | null>(null);
+  
+  // Build Type
+  const [buildType, setBuildType] = useState<BuildType>("average");
+  
+  // Advanced
+  const [showAdvanced, setShowAdvanced] = useState(false);
+  const [weightLossRate, setWeightLossRate] = useState(1); // lbs per week
+
+  // Mobile expanded results
+  const [mobileResultsExpanded, setMobileResultsExpanded] = useState(false);
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  // STATE - UI
+  // ─────────────────────────────────────────────────────────────────────────────
+  const [saveStatus, setSaveStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [favoriteLoading, setFavoriteLoading] = useState(false);
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  // TRACKING
+  // ─────────────────────────────────────────────────────────────────────────────
+  useEffect(() => {
+    if (hasTrackedView.current) return;
+    hasTrackedView.current = true;
+    fetch("/api/track", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        calculatorSlug: CALCULATOR_SLUG,
+        language: locale,
+        type: "VIEW",
+      }),
+    }).catch(console.error);
+  }, [locale]);
+
+  const trackCalculation = () => {
+    if (hasTrackedCalculation.current) return;
+    hasTrackedCalculation.current = true;
+    fetch("/api/track", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        calculatorSlug: CALCULATOR_SLUG,
+        language: locale,
+        type: "CALCULATION",
+      }),
+    }).catch(console.error);
+  };
+
+  const handleInputChange = <T,>(setter: React.Dispatch<React.SetStateAction<T>>, value: T) => {
+    setter(value);
+    trackCalculation();
+  };
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  // FAVORITES
+  // ─────────────────────────────────────────────────────────────────────────────
+  useEffect(() => {
+    const checkFavorite = async () => {
+      try {
+        const res = await fetch("/api/favorites");
+        if (res.ok) {
+          const data = await res.json();
+          setIsFavorite(data.favorites?.some((f: { calculatorSlug: string }) => f.calculatorSlug === CALCULATOR_SLUG));
+        }
+      } catch {}
+    };
+    checkFavorite();
+  }, []);
+
+  const toggleFavorite = async () => {
+    setFavoriteLoading(true);
+    try {
+      if (isFavorite) {
+        await fetch(`/api/favorites?slug=${CALCULATOR_SLUG}`, { method: "DELETE" });
+        setIsFavorite(false);
+      } else {
+        await fetch("/api/favorites", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            calculatorSlug: CALCULATOR_SLUG,
+            calculatorName: CALCULATOR_NAME,
+            category: CALCULATOR_CATEGORY,
+          }),
+        });
+        setIsFavorite(true);
+      }
+    } catch {}
+    setFavoriteLoading(false);
+  };
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  // UNIT CONVERSIONS
+  // ─────────────────────────────────────────────────────────────────────────────
+  const getHeightInches = (): number => {
+    return unitSystem === "imperial" 
+      ? heightFeet * 12 + heightInches 
+      : heightCm / 2.54;
+  };
+
+  const getHeightCm = (): number => {
+    return unitSystem === "metric" ? heightCm : (heightFeet * 12 + heightInches) * 2.54;
+  };
+
+  const getCurrentWeightLbs = (): number => {
+    return unitSystem === "imperial" ? currentWeightLbs : currentWeightKg * 2.20462;
+  };
+
+  const getWristInches = (): number => {
+    return unitSystem === "imperial" ? wristIn : wristCm / 2.54;
+  };
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  // FRAME SIZE CALCULATION
+  // ─────────────────────────────────────────────────────────────────────────────
+  const calculateFrameSize = (): FrameSize => {
+    if (manualFrameSize) return manualFrameSize;
+    
+    const wrist = getWristInches();
+    const thresholds = FRAME_SIZE_THRESHOLDS[gender];
+    
+    if (wrist < thresholds.small) return "small";
+    if (wrist > thresholds.large) return "large";
+    return "medium";
+  };
+
+  const frameSize = calculateFrameSize();
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  // IDEAL WEIGHT FORMULAS (all return kg)
+  // ─────────────────────────────────────────────────────────────────────────────
+  
+  // G.J. Hamwi Formula (1964)
+  const calculateHamwi = (): number => {
+    const heightIn = getHeightInches();
+    const inchesOver5Feet = Math.max(0, heightIn - 60);
+    
+    if (gender === "male") {
+      return (48 + 2.7 * inchesOver5Feet); // kg
+    } else {
+      return (45.5 + 2.2 * inchesOver5Feet); // kg
+    }
+  };
+
+  // B.J. Devine Formula (1974)
+  const calculateDevine = (): number => {
+    const heightIn = getHeightInches();
+    const inchesOver5Feet = Math.max(0, heightIn - 60);
+    
+    if (gender === "male") {
+      return (50 + 2.3 * inchesOver5Feet); // kg
+    } else {
+      return (45.5 + 2.3 * inchesOver5Feet); // kg
+    }
+  };
+
+  // J.D. Robinson Formula (1983)
+  const calculateRobinson = (): number => {
+    const heightIn = getHeightInches();
+    const inchesOver5Feet = Math.max(0, heightIn - 60);
+    
+    if (gender === "male") {
+      return (52 + 1.9 * inchesOver5Feet); // kg
+    } else {
+      return (49 + 1.7 * inchesOver5Feet); // kg
+    }
+  };
+
+  // D.R. Miller Formula (1983)
+  const calculateMiller = (): number => {
+    const heightIn = getHeightInches();
+    const inchesOver5Feet = Math.max(0, heightIn - 60);
+    
+    if (gender === "male") {
+      return (56.2 + 1.41 * inchesOver5Feet); // kg
+    } else {
+      return (53.1 + 1.36 * inchesOver5Feet); // kg
+    }
+  };
+
+  // BMI-based healthy weight range
+  const calculateBMIRange = (): { min: number; max: number; mid: number } => {
+    const heightM = getHeightCm() / 100;
+    const minWeight = 18.5 * heightM * heightM; // kg
+    const maxWeight = 24.9 * heightM * heightM; // kg
+    const midWeight = 21.7 * heightM * heightM; // kg (middle of healthy range)
+    
+    return { min: minWeight, max: maxWeight, mid: midWeight };
+  };
+
+  // Apply adjustments (frame size + build type)
+  const applyAdjustments = (baseWeight: number): number => {
+    const frameAdj = FRAME_ADJUSTMENTS[frameSize];
+    const buildAdj = BUILD_ADJUSTMENTS[buildType].adjustment;
+    return baseWeight * (1 + frameAdj + buildAdj);
+  };
+
+  // Calculate all formulas
+  const formulaResults: FormulaResult[] = [
+    { name: "Robinson", weight: applyAdjustments(calculateRobinson()), description: "1983 - Most commonly used" },
+    { name: "Miller", weight: applyAdjustments(calculateMiller()), description: "1983 - For smaller frames" },
+    { name: "Devine", weight: applyAdjustments(calculateDevine()), description: "1974 - Medical standard" },
+    { name: "Hamwi", weight: applyAdjustments(calculateHamwi()), description: "1964 - Original formula" },
+    { name: "BMI Range", weight: applyAdjustments(calculateBMIRange().mid), description: "Based on healthy BMI" },
+  ];
+
+  // Calculate average of all formulas
+  const averageIdealWeight = formulaResults.reduce((sum, r) => sum + r.weight, 0) / formulaResults.length;
+
+  // BMI healthy range (adjusted)
+  const bmiRange = calculateBMIRange();
+  const adjustedBMIRange = {
+    min: applyAdjustments(bmiRange.min),
+    max: applyAdjustments(bmiRange.max),
+  };
+
+  // Current weight and difference
+  const currentWeight = unitSystem === "imperial" ? currentWeightLbs : currentWeightKg;
+  const currentWeightKgCalc = unitSystem === "imperial" ? currentWeightLbs * 0.453592 : currentWeightKg;
+  const weightDifference = currentWeightKgCalc - averageIdealWeight;
+  const needsToLose = weightDifference > 0;
+
+  // Timeline calculation
+  const weightDifferenceLbs = Math.abs(weightDifference * 2.20462);
+  const weeksToGoal = weightLossRate > 0 ? Math.ceil(weightDifferenceLbs / weightLossRate) : 0;
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  // FORMATTING
+  // ─────────────────────────────────────────────────────────────────────────────
+  const formatWeight = (kg: number): string => {
+    if (unitSystem === "imperial") {
+      return `${Math.round(kg * 2.20462)} lbs`;
+    }
+    return `${Math.round(kg)} kg`;
+  };
+
+  const formatWeightNumber = (kg: number): number => {
+    if (unitSystem === "imperial") {
+      return Math.round(kg * 2.20462);
+    }
+    return Math.round(kg);
+  };
+
+  const weightUnit = unitSystem === "metric" ? "kg" : "lbs";
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  // SAVE TO HISTORY
+  // ─────────────────────────────────────────────────────────────────────────────
+  const saveToHistory = async () => {
+    if (!session?.user) return;
+    setSaveStatus("saving");
+    try {
+      const res = await fetch("/api/history", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          calculatorSlug: CALCULATOR_SLUG,
+          calculatorName: CALCULATOR_NAME,
+          inputs: {
+            unitSystem,
+            gender,
+            age,
+            currentWeight: currentWeight,
+            height: unitSystem === "metric" ? heightCm : `${heightFeet}'${heightInches}"`,
+            frameSize,
+            buildType,
+          },
+          results: {
+            averageIdealWeight: formatWeight(averageIdealWeight),
+            weightDifference: `${needsToLose ? "-" : "+"}${formatWeight(Math.abs(weightDifference))}`,
+            weeksToGoal: weeksToGoal.toString(),
+          },
+        }),
+      });
+      if (res.ok) {
+        setSaveStatus("saved");
+        setTimeout(() => setSaveStatus("idle"), 2000);
+      } else {
+        setSaveStatus("error");
+      }
+    } catch {
+      setSaveStatus("error");
+    }
+  };
+
+  // Scroll to results on mobile
+  const scrollToResults = () => {
+    resultsRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  // FAQs
+  // ─────────────────────────────────────────────────────────────────────────────
+  const defaultFaqs = [
+    {
+      question: "How accurate are ideal weight formulas?",
+      answer: "These formulas provide estimates based on height and gender. They don't account for muscle mass, bone density, or body composition. Use them as general guidelines, not absolute targets."
+    },
+    {
+      question: "Why do different formulas give different results?",
+      answer: "Each formula was developed for different purposes and populations. Robinson and Miller modified Devine's original formula. The variation gives you a healthy range to consider."
+    },
+    {
+      question: "What is frame size and why does it matter?",
+      answer: "Frame size refers to your bone structure (small, medium, large). People with larger frames naturally weigh more due to bigger bones. Wrist circumference is a simple way to estimate frame size."
+    },
+    {
+      question: "Should athletes use these formulas?",
+      answer: "Athletes with significant muscle mass may exceed these ideal weights while being perfectly healthy. Consider using body fat percentage instead for a more accurate assessment."
+    },
+    {
+      question: "What's a safe rate of weight loss?",
+      answer: "Most health experts recommend 0.5-2 lbs (0.25-1 kg) per week. Faster weight loss can lead to muscle loss, nutritional deficiencies, and is harder to maintain long-term."
+    },
+    {
+      question: "How do I measure my wrist for frame size?",
+      answer: "Wrap a measuring tape around your wrist just below the wrist bone (where you'd wear a watch). Keep the tape snug but not tight. Compare to the thresholds for your gender."
+    },
+  ];
+  const faqs = translations?.faq || defaultFaqs;
+
+  // =============================================================================
+  // RENDER
+  // =============================================================================
+  return (
+    <>
+      {/* WCAG 2.4.1: Skip to main content */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+      >
+        Skip to calculator
+      </a>
+
+      <Header />
+
+      {/* Side Skyscraper Ads - Fixed on sides (desktop only) */}
+      <SideSkyscraperAds />
+
+      {/* Schema.org FAQPage */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map((faq) => ({
+              "@type": "Question",
+              name: faq.question,
+              acceptedAnswer: { "@type": "Answer", text: faq.answer },
+            })),
+          }),
+        }}
+      />
+
+      <main id="main-content" className="min-h-screen bg-white pt-16 pb-24 md:pb-0">
+        {/* ─────────────────────────────────────────────────────────────────────────
+            HERO SECTION
+        ───────────────────────────────────────────────────────────────────────── */}
+        <section className="bg-gradient-to-b from-blue-50 to-white py-4 md:py-6">
+          <div className="container mx-auto px-4 max-w-6xl">
+            {/* Breadcrumb */}
+            <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-slate-600 mb-6">
+              <Link href={`/${locale}`} className="hover:text-blue-600 transition-colors">
+                Home
+              </Link>
+              <span className="text-slate-400" aria-hidden="true">/</span>
+              <Link href={`/${locale}/calculators`} className="hover:text-blue-600 transition-colors">
+                Calculators
+              </Link>
+              <span className="text-slate-400" aria-hidden="true">/</span>
+              <span className="text-slate-900 font-medium" aria-current="page">Ideal Weight Calculator</span>
+            </nav>
+
+            {/* Title */}
+            <div className="flex items-center gap-4">
+              <div 
+                className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-2xl"
+                role="img"
+                aria-label="Ideal Weight Calculator icon"
+              >
+                ⚖️
+              </div>
+              <div>
+                <h1 className="text-3xl md:text-4xl font-bold text-slate-900">Ideal Weight Calculator</h1>
+                <p className="text-slate-600 mt-1">Calculate your ideal body weight using 5 scientific formulas</p>
+              </div>
+            </div>
+
+            {/* Mobile Ad - Between title and calculator */}
+            <div className="md:hidden mt-6">
+              <AdBlock slot="calculator-mobile-hero" />
+            </div>
+          </div>
+        </section>
+
+        {/* ─────────────────────────────────────────────────────────────────────────
+            CALCULATOR SECTION
+        ───────────────────────────────────────────────────────────────────────── */}
+        <section className="py-8 md:py-12">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <div className="grid lg:grid-cols-2 gap-8">
+              {/* ═══════════════════════════════════════════════════════════════════
+                  LEFT COLUMN - INPUTS
+              ═══════════════════════════════════════════════════════════════════ */}
+              <div className="bg-white rounded-2xl border border-slate-200 p-6 md:p-8">
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-xl font-bold text-slate-900">Your Information</h2>
+                  <button
+                    onClick={toggleFavorite}
+                    disabled={favoriteLoading}
+                    className="p-2 rounded-lg hover:bg-slate-100 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
+                    aria-pressed={isFavorite}
+                  >
+                    {isFavorite ? (
+                      <svg className="w-6 h-6 text-red-500" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                      </svg>
+                    ) : (
+                      <svg className="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                      </svg>
+                    )}
+                  </button>
+                </div>
+
+                {/* Unit System */}
+                <div className="mb-6">
+                  <label id="unit-system-label" className="block font-medium text-slate-700 mb-2">
+                    Unit System
+                  </label>
+                  <div 
+                    role="radiogroup" 
+                    aria-labelledby="unit-system-label" 
+                    className="grid grid-cols-2 gap-2"
+                  >
+                    {(["imperial", "metric"] as UnitSystem[]).map((unit) => (
+                      <button
+                        key={unit}
+                        onClick={() => handleInputChange(setUnitSystem, unit)}
+                        role="radio"
+                        aria-checked={unitSystem === unit}
+                        className={`py-3 px-4 rounded-lg text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                          unitSystem === unit
+                            ? "bg-blue-600 text-white"
+                            : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                        }`}
+                      >
+                        {unit === "imperial" ? "Imperial (lb, in)" : "Metric (kg, cm)"}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Gender */}
+                <div className="mb-6">
+                  <label id="gender-label" className="block font-medium text-slate-700 mb-2">
+                    Biological Sex
+                  </label>
+                  <div 
+                    role="radiogroup" 
+                    aria-labelledby="gender-label" 
+                    className="grid grid-cols-2 gap-2"
+                  >
+                    {(["male", "female"] as Gender[]).map((g) => (
+                      <button
+                        key={g}
+                        onClick={() => handleInputChange(setGender, g)}
+                        role="radio"
+                        aria-checked={gender === g}
+                        className={`py-3 px-4 rounded-lg text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                          gender === g
+                            ? "bg-blue-600 text-white"
+                            : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                        }`}
+                      >
+                        {g === "male" ? "Male" : "Female"}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Age */}
+                <div className="mb-6">
+                  <div className="flex justify-between items-center mb-2">
+                    <label htmlFor="age-input" className="font-medium text-slate-700">
+                      Age
+                    </label>
+                    <div className="flex items-center bg-slate-100 rounded-lg px-3 py-1">
+                      <input
+                        id="age-input"
+                        type="number"
+                        min="18"
+                        max="80"
+                        value={age}
+                        onChange={(e) => handleInputChange(setAge, Math.max(18, Math.min(80, Number(e.target.value) || 18)))}
+                        className="w-16 bg-transparent text-right font-bold text-blue-600 focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                      />
+                      <span className="text-slate-600 ml-1">years</span>
+                    </div>
+                  </div>
+                  <input
+                    type="range"
+                    min="18"
+                    max="80"
+                    value={age}
+                    onChange={(e) => handleInputChange(setAge, Number(e.target.value))}
+                    className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                    aria-label="Age slider"
+                  />
+                  <div className="flex justify-between text-xs text-slate-600 mt-1">
+                    <span>18</span>
+                    <span>80</span>
+                  </div>
+                </div>
+
+                {/* Height */}
+                <div className="mb-6">
+                  <label className="block font-medium text-slate-700 mb-2">Height</label>
+                  {unitSystem === "imperial" ? (
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label htmlFor="height-feet" className="sr-only">Feet</label>
+                        <div className="relative">
+                          <input
+                            id="height-feet"
+                            type="number"
+                            min="4"
+                            max="7"
+                            value={heightFeet}
+                            onChange={(e) => handleInputChange(setHeightFeet, Math.max(4, Math.min(7, Number(e.target.value) || 5)))}
+                            className="w-full bg-slate-100 rounded-lg px-4 py-3 font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                          />
+                          <span className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-600">ft</span>
+                        </div>
+                      </div>
+                      <div>
+                        <label htmlFor="height-inches" className="sr-only">Inches</label>
+                        <div className="relative">
+                          <input
+                            id="height-inches"
+                            type="number"
+                            min="0"
+                            max="11"
+                            value={heightInches}
+                            onChange={(e) => handleInputChange(setHeightInches, Math.max(0, Math.min(11, Number(e.target.value) || 0)))}
+                            className="w-full bg-slate-100 rounded-lg px-4 py-3 font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                          />
+                          <span className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-600">in</span>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div>
+                      <label htmlFor="height-cm" className="sr-only">Height in centimeters</label>
+                      <div className="relative">
+                        <input
+                          id="height-cm"
+                          type="number"
+                          min="120"
+                          max="220"
+                          value={heightCm}
+                          onChange={(e) => handleInputChange(setHeightCm, Math.max(120, Math.min(220, Number(e.target.value) || 170)))}
+                          className="w-full bg-slate-100 rounded-lg px-4 py-3 font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                        />
+                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-600">cm</span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Current Weight */}
+                <div className="mb-6">
+                  <label htmlFor="current-weight" className="block font-medium text-slate-700 mb-2">
+                    Current Weight
+                  </label>
+                  <div className="flex items-center bg-slate-100 rounded-lg px-4 py-3">
+                    <input
+                      id="current-weight"
+                      type="number"
+                      min={unitSystem === "imperial" ? 88 : 40}
+                      max={unitSystem === "imperial" ? 440 : 200}
+                      value={unitSystem === "imperial" ? currentWeightLbs : currentWeightKg}
+                      onChange={(e) => {
+                        const val = Number(e.target.value) || 0;
+                        if (unitSystem === "imperial") {
+                          handleInputChange(setCurrentWeightLbs, Math.max(88, Math.min(440, val)));
+                        } else {
+                          handleInputChange(setCurrentWeightKg, Math.max(40, Math.min(200, val)));
+                        }
+                      }}
+                      className="w-full bg-transparent font-bold text-slate-800 focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                    />
+                    <span className="text-slate-600 ml-2">{weightUnit}</span>
+                  </div>
+                  <input
+                    type="range"
+                    min={unitSystem === "imperial" ? 88 : 40}
+                    max={unitSystem === "imperial" ? 440 : 200}
+                    value={unitSystem === "imperial" ? currentWeightLbs : currentWeightKg}
+                    onChange={(e) => {
+                      const val = Number(e.target.value);
+                      if (unitSystem === "imperial") {
+                        handleInputChange(setCurrentWeightLbs, val);
+                      } else {
+                        handleInputChange(setCurrentWeightKg, val);
+                      }
+                    }}
+                    className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600 mt-2"
+                    aria-label="Current weight slider"
+                  />
+                  <div className="flex justify-between text-xs text-slate-600 mt-1">
+                    <span>{unitSystem === "imperial" ? "88 lbs" : "40 kg"}</span>
+                    <span>{unitSystem === "imperial" ? "440 lbs" : "200 kg"}</span>
+                  </div>
+                </div>
+
+                {/* Build Type */}
+                <div className="mb-6">
+                  <label id="build-type-label" className="block font-medium text-slate-700 mb-2">
+                    Build Type
+                  </label>
+                  <div 
+                    role="radiogroup" 
+                    aria-labelledby="build-type-label" 
+                    className="grid grid-cols-2 gap-2"
+                  >
+                    {(Object.entries(BUILD_ADJUSTMENTS) as [BuildType, typeof BUILD_ADJUSTMENTS.lean][]).map(([key, val]) => (
+                      <button
+                        key={key}
+                        onClick={() => handleInputChange(setBuildType, key)}
+                        role="radio"
+                        aria-checked={buildType === key}
+                        className={`py-3 px-4 rounded-lg text-sm transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                          buildType === key
+                            ? "bg-blue-600 text-white"
+                            : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                        }`}
+                      >
+                        <span className="font-medium">{val.label}</span>
+                        <span className={`block text-xs mt-0.5 ${buildType === key ? "text-blue-200" : "text-slate-600"}`}>
+                          {val.description}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Advanced Options Toggle */}
+                <div>
+                  <button
+                    onClick={() => setShowAdvanced(!showAdvanced)}
+                    className="flex items-center gap-2 text-slate-600 hover:text-blue-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-lg px-2 py-1"
+                    aria-expanded={showAdvanced}
+                  >
+                    <svg className={`w-4 h-4 transition-transform ${showAdvanced ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                    <span className="font-medium">Advanced Options</span>
+                  </button>
+
+                  {/* Advanced Options Content */}
+                  {showAdvanced && (
+                    <div className="mt-4 pt-4 border-t border-slate-200 space-y-4">
+                      {/* Wrist Measurement */}
+                      <div>
+                        <label htmlFor="wrist-input" className="block font-medium text-slate-700 mb-2">
+                          Wrist Circumference (for frame size)
+                        </label>
+                        <div className="flex items-center bg-slate-100 rounded-lg px-4 py-3">
+                          <input
+                            id="wrist-input"
+                            type="number"
+                            step="0.1"
+                            min={unitSystem === "imperial" ? 5 : 12}
+                            max={unitSystem === "imperial" ? 9 : 23}
+                            value={unitSystem === "imperial" ? wristIn : wristCm}
+                            onChange={(e) => {
+                              const val = Number(e.target.value) || 0;
+                              if (unitSystem === "imperial") {
+                                handleInputChange(setWristIn, Math.max(5, Math.min(9, val)));
+                              } else {
+                                handleInputChange(setWristCm, Math.max(12, Math.min(23, val)));
+                              }
+                            }}
+                            className="w-full bg-transparent font-bold text-slate-800 focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                          />
+                          <span className="text-slate-600 ml-2">{unitSystem === "imperial" ? "in" : "cm"}</span>
+                        </div>
+                        <p className="text-xs text-slate-600 mt-1">
+                          Detected frame: <span className="font-semibold capitalize">{frameSize}</span>
+                        </p>
+                      </div>
+
+                      {/* Manual Frame Override */}
+                      <div>
+                        <label id="frame-override-label" className="block font-medium text-slate-700 mb-2">
+                          Or select frame size manually
+                        </label>
+                        <div 
+                          role="radiogroup" 
+                          aria-labelledby="frame-override-label" 
+                          className="grid grid-cols-3 gap-2"
+                        >
+                          {(["small", "medium", "large"] as FrameSize[]).map((size) => (
+                            <button
+                              key={size}
+                              onClick={() => handleInputChange(setManualFrameSize, manualFrameSize === size ? null : size)}
+                              role="radio"
+                              aria-checked={manualFrameSize === size}
+                              className={`py-2 px-3 rounded-lg text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 capitalize ${
+                                manualFrameSize === size
+                                  ? "bg-blue-600 text-white"
+                                  : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                              }`}
+                            >
+                              {size}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Weight Loss Rate */}
+                      <div>
+                        <div className="flex justify-between items-center mb-2">
+                          <label htmlFor="rate-input" className="font-medium text-slate-700">
+                            Weight Change Rate
+                          </label>
+                          <div className="flex items-center bg-slate-100 rounded-lg px-3 py-1">
+                            <input
+                              id="rate-input"
+                              type="number"
+                              min="0.5"
+                              max="2"
+                              step="0.5"
+                              value={weightLossRate}
+                              onChange={(e) => handleInputChange(setWeightLossRate, Math.max(0.5, Math.min(2, Number(e.target.value) || 1)))}
+                              className="w-12 bg-transparent text-right font-bold text-blue-600 focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                            />
+                            <span className="text-slate-600 ml-1">lbs/wk</span>
+                          </div>
+                        </div>
+                        <p className="text-xs text-slate-600">Recommended: 0.5-2 lbs per week for safe weight loss</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* ═══════════════════════════════════════════════════════════════════
+                  RIGHT COLUMN - RESULTS (hidden on mobile, shown via sticky bar)
+              ═══════════════════════════════════════════════════════════════════ */}
+              <div ref={resultsRef} className="hidden lg:block">
+                {/* Main Result */}
+                <div 
+                  className="bg-slate-50 rounded-2xl border border-slate-200 p-6 md:p-8 mb-4"
+                  role="region"
+                  aria-label="Ideal Weight Results"
+                  aria-live="polite"
+                >
+                  <p className="text-sm text-slate-600 mb-1">Your Ideal Weight (Average)</p>
+                  <p className="text-4xl md:text-5xl font-bold text-slate-900 mb-2">
+                    {formatWeight(averageIdealWeight)}
+                  </p>
+                  
+                  {/* Healthy Range */}
+                  <div className="flex items-center gap-2 text-sm text-slate-600 mb-4">
+                    <span>Healthy Range:</span>
+                    <span className="font-medium text-blue-600">
+                      {formatWeight(adjustedBMIRange.min)} - {formatWeight(adjustedBMIRange.max)}
+                    </span>
+                  </div>
+
+                  {/* Weight Difference */}
+                  <div className={`p-4 rounded-xl ${needsToLose ? "bg-amber-50 border border-amber-200" : weightDifference < 0 ? "bg-blue-50 border border-blue-200" : "bg-green-50 border border-green-200"}`}>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm text-slate-600">
+                          {needsToLose ? "Weight to Lose" : weightDifference < 0 ? "Weight to Gain" : "At Ideal Weight!"}
+                        </p>
+                        <p className={`text-2xl font-bold ${needsToLose ? "text-amber-800" : weightDifference < 0 ? "text-blue-700" : "text-green-700"}`}>
+                          {Math.abs(weightDifference) < 1 ? "✓" : formatWeight(Math.abs(weightDifference))}
+                        </p>
+                      </div>
+                      {Math.abs(weightDifference) >= 1 && (
+                        <div className="text-right">
+                          <p className="text-sm text-slate-600">Timeline</p>
+                          <p className="text-xl font-bold text-slate-800">~{weeksToGoal} weeks</p>
+                          <p className="text-xs text-slate-600">at {weightLossRate} lb/week</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Healthy Weight Range Visual */}
+                <div className="bg-white rounded-2xl border border-slate-200 p-6 mb-4">
+                  <h3 className="font-bold text-slate-900 mb-4"><span aria-hidden="true">📊 </span>Healthy Weight Range</h3>
+                  <div className="relative h-8 bg-slate-100 rounded-full overflow-hidden mb-2">
+                    {/* Healthy zone */}
+                    <div 
+                      className="absolute h-full bg-green-200"
+                      style={{ 
+                        left: `${Math.max(0, ((formatWeightNumber(adjustedBMIRange.min) - 100) / 200) * 100)}%`,
+                        width: `${((formatWeightNumber(adjustedBMIRange.max) - formatWeightNumber(adjustedBMIRange.min)) / 200) * 100}%`
+                      }}
+                    />
+                    {/* Current weight marker */}
+                    <div 
+                      className="absolute top-0 bottom-0 w-1 bg-blue-600"
+                      style={{ 
+                        left: `${Math.min(100, Math.max(0, ((formatWeightNumber(currentWeightKgCalc) - 100) / 200) * 100))}%`
+                      }}
+                    />
+                    {/* Ideal weight marker */}
+                    <div 
+                      className="absolute top-0 bottom-0 w-1 bg-green-600"
+                      style={{ 
+                        left: `${Math.min(100, Math.max(0, ((formatWeightNumber(averageIdealWeight) - 100) / 200) * 100))}%`
+                      }}
+                    />
+                  </div>
+                  <div className="flex justify-between text-xs text-slate-600">
+                    <span>100 {weightUnit}</span>
+                    <span>300 {weightUnit}</span>
+                  </div>
+                  <div className="flex items-center gap-4 mt-3 text-xs">
+                    <div className="flex items-center gap-1">
+                      <span className="w-3 h-3 bg-blue-600 rounded-full"></span>
+                      <span>Current: {formatWeight(currentWeightKgCalc)}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <span className="w-3 h-3 bg-green-600 rounded-full"></span>
+                      <span>Ideal: {formatWeight(averageIdealWeight)}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <span className="w-3 h-3 bg-green-200 rounded-full"></span>
+                      <span>Healthy Zone</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Formula Comparison */}
+                <div className="bg-white rounded-2xl border border-slate-200 p-6 mb-4">
+                  <h3 className="font-bold text-slate-900 mb-4"><span aria-hidden="true">📈 </span>Formula Comparison</h3>
+                  <div className="space-y-3">
+                    {formulaResults.map((result) => {
+                      const maxWeight = Math.max(...formulaResults.map(r => r.weight));
+                      const percentage = (result.weight / maxWeight) * 100;
+                      
+                      return (
+                        <div key={result.name}>
+                          <div className="flex justify-between text-sm mb-1">
+                            <div>
+                              <span className="font-medium text-slate-700">{result.name}</span>
+                              <span className="text-slate-400 text-xs ml-2">{result.description}</span>
+                            </div>
+                            <span className="font-bold text-slate-800">{formatWeight(result.weight)}</span>
+                          </div>
+                          <div className="h-3 bg-slate-100 rounded-full overflow-hidden">
+                            <div 
+                              className="h-full bg-blue-500 transition-all duration-500"
+                              style={{ width: `${percentage}%` }}
+                              role="progressbar"
+                              aria-valuenow={result.weight}
+                              aria-valuemin={0}
+                              aria-valuemax={maxWeight}
+                              aria-label={`${result.name}: ${formatWeight(result.weight)}`}
+                            />
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <p className="text-xs text-slate-600 mt-4">
+                    Results adjusted for {frameSize} frame and {buildType} build type
+                  </p>
+                </div>
+
+                {/* Actions */}
+                <div className="bg-white rounded-2xl border border-slate-200 p-6">
+                  <div className="grid grid-cols-2 gap-3">
+                    <button 
+                      onClick={saveToHistory}
+                      disabled={saveStatus === "saving" || !session}
+                      className="flex items-center justify-center gap-2 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 font-medium transition-colors disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      aria-label="Save to history"
+                    >
+                      {saveStatus === "saving" ? "Saving..." : saveStatus === "saved" ? "✓ Saved" : "💾 Save"}
+                    </button>
+                    <button 
+                      className="flex items-center justify-center gap-2 py-3 bg-white border border-slate-200 rounded-xl hover:bg-slate-50 font-medium text-slate-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      aria-label="Export to PDF (PRO feature)"
+                    >
+                      📄 PDF <span className="text-xs bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full">PRO</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* AdBlock Bottom - Centered */}
+            <div className="mt-8 flex justify-center">
+              <AdBlock slot="calculator-bottom" />
+            </div>
+
+            {/* ═══════════════════════════════════════════════════════════════════
+                INFO CARDS
+            ═══════════════════════════════════════════════════════════════════ */}
+            <div className="grid md:grid-cols-2 gap-6 mt-8">
+              <div className="bg-white rounded-2xl border border-slate-200 p-6">
+                <h3 className="text-lg font-bold text-slate-900 mb-4"><span aria-hidden="true">📏 </span>About the Formulas</h3>
+                <ul className="space-y-3 text-slate-600">
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-500 mt-1">•</span>
+                    <span><strong>Robinson (1983):</strong> Most commonly used in clinical settings</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-500 mt-1">•</span>
+                    <span><strong>Miller (1983):</strong> Tends to give lower estimates, good for smaller frames</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-500 mt-1">•</span>
+                    <span><strong>Devine (1974):</strong> Original medical formula, still widely referenced</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-500 mt-1">•</span>
+                    <span><strong>Hamwi (1964):</strong> The first ideal weight formula developed</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-white rounded-2xl border border-slate-200 p-6">
+                <h3 className="text-lg font-bold text-slate-900 mb-4"><span aria-hidden="true">⚠️ </span>Important Considerations</h3>
+                <ul className="space-y-2 text-slate-600">
+                  <li className="flex items-start gap-2">
+                    <span className="text-amber-500 mt-1">!</span>
+                    <span>These are estimates - individual healthy weights vary</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-amber-500 mt-1">!</span>
+                    <span>Athletes may exceed ideal weights due to muscle mass</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-amber-500 mt-1">!</span>
+                    <span>Body fat percentage is often more meaningful</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-amber-500 mt-1">!</span>
+                    <span>Consult a healthcare provider for personalized advice</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ─────────────────────────────────────────────────────────────────────────
+            EXAMPLE CALCULATION
+        ───────────────────────────────────────────────────────────────────────── */}
+        <section className="bg-slate-50 py-12">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <h2 className="text-2xl font-bold text-slate-900 mb-4"><span aria-hidden="true">📊 </span>Example Calculation</h2>
+            <p className="text-slate-600 mb-6">
+              30-year-old male, 5&apos;10&quot; (70 inches), medium frame, average build
+            </p>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="bg-white rounded-xl p-5">
+                <h4 className="font-bold text-slate-800 mb-3">Robinson Formula</h4>
+                <div className="bg-slate-50 rounded-lg p-3 font-mono text-sm text-slate-700">
+                  <p>Base = 52 kg (for 5 feet)</p>
+                  <p>+ 1.9 kg × 10 inches = 19 kg</p>
+                  <p className="font-bold text-blue-600 mt-2">Ideal = 71 kg (157 lbs)</p>
+                </div>
+              </div>
+              <div className="bg-white rounded-xl p-5">
+                <h4 className="font-bold text-slate-800 mb-3">Devine Formula</h4>
+                <div className="bg-slate-50 rounded-lg p-3 font-mono text-sm text-slate-700">
+                  <p>Base = 50 kg (for 5 feet)</p>
+                  <p>+ 2.3 kg × 10 inches = 23 kg</p>
+                  <p className="font-bold text-blue-600 mt-2">Ideal = 73 kg (161 lbs)</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ─────────────────────────────────────────────────────────────────────────
+            EDUCATIONAL CONTENT + SIDEBAR
+        ───────────────────────────────────────────────────────────────────────── */}
+        <section className="py-12">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <div className="grid lg:grid-cols-3 gap-8">
+              {/* Main Content - 2 columns */}
+              <div className="lg:col-span-2 space-y-8">
+                {/* What is Ideal Weight */}
+                <div>
+                  <h2 className="text-2xl font-bold text-slate-900 mb-4">What is Ideal Body Weight?</h2>
+                  <p className="text-slate-600 mb-4">
+                    Ideal body weight (IBW) is a theoretical weight that is associated with the lowest risk of health problems for a person of a given height. However, it&apos;s important to understand that IBW formulas were originally developed for calculating medication dosages, not for determining aesthetic or fitness goals.
+                  </p>
+                  <p className="text-slate-600 mb-4">
+                    There is no single &quot;perfect&quot; weight for any individual. Healthy weight exists as a range, and factors like muscle mass, bone density, age, and overall health matter more than hitting a specific number on the scale.
+                  </p>
+                </div>
+
+                {/* Why Different Results */}
+                <div>
+                  <h2 className="text-2xl font-bold text-slate-900 mb-4">Why Do Formulas Give Different Results?</h2>
+                  <p className="text-slate-600 mb-4">
+                    Each formula was developed by different researchers for different purposes and populations. The variation between formulas actually gives you a realistic range to consider rather than a single target number. Most experts recommend focusing on the healthy BMI range (18.5-24.9) rather than any single formula&apos;s result.
+                  </p>
+                </div>
+
+                {/* FAQ Section */}
+                <div>
+                  <h2 className="text-2xl font-bold text-slate-900 mb-6">Frequently Asked Questions</h2>
+                  <div className="space-y-4">
+                    {faqs.map((faq, index) => (
+                      <details key={index} className="group">
+                        <summary className="flex justify-between items-center cursor-pointer list-none p-4 bg-slate-50 rounded-xl hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset">
+                          <span className="font-semibold text-slate-900 pr-4">{faq.question}</span>
+                          <svg
+                            className="w-5 h-5 text-slate-600 group-open:rotate-180 transition-transform flex-shrink-0"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </summary>
+                        <p className="text-slate-600 p-4 pt-2">{faq.answer}</p>
+                      </details>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Sidebar - 1 column */}
+              <div className="lg:col-span-1">
+                <CalculatorSidebar 
+                  currentCalculator={CALCULATOR_SLUG}
+                  category="health"
+                  showCTA={true}
+                  ctaTitle="📏 Check Your Body Fat"
+                  ctaDescription="Body fat percentage is often more meaningful than weight alone. Try our Body Fat Calculator."
+                  ctaLink={`/${locale}/body-fat-calculator`}
+                  ctaLinkText="Try Body Fat Calculator →"
+                  relatedTags={["ideal-weight", "weight-loss", "health", "bmi", "fitness"]}
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      {/* ═══════════════════════════════════════════════════════════════════════════
+          MOBILE STICKY RESULTS BAR - Fixed at bottom on mobile
+      ═══════════════════════════════════════════════════════════════════════════ */}
+      <div 
+        className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 shadow-lg z-30"
+        role="region"
+        aria-label="Results summary"
+      >
+        {/* Collapsed View */}
+        {!mobileResultsExpanded && (
+          <div className="px-4 py-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div>
+                  <p className="text-xs text-slate-600">Ideal Weight</p>
+                  <p className="text-2xl font-bold text-slate-900">{formatWeight(averageIdealWeight)}</p>
+                </div>
+                <div className={`px-3 py-1 rounded-full text-sm font-medium ${
+                  needsToLose 
+                    ? "bg-amber-100 text-amber-800" 
+                    : weightDifference < 0 
+                      ? "bg-blue-100 text-blue-700" 
+                      : "bg-green-100 text-green-700"
+                }`}>
+                  {Math.abs(weightDifference) < 1 
+                    ? "✓ At Goal" 
+                    : `${needsToLose ? "-" : "+"}${formatWeight(Math.abs(weightDifference))}`
+                  }
+                </div>
+              </div>
+              <button
+                onClick={() => setMobileResultsExpanded(true)}
+                className="flex items-center gap-1 px-4 py-2 bg-blue-600 text-white rounded-lg font-medium text-sm hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                aria-expanded="false"
+                aria-label="Show detailed results"
+              >
+                Details
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Expanded View */}
+        {mobileResultsExpanded && (
+          <div className="max-h-[70vh] overflow-y-auto">
+            {/* Header */}
+            <div className="sticky top-0 bg-white border-b border-slate-100 px-4 py-3 flex items-center justify-between">
+              <h3 className="font-bold text-slate-900">Your Results</h3>
+              <button
+                onClick={() => setMobileResultsExpanded(false)}
+                className="p-2 hover:bg-slate-100 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
+                aria-label="Close detailed results"
+              >
+                <svg className="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Content */}
+            <div className="p-4 space-y-4">
+              {/* Main Result */}
+              <div className="text-center py-4">
+                <p className="text-sm text-slate-600 mb-1">Your Ideal Weight (Average)</p>
+                <p className="text-4xl font-bold text-slate-900 mb-2">
+                  {formatWeight(averageIdealWeight)}
+                </p>
+                <p className="text-sm text-slate-600">
+                  Healthy Range: <span className="font-medium text-blue-600">{formatWeight(adjustedBMIRange.min)} - {formatWeight(adjustedBMIRange.max)}</span>
+                </p>
+              </div>
+
+              {/* Weight Difference */}
+              <div className={`p-4 rounded-xl ${needsToLose ? "bg-amber-50 border border-amber-200" : weightDifference < 0 ? "bg-blue-50 border border-blue-200" : "bg-green-50 border border-green-200"}`}>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-slate-600">
+                      {needsToLose ? "Weight to Lose" : weightDifference < 0 ? "Weight to Gain" : "At Ideal Weight!"}
+                    </p>
+                    <p className={`text-2xl font-bold ${needsToLose ? "text-amber-800" : weightDifference < 0 ? "text-blue-700" : "text-green-700"}`}>
+                      {Math.abs(weightDifference) < 1 ? "✓" : formatWeight(Math.abs(weightDifference))}
+                    </p>
+                  </div>
+                  {Math.abs(weightDifference) >= 1 && (
+                    <div className="text-right">
+                      <p className="text-sm text-slate-600">Timeline</p>
+                      <p className="text-xl font-bold text-slate-800">~{weeksToGoal} weeks</p>
+                      <p className="text-xs text-slate-600">at {weightLossRate} lb/week</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Formula Results */}
+              <div>
+                <h4 className="font-semibold text-slate-900 mb-3">Formula Comparison</h4>
+                <div className="space-y-2">
+                  {formulaResults.map((result) => (
+                    <div key={result.name} className="flex justify-between items-center py-2 border-b border-slate-100 last:border-0">
+                      <span className="text-slate-600">{result.name}</span>
+                      <span className="font-bold text-slate-900">{formatWeight(result.weight)}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Actions */}
+              <div className="grid grid-cols-2 gap-3 pt-2">
+                <button 
+                  onClick={saveToHistory}
+                  disabled={saveStatus === "saving" || !session}
+                  className="flex items-center justify-center gap-2 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 font-medium transition-colors disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  {saveStatus === "saving" ? "Saving..." : saveStatus === "saved" ? "✓ Saved" : "💾 Save"}
+                </button>
+                <button 
+                  className="flex items-center justify-center gap-2 py-3 bg-slate-100 text-slate-700 rounded-xl hover:bg-slate-200 font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  📤 Share
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
+      <Footer />
+    </>
+  );
+}

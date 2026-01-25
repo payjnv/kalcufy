@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "title": "Student Loan Calculator - Estimate Payments & Total Cost",
+    "description": "Calculate your student loan payments, total interest, and explore repayment strategies."
+  },
+  "calculator": {
+    "title": "Student Loan Calculator",
+    "subtitle": "Calculate your student loan payments and explore repayment options"
+  },
+  "faq": [
+    {
+      "question": "How is student loan interest calculated?",
+      "answer": "Student loan interest is typically calculated daily using the formula: (Principal Balance × Interest Rate) divided by 365."
+    },
+    {
+      "question": "What is the difference between subsidized and unsubsidized loans?",
+      "answer": "Subsidized loans are for students with financial need - the government pays the interest while you are in school. Unsubsidized loans accrue interest from the moment they are disbursed."
+    },
+    {
+      "question": "Should I pay extra on my student loans?",
+      "answer": "Paying extra can save significant money on interest. However, first ensure you have an emergency fund and have paid off higher-interest debt."
+    },
+    {
+      "question": "What is income-driven repayment?",
+      "answer": "Income-driven repayment plans cap your monthly payments at a percentage of your discretionary income, typically 10-20 percent."
+    },
+    {
+      "question": "Can I refinance my student loans?",
+      "answer": "Yes, refinancing combines loans into a new private loan at potentially a lower rate, but you lose federal benefits like forgiveness programs."
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "meta": {
+    "title": "Credit Card Payoff Calculator - Debt Free Plan | Kalcufy",
+    "description": "Free credit card payoff calculator to create a debt-free plan, compare payment strategies, and see how much you can save."
+  },
+  "calculator": {
+    "title": "Credit Card Payoff Calculator",
+    "subtitle": "Create your debt-free plan",
+    "breadcrumb": "Credit Card Payoff",
+    "debtDetails": "Debt Details",
+    "inputs": {
+      "balance": "Current Balance",
+      "interestRate": "Interest Rate (APR)",
+      "minimumPayment": "Minimum Payment",
+      "extraPayment": "Extra Monthly Payment"
+    },
+    "results": {
+      "monthsToPayoff": "Months to Payoff",
+      "totalInterest": "Total Interest",
+      "totalPayments": "Total Payments",
+      "payoffDate": "Payoff Date",
+      "interestSaved": "Interest Saved",
+      "timeSaved": "Time Saved"
+    },
+    "comparison": {
+      "title": "Payment Comparison",
+      "minimumOnly": "Minimum Only",
+      "withExtra": "With Extra Payment",
+      "months": "months",
+      "years": "years"
+    },
+    "buttons": { "viewSchedule": "View Payment Schedule", "save": "Save", "pdf": "PDF", "excel": "Excel" },
+    "modal": { "title": "Payment Schedule", "month": "Month", "payment": "Payment", "principal": "Principal", "interest": "Interest", "balance": "Balance" },
+    "favorites": { "add": "Add to favorites", "remove": "Remove from favorites" },
+    "saving": { "saving": "Saving...", "saved": "Saved", "error": "Error saving" }
+  },
+  "education": {
+    "title": "Breaking Free from Credit Card Debt",
+    "content1": "Credit card debt can be one of the most expensive forms of borrowing, with average APRs around 20%. Making only minimum payments can take decades to pay off.",
+    "content2": "The key to getting out of credit card debt is paying more than the minimum. Even small extra payments can save thousands in interest and years of payments.",
+    "tips": {
+      "title": "Debt Payoff Tips",
+      "tip1": { "title": "Pay More Than Minimum", "description": "Minimum payments mostly cover interest, not principal." },
+      "tip2": { "title": "Use the Avalanche Method", "description": "Pay highest interest debt first to save the most." },
+      "tip3": { "title": "Consider Balance Transfer", "description": "0% APR transfers can help if you pay off in time." },
+      "tip4": { "title": "Stop Adding Debt", "description": "Cut up the card or freeze it while paying down." }
+    },
+    "faqTitle": "Frequently Asked Questions"
+  },
+  "faq": [
+    { "question": "Why does minimum payment take so long?", "answer": "Minimum payments are designed to maximize interest for the bank. Most of your payment goes to interest, barely touching the principal." },
+    { "question": "Avalanche vs Snowball method?", "answer": "Avalanche pays highest interest first (saves most money). Snowball pays smallest balance first (psychological wins). Avalanche is mathematically optimal." },
+    { "question": "Should I use savings to pay off debt?", "answer": "If your credit card APR is 20% and savings earn 2%, paying off debt is like earning 20% guaranteed. Keep a small emergency fund, then attack the debt." }
+  ],
+  "sidebar": { "financeTitle": "Financial Calculators", "healthTitle": "Health Calculators" },
+  "common": { "home": "Home", "calculators": "Calculators", "pro": "PRO" }
+}

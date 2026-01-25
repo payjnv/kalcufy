@@ -1,0 +1,57 @@
+{
+  "meta": {
+    "title": "Calculadora de Quitação de Cartão de Crédito | Kalcufy",
+    "description": "Calculadora gratuita para criar um plano livre de dívidas, comparar estratégias de pagamento e ver quanto pode economizar."
+  },
+  "calculator": {
+    "title": "Calculadora de Quitação de Cartão",
+    "subtitle": "Crie seu plano livre de dívidas",
+    "breadcrumb": "Quitação de Cartão",
+    "debtDetails": "Detalhes da Dívida",
+    "inputs": {
+      "balance": "Saldo Atual",
+      "interestRate": "Taxa de Juros",
+      "minimumPayment": "Pagamento Mínimo",
+      "extraPayment": "Pagamento Mensal Extra"
+    },
+    "results": {
+      "monthsToPayoff": "Meses para Quitar",
+      "totalInterest": "Juros Totais",
+      "totalPayments": "Total de Pagamentos",
+      "payoffDate": "Data de Quitação",
+      "interestSaved": "Juros Economizados",
+      "timeSaved": "Tempo Economizado"
+    },
+    "comparison": {
+      "title": "Comparação de Pagamentos",
+      "minimumOnly": "Apenas Mínimo",
+      "withExtra": "Com Pagamento Extra",
+      "months": "meses",
+      "years": "anos"
+    },
+    "buttons": { "viewSchedule": "Ver Cronograma de Pagamentos", "save": "Salvar", "pdf": "PDF", "excel": "Excel" },
+    "modal": { "title": "Cronograma de Pagamentos", "month": "Mês", "payment": "Pagamento", "principal": "Principal", "interest": "Juros", "balance": "Saldo" },
+    "favorites": { "add": "Adicionar aos favoritos", "remove": "Remover dos favoritos" },
+    "saving": { "saving": "Salvando...", "saved": "Salvo", "error": "Erro ao salvar" }
+  },
+  "education": {
+    "title": "Libertando-se da Dívida do Cartão",
+    "content1": "A dívida de cartão de crédito pode ser uma das formas mais caras de empréstimo, com taxas médias em torno de 20%. Pagar apenas o mínimo pode levar décadas.",
+    "content2": "A chave para sair da dívida do cartão é pagar mais que o mínimo. Mesmo pequenos pagamentos extras podem economizar milhares em juros e anos de pagamentos.",
+    "tips": {
+      "title": "Dicas para Quitar Dívidas",
+      "tip1": { "title": "Pague Mais que o Mínimo", "description": "Pagamentos mínimos cobrem principalmente juros, não principal." },
+      "tip2": { "title": "Use o Método Avalanche", "description": "Pague primeiro a dívida de maior juros para economizar mais." },
+      "tip3": { "title": "Considere Portabilidade", "description": "Transferir para taxa menor pode ajudar se você pagar a tempo." },
+      "tip4": { "title": "Pare de Adicionar Dívida", "description": "Corte o cartão ou congele enquanto paga." }
+    },
+    "faqTitle": "Perguntas Frequentes"
+  },
+  "faq": [
+    { "question": "Por que o pagamento mínimo demora tanto?", "answer": "Os pagamentos mínimos são projetados para maximizar juros para o banco. A maior parte do seu pagamento vai para juros, mal tocando o principal." },
+    { "question": "Método Avalanche vs Bola de Neve?", "answer": "Avalanche paga primeiro o maior juros (economiza mais dinheiro). Bola de Neve paga primeiro o menor saldo (vitórias psicológicas). Avalanche é matematicamente ótimo." },
+    { "question": "Devo usar poupança para pagar dívida?", "answer": "Se seu cartão cobra 20% e sua poupança rende 2%, pagar a dívida é como ganhar 20% garantido. Mantenha um pequeno fundo de emergência, depois ataque a dívida." }
+  ],
+  "sidebar": { "financeTitle": "Calculadoras Financeiras", "healthTitle": "Calculadoras de Saúde" },
+  "common": { "home": "Início", "calculators": "Calculadoras", "pro": "PRO" }
+}

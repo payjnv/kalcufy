@@ -1,0 +1,199 @@
+{
+  "meta": {
+    "title": "Calculadora de Financiamento Imobiliário - Parcela Mensal | Kalcufy",
+    "description": "Calculadora de financiamento imobiliário gratuita para estimar parcelas mensais, juros totais e tabela de amortização. Inclui impostos, seguro e PMI."
+  },
+  "calculator": {
+    "title": "Calculadora de Financiamento",
+    "subtitle": "Calcule suas parcelas mensais do financiamento",
+    "breadcrumb": "Financiamento",
+    "loanDetails": "Detalhes do Financiamento",
+    "inputs": {
+      "homePrice": "Preço do Imóvel",
+      "downPayment": "Entrada",
+      "interestRate": "Taxa de Juros",
+      "loanTerm": "Prazo do Financiamento",
+      "propertyTax": "IPTU / ano",
+      "insurance": "Seguro / ano",
+      "years": "anos",
+      "currencySymbol": "R$",
+      "rangeMin": "R$50K",
+      "rangeMax": "R$2M"
+    },
+    "ranges": {
+      "min50k": "$50K",
+      "max2m": "$2M",
+      "min0": "0%",
+      "max50": "50%",
+      "min1": "1%",
+      "max15": "15%"
+    },
+    "advanced": {
+      "title": "Custos Adicionais e Pagamentos Extra",
+      "pmiRate": "Taxa PMI (% / ano)",
+      "pmiHelp": "Aplica-se se a entrada for < 20%",
+      "hoaFees": "Taxa de Condomínio / mês",
+      "extraMonthly": "Pagamento Mensal Extra",
+      "extraHelp": "Quite seu financiamento mais rápido",
+      "loanStartDate": "Data de Início do Financiamento",
+      "loanStartHelp": "Quando seu financiamento começará?"
+    },
+    "results": {
+      "monthlyPayment": "Parcela Mensal Total",
+      "perMonth": "/mês",
+      "payoff": "Quitação",
+      "principal": "Principal",
+      "interest": "Juros",
+      "tax": "Imposto",
+      "insuranceLabel": "Seguro",
+      "insurance": "Seguro",
+      "pmi": "PMI",
+      "component": "Componente",
+      "monthly": "Mensal",
+      "total": "Total",
+      "principalInterest": "Principal e Juros",
+      "propertyTax": "IPTU",
+      "homeInsurance": "Seguro Residencial",
+      "loanAmount": "Valor Financiado",
+      "totalInterest": "Juros Totais",
+      "payoffDate": "Data de Quitação",
+      "totalPayments": "Total de Parcelas"
+    },
+    "buttons": {
+      "viewAmortization": "Ver Tabela de Amortização",
+      "save": "Salvar",
+      "pdf": "PDF",
+      "excel": "Excel",
+      "downloadPdf": "Baixar PDF",
+      "downloadExcel": "Baixar Excel"
+    },
+    "modal": {
+      "title": "Tabela de Amortização",
+      "year": "Ano",
+      "principal": "Principal",
+      "interest": "Juros",
+      "balance": "Saldo"
+    },
+    "favorites": {
+      "add": "Adicionar aos favoritos",
+      "remove": "Remover dos favoritos"
+    },
+    "saving": {
+      "saving": "Salvando...",
+      "saved": "Salvo",
+      "error": "Erro ao salvar"
+    }
+  },
+  "info": {
+    "trueCost": {
+      "title": "Entendendo o Custo Real",
+      "intro": "O custo real de um imóvel vai além do preço de compra. Considere estes fatores:",
+      "closingCosts": "Custos de Fechamento:",
+      "closingCostsDesc": "Tipicamente 2-5% do preço do imóvel",
+      "propertyTaxes": "IPTU:",
+      "propertyTaxesDesc": "Varia por localização, geralmente 1-2% ao ano",
+      "maintenance": "Manutenção:",
+      "maintenanceDesc": "Reserve 1-2% do valor do imóvel por ano",
+      "pmi": "PMI:",
+      "pmiDesc": "Necessário se a entrada for menor que 20%"
+    },
+    "rates": {
+      "title": "Taxas Médias de Financiamento",
+      "creditScore": "Score de Crédito",
+      "thirtyYear": "30 Anos",
+      "fifteenYear": "15 Anos",
+      "disclaimer": "*Taxas de 2024. Taxas reais podem variar."
+    },
+    "example": {
+      "title": "Exemplo de Cálculo",
+      "intro": "Digamos que você está comprando um imóvel de",
+      "home": "imóvel",
+      "with": "com",
+      "down": "de entrada",
+      "interestRate": "taxa de juros",
+      "and": "e um",
+      "term": "prazo",
+      "homePriceLabel": "Preço do Imóvel",
+      "downPaymentLabel": "Entrada",
+      "loanAmountLabel": "Valor Financiado",
+      "monthlyPI": "Parcela Mensal P&J",
+      "totalInterestLabel": "Juros Totais",
+      "totalCost": "Custo Total",
+      "conclusion": "Em 30 anos, você pagará mais em juros do que o valor original do financiamento! Por isso, mesmo pequenas reduções na taxa ou pagamentos extras podem economizar dezenas de milhares de reais."
+    }
+  },
+  "education": {
+    "title": "O que é um Financiamento Imobiliário?",
+    "content1": "Um financiamento imobiliário é um empréstimo usado para comprar ou manter uma casa, terreno ou outros tipos de imóveis. O mutuário concorda em pagar ao credor ao longo do tempo, tipicamente em uma série de pagamentos regulares divididos em principal e juros. O imóvel serve como garantia para assegurar o empréstimo.",
+    "content2": "A maioria dos financiamentos são \"amortizáveis\", significando que cada pagamento cobre tanto juros quanto principal. Os primeiros pagamentos são majoritariamente juros; os últimos pagamentos são majoritariamente principal. Entender isso ajuda você a tomar decisões mais inteligentes sobre pagamentos extras e refinanciamento.",
+    "formula": {
+      "title": "A Fórmula",
+      "m": "Parcela mensal",
+      "p": "Principal (valor financiado)",
+      "r": "Taxa de juros mensal (taxa anual ÷ 12)",
+      "n": "Número total de parcelas (anos × 12)"
+    },
+    "calculation": {
+      "title": "Seu Cálculo",
+      "for": "Para um imóvel de",
+      "homeWith": "com",
+      "downAt": "de entrada a",
+      "for2": "por",
+      "loanAmountCalc": "Valor Financiado",
+      "addTax": "Adicione IPTU",
+      "andInsurance": "e seguro",
+      "forTotal": "para um total de"
+    },
+    "tips": {
+      "title": "Dicas para Economizar",
+      "tip1": {
+        "title": "Dê 20% de Entrada",
+        "description": "Evite o PMI e consiga taxas melhores."
+      },
+      "tip2": {
+        "title": "Compare Vários Bancos",
+        "description": "Mesmo 0.25% de diferença economiza milhares."
+      },
+      "tip3": {
+        "title": "Considere Prazo de 15 Anos",
+        "description": "Taxas menores, economia massiva em juros."
+      },
+      "tip4": {
+        "title": "Faça Pagamentos Extras",
+        "description": "Uma parcela extra por ano = 4-5 anos a menos."
+      }
+    },
+    "faqTitle": "Perguntas Frequentes"
+  },
+  "faq": [
+    {
+      "question": "Quanto de imóvel posso pagar?",
+      "answer": "Uma diretriz comum é que seus custos mensais de moradia (incluindo financiamento, impostos, seguro) não devem exceder 28% da sua renda mensal bruta. Os credores também avaliam sua relação dívida-renda total, que tipicamente deve estar abaixo de 36%."
+    },
+    {
+      "question": "Qual score de crédito preciso para um financiamento?",
+      "answer": "Para empréstimos convencionais, você tipicamente precisa de um score de crédito de pelo menos 620. Empréstimos FHA podem aceitar scores tão baixos quanto 500 com 10% de entrada, ou 580 com 3.5% de entrada. Scores mais altos conseguem melhores taxas de juros."
+    },
+    {
+      "question": "O que é PMI e como posso evitá-lo?",
+      "answer": "O Seguro Hipotecário Privado (PMI) protege o credor se você inadimplir. É necessário quando você dá menos de 20% de entrada. Você pode evitá-lo dando uma entrada de 20%, usando um empréstimo piggyback, ou escolhendo uma opção de PMI pago pelo credor."
+    },
+    {
+      "question": "Taxa fixa vs ajustável - qual é melhor?",
+      "answer": "Taxas fixas oferecem estabilidade nos pagamentos e são melhores se você planeja ficar a longo prazo ou as taxas estão baixas. ARMs começam mais baixos e podem ser melhores se você planeja vender ou refinanciar em 5-7 anos, ou se espera-se que as taxas caiam."
+    },
+    {
+      "question": "Devo pagar pontos para reduzir minha taxa?",
+      "answer": "Pagar pontos (juros antecipados) pode reduzir sua taxa, mas leva tempo para recuperar o investimento. Divida o custo dos pontos pela economia mensal para encontrar seu ponto de equilíbrio. Se você planeja ficar mais tempo, os pontos podem valer a pena."
+    }
+  ],
+  "sidebar": {
+    "financeTitle": "Calculadoras Financeiras",
+    "healthTitle": "Calculadoras de Saúde"
+  },
+  "common": {
+    "home": "Início",
+    "calculators": "Calculadoras",
+    "pro": "PRO"
+  }
+}

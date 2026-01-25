@@ -1,0 +1,57 @@
+{
+  "meta": {
+    "title": "Calculadora de Pago de Tarjeta de Crédito | Kalcufy",
+    "description": "Calculadora gratuita para crear un plan libre de deudas, comparar estrategias de pago y ver cuánto puedes ahorrar."
+  },
+  "calculator": {
+    "title": "Calculadora de Pago de Tarjeta",
+    "subtitle": "Crea tu plan libre de deudas",
+    "breadcrumb": "Pago de Tarjeta",
+    "debtDetails": "Detalles de la Deuda",
+    "inputs": {
+      "balance": "Saldo Actual",
+      "interestRate": "Tasa de Interés (TAE)",
+      "minimumPayment": "Pago Mínimo",
+      "extraPayment": "Pago Mensual Extra"
+    },
+    "results": {
+      "monthsToPayoff": "Meses para Liquidar",
+      "totalInterest": "Interés Total",
+      "totalPayments": "Total de Pagos",
+      "payoffDate": "Fecha de Liquidación",
+      "interestSaved": "Interés Ahorrado",
+      "timeSaved": "Tiempo Ahorrado"
+    },
+    "comparison": {
+      "title": "Comparación de Pagos",
+      "minimumOnly": "Solo Mínimo",
+      "withExtra": "Con Pago Extra",
+      "months": "meses",
+      "years": "años"
+    },
+    "buttons": { "viewSchedule": "Ver Calendario de Pagos", "save": "Guardar", "pdf": "PDF", "excel": "Excel" },
+    "modal": { "title": "Calendario de Pagos", "month": "Mes", "payment": "Pago", "principal": "Capital", "interest": "Interés", "balance": "Saldo" },
+    "favorites": { "add": "Agregar a favoritos", "remove": "Quitar de favoritos" },
+    "saving": { "saving": "Guardando...", "saved": "Guardado", "error": "Error al guardar" }
+  },
+  "education": {
+    "title": "Liberándote de la Deuda de Tarjeta",
+    "content1": "La deuda de tarjeta de crédito puede ser una de las formas más caras de pedir prestado, con TAE promedio alrededor del 20%. Pagar solo el mínimo puede tomar décadas.",
+    "content2": "La clave para salir de la deuda de tarjeta es pagar más que el mínimo. Incluso pequeños pagos extra pueden ahorrar miles en intereses y años de pagos.",
+    "tips": {
+      "title": "Consejos para Pagar Deudas",
+      "tip1": { "title": "Paga Más del Mínimo", "description": "Los pagos mínimos mayormente cubren interés, no capital." },
+      "tip2": { "title": "Usa el Método Avalancha", "description": "Paga primero la deuda de mayor interés para ahorrar más." },
+      "tip3": { "title": "Considera Transferir Saldo", "description": "Transferencias a 0% TAE pueden ayudar si pagas a tiempo." },
+      "tip4": { "title": "Deja de Agregar Deuda", "description": "Corta la tarjeta o congélala mientras pagas." }
+    },
+    "faqTitle": "Preguntas Frecuentes"
+  },
+  "faq": [
+    { "question": "¿Por qué el pago mínimo toma tanto tiempo?", "answer": "Los pagos mínimos están diseñados para maximizar intereses para el banco. La mayoría de tu pago va a interés, apenas tocando el capital." },
+    { "question": "¿Método Avalancha vs Bola de Nieve?", "answer": "Avalancha paga primero el mayor interés (ahorra más dinero). Bola de Nieve paga primero el menor saldo (victorias psicológicas). Avalancha es matemáticamente óptimo." },
+    { "question": "¿Debo usar ahorros para pagar deuda?", "answer": "Si tu tarjeta cobra 20% y tus ahorros ganan 2%, pagar la deuda es como ganar 20% garantizado. Mantén un pequeño fondo de emergencia, luego ataca la deuda." }
+  ],
+  "sidebar": { "financeTitle": "Calculadoras Financieras", "healthTitle": "Calculadoras de Salud" },
+  "common": { "home": "Inicio", "calculators": "Calculadoras", "pro": "PRO" }
+}

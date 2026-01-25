@@ -1,0 +1,164 @@
+{
+  "meta": {
+    "title": "Loan Calculator - Payment & Interest Calculator | Kalcufy",
+    "description": "Free loan calculator to estimate monthly payments, total interest, and payoff date. Includes origination fees and extra payment options."
+  },
+  "calculator": {
+    "title": "Loan Calculator",
+    "subtitle": "Calculate your loan payments and total cost",
+    "breadcrumb": "Loan",
+    "loanDetails": "Loan Details",
+    "inputs": {
+      "loanAmount": "Loan Amount",
+      "interestRate": "Interest Rate",
+      "loanTerm": "Loan Term",
+      "years": "years"
+    },
+    "ranges": {
+      "min1k": "$1,000",
+      "max100k": "$100,000",
+      "min1": "1%",
+      "max30": "30%",
+      "min1yr": "1 year",
+      "max7yr": "7 years"
+    },
+    "advanced": {
+      "title": "Fees & Extra Payments",
+      "originationFee": "Origination Fee (%)",
+      "originationHelp": "Fee charged by lender to process the loan",
+      "extraPayment": "Extra Monthly Payment",
+      "extraHelp": "Additional amount to pay down principal faster",
+      "startDate": "Loan Start Date",
+      "startHelp": "When will your loan begin?"
+    },
+    "results": {
+      "monthlyPayment": "Monthly Payment",
+      "perMonth": "/month",
+      "payoff": "Payoff",
+      "months": "months",
+      "principal": "Principal",
+      "interest": "Interest",
+      "fees": "Fees",
+      "total": "Total",
+      "totalInterest": "Total Interest",
+      "totalCost": "Total Cost",
+      "actualAPR": "Actual APR",
+      "payoffDate": "Payoff Date",
+      "interestSaved": "Interest Saved"
+    },
+    "buttons": {
+      "viewSchedule": "View Payment Schedule",
+      "save": "Save",
+      "pdf": "PDF",
+      "excel": "Excel",
+      "downloadPdf": "Download PDF",
+      "downloadExcel": "Download Excel"
+    },
+    "modal": {
+      "title": "Payment Schedule",
+      "year": "Year",
+      "principalPaid": "Principal Paid",
+      "interestPaid": "Interest Paid",
+      "balance": "Balance"
+    },
+    "favorites": {
+      "add": "Add to favorites",
+      "remove": "Remove from favorites"
+    },
+    "saving": {
+      "saving": "Saving...",
+      "saved": "Saved",
+      "error": "Error saving"
+    }
+  },
+  "info": {
+    "trueCost": {
+      "title": "Understanding Loan Costs",
+      "intro": "The true cost of a loan includes more than just the principal:",
+      "interest": "Interest:",
+      "interestDesc": "The cost of borrowing, based on APR and term",
+      "fees": "Origination Fees:",
+      "feesDesc": "Typically 1-8% of loan amount",
+      "prepayment": "Prepayment Penalties:",
+      "prepaymentDesc": "Some loans charge for early payoff"
+    },
+    "rates": {
+      "title": "Average Personal Loan Rates",
+      "creditScore": "Credit Score",
+      "aprRange": "APR Range",
+      "disclaimer": "*Rates as of 2024. Actual rates may vary."
+    }
+  },
+  "education": {
+    "title": "What is a Personal Loan?",
+    "content1": "A personal loan is money borrowed from a bank, credit union, or online lender that you pay back in fixed monthly installments over a set period, typically 1-7 years. Unlike mortgages or auto loans, personal loans are usually unsecured, meaning they don't require collateral.",
+    "content2": "Personal loans can be used for almost anything: debt consolidation, home improvements, medical expenses, weddings, or emergency costs. Because they're unsecured, interest rates are typically higher than secured loans but lower than credit cards.",
+    "formula": {
+      "title": "The Formula",
+      "m": "Monthly payment",
+      "p": "Principal (loan amount)",
+      "r": "Monthly interest rate (annual rate ÷ 12)",
+      "n": "Total number of payments (years × 12)"
+    },
+    "calculation": {
+      "title": "Your Calculation",
+      "for": "For a",
+      "loanAt": "loan at",
+      "forYears": "for",
+      "monthlyRate": "Monthly Rate",
+      "numPayments": "Number of Payments",
+      "payments": "payments"
+    },
+    "tips": {
+      "title": "Smart Borrowing Tips",
+      "tip1": {
+        "title": "Check Your Credit First",
+        "description": "Higher credit scores get lower rates. Check yours for free before applying."
+      },
+      "tip2": {
+        "title": "Compare Multiple Lenders",
+        "description": "Rates vary widely. Get quotes from banks, credit unions, and online lenders."
+      },
+      "tip3": {
+        "title": "Choose Shorter Terms",
+        "description": "Higher payments but much less total interest paid."
+      },
+      "tip4": {
+        "title": "Watch for Fees",
+        "description": "Origination fees add to cost. Compare APR, not just interest rate."
+      }
+    },
+    "faqTitle": "Frequently Asked Questions"
+  },
+  "faq": [
+    {
+      "question": "What credit score do I need for a personal loan?",
+      "answer": "Most lenders prefer a credit score of 670 or higher for the best rates. However, some lenders offer loans to borrowers with scores as low as 580, though at higher interest rates."
+    },
+    {
+      "question": "What's the difference between APR and interest rate?",
+      "answer": "Interest rate is the cost of borrowing the principal. APR includes the interest rate plus any fees, giving you the true cost of the loan. Always compare APRs when shopping."
+    },
+    {
+      "question": "Should I pay off my loan early?",
+      "answer": "If your loan has no prepayment penalty, paying extra can save you significant money on interest. Even small extra payments add up over time."
+    },
+    {
+      "question": "Fixed vs variable rate - which is better?",
+      "answer": "Fixed rates offer predictable payments. Variable rates may start lower but can increase. Fixed is usually better for longer-term loans."
+    },
+    {
+      "question": "How do origination fees work?",
+      "answer": "Origination fees (typically 1-8%) are charged by lenders to process your loan. They're usually deducted from your loan amount."
+    }
+  ],
+  "sidebar": {
+    "financeTitle": "Financial Calculators",
+    "healthTitle": "Health Calculators"
+  },
+  "common": {
+    "home": "Home",
+    "calculators": "Calculators",
+    "pro": "PRO"
+  }
+}

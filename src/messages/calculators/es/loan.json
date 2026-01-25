@@ -1,0 +1,164 @@
+{
+  "meta": {
+    "title": "Calculadora de Préstamos - Pagos e Intereses | Kalcufy",
+    "description": "Calculadora de préstamos gratuita para estimar pagos mensuales, interés total y fecha de liquidación. Incluye comisiones y pagos extra."
+  },
+  "calculator": {
+    "title": "Calculadora de Préstamos",
+    "subtitle": "Calcula tus pagos de préstamo y costo total",
+    "breadcrumb": "Préstamo",
+    "loanDetails": "Detalles del Préstamo",
+    "inputs": {
+      "loanAmount": "Monto del Préstamo",
+      "interestRate": "Tasa de Interés",
+      "loanTerm": "Plazo del Préstamo",
+      "years": "años"
+    },
+    "ranges": {
+      "min1k": "$1,000",
+      "max100k": "$100,000",
+      "min1": "1%",
+      "max30": "30%",
+      "min1yr": "1 año",
+      "max7yr": "7 años"
+    },
+    "advanced": {
+      "title": "Comisiones y Pagos Extra",
+      "originationFee": "Comisión de Apertura (%)",
+      "originationHelp": "Comisión cobrada por el prestamista",
+      "extraPayment": "Pago Mensual Extra",
+      "extraHelp": "Cantidad adicional para pagar el capital más rápido",
+      "startDate": "Fecha de Inicio del Préstamo",
+      "startHelp": "¿Cuándo comenzará tu préstamo?"
+    },
+    "results": {
+      "monthlyPayment": "Pago Mensual",
+      "perMonth": "/mes",
+      "payoff": "Liquidación",
+      "months": "meses",
+      "principal": "Capital",
+      "interest": "Interés",
+      "fees": "Comisiones",
+      "total": "Total",
+      "totalInterest": "Interés Total",
+      "totalCost": "Costo Total",
+      "actualAPR": "TAE Real",
+      "payoffDate": "Fecha de Liquidación",
+      "interestSaved": "Interés Ahorrado"
+    },
+    "buttons": {
+      "viewSchedule": "Ver Calendario de Pagos",
+      "save": "Guardar",
+      "pdf": "PDF",
+      "excel": "Excel",
+      "downloadPdf": "Descargar PDF",
+      "downloadExcel": "Descargar Excel"
+    },
+    "modal": {
+      "title": "Calendario de Pagos",
+      "year": "Año",
+      "principalPaid": "Capital Pagado",
+      "interestPaid": "Interés Pagado",
+      "balance": "Saldo"
+    },
+    "favorites": {
+      "add": "Agregar a favoritos",
+      "remove": "Quitar de favoritos"
+    },
+    "saving": {
+      "saving": "Guardando...",
+      "saved": "Guardado",
+      "error": "Error al guardar"
+    }
+  },
+  "info": {
+    "trueCost": {
+      "title": "Entendiendo los Costos del Préstamo",
+      "intro": "El costo real de un préstamo incluye más que solo el capital:",
+      "interest": "Interés:",
+      "interestDesc": "El costo de pedir prestado, basado en TAE y plazo",
+      "fees": "Comisiones de Apertura:",
+      "feesDesc": "Típicamente 1-8% del monto del préstamo",
+      "prepayment": "Penalidades por Pago Anticipado:",
+      "prepaymentDesc": "Algunos préstamos cobran por liquidar antes"
+    },
+    "rates": {
+      "title": "Tasas Promedio de Préstamos Personales",
+      "creditScore": "Puntaje Crediticio",
+      "aprRange": "Rango TAE",
+      "disclaimer": "*Tasas a 2024. Las tasas reales pueden variar."
+    }
+  },
+  "education": {
+    "title": "¿Qué es un Préstamo Personal?",
+    "content1": "Un préstamo personal es dinero prestado de un banco, cooperativa de crédito o prestamista en línea que pagas en cuotas mensuales fijas durante un período establecido, típicamente de 1 a 7 años. A diferencia de las hipotecas o préstamos de auto, los préstamos personales generalmente no están garantizados.",
+    "content2": "Los préstamos personales pueden usarse para casi cualquier cosa: consolidación de deudas, mejoras del hogar, gastos médicos, bodas o emergencias. Como no están garantizados, las tasas de interés son típicamente más altas que los préstamos garantizados pero más bajas que las tarjetas de crédito.",
+    "formula": {
+      "title": "La Fórmula",
+      "m": "Pago mensual",
+      "p": "Capital (monto del préstamo)",
+      "r": "Tasa de interés mensual (tasa anual ÷ 12)",
+      "n": "Número total de pagos (años × 12)"
+    },
+    "calculation": {
+      "title": "Tu Cálculo",
+      "for": "Para un préstamo de",
+      "loanAt": "al",
+      "forYears": "por",
+      "monthlyRate": "Tasa Mensual",
+      "numPayments": "Número de Pagos",
+      "payments": "pagos"
+    },
+    "tips": {
+      "title": "Consejos para Préstamos Inteligentes",
+      "tip1": {
+        "title": "Revisa tu Crédito Primero",
+        "description": "Puntajes más altos obtienen tasas más bajas. Revísalo gratis antes de aplicar."
+      },
+      "tip2": {
+        "title": "Compara Varios Prestamistas",
+        "description": "Las tasas varían mucho. Obtén cotizaciones de bancos, cooperativas y prestamistas en línea."
+      },
+      "tip3": {
+        "title": "Elige Plazos Más Cortos",
+        "description": "Pagos más altos pero mucho menos interés total pagado."
+      },
+      "tip4": {
+        "title": "Cuidado con las Comisiones",
+        "description": "Las comisiones de apertura añaden costo. Compara TAE, no solo tasa de interés."
+      }
+    },
+    "faqTitle": "Preguntas Frecuentes"
+  },
+  "faq": [
+    {
+      "question": "¿Qué puntaje crediticio necesito para un préstamo personal?",
+      "answer": "La mayoría de los prestamistas prefieren un puntaje de 670 o más para las mejores tasas. Sin embargo, algunos prestamistas ofrecen préstamos con puntajes tan bajos como 580, aunque con tasas más altas."
+    },
+    {
+      "question": "¿Cuál es la diferencia entre TAE y tasa de interés?",
+      "answer": "La tasa de interés es el costo de pedir prestado el capital. La TAE incluye la tasa de interés más cualquier comisión, dándote el costo real del préstamo. Siempre compara TAE al buscar préstamos."
+    },
+    {
+      "question": "¿Debería pagar mi préstamo antes?",
+      "answer": "Si tu préstamo no tiene penalidad por pago anticipado, pagar extra puede ahorrarte dinero significativo en intereses. Incluso pequeños pagos extra se acumulan con el tiempo."
+    },
+    {
+      "question": "¿Tasa fija vs variable - cuál es mejor?",
+      "answer": "Las tasas fijas ofrecen pagos predecibles. Las tasas variables pueden empezar más bajas pero pueden aumentar. Fija es generalmente mejor para préstamos a largo plazo."
+    },
+    {
+      "question": "¿Cómo funcionan las comisiones de apertura?",
+      "answer": "Las comisiones de apertura (típicamente 1-8%) son cobradas por los prestamistas para procesar tu préstamo. Generalmente se deducen del monto del préstamo."
+    }
+  ],
+  "sidebar": {
+    "financeTitle": "Calculadoras Financieras",
+    "healthTitle": "Calculadoras de Salud"
+  },
+  "common": {
+    "home": "Inicio",
+    "calculators": "Calculadoras",
+    "pro": "PRO"
+  }
+}

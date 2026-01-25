@@ -1,0 +1,53 @@
+{
+  "meta": {
+    "title": "Calculadora de Financiamento de Carro - Parcelas | Kalcufy",
+    "description": "Calculadora gratuita de financiamento de carro para estimar parcelas mensais, juros totais e comparar opções de financiamento."
+  },
+  "calculator": {
+    "title": "Calculadora de Financiamento de Carro",
+    "subtitle": "Calcule suas parcelas mensais do carro",
+    "breadcrumb": "Financiamento Auto",
+    "loanDetails": "Detalhes do Financiamento",
+    "inputs": {
+      "vehiclePrice": "Preço do Veículo",
+      "downPayment": "Entrada",
+      "tradeInValue": "Valor de Troca",
+      "salesTax": "Taxa de Imposto",
+      "interestRate": "Taxa de Juros (CET)",
+      "loanTerm": "Prazo do Financiamento",
+      "months": "meses"
+    },
+    "results": {
+      "monthlyPayment": "Parcela Mensal",
+      "perMonth": "/mês",
+      "loanAmount": "Valor Financiado",
+      "totalInterest": "Juros Totais",
+      "totalCost": "Custo Total",
+      "payoffDate": "Data de Quitação"
+    },
+    "buttons": { "viewSchedule": "Ver Cronograma de Pagamentos", "save": "Salvar", "pdf": "PDF", "excel": "Excel" },
+    "modal": { "title": "Cronograma de Pagamentos", "month": "Mês", "payment": "Parcela", "principal": "Principal", "interest": "Juros", "balance": "Saldo" },
+    "favorites": { "add": "Adicionar aos favoritos", "remove": "Remover dos favoritos" },
+    "saving": { "saving": "Salvando...", "saved": "Salvo", "error": "Erro ao salvar" }
+  },
+  "education": {
+    "title": "Entendendo Financiamentos de Carro",
+    "content1": "Um financiamento de carro é um empréstimo garantido usado para comprar um veículo. O carro serve como garantia, o que tipicamente resulta em taxas de juros menores comparado a empréstimos sem garantia.",
+    "content2": "Financiamentos de carro tipicamente vão de 24 a 84 meses. Prazos mais curtos significam parcelas maiores mas menos juros totais pagos.",
+    "tips": {
+      "title": "Dicas Inteligentes para Comprar Carro",
+      "tip1": { "title": "Obtenha Pré-Aprovação", "description": "Saiba sua taxa antes de visitar a concessionária." },
+      "tip2": { "title": "Negocie o Preço Primeiro", "description": "Foque no preço total, não na parcela mensal." },
+      "tip3": { "title": "Considere o Custo Total", "description": "Prazos mais longos custam mais em juros." },
+      "tip4": { "title": "Verifique seu Score", "description": "Melhor crédito significa melhores taxas." }
+    },
+    "faqTitle": "Perguntas Frequentes"
+  },
+  "faq": [
+    { "question": "Qual é uma boa taxa para financiamento de carro?", "answer": "Boas taxas dependem do score e prazo. Crédito excelente (750+) pode conseguir 4-6% para carros novos. Crédito médio (650-699) tipicamente vê 7-10%." },
+    { "question": "Devo escolher um prazo mais longo?", "answer": "Prazos mais longos reduzem parcelas mas aumentam juros totais. Um financiamento de 72 meses pode custar milhares a mais que um de 48 meses." },
+    { "question": "Taxas de carro novo vs usado?", "answer": "Financiamentos de carros novos tipicamente têm taxas menores que usados. A diferença é geralmente 1-3 pontos percentuais." }
+  ],
+  "sidebar": { "financeTitle": "Calculadoras Financeiras", "healthTitle": "Calculadoras de Saúde" },
+  "common": { "home": "Início", "calculators": "Calculadoras", "pro": "PRO" }
+}

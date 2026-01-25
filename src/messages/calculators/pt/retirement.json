@@ -1,0 +1,53 @@
+{
+  "meta": {
+    "title": "Calculadora de Aposentadoria - Planeje seu Futuro | Kalcufy",
+    "description": "Calculadora gratuita de aposentadoria para estimar quanto precisa poupar, projetar sua renda e planejar um futuro seguro."
+  },
+  "calculator": {
+    "title": "Calculadora de Aposentadoria",
+    "subtitle": "Planeje sua poupança para aposentadoria",
+    "breadcrumb": "Aposentadoria",
+    "retirementDetails": "Detalhes da Aposentadoria",
+    "inputs": {
+      "currentAge": "Idade Atual",
+      "retirementAge": "Idade de Aposentadoria",
+      "currentSavings": "Poupança Atual",
+      "monthlyContribution": "Aporte Mensal",
+      "expectedReturn": "Retorno Esperado (%)",
+      "retirementIncome": "Renda Mensal Desejada",
+      "inflationRate": "Taxa de Inflação (%)"
+    },
+    "results": {
+      "totalAtRetirement": "Total na Aposentadoria",
+      "monthlyIncome": "Renda Mensal Estimada",
+      "yearsOfIncome": "Anos de Renda",
+      "savingsGap": "Lacuna de Poupança",
+      "onTrack": "Você está no caminho certo!",
+      "needMore": "Você precisa poupar mais"
+    },
+    "buttons": { "viewProjection": "Ver Projeção", "save": "Salvar", "pdf": "PDF", "excel": "Excel" },
+    "modal": { "title": "Projeção de Aposentadoria", "age": "Idade", "savings": "Poupança", "contributions": "Aportes" },
+    "favorites": { "add": "Adicionar aos favoritos", "remove": "Remover dos favoritos" },
+    "saving": { "saving": "Salvando...", "saved": "Salvo", "error": "Erro ao salvar" }
+  },
+  "education": {
+    "title": "Planejando a Aposentadoria",
+    "content1": "A chave para uma aposentadoria confortável é começar cedo. Graças aos juros compostos, dinheiro poupado aos 20 pode crescer significativamente mais que dinheiro poupado aos 40.",
+    "content2": "Uma regra comum é mirar 70-80% da sua renda pré-aposentadoria. Considere INSS, previdência privada e poupança pessoal no seu planejamento.",
+    "tips": {
+      "title": "Dicas de Planejamento",
+      "tip1": { "title": "Comece Agora", "description": "Cada ano que você espera custa significativamente em crescimento composto." },
+      "tip2": { "title": "Maximize Contribuições", "description": "Aproveite ao máximo benefícios fiscais da previdência privada." },
+      "tip3": { "title": "Diversifique Investimentos", "description": "Distribua o risco em diferentes tipos de ativos." },
+      "tip4": { "title": "Considere Gastos Médicos", "description": "Custos médicos geralmente aumentam na aposentadoria." }
+    },
+    "faqTitle": "Perguntas Frequentes"
+  },
+  "faq": [
+    { "question": "Quanto preciso para me aposentar?", "answer": "Uma regra comum é 25x seus gastos anuais. Se você gasta R$60.000/ano, mire R$1.5 milhão. Isso segue a regra dos 4%." },
+    { "question": "Que retorno devo esperar?", "answer": "Historicamente, um portfólio diversificado rende 6-8% ao ano após inflação. Seja conservador nas estimativas." },
+    { "question": "Quando devo começar a poupar?", "answer": "Agora! Começar aos 25 vs 35 pode significar centenas de milhares a mais na aposentadoria pelo crescimento composto." }
+  ],
+  "sidebar": { "financeTitle": "Calculadoras Financeiras", "healthTitle": "Calculadoras de Saúde" },
+  "common": { "home": "Início", "calculators": "Calculadoras", "pro": "PRO", "years": "anos" }
+}

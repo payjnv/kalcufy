@@ -1,26 +1,140 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #ffffff;
+  color: #0f172a;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+/* ═══════════════════════════════════════════════════════════════════════════
+   CUSTOM SLIDER STYLES - WCAG 2.1 AA Compliant
+   Add this to your globals.css
+═══════════════════════════════════════════════════════════════════════════ */
+
+/* Custom Range Slider with Large Touch Target (48px minimum for WCAG) */
+.range-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 9999px;
+  background: #e2e8f0; /* slate-200 */
+  outline: none;
+  cursor: pointer;
+  touch-action: none; /* Prevents accidental scrolling while dragging */
+}
+
+/* Track - Webkit (Chrome, Safari, Edge) */
+.range-slider::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 9999px;
+  background: linear-gradient(to right, #2563eb var(--progress, 0%), #e2e8f0 var(--progress, 0%));
+}
+
+/* Track - Firefox */
+.range-slider::-moz-range-track {
+  height: 8px;
+  border-radius: 9999px;
+  background: #e2e8f0;
+}
+
+/* Thumb - Webkit (Chrome, Safari, Edge) */
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #2563eb; /* blue-600 */
+  border: 4px solid white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  cursor: grab;
+  margin-top: -10px; /* Center on track */
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Thumb - Firefox */
+.range-slider::-moz-range-thumb {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #2563eb;
+  border: 4px solid white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  cursor: grab;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Hover state */
+.range-slider:hover::-webkit-slider-thumb {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.range-slider:hover::-moz-range-thumb {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* Active (dragging) state */
+.range-slider:active::-webkit-slider-thumb {
+  cursor: grabbing;
+  transform: scale(1.15);
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.4);
+}
+
+.range-slider:active::-moz-range-thumb {
+  cursor: grabbing;
+  transform: scale(1.15);
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.4);
+}
+
+/* Focus state for keyboard accessibility - WCAG 2.4.7 */
+.range-slider:focus {
+  outline: none;
+}
+
+.range-slider:focus::-webkit-slider-thumb {
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.3), 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.range-slider:focus::-moz-range-thumb {
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.3), 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MOBILE OPTIMIZATIONS - Extra large touch target on mobile
+═══════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .range-slider {
+    height: 12px;
+    padding: 16px 0; /* Extra padding for easier touch */
+    margin: -16px 0;
+  }
+
+  .range-slider::-webkit-slider-thumb {
+    width: 36px;
+    height: 36px;
+    border-width: 5px;
+    margin-top: -12px;
+  }
+
+  .range-slider::-moz-range-thumb {
+    width: 36px;
+    height: 36px;
+    border-width: 5px;
+  }
+  
+  .range-slider::-webkit-slider-runnable-track {
+    height: 12px;
+  }
+  
+  .range-slider::-moz-range-track {
+    height: 12px;
+  }
 }

@@ -1,0 +1,36 @@
+{
+  "meta": {
+    "title": "Net Worth Calculator - Calculate Your Total Net Worth",
+    "description": "Free net worth calculator to track your assets, liabilities, and financial health. Compare to age-based benchmarks and get a clear picture of your wealth."
+  },
+  "calculator": {
+    "title": "Net Worth Calculator",
+    "subtitle": "Calculate your total assets minus liabilities"
+  },
+  "faq": [
+    {
+      "question": "What is net worth and why does it matter?",
+      "answer": "Net worth is the total value of everything you own (assets) minus everything you owe (liabilities). It's the single best measure of your overall financial health and progress toward financial independence. Tracking it regularly helps you see if you're moving in the right direction."
+    },
+    {
+      "question": "What should I include in my assets?",
+      "answer": "Include all valuable possessions: cash, savings, investments, retirement accounts (401k, IRA), real estate (home equity), vehicles, and valuable personal property. Use current market values, not what you paid. For homes, use recent comparable sales or estimates from Zillow/Redfin."
+    },
+    {
+      "question": "What counts as a liability?",
+      "answer": "Liabilities include all debts: mortgages, car loans, student loans, credit card balances, personal loans, medical debt, and any money you owe. Include the full outstanding balance, not just monthly payments."
+    },
+    {
+      "question": "Is negative net worth bad?",
+      "answer": "Negative net worth is common for young adults with student loans or recent home buyers. It's not necessarily bad if you're building valuable assets (education, home equity) and have a plan to increase income and pay down debt. What matters most is the trend—is your net worth improving over time?"
+    },
+    {
+      "question": "How does my net worth compare to others my age?",
+      "answer": "According to the Federal Reserve, median net worth by age: Under 35: $39,000; 35-44: $135,600; 45-54: $247,200; 55-64: $364,500; 65-74: $409,900; 75+: $335,600. These are medians—averages are much higher due to wealthy outliers."
+    },
+    {
+      "question": "How often should I calculate my net worth?",
+      "answer": "Monthly or quarterly tracking is ideal. More frequent checks can be stressful (market fluctuations), while less frequent misses trends. Pick a schedule and stick to it. Focus on the long-term trajectory, not short-term fluctuations."
+    }
+  ]
+}

@@ -1,0 +1,458 @@
+{
+  "common": {
+    "home": "Home",
+    "calculators": "Calculators",
+    "pricing": "Pricing",
+    "blog": "Blog",
+    "about": "About",
+    "login": "Login",
+    "signup": "Sign Up",
+    "logout": "Sign Out",
+    "profile": "Profile",
+    "search": "Search",
+    "language": "Language"
+  },
+  "calculators": {
+    "names": {
+      "compoundInterest": "Compound Interest",
+      "mortgage": "Mortgage",
+      "loan": "Loan",
+      "autoLoan": "Auto Loan",
+      "retirement": "Retirement",
+      "investment": "Investment",
+      "savings": "Savings",
+      "interestRate": "Interest Rate",
+      "roi": "ROI",
+      "amortization": "Amortization",
+      "downPayment": "Down Payment",
+      "salary": "Salary",
+      "incomeTax": "Income Tax",
+      "401k": "401(k)",
+      "inflation": "Inflation",
+      "budget": "Budget",
+      "paycheck": "Paycheck",
+      "personalLoan": "Personal Loan",
+      "profitMargin": "Profit Margin",
+      "rothIra": "Roth IRA",
+      "studentLoan": "Student Loan",
+      "bmi": "BMI",
+      "calorie": "Calorie",
+      "macro": "Macro",
+      "tdee": "TDEE",
+      "bodyFat": "Body Fat",
+      "bmr": "BMR",
+      "idealWeight": "Ideal Weight",
+      "protein": "Protein",
+      "waterIntake": "Water Intake",
+      "oneRepMax": "One Rep Max",
+      "sleep": "Sleep",
+      "creditCard": "Credit Card Payoff",
+      "pregnancy": "Pregnancy Due Date",
+      "runningPace": "Running Pace",
+      "heartRateZones": "Heart Rate Zones",
+      "caloriesBurned": "Calories Burned",
+      "caloricDeficit": "Caloric Deficit",
+      "tip": "Tip",
+      "discount": "Discount",
+      "percentage": "Percentage",
+      "age": "Age",
+      "date": "Date",
+      "unitConverter": "Unit Converter",
+      "fuelCost": "Fuel Cost",
+      "timeZone": "Time Zone",
+      "gpa": "GPA",
+      "randomNumberGenerator": "Random Number Generator",
+      "netWorth": "Net Worth",
+      "emergencyFund": "Emergency Fund",
+      "cd": "CD"
+    }
+  },
+  "home": {
+    "badge": "Free Calculators",
+    "title1": "Calculate Your",
+    "title2": "Financial Future",
+    "subtitle": "Free, fast calculators for loans, investments, BMI, calories and more. Make smarter decisions in seconds.",
+    "searchPlaceholder": "Search calculators... (e.g. mortgage, BMI)",
+    "searchButton": "Search",
+    "seeAllResults": "See all results for",
+    "exploreButton": "Explore Calculators",
+    "tryCompound": "Try Compound Interest →",
+    "stats": {
+      "calculations": "Calculations",
+      "users": "Users",
+      "calculators": "Calculators",
+      "languages": "Languages"
+    },
+    "categories": {
+      "title": "Calculator Categories",
+      "subtitle": "Everything you need for your finances and health",
+      "finance": "Finance",
+      "financeCount": "16 Calculators",
+      "financeDesc": "Loans, mortgages, investments, retirement planning and more",
+      "health": "Health & Fitness",
+      "healthCount": "15 Calculators",
+      "healthDesc": "BMI, calories, macros, TDEE, body fat and more",
+      "math": "Math",
+      "mathCount": "15+ Calculators",
+      "mathDesc": "Percentages, fractions, algebra and more",
+      "everyday": "Everyday",
+      "everydayCount": "10 Calculators",
+      "everydayDesc": "Tips, discounts, age, date and more",
+      "soon": "Coming Soon"
+    },
+    "languages": {
+      "title": "Available in 3 Languages",
+      "subtitle": "Use Kalcufy in your preferred language"
+    },
+    "cta": {
+      "title": "Start Calculating Now",
+      "subtitle": "Join 50,000+ users making smarter decisions",
+      "button": "Get Started Free"
+    }
+  },
+  "calculatorsPage": {
+    "title": "All Calculators",
+    "subtitle": "Find the perfect calculator for your needs",
+    "search": "Search calculators...",
+    "categories": "CATEGORIES",
+    "allCalculators": "All Calculators",
+    "finance": "Finance",
+    "healthFitness": "Health & Fitness",
+    "everyday": "Everyday",
+    "popular": "POPULAR",
+    "financeTitle": "Finance",
+    "healthTitle": "Health & Fitness",
+    "everydayTitle": "Everyday",
+    "calcs": {
+      "compoundInterest": {
+        "name": "Compound Interest",
+        "desc": "Calculate how your money grows over time"
+      },
+      "mortgage": {
+        "name": "Mortgage",
+        "desc": "Calculate monthly mortgage payments"
+      },
+      "loan": {
+        "name": "Loan",
+        "desc": "Calculate loan payments and interest"
+      },
+      "autoLoan": {
+        "name": "Auto Loan",
+        "desc": "Calculate car loan payments"
+      },
+      "retirement": {
+        "name": "Retirement",
+        "desc": "Plan your retirement savings"
+      },
+      "savings": {
+        "name": "Savings",
+        "desc": "Plan your savings goals"
+      },
+      "investment": {
+        "name": "Investment",
+        "desc": "Calculate investment growth over time"
+      },
+      "personalLoan": {
+        "name": "Personal Loan",
+        "desc": "Calculate personal loan payments and interest"
+      },
+      "rothIra": {
+        "name": "Roth IRA",
+        "desc": "Plan your Roth IRA retirement savings"
+      },
+      "budget": {
+        "name": "Budget",
+        "desc": "Plan your personal finances and track spending"
+      },
+      "401k": {
+        "name": "401(k)",
+        "desc": "Plan your 401(k) retirement savings"
+      },
+      "creditCard": {
+        "name": "Credit Card Payoff",
+        "desc": "Pay off credit card debt faster"
+      },
+      "paycheck": {
+        "name": "Paycheck",
+        "desc": "Calculate your take-home pay after taxes"
+      },
+      "profitMargin": {
+        "name": "Profit Margin",
+        "desc": "Calculate margin, markup, and selling price"
+      },
+      "incomeTax": {
+        "name": "Income Tax",
+        "desc": "Estimate your federal and state income taxes"
+      },
+      "studentLoan": {
+        "name": "Student Loan",
+        "desc": "Calculate payments and explore repayment strategies"
+      },
+      "bmi": {
+        "name": "BMI",
+        "desc": "Calculate your Body Mass Index"
+      },
+      "calorie": {
+        "name": "Calorie",
+        "desc": "Calculate daily calorie needs"
+      },
+      "bmr": {
+        "name": "BMR",
+        "desc": "Calculate your Basal Metabolic Rate and daily calorie needs"
+      },
+      "tdee": {
+        "name": "TDEE",
+        "desc": "Calculate your Total Daily Energy Expenditure and calorie needs"
+      },
+      "bodyFat": {
+        "name": "Body Fat",
+        "desc": "Calculate your body fat percentage using Navy, BMI, and Army methods"
+      },
+      "macro": {
+        "name": "Macro",
+        "desc": "Calculate your daily protein, carbs, and fat targets with 6 diet presets"
+      },
+      "idealWeight": {
+        "name": "Ideal Weight",
+        "desc": "Calculate your ideal body weight using 5 scientific formulas with frame size adjustment"
+      },
+      "protein": {
+        "name": "Protein",
+        "desc": "Calculate your optimal daily protein intake based on goals"
+      },
+      "waterIntake": {
+        "name": "Water Intake",
+        "desc": "Calculate how much water you should drink daily"
+      },
+      "oneRepMax": {
+        "name": "One Rep Max",
+        "desc": "Estimate your 1RM using 7 scientific formulas"
+      },
+      "sleep": {
+        "name": "Sleep",
+        "desc": "Find optimal bedtimes and wake times"
+      },
+      "runningPace": {
+        "name": "Running Pace",
+        "desc": "Calculate pace, VDOT scores, training paces, race predictions, and split times"
+      },
+      "heartRateZones": {
+        "name": "Heart Rate Zones",
+        "desc": "Find your optimal heart rate training zones using the Karvonen formula"
+      },
+      "caloriesBurned": {
+        "name": "Calories Burned",
+        "desc": "Calculate calories burned for 50+ activities using MET values"
+      },
+      "caloricDeficit": {
+        "name": "Caloric Deficit",
+        "desc": "Calculate your ideal calorie intake for weight loss or muscle gain"
+      },
+      "tip": {
+        "name": "Tip",
+        "desc": "Calculate tips for restaurants, delivery, and services with bill splitting"
+      },
+      "discount": {
+        "name": "Discount",
+        "desc": "Calculate sale prices, savings, and stack multiple discounts"
+      },
+      "percentage": {
+        "name": "Percentage",
+        "desc": "Calculate percentages, increases, decreases, and conversions"
+      },
+      "age": {
+        "name": "Age",
+        "desc": "Calculate exact age with zodiac sign, generation, and milestones"
+      },
+      "date": {
+        "name": "Date",
+        "desc": "Add days, calculate differences, and find business days"
+      },
+      "unitConverter": {
+        "name": "Unit Converter",
+        "desc": "Convert length, weight, temperature, volume, and more"
+      },
+      "fuelCost": {
+        "name": "Fuel Cost",
+        "desc": "Calculate trip costs, annual expenses, and compare vehicles"
+      },
+      "timeZone": {
+        "name": "Time Zone",
+        "desc": "Convert times, view world clocks, and plan international meetings"
+      },
+      "gpa": {
+        "name": "GPA",
+        "desc": "Calculate semester, cumulative, and target GPA with honors"
+      },
+      "randomNumberGenerator": {
+        "name": "Random Number Generator",
+        "desc": "Generate random numbers, roll dice, flip coins, and create passwords"
+      },
+      "netWorth": {
+        "desc": "Calculate your total net worth with assets vs liabilities"
+      },
+      "emergencyFund": {
+        "desc": "Calculate how much you need for financial security"
+      },
+      "cd": {
+        "desc": "Calculate Certificate of Deposit earnings and compare terms"
+      }
+    }
+  },
+  "auth": {
+    "backToHome": "Back to home",
+    "login": {
+      "title": "Welcome back",
+      "subtitle": "Sign in to your account",
+      "email": "Email",
+      "password": "Password",
+      "forgotPassword": "Forgot password?",
+      "signIn": "Sign In",
+      "signingIn": "Signing in...",
+      "noAccount": "Don't have an account?",
+      "createFree": "Create one free",
+      "orContinue": "or",
+      "continueGoogle": "Continue with Google",
+      "continueGithub": "Continue with GitHub",
+      "invalidCredentials": "Invalid email or password",
+      "accountCreated": "Account created! Please sign in.",
+      "terms": "By signing in, you agree to our",
+      "termsLink": "Terms",
+      "and": "and",
+      "privacyLink": "Privacy Policy",
+      "leftTitle": "Welcome back to",
+      "leftTitle2": "smarter calculations.",
+      "leftSubtitle": "Access your saved calculations, export reports, and unlock PRO features.",
+      "feature1": "Sync across all devices",
+      "feature2": "Export to PDF & Excel",
+      "feature3": "Unlimited calculations",
+      "testimonial": "Kalcufy helped me understand my mortgage options and saved me $15,000.",
+      "testimonialAuthor": "Sarah M.",
+      "testimonialRole": "Homeowner"
+    },
+    "register": {
+      "title": "Create your account",
+      "subtitle": "Free forever. No credit card required.",
+      "fullName": "Full name",
+      "email": "Email",
+      "password": "Password",
+      "passwordHint": "Must be at least 6 characters",
+      "createAccount": "Create account",
+      "creatingAccount": "Creating account...",
+      "hasAccount": "Already have an account?",
+      "signIn": "Sign in",
+      "orContinue": "or",
+      "signupGoogle": "Sign up with Google",
+      "signupGithub": "Sign up with GitHub",
+      "terms": "By creating an account, you agree to our",
+      "termsLink": "Terms",
+      "and": "and",
+      "privacyLink": "Privacy Policy",
+      "leftTitle": "Start your journey",
+      "leftTitle2": "to smarter decisions.",
+      "leftSubtitle": "Join thousands of users making better financial and health decisions with Kalcufy.",
+      "feature1": "30+ Professional calculators",
+      "feature2": "Save & sync your calculations",
+      "feature3": "Export to PDF & Excel",
+      "feature4": "100% Free forever",
+      "testimonial": "I have tried many calculator apps, but Kalcufy is by far the most comprehensive and easy to use.",
+      "testimonialAuthor": "Michael R.",
+      "testimonialRole": "Financial Analyst"
+    }
+  },
+  "pricing": {
+    "title": "Simple, Transparent Pricing",
+    "subtitle": "Start free, upgrade when you need more",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "savePercent": "Save 20%",
+    "free": {
+      "name": "Free",
+      "price": "0",
+      "period": "forever",
+      "description": "Perfect to get started",
+      "cta": "Get Started",
+      "features": [
+        "All basic calculators",
+        "Unlimited calculations",
+        "3 languages",
+        "Mobile friendly",
+        "No registration required"
+      ]
+    },
+    "pro": {
+      "name": "PRO",
+      "priceMonthly": "2.99",
+      "priceYearly": "1.99",
+      "period": "per month",
+      "description": "For power users and professionals",
+      "cta": "Start Free Trial",
+      "badge": "Most Popular",
+      "features": [
+        "Everything in Free",
+        "Save calculation history",
+        "Export to PDF & Excel",
+        "No ads",
+        "Priority support",
+        "Advanced calculators",
+        "Custom branding"
+      ]
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": "Can I cancel anytime?",
+      "a1": "Yes, you can cancel your subscription at any time. No questions asked.",
+      "q2": "Is there a free trial?",
+      "a2": "Yes! PRO comes with a 7-day free trial. No credit card required.",
+      "q3": "What payment methods do you accept?",
+      "a3": "We accept all major credit cards, PayPal, and bank transfers.",
+      "q4": "Can I switch plans?",
+      "a4": "Yes, you can upgrade or downgrade your plan at any time."
+    }
+  },
+  "blog": {
+    "title": "Kalcufy Blog",
+    "heroTitle1": "Financial & Health",
+    "heroTitle2": "Insights",
+    "heroSubtitle": "Expert guides, tips, and strategies to help you make better financial decisions and achieve your health goals.",
+    "searchPlaceholder": "Search articles...",
+    "allPosts": "All Posts",
+    "categories": {
+      "finance": "Finance",
+      "health": "Health",
+      "tips": "Tips",
+      "news": "News",
+      "guides": "Guides"
+    },
+    "featured": "Featured",
+    "minRead": "min read",
+    "readMore": "Read More",
+    "read": "Read",
+    "latestArticles": "Latest Articles",
+    "articles": "articles",
+    "noArticles": "No articles found",
+    "noArticlesDesc": "Try adjusting your search or filter to find what you are looking for.",
+    "loadMore": "Load More Articles",
+    "loading": "Loading...",
+    "newsletter": {
+      "title": "Stay Updated",
+      "subtitle": "Get the latest financial tips and health insights delivered to your inbox. No spam, unsubscribe anytime.",
+      "placeholder": "Enter your email",
+      "button": "Subscribe"
+    },
+    "post": {
+      "tryCalculator": "Try the Calculator",
+      "tryCalculatorDesc": "Put this knowledge into practice with our free calculator.",
+      "openCalculator": "Open Calculator",
+      "inThisArticle": "In this article",
+      "relatedArticles": "Related Articles",
+      "tags": "Tags",
+      "share": "Share this article",
+      "moreArticles": "More Articles",
+      "viewAll": "View All",
+      "notFound": "Article Not Found",
+      "notFoundDesc": "The article you are looking for does not exist.",
+      "backToBlog": "Back to Blog"
+    }
+  }
+}

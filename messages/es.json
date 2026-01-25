@@ -1,0 +1,320 @@
+{
+  "common": {
+    "home": "Inicio",
+    "calculators": "Calculadoras",
+    "pricing": "Precios",
+    "blog": "Blog",
+    "about": "Acerca de",
+    "login": "Iniciar Sesión",
+    "signup": "Registrarse",
+    "logout": "Cerrar Sesión",
+    "profile": "Perfil",
+    "search": "Buscar",
+    "language": "Idioma"
+  },
+  "calculators": {
+    "names": {
+      "compoundInterest": "Interés Compuesto",
+      "mortgage": "Hipoteca",
+      "loan": "Préstamo",
+      "autoLoan": "Préstamo de Auto",
+      "retirement": "Jubilación",
+      "investment": "Inversión",
+      "savings": "Ahorro",
+      "interestRate": "Tasa de Interés",
+      "roi": "ROI",
+      "amortization": "Amortización",
+      "downPayment": "Enganche",
+      "salary": "Salario",
+      "incomeTax": "Calculadora de Impuestos",
+      "401k": "401K",
+      "inflation": "Inflación",
+      "bmi": "IMC",
+      "calorie": "Calorías",
+      "macro": "Macros",
+      "tdee": "TDEE",
+      "bodyFat": "Grasa Corporal",
+      "bmr": "Calculadora de TMB",
+      "idealWeight": "Peso Ideal",
+      "protein": "Proteína",
+      "waterIntake": "Consumo de Agua",
+      "creditCard": "Pago de Tarjeta de Crédito",
+      "pregnancy": "Fecha de Parto",
+      "paycheck": "Calculadora de Sueldo",
+      "profitMargin": "Calculadora de Margen",
+      "studentLoan": "Calculadora de Prestamos Estudiantiles"
+    }
+  },
+  "home": {
+    "badge": "Calculadoras Gratis",
+    "title1": "Calcula Tu",
+    "title2": "Futuro Financiero",
+    "subtitle": "Calculadoras gratis y rápidas para préstamos, inversiones, IMC, calorías y más. Toma decisiones más inteligentes en segundos.",
+    "searchPlaceholder": "Buscar calculadoras... (ej. hipoteca, IMC)",
+    "searchButton": "Buscar",
+    "seeAllResults": "Ver todos los resultados de",
+    "exploreButton": "Explorar Calculadoras",
+    "tryCompound": "Probar Interés Compuesto →",
+    "stats": {
+      "calculations": "Cálculos",
+      "users": "Usuarios",
+      "calculators": "Calculadoras",
+      "languages": "Idiomas"
+    },
+    "categories": {
+      "title": "Categorías de Calculadoras",
+      "subtitle": "Todo lo que necesitas para tus finanzas y salud",
+      "finance": "Finanzas",
+      "financeCount": "25 Calculadoras",
+      "financeDesc": "Préstamos, hipotecas, inversiones, jubilación y más",
+      "health": "Salud y Fitness",
+      "healthCount": "20 Calculadoras",
+      "healthDesc": "IMC, calorías, macros, TDEE, grasa corporal y más",
+      "math": "Matemáticas",
+      "mathCount": "15+ Calculadoras",
+      "mathDesc": "Porcentajes, fracciones, álgebra y más",
+      "everyday": "Cotidiano",
+      "everydayCount": "10+ Calculadoras",
+      "everydayDesc": "Propinas, descuentos, edad, fechas y más",
+      "soon": "Próximamente"
+    },
+    "languages": {
+      "title": "Disponible en 3 Idiomas",
+      "subtitle": "Usa Kalcufy en tu idioma preferido"
+    },
+    "cta": {
+      "title": "Empieza a Calcular Ahora",
+      "subtitle": "Únete a más de 50,000 usuarios tomando decisiones más inteligentes",
+      "button": "Comenzar Gratis"
+    }
+  },
+  "calculatorsPage": {
+    "title": "Todas las Calculadoras",
+    "subtitle": "Encuentra la calculadora perfecta para tus necesidades",
+    "search": "Buscar calculadoras...",
+    "categories": "CATEGORÍAS",
+    "allCalculators": "Todas las Calculadoras",
+    "finance": "Finanzas",
+    "healthFitness": "Salud y Fitness",
+    "popular": "POPULARES",
+    "financeTitle": "Finanzas",
+    "healthTitle": "Salud y Fitness",
+    "calcs": {
+      "compoundInterest": {
+        "name": "Interés Compuesto",
+        "desc": "Calcula cómo crece tu dinero con el tiempo"
+      },
+      "mortgage": {
+        "name": "Hipoteca",
+        "desc": "Calcula los pagos mensuales de tu hipoteca"
+      },
+      "loan": {
+        "name": "Préstamo",
+        "desc": "Calcula pagos de préstamos e intereses"
+      },
+      "autoLoan": {
+        "name": "Préstamo de Auto",
+        "desc": "Calcula los pagos de tu préstamo de auto"
+      },
+      "retirement": {
+        "name": "Jubilación",
+        "desc": "Planifica tus ahorros para la jubilación"
+      },
+      "savings": {
+        "name": "Ahorro",
+        "desc": "Planifica tus metas de ahorro"
+      },
+      "investment": {
+        "name": "Inversión",
+        "desc": "Calcula el crecimiento de tu inversión"
+      },
+      "401k": {
+        "name": "401(k)",
+        "desc": "Planifica tus ahorros de jubilación 401(k)"
+      },
+      "creditCard": {
+        "name": "Pago de Tarjeta",
+        "desc": "Paga tu deuda de tarjeta más rápido"
+      },
+      "bmi": {
+        "name": "IMC",
+        "desc": "Calcula tu Índice de Masa Corporal"
+      },
+      "calorie": {
+        "name": "Calorías",
+        "desc": "Calcula tus necesidades calóricas diarias"
+      },
+      "paycheck": {
+        "desc": "Calcula tu sueldo neto"
+      },
+      "profitMargin": {
+        "desc": "Calcula margen y markup"
+      },
+      "incomeTax": {
+        "desc": "Estima tus impuestos"
+      },
+      "studentLoan": {
+        "desc": "Calcula pagos y explora estrategias de pago"
+      },
+      "bmr": {
+        "desc": "Calcula tu Tasa Metabólica Basal y necesidades calóricas"
+      }
+    }
+  },
+  "auth": {
+    "backToHome": "Volver al inicio",
+    "login": {
+      "title": "Bienvenido de nuevo",
+      "subtitle": "Inicia sesión en tu cuenta",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "forgotPassword": "¿Olvidaste tu contraseña?",
+      "signIn": "Iniciar Sesión",
+      "signingIn": "Iniciando sesión...",
+      "noAccount": "¿No tienes una cuenta?",
+      "createFree": "Crea una gratis",
+      "orContinue": "o",
+      "continueGoogle": "Continuar con Google",
+      "continueGithub": "Continuar con GitHub",
+      "invalidCredentials": "Correo o contraseña inválidos",
+      "accountCreated": "¡Cuenta creada! Por favor inicia sesión.",
+      "terms": "Al iniciar sesión, aceptas nuestros",
+      "termsLink": "Términos",
+      "and": "y",
+      "privacyLink": "Política de Privacidad",
+      "leftTitle": "Bienvenido de nuevo a",
+      "leftTitle2": "cálculos más inteligentes.",
+      "leftSubtitle": "Accede a tus cálculos guardados, exporta reportes y desbloquea funciones PRO.",
+      "feature1": "Sincroniza en todos tus dispositivos",
+      "feature2": "Exporta a PDF y Excel",
+      "feature3": "Cálculos ilimitados",
+      "testimonial": "Kalcufy me ayudó a entender mis opciones de hipoteca y ahorré $15,000.",
+      "testimonialAuthor": "Sara M.",
+      "testimonialRole": "Propietaria"
+    },
+    "register": {
+      "title": "Crea tu cuenta",
+      "subtitle": "Gratis para siempre. No se requiere tarjeta.",
+      "fullName": "Nombre completo",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "passwordHint": "Debe tener al menos 6 caracteres",
+      "createAccount": "Crear cuenta",
+      "creatingAccount": "Creando cuenta...",
+      "hasAccount": "¿Ya tienes una cuenta?",
+      "signIn": "Iniciar sesión",
+      "orContinue": "o",
+      "signupGoogle": "Registrarse con Google",
+      "signupGithub": "Registrarse con GitHub",
+      "terms": "Al crear una cuenta, aceptas nuestros",
+      "termsLink": "Términos",
+      "and": "y",
+      "privacyLink": "Política de Privacidad",
+      "leftTitle": "Comienza tu viaje",
+      "leftTitle2": "hacia decisiones más inteligentes.",
+      "leftSubtitle": "Únete a miles de usuarios que toman mejores decisiones financieras y de salud con Kalcufy.",
+      "feature1": "30+ Calculadoras profesionales",
+      "feature2": "Guarda y sincroniza tus cálculos",
+      "feature3": "Exporta a PDF y Excel",
+      "feature4": "100% Gratis para siempre",
+      "testimonial": "He probado muchas apps de calculadoras, pero Kalcufy es la más completa y fácil de usar.",
+      "testimonialAuthor": "Miguel R.",
+      "testimonialRole": "Analista Financiero"
+    }
+  },
+  "pricing": {
+    "title": "Precios Simples y Transparentes",
+    "subtitle": "Comienza gratis, mejora cuando necesites más",
+    "monthly": "Mensual",
+    "yearly": "Anual",
+    "savePercent": "Ahorra 20%",
+    "free": {
+      "name": "Gratis",
+      "price": "0",
+      "period": "para siempre",
+      "description": "Perfecto para comenzar",
+      "cta": "Comenzar",
+      "features": [
+        "Todas las calculadoras básicas",
+        "Cálculos ilimitados",
+        "3 idiomas",
+        "Compatible con móviles",
+        "Sin registro requerido"
+      ]
+    },
+    "pro": {
+      "name": "PRO",
+      "priceMonthly": "2.99",
+      "priceYearly": "1.99",
+      "period": "por mes",
+      "description": "Para usuarios avanzados y profesionales",
+      "cta": "Iniciar Prueba Gratis",
+      "badge": "Más Popular",
+      "features": [
+        "Todo lo de Gratis",
+        "Guardar historial de cálculos",
+        "Exportar a PDF y Excel",
+        "Sin anuncios",
+        "Soporte prioritario",
+        "Calculadoras avanzadas",
+        "Marca personalizada"
+      ]
+    },
+    "faq": {
+      "title": "Preguntas Frecuentes",
+      "q1": "¿Puedo cancelar en cualquier momento?",
+      "a1": "Sí, puedes cancelar tu suscripción en cualquier momento. Sin preguntas.",
+      "q2": "¿Hay una prueba gratuita?",
+      "a2": "¡Sí! PRO incluye una prueba gratuita de 7 días. No se requiere tarjeta.",
+      "q3": "¿Qué métodos de pago aceptan?",
+      "a3": "Aceptamos todas las tarjetas principales, PayPal y transferencias bancarias.",
+      "q4": "¿Puedo cambiar de plan?",
+      "a4": "Sí, puedes mejorar o reducir tu plan en cualquier momento."
+    }
+  },
+  "blog": {
+    "title": "Blog de Kalcufy",
+    "heroTitle1": "Perspectivas",
+    "heroTitle2": "Financieras y de Salud",
+    "heroSubtitle": "Guías expertas, consejos y estrategias para ayudarte a tomar mejores decisiones financieras y alcanzar tus metas de salud.",
+    "searchPlaceholder": "Buscar artículos...",
+    "allPosts": "Todos los Posts",
+    "categories": {
+      "finance": "Finanzas",
+      "health": "Salud",
+      "tips": "Consejos",
+      "news": "Noticias",
+      "guides": "Guías"
+    },
+    "featured": "Destacado",
+    "minRead": "min de lectura",
+    "readMore": "Leer Más",
+    "read": "Leer",
+    "latestArticles": "Últimos Artículos",
+    "articles": "artículos",
+    "noArticles": "No se encontraron artículos",
+    "noArticlesDesc": "Intenta ajustar tu búsqueda o filtro para encontrar lo que buscas.",
+    "loadMore": "Cargar Más Artículos",
+    "loading": "Cargando...",
+    "newsletter": {
+      "title": "Mantente Actualizado",
+      "subtitle": "Recibe los últimos consejos financieros y de salud en tu correo. Sin spam, cancela cuando quieras.",
+      "placeholder": "Ingresa tu correo",
+      "button": "Suscribirse"
+    },
+    "post": {
+      "tryCalculator": "Prueba la Calculadora",
+      "tryCalculatorDesc": "Pon este conocimiento en práctica con nuestra calculadora gratuita.",
+      "openCalculator": "Abrir Calculadora",
+      "inThisArticle": "En este artículo",
+      "relatedArticles": "Artículos Relacionados",
+      "tags": "Etiquetas",
+      "share": "Compartir este artículo",
+      "moreArticles": "Más Artículos",
+      "viewAll": "Ver Todos",
+      "notFound": "Artículo No Encontrado",
+      "notFoundDesc": "El artículo que buscas no existe.",
+      "backToBlog": "Volver al Blog"
+    }
+  }
+}
