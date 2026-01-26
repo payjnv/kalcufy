@@ -1,8 +1,7 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useLocale } from "next-intl";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -12,13 +11,18 @@ export default function LoginPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const locale = useLocale();
+  const searchParams = useSearchParams();
   const [modalOpen, setModalOpen] = useState(true);
+
+  // Get callback URL from query params
+  const callbackUrl = searchParams.get("callbackUrl") || `/${locale}/dashboard`;
 
   useEffect(() => {
     if (status === "authenticated") {
-      router.push(`/${locale}/dashboard`);
+      // Redirect to callback URL after login
+      router.push(callbackUrl);
     }
-  }, [status, router, locale]);
+  }, [status, router, callbackUrl]);
 
   const handleClose = () => {
     setModalOpen(false);
@@ -43,7 +47,12 @@ export default function LoginPage() {
         </div>
       </main>
       <Footer />
-      <AuthModal isOpen={modalOpen} onClose={handleClose} defaultTab="login" />
+      <AuthModal 
+        isOpen={modalOpen} 
+        onClose={handleClose} 
+        defaultTab="login" 
+        callbackUrl={callbackUrl}
+      />
     </>
   );
 }

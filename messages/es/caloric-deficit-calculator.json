@@ -1,0 +1,36 @@
+{
+  "meta": {
+    "title": "Calculadora de Déficit Calórico - Planificador de Pérdida de Peso y TDEE",
+    "description": "Calcula tu ingesta calórica ideal para pérdida de peso, mantenimiento o ganancia muscular. Obtén TDEE personalizado, objetivos de macros, planes de comidas y tiempo estimado para alcanzar tu peso meta."
+  },
+  "calculator": {
+    "title": "Calculadora de Déficit Calórico",
+    "subtitle": "Calcula tu ingesta calórica ideal para pérdida de peso, mantenimiento o ganancia muscular con objetivos de macros personalizados"
+  },
+  "faq": [
+    {
+      "question": "¿Cuánto déficit calórico es demasiado?",
+      "answer": "No bajes de 1200 calorías (mujeres) o 1500 calorías (hombres) sin supervisión médica. Déficits mayores a 1000 calorías/día pueden desencadenar adaptación metabólica y pérdida de músculo."
+    },
+    {
+      "question": "¿Por qué no estoy perdiendo peso en déficit?",
+      "answer": "Las razones comunes incluyen subestimar la ingesta de alimentos, sobreestimar las calorías del ejercicio, retención de agua o adaptación metabólica. Registra con precisión durante 2-3 semanas antes de ajustar."
+    },
+    {
+      "question": "¿Debo recuperar las calorías del ejercicio?",
+      "answer": "Si estás en un déficit moderado (500 cal), comer la mitad de tus calorías de ejercicio previene la restricción excesiva. Escucha las señales de hambre de tu cuerpo."
+    },
+    {
+      "question": "¿Cómo rompo un estancamiento de pérdida de peso?",
+      "answer": "Intenta recalcular el TDEE con tu nuevo peso, toma un descanso de la dieta en mantenimiento, aumenta la proteína, cambia tu rutina de ejercicios o ajusta ligeramente tu déficit."
+    },
+    {
+      "question": "¿Es mejor reducir carbohidratos o grasa?",
+      "answer": "Para pérdida de peso, las calorías totales importan más. Mantén la proteína alta (0.7-1g por libra), luego ajusta carbohidratos y grasas según preferencia y necesidades energéticas."
+    },
+    {
+      "question": "¿Qué tan preciso es el cálculo de TDEE?",
+      "answer": "Las fórmulas de TDEE estiman dentro del 10-15% para la mayoría de las personas. Úsalo como punto de partida, luego ajusta según los resultados reales durante 2-4 semanas."
+    }
+  ]
+}

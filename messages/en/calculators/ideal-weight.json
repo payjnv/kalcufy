@@ -1,0 +1,106 @@
+{
+  "meta": {
+    "title": "Ideal Weight Calculator",
+    "description": "Calculate your ideal body weight using multiple scientific formulas including Devine, Robinson, Miller, and Hamwi methods. Free, accurate, and easy to use."
+  },
+  "hero": {
+    "title": "Ideal Weight Calculator",
+    "description": "Calculate your ideal body weight using four scientifically validated formulas"
+  },
+  "inputs": {
+    "gender": {
+      "label": "Gender",
+      "helpText": "Biological sex affects ideal weight calculations",
+      "options": {
+        "male": "Male",
+        "female": "Female"
+      }
+    },
+    "height": {
+      "label": "Height",
+      "placeholder": "Enter your height",
+      "helpText": "Your current height"
+    },
+    "age": {
+      "label": "Age",
+      "placeholder": "Enter your age",
+      "helpText": "Optional: helps provide age-specific recommendations"
+    },
+    "frame": {
+      "label": "Body Frame",
+      "helpText": "Your body frame size (wrist circumference can help determine this)",
+      "options": {
+        "small": "Small frame",
+        "medium": "Medium frame",
+        "large": "Large frame"
+      }
+    }
+  },
+  "results": {
+    "average": {
+      "label": "Ideal Weight",
+      "description": "Average of all formula results"
+    },
+    "range": {
+      "label": "Healthy Weight Range"
+    },
+    "devine": {
+      "label": "Devine Formula",
+      "description": "Most commonly used in medical settings"
+    },
+    "robinson": {
+      "label": "Robinson Formula",
+      "description": "Modified Devine formula (1983)"
+    },
+    "miller": {
+      "label": "Miller Formula",
+      "description": "Another 1983 modification"
+    },
+    "hamwi": {
+      "label": "Hamwi Formula",
+      "description": "Original 1964 formula"
+    },
+    "bmiCategory": {
+      "label": "Based on BMI 18.5-24.9"
+    }
+  },
+  "education": {
+    "title": "Understanding Ideal Weight",
+    "sections": {
+      "whatIs": {
+        "title": "What is Ideal Body Weight?",
+        "content": "Ideal body weight (IBW) is a weight that is believed to be maximally healthy for a person, based on height. It is used in medicine as a reference for drug dosage calculations and as a general health guideline."
+      },
+      "formulas": {
+        "title": "The Formulas Explained",
+        "content": "We use four scientifically validated formulas to calculate ideal weight. The Devine formula (1974) is most commonly used in clinical settings. Robinson and Miller formulas (1983) are modifications that account for different body compositions. The Hamwi formula (1964) is the original calculation method."
+      },
+      "limitations": {
+        "title": "Limitations",
+        "content": "These formulas do not account for muscle mass, bone density, age, or ethnicity. Athletes or muscular individuals may have a higher 'ideal' weight. Always consult a healthcare provider for personalized advice."
+      }
+    }
+  },
+  "faq": {
+    "accuracy": {
+      "question": "How accurate is the ideal weight calculator?",
+      "answer": "Our calculator uses four scientifically validated formulas to provide a range of ideal weights. However, ideal weight varies based on factors like muscle mass, bone density, and body composition that these formulas cannot account for. Use the results as a general guideline."
+    },
+    "whichFormula": {
+      "question": "Which formula should I use?",
+      "answer": "The Devine formula is most commonly used in medical settings. However, we recommend looking at the average of all formulas and the BMI-based range for the most balanced view of your ideal weight."
+    },
+    "age": {
+      "question": "Does age affect ideal weight?",
+      "answer": "These traditional formulas do not directly factor in age. However, body composition naturally changes with age. Older adults may benefit from maintaining a slightly higher weight for better health outcomes."
+    },
+    "range": {
+      "question": "How is the healthy weight range calculated?",
+      "answer": "The healthy weight range is based on BMI values between 18.5 and 24.9, which are considered normal by the World Health Organization (WHO)."
+    },
+    "outsideRange": {
+      "question": "What if my weight is outside the ideal range?",
+      "answer": "If your current weight differs significantly from the calculated ideal, consult a healthcare provider before making major changes. Gradual changes of 0.5-1 kg per week are generally considered safe."
+    }
+  }
+}

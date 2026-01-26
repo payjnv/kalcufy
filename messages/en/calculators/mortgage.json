@@ -1,0 +1,141 @@
+{
+  "meta": {
+    "title": "Mortgage Calculator",
+    "description": "Calculate your monthly mortgage payments, total interest, and amortization schedule. Compare different loan terms and down payment options to find the best mortgage for your budget."
+  },
+  "hero": {
+    "title": "Mortgage Calculator",
+    "subtitle": "Calculate your monthly mortgage payments and see the full cost of your home loan",
+    "badge": "Finance"
+  },
+  "inputs": {
+    "homePrice": {
+      "label": "Home Price",
+      "placeholder": "Enter home price",
+      "helper": "The purchase price of the home"
+    },
+    "downPayment": {
+      "label": "Down Payment",
+      "placeholder": "Enter down payment",
+      "helper": "Your initial payment (typically 10-20%)"
+    },
+    "downPaymentPercent": {
+      "label": "Down Payment (%)",
+      "placeholder": "Enter percentage"
+    },
+    "loanTerm": {
+      "label": "Loan Term",
+      "options": {
+        "15": "15 years",
+        "20": "20 years",
+        "30": "30 years"
+      }
+    },
+    "interestRate": {
+      "label": "Interest Rate",
+      "placeholder": "Enter rate",
+      "helper": "Annual interest rate"
+    },
+    "propertyTax": {
+      "label": "Property Tax (Annual)",
+      "placeholder": "Enter annual tax",
+      "helper": "Yearly property tax amount"
+    },
+    "homeInsurance": {
+      "label": "Home Insurance (Annual)",
+      "placeholder": "Enter annual insurance",
+      "helper": "Yearly insurance premium"
+    },
+    "pmi": {
+      "label": "PMI (Monthly)",
+      "placeholder": "Enter monthly PMI",
+      "helper": "Private Mortgage Insurance (if down payment < 20%)"
+    },
+    "hoa": {
+      "label": "HOA Fees (Monthly)",
+      "placeholder": "Enter monthly HOA",
+      "helper": "Homeowners Association fees"
+    }
+  },
+  "results": {
+    "title": "Your Mortgage Breakdown",
+    "monthlyPayment": {
+      "label": "Monthly Payment",
+      "description": "Principal and interest only"
+    },
+    "totalMonthlyPayment": {
+      "label": "Total Monthly Payment",
+      "description": "Including taxes, insurance, and fees"
+    },
+    "loanAmount": {
+      "label": "Loan Amount",
+      "description": "Home price minus down payment"
+    },
+    "totalInterest": {
+      "label": "Total Interest Paid",
+      "description": "Interest over the life of the loan"
+    },
+    "totalCost": {
+      "label": "Total Cost",
+      "description": "Total amount paid over the loan term"
+    },
+    "payoffDate": {
+      "label": "Payoff Date",
+      "description": "When your mortgage will be paid off"
+    },
+    "breakdown": {
+      "title": "Monthly Payment Breakdown",
+      "principal": "Principal & Interest",
+      "propertyTax": "Property Tax",
+      "insurance": "Insurance",
+      "pmi": "PMI",
+      "hoa": "HOA"
+    }
+  },
+  "education": {
+    "title": "Understanding Your Mortgage",
+    "sections": [
+      {
+        "title": "How Mortgages Work",
+        "content": "A mortgage is a loan used to purchase a home. You borrow money from a lender and pay it back over time with interest. Each monthly payment includes both principal (the amount borrowed) and interest (the cost of borrowing)."
+      },
+      {
+        "title": "Fixed vs. Adjustable Rate",
+        "content": "Fixed-rate mortgages have the same interest rate for the entire loan term, providing predictable payments. Adjustable-rate mortgages (ARMs) have rates that can change after an initial fixed period, which may result in lower initial payments but more uncertainty."
+      },
+      {
+        "title": "The Importance of Down Payment",
+        "content": "A larger down payment reduces your loan amount, monthly payments, and total interest paid. With 20% or more down, you can avoid PMI, saving hundreds per month. However, putting too much down can deplete your emergency fund."
+      },
+      {
+        "title": "Understanding PMI",
+        "content": "Private Mortgage Insurance (PMI) is required when your down payment is less than 20%. It protects the lender if you default. PMI typically costs 0.5-1% of the loan amount annually and can be removed once you have 20% equity."
+      }
+    ]
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "items": [
+      {
+        "question": "How much house can I afford?",
+        "answer": "A common guideline is that your monthly housing costs (including mortgage, taxes, and insurance) shouldn't exceed 28% of your gross monthly income. Your total debt payments shouldn't exceed 36% of your income."
+      },
+      {
+        "question": "Should I choose a 15-year or 30-year mortgage?",
+        "answer": "A 15-year mortgage has higher monthly payments but saves significant money on interest and builds equity faster. A 30-year mortgage has lower payments, providing more flexibility, but costs more in total interest over the life of the loan."
+      },
+      {
+        "question": "What credit score do I need for a mortgage?",
+        "answer": "Most conventional loans require a credit score of 620 or higher. FHA loans may accept scores as low as 580 with a 3.5% down payment. Better credit scores typically qualify for lower interest rates, saving thousands over the loan term."
+      },
+      {
+        "question": "Should I pay points to lower my rate?",
+        "answer": "Mortgage points let you pay upfront to reduce your interest rate. Each point costs 1% of the loan and typically reduces the rate by 0.25%. Points make sense if you plan to stay in the home long enough to recoup the cost through lower payments."
+      },
+      {
+        "question": "What's included in my monthly payment?",
+        "answer": "Your monthly mortgage payment typically includes principal, interest, property taxes, homeowners insurance, and possibly PMI and HOA fees. This is often called PITI (Principal, Interest, Taxes, Insurance)."
+      }
+    ]
+  }
+}

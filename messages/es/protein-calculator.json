@@ -1,0 +1,36 @@
+{
+  "meta": {
+    "title": "Calculadora de Proteína - Calcula Tu Ingesta Diaria de Proteína",
+    "description": "Calculadora de proteína gratuita basada en tu peso, nivel de actividad y metas. Obtén recomendaciones personalizadas con fuentes de alimentos y desglose por comida."
+  },
+  "calculator": {
+    "title": "Calculadora de Proteína",
+    "subtitle": "Calcula tu ingesta óptima de proteína diaria"
+  },
+  "faq": [
+    {
+      "question": "¿Cuánta proteína realmente necesito?",
+      "answer": "La CDR de 0.8g/kg es el mínimo para prevenir deficiencias. Para individuos activos, se recomiendan 1.6-2.2g/kg para un crecimiento muscular y recuperación óptimos. Los atletas pueden necesitar hasta 2.7g/kg."
+    },
+    {
+      "question": "¿Puedo comer demasiada proteína?",
+      "answer": "Para individuos saludables, una ingesta alta de proteína (hasta 3g/kg) parece ser segura. Sin embargo, aquellos con enfermedad renal deben consultar a un médico. El exceso de proteína más allá de lo que tu cuerpo necesita no construirá más músculo."
+    },
+    {
+      "question": "¿Importa el momento de consumir proteína?",
+      "answer": "Distribuir la proteína uniformemente entre comidas (20-40g por comida) optimiza la síntesis de proteína muscular. La 'ventana anabólica' post-entrenamiento es menos crítica de lo que se pensaba, pero consumir proteína dentro de unas horas después del entrenamiento sigue siendo beneficioso."
+    },
+    {
+      "question": "¿Qué es la leucina y por qué importa?",
+      "answer": "La leucina es un aminoácido que activa la síntesis de proteína muscular. Cada comida debe contener 2.5-3g de leucina para resultados óptimos. Las proteínas animales típicamente son más altas en leucina que las proteínas vegetales."
+    },
+    {
+      "question": "¿La proteína vegetal es tan buena como la animal?",
+      "answer": "Las proteínas vegetales pueden ser igualmente efectivas si consumes una variedad de fuentes para obtener todos los aminoácidos esenciales. Puede que necesites ligeramente más proteína total (10-20%) de plantas para igualar los efectos de construcción muscular de la proteína animal."
+    },
+    {
+      "question": "¿Debo usar suplementos de proteína?",
+      "answer": "Los suplementos son convenientes pero no necesarios. Los alimentos enteros deben ser tu fuente principal de proteína. Usa suplementos cuando te cueste alcanzar tus necesidades de proteína solo con alimentos."
+    }
+  ]
+}

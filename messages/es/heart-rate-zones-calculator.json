@@ -1,0 +1,157 @@
+{
+  "meta": {
+    "title": "Calculadora de Zonas de Frecuencia Cardíaca - Zonas de Entrenamiento Fórmula Karvonen",
+    "description": "Calcula tus zonas personalizadas de entrenamiento de frecuencia cardíaca usando la fórmula Karvonen. Obtén zonas óptimas para quema de grasa, resistencia, tempo y entrenamiento VO2max."
+  },
+  "calculator": {
+    "title": "Calculadora de Zonas de Frecuencia Cardíaca",
+    "subtitle": "Encuentra tus zonas óptimas de entrenamiento con la fórmula Karvonen"
+  },
+  "form": {
+    "age": "Edad",
+    "restingHeartRate": "Frecuencia Cardíaca en Reposo",
+    "maxHeartRate": "Frecuencia Cardíaca Máxima",
+    "useEstimated": "Usar FC Máx Estimada",
+    "enterManual": "Ingresar FC Máx Conocida",
+    "bpm": "lpm",
+    "years": "años",
+    "fitnessLevel": "Nivel de Condición Física",
+    "beginner": "Principiante",
+    "intermediate": "Intermedio",
+    "advanced": "Avanzado",
+    "athlete": "Atleta",
+    "calculate": "Calcular Zonas",
+    "reset": "Reiniciar",
+    "measureRHR": "Cómo medir la frecuencia cardíaca en reposo"
+  },
+  "results": {
+    "title": "Tus Zonas de Frecuencia Cardíaca",
+    "maxHR": "Frecuencia Cardíaca Máxima",
+    "restingHR": "Frecuencia Cardíaca en Reposo",
+    "heartRateReserve": "Reserva de Frecuencia Cardíaca",
+    "zone": "Zona",
+    "range": "Rango de Frecuencia Cardíaca",
+    "effort": "Nivel de Esfuerzo",
+    "benefits": "Beneficios del Entrenamiento"
+  },
+  "zones": {
+    "zone1": {
+      "name": "Zona 1 - Recuperación",
+      "intensity": "50-60%",
+      "effort": "Muy Ligero",
+      "benefits": "Recuperación activa, calentamiento, enfriamiento",
+      "description": "Ritmo conversacional. Usar para días de recuperación y calentamientos.",
+      "duration": "20-60 minutos"
+    },
+    "zone2": {
+      "name": "Zona 2 - Base Aeróbica",
+      "intensity": "60-70%",
+      "effort": "Ligero",
+      "benefits": "Quema de grasa, construcción de resistencia, capacidad aeróbica",
+      "description": "Ritmo cómodo que puedes mantener por horas. Construye tu motor aeróbico.",
+      "duration": "45-180 minutos"
+    },
+    "zone3": {
+      "name": "Zona 3 - Tempo",
+      "intensity": "70-80%",
+      "effort": "Moderado",
+      "benefits": "Mejora de eficiencia, entrenamiento aeróbico moderado",
+      "description": "Cómodamente difícil. Puedes hablar en oraciones cortas.",
+      "duration": "30-60 minutos"
+    },
+    "zone4": {
+      "name": "Zona 4 - Umbral",
+      "intensity": "80-90%",
+      "effort": "Difícil",
+      "benefits": "Aumento del umbral de lactato, resistencia a la velocidad",
+      "description": "Esfuerzo difícil. Hablar es difícil. Mejora tu ritmo de carrera.",
+      "duration": "10-30 minutos"
+    },
+    "zone5": {
+      "name": "Zona 5 - VO2max",
+      "intensity": "90-100%",
+      "effort": "Máximo",
+      "benefits": "Rendimiento máximo, capacidad anaeróbica, velocidad",
+      "description": "Esfuerzo total. Usado para intervalos y sprints.",
+      "duration": "1-5 minutos (intervalos)"
+    }
+  },
+  "weeklyPlan": {
+    "title": "Distribución de Entrenamiento Semanal Sugerida",
+    "description": "Basado en tu nivel de condición física, así es como distribuir tu entrenamiento:",
+    "zone1Percent": "Zona 1 (Recuperación)",
+    "zone2Percent": "Zona 2 (Aeróbico)",
+    "zone3Percent": "Zona 3 (Tempo)",
+    "zone4Percent": "Zona 4 (Umbral)",
+    "zone5Percent": "Zona 5 (VO2max)",
+    "totalHours": "Horas Semanales Recomendadas"
+  },
+  "infoCards": {
+    "karvonen": {
+      "title": "La Fórmula Karvonen",
+      "content": "FC Objetivo = ((FC Máx - FC Reposo) × % Intensidad) + FC Reposo. Este método tiene en cuenta tu nivel de condición física a través de la frecuencia cardíaca en reposo, dando zonas más personalizadas que los métodos simples de porcentaje."
+    },
+    "rhr": {
+      "title": "Midiendo la Frecuencia Cardíaca en Reposo",
+      "content": "Mide tu frecuencia cardíaca en reposo a primera hora de la mañana, antes de levantarte de la cama. Toma mediciones durante 3-5 días y usa el promedio. Una FC en reposo más baja generalmente indica mejor condición cardiovascular."
+    },
+    "maxhr": {
+      "title": "Encontrando Tu Frecuencia Cardíaca Máxima",
+      "content": "La fórmula 220-edad es una estimación. Para mayor precisión, realiza una prueba de FC máxima: después de calentar, corre 3-4 intervalos de 2-3 minutos a intensidad creciente, con el intervalo final al máximo."
+    },
+    "zone2": {
+      "title": "Por Qué Importa la Zona 2",
+      "content": "El 80% de tu entrenamiento debería ser en Zona 2. Esto construye densidad mitocondrial, redes de capilares y capacidad de quema de grasa - la base del rendimiento de resistencia."
+    }
+  },
+  "example": {
+    "title": "Ejemplo de Cálculo",
+    "scenario": "Una persona de 35 años con FC en reposo de 60 lpm",
+    "results": "FC Máx: 185 lpm, Reserva de Frecuencia Cardíaca: 125 lpm",
+    "zones": "Zona 2 (aeróbico): 135-148 lpm, Zona 4 (umbral): 160-173 lpm"
+  },
+  "educational": {
+    "title": "Entrenamiento por Frecuencia Cardíaca: La Ciencia de las Zonas",
+    "content": "Las zonas de entrenamiento por frecuencia cardíaca te ayudan a entrenar a la intensidad correcta para tus metas. Cada zona apunta a diferentes sistemas energéticos y adaptaciones fisiológicas.",
+    "sections": [
+      {
+        "title": "Por Qué Importan las Zonas de Frecuencia Cardíaca",
+        "content": "La intensidad del entrenamiento determina la adaptación. Demasiado intenso con demasiada frecuencia lleva al sobreentrenamiento y lesiones. Demasiado fácil significa progreso lento. Las zonas de frecuencia cardíaca aseguran que estés entrenando a la intensidad correcta para el propósito de cada entrenamiento."
+      },
+      {
+        "title": "La Regla 80/20",
+        "content": "Los atletas de élite pasan el 80% de su tiempo de entrenamiento en Zonas 1-2 (fácil) y solo el 20% en Zonas 4-5 (difícil). Este enfoque polarizado maximiza la adaptación mientras previene el agotamiento. La mayoría de los atletas recreativos entrenan demasiado intenso con demasiada frecuencia."
+      },
+      {
+        "title": "Variabilidad de la Frecuencia Cardíaca",
+        "content": "Tu frecuencia cardíaca varía día a día según el sueño, estrés, hidratación y recuperación. Si tu frecuencia cardíaca está inusualmente alta durante esfuerzos fáciles, considera tomar un día de recuperación. Escucha a tu cuerpo junto con los números."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "¿Por qué mi frecuencia cardíaca está alta en carreras fáciles?",
+      "answer": "Varios factores elevan la frecuencia cardíaca: calor, humedad, deshidratación, cafeína, mal sueño, estrés o recuperación incompleta. Si está consistentemente alta, toma días extra de recuperación o reduce la carga de entrenamiento."
+    },
+    {
+      "question": "¿Es precisa la fórmula 220-edad?",
+      "answer": "Es una estimación aproximada con desviación estándar de 10-12 lpm. Para entrenamiento preciso, prueba tu FC máxima real o usa datos de carreras recientes para calibrar tus zonas."
+    },
+    {
+      "question": "¿Cuánto tiempo debo entrenar en cada zona?",
+      "answer": "Zona 2: 45-180 minutos construye resistencia. Zona 4: 10-30 minutos totales mejora el umbral. Zona 5: 3-8 minutos totales (en intervalos) para VO2max. Zona 1: Usar para calentamiento, enfriamiento y días de recuperación."
+    },
+    {
+      "question": "¿Qué es la reserva de frecuencia cardíaca (RFC)?",
+      "answer": "La RFC es la diferencia entre tu frecuencia cardíaca máxima y en reposo. Representa tu rango de frecuencia cardíaca 'utilizable'. La fórmula Karvonen usa la RFC para zonas de entrenamiento más personalizadas."
+    },
+    {
+      "question": "¿Debo entrenar por frecuencia cardíaca o esfuerzo percibido?",
+      "answer": "Usa ambos juntos. La frecuencia cardíaca proporciona datos objetivos, mientras que el esfuerzo percibido tiene en cuenta factores como calor y fatiga. Aprende a correlacionar tus sensaciones con los datos de frecuencia cardíaca."
+    },
+    {
+      "question": "¿Con qué frecuencia debo recalcular mis zonas?",
+      "answer": "Recalcula cada 3-6 meses o después de cambios significativos en tu condición física. A medida que mejora la condición física, la frecuencia cardíaca en reposo típicamente disminuye, desplazando ligeramente tus zonas."
+    }
+  ]
+}

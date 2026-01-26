@@ -7,12 +7,13 @@ import { useLocale } from "next-intl";
 import Link from "next/link";
 
 interface AuthModalProps {
+  callbackUrl?: string;
   isOpen: boolean;
   onClose: () => void;
   defaultTab?: "login" | "signup";
 }
 
-export default function AuthModal({ isOpen, onClose, defaultTab = "signup" }: AuthModalProps) {
+export default function AuthModal({ isOpen, onClose, defaultTab = "signup", callbackUrl }: AuthModalProps) {
   const [mode, setMode] = useState<"login" | "signup">(defaultTab);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -109,7 +110,7 @@ export default function AuthModal({ isOpen, onClose, defaultTab = "signup" }: Au
         const loginResult = await signIn("credentials", { email, password, redirect: false });
         if (loginResult?.ok) {
           onClose();
-          router.push(`/${locale}/dashboard`);
+          router.push(callbackUrl || `/${locale}/dashboard`);
           router.refresh();
         }
       } else {
@@ -117,7 +118,7 @@ export default function AuthModal({ isOpen, onClose, defaultTab = "signup" }: Au
         if (result?.error) throw new Error("Invalid email or password");
         if (result?.ok) {
           onClose();
-          router.push(`/${locale}/dashboard`);
+          router.push(callbackUrl || `/${locale}/dashboard`);
           router.refresh();
         }
       }
@@ -129,7 +130,7 @@ export default function AuthModal({ isOpen, onClose, defaultTab = "signup" }: Au
   };
 
   const handleSocialLogin = (provider: string) => {
-    signIn(provider, { callbackUrl: `/${locale}/dashboard` });
+    signIn(provider, { callbackUrl: callbackUrl || `/${locale}/dashboard` });
   };
 
   if (!isOpen) return null;

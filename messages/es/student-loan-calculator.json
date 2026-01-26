@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "title": "Calculadora de Préstamo Estudiantil - Estima Pagos y Costo Total",
+    "description": "Calcula tus pagos de préstamo estudiantil, interés total y explora estrategias de pago."
+  },
+  "calculator": {
+    "title": "Calculadora de Préstamo Estudiantil",
+    "subtitle": "Calcula tus pagos de préstamo estudiantil y explora opciones de pago"
+  },
+  "faq": [
+    {
+      "question": "¿Cómo se calcula el interés del préstamo estudiantil?",
+      "answer": "El interés del préstamo estudiantil típicamente se calcula diariamente usando la fórmula: (Saldo Principal × Tasa de Interés) dividido entre 365."
+    },
+    {
+      "question": "¿Cuál es la diferencia entre préstamos subsidiados y no subsidiados?",
+      "answer": "Los préstamos subsidiados son para estudiantes con necesidad financiera - el gobierno paga el interés mientras estás en la escuela. Los préstamos no subsidiados acumulan interés desde el momento en que se desembolsan."
+    },
+    {
+      "question": "¿Debo pagar extra en mis préstamos estudiantiles?",
+      "answer": "Pagar extra puede ahorrar dinero significativo en intereses. Sin embargo, primero asegúrate de tener un fondo de emergencia y haber pagado deudas con intereses más altos."
+    },
+    {
+      "question": "¿Qué es el pago basado en ingresos?",
+      "answer": "Los planes de pago basados en ingresos limitan tus pagos mensuales a un porcentaje de tu ingreso discrecional, típicamente 10-20 por ciento."
+    },
+    {
+      "question": "¿Puedo refinanciar mis préstamos estudiantiles?",
+      "answer": "Sí, refinanciar combina préstamos en un nuevo préstamo privado a una tasa potencialmente más baja, pero pierdes beneficios federales como programas de condonación."
+    }
+  ]
+}

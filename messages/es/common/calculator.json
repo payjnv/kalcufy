@@ -1,0 +1,85 @@
+{
+  "calculate": "Calcular",
+  "reset": "Reiniciar",
+  "results": "Resultados",
+  "inputs": "Datos de entrada",
+  "export": "Exportar",
+  "share": "Compartir",
+  "favorites": "Favoritos",
+  "addToFavorites": "Añadir a favoritos",
+  "removeFromFavorites": "Quitar de favoritos",
+  "skipToInputs": "Ir a los campos de entrada",
+  "skipToResults": "Ir a los resultados",
+  "skipToEducation": "Ir al contenido educativo",
+  "units": {
+    "weight": {
+      "kg": "kg",
+      "lb": "lb",
+      "st": "st"
+    },
+    "height": {
+      "cm": "cm",
+      "in": "in",
+      "ft": "ft"
+    },
+    "time": {
+      "years": "años",
+      "months": "meses",
+      "weeks": "semanas",
+      "days": "días"
+    },
+    "currency": {
+      "USD": "USD",
+      "EUR": "EUR",
+      "GBP": "GBP",
+      "BRL": "BRL",
+      "MXN": "MXN"
+    }
+  },
+  "validation": {
+    "required": "Este campo es requerido",
+    "min": "El valor debe ser al menos {min}",
+    "max": "El valor debe ser como máximo {max}",
+    "invalidNumber": "Por favor ingrese un número válido",
+    "positive": "El valor debe ser positivo",
+    "wholeNumber": "Por favor ingrese un número entero"
+  },
+  "accessibility": {
+    "expandSection": "Expandir sección",
+    "collapseSection": "Contraer sección",
+    "resultsUpdated": "Resultados actualizados",
+    "errorOccurred": "Ocurrió un error",
+    "loading": "Calculando...",
+    "required": "requerido"
+  },
+  "categories": {
+    "health": "Salud",
+    "finance": "Finanzas",
+    "everyday": "Cotidiano"
+  },
+  "badges": {
+    "new": "Nuevo",
+    "popular": "Popular",
+    "pro": "PRO",
+    "beta": "Beta"
+  },
+  "rating": {
+    "basedOn": "Basado en {count} cálculos",
+    "outOf": "de 5"
+  },
+  "education": {
+    "learnMore": "Aprende más",
+    "showLess": "Mostrar menos"
+  },
+  "faq": {
+    "title": "Preguntas Frecuentes"
+  },
+  "related": {
+    "title": "Calculadoras Relacionadas",
+    "viewAll": "Ver todas"
+  },
+  "errors": {
+    "calculationFailed": "No se pudo completar el cálculo. Por favor revise sus datos.",
+    "invalidInput": "Algunos campos tienen valores inválidos."
+  }
+}

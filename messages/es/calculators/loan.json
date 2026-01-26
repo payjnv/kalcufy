@@ -1,0 +1,128 @@
+{
+  "meta": {
+    "title": "Calculadora de Préstamos",
+    "description": "Calcula tus pagos de préstamo, interés total y tabla de amortización. Compara diferentes plazos y tasas de interés para encontrar el mejor préstamo personal para tus necesidades."
+  },
+  "hero": {
+    "title": "Calculadora de Préstamos",
+    "subtitle": "Calcula tus pagos mensuales de préstamo y ve el costo total del endeudamiento",
+    "badge": "Finanzas"
+  },
+  "inputs": {
+    "loanAmount": {
+      "label": "Monto del Préstamo",
+      "placeholder": "Ingresa el monto",
+      "helper": "La cantidad total que deseas pedir prestado"
+    },
+    "interestRate": {
+      "label": "Tasa de Interés",
+      "placeholder": "Ingresa la tasa",
+      "helper": "Tasa de Porcentaje Anual (APR)"
+    },
+    "loanTerm": {
+      "label": "Plazo del Préstamo",
+      "placeholder": "Ingresa el plazo en meses",
+      "helper": "Duración del préstamo"
+    },
+    "loanTermUnit": {
+      "label": "Unidad de Plazo",
+      "options": {
+        "months": "Meses",
+        "years": "Años"
+      }
+    },
+    "startDate": {
+      "label": "Fecha de Inicio",
+      "placeholder": "Selecciona fecha de inicio",
+      "helper": "Cuando comienza el préstamo"
+    },
+    "extraPayment": {
+      "label": "Pago Extra Mensual",
+      "placeholder": "Ingresa pago extra",
+      "helper": "Cantidad adicional a pagar cada mes (opcional)"
+    }
+  },
+  "results": {
+    "title": "Resumen de Tu Préstamo",
+    "monthlyPayment": {
+      "label": "Pago Mensual",
+      "description": "Tu pago mensual regular"
+    },
+    "totalPayment": {
+      "label": "Pago Total",
+      "description": "Cantidad total que pagarás durante el plazo"
+    },
+    "totalInterest": {
+      "label": "Interés Total",
+      "description": "Interés total pagado durante la vida del préstamo"
+    },
+    "payoffDate": {
+      "label": "Fecha de Liquidación",
+      "description": "Cuando tu préstamo estará pagado"
+    },
+    "effectiveRate": {
+      "label": "Tasa Efectiva",
+      "description": "Costo anual real incluyendo capitalización"
+    },
+    "withExtraPayments": {
+      "title": "Con Pagos Extra",
+      "interestSaved": "Interés Ahorrado",
+      "timeSaved": "Tiempo Ahorrado",
+      "newPayoffDate": "Nueva Fecha de Liquidación"
+    },
+    "amortization": {
+      "title": "Tabla de Amortización",
+      "month": "Mes",
+      "payment": "Pago",
+      "principal": "Capital",
+      "interest": "Interés",
+      "balance": "Saldo"
+    }
+  },
+  "education": {
+    "title": "Entendiendo los Préstamos",
+    "sections": [
+      {
+        "title": "Cómo Funcionan los Pagos",
+        "content": "Cada pago de préstamo consiste en dos partes: capital e interés. Al principio del préstamo, la mayor parte de tu pago va hacia intereses. Con el tiempo, más va hacia el capital. Esto se llama amortización."
+      },
+      {
+        "title": "APR vs Tasa de Interés",
+        "content": "La Tasa de Porcentaje Anual (APR) incluye la tasa de interés más otras comisiones y costos, dándote una imagen más completa de lo que costará el préstamo. Siempre compara préstamos usando APR en lugar de solo la tasa de interés."
+      },
+      {
+        "title": "Impacto del Plazo",
+        "content": "Un plazo más largo significa pagos mensuales más bajos pero más interés total pagado. Un plazo más corto tiene pagos más altos pero ahorra dinero en intereses. Elige basándote en tu presupuesto y objetivos financieros."
+      },
+      {
+        "title": "Beneficios de Pagos Extra",
+        "content": "Hacer pagos extra, incluso pequeños, puede reducir significativamente el interés total y acortar el plazo de tu préstamo. Los pagos extra van directamente al capital, reduciendo el saldo que acumula intereses."
+      }
+    ]
+  },
+  "faq": {
+    "title": "Preguntas Frecuentes",
+    "items": [
+      {
+        "question": "¿Cómo se calcula mi pago mensual?",
+        "answer": "El pago mensual se calcula usando el monto del préstamo, tasa de interés y plazo. La fórmula considera el interés compuesto para asegurar que cada pago cubra tanto los cargos de interés como reduzca tu saldo de capital."
+      },
+      {
+        "question": "¿Debo pagar mi préstamo antes de tiempo?",
+        "answer": "Pagar un préstamo antes ahorra dinero en intereses, pero primero verifica si hay penalidades por pago anticipado. También considera si podrías ganar más invirtiendo los fondos extra en lugar de pagar deuda de bajo interés."
+      },
+      {
+        "question": "¿Cuál es la diferencia entre préstamos garantizados y no garantizados?",
+        "answer": "Los préstamos garantizados están respaldados por colateral (como un auto o casa), típicamente ofreciendo tasas de interés más bajas. Los préstamos no garantizados no requieren colateral pero usualmente tienen tasas más altas porque son más riesgosos para los prestamistas."
+      },
+      {
+        "question": "¿Cómo afecta mi puntaje de crédito a mi préstamo?",
+        "answer": "Tu puntaje de crédito impacta significativamente la tasa de interés que recibirás. Puntajes más altos típicamente califican para tasas más bajas, potencialmente ahorrando miles durante la vida del préstamo. Incluso una diferencia del 1% en la tasa puede ser significativa."
+      },
+      {
+        "question": "¿Qué pasa si me salto un pago?",
+        "answer": "Saltarse un pago puede resultar en cargos por mora, daño a tu puntaje de crédito, y potencialmente tasas de interés más altas. Si estás luchando, contacta a tu prestamista sobre programas de dificultad o planes de pago modificados antes de saltarte pagos."
+      }
+    ]
+  }
+}

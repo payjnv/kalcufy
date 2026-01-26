@@ -24,37 +24,66 @@
       "interestRate": "Tasa de Interés",
       "roi": "ROI",
       "amortization": "Amortización",
-      "downPayment": "Enganche",
+      "downPayment": "Pago Inicial",
       "salary": "Salario",
-      "incomeTax": "Calculadora de Impuestos",
-      "401k": "401K",
+      "incomeTax": "Impuesto sobre la Renta",
+      "401k": "401(k)",
       "inflation": "Inflación",
+      "budget": "Presupuesto",
+      "paycheck": "Nómina",
+      "personalLoan": "Préstamo Personal",
+      "profitMargin": "Margen de Ganancia",
+      "rothIra": "Roth IRA",
+      "studentLoan": "Préstamo Estudiantil",
       "bmi": "IMC",
       "calorie": "Calorías",
       "macro": "Macros",
       "tdee": "TDEE",
       "bodyFat": "Grasa Corporal",
-      "bmr": "Calculadora de TMB",
+      "bmr": "TMB",
       "idealWeight": "Peso Ideal",
       "protein": "Proteína",
       "waterIntake": "Consumo de Agua",
+      "oneRepMax": "Repetición Máxima",
+      "sleep": "Sueño",
       "creditCard": "Pago de Tarjeta de Crédito",
       "pregnancy": "Fecha de Parto",
-      "paycheck": "Calculadora de Sueldo",
-      "profitMargin": "Calculadora de Margen",
-      "studentLoan": "Calculadora de Prestamos Estudiantiles"
+      "runningPace": "Ritmo de Carrera",
+      "heartRateZones": "Zonas de Frecuencia Cardíaca",
+      "caloriesBurned": "Calorías Quemadas",
+      "caloricDeficit": "Déficit Calórico",
+      "tip": "Propina",
+      "discount": "Descuento",
+      "percentage": "Porcentaje",
+      "age": "Edad",
+      "date": "Fecha",
+      "unitConverter": "Conversor de Unidades",
+      "fuelCost": "Costo de Combustible",
+      "timeZone": "Zona Horaria",
+      "gpa": "Promedio Académico",
+      "randomNumberGenerator": "Generador de Números Aleatorios",
+      "netWorth": "Patrimonio Neto",
+      "emergencyFund": "Fondo de Emergencia",
+      "cd": "Certificado de Depósito",
+      "carLease": "Leasing de Auto",
+      "leanBodyMass": "Masa Corporal Magra",
+      "maintenanceCalories": "Calorías de Mantenimiento",
+      "calorieDeficit": "Déficit Calórico",
+      "calorieSurplus": "Superávit Calórico",
+      "weightLoss": "Pérdida de Peso",
+      "weightGain": "Aumento de Peso"
     }
   },
   "home": {
     "badge": "Calculadoras Gratis",
     "title1": "Calcula Tu",
     "title2": "Futuro Financiero",
-    "subtitle": "Calculadoras gratis y rápidas para préstamos, inversiones, IMC, calorías y más. Toma decisiones más inteligentes en segundos.",
+    "subtitle": "Calculadoras gratuitas y rápidas para préstamos, inversiones, IMC, calorías y más. Toma mejores decisiones en segundos.",
     "searchPlaceholder": "Buscar calculadoras... (ej. hipoteca, IMC)",
     "searchButton": "Buscar",
     "seeAllResults": "Ver todos los resultados de",
     "exploreButton": "Explorar Calculadoras",
-    "tryCompound": "Probar Interés Compuesto →",
+    "tryCompound": "Prueba Interés Compuesto →",
     "stats": {
       "calculations": "Cálculos",
       "users": "Usuarios",
@@ -65,16 +94,16 @@
       "title": "Categorías de Calculadoras",
       "subtitle": "Todo lo que necesitas para tus finanzas y salud",
       "finance": "Finanzas",
-      "financeCount": "25 Calculadoras",
-      "financeDesc": "Préstamos, hipotecas, inversiones, jubilación y más",
+      "financeCount": "16 Calculadoras",
+      "financeDesc": "Préstamos, hipotecas, inversiones, planificación de jubilación y más",
       "health": "Salud y Fitness",
-      "healthCount": "20 Calculadoras",
+      "healthCount": "15 Calculadoras",
       "healthDesc": "IMC, calorías, macros, TDEE, grasa corporal y más",
       "math": "Matemáticas",
       "mathCount": "15+ Calculadoras",
       "mathDesc": "Porcentajes, fracciones, álgebra y más",
-      "everyday": "Cotidiano",
-      "everydayCount": "10+ Calculadoras",
+      "everyday": "Uso Diario",
+      "everydayCount": "10 Calculadoras",
       "everydayDesc": "Propinas, descuentos, edad, fechas y más",
       "soon": "Próximamente"
     },
@@ -83,7 +112,7 @@
       "subtitle": "Usa Kalcufy en tu idioma preferido"
     },
     "cta": {
-      "title": "Empieza a Calcular Ahora",
+      "title": "Comienza a Calcular Ahora",
       "subtitle": "Únete a más de 50,000 usuarios tomando decisiones más inteligentes",
       "button": "Comenzar Gratis"
     }
@@ -96,9 +125,11 @@
     "allCalculators": "Todas las Calculadoras",
     "finance": "Finanzas",
     "healthFitness": "Salud y Fitness",
-    "popular": "POPULARES",
+    "everyday": "Uso Diario",
+    "popular": "POPULAR",
     "financeTitle": "Finanzas",
     "healthTitle": "Salud y Fitness",
+    "everydayTitle": "Uso Diario",
     "calcs": {
       "compoundInterest": {
         "name": "Interés Compuesto",
@@ -114,7 +145,7 @@
       },
       "autoLoan": {
         "name": "Préstamo de Auto",
-        "desc": "Calcula los pagos de tu préstamo de auto"
+        "desc": "Calcula los pagos del préstamo de tu auto"
       },
       "retirement": {
         "name": "Jubilación",
@@ -126,15 +157,43 @@
       },
       "investment": {
         "name": "Inversión",
-        "desc": "Calcula el crecimiento de tu inversión"
+        "desc": "Calcula el crecimiento de tu inversión con el tiempo"
+      },
+      "personalLoan": {
+        "name": "Préstamo Personal",
+        "desc": "Calcula pagos e intereses de préstamos personales"
+      },
+      "rothIra": {
+        "name": "Roth IRA",
+        "desc": "Planifica tus ahorros de jubilación Roth IRA"
+      },
+      "budget": {
+        "name": "Presupuesto",
+        "desc": "Planifica tus finanzas personales y controla tus gastos"
       },
       "401k": {
         "name": "401(k)",
         "desc": "Planifica tus ahorros de jubilación 401(k)"
       },
       "creditCard": {
-        "name": "Pago de Tarjeta",
-        "desc": "Paga tu deuda de tarjeta más rápido"
+        "name": "Pago de Tarjeta de Crédito",
+        "desc": "Paga tu deuda de tarjeta de crédito más rápido"
+      },
+      "paycheck": {
+        "name": "Nómina",
+        "desc": "Calcula tu salario neto después de impuestos"
+      },
+      "profitMargin": {
+        "name": "Margen de Ganancia",
+        "desc": "Calcula margen, markup y precio de venta"
+      },
+      "incomeTax": {
+        "name": "Impuesto sobre la Renta",
+        "desc": "Estima tus impuestos federales y estatales"
+      },
+      "studentLoan": {
+        "name": "Préstamo Estudiantil",
+        "desc": "Calcula pagos y explora estrategias de pago"
       },
       "bmi": {
         "name": "IMC",
@@ -144,20 +203,142 @@
         "name": "Calorías",
         "desc": "Calcula tus necesidades calóricas diarias"
       },
-      "paycheck": {
-        "desc": "Calcula tu sueldo neto"
-      },
-      "profitMargin": {
-        "desc": "Calcula margen y markup"
-      },
-      "incomeTax": {
-        "desc": "Estima tus impuestos"
-      },
-      "studentLoan": {
-        "desc": "Calcula pagos y explora estrategias de pago"
-      },
       "bmr": {
-        "desc": "Calcula tu Tasa Metabólica Basal y necesidades calóricas"
+        "name": "TMB",
+        "desc": "Calcula tu Tasa Metabólica Basal y necesidades calóricas diarias"
+      },
+      "tdee": {
+        "name": "TDEE",
+        "desc": "Calcula tu Gasto Energético Diario Total y necesidades calóricas"
+      },
+      "bodyFat": {
+        "name": "Grasa Corporal",
+        "desc": "Calcula tu porcentaje de grasa corporal usando los métodos Navy, IMC y Army"
+      },
+      "macro": {
+        "name": "Macros",
+        "desc": "Calcula tus objetivos diarios de proteína, carbohidratos y grasa con 6 presets de dieta"
+      },
+      "idealWeight": {
+        "name": "Peso Ideal",
+        "desc": "Calcula tu peso corporal ideal usando 5 fórmulas científicas con ajuste por complexión"
+      },
+      "protein": {
+        "name": "Proteína",
+        "desc": "Calcula tu ingesta óptima de proteína diaria según tus objetivos"
+      },
+      "waterIntake": {
+        "name": "Consumo de Agua",
+        "desc": "Calcula cuánta agua deberías beber diariamente"
+      },
+      "oneRepMax": {
+        "name": "Repetición Máxima",
+        "desc": "Estima tu 1RM usando 7 fórmulas científicas"
+      },
+      "sleep": {
+        "name": "Sueño",
+        "desc": "Encuentra los horarios óptimos para dormir y despertar"
+      },
+      "runningPace": {
+        "name": "Ritmo de Carrera",
+        "desc": "Calcula ritmo, puntuación VDOT, ritmos de entrenamiento, predicciones de carrera y tiempos parciales"
+      },
+      "heartRateZones": {
+        "name": "Zonas de Frecuencia Cardíaca",
+        "desc": "Encuentra tus zonas óptimas de entrenamiento usando la fórmula Karvonen"
+      },
+      "caloriesBurned": {
+        "name": "Calorías Quemadas",
+        "desc": "Calcula calorías quemadas para más de 50 actividades usando valores MET"
+      },
+      "caloricDeficit": {
+        "name": "Déficit Calórico",
+        "desc": "Calcula tu ingesta calórica ideal para pérdida de peso o ganancia muscular"
+      },
+      "tip": {
+        "name": "Propina",
+        "desc": "Calcula propinas para restaurantes, delivery y servicios con división de cuenta"
+      },
+      "discount": {
+        "name": "Descuento",
+        "desc": "Calcula precios de oferta, ahorros y acumula múltiples descuentos"
+      },
+      "percentage": {
+        "name": "Porcentaje",
+        "desc": "Calcula porcentajes, aumentos, disminuciones y conversiones"
+      },
+      "age": {
+        "name": "Edad",
+        "desc": "Calcula edad exacta con signo zodiacal, generación y eventos importantes"
+      },
+      "date": {
+        "name": "Fecha",
+        "desc": "Suma días, calcula diferencias y encuentra días hábiles"
+      },
+      "unitConverter": {
+        "name": "Conversor de Unidades",
+        "desc": "Convierte longitud, peso, temperatura, volumen y más"
+      },
+      "fuelCost": {
+        "name": "Costo de Combustible",
+        "desc": "Calcula costos de viaje, gastos anuales y compara vehículos"
+      },
+      "timeZone": {
+        "name": "Zona Horaria",
+        "desc": "Convierte horas, ve relojes mundiales y planifica reuniones internacionales"
+      },
+      "gpa": {
+        "name": "Promedio Académico",
+        "desc": "Calcula GPA semestral, acumulado y objetivo con honores"
+      },
+      "randomNumberGenerator": {
+        "name": "Generador de Números Aleatorios",
+        "desc": "Genera números aleatorios, tira dados, lanza monedas y crea contraseñas"
+      },
+      "netWorth": {
+        "desc": "Calcula tu patrimonio neto total con activos vs pasivos"
+      },
+      "emergencyFund": {
+        "desc": "Calcula cuánto necesitas para seguridad financiera"
+      },
+      "cd": {
+        "desc": "Calcula ganancias de Certificados de Depósito y compara plazos"
+      },
+      "carLease": {
+        "name": "Leasing de Auto",
+        "desc": "Calcula pagos de leasing, costo total y compara leasing vs compra"
+      },
+      "leanBodyMass": {
+        "name": "Masa Corporal Magra",
+        "desc": "Calcula masa magra con 5 fórmulas, FFMI y objetivos de proteína"
+      },
+      "maintenanceCalories": {
+        "name": "Calorías de Mantenimiento",
+        "desc": "Calcula TDEE con 3 fórmulas BMR y desglose de macros por comida"
+      },
+      "calorieDeficit": {
+        "name": "Déficit Calórico",
+        "desc": "Calcula calorías para perder peso con línea de tiempo y descansos de dieta"
+      },
+      "calorieSurplus": {
+        "name": "Superávit Calórico",
+        "desc": "Calcula calorías para volumen con estimación de músculo vs grasa"
+      },
+      "pregnancy": {
+        "name": "Fecha de Parto",
+        "desc": "Calcula fecha de parto, concepción y seguimiento del embarazo"
+      },
+      "lease": {
+        "name": "Leasing",
+        "desc": "Calcula pagos de leasing, costo total y compara leasing vs compra"
+      },
+      "weightLoss": {
+        "name": "Pérdida de Peso",
+        "desc": "Calcula cuánto tiempo para alcanzar tu peso ideal con calorías diarias"
+      },
+      "weightGain": {
+        "name": "Aumento de Peso",
+        "desc": "Calcula calorías de volumen con proyección de músculo vs grasa"
       }
     }
   },
@@ -176,7 +357,7 @@
       "orContinue": "o",
       "continueGoogle": "Continuar con Google",
       "continueGithub": "Continuar con GitHub",
-      "invalidCredentials": "Correo o contraseña inválidos",
+      "invalidCredentials": "Correo electrónico o contraseña inválidos",
       "accountCreated": "¡Cuenta creada! Por favor inicia sesión.",
       "terms": "Al iniciar sesión, aceptas nuestros",
       "termsLink": "Términos",
@@ -188,13 +369,13 @@
       "feature1": "Sincroniza en todos tus dispositivos",
       "feature2": "Exporta a PDF y Excel",
       "feature3": "Cálculos ilimitados",
-      "testimonial": "Kalcufy me ayudó a entender mis opciones de hipoteca y ahorré $15,000.",
-      "testimonialAuthor": "Sara M.",
-      "testimonialRole": "Propietaria"
+      "testimonial": "Kalcufy me ayudó a entender mis opciones de hipoteca y me ahorró $15,000.",
+      "testimonialAuthor": "Sarah M.",
+      "testimonialRole": "Propietaria de vivienda"
     },
     "register": {
       "title": "Crea tu cuenta",
-      "subtitle": "Gratis para siempre. No se requiere tarjeta.",
+      "subtitle": "Gratis para siempre. Sin tarjeta de crédito.",
       "fullName": "Nombre completo",
       "email": "Correo electrónico",
       "password": "Contraseña",
@@ -210,15 +391,15 @@
       "termsLink": "Términos",
       "and": "y",
       "privacyLink": "Política de Privacidad",
-      "leftTitle": "Comienza tu viaje",
+      "leftTitle": "Comienza tu camino",
       "leftTitle2": "hacia decisiones más inteligentes.",
-      "leftSubtitle": "Únete a miles de usuarios que toman mejores decisiones financieras y de salud con Kalcufy.",
+      "leftSubtitle": "Únete a miles de usuarios tomando mejores decisiones financieras y de salud con Kalcufy.",
       "feature1": "30+ Calculadoras profesionales",
       "feature2": "Guarda y sincroniza tus cálculos",
       "feature3": "Exporta a PDF y Excel",
       "feature4": "100% Gratis para siempre",
-      "testimonial": "He probado muchas apps de calculadoras, pero Kalcufy es la más completa y fácil de usar.",
-      "testimonialAuthor": "Miguel R.",
+      "testimonial": "He probado muchas apps de calculadoras, pero Kalcufy es por mucho la más completa y fácil de usar.",
+      "testimonialAuthor": "Michael R.",
       "testimonialRole": "Analista Financiero"
     }
   },
@@ -232,7 +413,7 @@
       "name": "Gratis",
       "price": "0",
       "period": "para siempre",
-      "description": "Perfecto para comenzar",
+      "description": "Perfecto para empezar",
       "cta": "Comenzar",
       "features": [
         "Todas las calculadoras básicas",
@@ -251,7 +432,7 @@
       "cta": "Iniciar Prueba Gratis",
       "badge": "Más Popular",
       "features": [
-        "Todo lo de Gratis",
+        "Todo lo del plan Gratis",
         "Guardar historial de cálculos",
         "Exportar a PDF y Excel",
         "Sin anuncios",
@@ -263,22 +444,22 @@
     "faq": {
       "title": "Preguntas Frecuentes",
       "q1": "¿Puedo cancelar en cualquier momento?",
-      "a1": "Sí, puedes cancelar tu suscripción en cualquier momento. Sin preguntas.",
-      "q2": "¿Hay una prueba gratuita?",
-      "a2": "¡Sí! PRO incluye una prueba gratuita de 7 días. No se requiere tarjeta.",
+      "a1": "Sí, puedes cancelar tu suscripción cuando quieras. Sin preguntas.",
+      "q2": "¿Hay prueba gratis?",
+      "a2": "¡Sí! PRO incluye 7 días de prueba gratis. Sin tarjeta de crédito.",
       "q3": "¿Qué métodos de pago aceptan?",
-      "a3": "Aceptamos todas las tarjetas principales, PayPal y transferencias bancarias.",
+      "a3": "Aceptamos todas las tarjetas de crédito principales, PayPal y transferencias bancarias.",
       "q4": "¿Puedo cambiar de plan?",
-      "a4": "Sí, puedes mejorar o reducir tu plan en cualquier momento."
+      "a4": "Sí, puedes subir o bajar de plan en cualquier momento."
     }
   },
   "blog": {
     "title": "Blog de Kalcufy",
-    "heroTitle1": "Perspectivas",
-    "heroTitle2": "Financieras y de Salud",
-    "heroSubtitle": "Guías expertas, consejos y estrategias para ayudarte a tomar mejores decisiones financieras y alcanzar tus metas de salud.",
+    "heroTitle1": "Consejos Financieros",
+    "heroTitle2": "y de Salud",
+    "heroSubtitle": "Guías de expertos, consejos y estrategias para ayudarte a tomar mejores decisiones financieras y alcanzar tus metas de salud.",
     "searchPlaceholder": "Buscar artículos...",
-    "allPosts": "Todos los Posts",
+    "allPosts": "Todos los Artículos",
     "categories": {
       "finance": "Finanzas",
       "health": "Salud",
@@ -298,8 +479,8 @@
     "loading": "Cargando...",
     "newsletter": {
       "title": "Mantente Actualizado",
-      "subtitle": "Recibe los últimos consejos financieros y de salud en tu correo. Sin spam, cancela cuando quieras.",
-      "placeholder": "Ingresa tu correo",
+      "subtitle": "Recibe los últimos consejos financieros y de salud directamente en tu bandeja de entrada. Sin spam, cancela cuando quieras.",
+      "placeholder": "Ingresa tu correo electrónico",
       "button": "Suscribirse"
     },
     "post": {

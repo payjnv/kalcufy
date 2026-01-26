@@ -3,9 +3,15 @@
     "title": "Ideal Weight Calculator - Calculate Your Ideal Body Weight",
     "description": "Free ideal weight calculator using 5 scientific formulas (Robinson, Miller, Devine, Hamwi, BMI). Includes frame size adjustment, build type, and timeline to reach your goal."
   },
+  "common": {
+    "home": "Home",
+    "calculators": "Calculators"
+  },
   "calculator": {
     "title": "Ideal Weight Calculator",
-    "subtitle": "Calculate your ideal body weight using 5 scientific formulas"
+    "subtitle": "Calculate your ideal body weight using 5 scientific formulas",
+    "yourInformation": "Your Information",
+    "skipToCalculator": "Skip to calculator"
   },
   "inputs": {
     "unitSystem": "Unit System",
@@ -17,6 +23,8 @@
     "age": "Age",
     "years": "years",
     "height": "Height",
+    "feet": "ft",
+    "inches": "in",
     "currentWeight": "Current Weight",
     "buildType": "Build Type",
     "wristCircumference": "Wrist Circumference",
@@ -46,13 +54,23 @@
     "large": "Large"
   },
   "results": {
+    "title": "Your Results",
     "idealWeight": "Your Ideal Weight (Average)",
     "healthyRange": "Healthy Range",
     "weightToLose": "Weight to Lose",
     "weightToGain": "Weight to Gain",
     "atIdealWeight": "At Ideal Weight!",
     "timeline": "Timeline",
-    "weeksAtRate": "at {rate} lb/week"
+    "weeks": "weeks",
+    "atRate": "at {rate} lb/week"
+  },
+  "visualizations": {
+    "healthyWeightRange": "Healthy Weight Range",
+    "current": "Current",
+    "ideal": "Ideal",
+    "healthyZone": "Healthy Zone",
+    "formulaComparison": "Formula Comparison",
+    "resultsAdjusted": "Results adjusted for {frame} frame and {build} build type"
   },
   "formulas": {
     "title": "Formula Comparison",
@@ -81,12 +99,30 @@
     "title": "Frame Size Reference",
     "detected": "Frame Size",
     "adjustment": "adjustment",
-    "selectManually": "Or Select Frame Size Manually"
+    "selectManually": "Or Select Frame Size Manually",
+    "frame": "Frame",
+    "men": "Men (wrist)",
+    "women": "Women (wrist)",
+    "adjust": "Adjust"
   },
   "advanced": {
     "title": "Advanced Options",
     "weightChangeRate": "Weight Change Rate",
-    "rateHelp": "Recommended: 0.5-2 lbs per week for safe weight loss"
+    "rateHelp": "Recommended: 0.5-2 lbs per week for safe weight loss",
+    "lbWeek": "lb/week"
+  },
+  "buttons": {
+    "save": "Save",
+    "saving": "Saving...",
+    "saved": "Saved",
+    "share": "Share",
+    "exportPdf": "Export PDF",
+    "exportExcel": "Export Excel",
+    "pro": "PRO"
+  },
+  "favorites": {
+    "add": "Add to favorites",
+    "remove": "Remove from favorites"
   },
   "education": {
     "whatIsIdealWeight": "What is Ideal Body Weight?",
@@ -107,6 +143,9 @@
     "item2": "Athletes may exceed ideal weights due to muscle mass",
     "item3": "Body fat percentage is often more meaningful",
     "item4": "Consult a healthcare provider for personalized advice"
+  },
+  "sources": {
+    "title": "Sources & References"
   },
   "faq": [
     {

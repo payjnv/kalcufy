@@ -1,6 +1,5 @@
 // src/app/[locale]/calculators/page.tsx
-// WCAG 2.1 AA Compliant Version
-
+// Dynamic Categories Version - Fixed Layout
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
@@ -21,6 +20,17 @@ const popularSlugs = [
   "percentage-calculator",
 ];
 
+interface Category {
+  id: string;
+  slug: string;
+  nameEn: string;
+  nameEs: string | null;
+  namePt: string | null;
+  icon: string | null;
+  color: string;
+  _count: { calculators: number };
+}
+
 interface CalculatorData {
   calculators: Calculator[];
   counts: {
@@ -36,27 +46,37 @@ export default function CalculatorsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("all");
   const [data, setData] = useState<CalculatorData | null>(null);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const t = useTranslations("calculatorsPage");
   const tCalcNames = useTranslations("calculators");
   const locale = useLocale();
 
-  // Fetch active calculators from API
+  // Fetch active calculators and categories
   useEffect(() => {
-    const fetchCalculators = async () => {
+    const fetchData = async () => {
       try {
-        const res = await fetch("/api/calculators/active");
-        if (res.ok) {
-          const json = await res.json();
+        const [calcsRes, catsRes] = await Promise.all([
+          fetch("/api/calculators/active"),
+          fetch("/api/calculator-categories")
+        ]);
+        
+        if (calcsRes.ok) {
+          const json = await calcsRes.json();
           setData(json);
         }
+        
+        if (catsRes.ok) {
+          const cats = await catsRes.json();
+          setCategories(cats);
+        }
       } catch (error) {
-        console.error("Error fetching calculators:", error);
+        console.error("Error fetching data:", error);
       } finally {
         setLoading(false);
       }
     };
-    fetchCalculators();
+    fetchData();
   }, []);
 
   // Get search param from URL
@@ -70,6 +90,13 @@ export default function CalculatorsPage() {
       setActiveCategory(category);
     }
   }, [searchParams]);
+
+  // Get category name by locale
+  const getCategoryName = (cat: Category): string => {
+    if (locale === "es" && cat.nameEs) return cat.nameEs;
+    if (locale === "pt" && cat.namePt) return cat.namePt;
+    return cat.nameEn;
+  };
 
   // Get calculator name (translated)
   const getCalculatorName = (calc: Calculator): string => {
@@ -96,6 +123,60 @@ export default function CalculatorsPage() {
     }
   };
 
+  // Get color classes for category
+  const getCategoryColor = (color: string, isActive: boolean) => {
+    const colors: Record<string, { active: string; inactive: string }> = {
+      blue: {
+        active: "bg-blue-50 text-blue-600",
+        inactive: "text-slate-600 hover:bg-slate-50",
+      },
+      green: {
+        active: "bg-green-50 text-green-600",
+        inactive: "text-slate-600 hover:bg-slate-50",
+      },
+      purple: {
+        active: "bg-purple-50 text-purple-600",
+        inactive: "text-slate-600 hover:bg-slate-50",
+      },
+      red: {
+        active: "bg-red-50 text-red-600",
+        inactive: "text-slate-600 hover:bg-slate-50",
+      },
+      orange: {
+        active: "bg-orange-50 text-orange-600",
+        inactive: "text-slate-600 hover:bg-slate-50",
+      },
+      cyan: {
+        active: "bg-cyan-50 text-cyan-600",
+        inactive: "text-slate-600 hover:bg-slate-50",
+      },
+      pink: {
+        active: "bg-pink-50 text-pink-600",
+        inactive: "text-slate-600 hover:bg-slate-50",
+      },
+      amber: {
+        active: "bg-amber-50 text-amber-600",
+        inactive: "text-slate-600 hover:bg-slate-50",
+      },
+    };
+    const c = colors[color] || colors.blue;
+    return isActive ? c.active : c.inactive;
+  };
+
+  const getDotColor = (color: string) => {
+    const dots: Record<string, string> = {
+      blue: "bg-blue-500",
+      green: "bg-green-500",
+      purple: "bg-purple-500",
+      red: "bg-red-500",
+      orange: "bg-orange-500",
+      cyan: "bg-cyan-500",
+      pink: "bg-pink-500",
+      amber: "bg-amber-500",
+    };
+    return dots[color] || "bg-blue-500";
+  };
+
   // Filter calculators
   const filteredCalculators = useMemo(() => {
     if (!data) return [];
@@ -112,9 +193,23 @@ export default function CalculatorsPage() {
     });
   }, [data, searchQuery, activeCategory]);
 
-  const financeCalcs = filteredCalculators.filter((c) => c.category === "finance");
-  const healthCalcs = filteredCalculators.filter((c) => c.category === "health");
-  const everydayCalcs = filteredCalculators.filter((c) => c.category === "everyday");
+  // Group calculators by category
+  const calculatorsByCategory = useMemo(() => {
+    const grouped: Record<string, Calculator[]> = {};
+    
+    categories.forEach(cat => {
+      grouped[cat.slug] = filteredCalculators.filter(c => c.category === cat.slug);
+    });
+    
+    // Also include any calculators that might not match a dynamic category
+    const assignedSlugs = new Set(categories.map(c => c.slug));
+    const unassigned = filteredCalculators.filter(c => !assignedSlugs.has(c.category));
+    if (unassigned.length > 0) {
+      grouped["other"] = unassigned;
+    }
+    
+    return grouped;
+  }, [filteredCalculators, categories]);
 
   // Popular calculators (only from active)
   const popularCalculators = useMemo(() => {
@@ -124,7 +219,12 @@ export default function CalculatorsPage() {
       .filter((c): c is Calculator => c !== undefined);
   }, [data]);
 
-  // Results count for screen readers
+  // Count calculators per category
+  const getCategoryCount = (slug: string) => {
+    if (!data) return 0;
+    return data.calculators.filter(c => c.category === slug).length;
+  };
+
   const resultsCount = filteredCalculators.length;
 
   if (loading) {
@@ -161,7 +261,6 @@ export default function CalculatorsPage() {
 
   return (
     <>
-      {/* Skip to main content link */}
       <a 
         href="#calculator-list" 
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
@@ -199,7 +298,7 @@ export default function CalculatorsPage() {
                   />
                 </div>
 
-                {/* Categories */}
+                {/* Dynamic Categories */}
                 <nav aria-label="Calculator categories">
                   <h2 
                     id="categories-heading"
@@ -212,6 +311,7 @@ export default function CalculatorsPage() {
                     role="list"
                     aria-labelledby="categories-heading"
                   >
+                    {/* All Calculators */}
                     <li>
                       <button
                         onClick={() => setActiveCategory("all")}
@@ -226,68 +326,26 @@ export default function CalculatorsPage() {
                         <span className="float-right text-slate-400" aria-hidden="true">
                           {data?.counts.total || 0}
                         </span>
-                        <span className="sr-only">
-                          , {data?.counts.total || 0} calculators
-                        </span>
                       </button>
                     </li>
-                    <li>
-                      <button
-                        onClick={() => setActiveCategory("finance")}
-                        aria-pressed={activeCategory === "finance"}
-                        className={`w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                          activeCategory === "finance"
-                            ? "bg-blue-50 text-blue-600"
-                            : "text-slate-600 hover:bg-slate-50"
-                        }`}
-                      >
-                        {t("finance")}
-                        <span className="float-right text-slate-400" aria-hidden="true">
-                          {data?.counts.finance || 0}
-                        </span>
-                        <span className="sr-only">
-                          , {data?.counts.finance || 0} calculators
-                        </span>
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        onClick={() => setActiveCategory("health")}
-                        aria-pressed={activeCategory === "health"}
-                        className={`w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                          activeCategory === "health"
-                            ? "bg-blue-50 text-blue-600"
-                            : "text-slate-600 hover:bg-slate-50"
-                        }`}
-                      >
-                        {t("healthFitness")}
-                        <span className="float-right text-slate-400" aria-hidden="true">
-                          {data?.counts.health || 0}
-                        </span>
-                        <span className="sr-only">
-                          , {data?.counts.health || 0} calculators
-                        </span>
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        onClick={() => setActiveCategory("everyday")}
-                        aria-pressed={activeCategory === "everyday"}
-                        className={`w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 ${
-                          activeCategory === "everyday"
-                            ? "bg-purple-50 text-purple-700"
-                            : "text-slate-600 hover:bg-slate-50"
-                        }`}
-                      >
-                        {t("everyday")}
-                        <span className="float-right text-slate-400" aria-hidden="true">
-                          {data?.counts.everyday || 0}
-                        </span>
-                        <span className="sr-only">
-                          , {data?.counts.everyday || 0} calculators
-                        </span>
-                      </button>
-                    </li>
+
+                    {/* Dynamic Categories from DB */}
+                    {categories.map((cat) => (
+                      <li key={cat.id}>
+                        <button
+                          onClick={() => setActiveCategory(cat.slug)}
+                          aria-pressed={activeCategory === cat.slug}
+                          className={`w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                            getCategoryColor(cat.color, activeCategory === cat.slug)
+                          }`}
+                        >
+                          {getCategoryName(cat)}
+                          <span className="float-right text-slate-400" aria-hidden="true">
+                            {getCategoryCount(cat.slug)}
+                          </span>
+                        </button>
+                      </li>
+                    ))}
                   </ul>
                 </nav>
 
@@ -341,154 +399,111 @@ export default function CalculatorsPage() {
                 }
               </div>
 
-              {/* Finance Section */}
-              {financeCalcs.length > 0 && (
+              {/* Dynamic Category Sections */}
+              {categories.map((cat) => {
+                const calcs = calculatorsByCategory[cat.slug] || [];
+                if (calcs.length === 0) return null;
+
+                return (
+                  <section 
+                    key={cat.id}
+                    className="mb-10"
+                    aria-labelledby={`${cat.slug}-section-heading`}
+                  >
+                    <h2 
+                      id={`${cat.slug}-section-heading`}
+                      className="flex items-center gap-2 text-lg font-bold text-slate-900 mb-4"
+                    >
+                      <span 
+                        className={`w-2 h-2 rounded-full ${getDotColor(cat.color)}`}
+                        aria-hidden="true"
+                      ></span>
+                      {getCategoryName(cat)}
+                      <span className="text-slate-400 font-normal text-sm">
+                        ({calcs.length})
+                      </span>
+                    </h2>
+                    <ul 
+                      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+                      role="list"
+                    >
+                      {calcs.map((calc) => (
+                        <li key={calc.slug}>
+                          <Link
+                            href={`/${locale}/${calc.slug}`}
+                            className={`block bg-white p-5 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-slate-100 group focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+                              cat.color === "green" ? "focus:ring-green-500" :
+                              cat.color === "purple" ? "focus:ring-purple-500" :
+                              "focus:ring-blue-500"
+                            }`}
+                            aria-label={`${getCalculatorName(calc)} Calculator${calc.isNew ? ' (New)' : ''}: ${getCalculatorDesc(calc)}`}
+                          >
+                            <div className="flex items-start justify-between mb-2">
+                              <h3 className={`font-semibold text-slate-900 transition-colors ${
+                                cat.color === "green" ? "group-hover:text-green-600" :
+                                cat.color === "purple" ? "group-hover:text-purple-600" :
+                                "group-hover:text-blue-600"
+                              }`}>
+                                {getCalculatorName(calc)}
+                              </h3>
+                              {calc.isNew && (
+                                <span 
+                                  className={`px-2 py-0.5 text-xs font-medium rounded-full ${
+                                    cat.color === "green" ? "bg-green-100 text-green-700" :
+                                    cat.color === "purple" ? "bg-purple-100 text-purple-700" :
+                                    "bg-blue-100 text-blue-700"
+                                  }`}
+                                  aria-label="New calculator"
+                                >
+                                  NEW
+                                </span>
+                              )}
+                            </div>
+                            <p className="text-sm text-slate-600">
+                              {getCalculatorDesc(calc)}
+                            </p>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
+                );
+              })}
+
+              {/* Uncategorized / Other calculators */}
+              {calculatorsByCategory["other"]?.length > 0 && (
                 <section 
                   className="mb-10"
-                  aria-labelledby="finance-section-heading"
+                  aria-labelledby="other-section-heading"
                 >
                   <h2 
-                    id="finance-section-heading"
+                    id="other-section-heading"
                     className="flex items-center gap-2 text-lg font-bold text-slate-900 mb-4"
                   >
                     <span 
-                      className="w-2 h-2 rounded-full bg-blue-500"
+                      className="w-2 h-2 rounded-full bg-slate-400"
                       aria-hidden="true"
                     ></span>
-                    {t("financeTitle")}
+                    Other
                     <span className="text-slate-400 font-normal text-sm">
-                      ({financeCalcs.length})
+                      ({calculatorsByCategory["other"].length})
                     </span>
                   </h2>
                   <ul 
                     className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
                     role="list"
                   >
-                    {financeCalcs.map((calc) => (
+                    {calculatorsByCategory["other"].map((calc) => (
                       <li key={calc.slug}>
                         <Link
                           href={`/${locale}/${calc.slug}`}
                           className="block bg-white p-5 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-slate-100 group focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                          aria-label={`${getCalculatorName(calc)} Calculator${calc.isNew ? ' (New)' : ''}: ${getCalculatorDesc(calc)}`}
+                          aria-label={`${getCalculatorName(calc)} Calculator: ${getCalculatorDesc(calc)}`}
                         >
                           <div className="flex items-start justify-between mb-2">
                             <h3 className="font-semibold text-slate-900 group-hover:text-blue-600 transition-colors">
                               {getCalculatorName(calc)}
                             </h3>
-                            {calc.isNew && (
-                              <span 
-                                className="px-2 py-0.5 text-xs font-medium bg-blue-100 text-blue-700 rounded-full"
-                                aria-label="New calculator"
-                              >
-                                NEW
-                              </span>
-                            )}
-                          </div>
-                          <p className="text-sm text-slate-600">
-                            {getCalculatorDesc(calc)}
-                          </p>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-              )}
-
-              {/* Health Section */}
-              {healthCalcs.length > 0 && (
-                <section 
-                  className="mb-10"
-                  aria-labelledby="health-section-heading"
-                >
-                  <h2 
-                    id="health-section-heading"
-                    className="flex items-center gap-2 text-lg font-bold text-slate-900 mb-4"
-                  >
-                    <span 
-                      className="w-2 h-2 rounded-full bg-green-500"
-                      aria-hidden="true"
-                    ></span>
-                    {t("healthTitle")}
-                    <span className="text-slate-400 font-normal text-sm">
-                      ({healthCalcs.length})
-                    </span>
-                  </h2>
-                  <ul 
-                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
-                    role="list"
-                  >
-                    {healthCalcs.map((calc) => (
-                      <li key={calc.slug}>
-                        <Link
-                          href={`/${locale}/${calc.slug}`}
-                          className="block bg-white p-5 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-slate-100 group focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
-                          aria-label={`${getCalculatorName(calc)} Calculator${calc.isNew ? ' (New)' : ''}: ${getCalculatorDesc(calc)}`}
-                        >
-                          <div className="flex items-start justify-between mb-2">
-                            <h3 className="font-semibold text-slate-900 group-hover:text-green-600 transition-colors">
-                              {getCalculatorName(calc)}
-                            </h3>
-                            {calc.isNew && (
-                              <span 
-                                className="px-2 py-0.5 text-xs font-medium bg-green-100 text-green-700 rounded-full"
-                                aria-label="New calculator"
-                              >
-                                NEW
-                              </span>
-                            )}
-                          </div>
-                          <p className="text-sm text-slate-600">
-                            {getCalculatorDesc(calc)}
-                          </p>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-              )}
-
-              {/* Everyday Section */}
-              {everydayCalcs.length > 0 && (
-                <section 
-                  className="mb-10"
-                  aria-labelledby="everyday-section-heading"
-                >
-                  <h2 
-                    id="everyday-section-heading"
-                    className="flex items-center gap-2 text-lg font-bold text-slate-900 mb-4"
-                  >
-                    <span 
-                      className="w-2 h-2 rounded-full bg-purple-500"
-                      aria-hidden="true"
-                    ></span>
-                    {t("everydayTitle")}
-                    <span className="text-slate-400 font-normal text-sm">
-                      ({everydayCalcs.length})
-                    </span>
-                  </h2>
-                  <ul 
-                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
-                    role="list"
-                  >
-                    {everydayCalcs.map((calc) => (
-                      <li key={calc.slug}>
-                        <Link
-                          href={`/${locale}/${calc.slug}`}
-                          className="block bg-white p-5 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-slate-100 group focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
-                          aria-label={`${getCalculatorName(calc)} Calculator${calc.isNew ? ' (New)' : ''}: ${getCalculatorDesc(calc)}`}
-                        >
-                          <div className="flex items-start justify-between mb-2">
-                            <h3 className="font-semibold text-slate-900 group-hover:text-purple-700 transition-colors">
-                              {getCalculatorName(calc)}
-                            </h3>
-                            {calc.isNew && (
-                              <span 
-                                className="px-2 py-0.5 text-xs font-medium bg-purple-100 text-purple-700 rounded-full"
-                                aria-label="New calculator"
-                              >
-                                NEW
-                              </span>
-                            )}
                           </div>
                           <p className="text-sm text-slate-600">
                             {getCalculatorDesc(calc)}

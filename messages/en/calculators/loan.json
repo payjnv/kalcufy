@@ -1,0 +1,128 @@
+{
+  "meta": {
+    "title": "Loan Calculator",
+    "description": "Calculate your loan payments, total interest, and amortization schedule. Compare different loan terms and interest rates to find the best personal loan for your needs."
+  },
+  "hero": {
+    "title": "Loan Calculator",
+    "subtitle": "Calculate your monthly loan payments and see the total cost of borrowing",
+    "badge": "Finance"
+  },
+  "inputs": {
+    "loanAmount": {
+      "label": "Loan Amount",
+      "placeholder": "Enter loan amount",
+      "helper": "The total amount you want to borrow"
+    },
+    "interestRate": {
+      "label": "Interest Rate",
+      "placeholder": "Enter rate",
+      "helper": "Annual Percentage Rate (APR)"
+    },
+    "loanTerm": {
+      "label": "Loan Term",
+      "placeholder": "Enter term in months",
+      "helper": "Length of the loan"
+    },
+    "loanTermUnit": {
+      "label": "Term Unit",
+      "options": {
+        "months": "Months",
+        "years": "Years"
+      }
+    },
+    "startDate": {
+      "label": "Start Date",
+      "placeholder": "Select start date",
+      "helper": "When the loan begins"
+    },
+    "extraPayment": {
+      "label": "Extra Monthly Payment",
+      "placeholder": "Enter extra payment",
+      "helper": "Additional amount to pay each month (optional)"
+    }
+  },
+  "results": {
+    "title": "Your Loan Summary",
+    "monthlyPayment": {
+      "label": "Monthly Payment",
+      "description": "Your regular monthly payment"
+    },
+    "totalPayment": {
+      "label": "Total Payment",
+      "description": "Total amount you'll pay over the loan term"
+    },
+    "totalInterest": {
+      "label": "Total Interest",
+      "description": "Total interest paid over the life of the loan"
+    },
+    "payoffDate": {
+      "label": "Payoff Date",
+      "description": "When your loan will be paid off"
+    },
+    "effectiveRate": {
+      "label": "Effective Rate",
+      "description": "True annual cost including compounding"
+    },
+    "withExtraPayments": {
+      "title": "With Extra Payments",
+      "interestSaved": "Interest Saved",
+      "timeSaved": "Time Saved",
+      "newPayoffDate": "New Payoff Date"
+    },
+    "amortization": {
+      "title": "Amortization Schedule",
+      "month": "Month",
+      "payment": "Payment",
+      "principal": "Principal",
+      "interest": "Interest",
+      "balance": "Balance"
+    }
+  },
+  "education": {
+    "title": "Understanding Loans",
+    "sections": [
+      {
+        "title": "How Loan Payments Work",
+        "content": "Each loan payment consists of two parts: principal and interest. At the beginning of the loan, most of your payment goes toward interest. Over time, more goes toward principal. This is called amortization."
+      },
+      {
+        "title": "APR vs Interest Rate",
+        "content": "The Annual Percentage Rate (APR) includes the interest rate plus other fees and costs, giving you a more complete picture of what the loan will cost. Always compare loans using APR rather than just the interest rate."
+      },
+      {
+        "title": "Impact of Loan Term",
+        "content": "A longer loan term means lower monthly payments but more total interest paid. A shorter term has higher payments but saves money on interest. Choose based on your budget and financial goals."
+      },
+      {
+        "title": "Benefits of Extra Payments",
+        "content": "Making extra payments, even small ones, can significantly reduce total interest and shorten your loan term. Extra payments go directly toward principal, reducing the balance that accrues interest."
+      }
+    ]
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "items": [
+      {
+        "question": "How is my monthly payment calculated?",
+        "answer": "Monthly payment is calculated using the loan amount, interest rate, and term. The formula accounts for compound interest to ensure each payment covers both interest charges and reduces your principal balance."
+      },
+      {
+        "question": "Should I pay off my loan early?",
+        "answer": "Paying off a loan early saves money on interest, but check for prepayment penalties first. Also consider whether you could earn more by investing extra funds instead of paying down low-interest debt."
+      },
+      {
+        "question": "What's the difference between secured and unsecured loans?",
+        "answer": "Secured loans are backed by collateral (like a car or home), typically offering lower interest rates. Unsecured loans don't require collateral but usually have higher rates because they're riskier for lenders."
+      },
+      {
+        "question": "How does my credit score affect my loan?",
+        "answer": "Your credit score significantly impacts the interest rate you'll receive. Higher scores typically qualify for lower rates, potentially saving thousands over the life of the loan. Even a 1% rate difference can be significant."
+      },
+      {
+        "question": "What happens if I miss a payment?",
+        "answer": "Missing a payment can result in late fees, damage to your credit score, and potentially higher interest rates. If you're struggling, contact your lender about hardship programs or modified payment plans before missing payments."
+      }
+    ]
+  }
+}

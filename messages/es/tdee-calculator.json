@@ -1,0 +1,148 @@
+{
+  "meta": {
+    "title": "Calculadora TDEE - Calcula Tu Gasto Energético Diario Total",
+    "description": "Calculadora TDEE gratuita para determinar tu gasto energético diario total. Incluye cálculo de TMB, ajustes por nivel de actividad, vista semanal de calorías y metas para pérdida de peso o ganancia muscular."
+  },
+  "calculator": {
+    "title": "Calculadora TDEE",
+    "subtitle": "Calcula tu Gasto Energético Diario Total"
+  },
+  "inputs": {
+    "unitSystem": "Sistema de Unidades",
+    "imperial": "Imperial (lb, ft)",
+    "metric": "Métrico (kg, cm)",
+    "biologicalSex": "Sexo Biológico",
+    "male": "Hombre",
+    "female": "Mujer",
+    "age": "Edad",
+    "years": "años",
+    "weight": "Peso",
+    "height": "Altura",
+    "feet": "pies",
+    "inches": "pulg",
+    "cm": "cm",
+    "kg": "kg",
+    "lbs": "lbs"
+  },
+  "activity": {
+    "label": "Nivel de Actividad",
+    "sedentary": "Sedentario",
+    "sedentaryDesc": "Poco o ningún ejercicio, trabajo de escritorio",
+    "light": "Ligeramente Activo",
+    "lightDesc": "Ejercicio ligero 1-3 días/semana",
+    "moderate": "Moderadamente Activo",
+    "moderateDesc": "Ejercicio moderado 3-5 días/semana",
+    "active": "Activo",
+    "activeDesc": "Ejercicio intenso 6-7 días/semana",
+    "veryActive": "Muy Activo",
+    "veryActiveDesc": "Ejercicio intenso diario + trabajo físico",
+    "extraActive": "Extra Activo",
+    "extraActiveDesc": "Atleta o ejercicio muy intenso dos veces/día"
+  },
+  "goal": {
+    "label": "Tu Meta",
+    "lose": "Perder Grasa",
+    "maintain": "Mantener",
+    "gain": "Ganar Músculo"
+  },
+  "advanced": {
+    "title": "Opciones Avanzadas",
+    "formula": "Fórmula de TMB",
+    "mifflin": "Mifflin-St Jeor",
+    "harris": "Harris-Benedict",
+    "katch": "Katch-McArdle",
+    "katchNote": "Ingresa el % de grasa corporal abajo para usar Katch-McArdle",
+    "bodyFat": "% Grasa Corporal",
+    "bodyFatOptional": "(opcional)",
+    "bodyFatHint": "Mejora la precisión si lo conoces. Usa nuestra Calculadora de Grasa Corporal.",
+    "pregnancy": "Estado de Embarazo",
+    "notPregnant": "No Embarazada",
+    "trimester1": "1er Trimestre",
+    "trimester2": "2do Trimestre",
+    "trimester3": "3er Trimestre",
+    "breastfeeding": "Lactancia",
+    "breastfeedingNo": "No",
+    "breastfeedingExclusive": "Exclusiva",
+    "breastfeedingPartial": "Parcial",
+    "caloriesAdded": "calorías/día agregadas"
+  },
+  "results": {
+    "title": "Tu Gasto Energético Diario (TDEE)",
+    "calPerDay": "cal/día",
+    "toLoseWeight": "Para perder peso:",
+    "toBuildMuscle": "Para ganar músculo:",
+    "toMaintain": "Para mantener:",
+    "bmrResting": "TMB (En Reposo)",
+    "weeklyTDEE": "TDEE Semanal",
+    "activityMultiplier": "Multiplicador de Actividad",
+    "weeklyGoal": "Meta Semanal",
+    "tdeeBreakdown": "Desglose del TDEE",
+    "bmr": "TMB",
+    "exercise": "Ejercicio",
+    "tef": "TEF",
+    "weeklyView": "Vista Semanal de Calorías",
+    "weeklyTotal": "Total Semanal:",
+    "calorieTargets": "Metas Calóricas por Objetivo",
+    "aggressiveLoss": "Pérdida Agresiva (-1000 cal)",
+    "moderateLoss": "Pérdida Moderada (-500 cal)",
+    "maintainWeight": "Mantener Peso",
+    "leanGain": "Ganancia Magra (+250 cal)",
+    "muscleGain": "Ganancia Muscular (+500 cal)",
+    "formulaComparison": "Comparación de Fórmulas de TMB"
+  },
+  "education": {
+    "whatIsTDEE": "¿Qué es el TDEE?",
+    "whatIsTDEEContent": "TDEE significa Gasto Energético Diario Total. Representa el número total de calorías que tu cuerpo quema en un período de 24 horas, incluyendo todas las actividades desde respirar y digerir alimentos hasta ejercitarse y caminar.",
+    "components": "Componentes del TDEE",
+    "bmrComponent": "Tasa Metabólica Basal (TMB) - 60-70%",
+    "bmrComponentDesc": "Las calorías que tu cuerpo necesita para realizar funciones básicas de mantenimiento de vida como respiración, circulación, producción de células y procesamiento de nutrientes mientras está en reposo completo.",
+    "activityComponent": "Actividad Física - 15-30%",
+    "activityComponentDesc": "Todas las calorías quemadas a través del movimiento, incluyendo ejercicio, caminar, estar de pie y actividades diarias. Este es el componente más variable.",
+    "tefComponent": "Efecto Térmico de los Alimentos (TEF) - 10%",
+    "tefComponentDesc": "La energía requerida para digerir, absorber y metabolizar los alimentos que comes. La proteína tiene el efecto térmico más alto del 20-30%.",
+    "activityLevels": "Niveles de Actividad Explicados",
+    "understanding": "Entendiendo el TDEE",
+    "tips": "Consejos para Mayor Precisión"
+  },
+  "example": {
+    "title": "Ejemplo de Cálculo de TDEE",
+    "description": "Calculemos el TDEE para un hombre de 30 años, 5'10\" (178 cm), 170 lbs (77 kg), que hace ejercicio 3-5 días por semana.",
+    "step1Title": "Paso 1: Calcular TMB",
+    "step1Desc": "Usando la fórmula Mifflin-St Jeor:",
+    "step2Title": "Paso 2: Calcular TDEE",
+    "step2Desc": "Multiplicar por factor de actividad (1.55 para moderado):"
+  },
+  "sidebar": {
+    "healthCalcs": "Calculadoras de Salud",
+    "financeCalcs": "Calculadoras Financieras",
+    "macroTitle": "Calcula Tus Macros",
+    "macroDesc": "Ahora que conoces tu TDEE, calcula la proteína, carbohidratos y grasas óptimas para tus metas.",
+    "macroButton": "Probar Calculadora de Macros →"
+  },
+  "faq": [
+    {
+      "question": "¿Qué es el TDEE?",
+      "answer": "TDEE (Gasto Energético Diario Total) es el número total de calorías que quemas cada día. Incluye tu Tasa Metabólica Basal (TMB), las calorías quemadas a través de actividad física y el efecto térmico de los alimentos (energía usada para digerir comida)."
+    },
+    {
+      "question": "¿En qué se diferencia el TDEE de la TMB?",
+      "answer": "La TMB (Tasa Metabólica Basal) son las calorías que tu cuerpo quema en reposo completo solo para mantener funciones vitales. El TDEE agrega tu nivel de actividad sobre la TMB, dándote las calorías totales que quemas en un día incluyendo ejercicio y actividades diarias."
+    },
+    {
+      "question": "¿Qué tan preciso es el cálculo de TDEE?",
+      "answer": "Los cálculos de TDEE son estimaciones basadas en fórmulas. El gasto energético real varía según genética, masa muscular, hormonas y otros factores. Usa tu TDEE calculado como punto de partida y ajusta según resultados reales durante 2-4 semanas."
+    },
+    {
+      "question": "¿Cómo uso el TDEE para pérdida de peso?",
+      "answer": "Para perder peso, come menos calorías que tu TDEE. Un déficit de 500 calorías por día típicamente resulta en aproximadamente 1 libra de pérdida de peso por semana. No bajes de 1,200 calorías (mujeres) o 1,500 calorías (hombres) sin supervisión médica."
+    },
+    {
+      "question": "¿Cómo uso el TDEE para ganar músculo?",
+      "answer": "Para desarrollar músculo, come ligeramente más que tu TDEE (un superávit de 250-500 calorías) mientras sigues un programa de entrenamiento de fuerza. Esto proporciona la energía extra necesaria para el crecimiento muscular mientras minimiza la ganancia de grasa."
+    },
+    {
+      "question": "¿Por qué el embarazo afecta el TDEE?",
+      "answer": "El embarazo aumenta las necesidades calóricas para apoyar el crecimiento y desarrollo fetal. El 2do trimestre requiere aproximadamente 340 calorías extra, y el 3er trimestre requiere aproximadamente 450 calorías extra. Siempre consulta a tu proveedor de salud para consejos personalizados."
+    }
+  ]
+}

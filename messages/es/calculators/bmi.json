@@ -1,0 +1,112 @@
+{
+  "meta": {
+    "title": "Calculadora de IMC",
+    "description": "Calcula tu Índice de Masa Corporal (IMC) al instante. Obtén tu categoría de IMC, rango de peso saludable y perspectivas de salud personalizadas."
+  },
+  "hero": {
+    "title": "Calculadora de IMC",
+    "description": "Calcula tu Índice de Masa Corporal y entiende lo que significa para tu salud. Obtén resultados instantáneos con recomendaciones personalizadas."
+  },
+  "inputs": {
+    "weight": {
+      "label": "Peso",
+      "help": "Ingresa tu peso corporal actual"
+    },
+    "height": {
+      "label": "Altura",
+      "help": "Ingresa tu altura"
+    },
+    "age": {
+      "label": "Edad",
+      "help": "Opcional: Ingresa tu edad para más contexto",
+      "placeholder": "ej., 30"
+    },
+    "gender": {
+      "label": "Género",
+      "help": "Opcional: Selecciona tu género para información adicional",
+      "options": {
+        "male": "Masculino",
+        "female": "Femenino"
+      }
+    }
+  },
+  "results": {
+    "bmi": {
+      "label": "Tu IMC",
+      "description": "Índice de Masa Corporal calculado a partir de tu altura y peso"
+    },
+    "category": {
+      "label": "Categoría",
+      "description": "Tu clasificación de IMC según los estándares de la OMS",
+      "values": {
+        "severely-underweight": "Bajo peso severo",
+        "underweight": "Bajo peso",
+        "normal": "Peso normal",
+        "overweight": "Sobrepeso",
+        "obese-class-1": "Obesidad Clase I",
+        "obese-class-2": "Obesidad Clase II",
+        "obese-class-3": "Obesidad Clase III"
+      }
+    },
+    "healthyRange": {
+      "label": "Rango de Peso Saludable",
+      "description": "El rango de peso para un IMC normal (18.5-24.9) a tu altura"
+    },
+    "weightDifference": {
+      "label": "Ajuste de Peso",
+      "description": "Cuánto peso perder o ganar para alcanzar el rango de IMC normal"
+    },
+    "bmiPrime": {
+      "label": "IMC Prime",
+      "description": "Proporción de tu IMC respecto al límite superior normal (25). Valores menores a 1.0 son normales."
+    },
+    "ponderalIndex": {
+      "label": "Índice Ponderal",
+      "description": "Índice alternativo (kg/m³) que considera mejor las diferencias de altura"
+    }
+  },
+  "education": {
+    "sections": {
+      "whatIsBmi": {
+        "title": "¿Qué es el IMC?",
+        "content": "El Índice de Masa Corporal (IMC) es un cálculo simple que usa tu altura y peso para estimar la grasa corporal. Es ampliamente usado como herramienta de detección para categorizar individuos en categorías de estado de peso. La fórmula divide el peso en kilogramos por la altura en metros al cuadrado (kg/m²)."
+      },
+      "categories": {
+        "title": "Categorías de IMC",
+        "content": "La Organización Mundial de la Salud clasifica el IMC en varias categorías: Bajo peso (menor a 18.5), Peso normal (18.5-24.9), Sobrepeso (25-29.9) y Obesidad (30 o más). Estos umbrales ayudan a identificar riesgos potenciales de salud asociados con el peso."
+      },
+      "limitations": {
+        "title": "Limitaciones del IMC",
+        "content": "El IMC no distingue entre masa muscular y grasa, por lo que los atletas pueden ser clasificados con sobrepeso a pesar de estar saludables. Tampoco considera la distribución de grasa, cambios relacionados con la edad ni variaciones étnicas. Es mejor usarlo como uno de varios indicadores de salud, no como una medida definitiva."
+      },
+      "bmiPrime": {
+        "title": "Entendiendo el IMC Prime",
+        "content": "El IMC Prime es tu IMC dividido por 25 (el límite superior de normal). Un IMC Prime de 1.0 significa que estás en el umbral entre normal y sobrepeso. Valores menores a 1.0 indican peso normal, mientras que valores mayores a 1.0 indican sobrepeso u obesidad."
+      }
+    }
+  },
+  "faq": {
+    "items": [
+      {
+        "question": "¿Cuál es un rango saludable de IMC?",
+        "answer": "Un IMC saludable generalmente se considera entre 18.5 y 24.9. Este rango está asociado con los menores riesgos de salud. Sin embargo, lo 'saludable' puede variar según factores individuales como masa muscular, edad y etnia."
+      },
+      {
+        "question": "¿Por qué el IMC puede ser inexacto para atletas?",
+        "answer": "El IMC no diferencia entre músculo y grasa. Como el músculo es más denso que la grasa, los atletas musculosos a menudo tienen IMC más altos a pesar de tener bajo porcentaje de grasa corporal. Para atletas, el porcentaje de grasa corporal o la circunferencia de cintura pueden ser mejores indicadores."
+      },
+      {
+        "question": "¿La edad afecta la interpretación del IMC?",
+        "answer": "Sí, la composición corporal cambia con la edad. Los adultos mayores tienden a tener más grasa corporal y menos músculo. Algunos investigadores sugieren que rangos de IMC ligeramente más altos (23-28) pueden ser aceptables para adultos mayores de 65 años, aunque esto varía según el estado de salud individual."
+      },
+      {
+        "question": "¿Con qué frecuencia debo revisar mi IMC?",
+        "answer": "Para la mayoría de los adultos, revisar el IMC una vez cada pocos meses es suficiente. Si estás tratando activamente de cambiar tu peso, revisiones mensuales pueden ayudar a seguir el progreso. Sin embargo, las fluctuaciones diarias son normales, así que no te obsesiones con mediciones frecuentes."
+      },
+      {
+        "question": "¿Qué debo hacer si mi IMC está fuera del rango normal?",
+        "answer": "Si tu IMC indica bajo peso o sobrepeso, considera consultar a un profesional de salud. Ellos pueden evaluar tu salud general, incluyendo composición corporal, factores de estilo de vida y cualquier condición subyacente, para proporcionar recomendaciones personalizadas."
+      }
+    ]
+  }
+}

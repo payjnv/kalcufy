@@ -1,13 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 export default function PricingPage() {
   const t = useTranslations('pricing');
+  const locale = useLocale();
   const [isYearly, setIsYearly] = useState(false);
 
   const freeFeatures = t.raw('free.features') as string[];
@@ -128,8 +129,9 @@ export default function PricingPage() {
                 </div>
                 
                 <Link 
-                  href="/register" 
+                  href={`/${locale}/register`}
                   className="block w-full py-3 px-6 text-center bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 mb-8"
+                  aria-label="Get Started with Free plan"
                 >
                   {t('free.cta')}
                 </Link>
@@ -181,8 +183,9 @@ export default function PricingPage() {
                 </div>
                 
                 <Link 
-                  href="/register" 
+                  href={`/${locale}/register`}
                   className="block w-full py-3 px-6 text-center bg-white hover:bg-slate-100 text-blue-600 font-semibold rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600 mb-8"
+                  aria-label="Start PRO plan trial"
                 >
                   {t('pro.cta')}
                 </Link>
@@ -264,8 +267,9 @@ export default function PricingPage() {
               Try PRO free for 7 days. No credit card required.
             </p>
             <Link 
-              href="/register" 
-              className="inline-block px-8 py-4 bg-white text-blue-600 font-semibold rounded-xl hover:bg-slate-100 transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600"
+              href={`/${locale}/register`}
+              className="inline-block px-8 py-4 bg-white text-blue-600 font-semibold rounded-xl hover:bg-slate-100 transition-colors motion-safe:hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600"
+              aria-label="Start free 7-day PRO trial - no credit card required"
             >
               Start Free Trial
             </Link>

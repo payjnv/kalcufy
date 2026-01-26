@@ -1,0 +1,189 @@
+{
+  "meta": {
+    "title": "Calculadora de Peso Ideal - Calcula Tu Peso Corporal Ideal",
+    "description": "Calculadora de peso ideal gratuita usando 5 fórmulas científicas (Robinson, Miller, Devine, Hamwi, IMC). Incluye ajuste por complexión, tipo de cuerpo y tiempo estimado para alcanzar tu meta."
+  },
+  "common": {
+    "home": "Inicio",
+    "calculators": "Calculadoras"
+  },
+  "calculator": {
+    "title": "Calculadora de Peso Ideal",
+    "subtitle": "Calcula tu peso corporal ideal usando 5 fórmulas científicas",
+    "yourInformation": "Tu Información",
+    "skipToCalculator": "Ir a la calculadora"
+  },
+  "inputs": {
+    "unitSystem": "Sistema de Unidades",
+    "imperial": "Imperial (lb, in)",
+    "metric": "Métrico (kg, cm)",
+    "biologicalSex": "Sexo Biológico",
+    "male": "Hombre",
+    "female": "Mujer",
+    "age": "Edad",
+    "years": "años",
+    "height": "Altura",
+    "feet": "pies",
+    "inches": "pulg",
+    "currentWeight": "Peso Actual",
+    "buildType": "Tipo de Cuerpo",
+    "wristCircumference": "Circunferencia de Muñeca",
+    "wristHelp": "Mide justo debajo del hueso de la muñeca"
+  },
+  "buildTypes": {
+    "lean": {
+      "label": "Delgado",
+      "description": "Mínimo músculo, complexión delgada"
+    },
+    "average": {
+      "label": "Promedio",
+      "description": "Composición corporal típica"
+    },
+    "athletic": {
+      "label": "Atlético",
+      "description": "Activo, algo de músculo"
+    },
+    "muscular": {
+      "label": "Musculoso",
+      "description": "Masa muscular significativa"
+    }
+  },
+  "frameSizes": {
+    "small": "Pequeña",
+    "medium": "Mediana",
+    "large": "Grande"
+  },
+  "results": {
+    "title": "Tus Resultados",
+    "idealWeight": "Tu Peso Ideal (Promedio)",
+    "healthyRange": "Rango Saludable",
+    "weightToLose": "Peso a Perder",
+    "weightToGain": "Peso a Ganar",
+    "atIdealWeight": "¡En Tu Peso Ideal!",
+    "atGoal": "En Meta",
+    "timeline": "Tiempo Estimado",
+    "weeks": "semanas",
+    "atRate": "a"
+  },
+  "visualizations": {
+    "healthyWeightRange": "Rango de Peso Saludable",
+    "current": "Actual",
+    "ideal": "Ideal",
+    "healthyZone": "Zona Saludable",
+    "formulaComparison": "Comparación de Fórmulas",
+    "resultsAdjusted": "Resultados ajustados para complexión {frame} y tipo de cuerpo {build}"
+  },
+  "formulas": {
+    "title": "Comparación de Fórmulas",
+    "robinson": {
+      "name": "Robinson",
+      "description": "1983 - La más comúnmente usada"
+    },
+    "miller": {
+      "name": "Miller",
+      "description": "1983 - Para complexiones pequeñas"
+    },
+    "devine": {
+      "name": "Devine",
+      "description": "1974 - Estándar médico"
+    },
+    "hamwi": {
+      "name": "Hamwi",
+      "description": "1964 - Fórmula original"
+    },
+    "bmiRange": {
+      "name": "Rango IMC",
+      "description": "Basado en IMC saludable"
+    }
+  },
+  "frameSize": {
+    "title": "Referencia de Complexión",
+    "detected": "Complexión detectada",
+    "adjustment": "ajuste",
+    "selectManually": "O Selecciona la Complexión Manualmente",
+    "frame": "Complexión",
+    "men": "Hombres (muñeca)",
+    "women": "Mujeres (muñeca)",
+    "adjust": "Ajuste"
+  },
+  "advanced": {
+    "title": "Opciones Avanzadas",
+    "weightChangeRate": "Tasa de Cambio de Peso",
+    "rateHelp": "Recomendado: 0.5-2 libras por semana para pérdida de peso segura",
+    "lbWeek": "lb/semana"
+  },
+  "buttons": {
+    "save": "Guardar",
+    "saving": "Guardando...",
+    "saved": "¡Guardado!",
+    "share": "Compartir",
+    "exportPdf": "Exportar PDF",
+    "exportExcel": "Exportar Excel",
+    "pro": "PRO",
+    "details": "Detalles",
+    "close": "Cerrar"
+  },
+  "favorites": {
+    "add": "Agregar a favoritos",
+    "remove": "Quitar de favoritos"
+  },
+  "education": {
+    "whatIsIdealWeight": "¿Qué es el Peso Corporal Ideal?",
+    "whatIsIdealWeightContent": "El peso corporal ideal (PCI) es un peso teórico asociado con el menor riesgo de problemas de salud para una persona de una altura determinada. Sin embargo, las fórmulas de PCI fueron originalmente desarrolladas para calcular dosis de medicamentos, no para determinar metas estéticas o de fitness.",
+    "whyDifferent": "¿Por Qué las Fórmulas Dan Resultados Diferentes?",
+    "whyDifferentContent": "Cada fórmula fue desarrollada por diferentes investigadores para diferentes propósitos y poblaciones. La variación entre fórmulas te da un rango realista a considerar en lugar de un número objetivo único.",
+    "exampleTitle": "Ejemplo de Cálculo",
+    "exampleDescription": "Hombre de 30 años, 5'10\" (178 cm), complexión mediana, tipo de cuerpo promedio"
+  },
+  "aboutFormulas": {
+    "title": "Acerca de las Fórmulas",
+    "robinson": "La más comúnmente usada en entornos clínicos",
+    "miller": "Tiende a dar estimaciones más bajas, buena para complexiones pequeñas",
+    "devine": "Fórmula médica original, aún ampliamente referenciada",
+    "hamwi": "La primera fórmula de peso ideal desarrollada"
+  },
+  "considerations": {
+    "title": "Consideraciones Importantes",
+    "item1": "Estas son estimaciones - los pesos saludables individuales varían",
+    "item2": "Los atletas pueden exceder los pesos ideales debido a la masa muscular",
+    "item3": "El porcentaje de grasa corporal suele ser más significativo",
+    "item4": "Consulta a un profesional de la salud para asesoría personalizada"
+  },
+  "sources": {
+    "title": "Fuentes y Referencias"
+  },
+  "sidebar": {
+    "ctaTitle": "📏 Revisa Tu Grasa Corporal",
+    "ctaDescription": "El porcentaje de grasa corporal suele ser más significativo que el peso solo. Prueba nuestra Calculadora de Grasa Corporal.",
+    "ctaLinkText": "Probar Calculadora de Grasa Corporal →"
+  },
+  "faqSection": {
+    "title": "Preguntas Frecuentes"
+  },
+  "faq": [
+    {
+      "question": "¿Qué tan precisas son las fórmulas de peso ideal?",
+      "answer": "Estas fórmulas proporcionan estimaciones basadas en altura y género. No tienen en cuenta la masa muscular, densidad ósea o composición corporal. Úsalas como guías generales, no como objetivos absolutos."
+    },
+    {
+      "question": "¿Por qué diferentes fórmulas dan resultados diferentes?",
+      "answer": "Cada fórmula fue desarrollada para diferentes propósitos y poblaciones. Robinson y Miller modificaron la fórmula original de Devine. La variación te da un rango saludable a considerar."
+    },
+    {
+      "question": "¿Qué es la complexión y por qué importa?",
+      "answer": "La complexión se refiere a tu estructura ósea (pequeña, mediana, grande). Las personas con complexiones más grandes naturalmente pesan más debido a huesos más grandes. La circunferencia de la muñeca es una forma simple de estimar la complexión."
+    },
+    {
+      "question": "¿Deberían los atletas usar estas fórmulas?",
+      "answer": "Los atletas con masa muscular significativa pueden exceder estos pesos ideales mientras están perfectamente saludables. Considera usar el porcentaje de grasa corporal en su lugar para una evaluación más precisa."
+    },
+    {
+      "question": "¿Cuál es una tasa segura de pérdida de peso?",
+      "answer": "La mayoría de los expertos en salud recomiendan 0.5-2 libras (0.25-1 kg) por semana. Una pérdida de peso más rápida puede llevar a pérdida de músculo, deficiencias nutricionales y es más difícil de mantener a largo plazo."
+    },
+    {
+      "question": "¿Cómo mido mi muñeca para determinar la complexión?",
+      "answer": "Envuelve una cinta métrica alrededor de tu muñeca justo debajo del hueso de la muñeca (donde usarías un reloj). Mantén la cinta ajustada pero no apretada. Compara con los umbrales para tu género."
+    }
+  ]
+}

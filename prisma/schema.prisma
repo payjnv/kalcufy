@@ -247,3 +247,56 @@ model CalculatorStatus {
 
   @@map("calculator_status")
 }
+
+model CalculatorRating {
+  id             String   @id @default(cuid())
+  calculatorSlug String
+  userId         String?
+  sessionId      String?
+  rating         Int
+  createdAt      DateTime @default(now())
+
+  @@unique([calculatorSlug, userId])
+  @@index([calculatorSlug])
+  @@map("calculator_ratings")
+}
+
+// ============================================================================
+// CALCULATOR CATEGORIES (Dynamic)
+// ============================================================================
+
+model CalculatorCategory {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  nameEn      String
+  nameEs      String?
+  namePt      String?
+  icon        String?
+  color       String   @default("blue")
+  description String?
+  isActive    Boolean  @default(true)
+  showInMenu  Boolean  @default(true)
+  showInHome  Boolean  @default(true)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  calculators CalculatorToCategory[]
+
+  @@map("calculator_categories")
+}
+
+model CalculatorToCategory {
+  id             String   @id @default(cuid())
+  calculatorSlug String
+  categoryId     String
+  sortOrder      Int      @default(0)
+  createdAt      DateTime @default(now())
+
+  category CalculatorCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@unique([calculatorSlug, categoryId])
+  @@index([calculatorSlug])
+  @@index([categoryId])
+  @@map("calculator_to_category")
+}

@@ -1,0 +1,141 @@
+{
+  "meta": {
+    "title": "Calculadora de Hipoteca",
+    "description": "Calcula tus pagos mensuales de hipoteca, interés total y tabla de amortización. Compara diferentes plazos de préstamo y opciones de enganche para encontrar la mejor hipoteca para tu presupuesto."
+  },
+  "hero": {
+    "title": "Calculadora de Hipoteca",
+    "subtitle": "Calcula tus pagos mensuales de hipoteca y ve el costo total de tu préstamo hipotecario",
+    "badge": "Finanzas"
+  },
+  "inputs": {
+    "homePrice": {
+      "label": "Precio de la Casa",
+      "placeholder": "Ingresa el precio",
+      "helper": "El precio de compra de la casa"
+    },
+    "downPayment": {
+      "label": "Enganche",
+      "placeholder": "Ingresa el enganche",
+      "helper": "Tu pago inicial (típicamente 10-20%)"
+    },
+    "downPaymentPercent": {
+      "label": "Enganche (%)",
+      "placeholder": "Ingresa el porcentaje"
+    },
+    "loanTerm": {
+      "label": "Plazo del Préstamo",
+      "options": {
+        "15": "15 años",
+        "20": "20 años",
+        "30": "30 años"
+      }
+    },
+    "interestRate": {
+      "label": "Tasa de Interés",
+      "placeholder": "Ingresa la tasa",
+      "helper": "Tasa de interés anual"
+    },
+    "propertyTax": {
+      "label": "Impuesto Predial (Anual)",
+      "placeholder": "Ingresa el impuesto anual",
+      "helper": "Monto anual del impuesto predial"
+    },
+    "homeInsurance": {
+      "label": "Seguro de Casa (Anual)",
+      "placeholder": "Ingresa el seguro anual",
+      "helper": "Prima de seguro anual"
+    },
+    "pmi": {
+      "label": "PMI (Mensual)",
+      "placeholder": "Ingresa el PMI mensual",
+      "helper": "Seguro Hipotecario Privado (si el enganche < 20%)"
+    },
+    "hoa": {
+      "label": "Cuotas HOA (Mensual)",
+      "placeholder": "Ingresa la cuota mensual",
+      "helper": "Cuotas de Asociación de Propietarios"
+    }
+  },
+  "results": {
+    "title": "Desglose de Tu Hipoteca",
+    "monthlyPayment": {
+      "label": "Pago Mensual",
+      "description": "Solo capital e interés"
+    },
+    "totalMonthlyPayment": {
+      "label": "Pago Mensual Total",
+      "description": "Incluyendo impuestos, seguro y cuotas"
+    },
+    "loanAmount": {
+      "label": "Monto del Préstamo",
+      "description": "Precio de casa menos enganche"
+    },
+    "totalInterest": {
+      "label": "Interés Total Pagado",
+      "description": "Interés durante la vida del préstamo"
+    },
+    "totalCost": {
+      "label": "Costo Total",
+      "description": "Monto total pagado durante el plazo"
+    },
+    "payoffDate": {
+      "label": "Fecha de Liquidación",
+      "description": "Cuando tu hipoteca estará pagada"
+    },
+    "breakdown": {
+      "title": "Desglose del Pago Mensual",
+      "principal": "Capital e Interés",
+      "propertyTax": "Impuesto Predial",
+      "insurance": "Seguro",
+      "pmi": "PMI",
+      "hoa": "HOA"
+    }
+  },
+  "education": {
+    "title": "Entendiendo Tu Hipoteca",
+    "sections": [
+      {
+        "title": "Cómo Funcionan las Hipotecas",
+        "content": "Una hipoteca es un préstamo usado para comprar una casa. Pides dinero prestado a un prestamista y lo pagas con el tiempo con intereses. Cada pago mensual incluye capital (la cantidad prestada) e interés (el costo del préstamo)."
+      },
+      {
+        "title": "Tasa Fija vs. Ajustable",
+        "content": "Las hipotecas de tasa fija tienen la misma tasa de interés durante todo el plazo del préstamo, proporcionando pagos predecibles. Las hipotecas de tasa ajustable (ARM) tienen tasas que pueden cambiar después de un período fijo inicial, lo que puede resultar en pagos iniciales más bajos pero más incertidumbre."
+      },
+      {
+        "title": "La Importancia del Enganche",
+        "content": "Un enganche mayor reduce el monto de tu préstamo, pagos mensuales e interés total pagado. Con 20% o más de enganche, puedes evitar el PMI, ahorrando cientos por mes. Sin embargo, poner demasiado puede agotar tu fondo de emergencia."
+      },
+      {
+        "title": "Entendiendo el PMI",
+        "content": "El Seguro Hipotecario Privado (PMI) se requiere cuando tu enganche es menor al 20%. Protege al prestamista si no pagas. El PMI típicamente cuesta 0.5-1% del monto del préstamo anualmente y puede eliminarse una vez que tengas 20% de capital."
+      }
+    ]
+  },
+  "faq": {
+    "title": "Preguntas Frecuentes",
+    "items": [
+      {
+        "question": "¿Cuánta casa puedo pagar?",
+        "answer": "Una guía común es que tus costos de vivienda mensuales (incluyendo hipoteca, impuestos y seguro) no deben exceder el 28% de tu ingreso mensual bruto. Tus pagos de deuda totales no deben exceder el 36% de tu ingreso."
+      },
+      {
+        "question": "¿Debo elegir una hipoteca de 15 o 30 años?",
+        "answer": "Una hipoteca de 15 años tiene pagos mensuales más altos pero ahorra dinero significativo en intereses y construye capital más rápido. Una hipoteca de 30 años tiene pagos más bajos, proporcionando más flexibilidad, pero cuesta más en interés total durante la vida del préstamo."
+      },
+      {
+        "question": "¿Qué puntaje de crédito necesito para una hipoteca?",
+        "answer": "La mayoría de los préstamos convencionales requieren un puntaje de crédito de 620 o más. Los préstamos FHA pueden aceptar puntajes tan bajos como 580 con un enganche del 3.5%. Mejores puntajes de crédito típicamente califican para tasas de interés más bajas, ahorrando miles durante el plazo del préstamo."
+      },
+      {
+        "question": "¿Debo pagar puntos para bajar mi tasa?",
+        "answer": "Los puntos hipotecarios te permiten pagar por adelantado para reducir tu tasa de interés. Cada punto cuesta 1% del préstamo y típicamente reduce la tasa en 0.25%. Los puntos tienen sentido si planeas quedarte en la casa el tiempo suficiente para recuperar el costo a través de pagos más bajos."
+      },
+      {
+        "question": "¿Qué está incluido en mi pago mensual?",
+        "answer": "Tu pago mensual de hipoteca típicamente incluye capital, interés, impuestos prediales, seguro de propietarios, y posiblemente PMI y cuotas HOA. Esto frecuentemente se llama PITI (Principal, Interés, Impuestos, Seguro)."
+      }
+    ]
+  }
+}

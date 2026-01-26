@@ -28,25 +28,25 @@ interface BlogPost {
 }
 
 // ============================================================================
-// CALCULATOR DATA
+// CALCULATOR DATA WITH DESCRIPTIONS
 // ============================================================================
 const healthCalculators = [
-  { name: "BMI", slug: "bmi-calculator", icon: "📊" },
-  { name: "Calorie", slug: "calorie-calculator", icon: "🔥" },
-  { name: "BMR", slug: "bmr-calculator", icon: "⚡" },
-  { name: "TDEE", slug: "tdee-calculator", icon: "🏃" },
-  { name: "Body Fat", slug: "body-fat-calculator", icon: "📏" },
-  { name: "Macro", slug: "macro-calculator", icon: "🥗" },
-  { name: "Ideal Weight", slug: "ideal-weight-calculator", icon: "⚖️" },
+  { name: "BMI", slug: "bmi-calculator", icon: "📊", desc: "Body Mass Index", popular: true },
+  { name: "Calorie", slug: "calorie-calculator", icon: "🔥", desc: "Daily calorie needs", popular: true },
+  { name: "BMR", slug: "bmr-calculator", icon: "⚡", desc: "Basal metabolic rate" },
+  { name: "TDEE", slug: "tdee-calculator", icon: "🏃", desc: "Total daily energy" },
+  { name: "Body Fat", slug: "body-fat-calculator", icon: "📏", desc: "Body fat percentage" },
+  { name: "Macro", slug: "macro-calculator", icon: "🥗", desc: "Protein, carbs & fats" },
+  { name: "Ideal Weight", slug: "ideal-weight-calculator", icon: "⚖️", desc: "Target weight range" },
 ];
 
 const financeCalculators = [
-  { name: "Mortgage", slug: "mortgage-calculator", icon: "🏠" },
-  { name: "Loan", slug: "loan-calculator", icon: "💳" },
-  { name: "Compound Interest", slug: "compound-interest-calculator", icon: "📈" },
-  { name: "Auto Loan", slug: "auto-loan-calculator", icon: "🚗" },
-  { name: "Retirement", slug: "retirement-calculator", icon: "🏖️" },
-  { name: "Savings", slug: "savings-calculator", icon: "💰" },
+  { name: "Mortgage", slug: "mortgage-calculator", icon: "🏠", desc: "Home loan payments", popular: true },
+  { name: "Loan", slug: "loan-calculator", icon: "💳", desc: "Personal loan calc" },
+  { name: "Compound Interest", slug: "compound-interest-calculator", icon: "📈", desc: "Investment growth", popular: true },
+  { name: "Auto Loan", slug: "auto-loan-calculator", icon: "🚗", desc: "Car financing" },
+  { name: "Retirement", slug: "retirement-calculator", icon: "🏖️", desc: "Retirement planning" },
+  { name: "Savings", slug: "savings-calculator", icon: "💰", desc: "Savings goals" },
 ];
 
 // ============================================================================
@@ -72,7 +72,7 @@ export default function CalculatorSidebar({
   // ─────────────────────────────────────────────────────────────────────────
   useEffect(() => {
     const fetchRelatedPosts = async () => {
-      if (relatedTags.length === 0 && !currentCalculator) return;
+      return; // Temporarily disabled
       
       setPostsLoading(true);
       try {
@@ -117,6 +117,49 @@ export default function CalculatorSidebar({
 
   const showHealth = category === "all" || category === "health";
   const showFinance = category === "all" || category === "finance";
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // RENDER CALCULATOR ITEM
+  // ─────────────────────────────────────────────────────────────────────────
+  const renderCalculatorItem = (calc: typeof healthCalculators[0], colorClass: string) => (
+    <li key={calc.slug}>
+      <Link
+        href={`/${locale}/${calc.slug}`}
+        className="group flex items-center gap-3 py-2.5 px-3 rounded-xl hover:bg-slate-50 border border-transparent hover:border-slate-200 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+      >
+        <span 
+          className={`w-9 h-9 ${colorClass} rounded-xl flex items-center justify-center text-base flex-shrink-0 group-hover:scale-110 transition-transform`}
+          aria-hidden="true"
+        >
+          {calc.icon}
+        </span>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2">
+            <span className="text-sm font-semibold text-slate-800 group-hover:text-blue-600 transition-colors">
+              {calc.name} Calculator
+            </span>
+            {calc.popular && (
+              <span className="px-1.5 py-0.5 bg-amber-100 text-amber-700 text-[10px] font-bold rounded-full uppercase">
+                Popular
+              </span>
+            )}
+          </div>
+          <span className="text-xs text-slate-500 block truncate">
+            {calc.desc}
+          </span>
+        </div>
+        <svg 
+          className="w-4 h-4 text-slate-300 group-hover:text-blue-500 group-hover:translate-x-0.5 transition-all flex-shrink-0" 
+          fill="none" 
+          stroke="currentColor" 
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        </svg>
+      </Link>
+    </li>
+  );
 
   // ─────────────────────────────────────────────────────────────────────────
   // RENDER
@@ -172,7 +215,7 @@ export default function CalculatorSidebar({
           2. AD BLOCK - After search
       ═══════════════════════════════════════════════════════════════════ */}
       <div className="hidden md:block">
-        <AdBlock slot="calculator-sidebar" />
+        <AdBlock slot="Calculator Sidebar" />
       </div>
 
       {/* ═══════════════════════════════════════════════════════════════════
@@ -180,33 +223,26 @@ export default function CalculatorSidebar({
       ═══════════════════════════════════════════════════════════════════ */}
       {showHealth && filteredHealth.length > 0 && (
         <nav
-          className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm"
+          className="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm"
           aria-labelledby="health-calc-heading"
         >
           <h3
             id="health-calc-heading"
-            className="font-bold text-slate-900 mb-4 flex items-center gap-2"
+            className="font-bold text-slate-900 mb-3 flex items-center gap-2 px-1"
           >
             <span
-              className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center text-sm"
+              className="w-8 h-8 bg-gradient-to-br from-green-400 to-emerald-500 rounded-lg flex items-center justify-center text-sm shadow-sm"
               aria-hidden="true"
             >
               💪
             </span>
-            Health Calculators
+            <span>Health Calculators</span>
+            <span className="ml-auto text-xs font-normal text-slate-400">
+              {filteredHealth.length}
+            </span>
           </h3>
           <ul className="space-y-1" role="list">
-            {filteredHealth.map((calc) => (
-              <li key={calc.slug}>
-                <Link
-                  href={`/${locale}/${calc.slug}`}
-                  className="flex items-center gap-2 py-2 px-3 text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded-lg text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                >
-                  <span aria-hidden="true">{calc.icon}</span>
-                  {calc.name} Calculator
-                </Link>
-              </li>
-            ))}
+            {filteredHealth.map((calc) => renderCalculatorItem(calc, "bg-green-50"))}
           </ul>
         </nav>
       )}
@@ -216,33 +252,26 @@ export default function CalculatorSidebar({
       ═══════════════════════════════════════════════════════════════════ */}
       {showFinance && filteredFinance.length > 0 && (
         <nav
-          className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm"
+          className="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm"
           aria-labelledby="finance-calc-heading"
         >
           <h3
             id="finance-calc-heading"
-            className="font-bold text-slate-900 mb-4 flex items-center gap-2"
+            className="font-bold text-slate-900 mb-3 flex items-center gap-2 px-1"
           >
             <span
-              className="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center text-sm"
+              className="w-8 h-8 bg-gradient-to-br from-amber-400 to-orange-500 rounded-lg flex items-center justify-center text-sm shadow-sm"
               aria-hidden="true"
             >
               💰
             </span>
-            Financial Calculators
+            <span>Financial Calculators</span>
+            <span className="ml-auto text-xs font-normal text-slate-400">
+              {filteredFinance.length}
+            </span>
           </h3>
           <ul className="space-y-1" role="list">
-            {filteredFinance.map((calc) => (
-              <li key={calc.slug}>
-                <Link
-                  href={`/${locale}/${calc.slug}`}
-                  className="flex items-center gap-2 py-2 px-3 text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded-lg text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                >
-                  <span aria-hidden="true">{calc.icon}</span>
-                  {calc.name} Calculator
-                </Link>
-              </li>
-            ))}
+            {filteredFinance.map((calc) => renderCalculatorItem(calc, "bg-amber-50"))}
           </ul>
         </nav>
       )}
@@ -252,15 +281,15 @@ export default function CalculatorSidebar({
       ═══════════════════════════════════════════════════════════════════ */}
       {(relatedPosts.length > 0 || postsLoading) && (
         <section
-          className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm"
+          className="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm"
           aria-labelledby="related-posts-heading"
         >
           <h3
             id="related-posts-heading"
-            className="font-bold text-slate-900 mb-4 flex items-center gap-2"
+            className="font-bold text-slate-900 mb-3 flex items-center gap-2 px-1"
           >
             <span
-              className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center text-sm"
+              className="w-8 h-8 bg-gradient-to-br from-purple-400 to-indigo-500 rounded-lg flex items-center justify-center text-sm shadow-sm"
               aria-hidden="true"
             >
               📝
@@ -269,7 +298,7 @@ export default function CalculatorSidebar({
           </h3>
           
           {postsLoading ? (
-            <div className="space-y-3" aria-busy="true" aria-label="Loading related articles">
+            <div className="space-y-3 px-1" aria-busy="true" aria-label="Loading related articles">
               {[1, 2, 3].map((i) => (
                 <div key={i} className="animate-pulse">
                   <div className="h-4 bg-slate-200 rounded w-3/4 mb-2"></div>
@@ -278,12 +307,12 @@ export default function CalculatorSidebar({
               ))}
             </div>
           ) : (
-            <ul className="space-y-3" role="list">
+            <ul className="space-y-2" role="list">
               {relatedPosts.map((post) => (
                 <li key={post.id}>
                   <Link
                     href={`/${locale}/blog/${post.slug}`}
-                    className="block group focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg"
+                    className="block group p-3 rounded-xl hover:bg-slate-50 border border-transparent hover:border-slate-200 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                   >
                     <h4 className="text-sm font-medium text-slate-800 group-hover:text-blue-600 transition-colors line-clamp-2">
                       {post.title}
@@ -301,7 +330,7 @@ export default function CalculatorSidebar({
           
           <Link
             href={`/${locale}/blog`}
-            className="inline-flex items-center gap-1 text-sm text-blue-600 hover:text-blue-800 font-medium mt-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded"
+            className="inline-flex items-center gap-1 text-sm text-blue-600 hover:text-blue-800 font-medium mt-3 px-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded"
           >
             View all articles
             <svg 

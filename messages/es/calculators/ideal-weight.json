@@ -1,0 +1,108 @@
+{
+  "meta": {
+    "title": "Calculadora de Peso Ideal",
+    "description": "Calcula tu peso ideal usando múltiples fórmulas científicas. Obtén resultados personalizados según tu altura, género y complexión."
+  },
+  "hero": {
+    "title": "Calculadora de Peso Ideal",
+    "description": "Descubre tu rango de peso ideal usando fórmulas científicamente validadas. Obtén resultados personalizados basados en tu altura, género y complexión corporal."
+  },
+  "inputs": {
+    "gender": {
+      "label": "Género",
+      "help": "El peso ideal varía según el género debido a diferencias en composición corporal",
+      "options": {
+        "male": "Masculino",
+        "female": "Femenino"
+      }
+    },
+    "height": {
+      "label": "Altura",
+      "help": "Ingresa tu altura en tu unidad preferida"
+    },
+    "age": {
+      "label": "Edad",
+      "help": "Opcional: Tu edad puede proporcionar contexto adicional",
+      "placeholder": "ej., 30"
+    },
+    "frame": {
+      "label": "Complexión Corporal",
+      "help": "Selecciona según el tamaño de tu muñeca o estructura ósea",
+      "options": {
+        "small": "Pequeña",
+        "medium": "Mediana",
+        "large": "Grande"
+      }
+    }
+  },
+  "results": {
+    "average": {
+      "label": "Peso Ideal (Promedio)",
+      "description": "Promedio de múltiples fórmulas científicas para obtener el resultado más preciso"
+    },
+    "range": {
+      "label": "Rango Saludable",
+      "description": "Rango de peso aceptable basado en todas las fórmulas y tu complexión"
+    },
+    "devine": {
+      "label": "Fórmula Devine",
+      "description": "Desarrollada en 1974, ampliamente utilizada en medicina"
+    },
+    "robinson": {
+      "label": "Fórmula Robinson",
+      "description": "Modificación de 1983 de la fórmula Devine"
+    },
+    "miller": {
+      "label": "Fórmula Miller",
+      "description": "Fórmula de 1983 con ajustes para diferentes tipos de cuerpo"
+    },
+    "hamwi": {
+      "label": "Fórmula Hamwi",
+      "description": "Desarrollada en 1964, comúnmente usada en nutrición"
+    },
+    "bmiCategory": {
+      "label": "Categoría IMC",
+      "description": "Tu categoría de IMC si estuvieras en tu peso ideal"
+    }
+  },
+  "education": {
+    "sections": {
+      "whatIs": {
+        "title": "¿Qué es el Peso Corporal Ideal?",
+        "content": "El peso corporal ideal (PCI) es un peso estimado asociado con un menor riesgo de problemas de salud. No es un número único sino un rango, y varía según la altura, género, edad y composición corporal de cada individuo."
+      },
+      "formulas": {
+        "title": "Entendiendo las Diferentes Fórmulas",
+        "content": "Utilizamos cuatro fórmulas científicamente validadas: Devine (1974), Robinson (1983), Miller (1983) y Hamwi (1964). Cada una fue desarrollada para diferentes propósitos pero todas proporcionan estimaciones útiles. El promedio de todas ofrece el resultado más equilibrado."
+      },
+      "limitations": {
+        "title": "Limitaciones a Considerar",
+        "content": "Las fórmulas de peso ideal no consideran la masa muscular, la distribución de grasa ni la salud general. Los atletas y personas muy musculosas pueden tener pesos ideales más altos. Estos cálculos son pautas, no reglas estrictas de salud."
+      }
+    }
+  },
+  "faq": {
+    "items": [
+      {
+        "question": "¿Qué tan precisas son las fórmulas de peso ideal?",
+        "answer": "Las fórmulas de peso ideal proporcionan estimaciones basadas en estudios poblacionales. Son puntos de partida útiles pero no consideran factores individuales como masa muscular, densidad ósea o salud general. Siempre consulta con profesionales de salud para evaluaciones personalizadas."
+      },
+      {
+        "question": "¿Qué fórmula debo usar?",
+        "answer": "Recomendamos usar el promedio de todas las fórmulas, ya que proporciona el resultado más equilibrado. Si tienes preocupaciones específicas, la fórmula Devine es la más utilizada en entornos médicos, mientras que Hamwi es popular en planificación nutricional."
+      },
+      {
+        "question": "¿La edad afecta mi peso ideal?",
+        "answer": "Las fórmulas tradicionales de peso ideal no ajustan directamente por edad. Sin embargo, la composición corporal cambia naturalmente con la edad. Los adultos mayores pueden tener rangos ligeramente diferentes de lo que estas fórmulas sugieren. Consulta con tu médico para recomendaciones específicas."
+      },
+      {
+        "question": "¿Cómo se calcula el rango de peso?",
+        "answer": "El rango de peso combina los resultados de las cuatro fórmulas y aplica el ajuste de complexión corporal. Las complexiones pequeñas reducen el rango en un 10%, mientras que las grandes lo aumentan en un 10%. Esto proporciona un objetivo más realista que un número único."
+      },
+      {
+        "question": "¿Qué pasa si estoy fuera del rango de peso ideal?",
+        "answer": "Estar fuera del rango de peso ideal no significa automáticamente que no estés saludable. La salud general depende de muchos factores incluyendo niveles de actividad, alimentación, genética y marcadores de salud. Usa este cálculo como referencia, no como una medida definitiva de salud."
+      }
+    ]
+  }
+}

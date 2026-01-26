@@ -1,0 +1,115 @@
+{
+  "meta": {
+    "title": "Calculadora de Grasa Corporal - Calcula Tu Porcentaje de Grasa Corporal",
+    "description": "Calculadora de grasa corporal gratuita usando los métodos Navy, IMC y Army. Obtén porcentaje de grasa corporal preciso, masa magra, masa grasa y metas personalizadas de pérdida de grasa."
+  },
+  "calculator": {
+    "title": "Calculadora de Grasa Corporal",
+    "subtitle": "Calcula tu porcentaje de grasa corporal usando múltiples métodos"
+  },
+  "inputs": {
+    "unitSystem": "Sistema de Unidades",
+    "imperial": "Imperial (lb, in)",
+    "metric": "Métrico (kg, cm)",
+    "biologicalSex": "Sexo Biológico",
+    "male": "Hombre",
+    "female": "Mujer",
+    "age": "Edad",
+    "years": "años",
+    "weight": "Peso",
+    "height": "Altura",
+    "neck": "Circunferencia del Cuello",
+    "neckHelp": "Mide justo debajo de la nuez de Adán",
+    "waist": "Circunferencia de Cintura",
+    "waistHelpMale": "Mide a la altura del ombligo",
+    "waistHelpFemale": "Mide en el punto más estrecho",
+    "hip": "Circunferencia de Cadera",
+    "hipHelp": "Mide en el punto más ancho de caderas/glúteos"
+  },
+  "methods": {
+    "title": "Método de Cálculo",
+    "navy": "Método Navy",
+    "navyDesc": "Más preciso (usa medidas)",
+    "bmi": "Método IMC",
+    "bmiDesc": "Menos preciso (sin medidas)",
+    "army": "Método Army",
+    "armyDesc": "Estándar militar"
+  },
+  "results": {
+    "title": "Tu Porcentaje de Grasa Corporal",
+    "fatMass": "Masa Grasa",
+    "leanMass": "Masa Magra",
+    "comparison": "Comparación de Métodos",
+    "comparisonNote": "Diferentes métodos pueden mostrar resultados ligeramente diferentes. El método Navy es generalmente el más preciso.",
+    "goalAnalysis": "Análisis de Meta",
+    "currentBF": "Grasa Corporal Actual",
+    "goalBF": "Meta de Grasa Corporal",
+    "fatToLose": "Grasa a Perder",
+    "goalWeight": "Peso objetivo"
+  },
+  "categories": {
+    "title": "Categorías de Grasa Corporal",
+    "essential": "Grasa Esencial",
+    "athletes": "Atletas",
+    "fitness": "Fitness",
+    "average": "Promedio",
+    "obese": "Obeso"
+  },
+  "advanced": {
+    "title": "Opciones Avanzadas",
+    "goalBodyFat": "Meta de % Grasa Corporal",
+    "goalBodyFatOptional": "(opcional)",
+    "goalBodyFatHelp": "Ingresa para ver cuánta grasa necesitas perder"
+  },
+  "education": {
+    "whatIs": "¿Qué es el Porcentaje de Grasa Corporal?",
+    "whatIsContent": "El porcentaje de grasa corporal es la masa total de grasa dividida por la masa corporal total, multiplicada por 100. Es un indicador más preciso de salud y fitness que el peso solo porque distingue entre grasa y tejido magro.",
+    "methodsTitle": "Métodos de Cálculo Explicados",
+    "navyTitle": "Método Navy (Recomendado)",
+    "navyContent": "Usa medidas de circunferencia (cuello, cintura y cadera para mujeres) junto con la altura. Desarrollado por la Marina de EE.UU., este método es preciso para la mayoría de las personas.",
+    "bmiTitle": "Método IMC",
+    "bmiContent": "Estima la grasa corporal a partir del IMC, edad y género. Menos preciso porque el IMC no distingue entre músculo y grasa.",
+    "armyTitle": "Método Army",
+    "armyContent": "Similar al método Navy, usado por el Ejército de EE.UU. para evaluaciones de fitness. Usa las mismas medidas pero una fórmula ligeramente diferente."
+  },
+  "howToMeasure": {
+    "title": "Cómo Medir",
+    "neck": "Cuello: Mide justo debajo de la nuez de Adán, cinta inclinada ligeramente hacia abajo al frente",
+    "waistMale": "Cintura (Hombres): Mide a nivel del ombligo, mantén la cinta horizontal",
+    "waistFemale": "Cintura (Mujeres): Mide en el punto más estrecho, usualmente arriba del ombligo",
+    "hip": "Cadera (Mujeres): Mide en el punto más ancho de caderas y glúteos"
+  },
+  "tips": {
+    "title": "Consejos para Mayor Precisión",
+    "tip1": "Mide en la mañana antes de comer o beber",
+    "tip2": "Mantén la cinta ajustada pero sin comprimir la piel",
+    "tip3": "Toma múltiples medidas y usa el promedio",
+    "tip4": "Mide a la misma hora del día para seguimiento"
+  },
+  "faq": [
+    {
+      "question": "¿Qué es el porcentaje de grasa corporal?",
+      "answer": "El porcentaje de grasa corporal es la masa total de grasa dividida por la masa corporal total, multiplicada por 100. Incluye grasa esencial (necesaria para la vida) y grasa de almacenamiento. Un porcentaje saludable de grasa corporal varía según género, edad y nivel de fitness."
+    },
+    {
+      "question": "¿Cuál método es más preciso?",
+      "answer": "El Método Navy usando medidas corporales es generalmente el más preciso para la persona promedio sin equipo especializado. Para atletas con bajo porcentaje de grasa, el método Army puede ser más preciso. El método IMC es el menos preciso pero no requiere medidas."
+    },
+    {
+      "question": "¿Cómo mido mi cintura correctamente?",
+      "answer": "Para hombres: Mide a nivel del ombligo. Para mujeres: Mide en el punto más estrecho de tu cintura, usualmente justo arriba del ombligo. Mantén la cinta horizontal y ajustada pero sin comprimir la piel."
+    },
+    {
+      "question": "¿Cómo mido mi cuello correctamente?",
+      "answer": "Mide alrededor de tu cuello justo debajo de la laringe (nuez de Adán) con la cinta inclinada ligeramente hacia abajo al frente. Mantén tu cabeza derecha y mira hacia adelante durante la medición."
+    },
+    {
+      "question": "¿Cuál es un porcentaje saludable de grasa corporal?",
+      "answer": "Para hombres, 14-17% se considera nivel 'fitness', mientras que 18-24% es 'promedio'. Para mujeres, 21-24% es nivel 'fitness', mientras que 25-31% es 'promedio'. Los atletas típicamente tienen porcentajes más bajos: 6-13% para hombres y 14-20% para mujeres."
+    },
+    {
+      "question": "¿Con qué frecuencia debo medir la grasa corporal?",
+      "answer": "Mide una vez cada 2-4 semanas a la misma hora del día (preferiblemente en la mañana antes de comer) para resultados consistentes. La grasa corporal cambia lentamente, así que las mediciones diarias son innecesarias y pueden mostrar fluctuaciones engañosas."
+    }
+  ]
+}

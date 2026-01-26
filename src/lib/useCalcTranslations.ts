@@ -1,10 +1,8 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 type TranslationData = {
-  meta?: { title?: string; description?: string };
-  calculator?: Record<string, unknown>;
-  education?: { title?: string; sections?: Array<{ title: string; content: string }> };
+  [key: string]: unknown;
   faq?: Array<{ question: string; answer: string }>;
 };
 
@@ -13,48 +11,65 @@ export function useCalcTranslations(locale: string, calculatorSlug: string) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let cancelled = false;
+    
     async function loadTranslations() {
       try {
+        // Remove "-calculator" suffix for filename
         const filename = calculatorSlug.replace('-calculator', '');
         
-        let data;
+        let data = null;
+        
+        // Try to load locale-specific translations first
         try {
-          data = await import(`@/messages/calculators/${locale}/${filename}.json`);
+          const module = await import(`@/messages/calculators/${locale}/${filename}.json`);
+          data = module.default || module;
         } catch {
-          try {
-            data = await import(`@/messages/calculators/en/${filename}.json`);
-          } catch {
-            data = null;
+          // Fallback to English if locale not found
+          if (locale !== 'en') {
+            try {
+              const module = await import(`@/messages/calculators/en/${filename}.json`);
+              data = module.default || module;
+            } catch {
+              data = null;
+            }
           }
         }
-        setTranslations(data?.default || data);
+        
+        if (!cancelled) {
+          setTranslations(data);
+        }
       } catch (error) {
         console.error('Failed to load translations:', error);
-        setTranslations(null);
       } finally {
-        setLoading(false);
+        if (!cancelled) setLoading(false);
       }
     }
-
+    
     loadTranslations();
+    
+    return () => { cancelled = true; };
   }, [locale, calculatorSlug]);
 
-  const t = (key: string, fallback?: string): string => {
-    if (!translations) return fallback || key;
-    
-    const keys = key.split('.');
-    let value: unknown = translations;
-    
-    for (const k of keys) {
-      if (value && typeof value === 'object' && k in value) {
-        value = (value as Record<string, unknown>)[k];
-      } else {
-        return fallback || key;
+  // Memoize the t function to prevent re-renders
+  const t = useMemo(() => {
+    return (key: string, fallback?: string): string => {
+      if (!translations) return fallback || key;
+      
+      const keys = key.split('.');
+      let value: unknown = translations;
+      
+      for (const k of keys) {
+        if (value && typeof value === 'object' && k in value) {
+          value = (value as Record<string, unknown>)[k];
+        } else {
+          return fallback || key;
+        }
       }
-    }
-    
-    return typeof value === 'string' ? value : (fallback || key);
-  };
+      
+      return typeof value === 'string' ? value : (fallback || key);
+    };
+  }, [translations]);
 
   return { t, translations, loading };
 }

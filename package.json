@@ -11,7 +11,13 @@
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.1",
     "@prisma/client": "^5.22.0",
+    "@refinedev/core": "^5.0.8",
+    "@refinedev/nextjs-router": "^7.0.4",
+    "@refinedev/react-hook-form": "^5.0.4",
     "bcryptjs": "^3.0.3",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^4.0.0",
+    "lucide-react": "^0.563.0",
     "next": "^16.1.4",
     "next-auth": "^4.24.13",
     "next-intl": "^4.7.0",

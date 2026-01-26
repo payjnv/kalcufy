@@ -64,7 +64,14 @@
       "randomNumberGenerator": "Random Number Generator",
       "netWorth": "Net Worth",
       "emergencyFund": "Emergency Fund",
-      "cd": "CD"
+      "cd": "CD",
+      "carLease": "Car Lease",
+      "leanBodyMass": "Lean Body Mass",
+      "maintenanceCalories": "Maintenance Calories",
+      "calorieDeficit": "Calorie Deficit",
+      "calorieSurplus": "Calorie Surplus",
+      "weightLoss": "Weight Loss",
+      "weightGain": "Weight Gain"
     }
   },
   "home": {
@@ -296,6 +303,42 @@
       },
       "cd": {
         "desc": "Calculate Certificate of Deposit earnings and compare terms"
+      },
+      "carLease": {
+        "name": "Car Lease",
+        "desc": "Calculate car lease payments, total cost, and compare lease vs buy options"
+      },
+      "leanBodyMass": {
+        "name": "Lean Body Mass",
+        "desc": "Calculate lean body mass using 5 formulas with FFMI and protein targets"
+      },
+      "maintenanceCalories": {
+        "name": "Maintenance Calories",
+        "desc": "Calculate TDEE with 3 BMR formulas and macro breakdown per meal"
+      },
+      "calorieDeficit": {
+        "name": "Calorie Deficit",
+        "desc": "Calculate weight loss calories with timeline, safety checks, and diet breaks"
+      },
+      "calorieSurplus": {
+        "name": "Calorie Surplus",
+        "desc": "Calculate bulking calories with muscle vs fat gain estimates by training level"
+      },
+      "pregnancy": {
+        "name": "Pregnancy Due Date",
+        "desc": "Calculate due date, conception date, and track pregnancy milestones"
+      },
+      "lease": {
+        "name": "Lease",
+        "desc": "Calculate car lease payments, total cost, and compare lease vs buy options"
+      },
+      "weightLoss": {
+        "name": "Weight Loss",
+        "desc": "Calculate how long to reach your goal weight with daily calorie targets and timeline"
+      },
+      "weightGain": {
+        "name": "Weight Gain",
+        "desc": "Calculate bulking calories with muscle vs fat gain projection by training experience"
       }
     }
   },

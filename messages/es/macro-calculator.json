@@ -1,0 +1,170 @@
+{
+  "meta": {
+    "title": "Calculadora de Macros - Calcula Tu Proteína, Carbohidratos y Grasa Diarios",
+    "description": "Calculadora de macros gratuita con 6 presets de dieta (Estándar, Keto, Baja en Carbohidratos, Alta en Proteína). Obtén objetivos personalizados de proteína, carbohidratos y grasa según tus metas."
+  },
+  "calculator": {
+    "title": "Calculadora de Macros",
+    "subtitle": "Calcula tus objetivos diarios de proteína, carbohidratos y grasa"
+  },
+  "inputs": {
+    "unitSystem": "Sistema de Unidades",
+    "imperial": "Imperial (lb, in)",
+    "metric": "Métrico (kg, cm)",
+    "biologicalSex": "Sexo Biológico",
+    "male": "Hombre",
+    "female": "Mujer",
+    "age": "Edad",
+    "years": "años",
+    "weight": "Peso",
+    "height": "Altura",
+    "activityLevel": "Nivel de Actividad",
+    "goal": "Meta",
+    "dietType": "Tipo de Dieta"
+  },
+  "activityLevels": {
+    "sedentary": {
+      "label": "Sedentario",
+      "description": "Poco o ningún ejercicio, trabajo de escritorio"
+    },
+    "light": {
+      "label": "Ligeramente Activo",
+      "description": "Ejercicio ligero 1-3 días/semana"
+    },
+    "moderate": {
+      "label": "Moderadamente Activo",
+      "description": "Ejercicio moderado 3-5 días/semana"
+    },
+    "active": {
+      "label": "Muy Activo",
+      "description": "Ejercicio intenso 6-7 días/semana"
+    },
+    "veryActive": {
+      "label": "Extra Activo",
+      "description": "Ejercicio muy intenso, trabajo físico"
+    },
+    "extraActive": {
+      "label": "Atleta",
+      "description": "Atleta profesional, entrenamientos 2x"
+    }
+  },
+  "goals": {
+    "lose": {
+      "label": "Perder Grasa",
+      "description": "~0.5 kg/semana de pérdida"
+    },
+    "maintain": {
+      "label": "Mantener",
+      "description": "Mantener peso actual"
+    },
+    "gain": {
+      "label": "Ganar Músculo",
+      "description": "Ganancia muscular magra"
+    },
+    "recomp": {
+      "label": "Recomposición Corporal",
+      "description": "Perder grasa, ganar músculo"
+    }
+  },
+  "dietTypes": {
+    "standard": {
+      "name": "Estándar",
+      "description": "Dieta balanceada para salud general"
+    },
+    "lowCarb": {
+      "name": "Baja en Carbohidratos",
+      "description": "Carbohidratos reducidos para pérdida de grasa"
+    },
+    "keto": {
+      "name": "Keto",
+      "description": "Muy baja en carbohidratos, alta en grasa"
+    },
+    "highProtein": {
+      "name": "Alta en Proteína",
+      "description": "Para desarrollo muscular y atletas"
+    },
+    "zone": {
+      "name": "Zone (40/30/30)",
+      "description": "Respuesta hormonal balanceada"
+    },
+    "custom": {
+      "name": "Personalizado",
+      "description": "Establece tus propias proporciones"
+    }
+  },
+  "results": {
+    "dailyTargetCalories": "Calorías Objetivo Diarias",
+    "protein": "Proteína",
+    "carbs": "Carbohidratos",
+    "fat": "Grasa",
+    "macroDistribution": "Distribución de Macros",
+    "perMeal": "Por Comida",
+    "mealsPerDay": "comidas/día",
+    "dailyTargets": "Objetivos Diarios",
+    "fiber": "Fibra",
+    "water": "Agua",
+    "bmr": "TMB"
+  },
+  "advanced": {
+    "title": "Opciones Avanzadas",
+    "bodyFatPercent": "% Grasa Corporal",
+    "optional": "(opcional)",
+    "bodyFatHelp": "Para recomendaciones de proteína más precisas",
+    "mealsPerDay": "Comidas Por Día",
+    "showMealBreakdown": "Mostrar Desglose por Comida"
+  },
+  "leanMassProtein": {
+    "title": "Proteína Basada en Masa Magra",
+    "description": "Basado en 1g por lb de masa corporal magra"
+  },
+  "education": {
+    "whatAreMacros": "¿Qué son los Macronutrientes?",
+    "whatAreMacrosContent": "Los macronutrientes (macros) son los tres nutrientes principales que proporcionan calorías y energía: proteína, carbohidratos y grasa. Cada uno juega un rol único en tu cuerpo.",
+    "proteinTitle": "Proteína (4 cal/g)",
+    "proteinContent": "Construye y repara músculo, apoya la función inmune, te mantiene satisfecho.",
+    "carbsTitle": "Carbohidratos (4 cal/g)",
+    "carbsContent": "Fuente principal de energía, alimenta cerebro y músculos, apoya el rendimiento en ejercicio.",
+    "fatTitle": "Grasa (9 cal/g)",
+    "fatContent": "Producción de hormonas, absorción de nutrientes, salud cerebral, energía duradera."
+  },
+  "dietPresetsExplained": {
+    "title": "Presets de Dieta Explicados",
+    "standard": "Estándar (30/40/30): Balanceada para salud y fitness general",
+    "lowCarb": "Baja en Carbohidratos (35/25/40): Carbohidratos reducidos, buena para pérdida de grasa",
+    "keto": "Keto (25/5/70): Muy baja en carbohidratos para cetosis",
+    "highProtein": "Alta en Proteína (40/35/25): Para desarrollo muscular"
+  },
+  "tips": {
+    "title": "Consejos para el Éxito",
+    "tip1": "Registra tu comida por 1-2 semanas para crear conciencia",
+    "tip2": "Prioriza la proteína en cada comida",
+    "tip3": "Ajusta según resultados después de 2-4 semanas",
+    "tip4": "Enfócate en alimentos integrales sobre procesados"
+  },
+  "faq": [
+    {
+      "question": "¿Qué son los macros?",
+      "answer": "Los macros (macronutrientes) son los tres nutrientes principales que proporcionan calorías: proteína (4 cal/g), carbohidratos (4 cal/g) y grasa (9 cal/g). Registrar macros ayuda a asegurar que obtienes el balance correcto para tus metas."
+    },
+    {
+      "question": "¿Qué tipo de dieta debo elegir?",
+      "answer": "Estándar (30/40/30) funciona para la mayoría. Elige Alta en Proteína para desarrollo muscular, Baja en Carbohidratos para pérdida de grasa, Keto para dieta muy baja en carbohidratos, o Zone para respuesta hormonal balanceada. Consulta un nutricionista para consejos personalizados."
+    },
+    {
+      "question": "¿Cuánta proteína necesito?",
+      "answer": "Recomendaciones generales: 0.8g/kg para adultos sedentarios, 1.2-1.7g/kg para individuos activos, 1.6-2.2g/kg para desarrollo muscular, y 2.0-2.4g/kg durante pérdida de grasa agresiva para preservar músculo."
+    },
+    {
+      "question": "¿Debo contar la fibra por separado?",
+      "answer": "La fibra es un tipo de carbohidrato, así que está incluida en tu total de carbohidratos. Sin embargo, registrar la fibra por separado ayuda a asegurar que obtienes suficiente (25-38g diarios) para la salud digestiva."
+    },
+    {
+      "question": "¿Qué tan precisa es esta calculadora?",
+      "answer": "Esta calculadora proporciona estimaciones basadas en fórmulas establecidas. El metabolismo individual varía. Usa estos números como punto de partida y ajusta según tus resultados durante 2-4 semanas."
+    },
+    {
+      "question": "¿Qué es la recomposición corporal?",
+      "answer": "La recomposición corporal (recomp) es perder grasa y desarrollar músculo simultáneamente. Requiere comer en calorías de mantenimiento con alta proteína (1.6-2.2g/kg) y entrenamiento de fuerza consistente."
+    }
+  ]
+}

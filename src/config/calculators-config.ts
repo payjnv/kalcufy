@@ -7,7 +7,7 @@ export interface Calculator {
   description: string;
   icon: string;
   color: string;
-  category: "finance" | "health" | "everyday";
+  category: string;
   isNew?: boolean;
   isPro?: boolean;
 }
@@ -20,7 +20,7 @@ export interface CategoryStat {
   status?: "active" | "coming-soon";
 }
 
-// Finance Calculators (16)
+// Finance Calculators (20)
 export const FINANCE_CALCULATORS: Calculator[] = [
   {
     slug: "compound-interest-calculator",
@@ -212,9 +212,19 @@ export const FINANCE_CALCULATORS: Calculator[] = [
     isNew: true,
     isPro: false,
   },
+  {
+    slug: "car-lease-calculator",
+    name: "Lease Calculator",
+    description: "Calculate car lease payments, total cost, and compare lease vs buy options",
+    icon: "🚗",
+    color: "blue",
+    category: "finance",
+    isNew: true,
+    isPro: false,
+  },
 ];
 
-// Health Calculators (15)
+// Health Calculators (21)
 export const HEALTH_CALCULATORS: Calculator[] = [
   {
     slug: "bmi-calculator",
@@ -347,23 +357,83 @@ export const HEALTH_CALCULATORS: Calculator[] = [
     isPro: false,
   },
   {
-    slug: "caloric-deficit-calculator",
-    name: "Caloric Deficit Calculator",
-    description: "Calculate your ideal calorie intake for weight loss or muscle gain",
-    icon: "📉",
+    slug: "calories-burned-calculator",
+    name: "Calories Burned Calculator",
+    description: "Calculate calories burned for 100+ activities using MET values",
+    icon: "🔥",
     color: "green",
     category: "health",
     isNew: false,
     isPro: false,
   },
   {
-    slug: "calories-burned-calculator",
-    name: "Calories Burned Calculator",
-    description: "Calculate calories burned for 50+ activities using MET values",
-    icon: "🔥",
+    slug: "pregnancy-calculator",
+    name: "Pregnancy Calculator",
+    description: "Calculate due date, conception date, and track pregnancy milestones",
+    icon: "🤰",
     color: "green",
     category: "health",
-    isNew: false,
+    isNew: true,
+    isPro: false,
+  },
+  {
+    slug: "lean-body-mass-calculator",
+    name: "Lean Body Mass Calculator",
+    description: "Calculate lean body mass using 5 formulas with FFMI and protein targets",
+    icon: "💪",
+    color: "green",
+    category: "health",
+    isNew: true,
+    isPro: false,
+  },
+  {
+    slug: "maintenance-calories-calculator",
+    name: "Maintenance Calories Calculator",
+    description: "Calculate TDEE with 3 BMR formulas and macro breakdown per meal",
+    icon: "⚖️",
+    color: "green",
+    category: "health",
+    isNew: true,
+    isPro: false,
+  },
+  {
+    slug: "calorie-deficit-calculator",
+    name: "Calorie Deficit Calculator",
+    description: "Calculate weight loss calories with timeline, safety checks, and diet breaks",
+    icon: "📉",
+    color: "green",
+    category: "health",
+    isNew: true,
+    isPro: false,
+  },
+  {
+    slug: "calorie-surplus-calculator",
+    name: "Calorie Surplus Calculator",
+    description: "Calculate bulking calories with muscle vs fat gain estimates by training level",
+    icon: "📈",
+    color: "green",
+    category: "health",
+    isNew: true,
+    isPro: false,
+  },
+  {
+    slug: "weight-loss-calculator",
+    name: "Weight Loss Calculator",
+    description: "Calculate how long to reach your goal weight with daily calorie targets and timeline",
+    icon: "⚖️",
+    color: "green",
+    category: "health",
+    isNew: true,
+    isPro: false,
+  },
+  {
+    slug: "weight-gain-calculator",
+    name: "Weight Gain Calculator",
+    description: "Calculate bulking calories with muscle vs fat gain projection by training experience",
+    icon: "📈",
+    color: "green",
+    category: "health",
+    isNew: true,
     isPro: false,
   },
 ];

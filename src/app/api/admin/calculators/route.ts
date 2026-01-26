@@ -106,7 +106,7 @@ export async function GET(request: NextRequest) {
         (u) => u.calculatorSlug === calc.slug && u.type === "VIEW"
       )?._count || 0;
       const calculations = currentUsage.find(
-        (u) => u.calculatorSlug === calc.slug && u.type === "CALCULATE"
+        (u) => u.calculatorSlug === calc.slug && u.type === "CALCULATION"
       )?._count || 0;
 
       // Previous period
@@ -114,7 +114,7 @@ export async function GET(request: NextRequest) {
         (u) => u.calculatorSlug === calc.slug && u.type === "VIEW"
       )?._count || 0;
       const prevCalculations = prevUsage.find(
-        (u) => u.calculatorSlug === calc.slug && u.type === "CALCULATE"
+        (u) => u.calculatorSlug === calc.slug && u.type === "CALCULATION"
       )?._count || 0;
 
       // All time

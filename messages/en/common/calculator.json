@@ -1,0 +1,89 @@
+{
+  "calculator": {
+    "calculate": "Calculate",
+    "reset": "Reset",
+    "calculating": "Calculating...",
+    "results": "Results",
+    "inputs": "Inputs",
+    "noResults": "Enter values and click Calculate to see results",
+    "noResultsDescription": "Fill in the form above to get your personalized calculation",
+    "exportPDF": "Export PDF",
+    "exportImage": "Save as Image",
+    "share": "Share Results",
+    "copyLink": "Copy Link",
+    "linkCopied": "Link copied to clipboard",
+    "addToFavorites": "Add to Favorites",
+    "removeFromFavorites": "Remove from Favorites",
+    "savedToFavorites": "Added to your favorites",
+    "removedFromFavorites": "Removed from favorites",
+    "skipToInputs": "Skip to calculator inputs",
+    "skipToResults": "Skip to results",
+    "skipToContent": "Skip to main content",
+    "requiredField": "This field is required",
+    "invalidValue": "Please enter a valid value",
+    "education": "Learn More",
+    "faq": "Frequently Asked Questions",
+    "relatedCalculators": "Related Calculators",
+    "viewAll": "View All",
+    "loading": "Loading...",
+    "error": "Error",
+    "tryAgain": "Try Again",
+    "advertisement": "Advertisement"
+  },
+  "units": {
+    "weight": {
+      "kg": "kg",
+      "lb": "lb",
+      "st": "stone"
+    },
+    "height": {
+      "cm": "cm",
+      "in": "inches",
+      "ft": "feet"
+    },
+    "time": {
+      "years": "years",
+      "months": "months",
+      "weeks": "weeks",
+      "days": "days"
+    },
+    "currency": {
+      "USD": "USD",
+      "EUR": "EUR",
+      "GBP": "GBP"
+    }
+  },
+  "validation": {
+    "required": "This field is required",
+    "minValue": "Value must be at least {min}",
+    "maxValue": "Value cannot exceed {max}",
+    "invalidNumber": "Please enter a valid number",
+    "positiveNumber": "Value must be positive",
+    "wholeNumber": "Please enter a whole number"
+  },
+  "accessibility": {
+    "expandSection": "Expand section",
+    "collapseSection": "Collapse section",
+    "resultsAnnouncement": "Calculation complete. {summary}",
+    "errorAnnouncement": "Error: {message}",
+    "loadingAnnouncement": "Calculating results, please wait",
+    "requiredFieldIndicator": "Required field",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "categories": {
+    "health": "Health",
+    "finance": "Finance",
+    "everyday": "Everyday"
+  },
+  "badges": {
+    "new": "New",
+    "popular": "Popular",
+    "pro": "PRO",
+    "beta": "Beta"
+  },
+  "rating": {
+    "basedOn": "Based on {count} calculations",
+    "outOf": "out of 5"
+  }
+}

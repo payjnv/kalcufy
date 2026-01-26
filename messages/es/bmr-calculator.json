@@ -1,0 +1,171 @@
+{
+  "meta": {
+    "title": "Calculadora de TMB - Calcula Tu Tasa Metabólica Basal",
+    "description": "Calcula tu Tasa Metabólica Basal (TMB) usando las fórmulas Mifflin-St Jeor, Harris-Benedict y Katch-McArdle. Descubre cuántas calorías quema tu cuerpo en reposo y obtén tu TDEE para control de peso."
+  },
+  "calculator": {
+    "title": "Calculadora de TMB",
+    "subtitle": "Calcula tu Tasa Metabólica Basal y necesidades calóricas diarias",
+    "breadcrumb": "TMB",
+    "srTitle": "Herramienta Calculadora de TMB",
+    "inputsTitle": "Tu Información",
+    "inputs": {
+      "unitSystem": "Sistema de Unidades",
+      "metric": "Métrico",
+      "imperial": "Imperial",
+      "gender": "Género",
+      "male": "Hombre",
+      "female": "Mujer",
+      "age": "Edad",
+      "ageSlider": "Control de edad",
+      "years": "años",
+      "weight": "Peso",
+      "weightSlider": "Control de peso",
+      "height": "Altura",
+      "heightSlider": "Control de altura",
+      "activityLevel": "Nivel de Actividad"
+    },
+    "activity": {
+      "sedentary": "Sedentario",
+      "sedentaryDesc": "Poco o ningún ejercicio, trabajo de escritorio",
+      "light": "Ligeramente Activo",
+      "lightDesc": "Ejercicio ligero 1-3 días/semana",
+      "moderate": "Moderadamente Activo",
+      "moderateDesc": "Ejercicio moderado 3-5 días/semana",
+      "active": "Muy Activo",
+      "activeDesc": "Ejercicio intenso 6-7 días/semana",
+      "extreme": "Extremadamente Activo",
+      "extremeDesc": "Ejercicio muy intenso, trabajo físico"
+    },
+    "advanced": {
+      "title": "Opciones Avanzadas",
+      "formula": "Fórmula de TMB",
+      "mifflinDesc": "Más precisa para la población general",
+      "harrisDesc": "Fórmula clásica, revisada en 1984",
+      "katchDesc": "Mejor si conoces tu % de grasa corporal",
+      "bodyFat": "% Grasa Corporal",
+      "optional": "opcional",
+      "bodyFatHint": "Mejora la precisión de la fórmula Katch-McArdle",
+      "pregnancy": "Estado de Embarazo",
+      "pregnancyNone": "No embarazada",
+      "pregnancy1": "1er Trimestre",
+      "pregnancy2": "2do Trimestre",
+      "pregnancy3": "3er Trimestre",
+      "breastfeeding": "Estado de Lactancia",
+      "breastfeedingNone": "No lactando",
+      "breastfeedingExclusive": "Lactancia exclusiva",
+      "breastfeedingPartial": "Lactancia parcial"
+    },
+    "results": {
+      "bmrLabel": "Tu Tasa Metabólica Basal",
+      "calDay": "cal/día",
+      "usingFormula": "Usando",
+      "formula": "fórmula",
+      "tdee": "Gasto Energético Diario Total",
+      "multiplier": "Multiplicador de actividad",
+      "mifflin": "Mifflin-St Jeor",
+      "harris": "Harris-Benedict",
+      "katch": "Katch-McArdle",
+      "calorieGoals": "Metas Calóricas Diarias",
+      "weightLoss": "Pérdida de Peso",
+      "maintain": "Mantener Peso",
+      "weightGain": "Aumento de Peso",
+      "tdeeByActivity": "TDEE por Nivel de Actividad"
+    },
+    "related": {
+      "tdee": "Calculadora TDEE",
+      "macro": "Calculadora de Macros"
+    },
+    "quickExplanation": {
+      "title": "Ejemplo Rápido",
+      "intro": "Para un",
+      "example": "hombre de 30 años, 70 kg (154 lb), 170 cm (5'7\")",
+      "mifflinTitle": "Fórmula Mifflin-St Jeor",
+      "tdeeTitle": "Cálculo de TDEE",
+      "moderateActivity": "Moderadamente Activo (×1.55)"
+    },
+    "buttons": {
+      "save": "💾 Guardar en Historial",
+      "saveHistory": "Guardar cálculo en historial"
+    },
+    "saving": {
+      "saving": "Guardando...",
+      "saved": "Guardado",
+      "error": "Error"
+    },
+    "favorites": {
+      "add": "Agregar a favoritos",
+      "remove": "Quitar de favoritos"
+    }
+  },
+  "education": {
+    "title": "¿Qué es la TMB (Tasa Metabólica Basal)?",
+    "p1": "La Tasa Metabólica Basal (TMB) es el número de calorías que tu cuerpo necesita para realizar funciones básicas de mantenimiento de vida mientras está en reposo completo. Estas funciones incluyen respiración, circulación sanguínea, producción de células, procesamiento de nutrientes y mantenimiento de la temperatura corporal.",
+    "p2": "Tu TMB representa aproximadamente el 60-75% de tu gasto calórico total diario. Las calorías restantes se queman a través de actividad física (15-30%) y el efecto térmico de los alimentos (10%).",
+    "p3": "Entender tu TMB es crucial para establecer metas calóricas apropiadas, ya sea que quieras perder peso, mantener tu peso actual o desarrollar músculo.",
+    "formula": {
+      "title": "Las Fórmulas",
+      "mifflinTitle": "Ecuación Mifflin-St Jeor",
+      "recommended": "Recomendada",
+      "harrisTitle": "Ecuación Harris-Benedict Revisada",
+      "katchTitle": "Fórmula Katch-McArdle",
+      "katchNote": "Requiere porcentaje de grasa corporal para calcular masa magra",
+      "men": "Hombres",
+      "women": "Mujeres"
+    },
+    "tips": {
+      "title": "Consejos para Aumentar Tu Metabolismo",
+      "muscle": {
+        "title": "Desarrolla Masa Muscular",
+        "desc": "El músculo quema más calorías en reposo que la grasa. El entrenamiento de fuerza puede aumentar tu TMB con el tiempo."
+      },
+      "water": {
+        "title": "Mantente Hidratado",
+        "desc": "Beber agua fría puede acelerar temporalmente el metabolismo mientras tu cuerpo trabaja para calentarla."
+      },
+      "protein": {
+        "title": "Come Suficiente Proteína",
+        "desc": "La proteína tiene un efecto térmico mayor que los carbohidratos o grasas, lo que significa que quemas más calorías digiriéndola."
+      },
+      "sleep": {
+        "title": "Duerme con Calidad",
+        "desc": "El sueño deficiente puede reducir tu TMB y aumentar las hormonas del hambre, dificultando el control del peso."
+      }
+    },
+    "faqTitle": "Preguntas Frecuentes"
+  },
+  "sidebar": {
+    "healthTitle": "Calculadoras de Salud",
+    "financeTitle": "Calculadoras Financieras"
+  },
+  "common": {
+    "home": "Inicio",
+    "calculators": "Calculadoras"
+  },
+  "faq": [
+    {
+      "question": "¿Qué es la TMB (Tasa Metabólica Basal)?",
+      "answer": "La TMB es el número de calorías que tu cuerpo necesita para mantener funciones básicas de soporte vital como respiración, circulación, producción de células y procesamiento de nutrientes mientras está en reposo completo. Representa aproximadamente el 60-75% de tu gasto calórico total diario."
+    },
+    {
+      "question": "¿Cuál es la diferencia entre TMB y TDEE?",
+      "answer": "La TMB son las calorías quemadas en reposo completo, mientras que el TDEE (Gasto Energético Diario Total) incluye la TMB más las calorías quemadas a través de actividades diarias y ejercicio. TDEE = TMB × Factor de Actividad."
+    },
+    {
+      "question": "¿Cuál fórmula de TMB es más precisa?",
+      "answer": "La ecuación Mifflin-St Jeor se considera la más precisa para la población general. Sin embargo, si conoces tu porcentaje de grasa corporal, la fórmula Katch-McArdle puede ser más precisa ya que tiene en cuenta la masa corporal magra."
+    },
+    {
+      "question": "¿Por qué el embarazo afecta la TMB?",
+      "answer": "Durante el embarazo, tu cuerpo requiere energía adicional para apoyar el desarrollo fetal, el aumento del volumen sanguíneo y los cambios metabólicos. El segundo trimestre requiere aproximadamente 340 calorías extra/día, y el tercer trimestre aproximadamente 450 calorías extra/día."
+    },
+    {
+      "question": "¿Cómo afecta la edad a la TMB?",
+      "answer": "La TMB típicamente disminuye aproximadamente 1-2% por década después de los 20 años, principalmente debido a la pérdida de masa muscular. Mantener el músculo a través del ejercicio puede ayudar a desacelerar esta disminución."
+    },
+    {
+      "question": "¿Puedo aumentar mi TMB?",
+      "answer": "¡Sí! Desarrollar masa muscular a través del entrenamiento de fuerza es la forma más efectiva de aumentar la TMB, ya que el tejido muscular quema más calorías en reposo que el tejido graso. Mantenerse hidratado y dormir adecuadamente también apoyan un metabolismo saludable."
+    }
+  ]
+}

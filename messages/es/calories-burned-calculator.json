@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "title": "Calculadora de Calorías Quemadas - Contador de Calorías por Actividad",
+    "description": "Calcula las calorías quemadas para más de 50 actividades incluyendo correr, ciclismo, natación, HIIT y más. Usa valores MET para resultados precisos basados en tu peso y duración."
+  },
+  "calculator": {
+    "title": "Calculadora de Calorías Quemadas",
+    "subtitle": "Calcula las calorías quemadas para cualquier actividad basándote en valores MET y tu peso corporal"
+  },
+  "faq": [
+    {
+      "question": "¿Qué tan precisos son los cálculos de calorías quemadas?",
+      "answer": "Los cálculos basados en MET proporcionan estimaciones razonables con una precisión del 10-20%. Factores individuales como nivel de fitness, composición corporal y genética pueden causar variaciones."
+    },
+    {
+      "question": "¿El músculo quema más calorías que la grasa?",
+      "answer": "Sí, el tejido muscular es más activo metabólicamente. Cada libra de músculo quema aproximadamente 6-7 calorías por día en reposo, mientras que la grasa quema aproximadamente 2-3 calorías."
+    },
+    {
+      "question": "¿Qué es el efecto afterburn?",
+      "answer": "EPOC (Consumo de Oxígeno Post-Ejercicio Excesivo) se refiere al aumento de quema de calorías después de que termina el ejercicio. El ejercicio de alta intensidad puede elevar el metabolismo durante 24-48 horas."
+    },
+    {
+      "question": "¿Es mejor el cardio o el entrenamiento de pesas para quemar calorías?",
+      "answer": "El cardio típicamente quema más durante el entrenamiento, mientras que el entrenamiento de pesas construye músculo que aumenta la quema de calorías a largo plazo. El mejor enfoque combina ambos."
+    },
+    {
+      "question": "¿Cuántas calorías debo quemar por entrenamiento?",
+      "answer": "Para salud general, apunta a quemar 200-300 calorías por sesión. Para pérdida de peso, 300-500+ calorías por entrenamiento combinado con un déficit calórico es efectivo."
+    }
+  ]
+}

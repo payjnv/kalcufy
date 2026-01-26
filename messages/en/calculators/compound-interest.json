@@ -1,0 +1,142 @@
+{
+  "meta": {
+    "title": "Compound Interest Calculator",
+    "description": "Calculate compound interest with monthly contributions. See how your investments grow over time with our free compound interest calculator."
+  },
+  "hero": {
+    "title": "Compound Interest Calculator",
+    "description": "Discover the power of compound interest. Calculate how your savings and investments will grow over time with regular contributions."
+  },
+  "inputs": {
+    "principal": {
+      "label": "Initial Investment",
+      "help": "The amount you're starting with"
+    },
+    "monthlyContribution": {
+      "label": "Monthly Contribution",
+      "help": "Amount you'll add each month"
+    },
+    "annualRate": {
+      "label": "Annual Interest Rate",
+      "help": "Expected yearly return (e.g., 7% for stocks)"
+    },
+    "years": {
+      "label": "Time Period",
+      "help": "How long you plan to invest",
+      "suffix": "years"
+    },
+    "compounding": {
+      "label": "Compounding Frequency",
+      "help": "How often interest is calculated and added",
+      "options": {
+        "annually": "Annually (1x/year)",
+        "semiannually": "Semi-annually (2x/year)",
+        "quarterly": "Quarterly (4x/year)",
+        "monthly": "Monthly (12x/year)",
+        "daily": "Daily (365x/year)"
+      }
+    },
+    "contributionTiming": {
+      "label": "Contribution Timing",
+      "help": "When contributions are made each period",
+      "options": {
+        "end": "End of period",
+        "beginning": "Beginning of period"
+      }
+    }
+  },
+  "inputGroups": {
+    "advanced": {
+      "label": "Advanced Options",
+      "description": "Fine-tune your calculation"
+    }
+  },
+  "results": {
+    "finalAmount": {
+      "label": "Future Value",
+      "description": "Total value of your investment at the end of the period"
+    },
+    "totalInterest": {
+      "label": "Total Interest Earned",
+      "description": "Total amount earned from compound interest"
+    },
+    "totalContributions": {
+      "label": "Total Contributions",
+      "description": "Initial investment plus all monthly contributions"
+    },
+    "effectiveRate": {
+      "label": "Effective Annual Rate (APY)",
+      "description": "Actual annual return accounting for compounding frequency"
+    },
+    "totalReturn": {
+      "label": "Total Return",
+      "description": "Percentage gain on your total contributions"
+    },
+    "interestRatio": {
+      "label": "Interest vs Principal",
+      "description": "What percentage of your final balance came from interest"
+    }
+  },
+  "chart": {
+    "title": "Investment Growth Over Time",
+    "labels": {
+      "balance": "Total Balance",
+      "contributions": "Total Contributions",
+      "interest": "Interest Earned"
+    }
+  },
+  "table": {
+    "title": "Year-by-Year Breakdown",
+    "columns": {
+      "year": "Year",
+      "startBalance": "Start Balance",
+      "contributions": "Contributions",
+      "interest": "Interest",
+      "endBalance": "End Balance"
+    }
+  },
+  "education": {
+    "sections": {
+      "whatIs": {
+        "title": "What is Compound Interest?",
+        "content": "Compound interest is interest calculated on both the initial principal and the accumulated interest from previous periods. Unlike simple interest, which only earns on the principal, compound interest allows your money to grow exponentially over time."
+      },
+      "power": {
+        "title": "The Power of Compounding",
+        "content": "Albert Einstein reportedly called compound interest the 'eighth wonder of the world.' The longer your money compounds, the more dramatic the growth. Starting early, even with small amounts, can lead to significantly larger outcomes than starting late with larger amounts."
+      },
+      "formula": {
+        "title": "The Compound Interest Formula",
+        "content": "The basic formula is A = P(1 + r/n)^(nt), where A is the final amount, P is principal, r is annual rate, n is compounding frequency, and t is time in years. For regular contributions, we use the future value of annuity formula."
+      },
+      "frequency": {
+        "title": "Compounding Frequency Matters",
+        "content": "More frequent compounding leads to slightly higher returns. Daily compounding earns more than monthly, which earns more than annually. However, the difference becomes smaller at lower interest rates and shorter time periods."
+      }
+    }
+  },
+  "faq": {
+    "items": [
+      {
+        "question": "What's the difference between APR and APY?",
+        "answer": "APR (Annual Percentage Rate) is the simple interest rate without compounding. APY (Annual Percentage Yield) includes the effect of compounding and represents your actual annual return. APY is always equal to or higher than APR."
+      },
+      {
+        "question": "How does compounding frequency affect my returns?",
+        "answer": "More frequent compounding means interest is calculated and added to your balance more often, allowing you to earn interest on interest sooner. At 7% annual rate, daily compounding yields about 0.25% more than annual compounding."
+      },
+      {
+        "question": "Should I contribute at the beginning or end of each period?",
+        "answer": "Contributing at the beginning of each period earns slightly more because that money has an extra period to compound. The difference is usually small but adds up over long time periods."
+      },
+      {
+        "question": "What's a realistic rate of return to expect?",
+        "answer": "Historical stock market returns average around 7-10% annually after inflation. Bond returns are typically 2-4%. Savings accounts offer 0.5-5% depending on conditions. Be conservative in projections and remember past performance doesn't guarantee future results."
+      },
+      {
+        "question": "How can I maximize compound interest?",
+        "answer": "Start early to give your money more time to grow. Contribute regularly, even small amounts. Choose investments with higher returns (accepting more risk). Minimize fees that eat into returns. Reinvest dividends and interest."
+      }
+    ]
+  }
+}

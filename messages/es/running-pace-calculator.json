@@ -1,0 +1,155 @@
+{
+  "meta": {
+    "title": "Calculadora de Ritmo de Carrera - VDOT, Ritmos de Entrenamiento y Predicciones de Carrera",
+    "description": "Calcula tu ritmo de carrera, predice tiempos de carrera, obtén ritmos de entrenamiento personalizados con puntuaciones VDOT, ajustes por clima y tiempos parciales para cualquier distancia."
+  },
+  "calculator": {
+    "title": "Calculadora de Ritmo de Carrera",
+    "subtitle": "Calcula ritmo, predice carreras y optimiza tu entrenamiento con análisis VDOT"
+  },
+  "form": {
+    "calculationType": "Tipo de Cálculo",
+    "distance": "Distancia",
+    "customDistance": "Distancia Personalizada",
+    "time": "Tiempo",
+    "pace": "Ritmo",
+    "hours": "Horas",
+    "minutes": "Minutos",
+    "seconds": "Segundos",
+    "perMile": "por milla",
+    "perKm": "por km",
+    "unit": "Unidad",
+    "miles": "Millas",
+    "kilometers": "Kilómetros",
+    "meters": "Metros",
+    "calculate": "Calcular",
+    "reset": "Reiniciar",
+    "advancedOptions": "Opciones Avanzadas",
+    "temperature": "Temperatura",
+    "humidity": "Humedad",
+    "altitude": "Altitud",
+    "weight": "Peso (para calorías)",
+    "age": "Edad (para ajuste por edad)"
+  },
+  "results": {
+    "title": "Tus Resultados",
+    "pace": "Ritmo",
+    "time": "Tiempo",
+    "distance": "Distancia",
+    "speed": "Velocidad",
+    "vdotScore": "Puntuación VDOT",
+    "caloriesBurned": "Calorías Estimadas",
+    "ageGradedTime": "Tiempo Ajustado por Edad",
+    "ageGradedPercent": "% Ajustado por Edad",
+    "weatherAdjusted": "Ritmo Ajustado por Clima"
+  },
+  "trainingPaces": {
+    "title": "Ritmos de Entrenamiento",
+    "description": "Basado en tu puntuación VDOT, aquí están tus ritmos de entrenamiento recomendados:",
+    "easy": "Fácil / Recuperación",
+    "easyDesc": "Ritmo conversacional para carreras de recuperación",
+    "marathon": "Ritmo de Maratón",
+    "marathonDesc": "Ritmo objetivo para correr maratón",
+    "threshold": "Umbral / Tempo",
+    "thresholdDesc": "Cómodamente difícil para carreras tempo",
+    "interval": "Intervalo (VO2max)",
+    "intervalDesc": "Esfuerzo fuerte para intervalos en pista",
+    "repetition": "Repetición",
+    "repetitionDesc": "Ritmo rápido para trabajo de velocidad"
+  },
+  "racePredictions": {
+    "title": "Predicciones de Tiempo de Carrera",
+    "description": "Rendimientos equivalentes en otras distancias:",
+    "distance": "Distancia",
+    "predictedTime": "Tiempo Predicho",
+    "requiredPace": "Ritmo Requerido"
+  },
+  "splits": {
+    "title": "Tiempos Parciales",
+    "mile": "Milla",
+    "km": "Kilómetro",
+    "split": "Parcial",
+    "cumulative": "Acumulado",
+    "evenSplits": "Parciales Uniformes",
+    "negativeSplits": "Parciales Negativos",
+    "negativeSplitDesc": "Empieza más lento, termina más rápido (recomendado para carreras)"
+  },
+  "distances": {
+    "custom": "Personalizada",
+    "1mile": "1 Milla",
+    "5k": "5K",
+    "10k": "10K",
+    "halfMarathon": "Media Maratón",
+    "marathon": "Maratón",
+    "50k": "Ultra 50K",
+    "100k": "Ultra 100K"
+  },
+  "infoCards": {
+    "vdot": {
+      "title": "¿Qué es VDOT?",
+      "content": "VDOT es una medida de tu condición física para correr desarrollada por el entrenador Jack Daniels. Estima tu VO2max basándose en el rendimiento en carreras y ayuda a determinar los ritmos óptimos de entrenamiento."
+    },
+    "negativeSplits": {
+      "title": "¿Por Qué Parciales Negativos?",
+      "content": "Correr la segunda mitad de una carrera más rápido que la primera ayuda a conservar energía al principio y terminar fuerte. La mayoría de los récords mundiales se establecen con parciales negativos."
+    },
+    "weather": {
+      "title": "Impacto del Clima",
+      "content": "El calor y la humedad afectan significativamente el rendimiento. Por cada 10°F por encima de 55°F, espera que el ritmo se reduzca 1.5-3%. Nuestra calculadora ajusta las predicciones en consecuencia."
+    },
+    "trainingZones": {
+      "title": "Beneficios de las Zonas de Entrenamiento",
+      "content": "Las carreras fáciles construyen base aeróbica, las carreras tempo mejoran el umbral de lactato, y los intervalos aumentan el VO2max. Un plan de entrenamiento equilibrado incluye todas las zonas."
+    }
+  },
+  "example": {
+    "title": "Ejemplo de Cálculo",
+    "scenario": "Un corredor completa un 10K en 50:00",
+    "results": "Esto equivale a un ritmo de 8:03/milla, VDOT de 41.2, y predice un tiempo de maratón de 3:56.",
+    "trainingPaces": "Ritmo fácil recomendado: 9:45-10:30/milla, Tempo: 7:33/milla"
+  },
+  "educational": {
+    "title": "Entendiendo el Ritmo de Carrera y el Rendimiento",
+    "content": "El ritmo de carrera es la base de la estrategia de entrenamiento y competición. Ya sea que te estés preparando para tu primer 5K o persiguiendo un récord personal en maratón, entender tu ritmo te ayuda a entrenar más inteligentemente y competir mejor.",
+    "sections": [
+      {
+        "title": "La Ciencia del Ritmo",
+        "content": "Tu ritmo de carrera está determinado por tu capacidad aeróbica (VO2max), umbral de lactato y economía de carrera. El sistema VDOT combina estos factores en una sola puntuación que predice el rendimiento en diferentes distancias."
+      },
+      {
+        "title": "Entrenamiento por Ritmo",
+        "content": "Diferentes ritmos de entrenamiento apuntan a diferentes sistemas fisiológicos. Las carreras fáciles al 65-75% de esfuerzo construyen mitocondrias y capilares. Las carreras tempo al 85-90% de esfuerzo mejoran tu umbral de lactato. Los intervalos al 95-100% de esfuerzo aumentan tu VO2max."
+      },
+      {
+        "title": "Estrategia del Día de Carrera",
+        "content": "La clave para una carrera exitosa son los parciales uniformes o negativos. Empezar demasiado rápido lleva al agotamiento de glucógeno y fatiga muscular. Usa las primeras millas para encontrar tu ritmo, luego aumenta gradualmente el esfuerzo en el último tercio."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "¿Qué tan precisas son las predicciones de tiempo de carrera?",
+      "answer": "Las predicciones son más precisas cuando se basan en tiempos de carrera recientes (dentro de 4-6 semanas) a distancias cercanas a tu carrera objetivo. Un tiempo de 10K predice mejor una media maratón que un maratón."
+    },
+    {
+      "question": "¿Qué es una buena puntuación VDOT?",
+      "answer": "Las puntuaciones VDOT típicamente van de 30 (principiante) a 85 (élite). Un corredor recreativo podría tener 35-45, un amateur competitivo 50-60, y corredores élite 70+."
+    },
+    {
+      "question": "¿Cuánto afecta el calor a mi ritmo?",
+      "answer": "Las investigaciones muestran que el rendimiento disminuye 1.5-3% por cada 10°F por encima de 55°F. A 85°F con alta humedad, espera correr 6-12% más lento que en clima fresco."
+    },
+    {
+      "question": "¿Debo entrenar por ritmo o frecuencia cardíaca?",
+      "answer": "Ambos tienen valor. El ritmo es mejor para entrenamientos en pista y carreras. La frecuencia cardíaca es útil para carreras fáciles, especialmente en calor o cuando estás fatigado, ya que tiene en cuenta las variaciones diarias en la condición física."
+    },
+    {
+      "question": "¿Cómo mejoro mi puntuación VDOT?",
+      "answer": "El entrenamiento consistente con periodización adecuada mejora el VDOT 2-5 puntos por año para corredores nuevos. Los entrenamientos clave incluyen carreras tempo, intervalos de VO2max y carreras largas."
+    },
+    {
+      "question": "¿A qué ritmo debo correr mis carreras largas?",
+      "answer": "Las carreras largas deben ser a ritmo fácil, típicamente 1-2 minutos por milla más lento que el ritmo de maratón. Deberías poder mantener una conversación durante todo el recorrido."
+    }
+  ]
+}

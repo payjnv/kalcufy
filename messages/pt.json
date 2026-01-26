@@ -42,7 +42,14 @@
       "pregnancy": "Data do Parto",
       "paycheck": "Calculadora de Salario",
       "profitMargin": "Calculadora de Margem",
-      "studentLoan": "Calculadora de Emprestimo Estudantil"
+      "studentLoan": "Calculadora de Emprestimo Estudantil",
+      "carLease": "Leasing de Carro",
+      "leanBodyMass": "Massa Corporal Magra",
+      "maintenanceCalories": "Calorias de Manutenção",
+      "calorieDeficit": "Déficit Calórico",
+      "calorieSurplus": "Superávit Calórico",
+      "weightLoss": "Perda de Peso",
+      "weightGain": "Ganho de Peso"
     }
   },
   "home": {
@@ -158,6 +165,42 @@
       },
       "bmr": {
         "desc": "Calcule sua Taxa Metabólica Basal e necessidades calóricas"
+      },
+      "carLease": {
+        "name": "Leasing de Carro",
+        "desc": "Calcule pagamentos de leasing, custo total e compare leasing vs compra"
+      },
+      "leanBodyMass": {
+        "name": "Massa Corporal Magra",
+        "desc": "Calcule massa magra com 5 fórmulas, FFMI e metas de proteína"
+      },
+      "maintenanceCalories": {
+        "name": "Calorias de Manutenção",
+        "desc": "Calcule TDEE com 3 fórmulas BMR e divisão de macros por refeição"
+      },
+      "calorieDeficit": {
+        "name": "Déficit Calórico",
+        "desc": "Calcule calorias para perder peso com linha do tempo e pausas na dieta"
+      },
+      "calorieSurplus": {
+        "name": "Superávit Calórico",
+        "desc": "Calcule calorias para ganho de massa com estimativa de músculo vs gordura"
+      },
+      "pregnancy": {
+        "name": "Data do Parto",
+        "desc": "Calcule data do parto, concepção e acompanhe a gravidez"
+      },
+      "lease": {
+        "name": "Leasing",
+        "desc": "Calcule pagamentos de leasing, custo total e compare leasing vs compra"
+      },
+      "weightLoss": {
+        "name": "Perda de Peso",
+        "desc": "Calcule quanto tempo para atingir seu peso ideal com calorias diárias"
+      },
+      "weightGain": {
+        "name": "Ganho de Peso",
+        "desc": "Calcule calorias de bulk com projeção de músculo vs gordura"
       }
     }
   },

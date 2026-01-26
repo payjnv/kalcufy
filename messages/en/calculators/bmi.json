@@ -1,0 +1,112 @@
+{
+  "meta": {
+    "title": "BMI Calculator",
+    "description": "Calculate your Body Mass Index (BMI) instantly. Get your BMI category, healthy weight range, and personalized health insights."
+  },
+  "hero": {
+    "title": "BMI Calculator",
+    "description": "Calculate your Body Mass Index and understand what it means for your health. Get instant results with personalized recommendations."
+  },
+  "inputs": {
+    "weight": {
+      "label": "Weight",
+      "help": "Enter your current body weight"
+    },
+    "height": {
+      "label": "Height",
+      "help": "Enter your height"
+    },
+    "age": {
+      "label": "Age",
+      "help": "Optional: Enter your age for more context",
+      "placeholder": "e.g., 30"
+    },
+    "gender": {
+      "label": "Gender",
+      "help": "Optional: Select your gender for additional insights",
+      "options": {
+        "male": "Male",
+        "female": "Female"
+      }
+    }
+  },
+  "results": {
+    "bmi": {
+      "label": "Your BMI",
+      "description": "Body Mass Index calculated from your height and weight"
+    },
+    "category": {
+      "label": "Category",
+      "description": "Your BMI classification according to WHO standards",
+      "values": {
+        "severely-underweight": "Severely Underweight",
+        "underweight": "Underweight",
+        "normal": "Normal Weight",
+        "overweight": "Overweight",
+        "obese-class-1": "Obese Class I",
+        "obese-class-2": "Obese Class II",
+        "obese-class-3": "Obese Class III"
+      }
+    },
+    "healthyRange": {
+      "label": "Healthy Weight Range",
+      "description": "The weight range for a normal BMI (18.5-24.9) at your height"
+    },
+    "weightDifference": {
+      "label": "Weight Adjustment",
+      "description": "How much weight to lose or gain to reach normal BMI range"
+    },
+    "bmiPrime": {
+      "label": "BMI Prime",
+      "description": "Ratio of your BMI to the upper limit of normal (25). Values below 1.0 are normal."
+    },
+    "ponderalIndex": {
+      "label": "Ponderal Index",
+      "description": "Alternative index (kg/m³) that accounts better for height differences"
+    }
+  },
+  "education": {
+    "sections": {
+      "whatIsBmi": {
+        "title": "What is BMI?",
+        "content": "Body Mass Index (BMI) is a simple calculation using your height and weight to estimate body fat. It's widely used as a screening tool to categorize individuals into weight status categories. The formula divides weight in kilograms by height in meters squared (kg/m²)."
+      },
+      "categories": {
+        "title": "BMI Categories",
+        "content": "The World Health Organization classifies BMI into several categories: Underweight (below 18.5), Normal weight (18.5-24.9), Overweight (25-29.9), and Obese (30 and above). These thresholds help identify potential health risks associated with weight."
+      },
+      "limitations": {
+        "title": "BMI Limitations",
+        "content": "BMI doesn't distinguish between muscle and fat mass, so athletes may be classified as overweight despite being healthy. It also doesn't account for fat distribution, age-related changes, or ethnic variations. It's best used as one of several health indicators, not a definitive measure."
+      },
+      "bmiPrime": {
+        "title": "Understanding BMI Prime",
+        "content": "BMI Prime is your BMI divided by 25 (the upper limit of normal). A BMI Prime of 1.0 means you're at the threshold of normal and overweight. Values below 1.0 indicate normal weight, while values above 1.0 indicate overweight or obesity."
+      }
+    }
+  },
+  "faq": {
+    "items": [
+      {
+        "question": "What is a healthy BMI range?",
+        "answer": "A healthy BMI is generally considered to be between 18.5 and 24.9. This range is associated with the lowest health risks. However, 'healthy' can vary based on individual factors like muscle mass, age, and ethnicity."
+      },
+      {
+        "question": "Why might BMI be inaccurate for athletes?",
+        "answer": "BMI doesn't differentiate between muscle and fat. Since muscle is denser than fat, muscular athletes often have higher BMIs despite having low body fat. For athletes, body fat percentage or waist circumference may be better indicators."
+      },
+      {
+        "question": "Does age affect BMI interpretation?",
+        "answer": "Yes, body composition changes with age. Older adults tend to have more body fat and less muscle. Some researchers suggest slightly higher BMI ranges (23-28) may be acceptable for adults over 65, though this varies by individual health status."
+      },
+      {
+        "question": "How often should I check my BMI?",
+        "answer": "For most adults, checking BMI once every few months is sufficient. If you're actively trying to change your weight, monthly checks can help track progress. However, daily fluctuations are normal, so don't obsess over frequent measurements."
+      },
+      {
+        "question": "What should I do if my BMI is outside the normal range?",
+        "answer": "If your BMI indicates underweight or overweight, consider consulting a healthcare provider. They can assess your overall health, including body composition, lifestyle factors, and any underlying conditions, to provide personalized recommendations."
+      }
+    ]
+  }
+}

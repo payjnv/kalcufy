@@ -1,0 +1,142 @@
+{
+  "meta": {
+    "title": "Calculadora de Interés Compuesto",
+    "description": "Calcula el interés compuesto con aportaciones mensuales. Ve cómo crecen tus inversiones a lo largo del tiempo con nuestra calculadora gratuita."
+  },
+  "hero": {
+    "title": "Calculadora de Interés Compuesto",
+    "description": "Descubre el poder del interés compuesto. Calcula cómo crecerán tus ahorros e inversiones a lo largo del tiempo con aportaciones regulares."
+  },
+  "inputs": {
+    "principal": {
+      "label": "Inversión Inicial",
+      "help": "La cantidad con la que empiezas"
+    },
+    "monthlyContribution": {
+      "label": "Aportación Mensual",
+      "help": "Cantidad que añadirás cada mes"
+    },
+    "annualRate": {
+      "label": "Tasa de Interés Anual",
+      "help": "Rendimiento anual esperado (ej., 7% para acciones)"
+    },
+    "years": {
+      "label": "Período de Tiempo",
+      "help": "Cuánto tiempo planeas invertir",
+      "suffix": "años"
+    },
+    "compounding": {
+      "label": "Frecuencia de Capitalización",
+      "help": "Con qué frecuencia se calcula y añade el interés",
+      "options": {
+        "annually": "Anualmente (1x/año)",
+        "semiannually": "Semestralmente (2x/año)",
+        "quarterly": "Trimestralmente (4x/año)",
+        "monthly": "Mensualmente (12x/año)",
+        "daily": "Diariamente (365x/año)"
+      }
+    },
+    "contributionTiming": {
+      "label": "Momento de Aportación",
+      "help": "Cuándo se realizan las aportaciones en cada período",
+      "options": {
+        "end": "Final del período",
+        "beginning": "Inicio del período"
+      }
+    }
+  },
+  "inputGroups": {
+    "advanced": {
+      "label": "Opciones Avanzadas",
+      "description": "Ajusta tu cálculo"
+    }
+  },
+  "results": {
+    "finalAmount": {
+      "label": "Valor Futuro",
+      "description": "Valor total de tu inversión al final del período"
+    },
+    "totalInterest": {
+      "label": "Intereses Totales Ganados",
+      "description": "Cantidad total ganada por interés compuesto"
+    },
+    "totalContributions": {
+      "label": "Aportaciones Totales",
+      "description": "Inversión inicial más todas las aportaciones mensuales"
+    },
+    "effectiveRate": {
+      "label": "Tasa Efectiva Anual (TAE)",
+      "description": "Rendimiento anual real considerando la frecuencia de capitalización"
+    },
+    "totalReturn": {
+      "label": "Rendimiento Total",
+      "description": "Porcentaje de ganancia sobre tus aportaciones totales"
+    },
+    "interestRatio": {
+      "label": "Interés vs Capital",
+      "description": "Qué porcentaje de tu saldo final provino de intereses"
+    }
+  },
+  "chart": {
+    "title": "Crecimiento de la Inversión",
+    "labels": {
+      "balance": "Saldo Total",
+      "contributions": "Aportaciones Totales",
+      "interest": "Intereses Ganados"
+    }
+  },
+  "table": {
+    "title": "Desglose Anual",
+    "columns": {
+      "year": "Año",
+      "startBalance": "Saldo Inicial",
+      "contributions": "Aportaciones",
+      "interest": "Intereses",
+      "endBalance": "Saldo Final"
+    }
+  },
+  "education": {
+    "sections": {
+      "whatIs": {
+        "title": "¿Qué es el Interés Compuesto?",
+        "content": "El interés compuesto es el interés calculado tanto sobre el capital inicial como sobre los intereses acumulados de períodos anteriores. A diferencia del interés simple, que solo gana sobre el capital, el interés compuesto permite que tu dinero crezca exponencialmente con el tiempo."
+      },
+      "power": {
+        "title": "El Poder de la Capitalización",
+        "content": "Albert Einstein supuestamente llamó al interés compuesto la 'octava maravilla del mundo'. Cuanto más tiempo se capitaliza tu dinero, más dramático es el crecimiento. Empezar temprano, incluso con cantidades pequeñas, puede llevar a resultados significativamente mayores que empezar tarde con cantidades grandes."
+      },
+      "formula": {
+        "title": "La Fórmula del Interés Compuesto",
+        "content": "La fórmula básica es A = P(1 + r/n)^(nt), donde A es el monto final, P es el capital, r es la tasa anual, n es la frecuencia de capitalización y t es el tiempo en años. Para aportaciones regulares, usamos la fórmula del valor futuro de anualidad."
+      },
+      "frequency": {
+        "title": "La Frecuencia de Capitalización Importa",
+        "content": "Una capitalización más frecuente lleva a rendimientos ligeramente mayores. La capitalización diaria gana más que la mensual, que gana más que la anual. Sin embargo, la diferencia se vuelve menor con tasas de interés más bajas y períodos más cortos."
+      }
+    }
+  },
+  "faq": {
+    "items": [
+      {
+        "question": "¿Cuál es la diferencia entre TAE y TIN?",
+        "answer": "TIN (Tipo de Interés Nominal) es la tasa de interés simple sin capitalización. TAE (Tasa Anual Equivalente) incluye el efecto de la capitalización y representa tu rendimiento anual real. La TAE siempre es igual o mayor que el TIN."
+      },
+      {
+        "question": "¿Cómo afecta la frecuencia de capitalización a mis rendimientos?",
+        "answer": "Una capitalización más frecuente significa que el interés se calcula y añade a tu saldo más a menudo, permitiéndote ganar interés sobre interés antes. Con una tasa anual del 7%, la capitalización diaria rinde aproximadamente 0.25% más que la capitalización anual."
+      },
+      {
+        "question": "¿Debería aportar al inicio o al final de cada período?",
+        "answer": "Aportar al inicio de cada período gana ligeramente más porque ese dinero tiene un período extra para capitalizarse. La diferencia suele ser pequeña pero se acumula en períodos largos de tiempo."
+      },
+      {
+        "question": "¿Qué tasa de rendimiento es realista esperar?",
+        "answer": "Los rendimientos históricos del mercado de valores promedian alrededor del 7-10% anual después de la inflación. Los bonos típicamente rinden 2-4%. Las cuentas de ahorro ofrecen 0.5-5% dependiendo de las condiciones. Sé conservador en las proyecciones y recuerda que el rendimiento pasado no garantiza resultados futuros."
+      },
+      {
+        "question": "¿Cómo puedo maximizar el interés compuesto?",
+        "answer": "Empieza temprano para darle más tiempo a tu dinero para crecer. Aporta regularmente, incluso cantidades pequeñas. Elige inversiones con mayores rendimientos (aceptando más riesgo). Minimiza las comisiones que reducen los rendimientos. Reinvierte dividendos e intereses."
+      }
+    ]
+  }
+}
