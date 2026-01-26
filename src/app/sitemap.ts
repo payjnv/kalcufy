@@ -53,22 +53,43 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Fetch blog posts from database
   try {
-    const { prisma } = await import('@/lib/prisma');
+    const { prisma } = await import('@/lib/db');
     const posts = await prisma.post.findMany({
       where: { 
-        published: true 
+        status: 'PUBLISHED'
       },
       select: { 
-        slug: true, 
+        slugEn: true,
+        slugEs: true,
+        slugPt: true,
         updatedAt: true 
       },
     });
 
     // Add blog posts for each locale
-    for (const locale of locales) {
-      for (const post of posts) {
+    for (const post of posts) {
+      // English
+      if (post.slugEn) {
         routes.push({
-          url: `${baseUrl}/${locale}/blog/${post.slug}`,
+          url: `${baseUrl}/en/blog/${post.slugEn}`,
+          lastModified: post.updatedAt,
+          changeFrequency: 'weekly',
+          priority: 0.7,
+        });
+      }
+      // Spanish
+      if (post.slugEs) {
+        routes.push({
+          url: `${baseUrl}/es/blog/${post.slugEs}`,
+          lastModified: post.updatedAt,
+          changeFrequency: 'weekly',
+          priority: 0.7,
+        });
+      }
+      // Portuguese
+      if (post.slugPt) {
+        routes.push({
+          url: `${baseUrl}/pt/blog/${post.slugPt}`,
           lastModified: post.updatedAt,
           changeFrequency: 'weekly',
           priority: 0.7,
@@ -76,7 +97,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       }
     }
   } catch (error) {
-    // If blog posts can't be fetched, continue without them
     console.error('Error fetching blog posts for sitemap:', error);
   }
 

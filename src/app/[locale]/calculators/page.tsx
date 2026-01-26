@@ -2,7 +2,7 @@
 // Dynamic Categories Version - Fixed Layout
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -41,7 +41,7 @@ interface CalculatorData {
   };
 }
 
-export default function CalculatorsPage() {
+function CalculatorsContent() {
   const searchParams = useSearchParams();
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("all");
@@ -219,38 +219,23 @@ export default function CalculatorsPage() {
       .filter((c): c is Calculator => c !== undefined);
   }, [data]);
 
-  // Count calculators per category
-  const getCategoryCount = (slug: string) => {
-    if (!data) return 0;
-    return data.calculators.filter(c => c.category === slug).length;
-  };
-
+  // Results count
   const resultsCount = filteredCalculators.length;
 
   if (loading) {
     return (
       <>
         <Header />
-        <main className="pt-20 pb-16 min-h-screen bg-slate-50">
+        <main className="pt-24 pb-16 min-h-screen bg-slate-50">
           <div className="container">
-            <div 
-              className="flex items-center justify-center py-20"
-              role="status"
-              aria-live="polite"
-              aria-label="Loading calculators"
-            >
-              <svg 
-                className="animate-spin h-8 w-8 text-blue-500" 
-                xmlns="http://www.w3.org/2000/svg" 
-                fill="none" 
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-                focusable="false"
-              >
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-              </svg>
-              <span className="sr-only">Loading calculators, please wait...</span>
+            <div className="animate-pulse">
+              <div className="h-8 bg-slate-200 rounded w-1/3 mb-4"></div>
+              <div className="h-4 bg-slate-200 rounded w-1/2 mb-8"></div>
+              <div className="grid grid-cols-3 gap-4">
+                {[...Array(6)].map((_, i) => (
+                  <div key={i} className="h-32 bg-slate-200 rounded-xl"></div>
+                ))}
+              </div>
             </div>
           </div>
         </main>
@@ -261,44 +246,52 @@ export default function CalculatorsPage() {
 
   return (
     <>
-      <a 
-        href="#calculator-list" 
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-      >
-        Skip to calculator list
-      </a>
-
       <Header />
-
-      <main className="pt-20 pb-16 min-h-screen bg-slate-50">
+      <main id="main-content" className="pt-24 pb-16 min-h-screen bg-slate-50">
         <div className="container">
-          <div className="flex flex-col md:flex-row gap-8">
-            {/* Sidebar */}
-            <aside 
-              className="w-full md:w-64 shrink-0"
-              aria-label="Calculator filters"
-            >
-              <div className="bg-white rounded-xl p-5 shadow-sm sticky top-24">
-                {/* Search */}
-                <div className="mb-6">
-                  <label 
-                    htmlFor="calculator-search" 
-                    className="sr-only"
-                  >
-                    Search calculators
-                  </label>
-                  <input
-                    id="calculator-search"
-                    type="search"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder={t("search")}
-                    className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-                    aria-describedby="search-results-status"
-                  />
-                </div>
+          {/* Header */}
+          <div className="mb-8">
+            <h1 className="text-3xl font-bold text-slate-900 mb-2">
+              {t("title")}
+            </h1>
+            <p className="text-slate-600">
+              {t("subtitle")}
+            </p>
+          </div>
 
-                {/* Dynamic Categories */}
+          {/* Search */}
+          <div className="mb-8">
+            <div className="relative max-w-md">
+              <label htmlFor="calculator-search" className="sr-only">
+                Search calculators
+              </label>
+              <input
+                id="calculator-search"
+                type="search"
+                placeholder={t("searchPlaceholder")}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                aria-controls="calculator-list"
+                aria-describedby="search-results-status"
+              />
+              <svg
+                className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
+          </div>
+
+          <div className="flex gap-8">
+            {/* Sidebar */}
+            <aside className="hidden lg:block w-64 flex-shrink-0">
+              <div className="sticky top-24 bg-white rounded-xl p-4 shadow-sm border border-slate-100">
+                {/* Categories */}
                 <nav aria-label="Calculator categories">
                   <h2 
                     id="categories-heading"
@@ -311,38 +304,34 @@ export default function CalculatorsPage() {
                     role="list"
                     aria-labelledby="categories-heading"
                   >
-                    {/* All Calculators */}
                     <li>
                       <button
                         onClick={() => setActiveCategory("all")}
-                        aria-pressed={activeCategory === "all"}
-                        className={`w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                        className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                           activeCategory === "all"
-                            ? "bg-blue-50 text-blue-600"
+                            ? "bg-slate-100 text-slate-900"
                             : "text-slate-600 hover:bg-slate-50"
                         }`}
+                        aria-pressed={activeCategory === "all"}
                       >
-                        {t("allCalculators")}
-                        <span className="float-right text-slate-400" aria-hidden="true">
-                          {data?.counts.total || 0}
-                        </span>
+                        <span>{t("allCalculators")}</span>
+                        <span className="text-slate-400">{data?.counts.total || 0}</span>
                       </button>
                     </li>
-
-                    {/* Dynamic Categories from DB */}
                     {categories.map((cat) => (
                       <li key={cat.id}>
                         <button
                           onClick={() => setActiveCategory(cat.slug)}
-                          aria-pressed={activeCategory === cat.slug}
-                          className={`w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                          className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                             getCategoryColor(cat.color, activeCategory === cat.slug)
                           }`}
+                          aria-pressed={activeCategory === cat.slug}
                         >
-                          {getCategoryName(cat)}
-                          <span className="float-right text-slate-400" aria-hidden="true">
-                            {getCategoryCount(cat.slug)}
+                          <span className="flex items-center gap-2">
+                            {cat.icon && <span aria-hidden="true">{cat.icon}</span>}
+                            {getCategoryName(cat)}
                           </span>
+                          <span className="text-slate-400">{cat._count?.calculators || 0}</span>
                         </button>
                       </li>
                     ))}
@@ -558,5 +547,31 @@ export default function CalculatorsPage() {
 
       <Footer />
     </>
+  );
+}
+
+export default function CalculatorsPage() {
+  return (
+    <Suspense fallback={
+      <>
+        <Header />
+        <main className="pt-24 pb-16 min-h-screen bg-slate-50">
+          <div className="container">
+            <div className="animate-pulse">
+              <div className="h-8 bg-slate-200 rounded w-1/3 mb-4"></div>
+              <div className="h-4 bg-slate-200 rounded w-1/2 mb-8"></div>
+              <div className="grid grid-cols-3 gap-4">
+                {[...Array(6)].map((_, i) => (
+                  <div key={i} className="h-32 bg-slate-200 rounded-xl"></div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </main>
+        <Footer />
+      </>
+    }>
+      <CalculatorsContent />
+    </Suspense>
   );
 }
