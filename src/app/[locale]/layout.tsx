@@ -9,6 +9,7 @@ import { Providers } from './providers';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import CookieConsent from '@/components/CookieConsent';
+import GoogleAnalytics from '@/components/GoogleAnalytics';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -70,6 +71,7 @@ export default async function LocaleLayout({
       </head>
       <body className={`${inter.className} antialiased`} suppressHydrationWarning>
         <Providers>
+          <GoogleAnalytics />
           <NextIntlClientProvider messages={messages}>
             {/* Skip Link for keyboard accessibility - WCAG 2.1 AA */}
             <a
