@@ -1,0 +1,236 @@
+{
+  "calculator": {
+    "name": "Calculadora de Frações",
+    "title": "Calculadora de Frações - Somar, Subtrair, Multiplicar, Dividir",
+    "description": "Calculadora de frações online gratuita para somar, subtrair, multiplicar e dividir frações. Suporta números mistos, simplificação e soluções passo a passo. Funciona com frações impróprias também.",
+    "shortDescription": "Calcule frações com soluções passo a passo",
+    "badge": "Matemática"
+  },
+  "inputs": {
+    "operation": {
+      "label": "Operação",
+      "options": {
+        "add": "Somar (+)",
+        "subtract": "Subtrair (−)",
+        "multiply": "Multiplicar (×)",
+        "divide": "Dividir (÷)",
+        "simplify": "Simplificar",
+        "convert": "Converter"
+      }
+    },
+    "whole1": {
+      "label": "Número Inteiro",
+      "helpText": "Opcional"
+    },
+    "numerator1": {
+      "label": "Numerador"
+    },
+    "denominator1": {
+      "label": "Denominador",
+      "helpText": "Não pode ser zero"
+    },
+    "whole2": {
+      "label": "Número Inteiro",
+      "helpText": "Opcional"
+    },
+    "numerator2": {
+      "label": "Numerador"
+    },
+    "denominator2": {
+      "label": "Denominador",
+      "helpText": "Não pode ser zero"
+    },
+    "convertTo": {
+      "label": "Converter Para",
+      "options": {
+        "decimal": "Decimal",
+        "percentage": "Porcentagem",
+        "mixed": "Número Misto",
+        "improper": "Fração Imprópria"
+      }
+    }
+  },
+  "results": {
+    "mainResult": {
+      "label": "Resultado"
+    },
+    "simplified": {
+      "label": "Simplificado"
+    },
+    "decimal": {
+      "label": "Como Decimal"
+    },
+    "percentage": {
+      "label": "Como Porcentagem"
+    }
+  },
+  "infoCards": {
+    "fractionInfo": {
+      "title": "Detalhes da Fração",
+      "mixedNumber": "Número Misto",
+      "improperFraction": "Fração Imprópria",
+      "lcdUsed": "MMC Utilizado"
+    },
+    "equivalents": {
+      "title": "Frações Equivalentes",
+      "times2": "×2",
+      "times3": "×3",
+      "times4": "×4"
+    }
+  },
+  "referenceData": {
+    "commonFractions": {
+      "title": "Referência de Frações Comuns",
+      "columns": {
+        "fraction": "Fração",
+        "decimal": "Decimal",
+        "percent": "Porcentagem",
+        "equivalent": "Equivalentes"
+      }
+    }
+  },
+  "educationSections": {
+    "operationsExplained": {
+      "title": "Operações com Frações",
+      "cards": {
+        "adding": {
+          "title": "Somar Frações",
+          "description": "Para somar frações, primeiro encontre um denominador comum (MMC), converta cada fração, depois some os numeradores. Mantenha o denominador igual. Exemplo: 1/4 + 1/3 = 3/12 + 4/12 = 7/12"
+        },
+        "subtracting": {
+          "title": "Subtrair Frações",
+          "description": "Igual à soma: encontre o MMC, converta as frações, depois subtraia os numeradores. Mantenha o denominador. Exemplo: 3/4 - 1/3 = 9/12 - 4/12 = 5/12"
+        },
+        "multiplying": {
+          "title": "Multiplicar Frações",
+          "description": "Multiplique os numeradores entre si, multiplique os denominadores entre si. Não é necessário denominador comum! Exemplo: 2/3 × 3/4 = 6/12 = 1/2"
+        },
+        "dividing": {
+          "title": "Dividir Frações",
+          "description": "Inverta a segunda fração (recíproco) e multiplique. Exemplo: 1/2 ÷ 3/4 = 1/2 × 4/3 = 4/6 = 2/3"
+        }
+      }
+    },
+    "considerations": {
+      "title": "Considerações Importantes",
+      "items": {
+        "zeroDenominator": "O denominador nunca pode ser zero - divisão por zero é indefinida",
+        "simplify": "Sempre simplifique sua resposta final para os termos mais baixos quando possível",
+        "commonDenominator": "Para soma e subtração, é necessário um denominador comum",
+        "noCommonDenominator": "Para multiplicação e divisão, NÃO é necessário denominador comum",
+        "mixedToImproper": "Números mistos devem ser convertidos para frações impróprias antes das operações",
+        "reciprocal": "Ao dividir frações, multiplique pelo recíproco (inverta a segunda fração)"
+      }
+    },
+    "exampleCalculation": {
+      "title": "Exemplos de Cálculos",
+      "description": "Exemplos passo a passo de operações com frações",
+      "examples": {
+        "adding": {
+          "title": "Somando: 2/3 + 1/4",
+          "steps": [
+            "Encontre o MMC de 3 e 4: MMC = 12",
+            "Converta 2/3: (2×4)/(3×4) = 8/12",
+            "Converta 1/4: (1×3)/(4×3) = 3/12",
+            "Some os numeradores: 8/12 + 3/12 = 11/12"
+          ],
+          "result": "2/3 + 1/4 = 11/12"
+        },
+        "subtracting": {
+          "title": "Subtraindo: 5/6 - 1/4",
+          "steps": [
+            "Encontre o MMC de 6 e 4: MMC = 12",
+            "Converta 5/6: (5×2)/(6×2) = 10/12",
+            "Converta 1/4: (1×3)/(4×3) = 3/12",
+            "Subtraia: 10/12 - 3/12 = 7/12"
+          ],
+          "result": "5/6 - 1/4 = 7/12"
+        },
+        "multiplying": {
+          "title": "Multiplicando: 2/3 × 4/5",
+          "steps": [
+            "Multiplique numeradores: 2 × 4 = 8",
+            "Multiplique denominadores: 3 × 5 = 15",
+            "Resultado: 8/15 (já simplificado)"
+          ],
+          "result": "2/3 × 4/5 = 8/15"
+        },
+        "dividing": {
+          "title": "Dividindo: 3/4 ÷ 2/5",
+          "steps": [
+            "Inverta a segunda fração: 2/5 → 5/2",
+            "Multiplique: 3/4 × 5/2",
+            "Numeradores: 3 × 5 = 15",
+            "Denominadores: 4 × 2 = 8",
+            "Resultado: 15/8 = 1 7/8"
+          ],
+          "result": "3/4 ÷ 2/5 = 15/8 = 1 7/8"
+        }
+      }
+    },
+    "whatAreFractions": {
+      "title": "O que são Frações?",
+      "content": "Uma fração representa uma parte de um todo. Consiste em dois números: o numerador (número superior) mostra quantas partes temos, e o denominador (número inferior) mostra em quantas partes iguais o todo está dividido. Por exemplo, 3/4 significa 3 partes de 4 partes iguais. As frações podem ser próprias (numerador < denominador, como 2/3), impróprias (numerador ≥ denominador, como 5/3), ou números mistos (número inteiro + fração própria, como 1 2/3)."
+    },
+    "findingLCD": {
+      "title": "Encontrando o Mínimo Múltiplo Comum (MMC)",
+      "content": "O MMC é o menor número que ambos os denominadores dividem exatamente. Para encontrá-lo: 1) Liste os múltiplos de cada denominador, 2) Encontre o menor múltiplo comum. Por exemplo, para 3 e 4: múltiplos de 3 são 3, 6, 9, 12...; múltiplos de 4 são 4, 8, 12... O MMC é 12. Alternativamente, você pode usar fatoração prima ou simplesmente multiplicar os denominadores (embora isso possa não dar o MMC, dará UM denominador comum)."
+    },
+    "simplifyingFractions": {
+      "title": "Simplificando Frações",
+      "content": "Para simplificar (ou reduzir) uma fração, divida tanto o numerador quanto o denominador pelo seu Máximo Divisor Comum (MDC). Por exemplo, para simplificar 8/12: o MDC de 8 e 12 é 4, então 8÷4/12÷4 = 2/3. Uma fração está em sua forma mais simples quando o MDC do numerador e denominador é 1. Você pode encontrar o MDC listando os fatores de ambos os números e encontrando o maior em comum, ou usando fatoração prima."
+    }
+  },
+  "faqs": {
+    "addDifferentDenominators": {
+      "question": "Como somo frações com denominadores diferentes?",
+      "answer": "Primeiro, encontre o Mínimo Múltiplo Comum (MMC) de ambas as frações. Converta cada fração para uma fração equivalente com o MMC como denominador. Depois some os numeradores e mantenha o denominador comum. Finalmente, simplifique se possível. Exemplo: 1/3 + 1/4 → MMC é 12 → 4/12 + 3/12 = 7/12."
+    },
+    "multiplyFractions": {
+      "question": "Como multiplico frações?",
+      "answer": "Multiplicar frações é direto: multiplique os numeradores juntos para obter o novo numerador, multiplique os denominadores juntos para obter o novo denominador. Não é necessário denominador comum! Depois simplifique. Exemplo: 2/3 × 4/5 = (2×4)/(3×5) = 8/15."
+    },
+    "divideFractions": {
+      "question": "Como divido frações?",
+      "answer": "Para dividir frações, inverta a segunda fração (encontre seu recíproco) e multiplique. Isso é frequentemente lembrado como 'Mantenha, Mude, Inverta'. Exemplo: 1/2 ÷ 3/4 = 1/2 × 4/3 = 4/6 = 2/3."
+    },
+    "mixedToImproper": {
+      "question": "Como converto um número misto para fração imprópria?",
+      "answer": "Multiplique o número inteiro pelo denominador, some o numerador, e coloque o resultado sobre o denominador original. Exemplo: 2 3/4 → (2×4)+3 = 11, então 2 3/4 = 11/4."
+    },
+    "improperToMixed": {
+      "question": "Como converto uma fração imprópria para número misto?",
+      "answer": "Divida o numerador pelo denominador. O quociente é o número inteiro, e o resto é o novo numerador sobre o denominador original. Exemplo: 11/4 → 11÷4 = 2 resto 3, então 11/4 = 2 3/4."
+    },
+    "whatIsGCF": {
+      "question": "O que é o MDC e como encontro?",
+      "answer": "MDC (Máximo Divisor Comum) é o maior número que divide exatamente em ambos os números. Para encontrá-lo, liste todos os fatores de cada número e encontre o maior que eles compartilham. Para 12 e 8: fatores de 12 são 1,2,3,4,6,12; fatores de 8 são 1,2,4,8. Fatores comuns: 1,2,4. MDC = 4."
+    }
+  },
+  "summary": {
+    "sum": "Soma",
+    "difference": "Diferença",
+    "product": "Produto",
+    "quotient": "Quociente",
+    "simplified": "Simplificado",
+    "converted": "Convertido",
+    "result": "Resultado"
+  },
+  "errors": {
+    "zeroDenominator": "Erro: O denominador não pode ser zero",
+    "divideByZero": "Erro: Não é possível dividir por zero",
+    "invalidInput": "Entrada inválida"
+  },
+  "common": {
+    "calculate": "Calcular",
+    "reset": "Reiniciar",
+    "result": "Resultado",
+    "formula": "Fórmula",
+    "steps": "Passos",
+    "example": "Exemplo",
+    "references": "Referências",
+    "relatedCalculators": "Calculadoras Relacionadas",
+    "firstFraction": "Primeira Fração",
+    "secondFraction": "Segunda Fração"
+  }
+}

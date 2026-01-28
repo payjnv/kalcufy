@@ -1,0 +1,192 @@
+{
+  "calculator": {
+    "title": "Calculadora de Relación Cintura-Altura",
+    "subtitle": "Evalúa tu riesgo de salud con WHtR - un indicador mejor que el IMC",
+    "breadcrumb": "Relación Cintura-Altura",
+    "yourInformation": "Tu Información"
+  },
+
+  "inputs": {
+    "gender": {
+      "label": "Género",
+      "options": {
+        "female": "Mujer",
+        "male": "Hombre"
+      }
+    },
+    "waistCircumference": {
+      "label": "Circunferencia de Cintura",
+      "helpText": "Mide en el punto medio entre la costilla inferior y el hueso de la cadera",
+      "suffix": "cm"
+    },
+    "height": {
+      "label": "Altura",
+      "suffix": "cm"
+    },
+    "unitSystem": {
+      "label": "Sistema de Unidades",
+      "options": {
+        "imperial": "Imperial (in)",
+        "metric": "Métrico (cm)"
+      }
+    }
+  },
+
+  "results": {
+    "whtr": "Relación Cintura-Altura",
+    "category": "Categoría de Salud",
+    "riskLevel": "Nivel de Riesgo",
+    "idealWaist": "Cintura Ideal (Máx)",
+    "waistToLose": "Cintura a Reducir"
+  },
+
+  "info": {
+    "whtrResults": {
+      "title": "Tus Resultados WHtR",
+      "0": "Ratio WHtR",
+      "1": "Categoría",
+      "2": "Nivel de Riesgo",
+      "3": "Cintura Máxima Ideal"
+    },
+    "quickTips": {
+      "title": "Consejos Rápidos de Salud",
+      "0": "Mantén tu cintura menor a la mitad de tu altura (WHtR < 0.5)",
+      "1": "WHtR es mejor que el IMC para predecir riesgos de salud",
+      "2": "Mide la cintura a nivel del ombligo, relajado",
+      "3": "Verifica trimestralmente para seguir tu progreso"
+    }
+  },
+
+  "reference": {
+    "whtrCategories": {
+      "title": "Categorías de Salud WHtR",
+      "items": {
+        "0": "< 0.4",
+        "1": "0.4 - 0.5",
+        "2": "0.5 - 0.6",
+        "3": "> 0.6",
+        "4": "< 0.5",
+        "5": "≥ 0.5"
+      }
+    }
+  },
+
+  "education": {
+    "whatIsWhtr": {
+      "title": "¿Qué es la Relación Cintura-Altura?",
+      "content": "La Relación Cintura-Altura (WHtR) es una medición simple que compara tu circunferencia de cintura con tu altura. Las investigaciones muestran que es un mejor predictor de riesgos de salud que el IMC porque mide específicamente la obesidad central - la grasa peligrosa alrededor de tus órganos. El NHS del Reino Unido y las guías NICE recomiendan mantener tu cintura menor a la mitad de tu altura. Un WHtR por debajo de 0.5 indica menor riesgo de enfermedad cardíaca, accidente cerebrovascular y diabetes, independientemente de tu clasificación de IMC."
+    },
+    "whtrVsBmi": {
+      "title": "Comparación WHtR vs IMC",
+      "cards": {
+        "0": {
+          "title": "Ventajas del WHtR",
+          "description": "Mide directamente la distribución de grasa abdominal. Mejor predictor de riesgo cardiovascular. El mismo umbral (0.5) funciona para todas las edades, géneros y etnias. Regla simple: cintura < mitad de altura."
+        },
+        "1": {
+          "title": "Limitaciones del IMC",
+          "description": "No distingue entre grasa y músculo. No detecta individuos 'flacos gordos' con peso normal pero alta grasa visceral. Se necesitan diferentes umbrales para diferentes poblaciones."
+        }
+      }
+    },
+    "howToMeasure": {
+      "title": "Cómo Medir Correctamente",
+      "cards": {
+        "0": {
+          "title": "Medición de Cintura",
+          "description": "Párate relajado con los pies juntos. Mide en el punto medio entre tu costilla más baja y la parte superior del hueso de la cadera - generalmente justo arriba del ombligo. Mantén la cinta horizontal y ajustada pero no apretada. Mide después de exhalar normalmente."
+        },
+        "1": {
+          "title": "Medición de Altura",
+          "description": "Párate derecho contra una pared sin zapatos. Mantén talones, glúteos y cabeza tocando la pared. Mira hacia adelante. Haz que alguien marque el punto más alto de tu cabeza."
+        }
+      }
+    },
+    "considerations": {
+      "title": "Consideraciones Importantes",
+      "items": {
+        "0": { "text": "WHtR es una herramienta de detección, no un diagnóstico - consulta profesionales de salud para consejo médico" },
+        "1": { "text": "Las mujeres embarazadas no deben usar WHtR como indicador de salud" },
+        "2": { "text": "Válido para adultos y niños mayores de 5 años" },
+        "3": { "text": "Los umbrales específicos por género proporcionan una evaluación de riesgo más precisa" },
+        "4": { "text": "La Comisión Lancet (2024) recomienda WHtR sobre el IMC solo para diagnóstico de obesidad" }
+      }
+    },
+    "exampleCalculation": {
+      "title": "Ejemplo de Cálculo",
+      "description": "Mira cómo se calcula e interpreta el WHtR para diferentes escenarios",
+      "examples": {
+        "0": {
+          "title": "Ejemplo WHtR Saludable",
+          "steps": {
+            "0": "Cintura: 76 cm (30 pulgadas)",
+            "1": "Altura: 168 cm (66 pulgadas)",
+            "2": "WHtR = 76 ÷ 168 = 0.45",
+            "3": "Categoría: Saludable",
+            "4": "✅ Por debajo del umbral 0.5"
+          },
+          "result": "WHtR = 0.45 - Bajo riesgo de salud"
+        },
+        "1": {
+          "title": "Ejemplo WHtR en Riesgo",
+          "steps": {
+            "0": "Cintura: 97 cm (38 pulgadas)",
+            "1": "Altura: 178 cm (70 pulgadas)",
+            "2": "WHtR = 97 ÷ 178 = 0.54",
+            "3": "Categoría: Sobrepeso",
+            "4": "⚠️ Por encima del umbral 0.5"
+          },
+          "result": "WHtR = 0.54 - Considera tomar acción"
+        }
+      }
+    }
+  },
+
+  "faq": {
+    "title": "Preguntas Frecuentes",
+    "0": {
+      "question": "¿Es WHtR mejor que el IMC?",
+      "answer": "Sí, las investigaciones muestran que WHtR es un mejor predictor de enfermedad cardiovascular, diabetes y riesgo de accidente cerebrovascular que el IMC. Un meta-análisis de 2012 en Obesity Reviews encontró que WHtR superó tanto al IMC como a la circunferencia de cintura sola para predecir factores de riesgo cardiometabólico. Las guías NICE del Reino Unido ahora recomiendan usar WHtR junto con el IMC."
+    },
+    "1": {
+      "question": "¿Cuál es una relación cintura-altura saludable?",
+      "answer": "Un WHtR por debajo de 0.5 se considera saludable tanto para hombres como para mujeres. Esta simple regla significa que tu cintura debe ser menor que la mitad de tu altura. Por ejemplo, una persona de 1.68m (5'6\") debería apuntar a una circunferencia de cintura por debajo de 84 cm (33 pulgadas)."
+    },
+    "2": {
+      "question": "¿Con qué frecuencia debo verificar mi WHtR?",
+      "answer": "Se recomienda verificar tu WHtR cada 3 meses para seguir el progreso. Como la circunferencia de cintura puede cambiar con dieta y ejercicio, el monitoreo regular te ayuda a entender si tus intervenciones de salud están funcionando."
+    },
+    "3": {
+      "question": "¿Funciona el WHtR para atletas con alta masa muscular?",
+      "answer": "WHtR es generalmente confiable para atletas porque mide la circunferencia de cintura en lugar del peso corporal total. Sin embargo, atletas con músculos oblicuos muy grandes podrían tener lecturas ligeramente elevadas. Para individuos musculosos, WHtR sigue siendo más preciso que el IMC."
+    },
+    "4": {
+      "question": "¿Pueden los niños usar esta calculadora?",
+      "answer": "Sí, WHtR es válido para niños de 5 años en adelante. El mismo umbral de 0.5 aplica, haciéndolo más simple que las tablas de percentiles de IMC. Las investigaciones sugieren que WHtR es efectivo para identificar niños en riesgo de problemas de salud relacionados con la obesidad."
+    },
+    "5": {
+      "question": "¿Qué puedo hacer para mejorar mi WHtR?",
+      "answer": "Para reducir el WHtR, enfócate en reducir la grasa abdominal a través de: ejercicio aeróbico regular (30+ minutos diarios), entrenamiento de resistencia para construir músculo, reducir carbohidratos refinados y azúcar, manejar el estrés (que aumenta el cortisol y la grasa abdominal), y dormir adecuadamente (7-9 horas)."
+    }
+  },
+
+  "sources": {
+    "title": "Fuentes y Referencias"
+  },
+
+  "common": {
+    "home": "Inicio",
+    "calculators": "Calculadoras"
+  },
+
+  "buttons": {
+    "calculate": "Calcular",
+    "reset": "Reiniciar",
+    "pdf": "PDF",
+    "excel": "Excel"
+  },
+
+  "disclaimers": {
+    "health": "Los resultados son estimaciones. WHtR es una herramienta de detección, no un diagnóstico médico. Consulta a un profesional de salud para consejo médico personalizado."
+  }
+}

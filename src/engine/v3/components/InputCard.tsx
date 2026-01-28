@@ -503,7 +503,7 @@ export default function InputCard({
       if (input.width === "half" && nextInput?.width === "half") {
         const nextErrorId = errors[nextInput.id] ? "error-" + nextInput.id : undefined;
         rendered.push(
-          <div key={input.id} className="grid grid-cols-2 gap-4 overflow-hidden">
+          <div key={input.id} className="grid grid-cols-1 md:grid-cols-2 gap-4 overflow-hidden">
             <div className="min-w-0">
               <RenderInput input={input} value={values[input.id]} onChange={(v) => onChange(input.id, v)} errorId={errorId} t={t} unitSystem={unitSystem} />
               {errors[input.id] && <p id={errorId} className="text-red-500 text-sm mt-1" role="alert">{errors[input.id]}</p>}
@@ -556,7 +556,7 @@ export default function InputCard({
         {showUnitSystemToggle && unitSystemOptions && (
           <fieldset role="radiogroup" aria-labelledby={unitSystemGroupId}>
             <legend id={unitSystemGroupId} className="block font-medium text-slate-700 mb-2">
-              {t("inputs.unitSystem", "Unit System")}
+              {t("inputs.unitSystem.label", "Unit System")}
             </legend>
             <div className="grid grid-cols-2 gap-2">
               {unitSystemOptions.map((opt) => (

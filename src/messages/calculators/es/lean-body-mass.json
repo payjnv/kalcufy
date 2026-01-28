@@ -1,0 +1,205 @@
+{
+  "calculator": {
+    "title": "Calculadora de Masa Corporal Magra",
+    "subtitle": "Calcula tu LBM usando múltiples fórmulas científicas",
+    "breadcrumb": "Masa Corporal Magra",
+    "yourInformation": "Tu Información"
+  },
+
+  "inputs": {
+    "gender": {
+      "label": "Género",
+      "options": {
+        "male": "Hombre",
+        "female": "Mujer"
+      }
+    },
+    "age": {
+      "label": "Edad",
+      "suffix": "años",
+      "helpText": "La fórmula de Peters se usa para edades de 14 años o menos"
+    },
+    "weight": {
+      "label": "Peso",
+      "suffix": "kg"
+    },
+    "height": {
+      "label": "Altura",
+      "suffix": "cm"
+    },
+    "bodyFatKnown": {
+      "label": "¿Conoces tu % de grasa corporal?",
+      "options": {
+        "no": "No (usar fórmulas)",
+        "yes": "Sí (lo ingresaré)"
+      }
+    },
+    "bodyFatPercent": {
+      "label": "Porcentaje de Grasa Corporal",
+      "suffix": "%",
+      "helpText": "Si lo conoces por DEXA, plicómetros u otra medición"
+    },
+    "unitSystem": {
+      "label": "Sistema de Unidades",
+      "options": {
+        "imperial": "Imperial (lb, in)",
+        "metric": "Métrico (kg, cm)"
+      }
+    }
+  },
+
+  "results": {
+    "lbmBoer": "LBM (Boer)",
+    "lbmJames": "LBM (James)",
+    "lbmHume": "LBM (Hume)",
+    "fatMass": "Masa Grasa Estimada",
+    "lbmPercent": "Porcentaje LBM",
+    "proteinRange": "Ingesta de Proteína"
+  },
+
+  "info": {
+    "lbmResults": {
+      "title": "Tus Resultados de LBM",
+      "0": "LBM (Boer - Recomendado)",
+      "1": "LBM (James)",
+      "2": "LBM (Hume)",
+      "3": "Masa Grasa Estimada",
+      "4": "Porcentaje LBM"
+    },
+    "nutritionTips": {
+      "title": "Consejos de Nutrición Basados en LBM",
+      "0": "Proteína: 1.6-2.2g por kg de LBM diario para mantenimiento muscular",
+      "1": "Mayor LBM = Mayor Tasa Metabólica Basal (TMB)",
+      "2": "Enfócate en entrenamiento de resistencia para aumentar LBM",
+      "3": "LBM incluye huesos, músculos, órganos y agua"
+    }
+  },
+
+  "reference": {
+    "lbmRanges": {
+      "title": "Porcentajes Promedio de LBM",
+      "items": {
+        "0": "Hombres Promedio",
+        "1": "Mujeres Promedio",
+        "2": "Atletas (H)",
+        "3": "Atletas (M)",
+        "4": "Grasa Esencial (H)",
+        "5": "Grasa Esencial (M)"
+      }
+    }
+  },
+
+  "education": {
+    "whatIsLbm": {
+      "title": "¿Qué es la Masa Corporal Magra?",
+      "content": "La Masa Corporal Magra (LBM) es tu peso corporal total menos toda la grasa corporal. Incluye el peso de tus huesos, músculos, órganos, sangre, piel y todo excepto la grasa. LBM típicamente varía del 60-90% del peso corporal total, con los hombres generalmente teniendo porcentajes más altos de LBM que las mujeres. Entender tu LBM es crucial para establecer metas precisas de ingesta de proteína, calcular dosis de medicamentos y seguir el progreso físico. A diferencia del peso corporal total, los cambios en LBM reflejan específicamente cambios en masa muscular e hidratación."
+    },
+    "formulaComparison": {
+      "title": "Comparación de Fórmulas",
+      "cards": {
+        "0": {
+          "title": "Fórmula de Boer (1984)",
+          "description": "La más usada clínicamente. Buen punto medio entre James y Hume. Recomendada para uso general y cálculos de dosis de medicamentos."
+        },
+        "1": {
+          "title": "Fórmula de James (1976)",
+          "description": "Usa relación peso-altura al cuadrado. Común pero puede ser menos precisa en tamaños corporales extremos. Frecuentemente usada en entornos de investigación."
+        },
+        "2": {
+          "title": "Fórmula de Hume (1966)",
+          "description": "Originalmente desarrollada para pacientes con enfermedad renal. Tiende a dar estimaciones ligeramente más altas. Buena para entornos clínicos."
+        },
+        "3": {
+          "title": "Fórmula de Peters (Niños)",
+          "description": "Específicamente diseñada para niños hasta 14 años. Tiene en cuenta la diferente composición corporal durante fases de crecimiento."
+        }
+      }
+    },
+    "considerations": {
+      "title": "Consideraciones Importantes",
+      "items": {
+        "0": { "text": "Estas fórmulas proporcionan estimaciones basadas en composiciones corporales promedio" },
+        "1": { "text": "Individuos muy musculosos pueden tener su LBM subestimado" },
+        "2": { "text": "Para mediciones precisas, considera un escaneo DEXA o análisis profesional de composición corporal" },
+        "3": { "text": "La fórmula de Boer es generalmente recomendada como la más confiable para adultos" },
+        "4": { "text": "Si conoces tu % de grasa corporal, usarlo proporciona LBM más preciso que las fórmulas" }
+      }
+    },
+    "exampleCalculation": {
+      "title": "Ejemplo de Cálculo",
+      "description": "Cómo se calcula LBM usando diferentes fórmulas",
+      "examples": {
+        "0": {
+          "title": "Ejemplo Masculino (Boer)",
+          "steps": {
+            "0": "Peso: 82 kg (180 lb)",
+            "1": "Altura: 178 cm (70 in)",
+            "2": "LBM = 0.407 × 81.6 + 0.267 × 178 - 19.2",
+            "3": "LBM = 33.2 + 47.5 - 19.2",
+            "4": "LBM = 61.5 kg (135.6 lb)"
+          },
+          "result": "LBM = 61.5 kg (75% del peso corporal)"
+        },
+        "1": {
+          "title": "Ejemplo Femenino (Boer)",
+          "steps": {
+            "0": "Peso: 63.5 kg (140 lb)",
+            "1": "Altura: 163 cm (64 in)",
+            "2": "LBM = 0.252 × 63.5 + 0.473 × 163 - 48.3",
+            "3": "LBM = 16.0 + 77.1 - 48.3",
+            "4": "LBM = 44.8 kg (98.8 lb)"
+          },
+          "result": "LBM = 44.8 kg (70% del peso corporal)"
+        }
+      }
+    }
+  },
+
+  "faq": {
+    "title": "Preguntas Frecuentes",
+    "0": {
+      "question": "¿Qué fórmula de LBM debo usar?",
+      "answer": "La fórmula de Boer es generalmente recomendada para la mayoría de adultos ya que proporciona un buen punto medio y es ampliamente usada en entornos clínicos. Si conoces tu porcentaje real de grasa corporal de un escaneo DEXA u otra medición, usar ese valor te dará el cálculo de LBM más preciso."
+    },
+    "1": {
+      "question": "¿Por qué los resultados de las fórmulas son diferentes?",
+      "answer": "Cada fórmula fue desarrollada de diferentes estudios poblacionales y usa diferentes enfoques matemáticos. Boer y Hume usan ecuaciones lineales con altura y peso, mientras que James usa una relación peso-altura al cuadrado. La variación es típicamente 1-5% entre fórmulas, lo cual está dentro de márgenes aceptables."
+    },
+    "2": {
+      "question": "¿Cuál es un porcentaje saludable de LBM?",
+      "answer": "Para hombres, el LBM promedio varía del 76-82% del peso corporal total, mientras que para mujeres es típicamente 69-75%. Los atletas frecuentemente tienen porcentajes más altos de LBM (80-90% para hombres, 75-85% para mujeres). Sin embargo, LBM extremadamente alto con grasa corporal muy baja no es necesariamente más saludable, ya que algo de grasa corporal es esencial para la salud."
+    },
+    "3": {
+      "question": "¿Cómo uso LBM para ingesta de proteína?",
+      "answer": "Una recomendación común es 1.6-2.2 gramos de proteína por kilogramo de masa corporal magra diariamente. Por ejemplo, si tu LBM es 60 kg, apunta a 96-132g de proteína diaria. Este enfoque es más preciso que usar el peso corporal total, especialmente para personas con porcentajes más altos de grasa corporal."
+    },
+    "4": {
+      "question": "¿Puedo aumentar mi LBM?",
+      "answer": "¡Sí! El entrenamiento de resistencia es la forma más efectiva de aumentar la masa muscular, que es el componente principal de LBM que puedes controlar. Combinado con una ingesta adecuada de proteína (1.6-2.2g por kg de LBM), el entrenamiento de resistencia progresivo puede ayudarte a construir músculo y aumentar tu LBM con el tiempo."
+    },
+    "5": {
+      "question": "¿Cuál es la diferencia entre LBM y Masa Libre de Grasa?",
+      "answer": "A menudo se usan indistintamente pero son técnicamente diferentes. La Masa Corporal Magra incluye grasa esencial (que es necesaria para la función de órganos), mientras que la Masa Libre de Grasa excluye toda la grasa. En la práctica, la diferencia es pequeña - típicamente la grasa esencial (3-5% para hombres, 10-13% para mujeres)."
+    }
+  },
+
+  "sources": {
+    "title": "Fuentes y Referencias"
+  },
+
+  "common": {
+    "home": "Inicio",
+    "calculators": "Calculadoras"
+  },
+
+  "buttons": {
+    "calculate": "Calcular",
+    "reset": "Reiniciar",
+    "pdf": "PDF",
+    "excel": "Excel"
+  },
+
+  "disclaimers": {
+    "health": "Los resultados son estimaciones basadas en fórmulas científicas. Para mediciones precisas de composición corporal, considera un escaneo DEXA profesional."
+  }
+}

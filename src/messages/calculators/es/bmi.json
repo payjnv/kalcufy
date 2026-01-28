@@ -1,172 +1,127 @@
 {
-  "meta": {
-    "title": "Calculadora de IMC - Índice de Masa Corporal | Kalcufy",
-    "description": "Calculadora de IMC gratuita con métricas adicionales: Índice Ponderal, relación cintura-cadera (WHR) y relación cintura-altura (WHtR)."
-  },
   "calculator": {
     "title": "Calculadora de IMC",
     "subtitle": "Calcula tu Índice de Masa Corporal y métricas de salud",
     "breadcrumb": "Calculadora de IMC",
-    "enterDetails": "Ingresa tus Datos",
-    "inputs": {
-      "unitSystem": "Sistema de Unidades",
-      "imperial": "Imperial (lb/ft)",
-      "metric": "Métrico (kg/cm)",
-      "height": "Altura",
-      "weight": "Peso",
-      "age": "Edad",
-      "gender": "Género",
-      "male": "Hombre",
-      "female": "Mujer"
-    },
-    "units": {
-      "ft": "ft",
-      "in": "in",
-      "cm": "cm",
-      "lbs": "lbs",
-      "kg": "kg",
-      "years": "años"
-    },
-    "advanced": {
-      "title": "Medidas Corporales (Opcional)",
-      "waist": "Circunferencia de Cintura",
-      "hip": "Circunferencia de Cadera"
-    },
-    "categories": {
-      "severeThinness": "Delgadez Severa",
-      "moderateThinness": "Delgadez Moderada",
-      "mildThinness": "Delgadez Leve",
-      "normal": "Normal",
-      "overweight": "Sobrepeso",
-      "obeseI": "Obesidad Clase I",
-      "obeseII": "Obesidad Clase II",
-      "obeseIII": "Obesidad Clase III"
-    },
-    "risk": {
-      "low": "Bajo",
-      "moderate": "Moderado",
-      "high": "Alto",
-      "underweightRisk": "Riesgo de bajo peso",
-      "healthy": "Saludable",
-      "increasedRisk": "Riesgo aumentado",
-      "highRisk": "Riesgo alto"
-    },
-    "results": {
-      "yourBmi": "Tu IMC",
-      "bmiPrime": "IMC Prime",
-      "ponderalIndex": "Índice Ponderal",
-      "healthyRange": "Rango Saludable",
-      "waistRisk": "Riesgo de Cintura",
-      "whr": "WHR",
-      "whtr": "WHtR",
-      "toHealthy": "Para Saludable"
-    },
-    "buttons": {
-      "viewTable": "Ver Tabla de IMC",
-      "save": "Guardar",
-      "pdf": "PDF",
-      "excel": "Excel",
-      "downloadPdf": "Descargar PDF",
-      "downloadExcel": "Descargar Excel"
-    },
-    "modal": {
-      "title": "Categorías de IMC (OMS)",
-      "category": "Categoría",
-      "bmiRange": "Rango de IMC",
-      "color": "Color"
-    },
-    "favorites": {
-      "add": "Agregar a favoritos",
-      "remove": "Quitar de favoritos"
-    },
-    "saving": {
-      "saving": "Guardando...",
-      "saved": "Guardado",
-      "error": "Error"
-    }
+    "yourInformation": "Tu Información"
   },
-  "info": {
-    "understanding": {
-      "title": "Entendiendo tus Resultados"
-    },
-    "whrRisk": {
-      "title": "Riesgo WHR por Género",
-      "risk": "Riesgo"
-    }
-  },
-  "education": {
-    "whatIsBmi": {
-      "title": "¿Qué es el IMC?",
-      "content1": "El Índice de Masa Corporal (IMC) es un cálculo simple usando altura y peso que estima la grasa corporal. Es ampliamente utilizado como herramienta de detección para identificar posibles problemas de peso en adultos.",
-      "content2": "Aunque el IMC es útil para la mayoría de las personas, tiene limitaciones. Puede sobreestimar la grasa corporal en atletas con alta masa muscular y subestimarla en adultos mayores que han perdido músculo.",
-      "formula": "IMC = peso (kg) / altura² (m)"
-    },
-    "beyondBmi": {
-      "title": "Más Allá del IMC: Mejores Métricas de Salud"
-    },
-    "metrics": {
-      "pi": {
-        "title": "Índice Ponderal (IP)",
-        "description": "Más preciso que el IMC para personas muy altas o bajas. Usa la altura al cubo en lugar del cuadrado. Rango normal: 11-15 kg/m³."
-      },
-      "whr": {
-        "title": "Relación Cintura-Cadera (WHR)",
-        "description": "Mejor predictor del riesgo cardiovascular. Mide dónde almacenas grasa. Las formas de manzana (WHR alto) tienen mayores riesgos de salud que las formas de pera."
-      },
-      "whtr": {
-        "title": "Relación Cintura-Altura (WHtR)",
-        "description": "Regla simple: mantén tu cintura menos de la mitad de tu altura. Según las guías NICE, WHtR < 0.5 indica niveles saludables de grasa abdominal."
-      },
-      "bmiPrime": {
-        "title": "IMC Prime",
-        "description": "Tu IMC dividido por 25 (límite superior de normal). Un valor de 1.0 = límite superior de peso normal. Facilita las comparaciones entre diferentes IMCs."
+  "inputs": {
+    "unitSystem": {
+      "label": "Sistema de Unidades",
+      "options": {
+        "imperial": "Imperial (lb, ft/in)",
+        "metric": "Métrico (kg, cm)"
       }
     },
-    "example": {
-      "title": "Ejemplo de Cálculo"
+    "age": {
+      "label": "Edad",
+      "suffix": "años",
+      "helpText": "La interpretación del IMC varía por edad para niños"
     },
-    "faqTitle": "Preguntas Frecuentes"
-  },
-  "faq": [
-    {
-      "question": "¿Cuál es un rango de IMC saludable?",
-      "answer": "Un IMC entre 18.5 y 24.9 se considera saludable para la mayoría de los adultos. Sin embargo, el IMC no tiene en cuenta la masa muscular, la densidad ósea o la distribución de grasa, por lo que es mejor usarlo junto con otras medidas de salud como la relación cintura-cadera."
+    "gender": {
+      "label": "Género",
+      "options": {
+        "male": "Hombre",
+        "female": "Mujer"
+      }
     },
-    {
-      "question": "¿Es preciso el IMC para atletas?",
-      "answer": "El IMC puede sobreestimar la grasa corporal en atletas y otras personas con constitución muscular, ya que no distingue entre músculo y grasa. Los atletas pueden aparecer como 'sobrepeso' a pesar de tener poca grasa corporal. Considera usar el Índice Ponderal o mediciones de grasa corporal."
+    "heightFeet": {
+      "label": "Altura (pies)",
+      "suffix": "ft"
     },
-    {
-      "question": "¿Qué es el Índice Ponderal?",
-      "answer": "El Índice Ponderal (IP) es similar al IMC pero usa la altura al cubo en lugar del cuadrado. Esto lo hace más preciso para personas muy altas o bajas. Un rango normal de IP es típicamente 11-15 kg/m³."
+    "heightInches": {
+      "label": "Altura (pulgadas)",
+      "suffix": "in"
     },
-    {
-      "question": "¿Qué es la Relación Cintura-Cadera (WHR)?",
-      "answer": "WHR compara tu medida de cintura con tu medida de cadera. Es un mejor predictor del riesgo cardiovascular que el IMC solo porque indica dónde almacenas grasa. La grasa abdominal (forma de manzana) es más peligrosa que la grasa en caderas/muslos (forma de pera)."
+    "heightCm": {
+      "label": "Altura",
+      "suffix": "cm"
     },
-    {
-      "question": "¿Qué es la Relación Cintura-Altura?",
-      "answer": "WHtR divide tu cintura por tu altura. Según las guías NICE, mantener tu cintura menos de la mitad de tu altura (WHtR < 0.5) está asociado con menores riesgos de salud independientemente del IMC."
+    "weight": {
+      "label": "Peso"
     },
-    {
-      "question": "¿Cambia el IMC con la edad?",
-      "answer": "Los cálculos de IMC no cambian con la edad, pero los riesgos de salud asociados con diferentes niveles de IMC pueden variar. Los adultos mayores pueden tener rangos de IMC saludables ligeramente más altos debido a la pérdida de músculo. Consulta a tu médico para orientación personalizada."
+    "weightLbs": {
+      "label": "Peso"
+    },
+    "weightKg": {
+      "label": "Peso"
+    },
+    "waist": {
+      "label": "Circunferencia de Cintura"
+    },
+    "hip": {
+      "label": "Circunferencia de Cadera"
     }
-  ],
-  "sidebar": {
-    "financeTitle": "Calculadoras Financieras",
-    "healthTitle": "Calculadoras de Salud",
-    "quickTips": "Consejos Rápidos",
-    "tips": {
-      "tip1": "Pésate a la misma hora cada día para consistencia",
-      "tip2": "El IMC no distingue entre masa muscular y grasa",
-      "tip3": "Enfócate en tendencias a lo largo del tiempo en lugar de fluctuaciones diarias",
-      "tip4": "Usa WHR y WHtR para una imagen de salud más completa"
+  },
+  "results": {
+    "bmi": "Tu IMC",
+    "category": "Categoría",
+    "healthyWeightRange": "Rango de Peso Saludable",
+    "weightToHealthy": "Distancia a Peso Saludable"
+  },
+  "info": {
+    "bmiScale": {
+      "title": "Escala de IMC",
+      "0": "Bajo Peso",
+      "1": "Normal",
+      "2": "Sobrepeso",
+      "3": "Obeso",
+      "4": "Tu IMC"
+    },
+    "bmiCategories": {
+      "title": "Categorías de IMC",
+      "0": "Bajo Peso",
+      "1": "Peso Normal",
+      "2": "Sobrepeso",
+      "3": "Obesidad Clase I",
+      "4": "Obesidad Clase II",
+      "5": "Obesidad Clase III"
+    },
+    "healthTips": {
+      "title": "Consejos de Salud",
+      "0": "El IMC es una herramienta de detección, no un diagnóstico",
+      "1": "Los atletas pueden tener IMC alto debido al músculo",
+      "2": "La circunferencia de cintura también es importante",
+      "3": "Consulta a un médico para evaluaciones de salud"
+    }
+  },
+  "faq": {
+    "title": "Preguntas Frecuentes",
+    "0": {
+      "question": "¿Cuál es un rango de IMC saludable?",
+      "answer": "Un IMC entre 18.5 y 24.9 se considera saludable para la mayoría de los adultos."
+    },
+    "1": {
+      "question": "¿Es preciso el IMC para atletas?",
+      "answer": "El IMC puede sobreestimar la grasa corporal en atletas debido a su mayor masa muscular."
+    },
+    "2": {
+      "question": "¿Qué es el Índice Ponderal?",
+      "answer": "El Índice Ponderal es similar al IMC pero usa la altura al cubo, siendo más preciso para personas muy altas o bajas."
+    },
+    "3": {
+      "question": "¿Qué es la Relación Cintura-Cadera?",
+      "answer": "WHR compara tu medida de cintura con tu cadera, siendo mejor predictor del riesgo cardiovascular."
+    },
+    "4": {
+      "question": "¿Qué es la Relación Cintura-Altura?",
+      "answer": "WHtR divide tu cintura por tu altura. Mantener la cintura menor a la mitad de tu altura indica niveles saludables."
+    },
+    "5": {
+      "question": "¿Cómo puedo mejorar mi IMC?",
+      "answer": "Enfócate en una dieta balanceada y ejercicio regular. Consulta un profesional de salud antes de cualquier programa."
     }
   },
   "common": {
     "home": "Inicio",
-    "calculators": "Calculadoras",
-    "pro": "PRO"
+    "calculators": "Calculadoras"
+  },
+  "visualizations": {
+    "bmiRange": {
+      "title": "Escala de IMC"
+    }
+  },
+  "disclaimers": {
+    "health": "Los resultados son estimaciones basadas en ecuaciones estándar. No sustituye el consejo médico profesional."
   }
 }

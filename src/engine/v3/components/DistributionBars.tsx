@@ -1,5 +1,7 @@
 "use client";
 
+import type { TranslationFn } from "../types/engine.types";
+
 interface DistributionItem {
   id?: string;
   label: string;
@@ -17,6 +19,8 @@ interface DistributionBarsProps {
   showPercentage?: boolean;
   gradient?: boolean;
   className?: string;
+  t?: TranslationFn;
+  vizId?: string;
 }
 
 export default function DistributionBars({
@@ -27,10 +31,21 @@ export default function DistributionBars({
   showPercentage = false,
   gradient = true,
   className = "",
+  t,
+  vizId,
 }: DistributionBarsProps) {
   if (!items || items.length === 0) return null;
 
   const effectiveMax = maxValue || Math.max(...items.map(i => i.max || i.value)) || 1;
+
+  // Get translated label
+  const getLabel = (item: DistributionItem, index: number) => {
+    if (t && vizId) {
+      const key = item.id || index;
+      return t(`visualizations.${vizId}.items.${key}`, item.label);
+    }
+    return item.label;
+  };
 
   return (
     <div className={`bg-white rounded-2xl border border-slate-200 p-5 ${className}`}>
@@ -48,9 +63,9 @@ export default function DistributionBars({
               {/* Label - wider for longer text */}
               <span 
                 className="min-w-[100px] w-28 text-sm text-slate-600 flex-shrink-0" 
-                title={item.label}
+                title={getLabel(item, index)}
               >
-                {item.label}
+                {getLabel(item, index)}
               </span>
               
               {/* Bar */}

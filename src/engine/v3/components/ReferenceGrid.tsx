@@ -1,6 +1,9 @@
 "use client";
 
+import type { TranslationFn } from "../types/engine.types";
+
 interface ReferenceItem {
+  id?: string;
   label: string;
   value: string | number;
   highlight?: boolean;
@@ -14,6 +17,8 @@ interface ReferenceGridProps {
   columns?: 2 | 3 | 4 | 5 | 6;
   highlightValue?: string | number;
   className?: string;
+  t?: TranslationFn;
+  refId?: string;
 }
 
 export default function ReferenceGrid({
@@ -23,6 +28,8 @@ export default function ReferenceGrid({
   columns = 4,
   highlightValue,
   className = "",
+  t,
+  refId,
 }: ReferenceGridProps) {
   if (!items || items.length === 0) return null;
 
@@ -32,6 +39,15 @@ export default function ReferenceGrid({
     4: "grid-cols-4",
     5: "grid-cols-5",
     6: "grid-cols-6",
+  };
+
+  // Get translated label
+  const getLabel = (item: ReferenceItem, index: number) => {
+    if (t && refId) {
+      const key = item.id || index;
+      return t(`reference.${refId}.items.${key}`, item.label);
+    }
+    return item.label;
   };
 
   return (
@@ -54,7 +70,7 @@ export default function ReferenceGrid({
               }`}
             >
               {item.icon && <span className="block text-lg mb-1">{item.icon}</span>}
-              <span className="font-bold text-blue-600">{item.label}</span>
+              <span className="font-bold text-blue-600">{getLabel(item, index)}</span>
               <span className="text-slate-600 ml-1">= {item.value}</span>
             </div>
           );

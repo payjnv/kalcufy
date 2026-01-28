@@ -87,7 +87,7 @@ export default function ResultsCard({
       <div className="bg-slate-50 rounded-2xl border border-slate-200 p-6 md:p-8">
         {/* FIX: Changed from <p> to <h3> for proper heading hierarchy */}
         <h3 className="text-sm text-slate-500 mb-1 font-normal" id="primary-result-label">
-          {primaryResult?.label || t("results.primaryResult", "Result")}
+          {t(`results.${primaryResult?.id}`, primaryResult?.label || t("results.primaryResult", "Result"))}
         </h3>
         <p className="text-2xl md:text-3xl font-bold text-slate-900 mb-4" aria-labelledby="primary-result-label">
           {primaryValue}
@@ -105,7 +105,7 @@ export default function ResultsCard({
               return (
                 <div key={config.id} className="text-center p-3 bg-white rounded-xl">
                   {/* FIX: Changed from <p> text-xs to <h4> text-sm for proper heading + size */}
-                  <h4 className="text-sm text-slate-500 mb-1 font-normal">{config.label}</h4>
+                  <h4 className="text-sm text-slate-500 mb-1 font-normal">{t(`results.${config.id}`, config.label)}</h4>
                   <p className="text-lg font-bold text-slate-800">
                     {config.icon && <span className="mr-1" aria-hidden="true">{config.icon}</span>}
                     {value}

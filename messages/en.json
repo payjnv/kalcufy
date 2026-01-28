@@ -55,6 +55,9 @@
       "tip": "Tip",
       "discount": "Discount",
       "percentage": "Percentage",
+      "fraction": "Fractions",
+      "squareRoot": "Square Root",
+      "ruleOfThree": "Rule of Three",
       "age": "Age",
       "date": "Date",
       "unitConverter": "Unit Converter",
@@ -71,7 +74,12 @@
       "calorieDeficit": "Calorie Deficit",
       "calorieSurplus": "Calorie Surplus",
       "weightLoss": "Weight Loss",
-      "weightGain": "Weight Gain"
+      "weightGain": "Weight Gain",
+      "waistToHeightRatio": "Waist-to-Height Ratio",
+      "step": "Step Calculator",
+      "restDay": "Rest Day Calculator",
+      "heartRateZone": "Heart Rate Zone Calculator",
+      "ovulation": "Ovulation Calculator"
     }
   },
   "home": {
@@ -263,6 +271,18 @@
         "name": "Discount",
         "desc": "Calculate sale prices, savings, and stack multiple discounts"
       },
+      "squareRoot": {
+        "name": "Square Root & Exponents",
+        "desc": "Calculate square roots, cube roots, nth roots, and exponents"
+      },
+      "ruleOfThree": {
+        "name": "Rule of Three",
+        "desc": "Solve direct and inverse proportion problems"
+      },
+      "fraction": {
+        "name": "Fractions",
+        "desc": "Add, subtract, multiply, divide fractions with step-by-step solutions"
+      },
       "percentage": {
         "name": "Percentage",
         "desc": "Calculate percentages, increases, decreases, and conversions"
@@ -339,6 +359,24 @@
       "weightGain": {
         "name": "Weight Gain",
         "desc": "Calculate bulking calories with muscle vs fat gain projection by training experience"
+      },
+      "waistToHeightRatio": {
+        "name": "Waist-to-Height Ratio",
+        "desc": "Better than BMI for health risk assessment"
+      },
+      "step": {
+        "name": "Step Calculator",
+        "desc": "Convert steps to distance and calories"
+      },
+      "restDay": {
+        "name": "Rest Day Calculator",
+        "desc": "Calculate optimal recovery time between workouts"
+      },
+      "heartRateZone": {
+        "desc": "Calculate your training heart rate zones for optimal fitness"
+      },
+      "ovulation": {
+        "desc": "Track your fertile window and ovulation days"
       }
     }
   },
@@ -457,7 +495,7 @@
     "title": "Kalcufy Blog",
     "heroTitle1": "Financial & Health",
     "heroTitle2": "Insights",
-    "heroSubtitle": "Expert guides, tips, and strategies to help you make better financial decisions and achieve your health goals.",
+    "heroSubtitle": "Practical articles with formulas, examples, and tools to make better financial and health decisions.",
     "searchPlaceholder": "Search articles...",
     "allPosts": "All Posts",
     "categories": {

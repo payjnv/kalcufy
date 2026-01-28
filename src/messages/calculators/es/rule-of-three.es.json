@@ -1,0 +1,164 @@
+{
+  "calculator": {
+    "title": "Calculadora de Regla de Tres",
+    "subtitle": "Resuelve proporciones directas e inversas fácilmente",
+    "breadcrumb": "Regla de Tres",
+    "yourInformation": "Tus Datos"
+  },
+
+  "inputs": {
+    "proportionType": {
+      "label": "Tipo de Proporción",
+      "helpText": "Directa: ambos valores aumentan juntos. Inversa: uno aumenta, el otro disminuye.",
+      "options": {
+        "direct": "Directa (más → más)",
+        "inverse": "Inversa (más → menos)"
+      }
+    },
+    "valueA": {
+      "label": "Valor A",
+      "helpText": "Primer valor conocido"
+    },
+    "valueB": {
+      "label": "Valor B",
+      "helpText": "Segundo valor conocido"
+    },
+    "valueC": {
+      "label": "Valor C",
+      "helpText": "Tercer valor conocido"
+    }
+  },
+
+  "results": {
+    "result": "Resultado (X)",
+    "proportion": "Proporción",
+    "formula": "Fórmula"
+  },
+
+  "info": {
+    "relationship": {
+      "title": "Relación de Proporción",
+      "0": "A es a B como C es a X",
+      "1": "Directa: A/B = C/X",
+      "2": "Inversa: A × B = C × X"
+    },
+    "applications": {
+      "title": "Aplicaciones Comunes",
+      "0": "Conversión de monedas",
+      "1": "Ajuste de recetas",
+      "2": "Velocidad/tiempo/distancia",
+      "3": "Cálculos de precios"
+    }
+  },
+
+  "reference": {
+    "formulas": {
+      "title": "Fórmulas",
+      "items": {
+        "0": { "label": "Directa", "value": "X = (B × C) / A" },
+        "1": { "label": "Inversa", "value": "X = (A × B) / C" },
+        "2": { "label": "Proporción", "value": "A : B = C : X" },
+        "3": { "label": "Multiplicar en Cruz", "value": "A × X = B × C" }
+      }
+    }
+  },
+
+  "education": {
+    "considerations": {
+      "title": "Consideraciones Importantes",
+      "items": {
+        "0": { "text": "Siempre identifica si la proporción es directa o inversa antes de calcular", "type": "warning" },
+        "1": { "text": "Proporción directa: ambas cantidades cambian en la misma dirección", "type": "info" },
+        "2": { "text": "Proporción inversa: las cantidades cambian en direcciones opuestas", "type": "info" },
+        "3": { "text": "El valor A no puede ser cero (la división por cero no está definida)", "type": "warning" },
+        "4": { "text": "Las unidades deben ser consistentes en ambos lados de la proporción", "type": "info" }
+      }
+    },
+    "exampleCalculation": {
+      "title": "Ejemplos de Cálculo",
+      "description": "Ejemplos prácticos de proporciones",
+      "examples": {
+        "0": {
+          "title": "Directa: Cálculo de Precio",
+          "steps": {
+            "0": "Si 3 kg cuestan $12, ¿cuánto cuestan 5 kg?",
+            "1": "A = 3, B = 12, C = 5, X = ?",
+            "2": "X = (B × C) / A",
+            "3": "X = (12 × 5) / 3 = 20"
+          },
+          "result": "5 kg cuestan $20"
+        },
+        "1": {
+          "title": "Inversa: Trabajadores y Tiempo",
+          "steps": {
+            "0": "Si 4 trabajadores terminan en 6 días, ¿cuánto tardan 8?",
+            "1": "A = 4, B = 6, C = 8, X = ?",
+            "2": "X = (A × B) / C",
+            "3": "X = (4 × 6) / 8 = 3"
+          },
+          "result": "8 trabajadores terminan en 3 días"
+        }
+      }
+    },
+    "prose1": {
+      "title": "¿Qué es la Regla de Tres?",
+      "content": "La regla de tres es un método matemático para resolver problemas de proporciones. Dados tres valores conocidos y uno desconocido, permite encontrar el valor faltante usando la relación entre cantidades proporcionales. Esta técnica se ha usado durante siglos en el comercio, la cocina y la construcción."
+    },
+    "prose2": {
+      "title": "Entendiendo la Proporción Directa",
+      "content": "En una proporción directa, cuando una cantidad aumenta, la otra aumenta en la misma proporción. Piensa en comprar productos: si 2 manzanas cuestan $4, entonces 4 manzanas cuestan $8. Cuanto más compras, más pagas. La fórmula es X = (B × C) / A. Ejemplos incluyen cambio de moneda y ajustar recetas."
+    },
+    "prose3": {
+      "title": "Entendiendo la Proporción Inversa",
+      "content": "En una proporción inversa, cuando una cantidad aumenta, la otra disminuye. Considera trabajadores completando una tarea: si 2 trabajadores tardan 10 días, 4 trabajadores tardarían 5 días. Más trabajadores significa menos tiempo necesario. La fórmula es X = (A × B) / C. Ejemplos incluyen velocidad y tiempo."
+    }
+  },
+
+  "faq": {
+    "title": "Preguntas Frecuentes",
+    "0": {
+      "question": "¿Cómo sé si es proporción directa o inversa?",
+      "answer": "Pregúntate: '¿Si aumento la primera cantidad, el resultado aumenta o disminuye?' Si ambos aumentan juntos (más trabajo = más paga), es directa. Si uno aumenta mientras el otro disminuye (más trabajadores = menos tiempo), es inversa."
+    },
+    "1": {
+      "question": "¿Qué es la multiplicación cruzada?",
+      "answer": "La multiplicación cruzada es una técnica para resolver proporciones. Para A/B = C/X, multiplicas en diagonal (A × X = B × C), luego resuelves para X: X = (B × C) / A. Se llama 'cruzada' porque multiplicas a través del signo igual."
+    },
+    "2": {
+      "question": "¿Puedo usar la regla de tres para porcentajes?",
+      "answer": "¡Sí! Por ejemplo, si el 100% equivale a 250, ¿cuánto es el 30%? Usando proporción directa: A=100, B=250, C=30, X=(250×30)/100=75. Los porcentajes funcionan perfectamente con la regla de tres."
+    },
+    "3": {
+      "question": "¿Qué pasa si obtengo un resultado negativo?",
+      "answer": "En la mayoría de aplicaciones del mundo real, un resultado negativo indica un error en la configuración o que elegiste el tipo de proporción incorrecto. Verifica si usaste directa cuando debías usar inversa, o revisa los valores ingresados."
+    },
+    "4": {
+      "question": "¿Puedo usar decimales y fracciones?",
+      "answer": "Sí, la regla de tres funciona con cualquier número: enteros, decimales y fracciones. La calculadora maneja todos los tipos numéricos. Solo asegúrate de que tus unidades sean consistentes en todo el cálculo."
+    },
+    "5": {
+      "question": "¿Qué es la regla de tres compuesta?",
+      "answer": "La regla de tres compuesta se usa cuando tienes más de dos cantidades relacionadas (3, 4 o más). Aplicas la regla de tres simple varias veces, una por cada par de cantidades relacionadas, combinando todos los factores para obtener el resultado final."
+    }
+  },
+
+  "sources": {
+    "title": "Fuentes y Referencias"
+  },
+
+  "common": {
+    "home": "Inicio",
+    "calculators": "Calculadoras"
+  },
+
+  "buttons": {
+    "calculate": "Calcular",
+    "reset": "Reiniciar",
+    "pdf": "PDF",
+    "excel": "Excel"
+  },
+
+  "disclaimers": {
+    "math": "Verifica los cálculos para aplicaciones críticas."
+  }
+}

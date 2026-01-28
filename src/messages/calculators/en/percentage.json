@@ -1,0 +1,217 @@
+{
+  "calculator": {
+    "name": "Percentage Calculator",
+    "title": "Percentage Calculator - Free Online Percentage Tool",
+    "description": "Calculate percentages easily: find X% of a number, percentage increase/decrease, what percent X is of Y, and more. Free online calculator with step-by-step solutions.",
+    "shortDescription": "Calculate percentages, increases, decreases and more",
+    "badge": "Math"
+  },
+  "inputs": {
+    "calculationType": {
+      "label": "Calculation Type",
+      "options": {
+        "percentOf": "What is X% of Y?",
+        "isWhatPercent": "X is what % of Y?",
+        "percentChange": "Percentage Change",
+        "percentIncrease": "Increase by %",
+        "percentDecrease": "Decrease by %",
+        "findOriginal": "Find Original Value"
+      }
+    },
+    "percentage": {
+      "label": "Percentage"
+    },
+    "baseValue": {
+      "label": "Base Value"
+    },
+    "partValue": {
+      "label": "Part Value (X)"
+    },
+    "wholeValue": {
+      "label": "Whole Value (Y)"
+    },
+    "oldValue": {
+      "label": "Original Value"
+    },
+    "newValue": {
+      "label": "New Value"
+    },
+    "finalValue": {
+      "label": "Final Value"
+    },
+    "appliedPercent": {
+      "label": "Applied Percentage",
+      "helpText": "Use positive for increase, negative for decrease"
+    }
+  },
+  "results": {
+    "mainResult": {
+      "label": "Result"
+    },
+    "formula": {
+      "label": "Formula Used"
+    },
+    "stepByStep": {
+      "label": "Calculation"
+    },
+    "percentSymbol": {
+      "label": "As Decimal"
+    }
+  },
+  "infoCards": {
+    "quickResults": {
+      "title": "Quick Conversions",
+      "asFraction": "As Fraction",
+      "asDecimal": "As Decimal",
+      "multiplier": "Multiplier"
+    },
+    "relatedPercents": {
+      "title": "Related Percentages",
+      "halfPercent": "Half (50%)",
+      "doublePercent": "Double (200%)",
+      "tenPercent": "10%"
+    }
+  },
+  "referenceData": {
+    "commonPercents": {
+      "title": "Common Percentage Reference",
+      "columns": {
+        "percent": "Percentage",
+        "decimal": "Decimal",
+        "fraction": "Fraction",
+        "example": "Example (of 100)"
+      }
+    }
+  },
+  "educationSections": {
+    "calculationTypes": {
+      "title": "Types of Percentage Calculations",
+      "cards": {
+        "findPercent": {
+          "title": "Find X% of Y",
+          "description": "The most common calculation. Multiply the number by the percentage divided by 100. Example: 25% of 200 = 200 × 0.25 = 50"
+        },
+        "isWhatPercent": {
+          "title": "X is what % of Y?",
+          "description": "Divide the part by the whole and multiply by 100. Example: 50 is what % of 200? = (50 ÷ 200) × 100 = 25%"
+        },
+        "percentIncrease": {
+          "title": "Percentage Increase",
+          "description": "Add the percentage to the original value. Formula: Original × (1 + %/100). Example: 200 increased by 25% = 200 × 1.25 = 250"
+        },
+        "percentDecrease": {
+          "title": "Percentage Decrease",
+          "description": "Subtract the percentage from the original value. Formula: Original × (1 - %/100). Example: 200 decreased by 25% = 200 × 0.75 = 150"
+        }
+      }
+    },
+    "considerations": {
+      "title": "Important Considerations",
+      "items": {
+        "changeRelative": "Percentage change is always calculated relative to the original value, not the new value",
+        "increaseDecrease": "A 50% increase followed by a 50% decrease does NOT return to the original value",
+        "toDecimal": "To convert a percentage to decimal, divide by 100 (25% = 0.25)",
+        "toPercent": "To convert a decimal to percentage, multiply by 100 (0.25 = 25%)",
+        "over100": "Percentages greater than 100% are possible and represent values greater than the whole"
+      }
+    },
+    "exampleCalculation": {
+      "title": "Example Calculations",
+      "description": "Step-by-step examples of common percentage calculations",
+      "examples": {
+        "percentOf": {
+          "title": "What is 15% of $80?",
+          "steps": [
+            "Convert percentage to decimal: 15% = 15 ÷ 100 = 0.15",
+            "Multiply by the base value: $80 × 0.15",
+            "Calculate: $80 × 0.15 = $12"
+          ],
+          "result": "15% of $80 = $12"
+        },
+        "percentChange": {
+          "title": "Percentage Change: $50 to $65",
+          "steps": [
+            "Find the difference: $65 - $50 = $15",
+            "Divide by original: $15 ÷ $50 = 0.30",
+            "Convert to percentage: 0.30 × 100 = 30%"
+          ],
+          "result": "Increase of 30%"
+        },
+        "isWhatPercentExample": {
+          "title": "25 is what % of 200?",
+          "steps": [
+            "Divide part by whole: 25 ÷ 200 = 0.125",
+            "Multiply by 100: 0.125 × 100 = 12.5%"
+          ],
+          "result": "25 is 12.5% of 200"
+        },
+        "findOriginal": {
+          "title": "Find original if 120 is 20% more",
+          "steps": [
+            "120 = Original × (1 + 0.20)",
+            "120 = Original × 1.20",
+            "Original = 120 ÷ 1.20 = 100"
+          ],
+          "result": "Original value was 100"
+        }
+      }
+    },
+    "whatIsPercentage": {
+      "title": "What is a Percentage?",
+      "content": "A percentage is a way to express a number as a fraction of 100. The word comes from the Latin 'per centum', meaning 'by the hundred'. When you see 25%, it means 25 out of every 100, or simply 25/100 = 0.25. Percentages are incredibly useful because they allow us to compare different quantities on a common scale, regardless of their absolute values. For example, saying 'sales increased by 15%' is more meaningful than saying 'sales increased by $150' because it gives context relative to the original amount."
+    },
+    "realLifeApps": {
+      "title": "Real-Life Applications",
+      "content": "Percentages are everywhere in daily life: shopping discounts (30% off), restaurant tips (15-20%), sales tax (varies by location), interest rates on loans and savings (APR, APY), grade scores in school (85% = B), battery levels on devices (75% charged), nutrition labels (daily value percentages), and statistics in sports and business. Understanding percentages helps you make informed financial decisions, understand data and statistics, and solve everyday problems efficiently."
+    },
+    "tipsAndTricks": {
+      "title": "Mental Math Tips",
+      "content": "Here are quick mental math tricks for percentages: 10% = move decimal one place left (10% of 80 = 8). 5% = half of 10% (5% of 80 = 4). 1% = move decimal two places left (1% of 80 = 0.80). For 15%, calculate 10% + 5%. For 25%, divide by 4. For 50%, divide by 2. For 75%, calculate 50% + 25%. A useful trick: X% of Y = Y% of X (so 8% of 50 = 50% of 8 = 4)."
+    }
+  },
+  "faqs": {
+    "howToCalculate": {
+      "question": "How do I calculate a percentage of a number?",
+      "answer": "To find X% of Y, convert the percentage to a decimal by dividing by 100, then multiply by the number. For example, 25% of 200 = (25/100) × 200 = 0.25 × 200 = 50."
+    },
+    "increaseDecrease": {
+      "question": "How do I calculate percentage increase or decrease?",
+      "answer": "Percentage change = ((New Value - Old Value) / Old Value) × 100. If the result is positive, it's an increase; if negative, it's a decrease. For example, going from 100 to 125 is a 25% increase: ((125-100)/100) × 100 = 25%."
+    },
+    "whyNotEqual": {
+      "question": "Why doesn't a 50% increase followed by a 50% decrease equal the original?",
+      "answer": "Because the percentages are calculated from different base values. If 100 increases by 50%, you get 150. If 150 decreases by 50%, you lose 75 (50% of 150), leaving you with 75 - not 100. This is a common mathematical misconception."
+    },
+    "conversions": {
+      "question": "How do I convert between percentages, decimals, and fractions?",
+      "answer": "Percentage to decimal: divide by 100 (25% = 0.25). Decimal to percentage: multiply by 100 (0.25 = 25%). Percentage to fraction: put over 100 and simplify (25% = 25/100 = 1/4). Fraction to percentage: divide numerator by denominator, multiply by 100 (1/4 = 0.25 × 100 = 25%)."
+    },
+    "originalPrice": {
+      "question": "How do I calculate the original price before a discount?",
+      "answer": "If you know the final price after a discount, use: Original Price = Final Price ÷ (1 - Discount%). For example, if you paid $80 after a 20% discount: Original = $80 ÷ (1 - 0.20) = $80 ÷ 0.80 = $100."
+    },
+    "percentageOf": {
+      "question": "What is the percentage of X out of Y?",
+      "answer": "To find what percentage X is of Y, use: (X ÷ Y) × 100 = %. For example, if you scored 42 out of 50 on a test: (42 ÷ 50) × 100 = 84%."
+    }
+  },
+  "summary": {
+    "result": "The result is",
+    "percentage": "The percentage is",
+    "increase": "Increase of",
+    "decrease": "Decrease of",
+    "afterIncrease": "After increase:",
+    "afterDecrease": "After decrease:",
+    "originalValue": "Original value was"
+  },
+  "common": {
+    "calculate": "Calculate",
+    "reset": "Reset",
+    "result": "Result",
+    "formula": "Formula",
+    "steps": "Steps",
+    "example": "Example",
+    "references": "References",
+    "relatedCalculators": "Related Calculators"
+  }
+}

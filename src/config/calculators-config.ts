@@ -224,7 +224,7 @@ export const FINANCE_CALCULATORS: Calculator[] = [
   },
 ];
 
-// Health Calculators (21)
+// Health Calculators (24) - Added 3 new: waist-to-height-ratio, step, rest-day
 export const HEALTH_CALCULATORS: Calculator[] = [
   {
     slug: "bmi-calculator",
@@ -309,18 +309,8 @@ export const HEALTH_CALCULATORS: Calculator[] = [
   {
     slug: "water-intake-calculator",
     name: "Water Intake Calculator",
-    description: "Calculate how much water you should drink daily",
+    description: "Calculate your daily water needs based on activity and climate",
     icon: "💧",
-    color: "green",
-    category: "health",
-    isNew: false,
-    isPro: false,
-  },
-  {
-    slug: "one-rep-max-calculator",
-    name: "One Rep Max Calculator",
-    description: "Estimate your 1RM using 7 scientific formulas",
-    icon: "🏋️",
     color: "green",
     category: "health",
     isNew: false,
@@ -329,7 +319,7 @@ export const HEALTH_CALCULATORS: Calculator[] = [
   {
     slug: "sleep-calculator",
     name: "Sleep Calculator",
-    description: "Find optimal bedtimes and wake times based on sleep cycles",
+    description: "Calculate optimal bedtime and wake-up times for quality sleep",
     icon: "😴",
     color: "green",
     category: "health",
@@ -337,29 +327,49 @@ export const HEALTH_CALCULATORS: Calculator[] = [
     isPro: false,
   },
   {
-    slug: "running-pace-calculator",
-    name: "Running Pace Calculator",
-    description: "Calculate pace, predict race times, generate splits, and get VDOT training zones",
-    icon: "🏃",
-    color: "green",
-    category: "health",
-    isNew: true,
-    isPro: false,
-  },
-  {
-    slug: "heart-rate-zones-calculator",
-    name: "Heart Rate Zones Calculator",
-    description: "Calculate personalized training zones using Karvonen formula",
+    slug: "heart-rate-zone-calculator",
+    name: "Heart Rate Zone Calculator",
+    description: "Calculate your training heart rate zones for optimal fitness",
     icon: "❤️",
     color: "green",
     category: "health",
-    isNew: true,
+    isNew: false,
+    isPro: false,
+  },
+  {
+    slug: "ovulation-calculator",
+    name: "Ovulation Calculator",
+    description: "Track your fertile window and ovulation for family planning",
+    icon: "🌸",
+    color: "green",
+    category: "health",
+    isNew: false,
+    isPro: false,
+  },
+  {
+    slug: "due-date-calculator",
+    name: "Due Date Calculator",
+    description: "Calculate your pregnancy due date and track milestones",
+    icon: "👶",
+    color: "green",
+    category: "health",
+    isNew: false,
+    isPro: false,
+  },
+  {
+    slug: "one-rep-max-calculator",
+    name: "One Rep Max Calculator",
+    description: "Calculate your maximum lift capacity and training weights",
+    icon: "🏋️",
+    color: "green",
+    category: "health",
+    isNew: false,
     isPro: false,
   },
   {
     slug: "calories-burned-calculator",
     name: "Calories Burned Calculator",
-    description: "Calculate calories burned for 100+ activities using MET values",
+    description: "Calculate calories burned for 100+ activities and exercises",
     icon: "🔥",
     color: "green",
     category: "health",
@@ -436,9 +446,84 @@ export const HEALTH_CALCULATORS: Calculator[] = [
     isNew: true,
     isPro: false,
   },
+  // NEW: 3 calculadoras agregadas
+  {
+    slug: "waist-to-height-ratio-calculator",
+    name: "Waist-to-Height Ratio Calculator",
+    description: "Better than BMI for health risk assessment with gender-specific thresholds",
+    icon: "📏",
+    color: "green",
+    category: "health",
+    isNew: true,
+    isPro: false,
+  },
+  {
+    slug: "step-calculator",
+    name: "Step Calculator",
+    description: "Convert steps to distance and calories with 4 bidirectional calculation modes",
+    icon: "🚶",
+    color: "green",
+    category: "health",
+    isNew: true,
+    isPro: false,
+  },
+  {
+    slug: "rest-day-calculator",
+    name: "Rest Day Calculator",
+    description: "Calculate optimal recovery time between workouts based on intensity and personal factors",
+    icon: "🛋️",
+    color: "green",
+    category: "health",
+    isNew: true,
+    isPro: false,
+  },
 ];
 
-// Everyday Calculators (10)
+// Math Calculators (4) - NEW CATEGORY
+export const MATH_CALCULATORS: Calculator[] = [
+  {
+    slug: "percentage-calculator",
+    name: "Percentage Calculator",
+    description: "Calculate percentages, increases, decreases, and conversions with 8 calculation modes",
+    icon: "%",
+    color: "violet",
+    category: "math",
+    isNew: true,
+    isPro: false,
+  },
+  {
+    slug: "fraction-calculator",
+    name: "Fraction Calculator",
+    description: "Add, subtract, multiply, divide fractions with step-by-step solutions",
+    icon: "🔢",
+    color: "violet",
+    category: "math",
+    isNew: true,
+    isPro: false,
+  },
+  {
+    slug: "square-root-calculator",
+    name: "Square Root & Exponent Calculator",
+    description: "Calculate roots and powers of any number",
+    icon: "√",
+    color: "violet",
+    category: "math",
+    isNew: true,
+    isPro: false,
+  },
+  {
+    slug: "rule-of-three-calculator",
+    name: "Rule of Three Calculator",
+    description: "Solve direct and inverse proportions",
+    icon: "⚖️",
+    color: "violet",
+    category: "math",
+    isNew: true,
+    isPro: false,
+  },
+];
+
+// Everyday Calculators (9) - percentage-calculator moved to math
 export const EVERYDAY_CALCULATORS: Calculator[] = [
   {
     slug: "tip-calculator",
@@ -455,16 +540,6 @@ export const EVERYDAY_CALCULATORS: Calculator[] = [
     name: "Discount Calculator",
     description: "Calculate sale prices, savings, and stack multiple discounts",
     icon: "🏷️",
-    color: "purple",
-    category: "everyday",
-    isNew: true,
-    isPro: false,
-  },
-  {
-    slug: "percentage-calculator",
-    name: "Percentage Calculator",
-    description: "Calculate percentages, increases, decreases, and conversions",
-    icon: "📊",
     color: "purple",
     category: "everyday",
     isNew: true,
@@ -546,6 +621,7 @@ export const EVERYDAY_CALCULATORS: Calculator[] = [
 export const ALL_CALCULATORS: Calculator[] = [
   ...FINANCE_CALCULATORS,
   ...HEALTH_CALCULATORS,
+  ...MATH_CALCULATORS,
   ...EVERYDAY_CALCULATORS,
 ];
 
@@ -555,7 +631,7 @@ export function getCalculatorBySlug(slug: string): Calculator | undefined {
 }
 
 // Helper function to get calculators by category
-export function getCalculatorsByCategory(category: "finance" | "health" | "everyday"): Calculator[] {
+export function getCalculatorsByCategory(category: "finance" | "health" | "math" | "everyday"): Calculator[] {
   return ALL_CALCULATORS.filter((calc) => calc.category === category);
 }
 
@@ -570,7 +646,7 @@ export function getTotalActiveCalculators(): number {
 }
 
 // Helper function to get calculator count by category
-export function getCalculatorCountByCategory(category: "finance" | "health" | "everyday"): number {
+export function getCalculatorCountByCategory(category: "finance" | "health" | "math" | "everyday"): number {
   return ALL_CALCULATORS.filter((calc) => calc.category === category).length;
 }
 
@@ -592,18 +668,18 @@ export function getCategoryStats(): CategoryStat[] {
       status: "active",
     },
     {
+      id: "math",
+      icon: "🔢",
+      color: "violet",
+      count: MATH_CALCULATORS.length,
+      status: "active",
+    },
+    {
       id: "everyday",
       icon: "🧮",
       color: "orange",
       count: EVERYDAY_CALCULATORS.length,
       status: "active",
-    },
-    {
-      id: "math",
-      icon: "🔢",
-      color: "purple",
-      count: 0,
-      status: "coming-soon",
     },
   ];
 }
@@ -633,5 +709,6 @@ export const CALCULATOR_COUNTS = {
   total: ALL_CALCULATORS.length,
   finance: FINANCE_CALCULATORS.length,
   health: HEALTH_CALCULATORS.length,
+  math: MATH_CALCULATORS.length,
   everyday: EVERYDAY_CALCULATORS.length,
 };

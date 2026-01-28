@@ -1,0 +1,222 @@
+{
+  "calculator": {
+    "title": "Calculadora de Fracciones",
+    "subtitle": "Calcula fracciones con soluciones paso a paso",
+    "breadcrumb": "Calculadora de Fracciones",
+    "yourInformation": "Datos de Cálculo"
+  },
+
+  "inputs": {
+    "operation": {
+      "label": "Operación",
+      "options": {
+        "add": "Sumar (+)",
+        "subtract": "Restar (−)",
+        "multiply": "Multiplicar (×)",
+        "divide": "Dividir (÷)",
+        "simplify": "Simplificar",
+        "convert": "Convertir"
+      }
+    },
+    "whole1": {
+      "label": "Número Entero",
+      "helpText": "Opcional"
+    },
+    "numerator1": {
+      "label": "Numerador"
+    },
+    "denominator1": {
+      "label": "Denominador",
+      "helpText": "No puede ser cero"
+    },
+    "whole2": {
+      "label": "Número Entero",
+      "helpText": "Opcional"
+    },
+    "numerator2": {
+      "label": "Numerador"
+    },
+    "denominator2": {
+      "label": "Denominador",
+      "helpText": "No puede ser cero"
+    },
+    "convertTo": {
+      "label": "Convertir A",
+      "options": {
+        "decimal": "Decimal",
+        "percentage": "Porcentaje",
+        "mixed": "Número Mixto",
+        "improper": "Fracción Impropia"
+      }
+    }
+  },
+
+  "results": {
+    "mainResult": "Resultado",
+    "simplified": "Simplificado",
+    "decimal": "Como Decimal",
+    "percentage": "Como Porcentaje"
+  },
+
+  "info": {
+    "fractionInfo": {
+      "title": "Detalles de Fracción",
+      "0": "Número Mixto",
+      "1": "Fracción Impropia",
+      "2": "MCD Usado"
+    },
+    "equivalents": {
+      "title": "Fracciones Equivalentes",
+      "0": "×2",
+      "1": "×3",
+      "2": "×4"
+    }
+  },
+
+  "reference": {
+    "commonFractions": {
+      "title": "Referencia de Fracciones Comunes"
+    }
+  },
+
+  "education": {
+    "operationsExplained": {
+      "title": "Operaciones con Fracciones",
+      "cards": {
+        "0": {
+          "title": "Sumar Fracciones",
+          "description": "Para sumar fracciones, primero encuentra un denominador común (MCD), convierte cada fracción, luego suma los numeradores. Mantén el denominador igual. Ejemplo: 1/4 + 1/3 = 3/12 + 4/12 = 7/12"
+        },
+        "1": {
+          "title": "Restar Fracciones",
+          "description": "Igual que la suma: encuentra el MCD, convierte las fracciones, luego resta los numeradores. Mantén el denominador. Ejemplo: 3/4 - 1/3 = 9/12 - 4/12 = 5/12"
+        },
+        "2": {
+          "title": "Multiplicar Fracciones",
+          "description": "Multiplica los numeradores entre sí, multiplica los denominadores entre sí. ¡No se necesita denominador común! Ejemplo: 2/3 × 3/4 = 6/12 = 1/2"
+        },
+        "3": {
+          "title": "Dividir Fracciones",
+          "description": "Invierte la segunda fracción (recíproco) y multiplica. Ejemplo: 1/2 ÷ 3/4 = 1/2 × 4/3 = 4/6 = 2/3"
+        }
+      }
+    },
+    "considerations": {
+      "title": "Consideraciones Importantes",
+      "items": {
+        "0": { "text": "El denominador nunca puede ser cero - la división por cero no está definida" },
+        "1": { "text": "Siempre simplifica tu respuesta final a los términos más bajos cuando sea posible" },
+        "2": { "text": "Para suma y resta, se requiere un denominador común" },
+        "3": { "text": "Para multiplicación y división, NO se necesita denominador común" },
+        "4": { "text": "Los números mixtos deben convertirse a fracciones impropias antes de operar" },
+        "5": { "text": "Al dividir fracciones, multiplica por el recíproco (invierte la segunda fracción)" }
+      }
+    },
+    "exampleCalculation": {
+      "title": "Ejemplos de Cálculo",
+      "description": "Ejemplos paso a paso de operaciones con fracciones",
+      "examples": {
+        "0": {
+          "title": "Sumar: 2/3 + 1/4",
+          "steps": {
+            "0": "Encontrar MCD de 3 y 4: MCD = 12",
+            "1": "Convertir 2/3: (2×4)/(3×4) = 8/12",
+            "2": "Convertir 1/4: (1×3)/(4×3) = 3/12",
+            "3": "Sumar numeradores: 8/12 + 3/12 = 11/12"
+          },
+          "result": "2/3 + 1/4 = 11/12"
+        },
+        "1": {
+          "title": "Restar: 5/6 - 1/4",
+          "steps": {
+            "0": "Encontrar MCD de 6 y 4: MCD = 12",
+            "1": "Convertir 5/6: (5×2)/(6×2) = 10/12",
+            "2": "Convertir 1/4: (1×3)/(4×3) = 3/12",
+            "3": "Restar: 10/12 - 3/12 = 7/12"
+          },
+          "result": "5/6 - 1/4 = 7/12"
+        },
+        "2": {
+          "title": "Multiplicar: 2/3 × 4/5",
+          "steps": {
+            "0": "Multiplicar numeradores: 2 × 4 = 8",
+            "1": "Multiplicar denominadores: 3 × 5 = 15",
+            "2": "Resultado: 8/15 (ya simplificado)"
+          },
+          "result": "2/3 × 4/5 = 8/15"
+        },
+        "3": {
+          "title": "Dividir: 3/4 ÷ 2/5",
+          "steps": {
+            "0": "Invertir segunda fracción: 2/5 → 5/2",
+            "1": "Multiplicar: 3/4 × 5/2",
+            "2": "Numeradores: 3 × 5 = 15",
+            "3": "Denominadores: 4 × 2 = 8",
+            "4": "Resultado: 15/8 = 1 7/8"
+          },
+          "result": "3/4 ÷ 2/5 = 15/8 = 1 7/8"
+        }
+      }
+    },
+    "whatAreFractions": {
+      "title": "¿Qué son las Fracciones?",
+      "content": "Una fracción representa una parte de un todo. Consiste en dos números: el numerador (número de arriba) muestra cuántas partes tenemos, y el denominador (número de abajo) muestra en cuántas partes iguales se divide el todo. Por ejemplo, 3/4 significa 3 partes de 4 partes iguales. Las fracciones pueden ser propias (numerador < denominador, como 2/3), impropias (numerador ≥ denominador, como 5/3), o números mixtos (número entero + fracción propia, como 1 2/3)."
+    },
+    "findingLCD": {
+      "title": "Encontrar el Mínimo Común Denominador (MCD)",
+      "content": "El MCD es el número más pequeño en el que ambos denominadores dividen uniformemente. Para encontrarlo: 1) Lista los múltiplos de cada denominador, 2) Encuentra el múltiplo común más pequeño. Por ejemplo, para 3 y 4: múltiplos de 3 son 3, 6, 9, 12...; múltiplos de 4 son 4, 8, 12... El MCD es 12. Alternativamente, puedes usar factorización prima o simplemente multiplicar los denominadores (aunque esto puede no dar el MCD, dará UN denominador común)."
+    },
+    "simplifyingFractions": {
+      "title": "Simplificando Fracciones",
+      "content": "Para simplificar (o reducir) una fracción, divide tanto el numerador como el denominador por su Máximo Común Divisor (MCD). Por ejemplo, para simplificar 8/12: el MCD de 8 y 12 es 4, así que 8÷4/12÷4 = 2/3. Una fracción está en su mínima expresión cuando el MCD del numerador y denominador es 1. Puedes encontrar el MCD listando los factores de ambos números y encontrando el más grande en común, o usando factorización prima."
+    }
+  },
+
+  "faq": {
+    "title": "Preguntas Frecuentes",
+    "0": {
+      "question": "¿Cómo sumo fracciones con denominadores diferentes?",
+      "answer": "Primero, encuentra el Mínimo Común Denominador (MCD) de ambas fracciones. Convierte cada fracción a una fracción equivalente con el MCD como denominador. Luego suma los numeradores y mantén el denominador común. Finalmente, simplifica si es posible. Ejemplo: 1/3 + 1/4 → MCD es 12 → 4/12 + 3/12 = 7/12."
+    },
+    "1": {
+      "question": "¿Cómo multiplico fracciones?",
+      "answer": "Multiplicar fracciones es directo: multiplica los numeradores juntos para obtener el nuevo numerador, multiplica los denominadores juntos para obtener el nuevo denominador. ¡No se necesita denominador común! Luego simplifica. Ejemplo: 2/3 × 4/5 = (2×4)/(3×5) = 8/15."
+    },
+    "2": {
+      "question": "¿Cómo divido fracciones?",
+      "answer": "Para dividir fracciones, invierte la segunda fracción (encuentra su recíproco) y multiplica. Esto se recuerda como 'Mantener, Cambiar, Invertir'. Ejemplo: 1/2 ÷ 3/4 = 1/2 × 4/3 = 4/6 = 2/3."
+    },
+    "3": {
+      "question": "¿Cómo convierto un número mixto a fracción impropia?",
+      "answer": "Multiplica el número entero por el denominador, suma el numerador, y pon el resultado sobre el denominador original. Ejemplo: 2 3/4 → (2×4)+3 = 11, así que 2 3/4 = 11/4."
+    },
+    "4": {
+      "question": "¿Cómo convierto una fracción impropia a número mixto?",
+      "answer": "Divide el numerador entre el denominador. El cociente es el número entero, y el residuo es el nuevo numerador sobre el denominador original. Ejemplo: 11/4 → 11÷4 = 2 residuo 3, así que 11/4 = 2 3/4."
+    },
+    "5": {
+      "question": "¿Qué es el MCD y cómo lo encuentro?",
+      "answer": "MCD (Máximo Común Divisor) es el número más grande que divide uniformemente en ambos números. Para encontrarlo, lista todos los factores de cada número y encuentra el más grande que compartan. Para 12 y 8: factores de 12 son 1,2,3,4,6,12; factores de 8 son 1,2,4,8. Factores comunes: 1,2,4. MCD = 4."
+    }
+  },
+
+  "common": {
+    "home": "Inicio",
+    "calculators": "Calculadoras"
+  },
+
+  "buttons": {
+    "calculate": "Calcular",
+    "reset": "Reiniciar",
+    "pdf": "PDF",
+    "excel": "Excel"
+  },
+
+  "sources": {
+    "title": "Fuentes y Referencias"
+  },
+
+  "disclaimers": {
+    "math": "Los resultados se basan en fórmulas matemáticas estándar. Verifique los cálculos para aplicaciones críticas."
+  }
+}

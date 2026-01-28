@@ -1,6 +1,5 @@
 import './globals.css';
 import { Metadata } from 'next';
-
 export const metadata: Metadata = {
   metadataBase: new URL('https://kalcufy.com'),
   title: {
@@ -9,6 +8,11 @@ export const metadata: Metadata = {
   },
   description: 'Free online calculators for finance, health, and everyday decisions. Mortgage, loans, BMI, calories and 40+ more tools.',
   keywords: ['calculator', 'mortgage calculator', 'loan calculator', 'BMI calculator', 'calorie calculator'],
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -28,7 +32,6 @@ export const metadata: Metadata = {
     follow: true,
   },
 };
-
 export default function RootLayout({
   children,
 }: {

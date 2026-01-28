@@ -181,7 +181,7 @@ export default function Home() {
       <main id="main-content" tabIndex={-1}>
         {/* Hero Section */}
         <section 
-          className="pt-28 pb-16 bg-gradient-to-b from-blue-50 to-white"
+          className="pt-16 pb-16 bg-gradient-to-b from-blue-50 to-white"
           aria-labelledby="hero-heading"
         >
           <div className="container text-center">
@@ -243,7 +243,7 @@ export default function Home() {
                   }}
                   onFocus={() => setShowResults(true)}
                   onKeyDown={handleKeyDown}
-                  placeholder={t("searchPlaceholder")}
+                  placeholder="Search calculators..."
                   className="w-full pl-12 pr-24 py-4 text-lg border-2 border-slate-200 rounded-2xl bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                   autoComplete="off"
                   aria-autocomplete="list"

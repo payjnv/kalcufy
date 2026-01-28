@@ -12,18 +12,24 @@ interface ConsiderationsListProps {
   icon?: string;
   items: ConsiderationsItem[];
   t: TranslationFn;
+  sectionId?: string;
 }
 
-export default function ConsiderationsList({ title, icon, items, t }: ConsiderationsListProps) {
-  const sectionId = `considerations-${title.toLowerCase().replace(/\s+/g, '-')}`;
+export default function ConsiderationsList({ title, icon, items, t, sectionId = "considerations" }: ConsiderationsListProps) {
+  const htmlId = `considerations-${title.toLowerCase().replace(/\s+/g, '-')}`;
   
+  // Get translated item text
+  const getTranslatedItem = (item: ConsiderationsItem, index: number) => {
+    return t(`education.${sectionId}.items.${index}.text`, item.text);
+  };
+
   return (
     <div 
       className="bg-white rounded-2xl border border-slate-200 p-6"
       role="region"
-      aria-labelledby={sectionId}
+      aria-labelledby={htmlId}
     >
-      <h3 id={sectionId} className="text-lg font-bold text-slate-900 mb-4">
+      <h3 id={htmlId} className="text-lg font-bold text-slate-900 mb-4">
         {icon && <span aria-hidden="true">{icon} </span>}
         {title}
       </h3>
@@ -38,9 +44,9 @@ export default function ConsiderationsList({ title, icon, items, t }: Considerat
               }`}
               aria-hidden="true"
             >
-              {item.type === "warning" ? "!" : item.type === "success" ? "✓" : "•"}
+              {item.type === "warning" ? "⚠" : item.type === "success" ? "✓" : "•"}
             </span>
-            <span>{item.text}</span>
+            <span>{getTranslatedItem(item, index)}</span>
           </li>
         ))}
       </ul>

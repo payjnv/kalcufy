@@ -37,14 +37,20 @@ import type {
 
 // =============================================================================
 // CATEGORY DISCLAIMERS (E-E-A-T & Legal Protection)
+// Keys for translation lookup
 // =============================================================================
-const CATEGORY_DISCLAIMERS: Record<string, string> = {
+const CATEGORY_DISCLAIMER_KEYS: Record<string, string> = {
+  health: "disclaimers.health",
+  finance: "disclaimers.finance",
+  pregnancy: "disclaimers.pregnancy",
+  math: "disclaimers.math",
+};
+
+const CATEGORY_DISCLAIMER_FALLBACKS: Record<string, string> = {
   health: "Estimates are based on standard equations and may vary by individual. Not a substitute for professional medical advice.",
   finance: "Results are estimates for informational purposes only. Consult a financial advisor for personalized guidance.",
   pregnancy: "Estimates are based on standard medical guidelines. Always consult your healthcare provider for personalized care.",
-  // Add more categories as needed:
-  // legal: "This information is for general purposes only and does not constitute legal advice.",
-  // tax: "Results are estimates only. Consult a tax professional for your specific situation.",
+  math: "Results are based on standard mathematical formulas. Always verify calculations for critical applications.",
 };
 
 // =============================================================================
@@ -70,7 +76,7 @@ function validateRequiredSections(config: CalculatorConfigV3): void {
   }
   
   const proseSections = config.educationSections?.filter(s => s.type === "prose") || [];
-  if (proseSections.length < 3) {
+  if (proseSections.length < 2) {
     errors.push("educationSections: minimum 3 prose sections required");
   }
   
@@ -136,26 +142,30 @@ function RenderEducationSection({ section, t }: { section: EducationSection; t: 
       return (
         <div className="bg-white rounded-2xl border border-slate-200 p-6" role="region" aria-labelledby={`section-${section.id}`}>
           <h3 id={`section-${section.id}`} className="text-lg font-bold text-slate-900 mb-4">
-            {section.icon && <span aria-hidden="true">{section.icon} </span>}{section.title}
+            {section.icon && <span aria-hidden="true">{section.icon} </span>}
+            {t(`education.${section.id}.title`, section.title)}
           </h3>
           <ul className="space-y-3 text-slate-600">
             {section.cards?.map((card, index) => (
               <li key={index} className="flex items-start gap-2">
                 <span className="text-blue-500 mt-1" aria-hidden="true">•</span>
-                <span><strong>{card.title}:</strong> {card.description}</span>
+                <span>
+                  <strong>{t(`education.${section.id}.cards.${card.id || index}.title`, card.title)}:</strong>{" "}
+                  {t(`education.${section.id}.cards.${card.id || index}.description`, card.description)}
+                </span>
               </li>
             ))}
           </ul>
         </div>
       );
     case "list":
-      return <ConsiderationsList title={section.title} icon={section.icon} items={section.items || []} t={t} />;
+      return <ConsiderationsList title={t(`education.${section.id}.title`, section.title)} icon={section.icon} items={section.items || []} t={t} sectionId={section.id} />;
     case "code-example":
-      return <ExampleSection title={section.title} icon={section.icon} description={section.description} examples={section.examples || []} columns={section.columns || 2} background={section.background === "slate" ? "slate" : "white"} t={t} />;
+      return <ExampleSection title={t(`education.${section.id}.title`, section.title)} icon={section.icon} description={t(`education.${section.id}.description`, section.description)} examples={section.examples || []} columns={section.columns || 2} background={section.background === "slate" ? "slate" : "white"} t={t} sectionId={section.id} />;
     case "prose":
-      return <ProseSection title={section.title} content={section.content || ""} t={t} />;
+      return <ProseSection title={t(`education.${section.id}.title`, section.title)} content={t(`education.${section.id}.content`, section.content || "")} t={t} />;
     case "references":
-      return <SourcesSection title={section.title} references={section.references || []} t={t} />;
+      return <SourcesSection title={t(`education.${section.id}.title`, section.title)} references={section.references || []} t={t} />;
     default:
       return null;
   }
@@ -192,11 +202,13 @@ function RenderVisualization({
       
       return (
         <DistributionBars
-          title={visualization.title || t("visualizations.distribution", "Distribution")}
+          title={t(`visualizations.${visualization.id}.title`, visualization.title || "Distribution")}
           icon={visualization.icon}
           items={distributionItems}
           maxValue={distConfig.maxValue}
           gradient={true}
+          t={t}
+          vizId={visualization.id}
         />
       );
 
@@ -206,11 +218,13 @@ function RenderVisualization({
       
       return (
         <ReferenceGrid
-          title={visualization.title || t("visualizations.reference", "Reference")}
+          title={t(`visualizations.${visualization.id}.title`, visualization.title || "Reference")}
           icon={visualization.icon}
           items={refConfig.items}
           columns={refConfig.columns || 4}
           highlightValue={refConfig.highlightCurrent ? results.values[refConfig.highlightCurrent] as string : undefined}
+          t={t}
+          refId={visualization.id}
         />
       );
 
@@ -272,6 +286,13 @@ export default function CalculatorEngineV3({
   const [currentStep, setCurrentStep] = useState(0);
   const wizardEnabled = config.wizard?.enabled || false;
   const totalSteps = config.wizard?.steps?.length || 0;
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // TRANSLATED VALUES (computed once)
+  // ═══════════════════════════════════════════════════════════════════════════
+  const calculatorTitle = t("calculator.title", config.name);
+  const calculatorSubtitle = t("calculator.subtitle", config.seo.shortDescription || config.seo.description);
+  const calculatorBreadcrumb = t("calculator.breadcrumb", config.name);
 
   // ═══════════════════════════════════════════════════════════════════════════
   // TRACKING
@@ -339,7 +360,7 @@ export default function CalculatorEngineV3({
         headers: { "Content-Type": "application/json" }, 
         body: JSON.stringify({ 
           calculatorSlug: config.slug, 
-          calculatorName: config.name, 
+          calculatorName: calculatorTitle, 
           category: config.category, 
           inputs: values, 
           results: results.values, 
@@ -356,7 +377,7 @@ export default function CalculatorEngineV3({
     } catch { 
       setSaveStatus("error"); 
     }
-  }, [results, values, config.slug, config.name, config.category, locale, currentMode]);
+  }, [results, values, config.slug, calculatorTitle, config.category, locale, currentMode]);
 
   // Wizard handlers
   const handleWizardNext = () => {
@@ -387,6 +408,11 @@ export default function CalculatorEngineV3({
       visibleInputs = visibleInputs.filter(input => currentWizardStep.inputs.includes(input.id));
     }
   }
+
+  // Get translated disclaimer
+  const disclaimerKey = CATEGORY_DISCLAIMER_KEYS[config.category];
+  const disclaimerFallback = CATEGORY_DISCLAIMER_FALLBACKS[config.category];
+  const translatedDisclaimer = disclaimerKey ? t(disclaimerKey, disclaimerFallback) : null;
 
   // ═══════════════════════════════════════════════════════════════════════════
   // RENDER
@@ -425,19 +451,19 @@ export default function CalculatorEngineV3({
                 {t("common.calculators", "Calculators")}
               </Link>
               <span className="text-slate-400">/</span>
-              <span className="text-slate-900 font-medium">{config.name}</span>
+              <span className="text-slate-900 font-medium">{calculatorBreadcrumb}</span>
             </nav>
             
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div>
-                <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-slate-900">{config.name}</h1>
-                <p className="text-slate-600 mt-1">{config.seo.shortDescription || config.seo.description}</p>
+                <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-slate-900">{calculatorTitle}</h1>
+                <p className="text-slate-600 mt-1">{calculatorSubtitle}</p>
               </div>
               
               {/* Rating + Share Widget (Compact) */}
               <RatingShareWidget
                 calculatorSlug={config.slug}
-                calculatorName={config.name}
+                calculatorName={calculatorTitle}
                 compact={true}
               />
             </div>
@@ -547,11 +573,14 @@ export default function CalculatorEngineV3({
                 {config.infoCards?.map((card) => (
                   <InfoCard
                     key={card.id}
-                    title={card.title}
+                    cardId={card.id}
+                    title={t(`info.${card.id}.title`, card.title)}
                     icon={card.icon}
                     items={card.items}
                     layout={card.type}
                     columns={card.columns}
+                    results={results}
+                    t={t}
                   />
                 ))}
 
@@ -559,24 +588,26 @@ export default function CalculatorEngineV3({
                 {config.referenceData?.map((ref) => (
                   <ReferenceGrid
                     key={ref.id}
-                    title={ref.title}
+                    title={t(`reference.${ref.id}.title`, ref.title)}
                     icon={ref.icon}
                     items={ref.items}
                     columns={ref.columns || 4}
+                    t={t}
+                    refId={ref.id}
                   />
                 ))}
 
                 {/* Rating Widget (Full) - After all visualizations */}
                 <RatingShareWidget
                   calculatorSlug={config.slug}
-                  calculatorName={config.name}
+                  calculatorName={calculatorTitle}
                   compact={false}
                 />
 
                 {/* Category Disclaimer (E-E-A-T) */}
-                {CATEGORY_DISCLAIMERS[config.category] && (
+                {translatedDisclaimer && (
                   <p className="text-xs text-slate-400 text-center italic px-4">
-                    {CATEGORY_DISCLAIMERS[config.category]}
+                    {translatedDisclaimer}
                   </p>
                 )}
               </div>

@@ -1,0 +1,252 @@
+{
+  "calculator": {
+    "title": "Calculadora de Porcentajes",
+    "subtitle": "Calcula cualquier porcentaje al instante",
+    "breadcrumb": "Calculadora de Porcentajes",
+    "yourInformation": "Datos de Cálculo"
+  },
+
+  "inputs": {
+    "calculationMode": {
+      "label": "¿Qué quieres calcular?",
+      "options": {
+        "findPercent": "🔢 ¿Cuánto es X% de Y?",
+        "whatPercent": "❓ ¿X es qué porcentaje de Y?",
+        "percentIncrease": "📈 Aumento Porcentual",
+        "percentDecrease": "📉 Disminución Porcentual",
+        "percentDifference": "↔️ Diferencia Porcentual",
+        "addPercent": "➕ Sumar X% a Y",
+        "subtractPercent": "➖ Restar X% de Y",
+        "reversePercent": "🔄 Encontrar Original (antes del %)"
+      }
+    },
+    "percentValue": {
+      "label": "Porcentaje",
+      "suffix": "%"
+    },
+    "baseValue": {
+      "label": "De este número"
+    },
+    "partValue": {
+      "label": "Este número"
+    },
+    "wholeValue": {
+      "label": "Es qué % de"
+    },
+    "fromValue": {
+      "label": "Desde (valor original)"
+    },
+    "toValue": {
+      "label": "Hasta (valor nuevo)"
+    },
+    "finalValue": {
+      "label": "Valor final (después del % de cambio)"
+    },
+    "percentChange": {
+      "label": "Porcentaje que se añadió/quitó",
+      "suffix": "%",
+      "helpText": "Positivo para aumento, negativo para disminución"
+    },
+    "quickNumber": {
+      "label": "Ingresa un número"
+    },
+    "numerator": {
+      "label": "Numerador (arriba)"
+    },
+    "denominator": {
+      "label": "Denominador (abajo)"
+    }
+  },
+
+  "inputGroups": {
+    "quickCalcSection": {
+      "title": "Cálculos Rápidos",
+      "icon": "⚡"
+    },
+    "fractionSection": {
+      "title": "Fracción a Porcentaje",
+      "icon": "🔢"
+    }
+  },
+
+  "results": {
+    "mainResult": "Resultado",
+    "formula": "Fórmula Usada",
+    "calculation": "Cálculo",
+    "quickResults": "Porcentajes Rápidos",
+    "fractionResult": "Fracción a %"
+  },
+
+  "info": {
+    "commonPercentages": {
+      "title": "Porcentajes Comunes",
+      "0": "10%",
+      "1": "25%",
+      "2": "50%",
+      "3": "75%"
+    },
+    "realWorldExamples": {
+      "title": "Usos en el Mundo Real",
+      "0": "Propinas: 15-20% de la cuenta",
+      "1": "Impuesto: 5-10% varía por estado",
+      "2": "Descuentos: 10-50% de rebaja",
+      "3": "Interés: APY en ahorros"
+    }
+  },
+
+  "reference": {
+    "percentToDecimal": {
+      "title": "Porcentaje ↔ Decimal",
+      "items": {
+        "0": "10%",
+        "1": "25%",
+        "2": "33.3%",
+        "3": "50%",
+        "4": "75%",
+        "5": "100%"
+      }
+    }
+  },
+
+  "visualizations": {
+    "commonPercentages": {
+      "title": "Ver Tabla de Porcentajes Comunes"
+    }
+  },
+
+  "detailedTable": {
+    "buttonLabel": "Ver Tabla de Porcentajes Comunes",
+    "modalTitle": "Referencia de Porcentajes Comunes"
+  },
+
+  "education": {
+    "percentageTypes": {
+      "title": "8 Formas de Calcular Porcentajes",
+      "cards": {
+        "0": {
+          "title": "¿Cuánto es X% de Y?",
+          "description": "Encuentra un porcentaje de cualquier número. Ejemplo: 15% de 200 = 30"
+        },
+        "1": {
+          "title": "¿X es qué % de Y?",
+          "description": "Encuentra qué porcentaje es un número de otro. Ejemplo: 25 es 25% de 100"
+        },
+        "2": {
+          "title": "% de Aumento",
+          "description": "¿Cuánto creció algo? Ejemplo: 100 a 125 = 25% de aumento"
+        },
+        "3": {
+          "title": "% de Disminución",
+          "description": "¿Cuánto disminuyó algo? Ejemplo: 100 a 80 = 20% de disminución"
+        },
+        "4": {
+          "title": "% de Diferencia",
+          "description": "Compara dos valores. Usa el promedio como base."
+        },
+        "5": {
+          "title": "Sumar Porcentaje",
+          "description": "Suma X% a un número. Ejemplo: 100 + 20% = 120"
+        },
+        "6": {
+          "title": "Restar Porcentaje",
+          "description": "Quita X% de un número. Ejemplo: 100 - 20% = 80"
+        },
+        "7": {
+          "title": "Encontrar Original",
+          "description": "Cálculo inverso. Si 115 es después de 15% de aumento, el original era 100"
+        }
+      }
+    },
+    "considerations": {
+      "title": "Consejos Importantes",
+      "items": {
+        "0": { "text": "El aumento y disminución porcentual NO son reversibles: 20% menos luego 20% más ≠ original" },
+        "1": { "text": "Para encontrar 10%, solo mueve el decimal un lugar a la izquierda: 250 → 25" },
+        "2": { "text": "Para encontrar 1%, divide entre 100: 350 → 3.5" },
+        "3": { "text": "La diferencia porcentual usa el promedio como base, no ninguno de los valores originales" },
+        "4": { "text": "Al calcular propinas, ¡redondea hacia arriba para matemáticas más fáciles y mejor servicio!" }
+      }
+    },
+    "exampleCalculation": {
+      "title": "Ejemplos de Cálculo",
+      "description": "Problemas comunes de porcentaje resueltos paso a paso",
+      "examples": {
+        "0": {
+          "title": "Encontrar un Porcentaje",
+          "steps": {
+            "0": "Pregunta: ¿Cuánto es 15% de 200?",
+            "1": "Convertir: 15% = 15/100 = 0.15",
+            "2": "Multiplicar: 200 × 0.15 = 30"
+          },
+          "result": "15% de 200 = 30"
+        },
+        "1": {
+          "title": "Aumento Porcentual",
+          "steps": {
+            "0": "Pregunta: 80 a 100 = ¿?% de aumento",
+            "1": "Diferencia: 100 - 80 = 20",
+            "2": "Dividir por original: 20 ÷ 80 = 0.25",
+            "3": "Convertir: 0.25 × 100 = 25%"
+          },
+          "result": "25% de aumento"
+        }
+      }
+    },
+    "percentageFormulas": {
+      "title": "Fórmulas de Porcentaje Explicadas",
+      "content": "Un porcentaje es una forma de expresar un número como una fracción de 100. La palabra 'porcentaje' significa literalmente 'por ciento'. Para convertir un porcentaje a decimal, divide entre 100 (o mueve el punto decimal dos lugares a la izquierda). Para convertir un decimal a porcentaje, multiplica por 100. La fórmula básica de porcentaje es: (Parte ÷ Total) × 100 = Porcentaje. Para cambio porcentual: ((Nuevo - Antiguo) ÷ Antiguo) × 100. Para diferencia porcentual: (|A - B| ÷ ((A + B) ÷ 2)) × 100, que usa el promedio de ambos valores como base."
+    },
+    "realWorldApplications": {
+      "title": "Aplicaciones en el Mundo Real",
+      "content": "Los porcentajes están en todas partes en la vida diaria. Al comprar, los descuentos se muestran como porcentajes - una oferta del 25% de descuento significa que pagas el 75% del precio original. Las propinas en restaurantes son típicamente del 15-20% de la cuenta antes de impuestos. Las tasas de interés de tarjetas de crédito (APR) te dicen qué porcentaje de tu saldo pagarás anualmente. Los rendimientos de inversiones se miden como ganancias o pérdidas porcentuales. Las tasas de impuestos son porcentajes de tus ingresos. Entender los porcentajes te ayuda a tomar mejores decisiones financieras, desde comparar préstamos hasta evaluar el rendimiento de inversiones."
+    },
+    "commonMistakes": {
+      "title": "Errores Comunes a Evitar",
+      "content": "El error más común es pensar que los aumentos y disminuciones porcentuales son reversibles. Si un artículo de $100 tiene 20% de descuento ($80), luego el precio aumenta 20%, se convierte en $96 - no $100. Esto es porque el 20% de aumento se calcula sobre el nuevo precio más bajo. Otro error es confundir puntos porcentuales con porcentajes. Si las tasas de interés van del 5% al 6%, eso es un aumento de 1 punto porcentual pero un aumento relativo del 20%. Al comparar valores, ten cuidado si estás usando diferencia porcentual (simétrica) o cambio porcentual (direccional desde un valor específico)."
+    }
+  },
+
+  "faq": {
+    "title": "Preguntas Frecuentes",
+    "0": {
+      "question": "¿Cómo calculo porcentajes mentalmente?",
+      "answer": "Para 10%, mueve el decimal un lugar a la izquierda (250 se convierte en 25). Para 1%, divide entre 100 (350 se convierte en 3.5). Para otros porcentajes, combina estos: 15% = 10% + 5% (mitad de 10%). Para 25%, divide entre 4. Para 50%, divide entre 2. ¡La práctica hace al maestro!"
+    },
+    "1": {
+      "question": "¿Cuál es la diferencia entre cambio porcentual y diferencia porcentual?",
+      "answer": "El cambio porcentual tiene una dirección - mide aumento o disminución DESDE un valor específico. La diferencia porcentual es simétrica - mide cuán diferentes son dos valores usando su promedio como base. Usa cambio cuando un valor es 'antes' y otro es 'después'; usa diferencia cuando comparas dos valores sin un elemento de tiempo."
+    },
+    "2": {
+      "question": "¿Por qué un aumento del 20% seguido de una disminución del 20% no da el número original?",
+      "answer": "Porque el segundo porcentaje se calcula sobre una base diferente. Si $100 aumenta 20%, se convierte en $120. Luego el 20% de $120 es $24, así que disminuir 20% da $96, no $100. Los porcentajes son iguales, pero se calculan sobre cantidades diferentes."
+    },
+    "3": {
+      "question": "¿Cómo encuentro el precio original antes de un descuento?",
+      "answer": "Si conoces el precio de oferta y el porcentaje de descuento, divide el precio de oferta entre (1 - tasa de descuento como decimal). Por ejemplo, si algo cuesta $80 después de 20% de descuento: $80 ÷ (1 - 0.20) = $80 ÷ 0.80 = $100 precio original."
+    },
+    "4": {
+      "question": "¿Cómo calculo una propina rápidamente?",
+      "answer": "Para 20%, calcula 10% (mueve el decimal a la izquierda) y duplícalo. Para 15%, calcula 10% más la mitad de eso. Por ejemplo, en una cuenta de $85: 10% = $8.50, así que 20% = $17 y 15% = $8.50 + $4.25 = $12.75. ¡Redondea hacia arriba para matemáticas más fáciles!"
+    },
+    "5": {
+      "question": "¿Cuál es la fórmula para el aumento porcentual?",
+      "answer": "((Valor Nuevo - Valor Original) ÷ Valor Original) × 100. Por ejemplo, si una acción va de $50 a $65: (65 - 50) ÷ 50 × 100 = 15 ÷ 50 × 100 = 30% de aumento."
+    }
+  },
+
+  "common": {
+    "home": "Inicio",
+    "calculators": "Calculadoras"
+  },
+
+  "buttons": {
+    "calculate": "Calcular",
+    "reset": "Reiniciar",
+    "pdf": "PDF",
+    "excel": "Excel"
+  },
+
+  "disclaimers": {
+    "math": "Los resultados se basan en fórmulas matemáticas estándar. Verifique los cálculos para aplicaciones críticas."
+  }
+}

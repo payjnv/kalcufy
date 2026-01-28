@@ -294,3 +294,50 @@ export function getCalculatorsByCategory(
 ): ValidCalculator[] {
   return VALID_CALCULATORS.filter((c) => c.category === category);
 }
+
+// === EVERYDAY ===
+const EVERYDAY_CALCULATORS: ValidCalculator[] = [
+  {
+    slug: "tip-calculator",
+    nameEn: "Tip Calculator",
+    nameEs: "Calculadora de Propinas",
+    namePt: "Calculadora de Gorjetas",
+    category: "finance",
+    icon: "💵",
+  },
+  {
+    slug: "percentage-calculator",
+    nameEn: "Percentage Calculator",
+    nameEs: "Calculadora de Porcentajes",
+    namePt: "Calculadora de Porcentagens",
+    category: "finance",
+    icon: "➗",
+  },
+  {
+    slug: "discount-calculator",
+    nameEn: "Discount Calculator",
+    nameEs: "Calculadora de Descuentos",
+    namePt: "Calculadora de Descontos",
+    category: "finance",
+    icon: "🏷️",
+  },
+  {
+    slug: "age-calculator",
+    nameEn: "Age Calculator",
+    nameEs: "Calculadora de Edad",
+    namePt: "Calculadora de Idade",
+    category: "health",
+    icon: "🎂",
+  },
+  {
+    slug: "pregnancy-calculator",
+    nameEn: "Pregnancy Calculator",
+    nameEs: "Calculadora de Embarazo",
+    namePt: "Calculadora de Gravidez",
+    category: "health",
+    icon: "🤰",
+  },
+];
+
+// Agregar al array principal
+VALID_CALCULATORS.push(...EVERYDAY_CALCULATORS);

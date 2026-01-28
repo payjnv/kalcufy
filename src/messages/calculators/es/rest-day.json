@@ -1,0 +1,259 @@
+{
+  "calculator": {
+    "title": "Calculadora de Días de Descanso",
+    "subtitle": "Calcula los días de descanso óptimos basados en tus entrenamientos",
+    "breadcrumb": "Días de Descanso",
+    "yourInformation": "Tu Información"
+  },
+
+  "inputs": {
+    "exerciseType": {
+      "label": "Tipo de Ejercicio",
+      "options": {
+        "strength": "Entrenamiento de Fuerza (Pesas)",
+        "hiit": "HIIT / Intervalos",
+        "cardio": "Cardio (Correr, Ciclismo)",
+        "endurance": "Resistencia (Larga distancia)",
+        "sports": "Deportes de Equipo / Juegos",
+        "flexibility": "Yoga / Estiramientos / Movilidad"
+      }
+    },
+    "intensity": {
+      "label": "Intensidad del Entrenamiento",
+      "options": {
+        "light": "Ligera (Fácil, podía hablar normalmente)",
+        "moderate": "Moderada (Desafiante, ligeramente sin aliento)",
+        "high": "Alta (Muy desafiante, difícil hablar)",
+        "extreme": "Extrema (Esfuerzo máximo, cerca del fallo)"
+      }
+    },
+    "duration": {
+      "label": "Duración del Entrenamiento",
+      "options": {
+        "15-30": "15-30 minutos",
+        "30-45": "30-45 minutos",
+        "45-60": "45-60 minutos",
+        "60-90": "60-90 minutos",
+        "90+": "90+ minutos"
+      }
+    },
+    "muscleGroup": {
+      "label": "Grupos Musculares Trabajados",
+      "options": {
+        "upper": "Solo Tren Superior",
+        "lower": "Solo Tren Inferior",
+        "core": "Core / Abdominales",
+        "mixed": "Cuerpo Completo / Mixto",
+        "cardio": "Principalmente Cardio (sin pesas)"
+      }
+    },
+    "fitnessLevel": {
+      "label": "Tu Nivel de Fitness",
+      "options": {
+        "beginner": "Principiante (< 6 meses entrenando)",
+        "intermediate": "Intermedio (6 meses - 2 años)",
+        "advanced": "Avanzado (2+ años entrenando consistente)",
+        "athlete": "Atleta Competitivo"
+      }
+    },
+    "age": {
+      "label": "Rango de Edad",
+      "options": {
+        "18-24": "18-24 años",
+        "25-34": "25-34 años",
+        "35-44": "35-44 años",
+        "45-54": "45-54 años",
+        "55+": "55+ años"
+      }
+    },
+    "sleepQuality": {
+      "label": "Calidad de Sueño Reciente",
+      "options": {
+        "excellent": "Excelente (8+ horas, me siento descansado)",
+        "good": "Buena (7-8 horas)",
+        "fair": "Regular (5-7 horas)",
+        "poor": "Mala (< 5 horas o sueño interrumpido)"
+      }
+    },
+    "soreness": {
+      "label": "Dolor Muscular Actual",
+      "options": {
+        "none": "Ninguno",
+        "mild": "Leve (notable pero no limitante)",
+        "moderate": "Moderado (afecta el movimiento)",
+        "severe": "Severo (doloroso al moverme)"
+      }
+    }
+  },
+
+  "results": {
+    "recoveryHours": "Tiempo de Recuperación Necesario",
+    "restDays": "Días de Descanso Recomendados",
+    "nextWorkout": "Próximo Entrenamiento Similar",
+    "activeRecovery": "Recuperación Activa OK",
+    "weeklySchedule": "Recomendación Semanal"
+  },
+
+  "info": {
+    "recoveryResults": {
+      "title": "Tu Recomendación de Recuperación",
+      "0": "Tiempo de Recuperación",
+      "1": "Días de Descanso Necesarios",
+      "2": "Próximo Entrenamiento",
+      "3": "Recuperación Activa"
+    },
+    "recoveryTips": {
+      "title": "Optimiza Tu Recuperación",
+      "0": "Duerme 7-9 horas para síntesis óptima de proteína muscular",
+      "1": "Consume proteína dentro de 2 horas post-entrenamiento",
+      "2": "Mantente hidratado - la deshidratación ralentiza la recuperación",
+      "3": "Escucha tu cuerpo - dolor persistente significa descanso"
+    }
+  },
+
+  "reference": {
+    "recoveryGuide": {
+      "title": "Tiempo de Recuperación por Tipo de Ejercicio",
+      "items": {
+        "0": "Fuerza Pesada",
+        "1": "Fuerza Moderada",
+        "2": "Fuerza Ligera",
+        "3": "HIIT/Intervalos",
+        "4": "Cardio Moderado",
+        "5": "Cardio Ligero"
+      }
+    }
+  },
+
+  "education": {
+    "whyRecoveryMatters": {
+      "title": "Por Qué Importa la Recuperación",
+      "content": "La recuperación es cuando tu cuerpo realmente se fortalece. Durante el ejercicio, creas micro-desgarros en las fibras musculares y agotas las reservas de energía. La recuperación permite a tu cuerpo reparar estos desgarros (haciendo los músculos más fuertes), reponer glucógeno y adaptarse al estrés del entrenamiento. Sin recuperación adecuada, arriesgas síndrome de sobreentrenamiento, que lleva a rendimiento disminuido, fatiga crónica, mayor riesgo de lesión e incluso supresión del sistema inmune. Las investigaciones muestran que la síntesis de proteína muscular alcanza su pico 24-72 horas después del entrenamiento, lo que significa que tus ganancias ocurren durante el descanso, no durante el entrenamiento mismo."
+    },
+    "recoveryFactors": {
+      "title": "Factores que Afectan la Recuperación",
+      "cards": {
+        "0": {
+          "title": "Edad",
+          "description": "La recuperación se ralentiza con la edad. Una persona de 50 años típicamente necesita 20-30% más tiempo de recuperación que una de 25 años para la misma intensidad de entrenamiento."
+        },
+        "1": {
+          "title": "Nivel de Fitness",
+          "description": "Los principiantes necesitan más recuperación (48-72h por grupo muscular) mientras que atletas avanzados pueden recuperarse más rápido (24-48h) debido a mejor adaptación."
+        },
+        "2": {
+          "title": "Calidad de Sueño",
+          "description": "La mayoría de reparación muscular y liberación de hormona de crecimiento ocurre durante el sueño profundo. Dormir mal puede extender la recuperación 30-50%."
+        },
+        "3": {
+          "title": "Nutrición",
+          "description": "El timing de proteína y nutrición general impactan significativamente la velocidad de recuperación. Apunta a 1.6-2.2g de proteína por kg de masa magra."
+        }
+      }
+    },
+    "overtrainingSignals": {
+      "title": "Señales de que Necesitas Más Descanso",
+      "cards": {
+        "0": {
+          "title": "Señales Físicas",
+          "description": "Dolor muscular persistente, rendimiento disminuido, frecuencia cardíaca en reposo elevada, lesiones frecuentes y sentirse más débil a pesar de entrenar."
+        },
+        "1": {
+          "title": "Señales Mentales",
+          "description": "Temer entrenamientos que usualmente disfrutas, irritabilidad, mala concentración, falta de motivación y sentirse agotado a pesar de dormir adecuadamente."
+        }
+      }
+    },
+    "considerations": {
+      "title": "Consideraciones Importantes",
+      "items": {
+        "0": { "text": "Estas son guías generales - escucha tu cuerpo para recuperación personalizada" },
+        "1": { "text": "Puedes entrenar diferentes grupos musculares en días consecutivos (rutinas divididas)" },
+        "2": { "text": "Estrés crónico, enfermedad o mala nutrición extienden el tiempo de recuperación" },
+        "3": { "text": "Recuperación activa (caminata ligera, yoga) puede mejorar la recuperación vs descanso completo" },
+        "4": { "text": "Si el dolor persiste más de 72 horas, extiende el descanso y consulta un profesional" }
+      }
+    },
+    "exampleCalculation": {
+      "title": "Ejemplo de Cálculo de Recuperación",
+      "description": "Cómo se calcula el tiempo de recuperación basado en tus inputs",
+      "examples": {
+        "0": {
+          "title": "Ejemplo Entrenamiento Moderado",
+          "steps": {
+            "0": "Ejercicio: Entrenamiento de Fuerza",
+            "1": "Intensidad: Moderada",
+            "2": "Duración: 45-60 min",
+            "3": "Recuperación Base: 48 horas",
+            "4": "Factor Edad (35-44): ×1.15",
+            "5": "Nivel Intermedio: ×1.0",
+            "6": "Final: 48 × 1.15 = 55 horas"
+          },
+          "result": "Recuperación: ~55 horas (2-3 días)"
+        },
+        "1": {
+          "title": "Ejemplo Entrenamiento Intenso",
+          "steps": {
+            "0": "Ejercicio: HIIT",
+            "1": "Intensidad: Alta",
+            "2": "Duración: 30-45 min",
+            "3": "Recuperación Base: 60 horas",
+            "4": "Factor Edad (45-54): ×1.25",
+            "5": "Nivel Principiante: ×1.3",
+            "6": "Sueño Malo: ×1.3",
+            "7": "Final: 60 × 1.25 × 1.3 × 1.3"
+          },
+          "result": "Recuperación: ~127 horas (5+ días)"
+        }
+      }
+    }
+  },
+
+  "faq": {
+    "title": "Preguntas Frecuentes",
+    "0": {
+      "question": "¿Cuántos días de descanso debo tomar por semana?",
+      "answer": "La mayoría de personas se benefician de 1-3 días de descanso por semana dependiendo de la intensidad del entrenamiento. Si ejercitas a intensidad moderada-alta, toma al menos 1-2 días completos de descanso. Si haces entrenamiento de fuerza intenso 5+ días semanales, puedes necesitar 2 días de descanso. Recuerda, puedes trabajar diferentes grupos musculares en días consecutivos - son los mismos músculos los que necesitan descanso, no necesariamente todo tu cuerpo."
+    },
+    "1": {
+      "question": "¿Cuál es la diferencia entre días de descanso y recuperación activa?",
+      "answer": "Los días de descanso implican actividad física mínima para permitir recuperación completa. La recuperación activa implica movimiento de baja intensidad (caminar, yoga ligero, estiramientos, natación suave) que promueve el flujo sanguíneo y puede acelerar la recuperación sin añadir estrés de entrenamiento. La recuperación activa está bien durante la mayoría de períodos de descanso excepto cuando estás muy adolorido o sobreentrenado."
+    },
+    "2": {
+      "question": "¿Puedo entrenar si todavía estoy adolorido?",
+      "answer": "Dolor leve generalmente está bien para entrenar, especialmente si trabajas diferentes grupos musculares. Sin embargo, si el dolor afecta significativamente tu rango de movimiento o persiste más de 72 horas (DOMS típicamente alcanza su pico a las 48-72 horas), deberías descansar. Entrenar con dolor severo puede llevar a lesión y realmente retrasa la recuperación."
+    },
+    "3": {
+      "question": "¿Por qué necesito más descanso conforme envejezco?",
+      "answer": "El envejecimiento afecta la recuperación a través de múltiples mecanismos: niveles hormonales disminuidos (testosterona, hormona de crecimiento), síntesis de proteína más lenta, flujo sanguíneo reducido a los músculos y cambios en la respuesta inflamatoria. Una persona de 50 años típicamente necesita 20-30% más tiempo de recuperación que una de 25. Esto no significa que no puedas entrenar duro - solo planifica recuperación adecuada."
+    },
+    "4": {
+      "question": "¿Realmente el sueño afecta tanto la recuperación?",
+      "answer": "Sí, dramáticamente. Durante el sueño profundo (etapas 3-4), tu cuerpo libera hasta 75% de la hormona de crecimiento diaria, que es crucial para reparación y crecimiento muscular. Dormir mal puede reducir la hormona de crecimiento 70% y aumentar el cortisol (hormona del estrés que descompone músculo). Dormir 7-9 horas de calidad puede cortar el tiempo de recuperación casi a la mitad comparado con entrenar sin dormir bien."
+    },
+    "5": {
+      "question": "¿Qué debo hacer en días de descanso?",
+      "answer": "Enfócate en actividades de recuperación: caminata ligera o ciclismo (20-30 min), estiramientos o yoga, foam rolling, hidratación adecuada, comidas ricas en proteína y sueño de calidad. Evita ejercicio intenso pero no seas completamente sedentario. El movimiento ligero promueve flujo sanguíneo que ayuda a entregar nutrientes y remover desechos de los músculos."
+    }
+  },
+
+  "sources": {
+    "title": "Fuentes y Referencias"
+  },
+
+  "common": {
+    "home": "Inicio",
+    "calculators": "Calculadoras"
+  },
+
+  "buttons": {
+    "calculate": "Calcular",
+    "reset": "Reiniciar",
+    "pdf": "PDF",
+    "excel": "Excel"
+  },
+
+  "disclaimers": {
+    "health": "Los resultados son recomendaciones generales. Escucha tu cuerpo y consulta un profesional de fitness si experimentas dolor persistente o síntomas de sobreentrenamiento."
+  }
+}

@@ -1,0 +1,222 @@
+{
+  "calculator": {
+    "title": "Calculadora de Pasos",
+    "subtitle": "Convierte pasos ↔ distancia ↔ calorías con precisión",
+    "breadcrumb": "Calculadora de Pasos",
+    "yourInformation": "Tu Información"
+  },
+
+  "inputs": {
+    "calculationMode": {
+      "label": "¿Qué quieres calcular?",
+      "options": {
+        "stepsToDistance": "Pasos → Distancia y Calorías",
+        "distanceToSteps": "Distancia → Pasos y Calorías",
+        "stepsToCalories": "Pasos → Calorías (detallado)",
+        "caloriesToSteps": "Calorías → Pasos necesarios"
+      }
+    },
+    "gender": {
+      "label": "Género",
+      "options": {
+        "male": "Hombre",
+        "female": "Mujer"
+      }
+    },
+    "height": {
+      "label": "Altura",
+      "suffix": "cm",
+      "helpText": "Se usa para estimar tu longitud de zancada"
+    },
+    "weight": {
+      "label": "Peso",
+      "suffix": "kg",
+      "helpText": "Se usa para calcular calorías quemadas"
+    },
+    "pace": {
+      "label": "Ritmo de Caminata",
+      "options": {
+        "slow": "Lento (3.2 km/h / 2 mph)",
+        "average": "Normal (4.8 km/h / 3 mph)",
+        "brisk": "Rápido (6.4 km/h / 4 mph)",
+        "fast": "Muy Rápido/Trotar (8 km/h / 5 mph)"
+      }
+    },
+    "steps": {
+      "label": "Número de Pasos",
+      "suffix": "pasos"
+    },
+    "distance": {
+      "label": "Distancia",
+      "suffix": "km"
+    },
+    "targetCalories": {
+      "label": "Calorías Objetivo a Quemar",
+      "suffix": "kcal"
+    },
+    "unitSystem": {
+      "label": "Sistema de Unidades",
+      "options": {
+        "imperial": "Imperial (mi, lb, in)",
+        "metric": "Métrico (km, kg, cm)"
+      }
+    }
+  },
+
+  "results": {
+    "primaryResult": "Resultado",
+    "distanceMiles": "Distancia (millas)",
+    "distanceKm": "Distancia (km)",
+    "caloriesBurned": "Calorías Quemadas",
+    "walkingTime": "Tiempo Caminando",
+    "strideLength": "Tu Longitud de Zancada"
+  },
+
+  "info": {
+    "conversionResults": {
+      "title": "Tus Resultados",
+      "0": "Distancia",
+      "1": "Kilómetros",
+      "2": "Calorías Quemadas",
+      "3": "Tiempo Caminando",
+      "4": "Longitud de Zancada"
+    },
+    "stepTips": {
+      "title": "Metas de Pasos y Beneficios de Salud",
+      "0": "10,000 pasos ≈ 6.5-8 km, quema 300-500 calorías",
+      "1": "Caminar reduce el riesgo de enfermedad cardiovascular en 35%",
+      "2": "Caminar rápido quema 80% más calorías que caminar lento",
+      "3": "Mayor ritmo = zancada más larga = menos pasos por km"
+    }
+  },
+
+  "reference": {
+    "stepsReference": {
+      "title": "Pasos por Kilómetro según Ritmo",
+      "items": {
+        "0": "Lento (3.2 km/h)",
+        "1": "Normal (4.8 km/h)",
+        "2": "Rápido (6.4 km/h)",
+        "3": "Muy Rápido (8 km/h)",
+        "4": "5,000 pasos",
+        "5": "10,000 pasos"
+      }
+    }
+  },
+
+  "education": {
+    "howItWorks": {
+      "title": "Cómo se Convierten los Pasos a Distancia",
+      "content": "Tu longitud de zancada determina cuánta distancia cubre cada paso. Calculamos la longitud de zancada basándonos en tu altura y género: los hombres típicamente tienen una longitud de zancada del 41.5% de su altura, mientras que las mujeres tienen 41.3%. Por ejemplo, un hombre de 1.78m tiene una zancada promedio de unos 74 cm. Una vez que conocemos tu zancada, multiplicamos por tu conteo de pasos para obtener la distancia, luego usamos valores MET (Equivalente Metabólico de Tarea) para calcular calorías quemadas basándonos en tu peso y ritmo de caminata."
+    },
+    "paceComparison": {
+      "title": "Ritmo de Caminata y Quema de Calorías",
+      "cards": {
+        "0": {
+          "title": "Ritmo Lento (3.2 km/h)",
+          "description": "MET 2.8 - Paseo casual, conversación fácil. Quema ~80-100 calorías por km. Aproximadamente 1,500 pasos por km."
+        },
+        "1": {
+          "title": "Ritmo Normal (4.8 km/h)",
+          "description": "MET 3.5 - Caminata con propósito, ligeramente sin aliento. Quema ~100-120 calorías por km. Aproximadamente 1,300 pasos por km."
+        },
+        "2": {
+          "title": "Ritmo Rápido (6.4 km/h)",
+          "description": "MET 5.0 - Caminata enérgica, puede hablar en oraciones cortas. Quema ~130-150 calorías por km. Aproximadamente 1,100 pasos por km."
+        },
+        "3": {
+          "title": "Muy Rápido/Trotar (8 km/h)",
+          "description": "MET 8.0 - Trote ligero, difícil hablar. Quema ~180-220 calorías por km. Aproximadamente 950 pasos por km."
+        }
+      }
+    },
+    "considerations": {
+      "title": "Consideraciones Importantes",
+      "items": {
+        "0": { "text": "La longitud de zancada varía con el ritmo - caminar más rápido significa zancadas más largas" },
+        "1": { "text": "El terreno afecta la quema de calorías - subidas y terreno irregular aumentan el gasto" },
+        "2": { "text": "Los metabolismos individuales varían - estas son estimaciones basadas en promedios" },
+        "3": { "text": "Los rastreadores de fitness pueden mostrar valores diferentes debido a diferentes algoritmos" },
+        "4": { "text": "Para zancada más precisa, mide 10 pasos y divide la distancia entre 10" }
+      }
+    },
+    "exampleCalculation": {
+      "title": "Ejemplo de Cálculo",
+      "description": "Cómo se convierten 10,000 pasos a distancia y calorías",
+      "examples": {
+        "0": {
+          "title": "10,000 Pasos (Hombre Promedio)",
+          "steps": {
+            "0": "Altura: 1.78m (70 in / 178 cm)",
+            "1": "Zancada = 178 × 0.415 = 73.9 cm",
+            "2": "Distancia = 10,000 × 0.739m = 7,390m",
+            "3": "Distancia = 4.59 millas / 7.39 km",
+            "4": "Tiempo @ 4.8 km/h = 1.53 horas (92 min)",
+            "5": "Calorías = MET 3.5 × 77kg × 1.53h"
+          },
+          "result": "7.4 km, ~412 calorías, 92 minutos"
+        },
+        "1": {
+          "title": "5,000 Pasos (Mujer Promedio)",
+          "steps": {
+            "0": "Altura: 1.63m (64 in / 163 cm)",
+            "1": "Zancada = 163 × 0.413 = 67.3 cm",
+            "2": "Distancia = 5,000 × 0.673m = 3,365m",
+            "3": "Distancia = 2.09 millas / 3.37 km",
+            "4": "Tiempo @ 4.8 km/h = 0.70 horas (42 min)",
+            "5": "Calorías = MET 3.5 × 63kg × 0.70h"
+          },
+          "result": "3.4 km, ~154 calorías, 42 minutos"
+        }
+      }
+    }
+  },
+
+  "faq": {
+    "title": "Preguntas Frecuentes",
+    "0": {
+      "question": "¿Cuántos pasos hay en un kilómetro?",
+      "answer": "En promedio, hay unos 1,250-1,500 pasos en un kilómetro, dependiendo de tu longitud de zancada y ritmo. Las personas más altas dan menos pasos por kilómetro porque tienen zancadas más largas. Una persona de 1.78m da aproximadamente 1,350 pasos por kilómetro caminando a ritmo normal, mientras que una persona de 1.63m da unos 1,500 pasos."
+    },
+    "1": {
+      "question": "¿Cuántas calorías queman 10,000 pasos?",
+      "answer": "Para la mayoría de personas, 10,000 pasos queman aproximadamente 300-500 calorías, dependiendo del peso, altura y ritmo de caminata. Una persona de 77 kg caminando a ritmo normal quema unas 400 calorías por 10,000 pasos. Individuos más pesados y caminantes más rápidos queman más calorías por paso."
+    },
+    "2": {
+      "question": "¿Son realmente necesarios 10,000 pasos al día?",
+      "answer": "La meta de 10,000 pasos se originó de una campaña de marketing japonesa, no de investigación científica. Estudios recientes sugieren que los beneficios de salud se estabilizan alrededor de 7,500-8,000 pasos para la mayoría de adultos. Sin embargo, cualquier aumento en pasos diarios proporciona beneficios. La clave es el movimiento consistente en lugar de alcanzar un número específico."
+    },
+    "3": {
+      "question": "¿Por qué el ritmo de caminata afecta tanto la quema de calorías?",
+      "answer": "El ritmo de caminata afecta las calorías porque el movimiento más rápido requiere más energía. Los valores MET (Equivalente Metabólico de Tarea) aumentan de 2.8 para caminata lenta a 5.0 para caminata rápida a 8.0 para trote. Caminar rápido quema casi 80% más calorías por minuto que caminar lento porque tu frecuencia cardíaca y consumo de oxígeno aumentan significativamente."
+    },
+    "4": {
+      "question": "¿Qué tan precisa es la estimación de longitud de zancada?",
+      "answer": "La estimación de zancada basada en altura (41.5% para hombres, 41.3% para mujeres) es precisa dentro de aproximadamente 10% para la mayoría de personas caminando a ritmo normal. Para más precisión, mide tu zancada real caminando 10 pasos, midiendo la distancia total y dividiendo entre 10. Tu zancada también cambia con el ritmo - aumenta al caminar más rápido."
+    },
+    "5": {
+      "question": "¿Cómo convierto kilómetros a pasos?",
+      "answer": "Para convertir kilómetros a pasos, divide la distancia en metros por tu longitud de zancada en metros. Para adultos promedio, 1 kilómetro equivale aproximadamente a 1,250-1,500 pasos a un ritmo moderado. Usa el modo 'Distancia → Pasos' de esta calculadora para conversiones personalizadas basadas en tu altura y ritmo."
+    }
+  },
+
+  "sources": {
+    "title": "Fuentes y Referencias"
+  },
+
+  "common": {
+    "home": "Inicio",
+    "calculators": "Calculadoras"
+  },
+
+  "buttons": {
+    "calculate": "Calcular",
+    "reset": "Reiniciar",
+    "pdf": "PDF",
+    "excel": "Excel"
+  },
+
+  "disclaimers": {
+    "health": "Los resultados son estimaciones basadas en promedios. La quema real de calorías puede variar según el terreno, metabolismo individual y eficiencia de caminata."
+  }
+}

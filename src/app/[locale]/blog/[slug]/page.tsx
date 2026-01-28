@@ -3,17 +3,12 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useLocale, useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import { useParams } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AdBlock from "@/components/ads/AdBlock";
-import { isValidCalculator } from "@/lib/valid-calculators";
-
-// ============================================================================
-// BLOG POST - ESTILO MAGAZINE
-// Hero full-width con título overlay, sidebar derecho sticky
-// ============================================================================
+import { isValidCalculator, getCalculatorName } from "@/lib/valid-calculators";
 
 interface BlogCategory {
   id: string;
@@ -44,22 +39,58 @@ interface Post {
   alternates: { en: string; es: string; pt: string };
 }
 
-const colorClasses: Record<string, { bg: string; text: string; border: string; gradient: string }> = {
-  blue: { bg: "bg-blue-50", text: "text-blue-600", border: "border-blue-200", gradient: "from-blue-600 to-cyan-500" },
-  green: { bg: "bg-emerald-50", text: "text-emerald-700", border: "border-emerald-200", gradient: "from-emerald-600 to-teal-500" },
-  amber: { bg: "bg-amber-50", text: "text-amber-600", border: "border-amber-200", gradient: "from-amber-600 to-orange-500" },
-  purple: { bg: "bg-purple-50", text: "text-purple-700", border: "border-purple-200", gradient: "from-purple-600 to-pink-500" },
-  indigo: { bg: "bg-indigo-50", text: "text-indigo-600", border: "border-indigo-200", gradient: "from-indigo-600 to-blue-500" },
-  red: { bg: "bg-red-50", text: "text-red-600", border: "border-red-200", gradient: "from-red-600 to-rose-500" },
-  cyan: { bg: "bg-cyan-50", text: "text-cyan-600", border: "border-cyan-200", gradient: "from-cyan-600 to-blue-500" },
-  pink: { bg: "bg-pink-50", text: "text-pink-600", border: "border-pink-200", gradient: "from-pink-600 to-rose-500" },
+// Traducciones inline
+const translations: Record<string, Record<string, string>> = {
+  en: {
+    contents: "Contents",
+    tryCalculator: "Related Calculator",
+    openCalculator: "Open Calculator",
+    subscribe: "Stay Updated",
+    subscribeDescription: "Get weekly tips directly to your inbox.",
+    emailPlaceholder: "Enter your email",
+    subscribeButton: "Subscribe",
+    shareArticle: "Share this article",
+    backToBlog: "Back to Blog",
+    minRead: "min read",
+    articleNotFound: "Article Not Found",
+    loading: "Loading...",
+  },
+  es: {
+    contents: "Contenido",
+    tryCalculator: "Calculadora Relacionada",
+    openCalculator: "Abrir Calculadora",
+    subscribe: "Mantente Actualizado",
+    subscribeDescription: "Recibe consejos semanales en tu correo.",
+    emailPlaceholder: "Tu correo electrónico",
+    subscribeButton: "Suscribirse",
+    shareArticle: "Comparte este artículo",
+    backToBlog: "Volver al Blog",
+    minRead: "min de lectura",
+    articleNotFound: "Artículo No Encontrado",
+    loading: "Cargando...",
+  },
+  pt: {
+    contents: "Conteúdo",
+    tryCalculator: "Calculadora Relacionada",
+    openCalculator: "Abrir Calculadora",
+    subscribe: "Fique Atualizado",
+    subscribeDescription: "Receba dicas semanais no seu email.",
+    emailPlaceholder: "Seu email",
+    subscribeButton: "Inscrever-se",
+    shareArticle: "Compartilhe este artigo",
+    backToBlog: "Voltar ao Blog",
+    minRead: "min de leitura",
+    articleNotFound: "Artigo Não Encontrado",
+    loading: "Carregando...",
+  },
 };
 
 export default function BlogPostPage() {
   const locale = useLocale();
-  const t = useTranslations("blog");
   const params = useParams();
   const slug = params.slug as string;
+
+  const txt = translations[locale] || translations.en;
 
   const [post, setPost] = useState<Post | null>(null);
   const [loading, setLoading] = useState(true);
@@ -78,6 +109,7 @@ export default function BlogPostPage() {
         const data = await res.json();
         setPost(data.post);
         
+        // Extract TOC from content
         if (data.post?.content) {
           const headings: { id: string; text: string; level: number }[] = [];
           const regex = /^(#{1,3})\s+(.+)$/gm;
@@ -106,11 +138,6 @@ export default function BlogPostPage() {
     return cat.nameEn;
   };
 
-  const getCategoryStyle = (cat: BlogCategory | null) => {
-    if (!cat) return colorClasses.blue;
-    return colorClasses[cat.color] || colorClasses.blue;
-  };
-
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString(
       locale === "es" ? "es-ES" : locale === "pt" ? "pt-BR" : "en-US",
@@ -135,6 +162,12 @@ export default function BlogPostPage() {
       .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-slate-900">$1</strong>')
       .replace(/\*(.*?)\*/g, '<em>$1</em>')
       .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-blue-600 hover:text-blue-800 underline">$1</a>')
+      .replace(/^\|(.+)\|$/gim, (match) => {
+        const cells = match.split('|').filter(c => c.trim());
+        const isHeader = cells.some(c => c.includes('---'));
+        if (isHeader) return '';
+        return `<tr>${cells.map(c => `<td class="border border-slate-200 px-4 py-2">${c.trim()}</td>`).join('')}</tr>`;
+      })
       .replace(/^\- (.*$)/gim, '<li class="ml-6 mb-2 text-slate-700 list-disc">$1</li>')
       .replace(/^\d+\. (.*$)/gim, '<li class="ml-6 mb-2 text-slate-700 list-decimal">$1</li>')
       .replace(/\n\n/g, '</p><p class="mb-6 text-slate-700 leading-relaxed text-[17px]">')
@@ -143,16 +176,18 @@ export default function BlogPostPage() {
     return `<p class="mb-6 text-slate-700 leading-relaxed text-[17px]">${html}</p>`;
   };
 
-  const categoryStyle = getCategoryStyle(post?.category || null);
+  // Verificar si el post tiene calculadora válida
   const hasValidCalculator = post?.relatedCalculator && isValidCalculator(post.relatedCalculator);
+  const calculatorDisplayName = hasValidCalculator ? getCalculatorName(post.relatedCalculator!, locale) : null;
 
   if (loading) {
     return (
       <>
         <Header />
-        <main className="min-h-screen bg-white py-20">
-          <div className="max-w-2xl mx-auto px-4 text-center">
+        <main className="min-h-screen bg-white pt-20">
+          <div className="max-w-2xl mx-auto px-4 text-center py-20">
             <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+            <p className="text-slate-500">{txt.loading}</p>
           </div>
         </main>
         <Footer />
@@ -164,10 +199,12 @@ export default function BlogPostPage() {
     return (
       <>
         <Header />
-        <main className="min-h-screen bg-white py-20">
-          <div className="max-w-2xl mx-auto px-4 text-center">
-            <h1 className="text-2xl font-bold text-slate-900 mb-4">Article Not Found</h1>
-            <Link href={`/${locale}/blog`} className="text-blue-600 hover:underline">← Back to Blog</Link>
+        <main className="min-h-screen bg-white pt-20">
+          <div className="max-w-2xl mx-auto px-4 text-center py-20">
+            <h1 className="text-2xl font-bold text-slate-900 mb-4">{txt.articleNotFound}</h1>
+            <Link href={`/${locale}/blog`} className="text-blue-600 hover:underline">
+              ← {txt.backToBlog}
+            </Link>
           </div>
         </main>
         <Footer />
@@ -177,15 +214,11 @@ export default function BlogPostPage() {
 
   return (
     <>
-      <a href="#article-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded-lg">
-        Skip to article content
-      </a>
-
       <Header />
       
       <main className="min-h-screen bg-white">
-        {/* Hero con imagen full-width */}
-        <section className="relative h-[70vh] min-h-[500px] max-h-[700px]">
+        {/* Hero con imagen */}
+        <section className="relative h-[60vh] min-h-[400px] max-h-[600px]">
           {post.featuredImage ? (
             <Image
               src={post.featuredImage}
@@ -195,39 +228,29 @@ export default function BlogPostPage() {
               priority
             />
           ) : (
-            <div className={`absolute inset-0 bg-gradient-to-br ${categoryStyle.gradient}`} />
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-cyan-500" />
           )}
           
-          {/* Overlay oscuro */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
           
-          {/* Contenido sobre la imagen */}
           <div className="absolute inset-0 flex items-end">
-            <div className="max-w-4xl mx-auto px-4 pb-16 w-full">
-              {/* Category */}
+            <div className="max-w-4xl mx-auto px-4 pb-12 w-full">
               {post.category && (
                 <span className="inline-block px-4 py-1.5 rounded-full text-sm font-medium bg-white/20 backdrop-blur-sm text-white mb-4">
                   {post.category.icon} {getCategoryName(post.category)}
                 </span>
               )}
               
-              {/* Title */}
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
                 {post.title}
               </h1>
               
-              {/* Meta */}
-              <div className="flex items-center gap-4 text-white/80">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white font-bold">
-                    {post.author?.name?.[0] || "K"}
-                  </div>
-                  <span className="font-medium">{post.author?.name || "Kalcufy"}</span>
-                </div>
+              <div className="flex items-center gap-4 text-white/80 text-sm">
+                <span>{post.author?.name || "Kalcufy"}</span>
                 <span>·</span>
                 <time dateTime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
                 <span>·</span>
-                <span>{post.readingTime} min read</span>
+                <span>{post.readingTime} {txt.minRead}</span>
               </div>
             </div>
           </div>
@@ -237,16 +260,16 @@ export default function BlogPostPage() {
         <div className="max-w-7xl mx-auto px-4 py-12">
           <div className="flex flex-col lg:flex-row gap-12">
             {/* Article */}
-            <article id="article-content" className="flex-1 min-w-0 max-w-3xl">
-              {/* Excerpt */}
+            <article className="flex-1 min-w-0 max-w-3xl">
               <p className="text-xl text-slate-600 mb-10 pb-10 border-b border-slate-200 leading-relaxed">
                 {post.excerpt}
               </p>
 
-              {/* Content */}
-              <div dangerouslySetInnerHTML={{ __html: renderMarkdown(post.content) }} />
+              <div 
+                className="prose prose-slate max-w-none"
+                dangerouslySetInnerHTML={{ __html: renderMarkdown(post.content) }} 
+              />
 
-              {/* Ad */}
               <AdBlock slot="article-middle" className="my-10" />
 
               {/* Tags */}
@@ -265,23 +288,38 @@ export default function BlogPostPage() {
               {/* Share */}
               <div className="mt-8 p-6 bg-slate-50 rounded-xl">
                 <div className="flex items-center justify-between">
-                  <span className="font-medium text-slate-700">Share this article</span>
+                  <span className="font-medium text-slate-700">{txt.shareArticle}</span>
                   <div className="flex items-center gap-2">
-                    <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}`} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-white flex items-center justify-center text-slate-600 hover:bg-slate-900 hover:text-white transition-all border border-slate-200" aria-label="Share on X">
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
+                    <a 
+                      href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}`} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="w-9 h-9 rounded-lg bg-white flex items-center justify-center text-slate-600 hover:bg-slate-900 hover:text-white transition-all border border-slate-200"
+                    >
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                      </svg>
                     </a>
-                    <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}`} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-white flex items-center justify-center text-slate-600 hover:bg-blue-600 hover:text-white transition-all border border-slate-200" aria-label="Share on LinkedIn">
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg>
+                    <a 
+                      href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}`} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="w-9 h-9 rounded-lg bg-white flex items-center justify-center text-slate-600 hover:bg-blue-600 hover:text-white transition-all border border-slate-200"
+                    >
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                      </svg>
                     </a>
                   </div>
                 </div>
               </div>
 
-              {/* Back */}
               <div className="mt-8">
                 <Link href={`/${locale}/blog`} className="inline-flex items-center gap-2 text-slate-600 hover:text-blue-600 font-medium">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
-                  Back to Blog
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                  {txt.backToBlog}
                 </Link>
               </div>
             </article>
@@ -289,17 +327,23 @@ export default function BlogPostPage() {
             {/* Sidebar */}
             <aside className="w-full lg:w-80 flex-shrink-0">
               <div className="lg:sticky lg:top-24 space-y-6">
-                {/* TOC */}
+                
+                {/* Table of Contents */}
                 {tableOfContents.length > 0 && (
                   <nav className="bg-slate-50 rounded-xl p-5">
                     <h3 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
-                      <svg className="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h7" /></svg>
-                      Contents
+                      <svg className="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h7" />
+                      </svg>
+                      {txt.contents}
                     </h3>
                     <ul className="space-y-2">
                       {tableOfContents.filter(h => h.level <= 2).slice(0, 8).map((heading, index) => (
                         <li key={index}>
-                          <a href={`#${heading.id}`} className={`block text-sm text-slate-600 hover:text-blue-600 transition-colors ${heading.level === 1 ? 'font-medium' : 'pl-3'}`}>
+                          <a 
+                            href={`#${heading.id}`} 
+                            className={`block text-sm text-slate-600 hover:text-blue-600 transition-colors ${heading.level === 1 ? 'font-medium' : 'pl-3'}`}
+                          >
                             {heading.text}
                           </a>
                         </li>
@@ -308,14 +352,36 @@ export default function BlogPostPage() {
                   </nav>
                 )}
 
-                {/* Calculator CTA */}
+                {/* ============================================
+                    CALCULATOR WIDGET - DISEÑO LIMPIO
+                ============================================ */}
                 {hasValidCalculator && (
-                  <div className={`rounded-xl border p-5 ${categoryStyle.bg} ${categoryStyle.border}`}>
-                    <h3 className="font-bold text-slate-900 mb-2">📊 Try the Calculator</h3>
-                    <p className="text-sm text-slate-600 mb-4">Put what you learned into practice.</p>
-                    <Link href={`/${locale}/${post.relatedCalculator}`} className="block w-full py-2.5 px-4 bg-white text-center font-semibold text-slate-900 rounded-lg hover:bg-slate-50 transition-colors border border-slate-200">
-                      Open Calculator →
-                    </Link>
+                  <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
+                    <div className="px-5 py-4 border-b border-slate-100">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center">
+                          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <p className="text-xs text-slate-500 font-medium">{txt.tryCalculator}</p>
+                          <h4 className="font-semibold text-slate-900">{calculatorDisplayName}</h4>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="p-5">
+                      <Link 
+                        href={`/${locale}/${post.relatedCalculator}`}
+                        className="flex items-center justify-center gap-2 w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-cyan-600 transition-all shadow-sm"
+                      >
+                        {txt.openCalculator}
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                      </Link>
+                    </div>
                   </div>
                 )}
 
@@ -323,16 +389,37 @@ export default function BlogPostPage() {
                 <AdBlock slot="article-sidebar" className="rounded-xl overflow-hidden" />
 
                 {/* Newsletter */}
-                <div className="bg-slate-900 rounded-xl p-5 text-white">
-                  <h3 className="font-bold mb-2">Subscribe</h3>
-                  <p className="text-sm text-slate-400 mb-4">Get weekly financial tips.</p>
-                  <form className="space-y-3">
-                    <input type="email" placeholder="Your email" className="w-full px-4 py-2.5 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 text-sm" />
-                    <button type="submit" className="w-full py-2.5 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors text-sm">
-                      Subscribe
-                    </button>
-                  </form>
+                <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
+                  <div className="px-5 py-4 border-b border-slate-100">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-lg bg-slate-900 flex items-center justify-center">
+                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-slate-900">{txt.subscribe}</h3>
+                        <p className="text-xs text-slate-500">{txt.subscribeDescription}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="p-5">
+                    <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
+                      <input 
+                        type="email" 
+                        placeholder={txt.emailPlaceholder}
+                        className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" 
+                      />
+                      <button 
+                        type="submit" 
+                        className="w-full py-2.5 bg-slate-900 text-white font-semibold rounded-lg hover:bg-slate-800 transition-all text-sm"
+                      >
+                        {txt.subscribeButton}
+                      </button>
+                    </form>
+                  </div>
                 </div>
+
               </div>
             </aside>
           </div>

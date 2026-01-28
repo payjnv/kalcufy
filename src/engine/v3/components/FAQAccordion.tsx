@@ -16,18 +16,28 @@ export default function FAQAccordion({ faqs, t, calculatorSlug }: FAQAccordionPr
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  // Generate JSON-LD for SEO
+  // Get translated FAQ content
+  const getTranslatedFaq = (faq: FAQ, index: number) => {
+    const question = t(`faq.${index}.question`, faq.question);
+    const answer = t(`faq.${index}.answer`, faq.answer);
+    return { question, answer };
+  };
+
+  // Generate JSON-LD for SEO (use translated content)
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
-    })),
+    mainEntity: faqs.map((faq, index) => {
+      const translated = getTranslatedFaq(faq, index);
+      return {
+        "@type": "Question",
+        name: translated.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: translated.answer,
+        },
+      };
+    }),
   };
 
   return (
@@ -47,6 +57,7 @@ export default function FAQAccordion({ faqs, t, calculatorSlug }: FAQAccordionPr
           const isOpen = openIndex === index;
           const buttonId = `faq-button-${calculatorSlug}-${index}`;
           const panelId = `faq-panel-${calculatorSlug}-${index}`;
+          const translated = getTranslatedFaq(faq, index);
 
           return (
             <div key={index} className="border border-slate-200 rounded-xl">
@@ -65,7 +76,7 @@ export default function FAQAccordion({ faqs, t, calculatorSlug }: FAQAccordionPr
                   aria-expanded={isOpen}
                   aria-controls={panelId}
                 >
-                  <span className="font-semibold text-slate-900 pr-4">{faq.question}</span>
+                  <span className="font-semibold text-slate-900 pr-4">{translated.question}</span>
                   <svg
                     className={`w-5 h-5 text-slate-400 flex-shrink-0 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
                     fill="none"
@@ -85,7 +96,7 @@ export default function FAQAccordion({ faqs, t, calculatorSlug }: FAQAccordionPr
                 className={isOpen ? "px-4 pb-4" : ""}
               >
                 {isOpen && (
-                  <p className="text-slate-600 leading-relaxed">{faq.answer}</p>
+                  <p className="text-slate-600 leading-relaxed">{translated.answer}</p>
                 )}
               </div>
             </div>

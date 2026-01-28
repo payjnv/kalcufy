@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import type { CalculatorResults, ResultConfig, TranslationFn } from "../types/engine.types";
 
 interface MobileResultsBarProps {
@@ -13,7 +13,6 @@ interface MobileResultsBarProps {
   onSave?: () => void;
   saveStatus?: "idle" | "saving" | "saved" | "error";
   isLoggedIn?: boolean;
-  // New props for detailed results
   resultConfigs?: ResultConfig[];
 }
 
@@ -30,10 +29,76 @@ export default function MobileResultsBar({
   resultConfigs = [],
 }: MobileResultsBarProps) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [shareStatus, setShareStatus] = useState<"idle" | "sharing" | "copied">("idle");
+  const [contentHeight, setContentHeight] = useState(0);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  const secondaryResults = resultConfigs.filter(r => r.type === "secondary");
+
+  // Measure content height dynamically
+  useEffect(() => {
+    if (contentRef.current && isExpanded) {
+      const height = contentRef.current.scrollHeight;
+      setContentHeight(height);
+    }
+  }, [results, secondaryResults.length, isExpanded]);
 
   if (!results || !hasCalculated) return null;
 
-  const secondaryResults = resultConfigs.filter(r => r.type === "secondary");
+  // Calculate optimal sheet height - fit content, max 85vh
+  const headerHeight = 88;
+  const shareButtonHeight = 72;
+  const maxExpandedHeight = typeof window !== "undefined" ? window.innerHeight * 0.85 : 700;
+  const idealExpandedHeight = headerHeight + contentHeight + shareButtonHeight + 16; // 16px padding
+  const expandedHeight = Math.min(idealExpandedHeight, maxExpandedHeight);
+  const needsScroll = idealExpandedHeight > maxExpandedHeight;
+
+  const handleShare = async () => {
+    setShareStatus("sharing");
+    
+    let shareText = `${primaryLabel}: ${primaryValue}${primaryUnit || ""}`;
+    
+    secondaryResults.forEach((config) => {
+      const value = results.formatted[config.id];
+      if (value) {
+        shareText += `\n${config.label}: ${value}${config.suffix || ""}`;
+      }
+    });
+    
+    if (results.summary) {
+      shareText += `\n\n${results.summary}`;
+    }
+    
+    shareText += `\n\nCalculated with Kalcufy.com`;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: primaryLabel,
+          text: shareText,
+          url: window.location.href,
+        });
+        setShareStatus("copied");
+      } catch (err) {
+        try {
+          await navigator.clipboard.writeText(shareText + `\n${window.location.href}`);
+          setShareStatus("copied");
+        } catch {
+          setShareStatus("idle");
+        }
+      }
+    } else {
+      try {
+        await navigator.clipboard.writeText(shareText + `\n${window.location.href}`);
+        setShareStatus("copied");
+      } catch (err) {
+        console.error("Failed to copy");
+        setShareStatus("idle");
+      }
+    }
+    
+    setTimeout(() => setShareStatus("idle"), 2000);
+  };
 
   return (
     <>
@@ -46,11 +111,12 @@ export default function MobileResultsBar({
         />
       )}
 
-      {/* Bottom Sheet */}
+      {/* Bottom Sheet - Dynamic height based on content */}
       <div 
-        className={`fixed bottom-0 left-0 right-0 bg-white rounded-t-3xl shadow-2xl z-50 md:hidden transition-transform duration-300 ease-out ${
-          isExpanded ? "translate-y-0" : "translate-y-[calc(100%-88px)]"
-        }`}
+        className="fixed bottom-0 left-0 right-0 bg-white rounded-t-3xl shadow-2xl z-50 md:hidden transition-all duration-300 ease-out"
+        style={{ 
+          height: isExpanded ? expandedHeight : headerHeight,
+        }}
         role="region"
         aria-label={t("accessibility.mobileResults", "Results summary")}
       >
@@ -118,11 +184,19 @@ export default function MobileResultsBar({
 
         {/* Expanded Content */}
         <div 
-          className={`overflow-hidden transition-all duration-300 ${
-            isExpanded ? "max-h-[60vh] opacity-100" : "max-h-0 opacity-0"
+          className={`flex flex-col transition-opacity duration-300 ${
+            isExpanded ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
+          style={{ 
+            height: isExpanded ? expandedHeight - headerHeight : 0,
+            overflow: "hidden"
+          }}
         >
-          <div className="px-5 pb-6 border-t border-slate-100">
+          {/* Content Area - scrollable only if needed */}
+          <div 
+            ref={contentRef}
+            className={`flex-1 px-5 border-t border-slate-100 ${needsScroll ? "overflow-y-auto" : ""}`}
+          >
             {/* Secondary Results Grid */}
             {secondaryResults.length > 0 && (
               <div className="grid grid-cols-2 gap-3 pt-4">
@@ -153,44 +227,42 @@ export default function MobileResultsBar({
                 <p className="text-sm text-blue-800">{results.summary}</p>
               </div>
             )}
+          </div>
 
-            {/* Share Button */}
+          {/* Share Button - Always at bottom, no extra space */}
+          <div className="flex-shrink-0 px-5 py-4 bg-white border-t border-slate-100">
             <button
-              onClick={async () => {
-                if (navigator.share) {
-                  try {
-                    await navigator.share({
-                      title: primaryLabel,
-                      text: `${primaryLabel}: ${primaryValue}${primaryUnit || ""}`,
-                      url: window.location.href,
-                    });
-                  } catch (err) {
-                    console.log("Share cancelled");
-                  }
-                } else {
-                  try {
-                    await navigator.clipboard.writeText(
-                      `${primaryLabel}: ${primaryValue}${primaryUnit || ""} - ${window.location.href}`
-                    );
-                    alert(t("buttons.copiedToClipboard", "Copied to clipboard!"));
-                  } catch (err) {
-                    console.error("Failed to copy");
-                  }
-                }
-              }}
-              className="w-full mt-4 py-3 flex items-center justify-center gap-2 bg-white border border-slate-200 rounded-xl text-slate-700 hover:bg-slate-50 transition-colors"
+              onClick={handleShare}
+              disabled={shareStatus === "sharing"}
+              className="w-full py-3.5 flex items-center justify-center gap-2 bg-white border border-slate-200 rounded-xl text-slate-700 hover:bg-slate-50 transition-colors disabled:opacity-50"
               aria-label={t("buttons.shareResults", "Share results")}
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-              </svg>
-              <span className="font-medium">{t("buttons.share", "Share Results")}</span>
+              {shareStatus === "sharing" ? (
+                <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                </svg>
+              ) : shareStatus === "copied" ? (
+                <>
+                  <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="font-medium text-green-600">{t("buttons.copied", "Copied!")}</span>
+                </>
+              ) : (
+                <>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                  </svg>
+                  <span className="font-medium">{t("buttons.shareResults", "Share Results")}</span>
+                </>
+              )}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Spacer to prevent content from being hidden behind the bar */}
+      {/* Spacer */}
       <div className="h-24 md:hidden" />
     </>
   );

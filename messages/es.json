@@ -55,6 +55,9 @@
       "tip": "Propina",
       "discount": "Descuento",
       "percentage": "Porcentaje",
+      "fraction": "Fracciones",
+      "squareRoot": "Raíz Cuadrada",
+      "ruleOfThree": "Regla de Tres",
       "age": "Edad",
       "date": "Fecha",
       "unitConverter": "Conversor de Unidades",
@@ -71,7 +74,12 @@
       "calorieDeficit": "Déficit Calórico",
       "calorieSurplus": "Superávit Calórico",
       "weightLoss": "Pérdida de Peso",
-      "weightGain": "Aumento de Peso"
+      "weightGain": "Aumento de Peso",
+      "waistToHeightRatio": "Ratio Cintura-Altura",
+      "step": "Calculadora de Pasos",
+      "restDay": "Calculadora de Descanso",
+      "heartRateZone": "Zonas de Frecuencia Cardíaca",
+      "ovulation": "Calculadora de Ovulación"
     }
   },
   "home": {
@@ -263,6 +271,18 @@
         "name": "Descuento",
         "desc": "Calcula precios de oferta, ahorros y acumula múltiples descuentos"
       },
+      "squareRoot": {
+        "name": "Raíz Cuadrada y Potencias",
+        "desc": "Calcula raíces cuadradas, cúbicas, enésimas y potencias"
+      },
+      "ruleOfThree": {
+        "name": "Regla de Tres",
+        "desc": "Resuelve problemas de proporciones directas e inversas"
+      },
+      "fraction": {
+        "name": "Fracciones",
+        "desc": "Suma, resta, multiplica, divide fracciones con soluciones paso a paso"
+      },
       "percentage": {
         "name": "Porcentaje",
         "desc": "Calcula porcentajes, aumentos, disminuciones y conversiones"
@@ -339,6 +359,24 @@
       "weightGain": {
         "name": "Aumento de Peso",
         "desc": "Calcula calorías de volumen con proyección de músculo vs grasa"
+      },
+      "waistToHeightRatio": {
+        "name": "Ratio Cintura-Altura",
+        "desc": "Mejor que el IMC para evaluar riesgos de salud"
+      },
+      "step": {
+        "name": "Calculadora de Pasos",
+        "desc": "Convierte pasos a distancia y calorías"
+      },
+      "restDay": {
+        "name": "Calculadora de Descanso",
+        "desc": "Calcula el tiempo óptimo de recuperación"
+      },
+      "heartRateZone": {
+        "desc": "Calcula tus zonas de frecuencia cardíaca para entrenamiento óptimo"
+      },
+      "ovulation": {
+        "desc": "Calcula tu ventana fértil y días de ovulación"
       }
     }
   },
@@ -455,9 +493,9 @@
   },
   "blog": {
     "title": "Blog de Kalcufy",
-    "heroTitle1": "Consejos Financieros",
-    "heroTitle2": "y de Salud",
-    "heroSubtitle": "Guías de expertos, consejos y estrategias para ayudarte a tomar mejores decisiones financieras y alcanzar tus metas de salud.",
+    "heroTitle1": "Aprende. Calcula.",
+    "heroTitle2": "Decide.",
+    "heroSubtitle": "Artículos prácticos con fórmulas, ejemplos y herramientas para tomar mejores decisiones financieras y de salud.",
     "searchPlaceholder": "Buscar artículos...",
     "allPosts": "Todos los Artículos",
     "categories": {
@@ -476,6 +514,8 @@
     "noArticles": "No se encontraron artículos",
     "noArticlesDesc": "Intenta ajustar tu búsqueda o filtro para encontrar lo que buscas.",
     "loadMore": "Cargar Más Artículos",
+    "remaining": "restantes",
+    "allCategories": "Todas",
     "loading": "Cargando...",
     "newsletter": {
       "title": "Mantente Actualizado",

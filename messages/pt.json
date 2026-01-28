@@ -49,7 +49,12 @@
       "calorieDeficit": "Déficit Calórico",
       "calorieSurplus": "Superávit Calórico",
       "weightLoss": "Perda de Peso",
-      "weightGain": "Ganho de Peso"
+      "weightGain": "Ganho de Peso",
+      "waistToHeightRatio": "Razão Cintura-Altura",
+      "step": "Calculadora de Passos",
+      "restDay": "Calculadora de Descanso",
+      "heartRateZone": "Zonas de Frequência Cardíaca",
+      "ovulation": "Calculadora de Ovulação"
     }
   },
   "home": {
@@ -201,6 +206,24 @@
       "weightGain": {
         "name": "Ganho de Peso",
         "desc": "Calcule calorias de bulk com projeção de músculo vs gordura"
+      },
+      "waistToHeightRatio": {
+        "name": "Razão Cintura-Altura",
+        "desc": "Melhor que IMC para avaliação de riscos"
+      },
+      "step": {
+        "name": "Calculadora de Passos",
+        "desc": "Converta passos em distância e calorias"
+      },
+      "restDay": {
+        "name": "Calculadora de Descanso",
+        "desc": "Calcule o tempo ideal de recuperação"
+      },
+      "heartRateZone": {
+        "desc": "Calcule suas zonas de frequência cardíaca para treino ideal"
+      },
+      "ovulation": {
+        "desc": "Acompanhe sua janela fértil e dias de ovulação"
       }
     }
   },
@@ -317,8 +340,8 @@
   },
   "blog": {
     "title": "Blog Kalcufy",
-    "heroTitle1": "Insights",
-    "heroTitle2": "Financeiros e de Saúde",
+    "heroTitle1": "Aprenda. Calcule.",
+    "heroTitle2": "Decida.",
     "heroSubtitle": "Guias especializados, dicas e estratégias para ajudá-lo a tomar melhores decisões financeiras e alcançar seus objetivos de saúde.",
     "searchPlaceholder": "Buscar artigos...",
     "allPosts": "Todos os Posts",
