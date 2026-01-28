@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "kalcufy.com"
+        }
+      ],
+      "destination": "https://www.kalcufy.com/:path*",
+      "permanent": true
+    }
+  ]
+}
