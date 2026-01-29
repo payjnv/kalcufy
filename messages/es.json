@@ -537,5 +537,25 @@
       "notFoundDesc": "El artículo que buscas no existe.",
       "backToBlog": "Volver al Blog"
     }
+  },
+  "legal": {
+    "terms": {
+      "title": "Términos de Servicio",
+      "metaDescription": "Términos de Servicio de Kalcufy - Calculadoras online gratuitas.",
+      "lastUpdated": "Última actualización",
+      "date": "Enero 2026"
+    },
+    "privacy": {
+      "title": "Política de Privacidad",
+      "metaDescription": "Política de Privacidad de Kalcufy - Cómo protegemos tus datos.",
+      "lastUpdated": "Última actualización",
+      "date": "Enero 2026"
+    },
+    "cookies": {
+      "title": "Política de Cookies",
+      "metaDescription": "Política de Cookies de Kalcufy - Cómo usamos las cookies.",
+      "lastUpdated": "Última actualización",
+      "date": "Enero 2026"
+    }
   }
 }

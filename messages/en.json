@@ -91,7 +91,7 @@
     "searchButton": "Search",
     "seeAllResults": "See all results for",
     "exploreButton": "Explore Calculators",
-    "tryCompound": "Try Compound Interest →",
+    "tryCompound": "Try Compound Interest \u2192",
     "stats": {
       "calculations": "Calculations",
       "users": "Users",
@@ -534,6 +534,26 @@
       "notFound": "Article Not Found",
       "notFoundDesc": "The article you are looking for does not exist.",
       "backToBlog": "Back to Blog"
+    }
+  },
+  "legal": {
+    "terms": {
+      "title": "Terms of Service",
+      "metaDescription": "Terms of Service for Kalcufy - Free online calculators for finance, health, and everyday calculations.",
+      "lastUpdated": "Last updated",
+      "date": "January 2026"
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "metaDescription": "Privacy Policy for Kalcufy - How we protect your data and privacy.",
+      "lastUpdated": "Last updated",
+      "date": "January 2026"
+    },
+    "cookies": {
+      "title": "Cookie Policy",
+      "metaDescription": "Cookie Policy for Kalcufy - How we use cookies on our website.",
+      "lastUpdated": "Last updated",
+      "date": "January 2026"
     }
   }
 }

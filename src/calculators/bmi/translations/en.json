@@ -1,0 +1,45 @@
+{
+  "calculator": {
+    "title": "BMI Calculator",
+    "subtitle": "Calculate your Body Mass Index instantly",
+    "breadcrumb": "BMI Calculator",
+    "yourInformation": "Your Information"
+  },
+  "inputs": {
+    "weight": { "label": "Weight", "helpText": "Enter your current weight" },
+    "heightFeet": { "label": "Height (feet)" },
+    "heightInches": { "label": "Height (inches)" },
+    "heightCm": { "label": "Height" }
+  },
+  "results": {
+    "bmi": "Your BMI",
+    "category": "Category",
+    "healthyWeightRange": "Healthy Weight Range"
+  },
+  "info": {
+    "resultsCard": { "title": "Your Results", "0": "BMI", "1": "Category", "2": "Healthy Range" },
+    "tipsCard": { "title": "Quick Tips", "0": "BMI is just one health indicator", "1": "Muscle mass affects BMI accuracy", "2": "Consult a doctor for health advice", "3": "Regular exercise improves health" }
+  },
+  "reference": {
+    "bmiCategories": { "title": "BMI Categories", "items": { "0": "Underweight", "1": "Normal weight", "2": "Overweight", "3": "Obesity Class I", "4": "Obesity Class II", "5": "Obesity Class III" } }
+  },
+  "education": {
+    "whatIsBmi": { "title": "What is BMI?", "content": "Body Mass Index (BMI) is a simple calculation using a person's height and weight. The formula is BMI = kg/m² where kg is a person's weight in kilograms and m² is their height in metres squared. A BMI of 25.0 or more is overweight, while the healthy range is 18.5 to 24.9." },
+    "howItWorks": { "title": "How BMI Calculation Works", "content": "BMI provides a reliable indicator of body fatness for most people and is used to screen for weight categories that may lead to health problems. While BMI does not measure body fat directly, research has shown that BMI correlates to direct measures of body fat." },
+    "considerations": { "title": "Important Considerations", "items": { "0": { "text": "BMI may overestimate body fat in athletes with high muscle mass" }, "1": { "text": "BMI may underestimate body fat in older persons" }, "2": { "text": "BMI is a screening tool, not a diagnostic tool" }, "3": { "text": "Health professionals use BMI along with other indicators" }, "4": { "text": "BMI categories are the same for men and women" } } },
+    "exampleCalculation": { "title": "Example Calculations", "description": "Step-by-step BMI calculations", "examples": { "0": { "title": "Metric Example", "steps": { "0": "Weight: 70 kg", "1": "Height: 1.75 m", "2": "BMI = 70 ÷ (1.75)²", "3": "BMI = 70 ÷ 3.0625" }, "result": "BMI = 22.9 (Normal weight)" }, "1": { "title": "Imperial Example", "steps": { "0": "Weight: 150 lb", "1": "Height: 5'10\" (70 in)", "2": "BMI = (150 ÷ 70²) × 703" }, "result": "BMI = 21.5 (Normal weight)" } } }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "0": { "question": "What is a healthy BMI range?", "answer": "A healthy BMI is between 18.5 and 24.9. This range is associated with the lowest health risks for most adults." },
+    "1": { "question": "Is BMI accurate for athletes?", "answer": "BMI may not be accurate for athletes or people with high muscle mass, as muscle weighs more than fat." },
+    "2": { "question": "Does age affect BMI calculations?", "answer": "The BMI formula is the same for all adults, but interpretation may vary. Older adults may have more body fat at the same BMI." },
+    "3": { "question": "How often should I check my BMI?", "answer": "Checking your BMI once a month is sufficient. Focus on long-term trends rather than daily fluctuations." },
+    "4": { "question": "Can BMI predict health problems?", "answer": "BMI is a screening tool that can indicate potential health risks, but should be used with other health measures." },
+    "5": { "question": "Is BMI different for men and women?", "answer": "The BMI formula and categories are the same for both. However, women typically have more body fat than men at the same BMI." }
+  },
+  "sources": { "title": "Sources & References" },
+  "common": { "home": "Home", "calculators": "Calculators" },
+  "buttons": { "calculate": "Calculate", "reset": "Reset", "pdf": "PDF", "excel": "Excel", "compare": "Compare" },
+  "disclaimers": { "health": "Results are estimates. Consult a healthcare professional for medical advice." }
+}
