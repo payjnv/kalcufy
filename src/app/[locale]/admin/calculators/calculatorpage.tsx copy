@@ -1,0 +1,315 @@
+"use client";
+
+import { useLocale } from "next-intl";
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { Calculator, Search, RefreshCw, Eye, Edit, ToggleLeft, ToggleRight, FolderOpen } from "lucide-react";
+
+interface CalculatorItem {
+  id: string;
+  slug: string;
+  name: string;
+  category: string;
+  isActive: boolean;
+}
+
+interface Category {
+  slug: string;
+  nameEn: string;
+  color: string;
+}
+
+interface StatsData {
+  calculators: CalculatorItem[];
+  totals: { totalCalculators: number; activeCalculators: number };
+}
+
+export default function AdminCalculatorsPage() {
+  const [data, setData] = useState<StatsData | null>(null);
+  const locale = useLocale();
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("all");
+  const [toggling, setToggling] = useState<string | null>(null);
+  const [changingCategory, setChangingCategory] = useState<string | null>(null);
+
+  useEffect(() => { 
+    fetchData(); 
+    fetchCategories();
+  }, []);
+
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch("/api/admin/calculators");
+      if (res.ok) {
+        const json = await res.json();
+        // Normalizar categorías a minúsculas
+        json.calculators = json.calculators.map((c: CalculatorItem) => ({
+          ...c,
+          category: c.category.toLowerCase()
+        }));
+        setData(json);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchCategories = async () => {
+    try {
+      const res = await fetch("/api/calculator-categories");
+      if (res.ok) {
+        const cats = await res.json();
+        setCategories(cats);
+      }
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
+  };
+
+  const toggleActive = async (slug: string) => {
+    if (toggling) return;
+    setToggling(slug);
+    try {
+      const res = await fetch(`/api/admin/calculators/${slug}/toggle`, { method: "POST" });
+      if (res.ok) {
+        const result = await res.json();
+        setData(prev => prev ? {
+          ...prev,
+          calculators: prev.calculators.map(c => c.slug === slug ? { ...c, isActive: result.isActive } : c),
+        } : null);
+      }
+    } finally {
+      setToggling(null);
+    }
+  };
+
+  const changeCategory = async (slug: string, newCategory: string) => {
+    setChangingCategory(slug);
+    try {
+      const res = await fetch(`/api/admin/calculators/${slug}/category`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ category: newCategory }),
+      });
+      if (res.ok) {
+        setData(prev => prev ? {
+          ...prev,
+          calculators: prev.calculators.map(c => c.slug === slug ? { ...c, category: newCategory } : c),
+        } : null);
+      }
+    } catch (error) {
+      console.error("Error changing category:", error);
+    } finally {
+      setChangingCategory(null);
+    }
+  };
+
+  const filteredCalculators = data?.calculators.filter(calc => {
+    const matchesSearch = calc.name.toLowerCase().includes(search.toLowerCase()) || calc.slug.toLowerCase().includes(search.toLowerCase());
+    const matchesCategory = categoryFilter === "all" || calc.category === categoryFilter;
+    return matchesSearch && matchesCategory;
+  }) || [];
+
+  const allCategories = [...new Set(data?.calculators.map(c => c.category) || [])];
+  
+  const getCategoryColor = (cat: string) => {
+    const catLower = cat.toLowerCase();
+    const colors: Record<string, string> = { 
+      health: "bg-green-100 text-green-700", 
+      finance: "bg-blue-100 text-blue-700", 
+      math: "bg-purple-100 text-purple-700", 
+      everyday: "bg-amber-100 text-amber-700",
+      drafts: "bg-gray-100 text-gray-700 border border-dashed border-gray-400"
+    };
+    return colors[catLower] || "bg-slate-100 text-slate-700";
+  };
+
+  const draftsCount = data?.calculators.filter(c => c.category === "drafts").length || 0;
+
+  if (loading) return <div className="space-y-6"><div className="h-8 w-64 bg-slate-200 rounded animate-pulse" /><div className="h-96 bg-slate-200 rounded-xl animate-pulse" /></div>;
+
+  return (
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-slate-900">Calculators</h1>
+          <p className="text-slate-600">Manage calculator settings, categories and URLs</p>
+        </div>
+        <button onClick={fetchData} className="flex items-center gap-2 px-4 py-2 text-slate-600 hover:bg-slate-100 rounded-lg">
+          <RefreshCw className="w-4 h-4" /> Refresh
+        </button>
+      </div>
+
+      {/* Stats Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="bg-white rounded-xl border border-slate-200 p-5">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
+              <Calculator className="w-5 h-5 text-blue-600" />
+            </div>
+            <div>
+              <p className="text-2xl font-bold text-slate-900">{data?.totals.totalCalculators || 0}</p>
+              <p className="text-sm text-slate-500">Total</p>
+            </div>
+          </div>
+        </div>
+        <div className="bg-white rounded-xl border border-slate-200 p-5">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center">
+              <ToggleRight className="w-5 h-5 text-green-600" />
+            </div>
+            <div>
+              <p className="text-2xl font-bold text-slate-900">{data?.totals.activeCalculators || 0}</p>
+              <p className="text-sm text-slate-500">Active</p>
+            </div>
+          </div>
+        </div>
+        <div className="bg-white rounded-xl border border-slate-200 p-5">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center">
+              <ToggleLeft className="w-5 h-5 text-red-600" />
+            </div>
+            <div>
+              <p className="text-2xl font-bold text-slate-900">{(data?.totals.totalCalculators || 0) - (data?.totals.activeCalculators || 0)}</p>
+              <p className="text-sm text-slate-500">Inactive</p>
+            </div>
+          </div>
+        </div>
+        <div className="bg-white rounded-xl border border-slate-200 p-5">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center">
+              <FolderOpen className="w-5 h-5 text-gray-600" />
+            </div>
+            <div>
+              <p className="text-2xl font-bold text-slate-900">{draftsCount}</p>
+              <p className="text-sm text-slate-500">In Drafts</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Drafts Alert */}
+      {draftsCount > 0 && (
+        <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-center gap-3">
+          <FolderOpen className="w-5 h-5 text-amber-600" />
+          <p className="text-amber-800">
+            <strong>{draftsCount} calculator{draftsCount > 1 ? 's' : ''}</strong> in Drafts. 
+            Change category to publish.
+          </p>
+        </div>
+      )}
+
+      {/* Filters */}
+      <div className="flex flex-wrap items-center gap-4">
+        <div className="relative flex-1 min-w-[200px] max-w-md">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+          <input 
+            type="text" 
+            placeholder="Search calculators..." 
+            value={search} 
+            onChange={(e) => setSearch(e.target.value)} 
+            className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
+          />
+        </div>
+        <select 
+          value={categoryFilter} 
+          onChange={(e) => setCategoryFilter(e.target.value)} 
+          className="px-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          <option value="all">All Categories</option>
+          <option value="drafts">📝 Drafts</option>
+          {allCategories.filter(c => c !== 'drafts').map(cat => (
+            <option key={cat} value={cat}>{cat.charAt(0).toUpperCase() + cat.slice(1)}</option>
+          ))}
+        </select>
+      </div>
+
+      {/* Table */}
+      <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
+        <table className="w-full">
+          <thead>
+            <tr className="bg-slate-50 border-b border-slate-200">
+              <th className="text-left px-6 py-4 text-sm font-semibold text-slate-700">Calculator</th>
+              <th className="text-center px-4 py-4 text-sm font-semibold text-slate-700">Category</th>
+              <th className="text-center px-4 py-4 text-sm font-semibold text-slate-700">Status</th>
+              <th className="text-right px-6 py-4 text-sm font-semibold text-slate-700">Actions</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-slate-100">
+            {filteredCalculators.map((calc) => (
+              <tr key={calc.slug} className={`hover:bg-slate-50 ${calc.category === 'drafts' ? 'bg-gray-50' : ''}`}>
+                <td className="px-6 py-4">
+                  <div className="flex items-center gap-2">
+                    {calc.category === 'drafts' && <span className="text-xs bg-amber-100 text-amber-700 px-2 py-0.5 rounded">DRAFT</span>}
+                    <div>
+                      <p className="font-medium text-slate-900">{calc.name}</p>
+                      <p className="text-sm text-slate-500 font-mono">{calc.slug}</p>
+                    </div>
+                  </div>
+                </td>
+                <td className="px-4 py-4 text-center">
+                  <select
+                    value={calc.category}
+                    onChange={(e) => changeCategory(calc.slug, e.target.value)}
+                    disabled={changingCategory === calc.slug}
+                    className={`px-3 py-1 rounded-full text-xs font-medium border-0 cursor-pointer ${getCategoryColor(calc.category)} ${changingCategory === calc.slug ? 'opacity-50' : ''}`}
+                  >
+                    <option value="drafts">📝 Drafts</option>
+                    <option value="finance">💰 Finance</option>
+                    <option value="health">❤️ Health</option>
+                    <option value="math">🔢 Math</option>
+                    <option value="everyday">📅 Everyday</option>
+                  </select>
+                </td>
+                <td className="px-4 py-4 text-center">
+                  <button 
+                    onClick={() => toggleActive(calc.slug)} 
+                    disabled={toggling === calc.slug} 
+                    className={`relative w-12 h-7 rounded-full transition-colors ${calc.isActive ? "bg-green-500" : "bg-slate-300"}`}
+                  >
+                    <div className={`absolute top-1 w-5 h-5 bg-white rounded-full shadow transition-transform ${calc.isActive ? "left-6" : "left-1"}`} />
+                  </button>
+                </td>
+                <td className="px-6 py-4">
+                  <div className="flex items-center justify-end gap-2">
+                    <Link 
+                      href={`/${locale}/admin/calculators/${calc.slug.replace("-calculator", "")}`} 
+                      className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg" 
+                      title="Edit"
+                    >
+                      <Edit className="w-4 h-4" />
+                    </Link>
+                    <Link 
+                      href={`/en/${calc.slug}`} 
+                      target="_blank" 
+                      className="p-2 text-slate-400 hover:text-green-600 hover:bg-green-50 rounded-lg" 
+                      title="View"
+                    >
+                      <Eye className="w-4 h-4" />
+                    </Link>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        {filteredCalculators.length === 0 && (
+          <div className="text-center py-12">
+            <Calculator className="w-12 h-12 text-slate-300 mx-auto mb-4" />
+            <p className="text-slate-500">No calculators found</p>
+          </div>
+        )}
+        <div className="px-6 py-4 bg-slate-50 border-t border-slate-200">
+          <p className="text-sm text-slate-500">
+            Showing <span className="font-medium text-slate-900">{filteredCalculators.length}</span> of <span className="font-medium text-slate-900">{data?.totals.totalCalculators || 0}</span> calculators
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}

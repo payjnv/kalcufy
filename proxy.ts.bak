@@ -1,0 +1,196 @@
+// KALCUFY V4 - MIDDLEWARE CON URLs LOCALIZADAS (EN, ES, PT, FR)
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+import createMiddleware from 'next-intl/middleware';
+import { locales } from './i18n';
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SLUG MAPPINGS - URLs localizadas para SEO (solo redirects, no rewrites)
+// Inglés → Localizado (para cada idioma)
+// ═══════════════════════════════════════════════════════════════════════════
+
+const LOCALIZED_SLUGS: Record<string, Record<string, string>> = {
+  es: {
+    "bmi-calculator": "calculadora-imc",
+    "bmr-calculator": "calculadora-tmb",
+    "body-fat-calculator": "calculadora-grasa-corporal",
+    "calorie-calculator": "calculadora-calorias",
+    "caloric-deficit-calculator": "calculadora-deficit-calorico",
+    "calorie-deficit-calculator": "calculadora-deficit-calorias",
+    "calorie-surplus-calculator": "calculadora-superavit-calorico",
+    "calories-burned-calculator": "calculadora-calorias-quemadas",
+    "heart-rate-zones-calculator": "calculadora-zonas-frecuencia-cardiaca",
+    "ideal-weight-calculator": "calculadora-peso-ideal",
+    "keto-calculator": "calculadora-keto",
+    "lean-body-mass-calculator": "calculadora-masa-magra",
+    "macro-calculator": "calculadora-macros",
+    "maintenance-calories-calculator": "calculadora-calorias-mantenimiento",
+    "one-rep-max-calculator": "calculadora-repeticion-maxima",
+    "ovulation-calculator": "calculadora-ovulacion",
+    "pregnancy-calculator": "calculadora-embarazo",
+    "protein-calculator": "calculadora-proteinas",
+    "running-pace-calculator": "calculadora-ritmo-carrera",
+    "sleep-calculator": "calculadora-sueno",
+    "step-calculator": "calculadora-pasos",
+    "rest-day-calculator": "calculadora-dia-descanso",
+    "tdee-calculator": "calculadora-tdee",
+    "waist-to-height-ratio-calculator": "calculadora-cintura-altura",
+    "water-intake-calculator": "calculadora-consumo-agua",
+    "weight-gain-calculator": "calculadora-aumento-peso",
+    "weight-loss-calculator": "calculadora-perdida-peso",
+    "401k-calculator": "calculadora-401k",
+    "auto-loan-calculator": "calculadora-prestamo-auto",
+    "budget-calculator": "calculadora-presupuesto",
+    "car-lease-calculator": "calculadora-leasing-auto",
+    "cd-calculator": "calculadora-certificado-deposito",
+    "compound-interest-calculator": "calculadora-interes-compuesto",
+    "credit-card-payoff-calculator": "calculadora-pago-tarjeta-credito",
+    "emergency-fund-calculator": "calculadora-fondo-emergencia",
+    "income-tax-calculator": "calculadora-impuesto-renta",
+    "investment-calculator": "calculadora-inversiones",
+    "loan-calculator": "calculadora-prestamo",
+    "mortgage-calculator": "calculadora-hipoteca",
+    "net-worth-calculator": "calculadora-patrimonio-neto",
+    "paycheck-calculator": "calculadora-nomina",
+    "personal-loan-calculator": "calculadora-prestamo-personal",
+    "profit-margin-calculator": "calculadora-margen-beneficio",
+    "retirement-calculator": "calculadora-jubilacion",
+    "roth-ira-calculator": "calculadora-roth-ira",
+    "savings-calculator": "calculadora-ahorros",
+    "student-loan-calculator": "calculadora-prestamo-estudiantil",
+    "fraction-calculator": "calculadora-fracciones",
+    "percentage-calculator": "calculadora-porcentaje",
+    "rule-of-three-calculator": "calculadora-regla-de-tres",
+    "square-root-calculator": "calculadora-raiz-cuadrada",
+    "random-number-generator": "generador-numeros-aleatorios",
+    "age-calculator": "calculadora-edad",
+    "date-calculator": "calculadora-fechas",
+    "discount-calculator": "calculadora-descuento",
+    "fuel-cost-calculator": "calculadora-costo-combustible",
+    "gpa-calculator": "calculadora-promedio",
+    "time-zone-calculator": "calculadora-zona-horaria",
+    "tip-calculator": "calculadora-propina",
+    "unit-converter": "convertidor-unidades",
+  },
+  pt: {
+    "bmi-calculator": "calculadora-imc",
+    "bmr-calculator": "calculadora-tmb",
+    "body-fat-calculator": "calculadora-gordura-corporal",
+    "calorie-calculator": "calculadora-calorias",
+    "mortgage-calculator": "calculadora-hipoteca",
+    "loan-calculator": "calculadora-emprestimo",
+    "compound-interest-calculator": "calculadora-juros-compostos",
+    "savings-calculator": "calculadora-poupanca",
+    "retirement-calculator": "calculadora-aposentadoria",
+    "investment-calculator": "calculadora-investimentos",
+    "age-calculator": "calculadora-idade",
+    "date-calculator": "calculadora-datas",
+    "discount-calculator": "calculadora-desconto",
+    "tip-calculator": "calculadora-gorjeta",
+    "percentage-calculator": "calculadora-porcentagem",
+    "fraction-calculator": "calculadora-fracoes",
+  },
+  fr: {
+    "bmi-calculator": "calculateur-imc",
+    "bmr-calculator": "calculateur-tmb",
+    "body-fat-calculator": "calculateur-masse-grasse",
+    "calorie-calculator": "calculateur-calories",
+    "caloric-deficit-calculator": "calculateur-deficit-calorique",
+    "calorie-deficit-calculator": "calculateur-deficit-calories",
+    "calorie-surplus-calculator": "calculateur-surplus-calorique",
+    "calories-burned-calculator": "calculateur-calories-brulees",
+    "heart-rate-zones-calculator": "calculateur-zones-frequence-cardiaque",
+    "ideal-weight-calculator": "calculateur-poids-ideal",
+    "keto-calculator": "calculateur-keto",
+    "lean-body-mass-calculator": "calculateur-masse-maigre",
+    "macro-calculator": "calculateur-macros",
+    "maintenance-calories-calculator": "calculateur-calories-maintien",
+    "one-rep-max-calculator": "calculateur-repetition-maximale",
+    "ovulation-calculator": "calculateur-ovulation",
+    "pregnancy-calculator": "calculateur-grossesse",
+    "protein-calculator": "calculateur-proteines",
+    "running-pace-calculator": "calculateur-allure-course",
+    "sleep-calculator": "calculateur-sommeil",
+    "step-calculator": "calculateur-pas",
+    "rest-day-calculator": "calculateur-jour-repos",
+    "tdee-calculator": "calculateur-tdee",
+    "waist-to-height-ratio-calculator": "calculateur-ratio-taille-hauteur",
+    "water-intake-calculator": "calculateur-consommation-eau",
+    "weight-gain-calculator": "calculateur-prise-poids",
+    "weight-loss-calculator": "calculateur-perte-poids",
+    "401k-calculator": "calculateur-401k",
+    "auto-loan-calculator": "calculateur-pret-auto",
+    "budget-calculator": "calculateur-budget",
+    "car-lease-calculator": "calculateur-leasing-auto",
+    "cd-calculator": "calculateur-certificat-depot",
+    "compound-interest-calculator": "calculateur-interet-compose",
+    "credit-card-payoff-calculator": "calculateur-remboursement-carte-credit",
+    "emergency-fund-calculator": "calculateur-fonds-urgence",
+    "income-tax-calculator": "calculateur-impot-revenu",
+    "investment-calculator": "calculateur-investissement",
+    "loan-calculator": "calculateur-pret",
+    "mortgage-calculator": "calculateur-hypotheque",
+    "net-worth-calculator": "calculateur-valeur-nette",
+    "paycheck-calculator": "calculateur-salaire",
+    "personal-loan-calculator": "calculateur-pret-personnel",
+    "profit-margin-calculator": "calculateur-marge-benefice",
+    "retirement-calculator": "calculateur-retraite",
+    "roth-ira-calculator": "calculateur-roth-ira",
+    "savings-calculator": "calculateur-epargne",
+    "student-loan-calculator": "calculateur-pret-etudiant",
+    "fraction-calculator": "calculateur-fractions",
+    "percentage-calculator": "calculateur-pourcentage",
+    "rule-of-three-calculator": "calculateur-regle-de-trois",
+    "square-root-calculator": "calculateur-racine-carree",
+    "random-number-generator": "generateur-nombres-aleatoires",
+    "age-calculator": "calculateur-age",
+    "date-calculator": "calculateur-dates",
+    "discount-calculator": "calculateur-remise",
+    "fuel-cost-calculator": "calculateur-cout-carburant",
+    "gpa-calculator": "calculateur-moyenne",
+    "time-zone-calculator": "calculateur-fuseau-horaire",
+    "tip-calculator": "calculateur-pourboire",
+    "unit-converter": "convertisseur-unites",
+  },
+};
+
+// ═══════════════════════════════════════════════════════════════════════════
+// MIDDLEWARE PRINCIPAL
+// ═══════════════════════════════════════════════════════════════════════════
+
+const intlMiddleware = createMiddleware({
+  locales: locales,
+  defaultLocale: 'en',
+  localePrefix: 'always'
+});
+
+export default function middleware(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
+  
+  // Extraer locale y slug de la URL
+  const match = pathname.match(/^\/(es|pt|fr)\/(.+?)$/);
+  
+  if (match) {
+    const locale = match[1];
+    const slug = match[2];
+    const localeMap = LOCALIZED_SLUGS[locale];
+    
+    if (localeMap) {
+      // REDIRECT: URL en inglés en locale no-inglés → redirect a localizada
+      // /es/bmi-calculator → 301 redirect a /es/calculadora-imc
+      if (localeMap[slug]) {
+        const localizedSlug = localeMap[slug];
+        const url = request.nextUrl.clone();
+        url.pathname = `/${locale}/${localizedSlug}`;
+        return NextResponse.redirect(url, 301);
+      }
+    }
+  }
+  
+  // Para todo lo demás, usar el middleware de next-intl
+  return intlMiddleware(request);
+}
+
+export const config = {
+  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)']
+};

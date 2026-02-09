@@ -1,0 +1,102 @@
+{
+  "meta": {
+    "title": "Sleep Calculator - Find Your Best Bedtime & Wake Time",
+    "description": "Calculate the best times to sleep and wake up based on 90-minute sleep cycles. Get personalized recommendations by age and optimize your sleep schedule."
+  },
+  "calculator": {
+    "title": "Sleep Calculator",
+    "subtitle": "Wake up refreshed by aligning with your sleep cycles",
+    "currentTime": "Current Time",
+    "mode": "I want to...",
+    "wakeAt": "Wake up at a specific time",
+    "sleepNow": "Go to sleep now",
+    "sleepAt": "Go to bed at a specific time",
+    "wakeUpTime": "I need to wake up at",
+    "bedTime": "I plan to go to bed at",
+    "ageGroup": "Age Group",
+    "advancedOptions": "Advanced Options",
+    "fallAsleepTime": "Time to fall asleep",
+    "sleepCycleLength": "Sleep cycle length",
+    "minutes": "min",
+    "bestTimesToSleep": "Best times to go to bed",
+    "bestTimesToWake": "Best times to wake up",
+    "cycles": "cycles",
+    "optimal": "Optimal",
+    "good": "Good",
+    "minimum": "Minimum",
+    "recommendation": "Recommendation",
+    "ageRange": "Age Range",
+    "recommendedSleep": "Recommended Sleep",
+    "optimalCycles": "Optimal Cycles",
+    "sleepStages": "Sleep Cycle Stages",
+    "save": "Save",
+    "saving": "Saving...",
+    "saved": "Saved!",
+    "pdf": "PDF",
+    "excel": "Excel",
+    "pro": "PRO"
+  },
+  "education": {
+    "title": "Understanding Sleep Cycles",
+    "sections": [
+      {
+        "title": "What is a Sleep Cycle?",
+        "content": "A sleep cycle is a progression through different stages of sleep that takes approximately 90 minutes to complete. Each night, you go through 4-6 complete cycles. Each cycle includes light sleep (N1, N2), deep sleep (N3), and REM (rapid eye movement) sleep."
+      },
+      {
+        "title": "Why 90-Minute Cycles Matter",
+        "content": "Waking during deep sleep causes sleep inertia—that groggy, disoriented feeling. By timing your sleep in complete 90-minute cycles, you wake during light sleep when you're closest to consciousness, making it easier to get up and feel alert."
+      },
+      {
+        "title": "The Four Sleep Stages",
+        "content": "N1 (Light Sleep): Transition phase, easily awakened, lasts 5-10 minutes. N2 (Light Sleep): Body temperature drops, heart rate slows, 10-25 minutes. N3 (Deep Sleep): Restorative phase, growth hormone released, 20-40 minutes. REM: Dreams occur, memory consolidation, increases each cycle."
+      },
+      {
+        "title": "Sleep Recommendations by Age",
+        "content": "Newborns need 14-17 hours, infants 12-15 hours, toddlers 11-14 hours, preschoolers 10-13 hours, school-age children 9-11 hours, teenagers 8-10 hours, adults 7-9 hours, and seniors 7-8 hours. Individual needs vary within these ranges."
+      },
+      {
+        "title": "Tips for Better Sleep",
+        "content": "Maintain a consistent sleep schedule, avoid screens 1-2 hours before bed, keep your bedroom cool and dark, limit caffeine after noon, exercise regularly but not close to bedtime, and create a relaxing pre-sleep routine."
+      },
+      {
+        "title": "When to Seek Help",
+        "content": "If you consistently take more than 30 minutes to fall asleep, wake frequently during the night, feel unrefreshed despite adequate sleep time, or experience excessive daytime sleepiness, consider consulting a sleep specialist."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "Why are sleep cycles 90 minutes?",
+      "answer": "A complete sleep cycle typically lasts 80-120 minutes, with 90 minutes being the average. This duration allows your brain to progress through all sleep stages: light sleep (N1, N2), deep sleep (N3), and REM sleep. The cycle length varies between individuals and even changes throughout the night."
+    },
+    {
+      "question": "How many sleep cycles do I need per night?",
+      "answer": "Most adults need 4-6 complete sleep cycles per night, which equals 6-9 hours of sleep. Five cycles (7.5 hours) is optimal for most adults. Children and teenagers need more cycles due to growth and brain development requirements."
+    },
+    {
+      "question": "Why do I feel tired even after 8 hours of sleep?",
+      "answer": "You may be waking during deep sleep or REM, causing sleep inertia. Try adjusting your wake time by 15-30 minutes to align with the end of a cycle. Other factors include poor sleep quality, sleep disorders, inconsistent schedule, or underlying health conditions."
+    },
+    {
+      "question": "What's the best time to go to bed?",
+      "answer": "The best bedtime aligns with your natural circadian rhythm (typically 10pm-midnight for adults) and gives you enough cycles before your wake time. Consistency is more important than the specific hour—going to bed at the same time each night helps regulate your internal clock."
+    },
+    {
+      "question": "How long should it take to fall asleep?",
+      "answer": "Healthy sleep onset is 10-20 minutes. Falling asleep immediately (under 5 minutes) often indicates sleep deprivation. Taking over 30 minutes regularly may indicate insomnia, anxiety, or poor sleep hygiene. The 15-minute default in this calculator is the average."
+    },
+    {
+      "question": "Does sleep need change with age?",
+      "answer": "Yes, significantly. Newborns need 14-17 hours, gradually decreasing to 8-10 hours for teenagers and 7-9 hours for adults. Seniors often need slightly less (7-8 hours) and may experience more fragmented sleep. Sleep architecture also changes—older adults spend less time in deep sleep."
+    },
+    {
+      "question": "Is it bad to wake up before my alarm?",
+      "answer": "Waking naturally before your alarm often means you've completed a sleep cycle and your body is ready to wake. This is generally a good sign. However, if you wake significantly earlier than intended and can't fall back asleep, it could indicate stress, depression, or a sleep disorder."
+    },
+    {
+      "question": "Should I nap if I didn't sleep well?",
+      "answer": "Short naps (10-20 minutes) can help with alertness without interfering with nighttime sleep. Avoid napping after 3pm or for longer than 30 minutes, as this can disrupt your sleep schedule. If you regularly need naps to function, evaluate your nighttime sleep quality."
+    }
+  ]
+}

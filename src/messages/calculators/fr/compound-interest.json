@@ -1,0 +1,179 @@
+{
+  "meta": {
+    "title": "Compound Interest Calculator - Calculate Growth | Kalcufy",
+    "description": "Free compound interest calculator to see how your money grows over time with compounding."
+  },
+  "calculator": {
+    "title": "Compound Interest Calculator",
+    "subtitle": "See how your money grows over time with compound interest",
+    "breadcrumb": "Compound Interest",
+    "investmentDetails": "Investment Details",
+    "inputs": {
+      "initialInvestment": "Initial Investment",
+      "monthlyContribution": "Monthly Contribution",
+      "annualInterestRate": "Annual Interest Rate",
+      "investmentPeriod": "Investment Period",
+      "compoundFrequency": "Compound Frequency",
+      "contributionTiming": "Contribution Timing",
+      "contributionTimingHelp": "When do you make your contributions?",
+      "advancedOptions": "Advanced Options",
+      "taxRate": "Tax Rate on Interest",
+      "taxRateHelp": "Applied to interest earned (e.g., 25% marginal rate)",
+      "inflationRate": "Expected Inflation Rate",
+      "inflationRateHelp": "Average U.S. inflation is ~3% per year"
+    },
+    "frequency": {
+      "yearly": "Yearly",
+      "quarterly": "Quarterly",
+      "monthly": "Monthly",
+      "daily": "Daily"
+    },
+    "timing": {
+      "beginning": "Beginning of Period",
+      "end": "End of Period"
+    },
+    "results": {
+      "futureValue": "Future Value",
+      "totalContributions": "Total Contributions",
+      "totalInterest": "Total Interest Earned",
+      "inflationAdjusted": "Inflation-Adjusted Value",
+      "inflationAdjustedHelp": "Purchasing power in today's dollars",
+      "growthBreakdown": "Growth Breakdown",
+      "contributions": "Contributions",
+      "interest": "Interest"
+    },
+    "table": {
+      "title": "Year-by-Year Growth",
+      "year": "Year",
+      "contributions": "Contributions",
+      "interestEarned": "Interest Earned",
+      "balance": "Balance"
+    },
+    "buttons": {
+      "viewGrowth": "View Year-by-Year Growth",
+      "pdf": "PDF",
+      "excel": "Excel",
+      "save": "Save",
+      "downloadPdf": "Download PDF",
+      "downloadExcel": "Download Excel"
+    },
+    "status": {
+      "saving": "Saving...",
+      "saved": "Saved",
+      "error": "Error saving"
+    },
+    "favorites": {
+      "add": "Add to favorites",
+      "remove": "Remove from favorites"
+    }
+  },
+  "education": {
+    "title": "Understanding Compound Interest",
+    "faqTitle": "Frequently Asked Questions",
+    "einsteinQuote": "Albert Einstein reportedly called compound interest \"the eighth wonder of the world,\" stating that those who understand it earn it, while those who don't pay it. This calculator helps you visualize how your money can grow exponentially over time.",
+    "powerOfTime": {
+      "title": "The Power of Starting Early",
+      "description": "Time is the most important factor in compound interest. Consider:",
+      "startAt": "Start at",
+      "by65": "by 65",
+      "yearsEarlier": "10 years earlier",
+      "canMean": "can mean 2x the ending balance!"
+    },
+    "ruleOf72": {
+      "title": "Rule of 72: Years to Double",
+      "interestRate": "Interest Rate",
+      "yearsToDouble": "Years to Double",
+      "becomes": "$10K Becomes",
+      "formula": "Formula: 72 ÷ Interest Rate = Years to Double"
+    },
+    "exampleCalculation": {
+      "title": "Example Calculation",
+      "letsCalculate": "Let's calculate the future value of",
+      "with": "with",
+      "contributionsAt": "contributions at",
+      "interest": "interest",
+      "compoundedMonthlyFor": "compounded monthly for",
+      "initialInvestment": "Initial Investment",
+      "monthlyContribution": "Monthly Contribution",
+      "totalContributions": "Total Contributions",
+      "interestRate": "Interest Rate",
+      "periods": "Periods",
+      "futureValue": "Future Value",
+      "youInvested": "You invested",
+      "andEarned": "and earned",
+      "inInterest": "in interest",
+      "thatsA": "that's a",
+      "returnOn": "return on your contributions!"
+    },
+    "formula": {
+      "title": "The Formula",
+      "finalAmount": "Final amount (future value)",
+      "principal": "Principal (initial investment)",
+      "annualRate": "Annual interest rate (as decimal)",
+      "compoundsPerYear": "Number of times interest compounds per year",
+      "numberOfYears": "Number of years"
+    },
+    "tips": {
+      "title": "Maximize Your Compound Interest",
+      "tip1": {
+        "title": "Start Early",
+        "description": "Time is more powerful than the amount you invest. Starting 10 years earlier can double your ending balance."
+      },
+      "tip2": {
+        "title": "Contribute Regularly",
+        "description": "Consistent monthly contributions compound over time, turning small amounts into significant wealth."
+      },
+      "tip3": {
+        "title": "Reinvest Earnings",
+        "description": "Never withdraw your interest. Let it compound and generate its own returns."
+      },
+      "tip4": {
+        "title": "Seek Higher Returns",
+        "description": "Even 1-2% higher returns make a massive difference over decades. Consider index funds or diversified investments."
+      }
+    },
+    "sections": [
+      {
+        "title": "What is Compound Interest?",
+        "content": "Compound interest is interest calculated on both the initial principal and the accumulated interest from previous periods. Unlike simple interest (which is only calculated on the principal), compound interest creates a \"snowball effect\" where your earnings generate their own earnings."
+      },
+      {
+        "title": "The Rule of 72",
+        "content": "A quick way to estimate how long it takes to double your money: divide 72 by your interest rate. At 8% interest, your money doubles in approximately 9 years."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "What is compound interest?",
+      "answer": "Compound interest is interest calculated on both the initial principal and the accumulated interest from previous periods. This creates a snowball effect where your money grows faster over time, making it a powerful tool for building wealth."
+    },
+    {
+      "question": "How is compound interest different from simple interest?",
+      "answer": "Simple interest is calculated only on the principal amount, while compound interest is calculated on the principal plus any interest already earned. Over long periods, compound interest results in significantly higher returns."
+    },
+    {
+      "question": "What is the Rule of 72?",
+      "answer": "The Rule of 72 is a quick way to estimate how long it takes to double your money. Simply divide 72 by your interest rate to get the approximate years needed. At 7%, it takes about 10 years; at 10%, about 7 years."
+    },
+    {
+      "question": "Does compounding frequency matter?",
+      "answer": "Yes! More frequent compounding leads to higher returns. Daily compounding yields more than monthly, which yields more than annually. However, the difference is often small for typical savings rates."
+    },
+    {
+      "question": "Why does contribution timing matter?",
+      "answer": "Contributing at the beginning of each period (annuity due) earns slightly more than contributing at the end (ordinary annuity), because your money has more time to compound. Over decades, this can add up to thousands of dollars."
+    }
+  ],
+  "common": {
+    "home": "Home",
+    "calculators": "Calculators",
+    "year": "year",
+    "years": "years",
+    "month": "month",
+    "at": "at",
+    "pro": "PRO",
+    "financialCalculators": "Financial Calculators",
+    "healthCalculators": "Health Calculators"
+  }
+}

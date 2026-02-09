@@ -1,0 +1,199 @@
+{
+  "meta": {
+    "title": "Mortgage Calculator - Monthly Payment & Amortization | Kalcufy",
+    "description": "Free mortgage calculator to estimate monthly payments, total interest, and amortization schedule. Includes property tax, insurance, and PMI."
+  },
+  "calculator": {
+    "title": "Mortgage Calculator",
+    "subtitle": "Calculate your monthly mortgage payments",
+    "breadcrumb": "Mortgage",
+    "loanDetails": "Loan Details",
+    "inputs": {
+      "homePrice": "Home Price",
+      "downPayment": "Down Payment",
+      "interestRate": "Interest Rate",
+      "loanTerm": "Loan Term",
+      "propertyTax": "Property Tax / year",
+      "insurance": "Insurance / year",
+      "years": "years",
+      "currencySymbol": "$",
+      "rangeMin": "$50K",
+      "rangeMax": "$2M"
+    },
+    "ranges": {
+      "min50k": "$50K",
+      "max2m": "$2M",
+      "min0": "0%",
+      "max50": "50%",
+      "min1": "1%",
+      "max15": "15%"
+    },
+    "advanced": {
+      "title": "Additional Costs & Extra Payments",
+      "pmiRate": "PMI Rate (% / year)",
+      "pmiHelp": "Applied if down payment < 20%",
+      "hoaFees": "HOA Fees / month",
+      "extraMonthly": "Extra Monthly Payment",
+      "extraHelp": "Pay off your mortgage faster",
+      "loanStartDate": "Loan Start Date",
+      "loanStartHelp": "When will your loan begin?"
+    },
+    "results": {
+      "monthlyPayment": "Total Monthly Payment",
+      "perMonth": "/month",
+      "payoff": "Payoff",
+      "principal": "Principal",
+      "interest": "Interest",
+      "tax": "Tax",
+      "insuranceLabel": "Insurance",
+      "insurance": "Insurance",
+      "pmi": "PMI",
+      "component": "Component",
+      "monthly": "Monthly",
+      "total": "Total",
+      "principalInterest": "Principal & Interest",
+      "propertyTax": "Property Tax",
+      "homeInsurance": "Home Insurance",
+      "loanAmount": "Loan Amount",
+      "totalInterest": "Total Interest",
+      "payoffDate": "Payoff Date",
+      "totalPayments": "Total Payments"
+    },
+    "buttons": {
+      "viewAmortization": "View Amortization Schedule",
+      "save": "Save",
+      "pdf": "PDF",
+      "excel": "Excel",
+      "downloadPdf": "Download PDF",
+      "downloadExcel": "Download Excel"
+    },
+    "modal": {
+      "title": "Amortization Schedule",
+      "year": "Year",
+      "principal": "Principal",
+      "interest": "Interest",
+      "balance": "Balance"
+    },
+    "favorites": {
+      "add": "Add to favorites",
+      "remove": "Remove from favorites"
+    },
+    "saving": {
+      "saving": "Saving...",
+      "saved": "Saved",
+      "error": "Error saving"
+    }
+  },
+  "info": {
+    "trueCost": {
+      "title": "Understanding the True Cost",
+      "intro": "The true cost of a home goes beyond the purchase price. Consider these factors:",
+      "closingCosts": "Closing Costs:",
+      "closingCostsDesc": "Typically 2-5% of the home price",
+      "propertyTaxes": "Property Taxes:",
+      "propertyTaxesDesc": "Vary by location, often 1-2% annually",
+      "maintenance": "Maintenance:",
+      "maintenanceDesc": "Budget 1-2% of home value per year",
+      "pmi": "PMI:",
+      "pmiDesc": "Required if down payment is less than 20%"
+    },
+    "rates": {
+      "title": "Average Mortgage Rates",
+      "creditScore": "Credit Score",
+      "thirtyYear": "30-Year",
+      "fifteenYear": "15-Year",
+      "disclaimer": "*Rates as of 2024. Actual rates may vary."
+    },
+    "example": {
+      "title": "Example Calculation",
+      "intro": "Let's say you're buying a",
+      "home": "home",
+      "with": "with",
+      "down": "down",
+      "interestRate": "interest rate",
+      "and": "and a",
+      "term": "term",
+      "homePriceLabel": "Home Price",
+      "downPaymentLabel": "Down Payment",
+      "loanAmountLabel": "Loan Amount",
+      "monthlyPI": "Monthly P&I",
+      "totalInterestLabel": "Total Interest",
+      "totalCost": "Total Cost",
+      "conclusion": "Over 30 years, you'll pay more in interest than the original loan amount! This is why even small rate reductions or extra payments can save you tens of thousands of dollars."
+    }
+  },
+  "education": {
+    "title": "What is a Mortgage?",
+    "content1": "A mortgage is a loan used to purchase or maintain a home, land, or other types of real estate. The borrower agrees to pay the lender over time, typically in a series of regular payments divided into principal and interest. The property serves as collateral to secure the loan.",
+    "content2": "Most mortgages are \"amortizing,\" meaning each payment covers both interest and principal. Early payments are mostly interest; later payments are mostly principal. Understanding this helps you make smarter decisions about extra payments and refinancing.",
+    "formula": {
+      "title": "The Formula",
+      "m": "Monthly payment",
+      "p": "Principal (loan amount)",
+      "r": "Monthly interest rate (annual rate ÷ 12)",
+      "n": "Total number of payments (years × 12)"
+    },
+    "calculation": {
+      "title": "Your Calculation",
+      "for": "For a",
+      "homeWith": "home with",
+      "downAt": "down at",
+      "for2": "for",
+      "loanAmountCalc": "Loan Amount",
+      "addTax": "Add property tax",
+      "andInsurance": "and insurance",
+      "forTotal": "for a total of"
+    },
+    "tips": {
+      "title": "Money-Saving Tips",
+      "tip1": {
+        "title": "Put 20% Down",
+        "description": "Avoid PMI and get better rates."
+      },
+      "tip2": {
+        "title": "Shop Multiple Lenders",
+        "description": "Even 0.25% difference saves thousands."
+      },
+      "tip3": {
+        "title": "Consider 15-Year Term",
+        "description": "Lower rates, massive interest savings."
+      },
+      "tip4": {
+        "title": "Make Extra Payments",
+        "description": "One extra payment/year = 4-5 years off."
+      }
+    },
+    "faqTitle": "Frequently Asked Questions"
+  },
+  "faq": [
+    {
+      "question": "How much house can I afford?",
+      "answer": "A common guideline is that your monthly housing costs (including mortgage, taxes, insurance) should not exceed 28% of your gross monthly income. Lenders also look at your total debt-to-income ratio, which should typically be below 36%."
+    },
+    {
+      "question": "What credit score do I need for a mortgage?",
+      "answer": "For conventional loans, you typically need a credit score of at least 620. FHA loans may accept scores as low as 500 with a 10% down payment, or 580 with 3.5% down. Higher scores get better interest rates."
+    },
+    {
+      "question": "What is PMI and how can I avoid it?",
+      "answer": "Private Mortgage Insurance (PMI) protects the lender if you default. It's required when you put less than 20% down. You can avoid it by making a 20% down payment, using a piggyback loan, or choosing a lender-paid PMI option."
+    },
+    {
+      "question": "Fixed vs adjustable rate - which is better?",
+      "answer": "Fixed rates offer payment stability and are better if you plan to stay long-term or rates are low. ARMs start lower and may be better if you plan to sell or refinance within 5-7 years, or if rates are expected to drop."
+    },
+    {
+      "question": "Should I pay points to lower my rate?",
+      "answer": "Paying points (prepaid interest) can lower your rate, but it takes time to break even. Divide the cost of points by monthly savings to find your break-even point. If you plan to stay longer than that, points may be worth it."
+    }
+  ],
+  "sidebar": {
+    "financeTitle": "Financial Calculators",
+    "healthTitle": "Health Calculators"
+  },
+  "common": {
+    "home": "Home",
+    "calculators": "Calculators",
+    "pro": "PRO"
+  }
+}

@@ -1,0 +1,245 @@
+{
+  "calculator": {
+    "name": "Calculatrice de Remboursement de Carte de Crédit",
+    "title": "Calculatrice de Remboursement de Carte de Crédit - Comparaison Boule de Neige vs Avalanche",
+    "description": "Calculez comment rembourser vos dettes de carte de crédit plus rapidement. Comparez les méthodes boule de neige vs avalanche, voyez les économies de transfert de solde, et obtenez une date personnalisée de liberté financière avec un calendrier de remboursement mois par mois.",
+    "shortDescription": "Calculez votre date de liberté financière et comparez les stratégies de remboursement",
+    "badge": "Finance"
+  },
+  "inputs": {
+    "card1Balance": {
+      "label": "Solde Carte 1",
+      "helpText": "Solde actuel dû sur cette carte"
+    },
+    "card1APR": {
+      "label": "TAP Carte 1"
+    },
+    "card1MinPayment": {
+      "label": "Paiement Minimum Carte 1",
+      "helpText": "Généralement 2% du solde ou 35$, selon le montant le plus élevé"
+    },
+    "card2Balance": {
+      "label": "Solde Carte 2 (optionnel)"
+    },
+    "card2APR": {
+      "label": "TAP Carte 2"
+    },
+    "card2MinPayment": {
+      "label": "Paiement Minimum Carte 2"
+    },
+    "card3Balance": {
+      "label": "Solde Carte 3 (optionnel)"
+    },
+    "card3APR": {
+      "label": "TAP Carte 3"
+    },
+    "card3MinPayment": {
+      "label": "Paiement Minimum Carte 3"
+    },
+    "extraPayment": {
+      "label": "Paiement Mensuel Supplémentaire",
+      "helpText": "Montant additionnel au-delà des paiements minimums pour accélérer le remboursement"
+    },
+    "payoffStrategy": {
+      "label": "Stratégie Préférée",
+      "helpText": "Boule de neige = victoires rapides pour la motivation. Avalanche = économise plus d'intérêts.",
+      "options": {
+        "compare": "Comparer les Deux",
+        "snowball": "Boule de Neige",
+        "avalanche": "Avalanche"
+      }
+    }
+  },
+  "results": {
+    "totalDebt": "Dette Totale",
+    "debtFreeDate": "Date de Liberté Financière",
+    "monthsToPayoff": "Mois pour Rembourser",
+    "totalInterest": "Intérêts Totaux Payés",
+    "totalPayments": "Montant Total Payé",
+    "interestSavings": "Économies d'Intérêts vs Minimum",
+    "recommendedStrategy": "Stratégie Recommandée",
+    "minimumOnlyWarning": "Avertissement Paiement Minimum"
+  },
+  "dynamic": {
+    "enterAtLeastOne": "Entrez au moins un solde de carte de crédit pour calculer votre plan de remboursement.",
+    "neverPayoff": "Jamais (paiement trop bas)",
+    "neverPayoffWarning": "⚠️ Les paiements minimums ne rembourseront JAMAIS cette dette !",
+    "minimumOnlyFormat": "Minimum seulement: {years}a {months}m, {interest} intérêts",
+    "avalancheSavings": "Avalanche (économise {savings} et {months} mois)",
+    "eitherMethodWorks": "Les deux méthodes fonctionnent - choisissez selon votre préférence",
+    "paymentTooLow": "Votre paiement mensuel de {payment} n'est pas suffisant pour rembourser {debt} de dette. Augmentez votre paiement pour progresser.",
+    "successSummary": "Remboursez {debt} en {months} mois d'ici {date}. Vous paierez {interest} d'intérêts—économisant {savings} vs les paiements minimums !",
+    "cards": "carte",
+    "cardsPlural": "cartes"
+  },
+  "infoCards": {
+    "strategyComparison": {
+      "title": "Comparaison des Stratégies",
+      "items": {
+        "0": "Mois Boule de Neige",
+        "1": "Intérêts Boule de Neige",
+        "2": "Mois Avalanche",
+        "3": "Intérêts Avalanche",
+        "4": "Économies Avalanche"
+      }
+    },
+    "payoffBreakdown": {
+      "title": "Répartition des Paiements",
+      "items": {
+        "0": "Paiement Mensuel",
+        "1": "Intérêts Moy./Mois",
+        "2": "Cartes à Payer"
+      }
+    }
+  },
+  "reference": {
+    "balancePayoffTable": {
+      "title": "Calendrier de Remboursement par Solde",
+      "description": "Temps nécessaire pour rembourser différents soldes à 22% TAP avec un paiement de 200$/mois",
+      "items": {
+        "0": "Solde",
+        "1": "Mois",
+        "2": "Intérêts Totaux",
+        "3": "Total Payé"
+      }
+    }
+  },
+  "education": {
+    "payoffMethods": {
+      "title": "Méthodes de Remboursement de Dette Expliquées",
+      "items": {
+        "0": "Boule de Neige de Dette - Payez les minimums sur toutes les cartes, puis attaquez le plus petit solde en premier avec l'argent supplémentaire. Quand cette carte est remboursée, transférez ce paiement vers le prochain plus petit solde. Avantages : Victoires rapides augmentent la motivation. Inconvénients : Peut coûter plus d'intérêts au total.",
+        "1": "Avalanche de Dette - Payez les minimums sur toutes les cartes, puis attaquez la carte avec le TAP le plus élevé en premier avec l'argent supplémentaire. Une fois remboursée, passez au prochain TAP le plus élevé. Avantages : Économise le plus d'argent. Inconvénients : Peut prendre plus de temps avant de voir la première carte remboursée.",
+        "2": "Transfert de Solde - Transférez la dette à TAP élevé vers une carte avec 0% TAP promotionnel (généralement 12-21 mois). Payez des frais de transfert de 3-5% mais économisez considérablement sur les intérêts si vous remboursez avant la fin de la promotion. Idéal pour : Ceux qui peuvent rembourser pendant la période promotionnelle.",
+        "3": "Piège du Paiement Minimum - Payer seulement le minimum (généralement 2% du solde) signifie que la plupart de votre paiement va aux intérêts. Un solde de 5 000$ à 22% TAP avec paiements minimums prend 27+ ans à rembourser et coûte 9 000$+ en intérêts !"
+      }
+    },
+    "considerations": {
+      "title": "Considérations Importantes",
+      "items": {
+        "0": "Le TAP moyen des cartes de crédit en 2025 est de 21-23% - parmi les coûts d'emprunt les plus élevés",
+        "1": "Payer seulement les minimums peut prendre 20-30 ans à rembourser et tripler votre coût total",
+        "2": "Arrêtez d'utiliser les cartes pendant le remboursement - les nouveaux achats sabotent votre progrès",
+        "3": "Même 25-50$ supplémentaires par mois accélèrent significativement votre date de liberté financière",
+        "4": "La méthode avalanche économise de l'argent, mais la boule de neige peut vous garder motivé plus longtemps",
+        "5": "Considérez un transfert de solde à 0% si vous avez un bon crédit et pouvez rembourser en 12-18 mois",
+        "6": "Construisez d'abord un petit fonds d'urgence pour éviter de nouvelles dettes lors de coûts imprévus"
+      }
+    },
+    "exampleCalculation": {
+      "title": "Exemple : Rembourser 8 000$ de Dette de Carte de Crédit",
+      "description": "Deux cartes : 5 000$ à 24% TAP et 3 000$ à 18% TAP. Budget total de 400$/mois.",
+      "examples": {
+        "0": {
+          "title": "Méthode Boule de Neige de Dette",
+          "steps": {
+            "0": "Paiements min totaux : 160$/mois",
+            "1": "Paiement supplémentaire : 240$/mois",
+            "2": "Cibler d'abord la Carte 2 (solde de 3 000$)",
+            "3": "Payer 265$/mois à la Carte 2, 135$ min à la Carte 1",
+            "4": "Carte 2 remboursée en 13 mois",
+            "5": "Transférer 265$ à la Carte 1 = 400$ total",
+            "6": "Carte 1 remboursée en 21 mois total"
+          },
+          "result": "Intérêts Totaux : 1 847$ | 21 mois jusqu'à la liberté financière"
+        },
+        "1": {
+          "title": "Méthode Avalanche de Dette",
+          "steps": {
+            "0": "Paiements min totaux : 160$/mois",
+            "1": "Paiement supplémentaire : 240$/mois",
+            "2": "Cibler d'abord la Carte 1 (24% TAP)",
+            "3": "Payer 340$/mois à la Carte 1, 60$ min à la Carte 2",
+            "4": "Carte 1 remboursée en 17 mois",
+            "5": "Transférer 340$ à la Carte 2 = 400$ total",
+            "6": "Carte 2 remboursée en 20 mois total"
+          },
+          "result": "Intérêts Totaux : 1 621$ | 20 mois jusqu'à la liberté financière | Économise 226$"
+        }
+      }
+    },
+    "interestExplanation": {
+      "title": "Comment Fonctionnent les Intérêts de Carte de Crédit",
+      "content": "Les intérêts de carte de crédit se composent quotidiennement, pas mensuellement. Votre TAP est divisé par 365 pour obtenir un taux quotidien, qui est appliqué à votre solde quotidien moyen. Par exemple, à 22% TAP, le taux quotidien est de 0,0603%. Sur un solde de 5 000$, vous accumulez environ 3$ d'intérêts par jour. Cela signifie que retarder les paiements—même de quelques jours—coûte de l'argent réel. Quand vous faites un paiement, il couvre d'abord les intérêts accumulés, puis les frais, et finalement réduit votre capital. C'est pourquoi les paiements minimums semblent à peine faire une différence : la plupart va aux intérêts, ne laissant qu'un petit montant pour réduire ce que vous devez réellement."
+    },
+    "whyPayoffMatters": {
+      "title": "Pourquoi Rembourser les Cartes de Crédit Importe",
+      "content": "La dette de carte de crédit est une des formes d'emprunt les plus coûteuses, avec des TAP moyens dépassant 22% en 2025. Contrairement aux hypothèques ou prêts auto avec des termes fixes, les cartes de crédit n'ont pas de date de remboursement définie—rendant facile de porter des soldes pendant des années ou décennies. Plus longtemps vous portez un solde, plus vous payez d'intérêts, qui auraient pu être investis ou épargnés. Éliminer la dette de carte de crédit libère des flux de trésorerie pour l'épargne d'urgence, les contributions retraite, et autres objectifs financiers. Cela améliore aussi votre ratio d'utilisation de crédit, potentiellement augmentant votre cote de crédit."
+    },
+    "buildingGoodHabits": {
+      "title": "Construire des Habitudes de Carte de Crédit Durables",
+      "content": "Une fois vos cartes de crédit remboursées, prévenez les dettes futures en les traitant comme des cartes de débit—ne chargez que ce que vous pouvez payer en entier chaque mois. Configurez le paiement automatique pour le solde complet pour éviter complètement les intérêts. Utilisez vos cartes pour les récompenses et la protection d'achat, mais ne portez jamais de solde. Si vous avez du mal avec les dépenses excessives, considérez utiliser de l'argent comptant ou une carte de débit pour les achats discrétionnaires. Finalement, construisez un fonds d'urgence de 3-6 mois de dépenses pour que les coûts inattendus ne vous forcent pas à retourner dans la dette de carte de crédit."
+    }
+  },
+  "faq": {
+    "title": "Questions Fréquemment Posées",
+    "items": {
+      "0": {
+        "question": "Laquelle est meilleure : boule de neige ou avalanche de dette ?",
+        "answer": "Mathématiquement, la méthode avalanche (payer le TAP le plus élevé en premier) économise plus d'argent. Cependant, la recherche montre que beaucoup de personnes réussissent mieux avec la méthode boule de neige car rembourser de plus petits soldes rapidement fournit des victoires psychologiques qui maintiennent la motivation. Choisissez avalanche si vous êtes discipliné et motivé par économiser de l'argent. Choisissez boule de neige si vous avez besoin de victoires rapides pour rester sur la bonne voie. La meilleure méthode est celle à laquelle vous vous tiendrez."
+      },
+      "1": {
+        "question": "Comment le paiement minimum est-il calculé sur les cartes de crédit ?",
+        "answer": "La plupart des compagnies de cartes de crédit calculent le paiement minimum comme 2-3% de votre solde OU un montant fixe (25-35$), selon le montant le plus élevé. Certaines calculent 1% du solde plus tous les intérêts et frais. Par exemple, sur un solde de 5 000$, le minimum est généralement 100-150$. Vérifiez votre accord de carte pour la formule exacte. Avertissement : Payer seulement les minimums peut prendre 20+ ans pour rembourser un solde."
+      },
+      "2": {
+        "question": "Devrais-je faire un transfert de solde vers une carte à 0% TAP ?",
+        "answer": "Un transfert de solde peut économiser beaucoup d'argent si : (1) Vous avez un bon crédit pour vous qualifier (généralement 670+), (2) Vous pouvez rembourser le solde avant la fin de la période promotionnelle (généralement 12-21 mois), (3) Les frais de transfert de 3-5% sont moins que les intérêts que vous paieriez autrement. Par exemple, transférer 5 000$ avec des frais de 3% coûte 150$, mais économise 900$+ en intérêts sur 15 mois à 22% TAP. Cependant, si vous ne pouvez pas rembourser avant la fin de la promotion, le TAP régulier (souvent 20%+) s'applique sur tout solde restant."
+      },
+      "3": {
+        "question": "Combien supplémentaire devrais-je payer pour faire une vraie différence ?",
+        "answer": "Même 25-50$ supplémentaires par mois fait une différence significative. Sur un solde de 5 000$ à 22% TAP : payer seulement les minimums prend 27 ans et coûte 9 200$ total. Ajouter seulement 50$/mois réduit cela à 43 mois et 6 400$ total—économisant 2 800$ et 24 ans ! Ajouter 100$/mois le réduit encore à 29 mois et 5 800$. La clé est la constance : tout montant supplémentaire, payé chaque mois, se compose en économies massives."
+      },
+      "4": {
+        "question": "Devrais-je épargner de l'argent ou rembourser les cartes de crédit en premier ?",
+        "answer": "Généralement, remboursez d'abord la dette de carte de crédit à intérêts élevés—il est difficile de gagner des rendements de 20%+ en investissant. Cependant, construisez d'abord un petit fonds d'urgence de 500-1 000$. Sans cette réserve, toute dépense inattendue vous force à retourner aux cartes de crédit. Une fois que vous avez un mini fonds d'urgence, remboursez agressivement les cartes. Après que les cartes soient remboursées, construisez un fonds d'urgence complet de 3-6 mois."
+      },
+      "5": {
+        "question": "Que se passe-t-il si je manque un paiement de carte de crédit ?",
+        "answer": "Manquer un paiement déclenche plusieurs conséquences : (1) Frais de retard de 25-40$, (2) TAP de pénalité jusqu'à 29,99% peut s'appliquer à tout votre solde, (3) Après 30 jours de retard, c'est rapporté aux bureaux de crédit et endommage votre cote, (4) Après 60 jours, le TAP de pénalité s'applique définitivement, (5) Après 180 jours, votre compte peut être radié et vendu aux collections. Payez toujours au moins le minimum à temps. Si vous ne pouvez pas vous le permettre, appelez votre émetteur de carte pour discuter des options de difficulté avant de manquer le paiement."
+      }
+    }
+  },
+  "sources": {
+    "title": "Sources",
+    "viewSource": "Voir la source",
+    "opensNewTab": "Ouvre dans un nouvel onglet",
+    "items": {
+      "0": "Consumer Financial Protection Bureau (2025). Rapport du Marché des Cartes de Crédit Consommateur. Rapport Annuel CFPB.",
+      "1": "Federal Reserve (2025). Rapport G.19 Crédit Consommateur - Taux d'Intérêt des Cartes de Crédit. Publication Statistique de la Réserve Fédérale."
+    }
+  },
+  "ui": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser",
+    "share": "Partager",
+    "save": "Sauvegarder",
+    "export": "Exporter",
+    "pdf": "PDF",
+    "excel": "Excel",
+    "copied": "Copié !",
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "required": "Requis",
+    "optional": "Optionnel",
+    "unitSystem": "Système d'unités",
+    "imperial": "Impérial",
+    "metric": "Métrique",
+    "home": "Accueil",
+    "calculators": "Calculatrices"
+  },
+  "rating": {
+    "title": "Évaluez cette calculatrice",
+    "clickToRate": "Cliquez pour évaluer",
+    "youRated": "Vous avez évalué",
+    "stars": "étoiles",
+    "averageFrom": "Moyenne de",
+    "ratings": "évaluations",
+    "shareCalculator": "Partager cette calculatrice",
+    "thankYou": "Merci pour votre évaluation !"
+  },
+  "disclaimers": {
+    "health": "Cette calculatrice fournit des estimations à des fins éducatives seulement. Les résultats peuvent varier. Consultez un professionnel de la santé pour des conseils médicaux.",
+    "finance": "Cette calculatrice fournit des estimations à des fins éducatives seulement. Les résultats réels peuvent varier. Consultez un conseiller financier pour des conseils personnalisés."
+  }
+}

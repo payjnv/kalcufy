@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { slugToTranslationKey, type Calculator } from "@/config/calculators-config";
 import { getCategoryIcon, getCategoryColors } from "@/config/category-icons";
+import { getSlugForLocale } from "@/engine/v4/slugs/registry";
 
 interface Category {
   id: string;
@@ -12,6 +13,8 @@ interface Category {
   nameEn: string;
   nameEs: string | null;
   namePt: string | null;
+  nameFr: string | null;
+  nameDe: string | null;
   icon: string | null;
   color: string;
 }
@@ -41,6 +44,8 @@ export default function CalculatorsClientWrapper({ calculators, categories, coun
 
   const getCategoryName = (cat: Category): string => {
     if (locale === "es" && cat.nameEs) return cat.nameEs;
+    if (locale === "fr" && cat.nameFr) return cat.nameFr;
+    if (locale === "de" && cat.nameDe) return cat.nameDe;
     if (locale === "pt" && cat.namePt) return cat.namePt;
     return cat.nameEn;
   };
@@ -61,6 +66,21 @@ export default function CalculatorsClientWrapper({ calculators, categories, coun
     } catch {
       return calc.description;
     }
+  };
+
+  // Get the localized slug for a calculator
+  const getLocalizedSlug = (calc: Calculator): string => {
+    // Extract calculator ID from slug (e.g., "tip-calculator" -> "tip")
+    const calcId = calc.slug
+      .replace("-calculator", "")
+      .replace("-generator", "")
+      .replace("-converter", "");
+    
+    // Try to get localized slug from registry
+    const localizedSlug = getSlugForLocale(calcId, locale as "en" | "es" | "pt" | "fr");
+    
+    // If found in registry, use it; otherwise fall back to original slug
+    return localizedSlug || calc.slug;
   };
 
   const getCategoryButtonColor = (color: string, isActive: boolean) => {
@@ -173,7 +193,7 @@ export default function CalculatorsClientWrapper({ calculators, categories, coun
                 <ul className="space-y-1">
                   {popularCalculators.map((calc) => (
                     <li key={calc.slug}>
-                      <Link href={`/${locale}/${calc.slug}`} className="flex items-center gap-2 px-3 py-2 text-sm text-slate-600 hover:text-blue-600 hover:bg-slate-50 rounded-lg">
+                      <Link href={`/${locale}/${getLocalizedSlug(calc)}`} className="flex items-center gap-2 px-3 py-2 text-sm text-slate-600 hover:text-blue-600 hover:bg-slate-50 rounded-lg">
                         <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
                         {getCalculatorName(calc)}
                       </Link>
@@ -201,7 +221,7 @@ export default function CalculatorsClientWrapper({ calculators, categories, coun
                 <ul className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
                   {calcs.map((calc) => (
                     <li key={calc.slug}>
-                      <Link href={`/${locale}/${calc.slug}`} className={`block bg-white p-5 rounded-xl shadow-sm hover:shadow-md border border-slate-100 group ${colors.ring}`}>
+                      <Link href={`/${locale}/${getLocalizedSlug(calc)}`} className={`block bg-white p-5 rounded-xl shadow-sm hover:shadow-md border border-slate-100 group ${colors.ring}`}>
                         <div className="flex items-start justify-between mb-2">
                           <h3 className="font-semibold text-slate-900 group-hover:text-blue-600">{getCalculatorName(calc)}</h3>
                           {calc.isNew && <span className={`px-2 py-0.5 text-xs font-medium rounded-full ${colors.bg} ${colors.text}`}>NEW</span>}

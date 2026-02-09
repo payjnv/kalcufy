@@ -1,0 +1,113 @@
+{
+  "calculator": {
+    "title": "Calculateur de Marge Bénéficiaire - Calculez la Marge Brute, Nette et Opérationnelle",
+    "subtitle": "Calculez la marge bénéficiaire, la majoration et la tarification optimale",
+    "breadcrumb": "Marge Bénéficiaire",
+    "yourInformation": "Vos Informations",
+    "mode": "Calculer"
+  },
+  "inputs": {
+    "cost": {
+      "label": "Coût (COGS)"
+    },
+    "revenue": {
+      "label": "Prix de Vente / Chiffre d'Affaires"
+    },
+    "desiredMargin": {
+      "label": "Marge Bénéficiaire Cible"
+    },
+    "profit": {
+      "label": "Bénéfice Brut"
+    },
+    "markup": {
+      "label": "Majoration"
+    },
+    "sellingPrice": {
+      "label": "Prix de Vente"
+    },
+    "maxCost": {
+      "label": "Coût Maximum"
+    },
+    "revenuePerDollar": {
+      "label": "Bénéfice par 1€ de Chiffre d'Affaires"
+    },
+    "marginTypes": {
+      "label": "Marge Brute"
+    },
+    "quickTips": {
+      "label": "Marge élevée ≠ toujours meilleure (le volume compte)"
+    }
+  },
+  "results": {
+    "profitMargin": "Marge Bénéficiaire",
+    "profit": "Bénéfice Brut",
+    "markup": "Majoration",
+    "sellingPrice": "Prix de Vente",
+    "maxCost": "Coût Maximum",
+    "revenuePerDollar": "Bénéfice par 1€ de Chiffre d'Affaires"
+  },
+  "info": {},
+  "reference": {},
+  "education": {},
+  "faq": {
+    "0": {
+      "question": "Quoi",
+      "answer": "La marge est calculée en pourcentage du prix de vente (Bénéfice ÷ Prix × 100), tandis que la majoration est calculée en pourcentage du coût (Bénéfice ÷ Coût × 100). Par exemple, si un produit coûte 60€ et se vend 100€, la marge est de 40% (40€÷100€) mais la majoration est de 66,7% (40€÷60€). Cette distinction est cruciale pour la stratégie de prix."
+    },
+    "1": {
+      "question": "Quoi",
+      "answer": "Cela varie énormément selon l'industrie. Les logiciels et SaaS atteignent généralement 70-90% de marges brutes. Le commerce de vêtements varie de 45-65%. Les restaurants visent 60-70% sur la nourriture. L'épicerie fonctionne avec de faibles marges de 20-30%. Comparez vos marges aux références sectorielles plutôt qu'à des objectifs arbitraires."
+    },
+    "2": {
+      "question": "Comment convertir la majoration en marge ?",
+      "answer": "Utilisez cette formule : Marge = Majoration ÷ (1 + Majoration). Par exemple, une majoration de 50% (0,50) se convertit en : 0,50 ÷ 1,50 = 0,333 soit 33,3% de marge. Inversement, pour convertir la marge en majoration : Majoration = Marge ÷ (1 - Marge). Une marge de 40% équivaut à : 0,40 ÷ 0,60 = 66,7% de majoration."
+    },
+    "3": {
+      "question": "Quoi",
+      "answer": "Marge brute = (Chiffre d'affaires - COGS) ÷ Chiffre d'affaires. Elle ne considère que les coûts directs de production. La marge opérationnelle soustrait les dépenses opérationnelles (loyer, salaires, marketing) du bénéfice brut. La marge nette est après TOUTES les dépenses incluant taxes et intérêts. Chacune raconte une histoire différente sur la santé de l'entreprise."
+    },
+    "4": {
+      "question": "Dois-je tarifer basé sur coût-plus ou tarification basée sur la valeur ?",
+      "answer": "La tarification coût-plus (ajout d'une majoration fixe au coût) est simple mais peut laisser de l'argent sur la table. La tarification basée sur la valeur fixe les prix selon la valeur perçue par le client, atteignant souvent des marges plus élevées. La plupart des entreprises bénéficient d'une approche hybride - utilisant le coût comme plancher mais ajustant selon le positionnement marché et la volonté de payer du client."
+    },
+    "5": {
+      "question": "Comment puis-je augmenter la marge bénéficiaire sans augmenter les prix ?",
+      "answer": "Concentrez-vous sur la réduction des coûts : négociez de meilleures conditions fournisseurs, réduisez les déchets, automatisez les processus, optimisez l'inventaire. Considérez aussi votre mix produit - promouvant les articles à forte marge tout en éliminant progressivement ceux à faible marge. Améliorer l'efficacité opérationnelle et réduire les frais généraux peut considérablement augmenter les marges sans toucher aux prix."
+    },
+    "6": {
+      "question": "Pourquoi ma marge est-elle plus faible que mon pourcentage de majoration ?",
+      "answer": "La marge sera toujours plus faible que la majoration pour le même produit car elles utilisent des dénominateurs différents. La marge utilise le prix de vente plus élevé comme base, tandis que la majoration utilise le coût plus faible. Une majoration de 100% ne donne qu'une marge de 50% car vous"
+    },
+    "7": {
+      "question": "Comment calculer le prix de vente pour une marge cible ?",
+      "answer": "Utilisez la formule : Prix de Vente = Coût ÷ (1 - Marge Cible). Par exemple, si votre coût est de 60€ et vous voulez une marge de 40% : 60€ ÷ (1 - 0,40) = 60€ ÷ 0,60 = 100€. Ceci assure que votre marge finale est exactement ce que vous visiez, pas l'erreur courante d'ajouter simplement le pourcentage au coût."
+    },
+    "title": "Questions Fréquemment Posées"
+  },
+  "modes": {
+    "margin": {
+      "label": "Calculer la Marge"
+    },
+    "price": {
+      "label": "Trouver le Prix de Vente"
+    },
+    "cost": {
+      "label": "Trouver le Coût Max"
+    }
+  },
+  "categories": {
+    "health": "Santé",
+    "finance": "Finance"
+  },
+  "breadcrumbs": {
+    "home": "Accueil",
+    "calculators": "Calculateurs"
+  },
+  "sources": {
+    "title": "Sources et Références"
+  },
+  "disclaimers": {
+    "health": "Les résultats sont des estimations. Consultez un professionnel.",
+    "finance": "À des fins d'information uniquement."
+  }
+}

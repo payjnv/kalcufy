@@ -6,7 +6,6 @@ import Image from "next/image";
 import { useLocale } from "next-intl";
 import { useParams } from "next/navigation";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import AdBlock from "@/components/ads/AdBlock";
 import { isValidCalculator, getCalculatorName } from "@/lib/valid-calculators";
 
@@ -190,7 +189,7 @@ export default function BlogPostPage() {
             <p className="text-slate-500">{txt.loading}</p>
           </div>
         </main>
-        <Footer />
+
       </>
     );
   }
@@ -207,7 +206,7 @@ export default function BlogPostPage() {
             </Link>
           </div>
         </main>
-        <Footer />
+
       </>
     );
   }
@@ -404,7 +403,7 @@ export default function BlogPostPage() {
                     </div>
                   </div>
                   <div className="p-5">
-                    <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
+                    <form className="space-y-3" onSubmit={async(e)=>{e.preventDefault();const i=e.currentTarget.querySelector("input") as HTMLInputElement;const b=e.currentTarget.querySelector("button") as HTMLButtonElement;if(!i.value)return;b.textContent="...";try{const r=await fetch("/api/newsletter/subscribe",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:i.value,language:locale,source:"blog-sidebar"})});if(r.ok){b.textContent="✓";i.value="";b.disabled=true}else{b.textContent="Error";setTimeout(()=>{b.textContent="Subscribe"},2000)}}catch{b.textContent="Error";setTimeout(()=>{b.textContent="Subscribe"},2000)}}}>
                       <input 
                         type="email" 
                         placeholder={txt.emailPlaceholder}
@@ -426,7 +425,7 @@ export default function BlogPostPage() {
         </div>
       </main>
       
-      <Footer />
+
     </>
   );
 }

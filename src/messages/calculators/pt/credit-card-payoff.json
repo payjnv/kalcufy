@@ -1,57 +1,243 @@
 {
-  "meta": {
-    "title": "Calculadora de Quitação de Cartão de Crédito | Kalcufy",
-    "description": "Calculadora gratuita para criar um plano livre de dívidas, comparar estratégias de pagamento e ver quanto pode economizar."
-  },
   "calculator": {
-    "title": "Calculadora de Quitação de Cartão",
-    "subtitle": "Crie seu plano livre de dívidas",
-    "breadcrumb": "Quitação de Cartão",
-    "debtDetails": "Detalhes da Dívida",
-    "inputs": {
-      "balance": "Saldo Atual",
-      "interestRate": "Taxa de Juros",
-      "minimumPayment": "Pagamento Mínimo",
-      "extraPayment": "Pagamento Mensal Extra"
+    "name": "Calculadora de Quitação de Cartão de Crédito",
+    "title": "Calculadora de Quitação de Cartão de Crédito - Comparação Bola de Neve vs Avalanche",
+    "description": "Calcule como quitar sua dívida do cartão de crédito mais rapidamente. Compare métodos bola de neve vs avalanche, veja economias com transferência de saldo e obtenha uma data personalizada livre de dívidas com cronograma mensal de pagamentos.",
+    "shortDescription": "Calcule sua data livre de dívidas e compare estratégias de quitação",
+    "badge": "Finanças"
+  },
+  "inputs": {
+    "card1Balance": {
+      "label": "Saldo do Cartão 1",
+      "helpText": "Saldo atual devedor neste cartão"
     },
-    "results": {
-      "monthsToPayoff": "Meses para Quitar",
-      "totalInterest": "Juros Totais",
-      "totalPayments": "Total de Pagamentos",
-      "payoffDate": "Data de Quitação",
-      "interestSaved": "Juros Economizados",
-      "timeSaved": "Tempo Economizado"
+    "card1APR": {
+      "label": "Taxa do Cartão 1"
     },
-    "comparison": {
-      "title": "Comparação de Pagamentos",
-      "minimumOnly": "Apenas Mínimo",
-      "withExtra": "Com Pagamento Extra",
-      "months": "meses",
-      "years": "anos"
+    "card1MinPayment": {
+      "label": "Pagamento Mínimo do Cartão 1",
+      "helpText": "Geralmente 2% do saldo ou R$ 35, o que for maior"
     },
-    "buttons": { "viewSchedule": "Ver Cronograma de Pagamentos", "save": "Salvar", "pdf": "PDF", "excel": "Excel" },
-    "modal": { "title": "Cronograma de Pagamentos", "month": "Mês", "payment": "Pagamento", "principal": "Principal", "interest": "Juros", "balance": "Saldo" },
-    "favorites": { "add": "Adicionar aos favoritos", "remove": "Remover dos favoritos" },
-    "saving": { "saving": "Salvando...", "saved": "Salvo", "error": "Erro ao salvar" }
+    "card2Balance": {
+      "label": "Saldo do Cartão 2 (opcional)"
+    },
+    "card2APR": {
+      "label": "Taxa do Cartão 2"
+    },
+    "card2MinPayment": {
+      "label": "Pagamento Mínimo do Cartão 2"
+    },
+    "card3Balance": {
+      "label": "Saldo do Cartão 3 (opcional)"
+    },
+    "card3APR": {
+      "label": "Taxa do Cartão 3"
+    },
+    "card3MinPayment": {
+      "label": "Pagamento Mínimo do Cartão 3"
+    },
+    "extraPayment": {
+      "label": "Pagamento Mensal Extra",
+      "helpText": "Valor adicional além dos pagamentos mínimos para acelerar a quitação"
+    },
+    "payoffStrategy": {
+      "label": "Estratégia Preferida",
+      "helpText": "Bola de neve = vitórias mais rápidas para motivação. Avalanche = economiza mais em juros.",
+      "options": {
+        "compare": "Comparar Ambas",
+        "snowball": "Bola de Neve",
+        "avalanche": "Avalanche"
+      }
+    }
+  },
+  "results": {
+    "totalDebt": "Dívida Total",
+    "debtFreeDate": "Data Livre de Dívidas",
+    "monthsToPayoff": "Meses para Quitar",
+    "totalInterest": "Total de Juros Pagos",
+    "totalPayments": "Valor Total Pago",
+    "interestSavings": "Economia de Juros vs Mínimo",
+    "recommendedStrategy": "Estratégia Recomendada",
+    "minimumOnlyWarning": "Aviso sobre Pagamento Mínimo"
+  },
+  "dynamic": {
+    "neverPaysOff": "Nunca (pagamento muito baixo)",
+    "neverPayoffWarning": "⚠️ Pagamentos mínimos NUNCA quitarão esta dívida!",
+    "minimumOnlyPayoff": "Somente mínimo: {{years}}a {{months}}m, R$ {{interest}} em juros",
+    "avalancheSavings": "Avalanche (economiza R$ {{savings}} e {{months}} meses)",
+    "eitherMethodWorks": "Qualquer método funciona - escolha baseado na sua preferência",
+    "enterBalanceMessage": "Digite pelo menos um saldo de cartão de crédito para calcular seu plano de quitação.",
+    "insufficientPayment": "Seu pagamento mensal de R$ {{payment}} não é suficiente para quitar R$ {{debt}} em dívidas. Aumente seu pagamento para progredir.",
+    "successSummary": "Quite R$ {{debt}} em {{months}} meses até {{date}}. Você pagará R$ {{interest}} em juros—economizando R$ {{savings}} vs pagamentos mínimos!"
+  },
+  "infoCards": {
+    "strategyComparison": {
+      "title": "Comparação de Estratégias",
+      "items": {
+        "0": "Meses Bola de Neve",
+        "1": "Juros Bola de Neve",
+        "2": "Meses Avalanche",
+        "3": "Juros Avalanche",
+        "4": "Economia Avalanche"
+      }
+    },
+    "payoffBreakdown": {
+      "title": "Detalhamento do Pagamento",
+      "items": {
+        "0": "Pagamento Mensal",
+        "1": "Juros Médios/Mês",
+        "2": "Cartões a Pagar"
+      }
+    }
+  },
+  "reference": {
+    "balancePayoffTable": {
+      "title": "Cronograma de Quitação por Saldo",
+      "description": "Tempo necessário para quitar diferentes saldos a 22% ao ano com pagamento de R$ 200/mês",
+      "items": {
+        "0": "Saldo",
+        "1": "Meses",
+        "2": "Total de Juros",
+        "3": "Total Pago"
+      }
+    }
   },
   "education": {
-    "title": "Libertando-se da Dívida do Cartão",
-    "content1": "A dívida de cartão de crédito pode ser uma das formas mais caras de empréstimo, com taxas médias em torno de 20%. Pagar apenas o mínimo pode levar décadas.",
-    "content2": "A chave para sair da dívida do cartão é pagar mais que o mínimo. Mesmo pequenos pagamentos extras podem economizar milhares em juros e anos de pagamentos.",
-    "tips": {
-      "title": "Dicas para Quitar Dívidas",
-      "tip1": { "title": "Pague Mais que o Mínimo", "description": "Pagamentos mínimos cobrem principalmente juros, não principal." },
-      "tip2": { "title": "Use o Método Avalanche", "description": "Pague primeiro a dívida de maior juros para economizar mais." },
-      "tip3": { "title": "Considere Portabilidade", "description": "Transferir para taxa menor pode ajudar se você pagar a tempo." },
-      "tip4": { "title": "Pare de Adicionar Dívida", "description": "Corte o cartão ou congele enquanto paga." }
+    "payoffMethods": {
+      "title": "Métodos de Quitação de Dívidas Explicados",
+      "items": {
+        "0": "Pague o mínimo em todos os cartões, depois ataque primeiro o menor saldo com dinheiro extra. Quando esse cartão for quitado, direcione esse pagamento para o próximo menor. Prós: Vitórias rápidas aumentam a motivação. Contras: Pode pagar mais juros no geral.",
+        "1": "Pague o mínimo em todos os cartões, depois ataque primeiro o cartão com maior taxa com dinheiro extra. Quando quitado, passe para a próxima maior taxa. Prós: Economiza mais dinheiro. Contras: Pode demorar mais para ver o primeiro cartão quitado.",
+        "2": "Transfira dívida de alta taxa para um cartão com 0% de taxa promocional (tipicamente 12-21 meses). Pague uma taxa de transferência de 3-5%, mas economize significativamente em juros se quitar antes do fim da promoção. Melhor para: Quem consegue quitar dentro do período promocional.",
+        "3": "Pagar apenas o mínimo (geralmente 2% do saldo) significa que a maior parte do seu pagamento vai para juros. Um saldo de R$ 5.000 a 22% ao ano com pagamentos mínimos leva 27+ anos para quitar e custa R$ 9.000+ em juros!"
+      }
     },
-    "faqTitle": "Perguntas Frequentes"
+    "considerations": {
+      "title": "Considerações Importantes",
+      "items": {
+        "0": "Taxa média de cartão de crédito em 2025 é 21-23% - entre os custos de empréstimo mais altos",
+        "1": "Pagar apenas o mínimo pode levar 20-30 anos para quitar e triplicar seu custo total",
+        "2": "Pare de usar cartões enquanto quita a dívida - novas compras sabotam seu progresso",
+        "3": "Mesmo R$ 25-50 extras por mês aceleram significativamente sua data livre de dívidas",
+        "4": "O método avalanche economiza dinheiro, mas bola de neve pode mantê-lo motivado por mais tempo",
+        "5": "Considere uma transferência de saldo 0% se você tem bom crédito e pode quitar em 12-18 meses",
+        "6": "Construa primeiro um pequeno fundo de emergência para evitar novas dívidas quando custos inesperados surgirem"
+      }
+    },
+    "exampleCalculation": {
+      "title": "Exemplo: Quitando R$ 8.000 em Dívida de Cartão de Crédito",
+      "description": "Dois cartões: R$ 5.000 a 24% ao ano e R$ 3.000 a 18% ao ano. Orçamento total de R$ 400/mês.",
+      "examples": {
+        "0": {
+          "title": "Método Bola de Neve",
+          "steps": {
+            "0": "Total de pagamentos mínimos: R$ 160/mês",
+            "1": "Pagamento extra: R$ 240/mês",
+            "2": "Foque primeiro no Cartão 2 (saldo de R$ 3.000)",
+            "3": "Pague R$ 265/mês para Cartão 2, R$ 135 mínimo para Cartão 1",
+            "4": "Cartão 2 quitado em 13 meses",
+            "5": "Transfira R$ 265 para Cartão 1 = R$ 400 total",
+            "6": "Cartão 1 quitado em 21 meses total"
+          },
+          "result": "Total de Juros: R$ 1.847 | 21 meses para ficar livre de dívidas"
+        },
+        "1": {
+          "title": "Método Avalanche",
+          "steps": {
+            "0": "Total de pagamentos mínimos: R$ 160/mês",
+            "1": "Pagamento extra: R$ 240/mês",
+            "2": "Foque primeiro no Cartão 1 (24% ao ano)",
+            "3": "Pague R$ 340/mês para Cartão 1, R$ 60 mínimo para Cartão 2",
+            "4": "Cartão 1 quitado em 17 meses",
+            "5": "Transfira R$ 340 para Cartão 2 = R$ 400 total",
+            "6": "Cartão 2 quitado em 20 meses total"
+          },
+          "result": "Total de Juros: R$ 1.621 | 20 meses para ficar livre de dívidas | Economiza R$ 226"
+        }
+      }
+    },
+    "interestExplanation": {
+      "title": "Como Funcionam os Juros do Cartão de Crédito",
+      "content": "Os juros do cartão de crédito são compostos diariamente, não mensalmente. Sua taxa anual é dividida por 365 para obter uma taxa diária, que é aplicada ao seu saldo médio diário. Por exemplo, a 22% ao ano, a taxa diária é 0,0603%. Em um saldo de R$ 5.000, você acumula cerca de R$ 3 em juros por dia. Isso significa que atrasar pagamentos—mesmo por alguns dias—custa dinheiro real. Quando você faz um pagamento, primeiro cobre os juros acumulados, depois taxas e finalmente reduz seu principal. É por isso que pagamentos mínimos parecem mal fazer diferença: a maior parte vai para juros, deixando apenas uma pequena quantia para reduzir o que você realmente deve."
+    },
+    "whyPayoffMatters": {
+      "title": "Por Que Quitar Cartões de Crédito Importa",
+      "content": "Dívida de cartão de crédito é uma das formas mais caras de empréstimo, com taxas médias superiores a 22% em 2025. Diferentemente de financiamentos imobiliários ou de veículos com prazos fixos, cartões de crédito não têm data definida de quitação—facilitando carregar saldos por anos ou décadas. Quanto mais tempo você carrega um saldo, mais paga em juros, que poderiam ter sido investidos ou poupados. Eliminar dívidas de cartão libera fluxo de caixa para poupança de emergência, contribuições para aposentadoria e outros objetivos financeiros. Também melhora sua taxa de utilização de crédito, potencialmente aumentando seu score."
+    },
+    "buildingGoodHabits": {
+      "title": "Construindo Hábitos de Cartão de Crédito Duradouros",
+      "content": "Depois de quitar seus cartões, evite dívidas futuras tratando-os como cartões de débito—só gaste o que pode pagar integralmente todo mês. Configure débito automático para o saldo total para evitar juros totalmente. Use seus cartões para recompensas e proteção de compras, mas nunca carregue saldo. Se você tem dificuldade com gastos excessivos, considere usar dinheiro ou cartão de débito para compras discricionárias. Finalmente, construa um fundo de emergência de 3-6 meses de despesas para que custos inesperados não o forcem de volta às dívidas de cartão."
+    }
   },
-  "faq": [
-    { "question": "Por que o pagamento mínimo demora tanto?", "answer": "Os pagamentos mínimos são projetados para maximizar juros para o banco. A maior parte do seu pagamento vai para juros, mal tocando o principal." },
-    { "question": "Método Avalanche vs Bola de Neve?", "answer": "Avalanche paga primeiro o maior juros (economiza mais dinheiro). Bola de Neve paga primeiro o menor saldo (vitórias psicológicas). Avalanche é matematicamente ótimo." },
-    { "question": "Devo usar poupança para pagar dívida?", "answer": "Se seu cartão cobra 20% e sua poupança rende 2%, pagar a dívida é como ganhar 20% garantido. Mantenha um pequeno fundo de emergência, depois ataque a dívida." }
-  ],
-  "sidebar": { "financeTitle": "Calculadoras Financeiras", "healthTitle": "Calculadoras de Saúde" },
-  "common": { "home": "Início", "calculators": "Calculadoras", "pro": "PRO" }
+  "faq": {
+    "title": "Perguntas Frequentes",
+    "items": {
+      "0": {
+        "question": "O que é melhor: bola de neve ou avalanche?",
+        "answer": "Matematicamente, o método avalanche (pagando primeiro a maior taxa) economiza mais dinheiro. No entanto, pesquisas mostram que muitas pessoas são mais bem-sucedidas com o método bola de neve porque quitar saldos menores rapidamente proporciona vitórias psicológicas que mantêm a motivação. Escolha avalanche se você é disciplinado e motivado por economizar dinheiro. Escolha bola de neve se precisa de vitórias rápidas para manter-se no caminho. O melhor método é aquele que você seguirá."
+      },
+      "1": {
+        "question": "Como é calculado o pagamento mínimo nos cartões de crédito?",
+        "answer": "A maioria das empresas de cartão calcula o pagamento mínimo como 2-3% do seu saldo OU um valor fixo (R$ 25-35), o que for maior. Algumas calculam 1% do saldo mais todos os juros e taxas. Por exemplo, em um saldo de R$ 5.000, o mínimo é tipicamente R$ 100-150. Verifique o contrato do seu cartão para a fórmula exata. Aviso: Pagar apenas o mínimo pode levar 20+ anos para quitar um saldo."
+      },
+      "2": {
+        "question": "Devo fazer transferência de saldo para um cartão 0%?",
+        "answer": "Uma transferência de saldo pode economizar dinheiro significativo se: (1) Você tem bom crédito para se qualificar (geralmente 670+), (2) Pode quitar o saldo antes do período promocional acabar (tipicamente 12-21 meses), (3) A taxa de transferência de 3-5% é menor que os juros que pagaria. Por exemplo, transferir R$ 5.000 com taxa de 3% custa R$ 150, mas economiza R$ 900+ em juros em 15 meses a 22% ao ano. No entanto, se não conseguir quitar antes da promoção acabar, a taxa regular (frequentemente 20%+) incide sobre qualquer saldo restante."
+      },
+      "3": {
+        "question": "Quanto extra devo pagar para fazer diferença real?",
+        "answer": "Mesmo R$ 25-50 extras por mês fazem diferença significativa. Em um saldo de R$ 5.000 a 22% ao ano: pagar apenas o mínimo leva 27 anos e custa R$ 9.200 total. Adicionar apenas R$ 50/mês reduz isso para 43 meses e R$ 6.400 total—economizando R$ 2.800 e 24 anos! Adicionar R$ 100/mês reduz ainda mais para 29 meses e R$ 5.800. A chave é consistência: qualquer valor extra, pago todo mês, resulta em economias massivas."
+      },
+      "4": {
+        "question": "Devo poupar dinheiro ou quitar cartões primeiro?",
+        "answer": "Geralmente, quite primeiro dívidas de cartão com juros altos—é difícil ganhar 20%+ retornos investindo. No entanto, construa primeiro um pequeno fundo de emergência de R$ 500-1.000. Sem essa reserva, qualquer despesa inesperada o força de volta aos cartões. Depois de ter um mini fundo de emergência, pague agressivamente os cartões. Após quitá-los, construa um fundo de emergência completo de 3-6 meses."
+      },
+      "5": {
+        "question": "O que acontece se eu perder um pagamento do cartão?",
+        "answer": "Perder um pagamento desencadeia múltiples consequências: (1) Taxa de atraso de R$ 25-40, (2) Taxa punitiva de até 29,99% ao ano pode se aplicar a todo seu saldo, (3) Após 30 dias de atraso, é reportado aos órgãos de proteção e prejudica seu score, (4) Após 60 dias, a taxa punitiva definitivamente se aplica, (5) Após 180 dias, sua conta pode ser baixada e vendida para cobrança. Sempre pague pelo menos o mínimo em dia. Se não conseguir, ligue para a operadora do cartão para discutir opções de dificuldade antes de perder o pagamento."
+      }
+    }
+  },
+  "sources": {
+    "title": "Fontes",
+    "viewSource": "Ver fonte",
+    "opensNewTab": "(abre em nova aba)",
+    "items": {
+      "0": "Consumer Financial Protection Bureau (2025). Consumer Credit Card Market Report. CFPB Annual Report.",
+      "1": "Federal Reserve (2025). G.19 Consumer Credit Report - Credit Card Interest Rates. Federal Reserve Statistical Release."
+    }
+  },
+  "ui": {
+    "calculate": "Calcular",
+    "reset": "Limpar",
+    "share": "Compartilhar",
+    "save": "Salvar",
+    "export": "Exportar",
+    "pdf": "PDF",
+    "excel": "Excel",
+    "copied": "Copiado!",
+    "loading": "Calculando...",
+    "error": "Erro no cálculo",
+    "required": "Obrigatório",
+    "optional": "Opcional",
+    "unitSystem": "Sistema de Unidades",
+    "imperial": "Imperial",
+    "metric": "Métrico",
+    "home": "Início",
+    "calculators": "Calculadoras"
+  },
+  "rating": {
+    "title": "Avalie esta calculadora",
+    "clickToRate": "Clique para avaliar",
+    "youRated": "Você avaliou",
+    "stars": "estrelas",
+    "averageFrom": "média de",
+    "ratings": "avaliações",
+    "shareCalculator": "Compartilhar calculadora",
+    "thankYou": "Obrigado pela sua avaliação!"
+  },
+  "disclaimers": {
+    "health": "Esta calculadora fornece estimativas apenas para fins educacionais. Os resultados podem variar. Consulte um profissional de saúde para orientação médica.",
+    "finance": "Esta calculadora fornece estimativas apenas para fins educacionais. Os resultados reais podem variar. Consulte um consultor financeiro para orientação personalizada."
+  }
 }

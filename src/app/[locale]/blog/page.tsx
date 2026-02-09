@@ -13,6 +13,8 @@ interface BlogCategory {
   nameEn: string;
   nameEs: string | null;
   namePt: string | null;
+  nameFr: string | null;
+  nameDe: string | null;
   icon: string;
   color: string;
 }
@@ -97,6 +99,8 @@ export default function BlogPage() {
 
   const getCategoryName = (cat: BlogCategory) => {
     if (locale === "es" && cat.nameEs) return cat.nameEs;
+    if (locale === "fr" && cat.nameFr) return cat.nameFr;
+    if (locale === "de" && cat.nameDe) return cat.nameDe;
     if (locale === "pt" && cat.namePt) return cat.namePt;
     return cat.nameEn;
   };
@@ -378,7 +382,7 @@ export default function BlogPage() {
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">{t("newsletter.title")}</h2>
               <p className="text-blue-100 mb-10 text-lg">{t("newsletter.subtitle")}</p>
-              <form className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
+              <form className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto" onSubmit={async(e)=>{e.preventDefault();const i=e.currentTarget.querySelector("input") as HTMLInputElement;const b=e.currentTarget.querySelector("button") as HTMLButtonElement;if(!i.value)return;b.textContent="...";try{const r=await fetch("/api/newsletter/subscribe",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:i.value,language:locale,source:"blog-footer"})});if(r.ok){b.textContent="✓ Subscribed!";i.value="";b.disabled=true}else{b.textContent="Error";setTimeout(()=>{b.textContent="Subscribe"},2000)}}catch{b.textContent="Error";setTimeout(()=>{b.textContent="Subscribe"},2000)}}}>
                 <input 
                   type="email" 
                   placeholder={t("newsletter.placeholder")} 

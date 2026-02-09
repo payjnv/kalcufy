@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from "react";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import Link from "next/link";
 import { useLocale } from "next-intl";
 import { useSession } from "next-auth/react";
@@ -857,7 +856,7 @@ export default function UnitConverterPage() {
         </section>
       </main>
 
-      <Footer />
+      
     </>
   );
 }

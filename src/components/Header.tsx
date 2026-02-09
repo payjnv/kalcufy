@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { useSession, signOut } from 'next-auth/react';
 import { usePathname, useRouter } from 'next/navigation';
 import { locales, localeFlags, localeNames, type Locale } from '@/i18n';
+import { getEntryBySlug, getSlugForLocale } from '@/engine/v4/slugs/registry';
 import { getCategoryIcon, getCategoryColors } from '@/config/category-icons';
 
 interface Category {
@@ -14,6 +15,7 @@ interface Category {
   nameEn: string;
   nameEs: string | null;
   namePt: string | null;
+  nameFr: string | null;
   icon: string | null;
   color: string;
   showInMenu: boolean;
@@ -48,13 +50,83 @@ export default function Header() {
   const getCategoryName = (cat: Category): string => {
     if (locale === 'es' && cat.nameEs) return cat.nameEs;
     if (locale === 'pt' && cat.namePt) return cat.namePt;
+    if (locale === 'fr' && cat.nameFr) return cat.nameFr;
     return cat.nameEn;
   };
 
-  // Change language function
+  // Change language function - ROBUST VERSION
   const changeLanguage = (newLocale: Locale) => {
-    const currentPath = pathname.replace(`/${locale}`, '');
-    router.push(`/${newLocale}${currentPath || ''}`);
+    // Extract path without any locale prefix
+    // pathname could be: /en/calculators, /es/calculadora-propinas, etc.
+    let pathWithoutLocale = pathname;
+    
+    // Remove ALL known locale prefixes to handle edge cases
+    for (const loc of locales) {
+      if (pathWithoutLocale.startsWith(`/${loc}/`)) {
+        pathWithoutLocale = pathWithoutLocale.slice(loc.length + 1); // +1 for the leading /
+        break; // Only remove one locale
+      } else if (pathWithoutLocale === `/${loc}`) {
+        pathWithoutLocale = '';
+        break;
+      }
+    }
+    
+    // Ensure pathWithoutLocale starts with / or is empty
+    if (pathWithoutLocale && !pathWithoutLocale.startsWith('/')) {
+      pathWithoutLocale = '/' + pathWithoutLocale;
+    }
+    
+    // If it's just the home page
+    if (!pathWithoutLocale || pathWithoutLocale === '/') {
+      router.push(`/${newLocale}`);
+      setLangMenuOpen(false);
+      setMenuOpen(false);
+      return;
+    }
+    
+    // Extract the slug (first segment after /)
+    const segments = pathWithoutLocale.split('/').filter(Boolean);
+    const slug = segments[0];
+    
+    // Check if this slug is a calculator in the registry
+    const entry = getEntryBySlug(slug, locale);
+    
+    if (entry) {
+      // It's a calculator - get the translated slug for the new locale
+      const newSlug = getSlugForLocale(entry.id, newLocale);
+      if (newSlug) {
+        // Preserve any additional path segments (like /results)
+        const remainingPath = segments.slice(1).join('/');
+        const newPath = remainingPath ? `/${newLocale}/${newSlug}/${remainingPath}` : `/${newLocale}/${newSlug}`;
+        router.push(newPath);
+        setLangMenuOpen(false);
+        setMenuOpen(false);
+        return;
+      }
+    }
+    
+
+    // Check if it is a blog post
+    if (segments[0] === "blog" && segments[1]) {
+      fetch(`/api/blog/${segments[1]}?locale=${newLocale}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.post?.slug) {
+            router.push(`/${newLocale}/blog/${data.post.slug}`);
+          } else {
+            router.push(`/${newLocale}${pathWithoutLocale}`);
+          }
+        })
+        .catch(() => {
+          router.push(`/${newLocale}${pathWithoutLocale}`);
+        });
+      setLangMenuOpen(false);
+      setMenuOpen(false);
+      return;
+    }
+
+    // Not a calculator or no translation found - keep the same path
+    router.push(`/${newLocale}${pathWithoutLocale}`);
     setLangMenuOpen(false);
     setMenuOpen(false);
   };

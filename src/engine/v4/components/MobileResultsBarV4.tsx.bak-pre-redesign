@@ -1,0 +1,492 @@
+"use client";
+
+/**
+ * MOBILE RESULTS BAR V4
+ * 
+ * Enhanced bottom sheet with:
+ * - Currency formatting by country
+ * - Spring animation (iOS-like)
+ * - Drag to dismiss gesture
+ * - Backdrop blur
+ * - Multi-language support
+ */
+
+import { useState, useRef, useEffect } from "react";
+import type { ResultConfig, TranslationFn } from "@/engine/v4/types/engine.types";
+import { useCurrency } from "@/lib/currency-helper";
+import { translateText } from "@/engine/v4/utils/common-translations";
+
+interface CalculatorResults {
+  values: Record<string, unknown>;
+  formatted: Record<string, string>;
+  summary?: string;
+  isValid?: boolean;
+}
+
+interface MobileResultsBarV4Props {
+  results: CalculatorResults | null;
+  hasCalculated: boolean;
+  primaryLabel: string;
+  primaryValue: string;
+  primaryUnit?: string;
+  t: TranslationFn;
+  locale?: string;
+  onSave?: () => void;
+  saveStatus?: "idle" | "saving" | "saved" | "error";
+  isLoggedIn?: boolean;
+  resultConfigs?: ResultConfig[];
+}
+
+// Auto-detect if a field should be formatted as currency
+function isCurrencyField(id: string, label: string): boolean {
+  const currencyKeywords = [
+    'payment', 'amount', 'cost', 'price', 'interest', 'total', 
+    'loan', 'principal', 'balance', 'salary', 'income', 'tax',
+    'fee', 'charge', 'value', 'worth', 'savings', 'debt',
+    'pago', 'monto', 'costo', 'precio', 'interes', 'prestamo',
+    'pagamento', 'valor', 'custo', 'preço', 'monthly', 'mensual'
+  ];
+  const lowerKey = (id + ' ' + label).toLowerCase();
+  return currencyKeywords.some(kw => lowerKey.includes(kw));
+}
+
+// Check if field is a date
+function isDateField(id: string, label: string): boolean {
+  const dateKeywords = ['date', 'fecha', 'data', 'payoff', 'vencimiento'];
+  const lowerKey = (id + ' ' + label).toLowerCase();
+  return dateKeywords.some(kw => lowerKey.includes(kw));
+}
+
+export default function MobileResultsBarV4({
+  results,
+  hasCalculated,
+  primaryLabel,
+  primaryValue,
+  primaryUnit,
+  t,
+  locale = 'en',
+  onSave,
+  saveStatus = "idle",
+  isLoggedIn,
+  resultConfigs = [],
+}: MobileResultsBarV4Props) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragY, setDragY] = useState(0);
+  const [shareStatus, setShareStatus] = useState<"idle" | "sharing" | "copied">("idle");
+  const [contentHeight, setContentHeight] = useState(0);
+  
+  // Currency hook
+  const { format: formatCurrency } = useCurrency();
+  
+  // Fallback for t function
+  const translate = typeof t === "function" ? t : (key: string, fallback?: string) => fallback || key;
+  
+  const contentRef = useRef<HTMLDivElement>(null);
+  const sheetRef = useRef<HTMLDivElement>(null);
+  const startY = useRef(0);
+  const currentY = useRef(0);
+
+  const secondaryResults = resultConfigs.filter(r => r.type === "secondary");
+
+  // Helper para traducir valores dinámicos {{t:key}} y auto-traducir texto
+  const translateDynamic = (value: unknown) => {
+    if (!value || typeof value !== 'string') return value || '';
+    
+    // First, replace {{t:key}} patterns
+    let translated = value.replace(/\{\{t:([^|}]+)(?:\|([^}]+))?\}\}/g, (_, key, fallback) => {
+      return translate(key, fallback || key);
+    });
+    
+    // Then, auto-translate common words/phrases
+    translated = translateText(translated, locale);
+    
+    return translated;
+  };
+
+  // Format value with currency if appropriate
+  const formatValue = (value: unknown, configId: string, configLabel: string): string => {
+    if (value === null || value === undefined) return '--';
+    
+    // If it's already a nicely formatted string, return it
+    if (typeof value === 'string') {
+      // Check if it looks like an unformatted number
+      const num = Number(value.replace(/,/g, ''));
+      if (isNaN(num) || value.includes('$') || value.includes('€')) {
+        return translateDynamic(value) as string;
+      }
+      // It's a number string, format it
+      if (isCurrencyField(configId, configLabel) && !isDateField(configId, configLabel)) {
+        return formatCurrency(num, { decimals: 2 });
+      }
+      return value;
+    }
+    
+    const num = Number(value);
+    if (isNaN(num)) return String(value);
+    
+    // Format as currency if appropriate
+    if (isCurrencyField(configId, configLabel) && !isDateField(configId, configLabel)) {
+      return formatCurrency(num, { decimals: 2 });
+    }
+    
+    // Format large numbers with commas
+    if (Math.abs(num) >= 1000) {
+      return num.toLocaleString('en-US', { maximumFractionDigits: 2 });
+    }
+    
+    return num.toFixed(2);
+  };
+
+  // Format primary value
+  const formattedPrimaryValue = (() => {
+    // First check if it's already formatted nicely
+    if (primaryValue.includes('$') || primaryValue.includes('€') || primaryValue.includes(',')) {
+      return primaryValue;
+    }
+    
+    const num = Number(primaryValue.replace(/,/g, ''));
+    if (isNaN(num)) return primaryValue;
+    
+    // Check if primary is a currency field
+    if (isCurrencyField('primary', primaryLabel)) {
+      return formatCurrency(num, { decimals: 2 });
+    }
+    
+    return primaryValue;
+  })();
+
+  // Measure content height
+  useEffect(() => {
+    if (contentRef.current && isExpanded) {
+      setContentHeight(contentRef.current.scrollHeight);
+    }
+  }, [results, secondaryResults.length, isExpanded]);
+
+  // Lock body scroll when expanded
+  useEffect(() => {
+    if (isExpanded) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isExpanded]);
+
+  if (!results || !hasCalculated) return null;
+
+  // Calculate heights
+  const headerHeight = 88;
+  const shareButtonHeight = 72;
+  const maxExpandedHeight = typeof window !== "undefined" ? window.innerHeight * 0.85 : 700;
+  const idealExpandedHeight = headerHeight + contentHeight + shareButtonHeight + 16;
+  const expandedHeight = Math.min(idealExpandedHeight, maxExpandedHeight);
+  const needsScroll = idealExpandedHeight > maxExpandedHeight;
+
+  // Drag handlers
+  const handleTouchStart = (e: React.TouchEvent) => {
+    startY.current = e.touches[0].clientY;
+    currentY.current = 0;
+    setIsDragging(true);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging) return;
+    
+    const deltaY = e.touches[0].clientY - startY.current;
+    currentY.current = deltaY;
+    
+    if (isExpanded && deltaY > 0) {
+      setDragY(deltaY * 0.5);
+    } else if (!isExpanded && deltaY < 0) {
+      setDragY(deltaY * 0.3);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+    
+    const threshold = 50;
+    
+    if (isExpanded && currentY.current > threshold) {
+      setIsExpanded(false);
+    } else if (!isExpanded && currentY.current < -threshold) {
+      setIsExpanded(true);
+    }
+    
+    setDragY(0);
+  };
+
+  const handleShare = async () => {
+    setShareStatus("sharing");
+    
+    let shareText = `${primaryLabel}: ${formattedPrimaryValue}${primaryUnit || ""}`;
+    
+    secondaryResults.forEach((config) => {
+      const rawValue = results.values[config.id];
+      const formattedValue = formatValue(rawValue, config.id, config.label);
+      if (formattedValue && formattedValue !== '--') {
+        shareText += `\n${config.label}: ${formattedValue}${config.suffix || ""}`;
+      }
+    });
+    
+    if (results.summary) {
+      shareText += `\n\n${translateDynamic(results.summary)}`;
+    }
+    
+    shareText += `\n\n${translate("share.calculatedWith", "Calculated with Kalcufy.com")}`;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: primaryLabel,
+          text: shareText,
+          url: window.location.href,
+        });
+        setShareStatus("copied");
+      } catch {
+        try {
+          await navigator.clipboard.writeText(shareText + `\n${window.location.href}`);
+          setShareStatus("copied");
+        } catch {
+          setShareStatus("idle");
+        }
+      }
+    } else {
+      try {
+        await navigator.clipboard.writeText(shareText + `\n${window.location.href}`);
+        setShareStatus("copied");
+      } catch {
+        setShareStatus("idle");
+      }
+    }
+    
+    setTimeout(() => setShareStatus("idle"), 2000);
+  };
+
+  const getCurrentHeight = () => {
+    if (isDragging) {
+      const baseHeight = isExpanded ? expandedHeight : headerHeight;
+      return Math.max(headerHeight, baseHeight - dragY);
+    }
+    return isExpanded ? expandedHeight : headerHeight;
+  };
+
+  return (
+    <>
+      {/* Backdrop with blur */}
+      <div 
+        className={`
+          fixed inset-0 z-40 md:hidden
+          transition-all duration-300 ease-out
+          ${isExpanded 
+            ? "bg-black/40 backdrop-blur-sm pointer-events-auto" 
+            : "bg-transparent pointer-events-none"
+          }
+        `}
+        onClick={() => setIsExpanded(false)}
+        aria-hidden="true"
+      />
+
+      {/* Bottom Sheet */}
+      <div 
+        ref={sheetRef}
+        className={`
+          fixed bottom-0 left-0 right-0 z-50 md:hidden
+          bg-white rounded-t-3xl shadow-2xl
+          ${isDragging ? "" : "transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]"}
+        `}
+        style={{ 
+          height: getCurrentHeight(),
+          transform: `translateY(${isDragging ? 0 : 0}px)`,
+        }}
+        role="region"
+        aria-label={translate("accessibility.mobileResults", "Results summary")}
+      >
+        {/* Drag Handle */}
+        <div
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="w-full py-3 flex justify-center cursor-grab active:cursor-grabbing touch-none"
+        >
+          <div 
+            className={`
+              w-10 h-1 rounded-full transition-all duration-200
+              ${isDragging ? "bg-slate-400 w-14" : "bg-slate-300"}
+            `}
+          />
+        </div>
+
+        {/* Collapsed View */}
+        <div className="px-5 pb-4">
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex-1 min-w-0">
+              <p className="text-xs text-slate-500 truncate">
+                {translate(`results.primary`, primaryLabel)}
+              </p>
+              <p className="text-2xl font-bold text-slate-900 truncate" aria-live="polite">
+                {formattedPrimaryValue}
+                {primaryUnit && (
+                  <span className="text-base font-normal text-slate-500 ml-1">
+                    {primaryUnit}
+                  </span>
+                )}
+              </p>
+            </div>
+            <div className="flex gap-2 flex-shrink-0">
+              {isLoggedIn && onSave && (
+                <button
+                  onClick={onSave}
+                  disabled={saveStatus === "saving"}
+                  className={`
+                    w-11 h-11 flex items-center justify-center rounded-xl
+                    transition-all duration-200 active:scale-95
+                    ${saveStatus === "saved" 
+                      ? "bg-green-600 text-white" 
+                      : "bg-blue-600 text-white hover:bg-blue-700"
+                    }
+                    disabled:opacity-50
+                  `}
+                  aria-label={translate("buttons.saveResults", "Save results")}
+                >
+                  {saveStatus === "saving" ? (
+                    <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                    </svg>
+                  ) : saveStatus === "saved" ? (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  ) : (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
+                    </svg>
+                  )}
+                </button>
+              )}
+              <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className={`
+                  w-11 h-11 flex items-center justify-center 
+                  border border-slate-200 rounded-xl text-slate-700 
+                  hover:bg-slate-50 transition-all duration-200 active:scale-95
+                `}
+                aria-label={isExpanded ? t("buttons.hideDetails", "Hide details") : t("buttons.showDetails", "Show details")}
+              >
+                <svg 
+                  className={`w-5 h-5 transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`} 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Expanded Content */}
+        <div 
+          className={`
+            flex flex-col transition-opacity duration-200
+            ${isExpanded ? "opacity-100" : "opacity-0 pointer-events-none"}
+          `}
+          style={{ 
+            height: isExpanded ? expandedHeight - headerHeight : 0,
+            overflow: "hidden"
+          }}
+        >
+          {/* Content Area */}
+          <div 
+            ref={contentRef}
+            className={`flex-1 px-5 border-t border-slate-100 ${needsScroll ? "overflow-y-auto" : ""}`}
+          >
+            {/* Secondary Results Grid */}
+            {secondaryResults.length > 0 && (
+              <div className="grid grid-cols-2 gap-3 pt-4">
+                {secondaryResults.map((config) => {
+                  const rawValue = results.values[config.id];
+                  const formattedValue = formatValue(rawValue, config.id, config.label);
+                  if (!formattedValue || formattedValue === '--') return null;
+                  return (
+                    <div 
+                      key={config.id} 
+                      className="bg-slate-50 rounded-xl p-4 text-center"
+                    >
+                      <p className="text-xs text-slate-500 mb-1">
+                        {translate(`results.${config.id}`, config.label)}
+                      </p>
+                      <p className="text-lg font-bold text-slate-800">
+                        {config.icon && <span className="mr-1">{config.icon}</span>}
+                        {formattedValue}
+                        {config.suffix && (
+                          <span className="text-sm font-normal text-slate-500 ml-1">
+                            {config.suffix}
+                          </span>
+                        )}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+
+            {/* Summary */}
+            {results.summary && (
+              <div className="mt-4 p-4 bg-blue-50 rounded-xl">
+                <p className="text-sm text-blue-800">
+                  {translateDynamic(results.summary)}
+                </p>
+              </div>
+            )}
+          </div>
+
+          {/* Share Button */}
+          <div className="flex-shrink-0 px-5 py-4 bg-white border-t border-slate-100">
+            <button
+              onClick={handleShare}
+              disabled={shareStatus === "sharing"}
+              className={`
+                w-full py-3.5 flex items-center justify-center gap-2 
+                rounded-xl font-medium transition-all duration-200 active:scale-[0.98]
+                ${shareStatus === "copied"
+                  ? "bg-green-50 text-green-700 border border-green-200"
+                  : "bg-white border border-slate-200 text-slate-700 hover:bg-slate-50"
+                }
+                disabled:opacity-50
+              `}
+              aria-label={translate("buttons.shareResults", "Share results")}
+            >
+              {shareStatus === "sharing" ? (
+                <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                </svg>
+              ) : shareStatus === "copied" ? (
+                <>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{translate("buttons.copied", "Copied!")}</span>
+                </>
+              ) : (
+                <>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                  </svg>
+                  <span>{translate("buttons.shareResults", "Share Results")}</span>
+                </>
+              )}
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}

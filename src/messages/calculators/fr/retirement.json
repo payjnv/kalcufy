@@ -1,0 +1,53 @@
+{
+  "meta": {
+    "title": "Retirement Calculator - Plan Your Future | Kalcufy",
+    "description": "Free retirement calculator to estimate how much you need to save, project your retirement income, and plan for a secure future."
+  },
+  "calculator": {
+    "title": "Retirement Calculator",
+    "subtitle": "Plan your retirement savings",
+    "breadcrumb": "Retirement",
+    "retirementDetails": "Retirement Details",
+    "inputs": {
+      "currentAge": "Current Age",
+      "retirementAge": "Retirement Age",
+      "currentSavings": "Current Savings",
+      "monthlyContribution": "Monthly Contribution",
+      "expectedReturn": "Expected Return (%)",
+      "retirementIncome": "Desired Monthly Income",
+      "inflationRate": "Inflation Rate (%)"
+    },
+    "results": {
+      "totalAtRetirement": "Total at Retirement",
+      "monthlyIncome": "Estimated Monthly Income",
+      "yearsOfIncome": "Years of Income",
+      "savingsGap": "Savings Gap",
+      "onTrack": "You're on track!",
+      "needMore": "You need to save more"
+    },
+    "buttons": { "viewProjection": "View Projection", "save": "Save", "pdf": "PDF", "excel": "Excel" },
+    "modal": { "title": "Retirement Projection", "age": "Age", "savings": "Savings", "contributions": "Contributions" },
+    "favorites": { "add": "Add to favorites", "remove": "Remove from favorites" },
+    "saving": { "saving": "Saving...", "saved": "Saved", "error": "Error saving" }
+  },
+  "education": {
+    "title": "Planning for Retirement",
+    "content1": "The key to a comfortable retirement is starting early. Thanks to compound interest, money saved in your 20s can grow significantly more than money saved in your 40s.",
+    "content2": "A common rule is to aim for 70-80% of your pre-retirement income. Consider Social Security, pensions, and personal savings in your planning.",
+    "tips": {
+      "title": "Retirement Planning Tips",
+      "tip1": { "title": "Start Now", "description": "Every year you wait costs you significantly in compound growth." },
+      "tip2": { "title": "Maximize 401(k) Match", "description": "Free money from your employer - don't leave it on the table." },
+      "tip3": { "title": "Diversify Investments", "description": "Spread risk across different asset types." },
+      "tip4": { "title": "Account for Healthcare", "description": "Medical costs often increase in retirement." }
+    },
+    "faqTitle": "Frequently Asked Questions"
+  },
+  "faq": [
+    { "question": "How much do I need for retirement?", "answer": "A common rule is 25x your annual expenses. If you spend $50,000/year, aim for $1.25 million. This follows the 4% withdrawal rule." },
+    { "question": "What return should I expect?", "answer": "Historically, a diversified portfolio returns 6-8% annually after inflation. Be conservative in your estimates." },
+    { "question": "When should I start saving?", "answer": "Now! Starting at 25 vs 35 can mean hundreds of thousands more by retirement due to compound growth." }
+  ],
+  "sidebar": { "financeTitle": "Financial Calculators", "healthTitle": "Health Calculators" },
+  "common": { "home": "Home", "calculators": "Calculators", "pro": "PRO", "years": "years" }
+}

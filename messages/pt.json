@@ -10,7 +10,12 @@
     "logout": "Sair",
     "profile": "Perfil",
     "search": "Buscar",
-    "language": "Idioma"
+    "language": "Idioma",
+    "privacy": "Política de Privacidade",
+    "terms": "Termos de Serviço",
+    "cookies": "Política de Cookies",
+    "accessibility": "Acessibilidade",
+    "allRightsReserved": "Todos os direitos reservados."
   },
   "calculators": {
     "names": {
@@ -54,15 +59,83 @@
       "step": "Calculadora de Passos",
       "restDay": "Calculadora de Descanso",
       "heartRateZone": "Zonas de Frequência Cardíaca",
-      "ovulation": "Calculadora de Ovulação"
+      "ovulation": "Calculadora de Ovulação",
+      "runningPace": "Running Pace Calculadora de",
+      "currency": "Currency Converter Calculator",
+      "caloricDeficit": "Caloric Deficit Calculator",
+      "caloriesBurned": "Calories Burned Calculator",
+      "chineseGenderPredictor": "Chinese Gender Predictor Calculator",
+      "conceptionDate": "Conception Date Calculator",
+      "hcgCalculator": "Hcg Calculator Calculator",
+      "heartRateZones": "Heart Rate Zones Calculator",
+      "implantation": "Implantation Calculator",
+      "intermittentFasting": "Intermittent Fasting Calculator",
+      "keto": "Keto Calculator",
+      "oneRepMax": "One Rep Max Calculator",
+      "pregnancyDueDate": "Pregnancy Due Date Calculator",
+      "pregnancyWeightGain": "Pregnancy Weight Gain Calculator",
+      "sleep": "Sleep Calculator",
+      "percentage": "Percentage Calculator",
+      "quadraticFormula": "Quadratic Formula Calculator",
+      "age": "Age Calculator",
+      "date": "Date Calculator",
+      "randomNumber": "Random Number Generator Calculator",
+      "tip": "Tip Calculator",
+      "bandwidth": "Bandwidth Calculator",
+      "cidr": "Cidr Calculator",
+      "digitalUnit": "Digital Unit Converter Calculator",
+      "ipSubnet": "Ip Subnet Calculator",
+      "password": "Password Generator Calculator",
+      "passwordStrength": "Password Strength Calculator",
+      "psuCalculator": "Psu Calculator Calculator",
+      "raid": "Raid Calculator",
+      "transferTime": "Transfer Time Calculator",
+      "vlsm": "Vlsm Calculator",
+      "length": "Length Converter Calculator",
+      "cmToInches": "Cm To Inches Calculator",
+      "inchesToCm": "Inches To Cm Calculator",
+      "kmToMiles": "Km To Miles Calculator",
+      "milesToKm": "Miles To Km Calculator",
+      "metersToFeet": "Meters To Feet Calculator",
+      "feetToMeters": "Feet To Meters Calculator",
+      "mmToInches": "Mm To Inches Calculator",
+      "inchesToMm": "Inches To Mm Calculator",
+      "cmToFeet": "Cm To Feet Calculator",
+      "feetToCm": "Feet To Cm Calculator",
+      "inchesToFeet": "Inches To Feet Calculator",
+      "kgToLbs": "Kg To Lbs Calculator",
+      "lbsToKg": "Lbs To Kg Calculator",
+      "celsiusToFahrenheit": "Celsius To Fahrenheit Calculator",
+      "fahrenheitToCelsius": "Fahrenheit To Celsius Calculator",
+      "ozToMl": "Oz To Ml Calculator",
+      "gallonsToLiters": "Gallons To Liters Calculator",
+      "cupsToMl": "Cups To Ml Calculator",
+      "squareFeetToSquareMeters": "Square Feet To Square Meters Calculator",
+      "mphToKmh": "Mph To Kmh Calculator",
+      "cuadrasToHectareas": "Cuadras To Hectareas Converter Calculator",
+      "fanegadasToHectareas": "Fanegadas To Hectareas Converter Calculator",
+      "manzanasToHectareas": "Manzanas To Hectareas Converter Calculator",
+      "tareasToMetrosCuadrados": "Tareas To Metros Cuadrados Converter Calculator",
+      "varasToMetros": "Varas To Metros Converter Calculator",
+      "paintCalculator": "Paint Calculator Calculator",
+      "concreteCalculator": "Concrete Calculator Calculator",
+      "cuadrasToHectareasConverter": "Cuadras to Hectares Converter",
+      "fanegadasToHectareasConverter": "Fanegadas to Hectares Converter",
+      "manzanasToHectareasConverter": "Manzanas to Hectares Converter",
+      "tareasToMetrosCuadradosConverter": "Tareas to Square Meters Converter",
+      "varasToMetrosConverter": "Varas to Meters Converter",
+      "dateCalculator": "Date Calculadora de",
+      "randomNumberGenerator": "Random Number Generator",
+      "currencyConverter": "Currency Converter",
+      "lengthConverter": "Length Converter"
     }
   },
   "home": {
     "badge": "Calculadoras Grátis",
-    "title1": "Calcule Seu",
-    "title2": "Futuro Financeiro",
+    "title1": "Calcule O Que",
+    "title2": "Importa",
     "subtitle": "Calculadoras grátis e rápidas para empréstimos, investimentos, IMC, calorias e mais. Tome decisões mais inteligentes em segundos.",
-    "searchPlaceholder": "Buscar calculadoras... (ex. hipoteca, IMC)",
+    "searchPlaceholder": "Buscar calculadoras...",
     "searchButton": "Buscar",
     "seeAllResults": "Ver todos os resultados para",
     "exploreButton": "Explorar Calculadoras",
@@ -224,8 +297,241 @@
       },
       "ovulation": {
         "desc": "Acompanhe sua janela fértil e dias de ovulação"
+      },
+      "runningPace": {
+        "desc": "Calculate running pace"
+      },
+      "currency": {
+        "desc": "Convert between 30+ world currencies instantly"
+      },
+      "bodyFat": {
+        "desc": "Calculate your body fat percentage using Navy and BMI methods"
+      },
+      "caloricDeficit": {
+        "desc": "Calculate your daily calorie needs for weight loss"
+      },
+      "caloriesBurned": {
+        "desc": "Calculate calories burned for 100+ activities and exercises"
+      },
+      "chineseGenderPredictor": {
+        "desc": "Predict baby gender using the ancient Chinese gender prediction chart"
+      },
+      "conceptionDate": {
+        "desc": "Estimate your conception date based on due date or last period"
+      },
+      "hcgCalculator": {
+        "desc": "Track hCG hormone levels and doubling time during early pregnancy"
+      },
+      "heartRateZones": {
+        "desc": "Calculate your training heart rate zones for optimal fitness"
+      },
+      "idealWeight": {
+        "desc": "Calculate your ideal body weight using 5 scientific formulas"
+      },
+      "implantation": {
+        "desc": "Estimate when embryo implantation may occur after ovulation"
+      },
+      "intermittentFasting": {
+        "desc": "Plan your fasting schedule and calculate optimal eating windows"
+      },
+      "keto": {
+        "desc": "Calculate your personalized keto macros for fat, protein, and carbs"
+      },
+      "macro": {
+        "desc": "Calculate your daily protein, carbs, and fat targets"
+      },
+      "oneRepMax": {
+        "desc": "Estimate the maximum weight you can lift for one rep"
+      },
+      "pregnancyDueDate": {
+        "desc": "Calculate your pregnancy due date and track weekly milestones"
+      },
+      "pregnancyWeightGain": {
+        "desc": "Track healthy weight gain during pregnancy by trimester"
+      },
+      "protein": {
+        "desc": "Calculate your optimal daily protein intake based on goals"
+      },
+      "sleep": {
+        "desc": "Calculate optimal bedtime and wake-up times for quality sleep"
+      },
+      "tdee": {
+        "desc": "Calculate your Total Daily Energy Expenditure and calorie needs"
+      },
+      "waterIntake": {
+        "desc": "Calculate your daily water needs based on activity and climate"
+      },
+      "percentage": {
+        "desc": "Calculate percentages, increases, decreases, and conversions"
+      },
+      "quadraticFormula": {
+        "desc": "Solve quadratic equations step by step"
+      },
+      "age": {
+        "desc": "Calculate your exact age with zodiac sign, life statistics, and milestones"
+      },
+      "date": {
+        "desc": "Add days, calculate differences, and find business days between dates"
+      },
+      "randomNumber": {
+        "desc": "Generate random numbers, roll dice, flip coins"
+      },
+      "tip": {
+        "desc": "Calculate tips and split bills easily for any group size"
+      },
+      "bandwidth": {
+        "desc": "Calculate bandwidth requirements and data transfer speeds"
+      },
+      "cidr": {
+        "desc": "Calculate CIDR notation, subnet ranges, and IP allocation"
+      },
+      "digitalUnit": {
+        "desc": "Convert between bytes, KB, MB, GB, TB and data rate units"
+      },
+      "ipSubnet": {
+        "desc": "Calculate IP subnets, network ranges, and broadcast addresses"
+      },
+      "password": {
+        "desc": "Generate secure passwords with entropy analysis"
+      },
+      "passwordStrength": {
+        "desc": "Test password strength with entropy and crack time analysis"
+      },
+      "psuCalculator": {
+        "desc": "Calculate PC power supply wattage for your build"
+      },
+      "raid": {
+        "desc": "Calculate RAID storage capacity, redundancy, and performance"
+      },
+      "transferTime": {
+        "desc": "Calculate file transfer time based on size and speed"
+      },
+      "vlsm": {
+        "desc": "Calculate Variable Length Subnet Masks for IP allocation"
+      },
+      "length": {
+        "desc": "Convert between all length units instantly"
+      },
+      "cmToInches": {
+        "desc": "Convert centimeters to inches quickly"
+      },
+      "inchesToCm": {
+        "desc": "Convert inches to centimeters with precision"
+      },
+      "kmToMiles": {
+        "desc": "Convert kilometers to miles for distance calculations"
+      },
+      "milesToKm": {
+        "desc": "Convert miles to kilometers"
+      },
+      "metersToFeet": {
+        "desc": "Convert meters to feet for construction"
+      },
+      "feetToMeters": {
+        "desc": "Convert feet to meters with precision"
+      },
+      "mmToInches": {
+        "desc": "Convert millimeters to inches"
+      },
+      "inchesToMm": {
+        "desc": "Convert inches to millimeters"
+      },
+      "cmToFeet": {
+        "desc": "Convert centimeters to feet and inches"
+      },
+      "feetToCm": {
+        "desc": "Convert feet to centimeters"
+      },
+      "inchesToFeet": {
+        "desc": "Convert inches to feet and remaining inches"
+      },
+      "kgToLbs": {
+        "desc": "Convert kilograms to pounds instantly"
+      },
+      "lbsToKg": {
+        "desc": "Convert pounds to kilograms with precision"
+      },
+      "celsiusToFahrenheit": {
+        "desc": "Convert Celsius to Fahrenheit"
+      },
+      "fahrenheitToCelsius": {
+        "desc": "Convert Fahrenheit to Celsius"
+      },
+      "ozToMl": {
+        "desc": "Convert fluid ounces to milliliters"
+      },
+      "gallonsToLiters": {
+        "desc": "Convert gallons to liters"
+      },
+      "cupsToMl": {
+        "desc": "Convert cups to milliliters for recipes"
+      },
+      "squareFeetToSquareMeters": {
+        "desc": "Convert square feet to square meters"
+      },
+      "mphToKmh": {
+        "desc": "Convert miles per hour to kilometers per hour"
+      },
+      "cuadrasToHectareas": {
+        "desc": "Convert cuadras to hectáreas - Latin American land"
+      },
+      "fanegadasToHectareas": {
+        "desc": "Convert fanegadas to hectáreas - Colombian land"
+      },
+      "manzanasToHectareas": {
+        "desc": "Convert manzanas to hectáreas - Central America"
+      },
+      "tareasToMetrosCuadrados": {
+        "desc": "Convert tareas to metros cuadrados - Dominican Republic"
+      },
+      "varasToMetros": {
+        "desc": "Convert varas to metros - Latin America"
+      },
+      "paintCalculator": {
+        "desc": "Calculate how much paint you need for walls and rooms"
+      },
+      "concreteCalculator": {
+        "desc": "Calculate concrete volume for slabs, footings, and columns"
+      },
+      "cuadrasToHectareasConverter": {
+        "desc": "Calculate cuadras to hectareas converter"
+      },
+      "fanegadasToHectareasConverter": {
+        "desc": "Calculate fanegadas to hectareas converter"
+      },
+      "manzanasToHectareasConverter": {
+        "desc": "Calculate manzanas to hectareas converter"
+      },
+      "tareasToMetrosCuadradosConverter": {
+        "desc": "Calculate tareas to metros cuadrados converter"
+      },
+      "varasToMetrosConverter": {
+        "desc": "Calculate varas to metros converter"
+      },
+      "dateCalculator": {
+        "desc": "Calculate date calculator"
+      },
+      "randomNumberGenerator": {
+        "desc": "Calculate random number generator"
+      },
+      "currencyConverter": {
+        "desc": "Calculate currency converter"
+      },
+      "lengthConverter": {
+        "desc": "Calculate length converter"
       }
-    }
+    },
+    "sortBy": "Ordenar por",
+    "sortPopular": "Popular",
+    "sortNewest": "Mais recentes",
+    "sortNameAsc": "Nome A-Z",
+    "sortNameDesc": "Nome Z-A",
+    "showAll": "Ver tudo em",
+    "searchButton": "Buscar",
+    "noResults": "Nenhuma calculadora encontrada",
+    "tryDifferent": "Tente uma busca diferente ou limpe os filtros",
+    "clearFilters": "Limpar filtros",
+    "viewAll": "Ver tudo"
   },
   "auth": {
     "backToHome": "Voltar ao início",
@@ -401,6 +707,587 @@
       "metaDescription": "Política de Cookies do Kalcufy - Como usamos cookies.",
       "lastUpdated": "Última atualização",
       "date": "Janeiro 2026"
+    }
+  },
+  "units": {
+    "kg": {
+      "name": "Quilogramas"
+    },
+    "lbs": {
+      "name": "Libras"
+    },
+    "st": {
+      "name": "Stones"
+    },
+    "g": {
+      "name": "Gramas"
+    },
+    "oz": {
+      "name": "Onças"
+    },
+    "cm": {
+      "name": "Centímetros"
+    },
+    "m": {
+      "name": "Metros"
+    },
+    "ft": {
+      "name": "Pés"
+    },
+    "in": {
+      "name": "Polegadas"
+    },
+    "ft_in": {
+      "name": "Pés e Polegadas"
+    },
+    "C": {
+      "name": "Celsius"
+    },
+    "F": {
+      "name": "Fahrenheit"
+    },
+    "kcal": {
+      "name": "Quilocalorias"
+    },
+    "cal": {
+      "name": "Calorias"
+    },
+    "kJ": {
+      "name": "Quilojoules"
+    },
+    "nm": {
+      "name": "Nanômetros"
+    },
+    "µm": {
+      "name": "Micrômetros"
+    },
+    "mm": {
+      "name": "Milímetros"
+    },
+    "dm": {
+      "name": "Decímetros"
+    },
+    "hm": {
+      "name": "Hectômetros"
+    },
+    "km": {
+      "name": "Quilômetros"
+    },
+    "mil": {
+      "name": "Milésimos de polegada"
+    },
+    "yd": {
+      "name": "Jardas"
+    },
+    "mi": {
+      "name": "Milhas"
+    },
+    "nmi": {
+      "name": "Milhas náuticas"
+    },
+    "fathom": {
+      "name": "Braças"
+    },
+    "furlong": {
+      "name": "Furlongs"
+    },
+    "AU": {
+      "name": "Unidades astronômicas"
+    },
+    "ly": {
+      "name": "Anos-luz"
+    },
+    "mm2": {
+      "name": "Milímetros quadrados"
+    },
+    "cm2": {
+      "name": "Centímetros quadrados"
+    },
+    "m2": {
+      "name": "Metros quadrados"
+    },
+    "are": {
+      "name": "Ares"
+    },
+    "ha": {
+      "name": "Hectares"
+    },
+    "km2": {
+      "name": "Quilômetros quadrados"
+    },
+    "in2": {
+      "name": "Polegadas quadradas"
+    },
+    "ft2": {
+      "name": "Pés quadrados"
+    },
+    "yd2": {
+      "name": "Jardas quadradas"
+    },
+    "acres": {
+      "name": "Acres"
+    },
+    "mi2": {
+      "name": "Milhas quadradas"
+    },
+    "manzana": {
+      "name": "Manzanas"
+    },
+    "fanegada": {
+      "name": "Fanegadas"
+    },
+    "cuadra": {
+      "name": "Cuadras"
+    },
+    "tarea": {
+      "name": "Tareas"
+    },
+    "mL": {
+      "name": "Mililitros"
+    },
+    "cL": {
+      "name": "Centilitros"
+    },
+    "dL": {
+      "name": "Decilitros"
+    },
+    "L": {
+      "name": "Litros"
+    },
+    "m3": {
+      "name": "Metros cúbicos"
+    },
+    "tsp": {
+      "name": "Colheres de chá"
+    },
+    "tbsp": {
+      "name": "Colheres de sopa"
+    },
+    "fl_oz": {
+      "name": "Onças líquidas"
+    },
+    "cups": {
+      "name": "Xícaras"
+    },
+    "pt": {
+      "name": "Pintas"
+    },
+    "qt": {
+      "name": "Quartos"
+    },
+    "gal": {
+      "name": "Galões"
+    },
+    "ft3": {
+      "name": "Pés cúbicos"
+    },
+    "yd3": {
+      "name": "Jardas cúbicas"
+    },
+    "bd_ft": {
+      "name": "Pés tábua"
+    },
+    "squares": {
+      "name": "Quadrados de telhado"
+    },
+    "µg": {
+      "name": "Microgramas"
+    },
+    "carat": {
+      "name": "Quilates"
+    },
+    "ton": {
+      "name": "Toneladas curtas"
+    },
+    "tonne": {
+      "name": "Toneladas métricas"
+    },
+    "stone": {
+      "name": "Stones"
+    },
+    "long_ton": {
+      "name": "Toneladas longas"
+    },
+    "K": {
+      "name": "Kelvin"
+    },
+    "R": {
+      "name": "Rankine"
+    },
+    "m/s": {
+      "name": "Metros/segundo"
+    },
+    "km/h": {
+      "name": "Quilômetros/hora"
+    },
+    "mph": {
+      "name": "Milhas/hora"
+    },
+    "knots": {
+      "name": "Nós"
+    },
+    "ft/s": {
+      "name": "Pés/segundo"
+    },
+    "Mach": {
+      "name": "Mach"
+    },
+    "c": {
+      "name": "Velocidade da luz"
+    },
+    "J": {
+      "name": "Joules"
+    },
+    "Wh": {
+      "name": "Watts-hora"
+    },
+    "kWh": {
+      "name": "Quilowatts-hora"
+    },
+    "BTU": {
+      "name": "BTU"
+    },
+    "W": {
+      "name": "Watts"
+    },
+    "kW": {
+      "name": "Quilowatts"
+    },
+    "hp": {
+      "name": "Cavalos de potência"
+    },
+    "BTU/h": {
+      "name": "BTU/hora"
+    },
+    "Pa": {
+      "name": "Pascals"
+    },
+    "kPa": {
+      "name": "Quilopascals"
+    },
+    "bar": {
+      "name": "Bars"
+    },
+    "psi": {
+      "name": "PSI"
+    },
+    "atm": {
+      "name": "Atmosferas"
+    },
+    "mmHg": {
+      "name": "mmHg"
+    },
+    "N": {
+      "name": "Newtons"
+    },
+    "kN": {
+      "name": "Quilonewtons"
+    },
+    "lbf": {
+      "name": "Libras-força"
+    },
+    "kgf": {
+      "name": "Quilogramas-força"
+    },
+    "mV": {
+      "name": "Milivolts"
+    },
+    "V": {
+      "name": "Volts"
+    },
+    "kV": {
+      "name": "Quilovolts"
+    },
+    "µA": {
+      "name": "Microamperes"
+    },
+    "mA": {
+      "name": "Miliamperes"
+    },
+    "A": {
+      "name": "Amperes"
+    },
+    "mΩ": {
+      "name": "Miliohms"
+    },
+    "Ω": {
+      "name": "Ohms"
+    },
+    "kΩ": {
+      "name": "Quiloohms"
+    },
+    "MΩ": {
+      "name": "Megaohms"
+    },
+    "s": {
+      "name": "Segundos"
+    },
+    "min": {
+      "name": "Minutos"
+    },
+    "h": {
+      "name": "Horas"
+    },
+    "days": {
+      "name": "Dias"
+    },
+    "weeks": {
+      "name": "Semanas"
+    },
+    "months": {
+      "name": "Meses"
+    },
+    "years": {
+      "name": "Anos"
+    },
+    "B": {
+      "name": "Bytes"
+    },
+    "KB": {
+      "name": "Kilobytes"
+    },
+    "MB": {
+      "name": "Megabytes"
+    },
+    "GB": {
+      "name": "Gigabytes"
+    },
+    "TB": {
+      "name": "Terabytes"
+    },
+    "bps": {
+      "name": "Bits/segundo"
+    },
+    "Kbps": {
+      "name": "Kilobits/s"
+    },
+    "Mbps": {
+      "name": "Megabits/s"
+    },
+    "Gbps": {
+      "name": "Gigabits/s"
+    },
+    "degrees": {
+      "name": "Graus"
+    },
+    "radians": {
+      "name": "Radianos"
+    },
+    "gradians": {
+      "name": "Grados"
+    },
+    "mpg": {
+      "name": "Milhas/galão"
+    },
+    "km/L": {
+      "name": "Quilômetros/litro"
+    },
+    "L/100km": {
+      "name": "Litros/100km"
+    },
+    "kg/m3": {
+      "name": "kg/m³"
+    },
+    "g/cm3": {
+      "name": "g/cm³"
+    },
+    "lb/ft3": {
+      "name": "lb/ft³"
+    },
+    "g/L": {
+      "name": "g/L"
+    },
+    "L/min": {
+      "name": "Litros/minuto"
+    },
+    "L/h": {
+      "name": "Litros/hora"
+    },
+    "m3/h": {
+      "name": "Metros cúbicos/hora"
+    },
+    "gal/min": {
+      "name": "Galões/minuto"
+    },
+    "Nm": {
+      "name": "Newton-metros"
+    },
+    "ft_lbf": {
+      "name": "Pés-libra"
+    },
+    "kgf_m": {
+      "name": "Quilogramas-força metro"
+    },
+    "Hz": {
+      "name": "Hertz"
+    },
+    "kHz": {
+      "name": "Quilohertz"
+    },
+    "MHz": {
+      "name": "Megahertz"
+    },
+    "GHz": {
+      "name": "Gigahertz"
+    },
+    "lux": {
+      "name": "Lux"
+    },
+    "fc": {
+      "name": "Pés-vela"
+    },
+    "m/s2": {
+      "name": "Metros/s²"
+    },
+    "ft/s2": {
+      "name": "Pés/s²"
+    },
+    "g_acc": {
+      "name": "Gravidade padrão (g)"
+    },
+    "T": {
+      "name": "Tesla"
+    },
+    "mT": {
+      "name": "Militesla"
+    },
+    "G_mag": {
+      "name": "Gauss"
+    },
+    "USD": {
+      "name": "Dólar americano"
+    },
+    "EUR": {
+      "name": "Euro"
+    },
+    "GBP": {
+      "name": "Libra esterlina"
+    },
+    "CAD": {
+      "name": "Dólar canadense"
+    },
+    "MXN": {
+      "name": "Peso mexicano"
+    },
+    "BRL": {
+      "name": "Real brasileiro"
+    },
+    "JPY": {
+      "name": "Iene japonês"
+    },
+    "INR": {
+      "name": "Rupia indiana"
+    },
+    "AUD": {
+      "name": "Dólar australiano"
+    },
+    "CHF": {
+      "name": "Franco suíço"
+    },
+    "COP": {
+      "name": "Peso colombiano"
+    },
+    "ARS": {
+      "name": "Peso argentino"
+    },
+    "PEN": {
+      "name": "Sol peruano"
+    },
+    "CLP": {
+      "name": "Peso chileno"
+    },
+    "CNY": {
+      "name": "Yuan chinês"
+    },
+    "KRW": {
+      "name": "Won sul-coreano"
+    },
+    "SEK": {
+      "name": "Coroa sueca"
+    },
+    "NOK": {
+      "name": "Coroa norueguesa"
+    },
+    "DKK": {
+      "name": "Coroa dinamarquesa"
+    },
+    "NZD": {
+      "name": "Dólar neozelandês"
+    },
+    "ZAR": {
+      "name": "Rand sul-africano"
+    },
+    "SGD": {
+      "name": "Dólar de Singapura"
+    },
+    "HKD": {
+      "name": "Dólar de Hong Kong"
+    },
+    "TRY": {
+      "name": "Lira turca"
+    },
+    "PLN": {
+      "name": "Zloti polonês"
+    },
+    "THB": {
+      "name": "Baht tailandês"
+    },
+    "TWD": {
+      "name": "Dólar taiwanês"
+    },
+    "ILS": {
+      "name": "Shekel israelense"
+    },
+    "PHP": {
+      "name": "Peso filipino"
+    },
+    "CZK": {
+      "name": "Coroa tcheca"
+    },
+    "IDR": {
+      "name": "Rupia indonésia"
+    },
+    "MYR": {
+      "name": "Ringgit malaio"
+    },
+    "daily": {
+      "name": "Diário"
+    },
+    "weekly": {
+      "name": "Semanal"
+    },
+    "biweekly": {
+      "name": "Quinzenal"
+    },
+    "semimonthly": {
+      "name": "Bissemanal"
+    },
+    "monthly": {
+      "name": "Mensal"
+    },
+    "bimonthly": {
+      "name": "Bimestral"
+    },
+    "quarterly": {
+      "name": "Trimestral"
+    },
+    "semiannually": {
+      "name": "Semestral"
+    },
+    "annually": {
+      "name": "Anual"
+    },
+    "ratio": {
+      "name": "Razão"
+    },
+    "percent": {
+      "name": "Porcentagem"
+    },
+    "ft2/gal": {
+      "name": "ft²/galão"
+    },
+    "m2/L": {
+      "name": "m²/litro"
     }
   }
 }

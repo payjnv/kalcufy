@@ -334,6 +334,160 @@ export default function AboutPage() {
         email: "hello@kalcufy.com",
       },
     },
+    de: {
+      badge: "Unsere Geschichte",
+      title1: "Gemacht für Menschen, die",
+      title2: "Schlechte Rechner hassen",
+      subtitle: "Wir hatten genug von hässlichen, veralteten Rechner-Websites. Also haben wir etwas Besseres gebaut.",
+      
+      story: {
+        title: "Warum Kalcufy existiert",
+        p1: "Schon mal nach einem einfachen Kreditrechner gesucht und auf einer Seite gelandet, die aussieht, als wäre sie 2005 erstellt worden? Voller Werbung, verwirrend zu bedienen und auf dem Handy völlig kaputt?",
+        p2: "Ja, uns auch. Und es hat uns wahnsinnig gemacht.",
+        p3: "Kalcufy wurde von Entwicklern und Finanzanalysten erstellt, die täglich Rechner verwenden—und frustriert davon waren, wie unzuverlässig und verwirrend die meisten sind. Wir haben eine fokussierte Sammlung von Tools entwickelt, die tatsächlich nützlich sind, wunderschön gestaltet und perfekt auf jedem Gerät funktionieren.",
+      },
+
+      mission: {
+        badge: "Unsere Mission",
+        title: "Kluge Entscheidungen einfach machen",
+        text: "Finanz- und Gesundheitsberechnungen sollten keinen Finanzabschluss erfordern. Wir entwickeln Tools, die jeder nutzen kann, um bessere Entscheidungen über sein Geld und sein Wohlbefinden zu treffen. Kein Fachjargon. Keine versteckten Gebühren. Kein Konto erforderlich.",
+      },
+
+      methodology: {
+        badge: "Genauigkeit & Methodik",
+        title: "Basierend auf vertrauenswürdigen Standards",
+        subtitle: "Jeder Rechner wird mit branchenüblichen Formeln und verifizierten Quellen entwickelt.",
+        points: [
+          { icon: "🏦", title: "Finanzstandards", text: "Unsere Finanzrechner verwenden Formeln, die üblicherweise von Banken, Kreditgenossenschaften und zertifizierten Finanzplanern eingesetzt werden." },
+          { icon: "📊", title: "Regierungsdaten", text: "Steuer- und Rentenrechner beziehen sich auf öffentlich verfügbare Daten der IRS, Social Security Administration und anderer offizieller Quellen." },
+          { icon: "🏥", title: "Gesundheitsrichtlinien", text: "Gesundheitsrechner folgen Richtlinien anerkannter Organisationen einschließlich WHO, CDC und peer-reviewter medizinischer Forschung." },
+          { icon: "🔄", title: "Regelmäßige Updates", text: "Wir überprüfen und aktualisieren unsere Tools kontinuierlich, um Genauigkeit bei aktuellen Tarifen, Vorschriften und bewährten Praktiken zu gewährleisten." },
+        ],
+        disclaimer: "Kalcufy ist für Bildungs- und Informationszwecke konzipiert. Unsere Tools ersetzen keine professionelle Finanz-, Medizin- oder Rechtsberatung. Konsultieren Sie immer qualifizierte Fachkräfte für wichtige Entscheidungen.",
+      },
+
+      values: [
+        { icon: "✨", title: "Einfachheit zuerst", text: "Komplexe Mathematik sollte nicht komplexe Benutzeroberflächen bedeuten. Jeder Rechner ist darauf ausgelegt, intuitiv und leicht verständlich zu sein." },
+        { icon: "🆓", title: "Wirklich kostenlos", text: "Keine Tricks, keine Bezahlschranken für grundlegende Funktionen. Jeder verdient Zugang zu zuverlässigen Finanz- und Gesundheitstools." },
+        { icon: "📱", title: "Mobilgeräte-bereit", text: "Über 70% unserer Nutzer sind auf Mobilgeräten. Jeder Rechner ist Mobile-First entwickelt und funktioniert einwandfrei auf jeder Bildschirmgröße." },
+        { icon: "🔒", title: "Datenschutz von Grund auf", text: "Ihre Berechnungen laufen vollständig in Ihrem Browser ab. Wir verkaufen keine persönlichen Daten und verfolgen keine individuellen Berechnungen." },
+      ],
+
+      team: {
+        badge: "Das Team",
+        title: "Kleines Team, große Mission",
+        text: "Kalcufy wird von einem engagierten Team aus Entwicklern, Designern und Finanzanalysten mit Sitz in den Vereinigten Staaten entwickelt. Wir haben eine Leidenschaft für Genauigkeit, Zugänglichkeit und die Entwicklung von Tools, denen die Menschen wirklich vertrauen können.",
+        commitment: "Wir sind bestrebt, die zuverlässigste und benutzerfreundlichste Taschenrechner-Plattform im Web zu schaffen – eine, die Ihre Zeit, Ihre Privatsphäre und Ihre Intelligenz respektiert.",
+      },
+
+      trust: {
+        title: "Warum Menschen Kalcufy vertrauen",
+        items: [
+          { icon: "✓", text: "Kein Konto für Taschenrechner erforderlich" },
+          { icon: "✓", text: "Keine Werbung bei Berechnungsergebnissen" },
+          { icon: "✓", text: "Transparente Formeln erklärt" },
+          { icon: "✓", text: "Regelmäßige Genauigkeitsprüfungen" },
+          { icon: "✓", text: "Offen für Nutzerfeedback" },
+        ],
+      },
+
+      stats: [
+        { number: "500K+", label: "Berechnungen", srLabel: "Over 500 thousand calculations" },
+        { number: "50K+", label: "Zufriedene Nutzer", srLabel: "Over 50 thousand users" },
+        { number: "40+", label: "Rechner", srLabel: "40+ calculators" },
+        { number: "5", label: "Sprachen", srLabel: "5 languages" },
+      ],
+
+      cta: {
+        title: "Bereit zum Rechnen?",
+        subtitle: "Probieren Sie einen unserer Rechner aus. Völlig kostenlos, keine Anmeldung erforderlich.",
+        button: "Rechner erkunden",
+      },
+
+      contact: {
+        title: "Fragen oder Feedback?",
+        text: "Wir arbeiten ständig an Verbesserungen. Kontaktieren Sie uns jederzeit.",
+        email: "hello@kalcufy.com",
+      },
+    },
+    fr: {
+      badge: "Notre Histoire",
+      title1: "Conçu pour les Gens qui",
+      title2: "Détestent les Mauvaises Calculatrices",
+      subtitle: "Nous en avions assez des sites de calculatrices moches et dépassés. Alors nous avons créé quelque chose de mieux.",
+      
+      story: {
+        title: "Pourquoi Kalcufy Existe",
+        p1: "Avez-vous déjà cherché une simple calculatrice de prêt et vous êtes retrouvé sur un site qui semble avoir été créé en 2005 ? Couvert de publicités, déroutant à utiliser, et complètement inutilisable sur mobile ?",
+        p2: "Oui, nous aussi. Et cela nous rendait fous.",
+        p3: "Kalcufy a été créé par des développeurs et des analystes financiers qui utilisent des calculatrices quotidiennement—et qui étaient frustrés par le manque de fiabilité et la complexité de la plupart d'entre elles. Nous avons construit un ensemble d'outils ciblés qui sont réellement utiles, magnifiquement conçus, et fonctionnent parfaitement sur n'importe quel appareil.",
+      },
+
+      mission: {
+        badge: "Notre Mission",
+        title: "Rendre les Décisions Intelligentes Faciles",
+        text: "Les calculs financiers et de santé ne devraient pas nécessiter un diplôme en finance. Nous créons des outils que tout le monde peut utiliser pour prendre de meilleures décisions concernant son argent et son bien-être. Pas de jargon. Pas de frais cachés. Aucun compte requis.",
+      },
+
+      methodology: {
+        badge: "Précision et Méthodologie",
+        title: "Basé sur des Standards Fiables",
+        subtitle: "Chaque calculatrice est développée en utilisant des formules standard de l'industrie et des sources vérifiées.",
+        points: [
+          { icon: "🏦", title: "Standards Financiers", text: "Nos calculatrices financières utilisent des formules couramment employées par les banques, les coopératives de crédit et les planificateurs financiers certifiés." },
+          { icon: "📊", title: "Données Gouvernementales", text: "Les calculatrices fiscales et de retraite référencent des données publiquement disponibles de l'IRS, de l'Administration de la Sécurité Sociale et d'autres sources officielles." },
+          { icon: "🏥", title: "Directives de Santé", text: "Les calculatrices de santé suivent les directives d'organisations reconnues incluant l'OMS, le CDC et la recherche médicale évaluée par les pairs." },
+          { icon: "🔄", title: "Mises à Jour Régulières", text: "Nous révisons et mettons à jour continuellement nos outils pour garantir la précision avec les taux actuels, les réglementations et les meilleures pratiques." },
+        ],
+        disclaimer: "Kalcufy est conçu à des fins éducatives et informatives. Nos outils ne remplacent pas les conseils professionnels financiers, médicaux ou juridiques. Consultez toujours des professionnels qualifiés pour les décisions importantes.",
+      },
+
+      values: [
+        { icon: "✨", title: "La Simplicité Avant Tout", text: "Les mathématiques complexes ne devraient pas signifier des interfaces complexes. Chaque calculatrice est conçue pour être intuitive et facile à comprendre." },
+        { icon: "🆓", title: "Vraiment Gratuit", text: "Pas d'astuces, pas de murs payants pour les fonctionnalités de base. Tout le monde mérite l'accès à des outils financiers et de santé fiables." },
+        { icon: "📱", title: "Prêt pour Mobile", text: "Plus de 70% de nos utilisateurs sont sur mobile. Chaque calculatrice est construite mobile-first et fonctionne parfaitement sur toute taille d'écran." },
+        { icon: "🔒", title: "Confidentialité par Conception", text: "Vos calculs s'exécutent entièrement dans votre navigateur. Nous ne vendons pas de données personnelles et ne suivons pas les calculs individuels." },
+      ],
+
+      team: {
+        badge: "L'Équipe",
+        title: "Petite Équipe, Grande Mission",
+        text: "Kalcufy est développé par une équipe dévouée de développeurs, designers et analystes financiers basée aux États-Unis. Nous sommes passionnés par la précision, l'accessibilité et la création d'outils en lesquels les gens peuvent réellement avoir confiance.",
+        commitment: "Nous nous engageons à construire la plateforme de calculatrices la plus fiable et conviviale du web—une plateforme qui respecte votre temps, votre vie privée et votre intelligence.",
+      },
+
+      trust: {
+        title: "Pourquoi les Gens Font Confiance à Kalcufy",
+        items: [
+          { icon: "✓", text: "Aucun compte requis pour aucune calculatrice" },
+          { icon: "✓", text: "Aucune publicité sur les résultats de calcul" },
+          { icon: "✓", text: "Formules transparentes expliquées" },
+          { icon: "✓", text: "Audits de précision réguliers" },
+          { icon: "✓", text: "Ouvert aux commentaires des utilisateurs" },
+        ],
+      },
+
+      stats: [
+        { number: "500K+", label: "Calculs", srLabel: "Over 500 thousand calculations" },
+        { number: "50K+", label: "Utilisateurs Satisfaits", srLabel: "Over 50 thousand users" },
+        { number: "40+", label: "Calculatrices", srLabel: "40+ calculators" },
+        { number: "5", label: "Langues", srLabel: "5 languages" },
+      ],
+
+      cta: {
+        title: "Prêt à Calculer ?",
+        subtitle: "Essayez n'importe laquelle de nos calculatrices. Entièrement gratuit, aucune inscription requise.",
+        button: "Explorer les Calculatrices",
+      },
+
+      contact: {
+        title: "Questions ou Commentaires ?",
+        text: "Nous cherchons toujours à nous améliorer. N'hésitez pas à nous contacter.",
+        email: "hello@kalcufy.com",
+      },
+    },
+
+
   };
 
   const t = content[locale as keyof typeof content] || content.en;

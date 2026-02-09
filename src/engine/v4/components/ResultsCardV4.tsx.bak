@@ -1,0 +1,435 @@
+"use client";
+/**
+ * RESULTS CARD V4 — Complete Redesign
+ *
+ * SMART: If calculate() returns `gaugeValue` → new visual design
+ *        If not → classic grid (100% backwards compatible)
+ *
+ * New visuals:
+ * - RadialProgress circle (primary result)
+ * - Gauge bar with colored zones
+ * - Composition bar (fat/lean, principal/interest)
+ * - Key Metrics list with icons + context badges
+ * - Insight card 💡 with human-friendly translated text
+ *
+ * Translation: Everything via t("values.X") — no hardcoded text
+ * Bug fix: Removed isCurrencyField auto-detection
+ */
+
+import { useCurrency } from "@/lib/currency-helper";
+import { translateText } from "@/engine/v4/utils/common-translations";
+
+/* ═══════════════════════════════════════════════════════════════
+   TYPES
+   ═══════════════════════════════════════════════════════════════ */
+
+interface ResultConfig {
+  id: string;
+  label: string;
+  type: "primary" | "secondary";
+  format?: "number" | "currency" | "percentage" | "text" | "date";
+  suffix?: string;
+  prefix?: string;
+  icon?: string;
+  tooltip?: string;
+}
+
+interface Zone {
+  start: number;
+  end: number;
+  label: string;
+  color: string;
+}
+
+interface CompositionSegment {
+  label: string;
+  value: number;
+  color: string;
+  detail?: string;
+}
+
+interface CalculatorResults {
+  values: Record<string, unknown>;
+  formatted: Record<string, string>;
+  summary?: string;
+  isValid?: boolean;
+  zones?: Zone[];
+  gaugeValue?: number;
+  gaugeMin?: number;
+  gaugeMax?: number;
+  composition?: CompositionSegment[];
+  insight?: string;
+  context?: Record<string, { label: string; color: string }>;
+  metrics?: Array<{ icon: string; id: string; context?: string }>;
+  metadata?: { tableData?: Array<Record<string, string | number>>; [key: string]: unknown };
+}
+
+interface ResultsCardV4Props {
+  results: CalculatorResults | null;
+  resultConfigs: ResultConfig[];
+  hasCalculated: boolean;
+  t: (key: string, fallback?: string) => string;
+  locale?: string;
+  title?: string;
+  tooltips?: Record<string, string>;
+  isCalculating?: boolean;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RADIAL PROGRESS — SVG circle for primary result
+   ═══════════════════════════════════════════════════════════════ */
+
+function RadialProgress({
+  value,
+  label,
+  max,
+  color,
+  size = 140,
+}: {
+  value: string;
+  label: string;
+  max: number;
+  color: string;
+  size?: number;
+}) {
+  const radius = (size - 16) / 2;
+  const circumference = 2 * Math.PI * radius;
+  const numericValue = parseFloat(value.replace(/[^0-9.-]/g, "")) || 0;
+  const pct = Math.min(numericValue / max, 1);
+  const offset = circumference * (1 - pct);
+
+  return (
+    <div className="relative flex-shrink-0" style={{ width: size, height: size }}>
+      <svg width={size} height={size} className="-rotate-90">
+        <circle cx={size / 2} cy={size / 2} r={radius} fill="none" stroke="#f1f5f9" strokeWidth="8" />
+        <circle
+          cx={size / 2}
+          cy={size / 2}
+          r={radius}
+          fill="none"
+          stroke={color}
+          strokeWidth="8"
+          strokeLinecap="round"
+          strokeDasharray={circumference}
+          strokeDashoffset={offset}
+          className="transition-all duration-1000 ease-out"
+        />
+      </svg>
+      <div className="absolute inset-0 flex flex-col items-center justify-center">
+        <span className="text-3xl font-bold" style={{ color }}>{value}</span>
+        <span className="text-[11px] text-slate-400 font-medium mt-0.5">{label}</span>
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   GAUGE BAR — Colored zones with marker
+   ═══════════════════════════════════════════════════════════════ */
+
+function GaugeBar({
+  value, min, max, zones, t,
+}: {
+  value: number; min: number; max: number; zones: Zone[];
+  t: (key: string, fallback?: string) => string;
+}) {
+  const pct = Math.min(100, Math.max(0, ((value - min) / (max - min)) * 100));
+  const activeZone = zones.find((z) => value >= z.start && value < z.end) || zones[zones.length - 1];
+
+  return (
+    <div className="w-full">
+      <div className="relative h-3 rounded-full overflow-hidden bg-slate-100">
+        {zones.map((zone, i) => {
+          const left = ((zone.start - min) / (max - min)) * 100;
+          const width = ((zone.end - zone.start) / (max - min)) * 100;
+          return (
+            <div key={i} className="absolute top-0 h-full"
+              style={{ left: `${left}%`, width: `${width}%`, backgroundColor: zone.color, opacity: 0.2 }} />
+          );
+        })}
+        <div className="absolute top-0 left-0 h-full rounded-full transition-all duration-700 ease-out"
+          style={{ width: `${pct}%`, backgroundColor: activeZone.color }} />
+        <div className="absolute top-1/2 w-4 h-4 rounded-full border-2 border-white shadow-md transition-all duration-700 ease-out"
+          style={{ left: `${pct}%`, transform: "translate(-50%, -50%)", backgroundColor: activeZone.color }} />
+      </div>
+      <div className="flex justify-between mt-1.5">
+        {zones.map((zone, i) => (
+          <span key={i} className="text-[10px] font-medium transition-opacity"
+            style={{ color: zone.color, opacity: value >= zone.start && value < zone.end ? 1 : 0.4 }}>
+            {t(`values.${zone.label}`, zone.label)}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   COMPOSITION BAR — Split bar with breakdown cards
+   ═══════════════════════════════════════════════════════════════ */
+
+const CM = {
+  bg: { "#3b82f6": "bg-blue-50 border-blue-100", "#f59e0b": "bg-amber-50 border-amber-100", "#22c55e": "bg-emerald-50 border-emerald-100", "#ef4444": "bg-red-50 border-red-100", "#8b5cf6": "bg-violet-50 border-violet-100" } as Record<string, string>,
+  dot: { "#3b82f6": "bg-blue-500", "#f59e0b": "bg-amber-500", "#22c55e": "bg-emerald-500", "#ef4444": "bg-red-500", "#8b5cf6": "bg-violet-500" } as Record<string, string>,
+  txt: { "#3b82f6": "text-blue-600", "#f59e0b": "text-amber-600", "#22c55e": "text-emerald-600", "#ef4444": "text-red-600", "#8b5cf6": "text-violet-600" } as Record<string, string>,
+};
+
+function CompositionBar({ segments, t }: { segments: CompositionSegment[]; t: (key: string, fallback?: string) => string }) {
+  const total = segments.reduce((sum, s) => sum + s.value, 0);
+  if (total === 0) return null;
+  return (
+    <div>
+      <div className="relative h-10 rounded-xl overflow-hidden flex">
+        {segments.map((seg, i) => {
+          const pct = (seg.value / total) * 100;
+          return (
+            <div key={i} className="h-full flex items-center justify-center transition-all duration-700"
+              style={{ width: `${pct}%`, backgroundColor: seg.color }}>
+              {pct > 15 && <span className="text-xs font-bold text-white">{pct.toFixed(0)}% {t(`values.${seg.label}`, seg.label)}</span>}
+            </div>
+          );
+        })}
+      </div>
+      <div className={`grid gap-2.5 mt-3 ${segments.length === 2 ? "grid-cols-2" : "grid-cols-3"}`}>
+        {segments.map((seg, i) => (
+          <div key={i} className={`rounded-xl p-3 border ${CM.bg[seg.color] || "bg-slate-50 border-slate-100"}`}>
+            <div className="flex items-center gap-2 mb-1">
+              <div className={`w-2 h-2 rounded-full ${CM.dot[seg.color] || "bg-slate-500"}`} />
+              <span className={`text-[11px] font-medium ${CM.txt[seg.color] || "text-slate-600"}`}>{t(`values.${seg.label}`, seg.label)}</span>
+            </div>
+            <p className="text-xl font-bold text-slate-900">{seg.detail || seg.value.toLocaleString()}</p>
+            <p className="text-[10px] text-slate-400 mt-0.5">{((seg.value / total) * 100).toFixed(0)}%</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MAIN RESULTS CARD
+   ═══════════════════════════════════════════════════════════════ */
+
+export default function ResultsCardV4({
+  results, resultConfigs, hasCalculated, t, locale = "en", title, tooltips = {}, isCalculating = false,
+}: ResultsCardV4Props) {
+  const { format: formatCurrency } = useCurrency();
+  const translate = typeof t === "function" ? t : (key: string, fallback?: string) => fallback || key;
+
+  if (!results || !hasCalculated) {
+    return (
+      <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+        <div className="text-center text-slate-400 py-8">
+          <div className="text-4xl mb-2">📊</div>
+          <p>{translate("results.enterValues", "Enter values to see results")}</p>
+        </div>
+      </div>
+    );
+  }
+
+  const primaryResult = resultConfigs.find((r) => r.type === "primary");
+  const secondaryResults = resultConfigs.filter((r) => r.type === "secondary");
+  const hasZones = !!(results.zones?.length && results.gaugeValue !== undefined);
+  const hasComposition = !!(results.composition?.length);
+  const hasInsight = !!results.insight;
+  const hasMetrics = !!(results.metrics?.length);
+  const hasContext = !!(results.context && Object.keys(results.context).length);
+  const isEnhanced = hasZones || hasComposition || hasInsight;
+
+  const formatValue = (value: unknown, config: ResultConfig): string => {
+    if (value === null || value === undefined) return "--";
+    if (results.formatted?.[config.id]) return results.formatted[config.id];
+    if (typeof value === "string") return value;
+    const num = Number(value);
+    if (isNaN(num)) return String(value);
+    switch (config.format) {
+      case "currency": return formatCurrency(num, { decimals: 2 });
+      case "percentage": return `${num.toFixed(2)}%`;
+      case "date": case "text": return String(value);
+      default:
+        if (Math.abs(num) >= 1000) return num.toLocaleString("en-US", { maximumFractionDigits: 2 });
+        return num % 1 === 0 ? String(num) : num.toFixed(2);
+    }
+  };
+
+  const getTranslatedSummary = (): string => {
+    if (!results.summary) return "";
+    const tpl = translate("summaryTemplate", "");
+    if (tpl && tpl !== "summaryTemplate" && tpl !== "") {
+      let s = tpl;
+      for (const [k, v] of Object.entries(results.formatted)) s = s.replace(new RegExp(`{{${k}}}`, "g"), v);
+      for (const [k, v] of Object.entries(results.values)) s = s.replace(new RegExp(`{{${k}}}`, "g"), String(v));
+      return s;
+    }
+    return translateText(results.summary, locale);
+  };
+
+  const primaryValue = primaryResult ? formatValue(results.values[primaryResult.id], primaryResult) : "--";
+  const translatedSummary = getTranslatedSummary();
+  const activeZone = hasZones
+    ? results.zones!.find((z) => results.gaugeValue! >= z.start && results.gaugeValue! < z.end) || results.zones![results.zones!.length - 1]
+    : null;
+
+  /* ─── ENHANCED LAYOUT ─── */
+  if (isEnhanced) {
+    return (
+      <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+        {/* Hero: Radial + Context */}
+        {primaryResult && (
+          <div className="p-6 pb-4">
+            <div className="flex items-center gap-5">
+              {hasZones && (
+                <RadialProgress
+                  value={primaryValue}
+                  label={translate(`results.${primaryResult.id}`, primaryResult.label)}
+                  max={results.gaugeMax ?? results.zones![results.zones!.length - 1].end}
+                  color={activeZone?.color || "#3b82f6"}
+                  size={130}
+                />
+              )}
+              <div className="flex-1 min-w-0">
+                {activeZone && (
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold mb-2"
+                    style={{ backgroundColor: `${activeZone.color}15`, color: activeZone.color }}>
+                    <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: activeZone.color }} />
+                    {translate(`values.${activeZone.label}`, activeZone.label)}
+                  </div>
+                )}
+                {!hasZones && <p className="text-4xl font-bold text-blue-600 mb-1">{primaryValue}</p>}
+                <p className="text-sm text-slate-500">{translate(`results.${primaryResult.id}`, primaryResult.label)}</p>
+              </div>
+            </div>
+            {hasZones && (
+              <div className="mt-4">
+                <GaugeBar value={results.gaugeValue!} min={results.gaugeMin ?? results.zones![0].start}
+                  max={results.gaugeMax ?? results.zones![results.zones!.length - 1].end} zones={results.zones!} t={translate} />
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Composition */}
+        {hasComposition && (
+          <div className="px-6 pb-4">
+            <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">{translate("values.Composition", "Composition")}</p>
+            <CompositionBar segments={results.composition!} t={translate} />
+          </div>
+        )}
+
+        {/* Key Metrics */}
+        {hasMetrics && (
+          <div className="px-6 pb-4">
+            <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">{translate("values.Key Metrics", "Key Metrics")}</p>
+            <div className="space-y-2">
+              {results.metrics!.map((metric) => {
+                const config = resultConfigs.find((r) => r.id === metric.id);
+                if (!config) return null;
+                const value = formatValue(results.values[config.id], config);
+                if (!value || value === "--") return null;
+                const ctx = hasContext ? results.context![metric.id] : null;
+                return (
+                  <div key={metric.id} className="flex items-center gap-3 p-3 rounded-xl bg-slate-50">
+                    <span className="text-lg">{metric.icon}</span>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs text-slate-500">{translate(`results.${config.id}`, config.label)}</p>
+                      <p className="text-sm font-semibold text-slate-900">{value}</p>
+                    </div>
+                    {(ctx || metric.context) && (
+                      <span className="text-[11px] font-medium px-2 py-0.5 rounded-full flex-shrink-0"
+                        style={ctx ? { backgroundColor: `${ctx.color}12`, color: ctx.color } : { backgroundColor: "#f1f5f9", color: "#64748b" }}>
+                        {ctx ? translate(`values.${ctx.label}`, ctx.label) : translate(`values.${metric.context}`, metric.context)}
+                      </span>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* Secondary Grid fallback */}
+        {!hasMetrics && secondaryResults.length > 0 && (
+          <div className="px-6 pb-4">
+            <div className={`grid gap-3 ${secondaryResults.length <= 2 ? "grid-cols-2" : secondaryResults.length === 3 ? "grid-cols-3" : "grid-cols-2"}`}>
+              {secondaryResults.map((config) => {
+                const value = formatValue(results.values[config.id], config);
+                if (!value || value === "--") return null;
+                const ctx = hasContext ? results.context![config.id] : null;
+                return (
+                  <div key={config.id} className="bg-slate-50 rounded-xl p-4 text-center">
+                    <p className="text-xs text-slate-500 mb-1">{translate(`results.${config.id}`, config.label)}</p>
+                    <p className="text-xl font-bold text-slate-800">{value}</p>
+                    {ctx && (
+                      <span className="inline-block mt-1 text-[10px] font-medium px-2 py-0.5 rounded-full"
+                        style={{ backgroundColor: `${ctx.color}12`, color: ctx.color }}>
+                        {translate(`values.${ctx.label}`, ctx.label)}
+                      </span>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* Insight 💡 */}
+        {hasInsight && (
+          <div className="px-6 pb-4">
+            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-100">
+              <div className="flex gap-3">
+                <span className="text-xl mt-0.5 flex-shrink-0">💡</span>
+                <div>
+                  <p className="text-sm font-semibold text-slate-900 mb-1">{translate("values.What this means", "What this means")}</p>
+                  <p className="text-xs text-slate-600 leading-relaxed">{results.insight}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Summary fallback */}
+        {translatedSummary && !hasInsight && (
+          <div className="px-6 pb-6">
+            <div className="bg-blue-50 rounded-xl p-4">
+              <p className="text-sm text-blue-800 italic text-center">{translatedSummary}</p>
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  /* ─── CLASSIC LAYOUT ─── */
+  return (
+    <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+      {primaryResult && (
+        <div className="bg-gradient-to-br from-slate-50 to-blue-50 p-6 text-center border-b border-slate-100">
+          <p className="text-sm text-slate-500 mb-1">{translate(`results.${primaryResult.id}`, primaryResult.label)}</p>
+          <p className="text-4xl font-bold text-blue-600">{primaryValue}</p>
+        </div>
+      )}
+      {secondaryResults.length > 0 && (
+        <div className="p-4">
+          <div className={`grid gap-3 ${secondaryResults.length <= 2 ? "grid-cols-2" : secondaryResults.length === 3 ? "grid-cols-3" : "grid-cols-2"}`}>
+            {secondaryResults.map((config) => {
+              const value = formatValue(results.values[config.id], config);
+              return (
+                <div key={config.id} className="bg-slate-50 rounded-xl p-4 text-center">
+                  <p className="text-xs text-slate-500 mb-1">{translate(`results.${config.id}`, config.label)}</p>
+                  <p className="text-xl font-bold text-slate-800">{value}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+      {translatedSummary && (
+        <div className="px-6 pb-6">
+          <div className="bg-blue-50 rounded-xl p-4">
+            <p className="text-sm text-blue-800 italic text-center">{translatedSummary}</p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}

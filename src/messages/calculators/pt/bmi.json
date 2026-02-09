@@ -1,67 +1,222 @@
 {
-  "meta": {
-    "title": "Calculadora de IMC - Índice de Massa Corporal | Kalcufy",
-    "description": "Calculadora gratuita de IMC para verificar seu índice de massa corporal, entender sua categoria de peso e obter insights de saúde."
-  },
   "calculator": {
-    "title": "Calculadora de IMC",
-    "subtitle": "Calcule seu Índice de Massa Corporal",
-    "breadcrumb": "IMC",
-    "details": "Suas Informações",
-    "inputs": {
-      "height": "Altura",
-      "weight": "Peso",
-      "age": "Idade",
-      "gender": "Gênero",
-      "male": "Masculino",
-      "female": "Feminino",
-      "feet": "pés",
-      "inches": "pol",
-      "cm": "cm",
-      "lbs": "lbs",
-      "kg": "kg"
+    "name": "Calculadora de IMC",
+    "title": "Calculadora de IMC - Calculadora Gratuita de Índice de Massa Corporal",
+    "description": "Calcule seu Índice de Massa Corporal (IMC) instantaneamente com nossa calculadora gratuita. Suporta unidades métricas e imperiais. Descubra o que seu IMC significa e receba recomendações de peso saudável.",
+    "shortDescription": "Calcule seu IMC e encontre sua faixa de peso saudável",
+    "badge": "Saúde"
+  },
+  "inputs": {
+    "age": {
+      "label": "Idade",
+      "helpText": "A interpretação do IMC varia por idade para crianças"
     },
-    "units": {
-      "imperial": "Imperial (pés/lbs)",
-      "metric": "Métrico (cm/kg)"
+    "gender": {
+      "label": "Sexo",
+      "options": {
+        "male": "Masculino",
+        "female": "Feminino"
+      }
     },
-    "results": {
-      "yourBMI": "Seu IMC",
-      "category": "Categoria",
-      "healthyRange": "Faixa de Peso Saudável",
-      "underweight": "Abaixo do Peso",
-      "normal": "Normal",
-      "overweight": "Sobrepeso",
-      "obese": "Obesidade"
+    "heightFeet": {
+      "label": "Altura (pés)"
     },
-    "categories": {
-      "underweight": { "range": "Abaixo de 18.5", "description": "Você pode estar abaixo do peso. Considere consultar um profissional de saúde." },
-      "normal": { "range": "18.5 - 24.9", "description": "Você está com peso saudável. Mantenha seu estilo de vida atual." },
-      "overweight": { "range": "25.0 - 29.9", "description": "Você pode estar com sobrepeso. Considere mudanças no estilo de vida." },
-      "obese": { "range": "30.0 ou mais", "description": "Faixa de obesidade. Consulte um profissional de saúde." }
+    "heightInches": {
+      "label": "Altura (polegadas)"
     },
-    "buttons": { "save": "Salvar", "pdf": "PDF" },
-    "favorites": { "add": "Adicionar aos favoritos", "remove": "Remover dos favoritos" },
-    "saving": { "saving": "Salvando...", "saved": "Salvo", "error": "Erro ao salvar" }
+    "weightLbs": {
+      "label": "Peso"
+    },
+    "heightCm": {
+      "label": "Altura"
+    },
+    "weightKg": {
+      "label": "Peso"
+    }
+  },
+  "results": {
+    "bmi": "Seu IMC",
+    "category": "Categoria",
+    "healthyWeightRange": "Faixa de Peso Saudável",
+    "weightToHealthy": "Distância para o Saudável",
+    "gainToHealthy": "Ganhar",
+    "loseToHealthy": "Perder",
+    "toReachHealthy": "para atingir a faixa saudável",
+    "inHealthyRange": "Você está na faixa saudável! 🎉",
+    "summaryStart": "Seu IMC é",
+    "summaryClassified": "que é classificado como"
+  },
+  "dynamic": {
+    "gainToHealthy": "Ganhar",
+    "loseToHealthy": "Perder",
+    "toReachHealthy": "para atingir a faixa saudável",
+    "inHealthyRange": "Você está na faixa saudável! 🎉",
+    "summaryStart": "Seu IMC é",
+    "summaryClassified": "que é classificado como"
+  },
+  "infoCards": {
+    "bmiCategories": {
+      "title": "Categorias do IMC",
+      "items": {
+        "0": "Abaixo do peso: < 18,5",
+        "1": "Peso normal: 18,5 - 24,9",
+        "2": "Sobrepeso: 25 - 29,9",
+        "3": "Obesidade Classe I: 30 - 34,9",
+        "4": "Obesidade Classe II: 35 - 39,9",
+        "5": "Obesidade Classe III: ≥ 40"
+      }
+    },
+    "healthTips": {
+      "title": "Dicas de Saúde",
+      "items": {
+        "0": "IMC é uma ferramenta de triagem, não um diagnóstico",
+        "1": "Atletas podem ter IMC alto devido ao músculo",
+        "2": "Circunferência da cintura também é importante",
+        "3": "Consulte um médico para avaliações de saúde"
+      }
+    }
+  },
+  "reference": {
+    "healthyWeightByHeight": {
+      "title": "Peso Saudável por Altura",
+      "description": "Faixas de peso saudável baseadas na altura",
+      "items": {
+        "0": "1,52 m: 44-58 kg",
+        "1": "1,63 m: 50-65 kg",
+        "2": "1,73 m: 57-74 kg",
+        "3": "1,83 m: 64-83 kg",
+        "4": "1,93 m: 71-93 kg"
+      }
+    }
   },
   "education": {
-    "title": "Entendendo o IMC",
-    "content1": "O Índice de Massa Corporal (IMC) é uma medida simples que usa altura e peso para estimar gordura corporal. Embora não seja perfeito, é uma ferramenta útil de triagem.",
-    "content2": "O IMC não considera massa muscular, densidade óssea ou distribuição de gordura. Atletas podem ter IMC alto apesar de baixa gordura corporal.",
-    "tips": {
-      "title": "Dicas de Saúde",
-      "tip1": { "title": "O IMC é uma Ferramenta de Triagem", "description": "Não é uma ferramenta de diagnóstico. Consulte profissionais de saúde." },
-      "tip2": { "title": "Considere Outras Métricas", "description": "Circunferência da cintura e percentual de gordura fornecem insights adicionais." },
-      "tip3": { "title": "Foque na Saúde Geral", "description": "Dieta, exercício e saúde mental importam tanto quanto o peso." },
-      "tip4": { "title": "Acompanhe o Progresso", "description": "Medições individuais importam menos que tendências." }
+    "aboutBMI": {
+      "title": "Entendendo o IMC",
+      "items": {
+        "0": "O que o IMC mede: IMC é um cálculo simples usando altura e peso para estimar a gordura corporal e categorias de risco à saúde.",
+        "1": "Limitações do IMC: IMC não distingue entre músculo e gordura. Atletas ou pessoas musculosas podem ter resultados enganosos."
+      }
     },
-    "faqTitle": "Perguntas Frequentes"
+    "considerations": {
+      "title": "Considerações Importantes",
+      "items": {
+        "0": "IMC é uma ferramenta de triagem, não uma medida diagnóstica de saúde",
+        "1": "Atletas e indivíduos musculosos podem ter IMC elevado apesar de baixa gordura corporal",
+        "2": "IMC não leva em conta diferenças de idade, sexo ou etnia",
+        "3": "Circunferência da cintura e porcentagem de gordura corporal fornecem informações adicionais sobre a saúde",
+        "4": "Crianças e adolescentes devem usar percentis de IMC específicos para idade",
+        "5": "Sempre consulte um profissional de saúde para avaliação abrangente da saúde"
+      }
+    },
+    "exampleCalculation": {
+      "title": "Fórmula e Exemplo do IMC",
+      "description": "Como calcular o IMC manualmente",
+      "examples": {
+        "0": {
+          "title": "Fórmula Métrica",
+          "steps": {
+            "0": "IMC = peso (kg) ÷ altura² (m²)",
+            "1": "Exemplo: 70 kg, 1,75 m de altura",
+            "2": "IMC = 70 ÷ (1,75 × 1,75)",
+            "3": "IMC = 70 ÷ 3,0625"
+          },
+          "result": "IMC = 22,9 (Normal)"
+        },
+        "1": {
+          "title": "Fórmula Imperial",
+          "steps": {
+            "0": "IMC = (peso (lbs) × 703) ÷ altura² (pol²)",
+            "1": "Exemplo: 160 lbs, 5'10\" (70 pol)",
+            "2": "IMC = (160 × 703) ÷ (70 × 70)",
+            "3": "IMC = 112.480 ÷ 4.900"
+          },
+          "result": "IMC = 23,0 (Normal)"
+        }
+      }
+    },
+    "whatIsBMI": {
+      "title": "O que é IMC?",
+      "content": "O Índice de Massa Corporal (IMC) é um valor numérico calculado a partir do seu peso e altura. Desenvolvido pelo matemático belga Adolphe Quetelet na década de 1830, fornece uma maneira simples de categorizar indivíduos como abaixo do peso, peso normal, sobrepeso ou obeso. Embora não seja uma medida direta de gordura corporal, o IMC se correlaciona com medidas mais precisas e é amplamente usado como ferramenta de triagem rápida para possíveis problemas de saúde."
+    },
+    "bmiHealth": {
+      "title": "IMC e Riscos à Saúde",
+      "content": "Pesquisas mostram que valores de IMC muito baixos e muito altos estão associados ao aumento dos riscos à saúde. Um IMC abaixo de 18,5 pode indicar desnutrição ou outros problemas de saúde, enquanto um IMC acima de 25 está associado ao aumento do risco de doenças cardíacas, diabetes tipo 2, pressão alta e certos cânceres. No entanto, o IMC é apenas um fator - estilo de vida, dieta, atividade física e genética desempenham papéis importantes na saúde geral."
+    },
+    "beyondBMI": {
+      "title": "Além do IMC: Outras Métricas de Saúde",
+      "content": "Embora o IMC seja útil, tem limitações. Considere complementá-lo com circunferência da cintura (homens >102 cm, mulheres >89 cm indica maior risco), relação cintura-quadril, medições de porcentagem de gordura corporal e níveis de pressão arterial/colesterol. Esses fornecem uma imagem mais completa da saúde metabólica do que apenas o IMC."
+    }
   },
-  "faq": [
-    { "question": "Quão preciso é o IMC?", "answer": "O IMC é útil mas tem limitações. Pode superestimar gordura corporal em atletas e subestimá-la em idosos que perderam massa muscular." },
-    { "question": "Qual é um IMC saudável?", "answer": "Um IMC entre 18.5 e 24.9 é considerado saudável para a maioria dos adultos. Porém, o peso ótimo pode variar por idade, gênero e composição corporal." },
-    { "question": "Devo confiar apenas no IMC?", "answer": "Não. O IMC deve ser um de vários indicadores de saúde. Considere também circunferência da cintura, percentual de gordura, pressão arterial e colesterol." }
-  ],
-  "sidebar": { "financeTitle": "Calculadoras Financeiras", "healthTitle": "Calculadoras de Saúde" },
-  "common": { "home": "Início", "calculators": "Calculadoras", "pro": "PRO" }
+  "faq": {
+    "title": "Perguntas Frequentes",
+    "items": {
+      "0": {
+        "question": "O que é um IMC saudável?",
+        "answer": "Um IMC saudável é geralmente considerado entre 18,5 e 24,9. Esta faixa está associada aos menores riscos à saúde para a maioria dos adultos. No entanto, o IMC ótimo pode variar com base na idade, etnia e fatores individuais."
+      },
+      "1": {
+        "question": "O IMC é preciso para atletas?",
+        "answer": "O IMC pode não ser preciso para atletas ou indivíduos altamente musculosos. Como o músculo é mais denso que a gordura, pessoas atléticas podem ter um IMC alto apesar de ter baixa gordura corporal. Nesses casos, porcentagem de gordura corporal ou outras medições são mais confiáveis."
+      },
+      "2": {
+        "question": "O IMC se aplica a crianças?",
+        "answer": "Crianças e adolescentes usam percentis de IMC-para-idade em vez de categorias padrão para adultos. O IMC de uma criança é comparado com outras da mesma idade e sexo porque a composição corporal varia conforme as crianças crescem."
+      },
+      "3": {
+        "question": "Posso ter um IMC normal mas ainda não ser saudável?",
+        "answer": "Sim, isso às vezes é chamado de 'magro gordo' ou peso normal metabolicamente obeso (PNMO). Você pode ter peso normal mas alta porcentagem de gordura corporal, especialmente ao redor dos órgãos. Exercícios regulares e uma dieta equilibrada são importantes independentemente do IMC."
+      },
+      "4": {
+        "question": "Com que frequência devo verificar meu IMC?",
+        "answer": "Para a maioria dos adultos, verificar o IMC algumas vezes por ano é suficiente. Monitoramento mais frequente pode ser útil se você está tentando ativamente perder ou ganhar peso. Foque em tendências de longo prazo em vez de flutuações diárias."
+      },
+      "5": {
+        "question": "Qual é a diferença entre IMC e porcentagem de gordura corporal?",
+        "answer": "O IMC é calculado apenas a partir da altura e peso, enquanto a porcentagem de gordura corporal mede diretamente a proporção do seu corpo que é tecido adiposo. A porcentagem de gordura corporal é mais precisa, mas requer equipamento especial como calibradores, balanças de impedância bioelétrica ou exames DEXA."
+      }
+    }
+  },
+  "sources": {
+    "title": "Fontes",
+    "viewSource": "Ver fonte",
+    "opensNewTab": "Abre em nova aba",
+    "items": {
+      "0": "Organização Mundial da Saúde (2024). Índice de massa corporal - IMC",
+      "1": "Centers for Disease Control and Prevention (2024). Sobre o IMC de Adultos",
+      "2": "National Institutes of Health (2023). Calcule seu Índice de Massa Corporal"
+    }
+  },
+  "ui": {
+    "calculate": "Calcular",
+    "reset": "Limpar",
+    "share": "Compartilhar",
+    "save": "Salvar",
+    "export": "Exportar",
+    "pdf": "PDF",
+    "excel": "Excel",
+    "copied": "Copiado!",
+    "loading": "Carregando...",
+    "error": "Erro",
+    "required": "Obrigatório",
+    "optional": "Opcional",
+    "unitSystem": "Sistema de Unidades",
+    "imperial": "Imperial (lb, pé/pol)",
+    "metric": "Métrico (kg, cm)",
+    "home": "Início",
+    "calculators": "Calculadoras"
+  },
+  "rating": {
+    "title": "Avalie esta calculadora",
+    "clickToRate": "Clique para avaliar",
+    "youRated": "Você avaliou",
+    "stars": "estrelas",
+    "averageFrom": "média de",
+    "ratings": "avaliações",
+    "shareCalculator": "Compartilhar calculadora",
+    "thankYou": "Obrigado pela sua avaliação!"
+  },
+  "disclaimers": {
+    "health": "Esta calculadora fornece estimativas apenas para fins educacionais. Os resultados podem variar. Consulte um profissional de saúde para orientação médica.",
+    "finance": "Esta calculadora fornece estimativas apenas para fins educacionais. Os resultados reais podem variar. Consulte um consultor financeiro para orientação personalizada."
+  }
 }

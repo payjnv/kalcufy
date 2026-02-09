@@ -1,0 +1,1419 @@
+{
+  "common": {
+    "home": "Accueil",
+    "calculators": "Calculatrices",
+    "pricing": "Tarifs",
+    "blog": "Blog",
+    "about": "À propos",
+    "login": "Connexion",
+    "signup": "S'inscrire",
+    "logout": "Déconnexion",
+    "profile": "Profil",
+    "search": "Rechercher",
+    "language": "Langue",
+    "privacy": "Confidentialité",
+    "terms": "Conditions",
+    "cookies": "Cookies",
+    "accessibility": "Accessibilité",
+    "allRightsReserved": "Tous droits réservés."
+  },
+  "calculators": {
+    "names": {
+      "compoundInterest": "Intérêts composés",
+      "mortgage": "Prêt hypothécaire",
+      "loan": "Prêt",
+      "autoLoan": "Prêt auto",
+      "retirement": "Retraite",
+      "investment": "Investissement",
+      "savings": "Épargne",
+      "interestRate": "Taux d'intérêt",
+      "roi": "ROI",
+      "amortization": "Amortissement",
+      "downPayment": "Acompte",
+      "salary": "Salaire",
+      "incomeTax": "Impôt sur le revenu",
+      "401k": "Calculateur 401(k)",
+      "inflation": "Inflation",
+      "budget": "Budget",
+      "paycheck": "Salaire",
+      "personalLoan": "Prêt personnel",
+      "profitMargin": "Marge bénéficiaire",
+      "rothIra": "Roth IRA",
+      "studentLoan": "Prêt étudiant",
+      "bmi": "IMC",
+      "calorie": "Calorie",
+      "macro": "Macro",
+      "tdee": "TDEE",
+      "bodyFat": "Graisse corporelle",
+      "bmr": "BMR",
+      "idealWeight": "Poids idéal",
+      "protein": "Protéine",
+      "waterIntake": "Consommation d'eau",
+      "oneRepMax": "1RM",
+      "sleep": "Sommeil",
+      "creditCard": "Remboursement carte de crédit",
+      "pregnancy": "Date d'accouchement",
+      "runningPace": "Allure de course",
+      "heartRateZones": "Zones de fréquence cardiaque",
+      "caloriesBurned": "Calories brûlées",
+      "caloricDeficit": "Déficit calorique",
+      "tip": "Pourboire",
+      "discount": "Remise",
+      "percentage": "Pourcentage",
+      "fraction": "Fractions",
+      "squareRoot": "Racine carrée",
+      "ruleOfThree": "Règle de trois",
+      "age": "Calculateur de Age",
+      "date": "Date",
+      "unitConverter": "Convertisseur d'unités",
+      "fuelCost": "Coût du carburant",
+      "timeZone": "Fuseau horaire",
+      "gpa": "GPA",
+      "randomNumberGenerator": "Générateur de nombres aléatoires",
+      "netWorth": "Valeur nette",
+      "emergencyFund": "Fonds d'urgence",
+      "cd": "Certificat de dépôt",
+      "carLease": "Crédit-bail automobile",
+      "leanBodyMass": "Masse maigre",
+      "maintenanceCalories": "Calories de maintenance",
+      "calorieDeficit": "Déficit calorique",
+      "calorieSurplus": "Surplus calorique",
+      "weightLoss": "Perte de poids",
+      "weightGain": "Prise de poids",
+      "waistToHeightRatio": "Rapport taille-hauteur",
+      "step": "Calculatrice de pas",
+      "restDay": "Calculatrice de jour de repos",
+      "heartRateZone": "Calculatrice de zone de fréquence cardiaque",
+      "ovulation": "Calculatrice d'ovulation",
+      "quadratic": "Calculateur de Quadratic",
+      "401kCalculator": "Calculateur de 401k Calculator",
+      "creditCardPayoff": "Calculateur de Credit Card Payoff",
+      "keto": "Keto Macro Calculateur de",
+      "currency": "Currency Converter Calculator",
+      "chineseGenderPredictor": "Chinese Gender Predictor Calculator",
+      "conceptionDate": "Conception Date Calculator",
+      "hcgCalculator": "Hcg Calculator Calculator",
+      "implantation": "Implantation Calculator",
+      "intermittentFasting": "Intermittent Fasting Calculator",
+      "pregnancyDueDate": "Pregnancy Due Date Calculator",
+      "pregnancyWeightGain": "Pregnancy Weight Gain Calculator",
+      "quadraticFormula": "Quadratic Formula Calculator",
+      "randomNumber": "Random Number Generator Calculator",
+      "bandwidth": "Bandwidth Calculator",
+      "cidr": "Cidr Calculator",
+      "digitalUnit": "Digital Unit Converter Calculator",
+      "ipSubnet": "Ip Subnet Calculator",
+      "password": "Password Generator Calculator",
+      "passwordStrength": "Password Strength Calculator",
+      "psuCalculator": "Psu Calculator Calculator",
+      "raid": "Raid Calculator",
+      "transferTime": "Transfer Time Calculator",
+      "vlsm": "Vlsm Calculator",
+      "length": "Length Converter Calculator",
+      "cmToInches": "Cm To Inches Calculator",
+      "inchesToCm": "Inches To Cm Calculator",
+      "kmToMiles": "Km To Miles Calculator",
+      "milesToKm": "Miles To Km Calculator",
+      "metersToFeet": "Meters To Feet Calculator",
+      "feetToMeters": "Feet To Meters Calculator",
+      "mmToInches": "Mm To Inches Calculator",
+      "inchesToMm": "Inches To Mm Calculator",
+      "cmToFeet": "Cm To Feet Calculator",
+      "feetToCm": "Feet To Cm Calculator",
+      "inchesToFeet": "Inches To Feet Calculator",
+      "kgToLbs": "Kg To Lbs Calculator",
+      "lbsToKg": "Lbs To Kg Calculator",
+      "celsiusToFahrenheit": "Celsius To Fahrenheit Calculator",
+      "fahrenheitToCelsius": "Fahrenheit To Celsius Calculator",
+      "ozToMl": "Oz To Ml Calculator",
+      "gallonsToLiters": "Gallons To Liters Calculator",
+      "cupsToMl": "Cups To Ml Calculator",
+      "squareFeetToSquareMeters": "Square Feet To Square Meters Calculator",
+      "mphToKmh": "Mph To Kmh Calculator",
+      "cuadrasToHectareas": "Cuadras To Hectareas Converter Calculator",
+      "fanegadasToHectareas": "Fanegadas To Hectareas Converter Calculator",
+      "manzanasToHectareas": "Manzanas To Hectareas Converter Calculator",
+      "tareasToMetrosCuadrados": "Tareas To Metros Cuadrados Converter Calculator",
+      "varasToMetros": "Varas To Metros Converter Calculator",
+      "paintCalculator": "Paint Calculator Calculator",
+      "concreteCalculator": "Concrete Calculator Calculator",
+      "cuadrasToHectareasConverter": "Cuadras to Hectares Converter",
+      "fanegadasToHectareasConverter": "Fanegadas to Hectares Converter",
+      "manzanasToHectareasConverter": "Manzanas to Hectares Converter",
+      "tareasToMetrosCuadradosConverter": "Tareas to Square Meters Converter",
+      "varasToMetrosConverter": "Varas to Meters Converter",
+      "dateCalculator": "Date Calculateur de",
+      "currencyConverter": "Currency Converter",
+      "lengthConverter": "Length Converter"
+    }
+  },
+  "home": {
+    "badge": "Calculatrices gratuites",
+    "title1": "Calculez votre",
+    "title2": "avenir financier",
+    "subtitle": "Calculatrices gratuites et rapides pour les prêts, investissements, IMC, calories et plus. Prenez des décisions plus intelligentes en quelques secondes.",
+    "searchPlaceholder": "Rechercher des calculatrices...",
+    "searchButton": "Rechercher",
+    "seeAllResults": "Voir tous les résultats pour",
+    "exploreButton": "Explorer les calculatrices",
+    "tryCompound": "Essayer les intérêts composés →",
+    "stats": {
+      "calculations": "Calculs",
+      "users": "Utilisateurs",
+      "calculators": "Calculatrices",
+      "languages": "Langues"
+    },
+    "categories": {
+      "title": "Catégories de calculatrices",
+      "subtitle": "Tout ce dont vous avez besoin pour vos finances et votre santé",
+      "finance": "Finance",
+      "financeCount": "16 calculatrices",
+      "financeDesc": "Prêts, hypothèques, investissements, planification de retraite et plus",
+      "health": "Santé et fitness",
+      "healthCount": "15 calculatrices",
+      "healthDesc": "IMC, calories, macros, TDEE, graisse corporelle et plus",
+      "math": "Mathématiques",
+      "mathCount": "15+ calculatrices",
+      "mathDesc": "Pourcentages, fractions, algèbre et plus",
+      "everyday": "Quotidien",
+      "everydayCount": "10 calculatrices",
+      "everydayDesc": "Pourboires, remises, âge, date et plus",
+      "soon": "Bientôt disponible"
+    },
+    "languages": {
+      "title": "Disponible en 3 langues",
+      "subtitle": "Utilisez Kalcufy dans votre langue préférée"
+    },
+    "cta": {
+      "title": "Commencez à calculer maintenant",
+      "subtitle": "Rejoignez plus de 50 000 utilisateurs prenant des décisions plus intelligentes",
+      "button": "Commencer gratuitement"
+    },
+    "calculatorCount": "{count, plural, =1 {Calculatrice} other {Calculatrices}}"
+  },
+  "calculatorsPage": {
+    "title": "Toutes les calculatrices",
+    "subtitle": "Trouvez la calculatrice parfaite pour vos besoins",
+    "search": "Rechercher des calculatrices...",
+    "categories": "CATÉGORIES",
+    "allCalculators": "Toutes les calculatrices",
+    "finance": "Finance",
+    "healthFitness": "Santé et fitness",
+    "everyday": "Quotidien",
+    "popular": "POPULAIRE",
+    "financeTitle": "Finance",
+    "healthTitle": "Santé et fitness",
+    "everydayTitle": "Quotidien",
+    "calcs": {
+      "compoundInterest": {
+        "name": "Intérêts composés",
+        "desc": "Calculez comment votre argent croît au fil du temps"
+      },
+      "mortgage": {
+        "name": "Prêt hypothécaire",
+        "desc": "Calculez les paiements hypothécaires mensuels"
+      },
+      "loan": {
+        "name": "Prêt",
+        "desc": "Calculez les paiements de prêt et les intérêts"
+      },
+      "autoLoan": {
+        "name": "Prêt auto",
+        "desc": "Calculez les paiements de prêt automobile"
+      },
+      "retirement": {
+        "name": "Retraite",
+        "desc": "Planifiez vos économies de retraite"
+      },
+      "savings": {
+        "name": "Épargne",
+        "desc": "Planifiez vos objectifs d'épargne"
+      },
+      "investment": {
+        "name": "Investissement",
+        "desc": "Calculez la croissance d'investissement au fil du temps"
+      },
+      "personalLoan": {
+        "name": "Prêt personnel",
+        "desc": "Calculez les paiements et intérêts de prêt personnel"
+      },
+      "rothIra": {
+        "name": "Roth IRA",
+        "desc": "Planifiez vos économies de retraite Roth IRA"
+      },
+      "budget": {
+        "name": "Budget",
+        "desc": "Planifiez vos finances personnelles et suivez les dépenses"
+      },
+      "401k": {
+        "name": "401(k)",
+        "desc": "Planifiez vos économies de retraite 401(k)"
+      },
+      "creditCard": {
+        "name": "Remboursement carte de crédit",
+        "desc": "Remboursez la dette de carte de crédit plus rapidement"
+      },
+      "paycheck": {
+        "name": "Salaire",
+        "desc": "Calculez votre salaire net après impôts"
+      },
+      "profitMargin": {
+        "name": "Marge bénéficiaire",
+        "desc": "Calculez la marge, le markup et le prix de vente"
+      },
+      "incomeTax": {
+        "name": "Impôt sur le revenu",
+        "desc": "Estimez vos impôts fédéraux et d'état"
+      },
+      "studentLoan": {
+        "name": "Prêt étudiant",
+        "desc": "Calculez les paiements et explorez les stratégies de remboursement"
+      },
+      "bmi": {
+        "name": "IMC",
+        "desc": "Calculez votre indice de masse corporelle"
+      },
+      "calorie": {
+        "name": "Calorie",
+        "desc": "Calculez vos besoins caloriques quotidiens"
+      },
+      "bmr": {
+        "name": "BMR",
+        "desc": "Calculez votre métabolisme de base et vos besoins caloriques quotidiens"
+      },
+      "tdee": {
+        "name": "TDEE",
+        "desc": "Calculez votre dépense énergétique totale quotidienne et vos besoins caloriques"
+      },
+      "bodyFat": {
+        "name": "Graisse corporelle",
+        "desc": "Calculez votre pourcentage de graisse corporelle avec les méthodes Navy, IMC et Army"
+      },
+      "macro": {
+        "name": "Macro",
+        "desc": "Calculez vos objectifs quotidiens de protéines, glucides et lipides avec 6 préréglages de régime"
+      },
+      "idealWeight": {
+        "name": "Poids idéal",
+        "desc": "Calculez votre poids corporel idéal avec 5 formules scientifiques et ajustement de la corpulence"
+      },
+      "protein": {
+        "name": "Protéine",
+        "desc": "Calculez votre apport quotidien optimal en protéines selon vos objectifs"
+      },
+      "waterIntake": {
+        "name": "Consommation d'eau",
+        "desc": "Calculez combien d'eau vous devriez boire quotidiennement"
+      },
+      "oneRepMax": {
+        "name": "1RM",
+        "desc": "Estimez votre 1RM avec 7 formules scientifiques"
+      },
+      "sleep": {
+        "name": "Sommeil",
+        "desc": "Trouvez les heures optimales de coucher et de réveil"
+      },
+      "runningPace": {
+        "name": "Allure de course",
+        "desc": "Calculez l'allure, les scores VDOT, les allures d'entraînement, les prédictions de course et les temps de passage"
+      },
+      "heartRateZones": {
+        "name": "Zones de fréquence cardiaque",
+        "desc": "Trouvez vos zones d'entraînement optimales de fréquence cardiaque avec la formule de Karvonen"
+      },
+      "caloriesBurned": {
+        "name": "Calories brûlées",
+        "desc": "Calculez les calories brûlées pour plus de 50 activités avec les valeurs MET"
+      },
+      "caloricDeficit": {
+        "name": "Déficit calorique",
+        "desc": "Calculez votre apport calorique idéal pour la perte de poids ou le gain musculaire"
+      },
+      "tip": {
+        "name": "Pourboire",
+        "desc": "Calculez les pourboires pour restaurants, livraisons et services avec partage de l'addition"
+      },
+      "discount": {
+        "name": "Remise",
+        "desc": "Calculez les prix soldés, les économies et cumulez plusieurs remises"
+      },
+      "squareRoot": {
+        "name": "Racine carrée et exposants",
+        "desc": "Calculez les racines carrées, racines cubiques, racines nième et exposants"
+      },
+      "ruleOfThree": {
+        "name": "Règle de trois",
+        "desc": "Résolvez les problèmes de proportion directe et inverse"
+      },
+      "fraction": {
+        "name": "Fractions",
+        "desc": "Additionnez, soustrayez, multipliez, divisez les fractions avec solutions étape par étape"
+      },
+      "percentage": {
+        "name": "Pourcentage",
+        "desc": "Calculez les pourcentages, augmentations, diminutions et conversions"
+      },
+      "age": {
+        "desc": "Calculez votre age"
+      },
+      "date": {
+        "name": "Date",
+        "desc": "Ajoutez des jours, calculez les différences et trouvez les jours ouvrables"
+      },
+      "unitConverter": {
+        "name": "Convertisseur d'unités",
+        "desc": "Convertissez longueur, poids, température, volume et plus"
+      },
+      "fuelCost": {
+        "name": "Coût du carburant",
+        "desc": "Calculez les coûts de voyage, dépenses annuelles et comparez les véhicules"
+      },
+      "timeZone": {
+        "name": "Fuseau horaire",
+        "desc": "Convertissez les heures, affichez les horloges mondiales et planifiez les réunions internationales"
+      },
+      "gpa": {
+        "name": "GPA",
+        "desc": "Calculez le GPA semestriel, cumulatif et cible avec mentions"
+      },
+      "randomNumberGenerator": {
+        "name": "Générateur de nombres aléatoires",
+        "desc": "Générez des nombres aléatoires, lancez des dés, tirez à pile ou face et créez des mots de passe"
+      },
+      "netWorth": {
+        "desc": "Calculez votre valeur nette totale avec actifs vs passifs"
+      },
+      "emergencyFund": {
+        "desc": "Calculez combien vous avez besoin pour la sécurité financière"
+      },
+      "cd": {
+        "desc": "Calculez les gains de certificat de dépôt et comparez les conditions"
+      },
+      "carLease": {
+        "name": "Crédit-bail automobile",
+        "desc": "Calculez les paiements de crédit-bail automobile, coût total et comparez crédit-bail vs achat"
+      },
+      "leanBodyMass": {
+        "name": "Masse maigre",
+        "desc": "Calculez la masse maigre avec 5 formules avec FFMI et objectifs de protéines"
+      },
+      "maintenanceCalories": {
+        "name": "Calories de maintenance",
+        "desc": "Calculez le TDEE avec 3 formules BMR et répartition des macros par repas"
+      },
+      "calorieDeficit": {
+        "name": "Déficit calorique",
+        "desc": "Calculez les calories de perte de poids avec chronologie, vérifications de sécurité et pauses alimentaires"
+      },
+      "calorieSurplus": {
+        "name": "Surplus calorique",
+        "desc": "Calculez les calories de prise de masse avec estimations gain muscle vs graisse par niveau d'entraînement"
+      },
+      "pregnancy": {
+        "name": "Date d'accouchement",
+        "desc": "Calculez la date d'accouchement, date de conception et suivez les jalons de grossesse"
+      },
+      "lease": {
+        "name": "Crédit-bail",
+        "desc": "Calculez les paiements de crédit-bail automobile, coût total et comparez crédit-bail vs achat"
+      },
+      "weightLoss": {
+        "name": "Perte de poids",
+        "desc": "Calculez combien de temps pour atteindre votre poids objectif avec objectifs caloriques quotidiens et chronologie"
+      },
+      "weightGain": {
+        "name": "Prise de poids",
+        "desc": "Calculez les calories de prise de masse avec projection gain muscle vs graisse par expérience d'entraînement"
+      },
+      "waistToHeightRatio": {
+        "name": "Rapport taille-hauteur",
+        "desc": "Meilleur que l'IMC pour l'évaluation des risques de santé"
+      },
+      "step": {
+        "name": "Calculatrice de pas",
+        "desc": "Convertissez les pas en distance et calories"
+      },
+      "restDay": {
+        "name": "Calculatrice de jour de repos",
+        "desc": "Calculez le temps de récupération optimal entre les entraînements"
+      },
+      "heartRateZone": {
+        "desc": "Calculez vos zones de fréquence cardiaque d'entraînement pour un fitness optimal"
+      },
+      "ovulation": {
+        "desc": "Suivez votre fenêtre fertile et vos jours d'ovulation"
+      },
+      "quadratic": {
+        "desc": "Free quadratic formula calculator solves ax² + bx + c = 0. Shows discriminant, real/complex roots, v"
+      },
+      "401kCalculator": {
+        "desc": "Free 401(k) calculator with 2025 limits ($23,500 + catch-up). Calculate employer match, tax savings,"
+      },
+      "creditCardPayoff": {
+        "desc": "Calculate your debt-free date and compare payoff strategies"
+      },
+      "keto": {
+        "desc": "Calculate keto"
+      },
+      "currency": {
+        "desc": "Convert between 30+ world currencies instantly"
+      },
+      "chineseGenderPredictor": {
+        "desc": "Predict baby gender using the ancient Chinese gender prediction chart"
+      },
+      "conceptionDate": {
+        "desc": "Estimate your conception date based on due date or last period"
+      },
+      "hcgCalculator": {
+        "desc": "Track hCG hormone levels and doubling time during early pregnancy"
+      },
+      "implantation": {
+        "desc": "Estimate when embryo implantation may occur after ovulation"
+      },
+      "intermittentFasting": {
+        "desc": "Plan your fasting schedule and calculate optimal eating windows"
+      },
+      "pregnancyDueDate": {
+        "desc": "Calculate your pregnancy due date and track weekly milestones"
+      },
+      "pregnancyWeightGain": {
+        "desc": "Track healthy weight gain during pregnancy by trimester"
+      },
+      "quadraticFormula": {
+        "desc": "Solve quadratic equations step by step"
+      },
+      "randomNumber": {
+        "desc": "Generate random numbers, roll dice, flip coins"
+      },
+      "bandwidth": {
+        "desc": "Calculate bandwidth requirements and data transfer speeds"
+      },
+      "cidr": {
+        "desc": "Calculate CIDR notation, subnet ranges, and IP allocation"
+      },
+      "digitalUnit": {
+        "desc": "Convert between bytes, KB, MB, GB, TB and data rate units"
+      },
+      "ipSubnet": {
+        "desc": "Calculate IP subnets, network ranges, and broadcast addresses"
+      },
+      "password": {
+        "desc": "Generate secure passwords with entropy analysis"
+      },
+      "passwordStrength": {
+        "desc": "Test password strength with entropy and crack time analysis"
+      },
+      "psuCalculator": {
+        "desc": "Calculate PC power supply wattage for your build"
+      },
+      "raid": {
+        "desc": "Calculate RAID storage capacity, redundancy, and performance"
+      },
+      "transferTime": {
+        "desc": "Calculate file transfer time based on size and speed"
+      },
+      "vlsm": {
+        "desc": "Calculate Variable Length Subnet Masks for IP allocation"
+      },
+      "length": {
+        "desc": "Convert between all length units instantly"
+      },
+      "cmToInches": {
+        "desc": "Convert centimeters to inches quickly"
+      },
+      "inchesToCm": {
+        "desc": "Convert inches to centimeters with precision"
+      },
+      "kmToMiles": {
+        "desc": "Convert kilometers to miles for distance calculations"
+      },
+      "milesToKm": {
+        "desc": "Convert miles to kilometers"
+      },
+      "metersToFeet": {
+        "desc": "Convert meters to feet for construction"
+      },
+      "feetToMeters": {
+        "desc": "Convert feet to meters with precision"
+      },
+      "mmToInches": {
+        "desc": "Convert millimeters to inches"
+      },
+      "inchesToMm": {
+        "desc": "Convert inches to millimeters"
+      },
+      "cmToFeet": {
+        "desc": "Convert centimeters to feet and inches"
+      },
+      "feetToCm": {
+        "desc": "Convert feet to centimeters"
+      },
+      "inchesToFeet": {
+        "desc": "Convert inches to feet and remaining inches"
+      },
+      "kgToLbs": {
+        "desc": "Convert kilograms to pounds instantly"
+      },
+      "lbsToKg": {
+        "desc": "Convert pounds to kilograms with precision"
+      },
+      "celsiusToFahrenheit": {
+        "desc": "Convert Celsius to Fahrenheit"
+      },
+      "fahrenheitToCelsius": {
+        "desc": "Convert Fahrenheit to Celsius"
+      },
+      "ozToMl": {
+        "desc": "Convert fluid ounces to milliliters"
+      },
+      "gallonsToLiters": {
+        "desc": "Convert gallons to liters"
+      },
+      "cupsToMl": {
+        "desc": "Convert cups to milliliters for recipes"
+      },
+      "squareFeetToSquareMeters": {
+        "desc": "Convert square feet to square meters"
+      },
+      "mphToKmh": {
+        "desc": "Convert miles per hour to kilometers per hour"
+      },
+      "cuadrasToHectareas": {
+        "desc": "Convert cuadras to hectáreas - Latin American land"
+      },
+      "fanegadasToHectareas": {
+        "desc": "Convert fanegadas to hectáreas - Colombian land"
+      },
+      "manzanasToHectareas": {
+        "desc": "Convert manzanas to hectáreas - Central America"
+      },
+      "tareasToMetrosCuadrados": {
+        "desc": "Convert tareas to metros cuadrados - Dominican Republic"
+      },
+      "varasToMetros": {
+        "desc": "Convert varas to metros - Latin America"
+      },
+      "paintCalculator": {
+        "desc": "Calculate how much paint you need for walls and rooms"
+      },
+      "concreteCalculator": {
+        "desc": "Calculate concrete volume for slabs, footings, and columns"
+      },
+      "cuadrasToHectareasConverter": {
+        "desc": "Calculate cuadras to hectareas converter"
+      },
+      "fanegadasToHectareasConverter": {
+        "desc": "Calculate fanegadas to hectareas converter"
+      },
+      "manzanasToHectareasConverter": {
+        "desc": "Calculate manzanas to hectareas converter"
+      },
+      "tareasToMetrosCuadradosConverter": {
+        "desc": "Calculate tareas to metros cuadrados converter"
+      },
+      "varasToMetrosConverter": {
+        "desc": "Calculate varas to metros converter"
+      },
+      "dateCalculator": {
+        "desc": "Calculate date calculator"
+      },
+      "currencyConverter": {
+        "desc": "Calculate currency converter"
+      },
+      "lengthConverter": {
+        "desc": "Calculate length converter"
+      }
+    },
+    "sortBy": "Trier par",
+    "sortPopular": "Populaire",
+    "sortNewest": "Plus récents",
+    "sortNameAsc": "Nom A-Z",
+    "sortNameDesc": "Nom Z-A",
+    "showAll": "Voir tout dans",
+    "searchButton": "Rechercher",
+    "noResults": "Aucune calculatrice trouvée",
+    "tryDifferent": "Essayez une recherche différente ou effacez les filtres",
+    "clearFilters": "Effacer les filtres",
+    "viewAll": "Voir tout"
+  },
+  "auth": {
+    "backToHome": "Retour à l'accueil",
+    "login": {
+      "title": "Bon retour",
+      "subtitle": "Connectez-vous à votre compte",
+      "email": "E-mail",
+      "password": "Mot de passe",
+      "forgotPassword": "Mot de passe oublié ?",
+      "signIn": "Se connecter",
+      "signingIn": "Connexion...",
+      "noAccount": "Vous n'avez pas de compte ?",
+      "createFree": "Créez-en un gratuitement",
+      "orContinue": "ou",
+      "continueGoogle": "Continuer avec Google",
+      "continueGithub": "Continuer avec GitHub",
+      "invalidCredentials": "E-mail ou mot de passe invalide",
+      "accountCreated": "Compte créé ! Veuillez vous connecter.",
+      "terms": "En vous connectant, vous acceptez nos",
+      "termsLink": "Conditions",
+      "and": "et",
+      "privacyLink": "Politique de confidentialité",
+      "leftTitle": "Bon retour vers des",
+      "leftTitle2": "calculs plus intelligents.",
+      "leftSubtitle": "Accédez à vos calculs sauvegardés, exportez des rapports et débloquez les fonctionnalités PRO.",
+      "feature1": "Synchronisation sur tous les appareils",
+      "feature2": "Export PDF et Excel",
+      "feature3": "Calculs illimités",
+      "testimonial": "Kalcufy m'a aidé à comprendre mes options hypothécaires et m'a fait économiser 15 000 $.",
+      "testimonialAuthor": "Sarah M.",
+      "testimonialRole": "Propriétaire"
+    },
+    "register": {
+      "title": "Créez votre compte",
+      "subtitle": "Gratuit à vie. Aucune carte de crédit requise.",
+      "fullName": "Nom complet",
+      "email": "E-mail",
+      "password": "Mot de passe",
+      "passwordHint": "Doit contenir au moins 6 caractères",
+      "createAccount": "Créer un compte",
+      "creatingAccount": "Création du compte...",
+      "hasAccount": "Vous avez déjà un compte ?",
+      "signIn": "Se connecter",
+      "orContinue": "ou",
+      "signupGoogle": "S'inscrire avec Google",
+      "signupGithub": "S'inscrire avec GitHub",
+      "terms": "En créant un compte, vous acceptez nos",
+      "termsLink": "Conditions",
+      "and": "et",
+      "privacyLink": "Politique de confidentialité",
+      "leftTitle": "Commencez votre voyage",
+      "leftTitle2": "vers des décisions plus intelligentes.",
+      "leftSubtitle": "Rejoignez des milliers d'utilisateurs prenant de meilleures décisions financières et de santé avec Kalcufy.",
+      "feature1": "Plus de 30 calculatrices professionnelles",
+      "feature2": "Sauvegardez et synchronisez vos calculs",
+      "feature3": "Export PDF et Excel",
+      "feature4": "100% gratuit à vie",
+      "testimonial": "J'ai essayé de nombreuses applications de calculatrice, mais Kalcufy est de loin la plus complète et facile à utiliser.",
+      "testimonialAuthor": "Michael R.",
+      "testimonialRole": "Analyste financier"
+    }
+  },
+  "pricing": {
+    "title": "Tarifs simples et transparents",
+    "subtitle": "Commencez gratuitement, passez à un plan supérieur quand vous en avez besoin",
+    "monthly": "Mensuel",
+    "yearly": "Annuel",
+    "savePercent": "Économisez 20%",
+    "free": {
+      "name": "Gratuit",
+      "price": "0",
+      "period": "à vie",
+      "description": "Parfait pour commencer",
+      "cta": "Commencer",
+      "features": [
+        "Toutes les calculatrices de base",
+        "Calculs illimités",
+        "3 langues",
+        "Compatible mobile",
+        "Aucune inscription requise"
+      ]
+    },
+    "pro": {
+      "name": "PRO",
+      "priceMonthly": "2,99",
+      "priceYearly": "1,99",
+      "period": "par mois",
+      "description": "Pour les utilisateurs avancés et les professionnels",
+      "cta": "Commencer l'essai gratuit",
+      "badge": "Le plus populaire",
+      "features": [
+        "Tout ce qui est dans Gratuit",
+        "Sauvegarde de l'historique des calculs",
+        "Export PDF et Excel",
+        "Sans publicité",
+        "Support prioritaire",
+        "Calculatrices avancées",
+        "Image de marque personnalisée"
+      ]
+    },
+    "faq": {
+      "title": "Questions fréquemment posées",
+      "q1": "Puis-je annuler à tout moment ?",
+      "a1": "Oui, vous pouvez annuler votre abonnement à tout moment. Aucune question posée.",
+      "q2": "Y a-t-il un essai gratuit ?",
+      "a2": "Oui ! PRO vient avec un essai gratuit de 7 jours. Aucune carte de crédit requise.",
+      "q3": "Quels moyens de paiement acceptez-vous ?",
+      "a3": "Nous acceptons toutes les principales cartes de crédit, PayPal et les virements bancaires.",
+      "q4": "Puis-je changer de plan ?",
+      "a4": "Oui, vous pouvez passer à un plan supérieur ou inférieur à tout moment."
+    },
+    "cta": {
+      "title": "Prêt à commencer?",
+      "subtitle": "Essayez PRO gratuitement pendant 7 jours. Sans carte de crédit.",
+      "button": "Commencer l'essai gratuit"
+    }
+  },
+  "blog": {
+    "title": "Blog Kalcufy",
+    "heroTitle1": "Informations financières",
+    "heroTitle2": "et de santé",
+    "heroSubtitle": "Articles pratiques avec formules, exemples et outils pour prendre de meilleures décisions financières et de santé.",
+    "searchPlaceholder": "Rechercher des articles...",
+    "allPosts": "Tous les articles",
+    "categories": {
+      "finance": "Finance",
+      "health": "Santé",
+      "tips": "Conseils",
+      "news": "Actualités",
+      "guides": "Guides"
+    },
+    "featured": "À la une",
+    "minRead": "min de lecture",
+    "readMore": "Lire la suite",
+    "read": "Lire",
+    "latestArticles": "Derniers articles",
+    "articles": "articles",
+    "noArticles": "Aucun article trouvé",
+    "noArticlesDesc": "Essayez d'ajuster votre recherche ou filtre pour trouver ce que vous cherchez.",
+    "loadMore": "Charger plus d'articles",
+    "loading": "Chargement...",
+    "newsletter": {
+      "title": "Restez informé",
+      "subtitle": "Recevez les derniers conseils financiers et informations de santé dans votre boîte mail. Pas de spam, désabonnement à tout moment.",
+      "placeholder": "Entrez votre e-mail",
+      "button": "S'abonner"
+    },
+    "post": {
+      "tryCalculator": "Essayer la calculatrice",
+      "tryCalculatorDesc": "Mettez ces connaissances en pratique avec notre calculatrice gratuite.",
+      "openCalculator": "Ouvrir la calculatrice",
+      "inThisArticle": "Dans cet article",
+      "relatedArticles": "Articles connexes",
+      "tags": "Étiquettes",
+      "share": "Partager cet article",
+      "moreArticles": "Plus d'articles",
+      "viewAll": "Tout voir",
+      "notFound": "Article non trouvé",
+      "notFoundDesc": "L'article que vous recherchez n'existe pas.",
+      "backToBlog": "Retour au blog"
+    },
+    "allCategories": "Toutes les catégories"
+  },
+  "legal": {
+    "terms": {
+      "title": "Conditions d'utilisation",
+      "metaDescription": "Conditions d'utilisation de Kalcufy - Calculatrices en ligne gratuites pour la finance, la santé et les calculs quotidiens.",
+      "lastUpdated": "Dernière mise à jour",
+      "date": "Janvier 2026"
+    },
+    "privacy": {
+      "title": "Politique de confidentialité",
+      "metaDescription": "Politique de confidentialité de Kalcufy - Comment nous protégeons vos données et votre vie privée.",
+      "lastUpdated": "Dernière mise à jour",
+      "date": "Janvier 2026"
+    },
+    "cookies": {
+      "title": "Politique des cookies",
+      "metaDescription": "Politique des cookies de Kalcufy - Comment nous utilisons les cookies sur notre site web.",
+      "lastUpdated": "Dernière mise à jour",
+      "date": "Janvier 2026"
+    }
+  },
+  "buttons": {
+    "shareResults": "Partager les Résultats",
+    "copied": "Copié!",
+    "saveResults": "Enregistrer les Résultats",
+    "hideDetails": "Masquer les détails",
+    "showDetails": "Voir les détails",
+    "calculate": "Calculer",
+    "reset": "Réinitialiser",
+    "pdf": "PDF",
+    "csv": "CSV",
+    "save": "Enregistrer",
+    "saved": "Enregistré",
+    "saving": "Enregistrement..."
+  },
+  "share": {
+    "calculatedWith": "Calculé avec Kalcufy.com"
+  },
+  "units": {
+    "kg": {
+      "name": "Kilogrammes"
+    },
+    "lbs": {
+      "name": "Livres"
+    },
+    "st": {
+      "name": "Stones"
+    },
+    "g": {
+      "name": "Grammes"
+    },
+    "oz": {
+      "name": "Onces"
+    },
+    "cm": {
+      "name": "Centimètres"
+    },
+    "m": {
+      "name": "Mètres"
+    },
+    "ft": {
+      "name": "Pieds"
+    },
+    "in": {
+      "name": "Pouces"
+    },
+    "ft_in": {
+      "name": "Pieds et Pouces"
+    },
+    "C": {
+      "name": "Celsius"
+    },
+    "F": {
+      "name": "Fahrenheit"
+    },
+    "kcal": {
+      "name": "Kilocalories"
+    },
+    "cal": {
+      "name": "Calories"
+    },
+    "kJ": {
+      "name": "Kilojoules"
+    },
+    "nm": {
+      "name": "Nanomètres"
+    },
+    "µm": {
+      "name": "Micromètres"
+    },
+    "mm": {
+      "name": "Millimètres"
+    },
+    "dm": {
+      "name": "Décimètres"
+    },
+    "hm": {
+      "name": "Hectomètres"
+    },
+    "km": {
+      "name": "Kilomètres"
+    },
+    "mil": {
+      "name": "Millièmes de pouce"
+    },
+    "yd": {
+      "name": "Yards"
+    },
+    "mi": {
+      "name": "Miles"
+    },
+    "nmi": {
+      "name": "Milles nautiques"
+    },
+    "fathom": {
+      "name": "Brasses"
+    },
+    "furlong": {
+      "name": "Furlongs"
+    },
+    "AU": {
+      "name": "Unités astronomiques"
+    },
+    "ly": {
+      "name": "Années-lumière"
+    },
+    "mm2": {
+      "name": "Millimètres carrés"
+    },
+    "cm2": {
+      "name": "Centimètres carrés"
+    },
+    "m2": {
+      "name": "Mètres carrés"
+    },
+    "are": {
+      "name": "Ares"
+    },
+    "ha": {
+      "name": "Hectares"
+    },
+    "km2": {
+      "name": "Kilomètres carrés"
+    },
+    "in2": {
+      "name": "Pouces carrés"
+    },
+    "ft2": {
+      "name": "Pieds carrés"
+    },
+    "yd2": {
+      "name": "Yards carrés"
+    },
+    "acres": {
+      "name": "Acres"
+    },
+    "mi2": {
+      "name": "Miles carrés"
+    },
+    "manzana": {
+      "name": "Manzanas"
+    },
+    "fanegada": {
+      "name": "Fanegadas"
+    },
+    "cuadra": {
+      "name": "Cuadras"
+    },
+    "tarea": {
+      "name": "Tareas"
+    },
+    "mL": {
+      "name": "Millilitres"
+    },
+    "cL": {
+      "name": "Centilitres"
+    },
+    "dL": {
+      "name": "Décilitres"
+    },
+    "L": {
+      "name": "Litres"
+    },
+    "m3": {
+      "name": "Mètres cubes"
+    },
+    "tsp": {
+      "name": "Cuillères à café"
+    },
+    "tbsp": {
+      "name": "Cuillères à soupe"
+    },
+    "fl_oz": {
+      "name": "Onces liquides"
+    },
+    "cups": {
+      "name": "Tasses"
+    },
+    "pt": {
+      "name": "Pintes"
+    },
+    "qt": {
+      "name": "Quarts"
+    },
+    "gal": {
+      "name": "Gallons"
+    },
+    "ft3": {
+      "name": "Pieds cubes"
+    },
+    "yd3": {
+      "name": "Yards cubes"
+    },
+    "bd_ft": {
+      "name": "Pieds planche"
+    },
+    "squares": {
+      "name": "Carrés de toiture"
+    },
+    "µg": {
+      "name": "Microgrammes"
+    },
+    "carat": {
+      "name": "Carats"
+    },
+    "ton": {
+      "name": "Tonnes courtes"
+    },
+    "tonne": {
+      "name": "Tonnes métriques"
+    },
+    "stone": {
+      "name": "Stones"
+    },
+    "long_ton": {
+      "name": "Tonnes longues"
+    },
+    "K": {
+      "name": "Kelvin"
+    },
+    "R": {
+      "name": "Rankine"
+    },
+    "m/s": {
+      "name": "Mètres/seconde"
+    },
+    "km/h": {
+      "name": "Kilomètres/heure"
+    },
+    "mph": {
+      "name": "Miles/heure"
+    },
+    "knots": {
+      "name": "Nœuds"
+    },
+    "ft/s": {
+      "name": "Pieds/seconde"
+    },
+    "Mach": {
+      "name": "Mach"
+    },
+    "c": {
+      "name": "Vitesse de la lumière"
+    },
+    "J": {
+      "name": "Joules"
+    },
+    "Wh": {
+      "name": "Watts-heure"
+    },
+    "kWh": {
+      "name": "Kilowatts-heure"
+    },
+    "BTU": {
+      "name": "BTU"
+    },
+    "W": {
+      "name": "Watts"
+    },
+    "kW": {
+      "name": "Kilowatts"
+    },
+    "hp": {
+      "name": "Chevaux-vapeur"
+    },
+    "BTU/h": {
+      "name": "BTU/heure"
+    },
+    "Pa": {
+      "name": "Pascals"
+    },
+    "kPa": {
+      "name": "Kilopascals"
+    },
+    "bar": {
+      "name": "Bars"
+    },
+    "psi": {
+      "name": "PSI"
+    },
+    "atm": {
+      "name": "Atmosphères"
+    },
+    "mmHg": {
+      "name": "mmHg"
+    },
+    "N": {
+      "name": "Newtons"
+    },
+    "kN": {
+      "name": "Kilonewtons"
+    },
+    "lbf": {
+      "name": "Livres-force"
+    },
+    "kgf": {
+      "name": "Kilogrammes-force"
+    },
+    "mV": {
+      "name": "Millivolts"
+    },
+    "V": {
+      "name": "Volts"
+    },
+    "kV": {
+      "name": "Kilovolts"
+    },
+    "µA": {
+      "name": "Microampères"
+    },
+    "mA": {
+      "name": "Milliampères"
+    },
+    "A": {
+      "name": "Ampères"
+    },
+    "mΩ": {
+      "name": "Milliohms"
+    },
+    "Ω": {
+      "name": "Ohms"
+    },
+    "kΩ": {
+      "name": "Kilohms"
+    },
+    "MΩ": {
+      "name": "Mégohms"
+    },
+    "s": {
+      "name": "Secondes"
+    },
+    "min": {
+      "name": "Minutes"
+    },
+    "h": {
+      "name": "Heures"
+    },
+    "days": {
+      "name": "Jours"
+    },
+    "weeks": {
+      "name": "Semaines"
+    },
+    "months": {
+      "name": "Mois"
+    },
+    "years": {
+      "name": "Ans"
+    },
+    "B": {
+      "name": "Octets"
+    },
+    "KB": {
+      "name": "Kilo-octets"
+    },
+    "MB": {
+      "name": "Méga-octets"
+    },
+    "GB": {
+      "name": "Giga-octets"
+    },
+    "TB": {
+      "name": "Téra-octets"
+    },
+    "bps": {
+      "name": "Bits/seconde"
+    },
+    "Kbps": {
+      "name": "Kilobits/s"
+    },
+    "Mbps": {
+      "name": "Mégabits/s"
+    },
+    "Gbps": {
+      "name": "Gigabits/s"
+    },
+    "degrees": {
+      "name": "Degrés"
+    },
+    "radians": {
+      "name": "Radians"
+    },
+    "gradians": {
+      "name": "Grades"
+    },
+    "mpg": {
+      "name": "Miles/gallon"
+    },
+    "km/L": {
+      "name": "Kilomètres/litre"
+    },
+    "L/100km": {
+      "name": "Litres/100km"
+    },
+    "kg/m3": {
+      "name": "kg/m³"
+    },
+    "g/cm3": {
+      "name": "g/cm³"
+    },
+    "lb/ft3": {
+      "name": "lb/ft³"
+    },
+    "g/L": {
+      "name": "g/L"
+    },
+    "L/min": {
+      "name": "Litres/minute"
+    },
+    "L/h": {
+      "name": "Litres/heure"
+    },
+    "m3/h": {
+      "name": "Mètres cubes/heure"
+    },
+    "gal/min": {
+      "name": "Gallons/minute"
+    },
+    "Nm": {
+      "name": "Newton-mètres"
+    },
+    "ft_lbf": {
+      "name": "Pieds-livres"
+    },
+    "kgf_m": {
+      "name": "Kilogramme-force mètre"
+    },
+    "Hz": {
+      "name": "Hertz"
+    },
+    "kHz": {
+      "name": "Kilohertz"
+    },
+    "MHz": {
+      "name": "Mégahertz"
+    },
+    "GHz": {
+      "name": "Gigahertz"
+    },
+    "lux": {
+      "name": "Lux"
+    },
+    "fc": {
+      "name": "Pieds-bougies"
+    },
+    "m/s2": {
+      "name": "Mètres/s²"
+    },
+    "ft/s2": {
+      "name": "Pieds/s²"
+    },
+    "g_acc": {
+      "name": "Gravité standard (g)"
+    },
+    "T": {
+      "name": "Tesla"
+    },
+    "mT": {
+      "name": "Millitesla"
+    },
+    "G_mag": {
+      "name": "Gauss"
+    },
+    "USD": {
+      "name": "Dollar américain"
+    },
+    "EUR": {
+      "name": "Euro"
+    },
+    "GBP": {
+      "name": "Livre sterling"
+    },
+    "CAD": {
+      "name": "Dollar canadien"
+    },
+    "MXN": {
+      "name": "Peso mexicain"
+    },
+    "BRL": {
+      "name": "Réal brésilien"
+    },
+    "JPY": {
+      "name": "Yen japonais"
+    },
+    "INR": {
+      "name": "Roupie indienne"
+    },
+    "AUD": {
+      "name": "Dollar australien"
+    },
+    "CHF": {
+      "name": "Franc suisse"
+    },
+    "COP": {
+      "name": "Peso colombien"
+    },
+    "ARS": {
+      "name": "Peso argentin"
+    },
+    "PEN": {
+      "name": "Sol péruvien"
+    },
+    "CLP": {
+      "name": "Peso chilien"
+    },
+    "CNY": {
+      "name": "Yuan chinois"
+    },
+    "KRW": {
+      "name": "Won sud-coréen"
+    },
+    "SEK": {
+      "name": "Couronne suédoise"
+    },
+    "NOK": {
+      "name": "Couronne norvégienne"
+    },
+    "DKK": {
+      "name": "Couronne danoise"
+    },
+    "NZD": {
+      "name": "Dollar néo-zélandais"
+    },
+    "ZAR": {
+      "name": "Rand sud-africain"
+    },
+    "SGD": {
+      "name": "Dollar de Singapour"
+    },
+    "HKD": {
+      "name": "Dollar de Hong Kong"
+    },
+    "TRY": {
+      "name": "Livre turque"
+    },
+    "PLN": {
+      "name": "Zloty polonais"
+    },
+    "THB": {
+      "name": "Baht thaïlandais"
+    },
+    "TWD": {
+      "name": "Dollar taïwanais"
+    },
+    "ILS": {
+      "name": "Shekel israélien"
+    },
+    "PHP": {
+      "name": "Peso philippin"
+    },
+    "CZK": {
+      "name": "Couronne tchèque"
+    },
+    "IDR": {
+      "name": "Roupie indonésienne"
+    },
+    "MYR": {
+      "name": "Ringgit malaisien"
+    },
+    "daily": {
+      "name": "Quotidien"
+    },
+    "weekly": {
+      "name": "Hebdomadaire"
+    },
+    "biweekly": {
+      "name": "Bimensuel"
+    },
+    "semimonthly": {
+      "name": "Bimensuel"
+    },
+    "monthly": {
+      "name": "Mensuel"
+    },
+    "bimonthly": {
+      "name": "Bimestriel"
+    },
+    "quarterly": {
+      "name": "Trimestriel"
+    },
+    "semiannually": {
+      "name": "Semestriel"
+    },
+    "annually": {
+      "name": "Annuel"
+    },
+    "ratio": {
+      "name": "Rapport"
+    },
+    "percent": {
+      "name": "Pourcentage"
+    },
+    "ft2/gal": {
+      "name": "ft²/gallon"
+    },
+    "m2/L": {
+      "name": "m²/litre"
+    }
+  }
+}

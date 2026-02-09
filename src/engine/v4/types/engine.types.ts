@@ -1,143 +1,505 @@
-// KALCUFY ENGINE V4 - TIPOS TYPESCRIPT
+// ============================================================================
+// ENGINE V4 STANDALONE - TYPES
+// ============================================================================
+// Completely independent from V3 - no imports from V3
+// ============================================================================
 
-export type Locale = "en" | "es" | "pt";
-export const LOCALES: Locale[] = ["en", "es", "pt"];
-export const REQUIRED_LOCALES: Locale[] = ["en", "es"];
-export const OPTIONAL_LOCALES: Locale[] = ["pt"];
-export const DEFAULT_LOCALE: Locale = "en";
+// Unit system type (imported from units/types.ts)
+import type { UnitType } from "../units/types";
 
-export type Category = "health" | "finance" | "math" | "everyday";
+export type SupportedLocale = 'en' | 'es' | 'pt' | 'fr' | 'de';
 
-export interface LocalizedSlug {
-  en: string;
-  es: string;
-  pt?: string;
+// ─────────────────────────────────────────────────────────────────────────────
+// TRANSLATION TYPES
+// ─────────────────────────────────────────────────────────────────────────────
+export interface InputTranslation {
+  label: string;
+  helpText?: string;
+  suffix?: string;
+  prefix?: string;
+  placeholder?: string;
+  options?: Record<string, string>;
 }
 
-export interface InputOption { value: string; label: string; }
-export interface UnitConfig { suffix: string; min?: number; max?: number; step?: number; default?: number; }
-export interface InputUnits { imperial: UnitConfig; metric: UnitConfig; }
-export interface ShowWhenCondition { field: string; value: string | string[]; }
+export interface ResultTranslation {
+  label: string;
+  description?: string;
+}
+
+export interface InfoCardTranslation {
+  title: string;
+  items: string[] | Array<{ label: string; valueKey?: string }>;
+}
+
+export interface ReferenceDataTranslation {
+  title: string;
+  items: Array<{ label: string; value: string }>;
+}
+
+export interface FAQTranslation {
+  question: string;
+  answer: string;
+}
+
+export interface EducationSectionTranslation {
+  title: string;
+  content?: string;
+  description?: string;
+  items?: Array<{ text: string; type?: 'warning' | 'info' | 'success' | 'error' }>;
+  cards?: Array<{ title: string; description: string; icon?: string }>;
+  examples?: Array<{
+    title: string;
+    steps: string[];
+    result: string;
+  }>;
+}
+
+export interface PresetTranslation {
+  label: string;
+  description?: string;
+}
+
+export interface CalculatorTranslations {
+  name: string;
+  slug: string;
+  subtitle: string;
+  breadcrumb?: string;
+  
+  seo: {
+    title: string;
+    description: string;
+    shortDescription?: string;
+    keywords: string[];
+  };
+  
+  ui?: {
+    yourInformation?: string;
+    calculate?: string;
+    reset?: string;
+    results?: string;
+    loading?: string;
+    quickStart?: string;
+    compare?: string;
+    compareTitle?: string;
+    sensitivity?: string;
+    close?: string;
+    save?: string;
+    saved?: string;
+    error?: string;
+    exportPDF?: string;
+    exportCSV?: string;
+  };
+  
+  common?: {
+    home?: string;
+    calculators?: string;
+    reviews?: string;
+  };
+  
+  inputs: Record<string, InputTranslation>;
+  results: Record<string, ResultTranslation>;
+  infoCards: Record<string, InfoCardTranslation>;
+  referenceData: Record<string, ReferenceDataTranslation>;
+  education: Record<string, EducationSectionTranslation>;
+  faqs: FAQTranslation[];
+  
+  presets?: Record<string, PresetTranslation>;
+  tooltips?: Record<string, string>;
+  chart?: {
+    title: string;
+    xLabel?: string;
+    yLabel?: string;
+    series: Record<string, string>;
+  };
+  // Multi-chart tabbed translations (NEW)
+  charts?: {
+    title: string;
+    series: Record<string, string>;
+    tabs: Record<string, { label: string; icon?: string; subtitle?: string }>;
+  };
+  modes?: Record<string, string>;
+  // Values & formats for calculate()
+  values?: Record<string, string>;
+  formats?: Record<string, string>;
+  
+  // UI sections
+  calculator?: Record<string, string>;
+  rating?: Record<string, string>;
+  buttons?: Record<string, string>;
+  share?: Record<string, string>;
+  accessibility?: Record<string, string>;
+  sources?: Record<string, string>;
+  
+  // References (in translations for some calculators)
+  references?: { title: string } | Array<{ authors: string; year: string; title: string; source: string; url: string }>;
+  
+  // DetailedTable translations
+  detailedTable?: Record<string, { button?: string; title?: string; columns?: Record<string, string> }>;
+  
+  // shortDescription for OG
+  shortDescription?: string;
+  
+  footer?: Record<string, string>;
+  save?: Record<string, string>;
+  disclaimer?: string;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// INPUT TYPES
+// ─────────────────────────────────────────────────────────────────────────────
+export type InputType = 
+  | 'number'
+  | 'slider'
+  | 'radio'
+  | 'select'
+  | 'checkbox'
+  | 'text'
+  | 'date'
+  | 'currency'
+  | 'percentage';
+
+export interface InputOption {
+  value: string;
+  icon?: string;
+}
+
+export interface UnitOption {
+  value: string;
+  label?: string;
+  conversionFactor?: number;
+}
+
+export interface ShowWhenConditionSingle {
+  field: string;
+  value: string | string[] | number | boolean;
+}
+
+// Supports single condition or array of conditions (AND logic)
+export type ShowWhenCondition = ShowWhenConditionSingle | ShowWhenConditionSingle[];
 
 export interface InputConfig {
   id: string;
-  type: "number" | "radio" | "select";
-  label: string;
-  required: boolean;
-  defaultValue?: number | string;
-  min?: number; max?: number; step?: number;
-  suffix?: string; prefix?: string;
-  helpText?: string; placeholder?: string;
+  type: InputType;
+  required?: boolean;
+  defaultValue?: string | number | boolean | null; // SMART DEFAULTS: null means "empty field with placeholder"
+  placeholder?: string; // SMART DEFAULTS: Visual hint when field is empty
+  min?: number;
+  max?: number;
+  step?: number;
   options?: InputOption[];
-  units?: InputUnits;
+  units?: UnitOption[];
+  defaultUnit?: string;
+  width?: 'full' | 'half' | 'third' | 'quarter';
   showWhen?: ShowWhenCondition;
+  modes?: string[];
+  showSlider?: boolean;
+  unitOptions?: {
+    imperial: { suffix: string; min?: number; max?: number; default?: number };
+    metric: { suffix: string; min?: number; max?: number; default?: number };
+  };
+  suffix?: string;
+  prefix?: string;
+  isCurrency?: boolean;
+  linkedValues?: Record<string, Record<string, unknown>>;
+  
+  // ── Unit Dropdown System ────────────────────────────────────────────────
+  /** Unit type for per-field dropdown (e.g. "weight", "height", "currency") */
+  unitType?: UnitType;
+  /** Restrict to specific units within the type (e.g. ["kg", "lbs"]) */
+  allowedUnits?: string[];
+  /** Exclude specific units (e.g. ["st"] to hide stones) */
+  excludeUnits?: string[];
+  /** Auto-convert value when user changes unit (default: true) */
+  autoConvert?: boolean;
+  /** 
+   * Sync group for unit synchronization.
+   * - Same string = fields sync together (e.g. syncGroup: "price" on vehiclePrice + downPayment)
+   * - false = field is independent, never syncs (e.g. converter "from" and "to" fields)
+   * - undefined (default) = sync all fields with same unitType (backwards compatible)
+   */
+  syncGroup?: string | false;
 }
 
-export interface InputGroup { id: string; title: string; inputs: string[]; }
+export interface InputGroup {
+  id: string;
+  inputs: string[];
+  collapsible?: boolean;
+  defaultExpanded?: boolean;
+  icon?: string;
+}
 
-export type ResultType = "primary" | "secondary" | "tertiary";
-export type ResultFormat = "number" | "text" | "currency" | "percent";
+// ─────────────────────────────────────────────────────────────────────────────
+// RESULT TYPES
+// ─────────────────────────────────────────────────────────────────────────────
+export type ResultType = 'primary' | 'secondary' | 'badge';
 
 export interface ResultConfig {
-  id: string; type: ResultType; label: string; format: ResultFormat;
-  decimals?: number; prefix?: string; suffix?: string;
+  labelKey?: string;
+  id: string;
+  type: ResultType;
+  format?: 'number' | 'currency' | 'percentage' | 'text' | 'date';
+  decimals?: number;
+  suffix?: string;
+  prefix?: string;
+  icon?: string;
+  colorMap?: Record<string, { bg: string; text: string; icon?: string }>;
+  showWhen?: ShowWhenCondition;
+  suffix?: string;
+  prefix?: string;
+  isCurrency?: boolean;
 }
 
-export type InfoCardType = "list" | "horizontal";
-export interface InfoCardItem { label: string; valueKey?: string; }
-export interface InfoCard { id: string; title: string; type: InfoCardType; icon: string; items: InfoCardItem[]; }
+// ─────────────────────────────────────────────────────────────────────────────
+// INFO CARDS & REFERENCE DATA
+// ─────────────────────────────────────────────────────────────────────────────
+export interface InfoCardItem {
+  valueKey?: string;
+  icon?: string;
+  color?: 'default' | 'green' | 'blue' | 'amber' | 'red';
+  suffix?: string;
+  prefix?: string;
+  isCurrency?: boolean;
+}
 
-export interface ReferenceDataItem { label: string; value: string; }
-export interface ReferenceData { id: string; title: string; icon: string; columns: 2 | 3; items: ReferenceDataItem[]; }
+export interface InfoCardConfig {
+  id: string;
+  icon?: string;
+  type: 'list' | 'grid' | 'horizontal';
+  items: InfoCardItem[];
+  columns?: number;
+}
 
-export type EducationSectionType = "prose" | "list" | "cards" | "code-example";
-export type ListItemType = "info" | "warning" | "success" | "error";
+export interface ReferenceDataConfig {
+  id: string;
+  icon?: string;
+  columns?: 2 | 3 | 4;
+}
 
-export interface ProseSection { id: string; type: "prose"; title: string; icon: string; content: string; }
-export interface ListItem { text: string; type: ListItemType; }
-export interface ListSection { id: string; type: "list"; title: string; icon: string; items: ListItem[]; }
-export interface CardItem { title: string; description: string; icon: string; }
-export interface CardsSection { id: string; type: "cards"; title: string; icon: string; columns: 2 | 3; cards: CardItem[]; }
-export interface CodeExample { title: string; steps: string[]; result: string; }
-export interface CodeExampleSection { id: string; type: "code-example"; title: string; icon: string; description: string; columns: 2 | 3; examples: CodeExample[]; }
+// ─────────────────────────────────────────────────────────────────────────────
+// EDUCATION SECTIONS
+// ─────────────────────────────────────────────────────────────────────────────
+export type SectionType = 'prose' | 'cards' | 'list' | 'code-example';
 
-export type EducationSection = ProseSection | ListSection | CardsSection | CodeExampleSection;
+export interface EducationSectionConfig {
+  id: string;
+  itemCount?: number;
+  exampleCount?: number;
+  columns?: number;
+  type: SectionType;
+  icon?: string;
+  columns?: 1 | 2 | 3;
+  background?: 'white' | 'slate';
+}
 
-export interface FAQ { question: string; answer: string; }
-export interface Reference { authors: string; year: string; title: string; source: string; url: string; }
+// ─────────────────────────────────────────────────────────────────────────────
+// REFERENCES
+// ─────────────────────────────────────────────────────────────────────────────
+export interface Reference {
+  authors: string;
+  title: string;
+  source: string;
+  year?: string;
+  url?: string;
+}
 
-export interface SEOConfig { title: string; description: string; shortDescription: string; keywords: string[]; }
-export interface HeroRating { average: number; count: number; }
-export interface HeroConfig { badge: string; rating: HeroRating; }
+// ─────────────────────────────────────────────────────────────────────────────
+// MODES
+// ─────────────────────────────────────────────────────────────────────────────
+export interface ModeOption {
+  id: string;
+  icon?: string;
+}
 
-export type UnitSystem = "metric" | "imperial";
-export interface UnitSystemOption { value: UnitSystem; label: string; }
-export interface UnitSystemConfig { enabled: boolean; default: UnitSystem; options: UnitSystemOption[]; }
+export interface ModesConfig {
+  enabled: boolean;
+  options: ModeOption[];
+  default: string;
+}
 
-export interface SidebarConfig { showSearch: boolean; showRelatedCalculators: boolean; showCTA: boolean; category: Category; }
-export interface FeaturesConfig { autoCalculate: boolean; exportPDF: boolean; shareResults: boolean; saveHistory: boolean; compareScenarios?: boolean; fullAmortization?: boolean; exportExcel?: boolean; advancedCharts?: boolean; }
-export interface AdsConfig { mobileHero: boolean; sidebar: boolean; mobileContent: boolean; bottom: boolean; }
+// ─────────────────────────────────────────────────────────────────────────────
+// PRESETS
+// ─────────────────────────────────────────────────────────────────────────────
+export interface PresetConfig {
+  id: string;
+  icon?: string;
+  values: Record<string, unknown>;
+}
 
+// ─────────────────────────────────────────────────────────────────────────────
+// SENSITIVITY ANALYSIS
+// ─────────────────────────────────────────────────────────────────────────────
+export interface SensitivityConfig {
+  inputId: string;
+  resultId: string;
+  steps?: number;
+  rangePercent?: number;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// DETAILED TABLE (Expandable modal table - schedules, comparisons, etc.)
+// ─────────────────────────────────────────────────────────────────────────────
+export interface DetailedTableColumn {
+  id: string;
+  label: string;
+  align?: 'left' | 'center' | 'right';
+  highlight?: boolean;
+  format?: 'number' | 'currency' | 'percentage' | 'text' | 'date';
+}
+
+export interface DetailedTableConfig {
+  id: string;
+  buttonLabel: string;
+  buttonIcon?: string;
+  modalTitle: string;
+  columns: DetailedTableColumn[];
+  exportEnabled?: boolean;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CHART VISUALIZATION
+// ─────────────────────────────────────────────────────────────────────────────
+export interface ChartSeriesConfig {
+  key: string;
+  type?: 'line' | 'bar' | 'area';
+  color?: string;
+  dashed?: boolean;
+  stackId?: string;
+}
+
+export interface ChartConfig {
+  id: string;
+  type: 'line' | 'bar' | 'area' | 'composed';
+  xKey: string;
+  series: ChartSeriesConfig[];
+  height?: number;
+  stacked?: boolean;
+  showGrid?: boolean;
+  showLegend?: boolean;
+  showTooltip?: boolean;
+  yAxisFormat?: 'number' | 'currency' | 'percentage';
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// MAIN CALCULATOR CONFIG V4 STANDALONE
+// ─────────────────────────────────────────────────────────────────────────────
 export interface CalculatorConfigV4 {
   id: string;
-  slug: LocalizedSlug;
-  name: string;
-  category: Category;
+  category: 'health' | 'finance' | 'math' | 'everyday';
   icon: string;
-  isPro?: boolean;
-  seo: SEOConfig;
-  hero: HeroConfig;
-  unitSystem: UnitSystemConfig;
+  version?: string;
+  
+  // TRANSLATIONS (INLINE)
+  t: {
+    en: CalculatorTranslations;
+    es: CalculatorTranslations;
+    pt?: CalculatorTranslations;
+    fr?: CalculatorTranslations;
+    de?: CalculatorTranslations;
+  };
+  
+  // STRUCTURE
+  hero: {
+    badge?: string;
+    rating?: { average: number; count: number };
+    highlights?: string[];
+  };
+  
+  unitSystem?: {
+    enabled: boolean;
+    default: 'metric' | 'imperial';
+  };
+  
+  modes?: ModesConfig;
+  
   inputs: InputConfig[];
-  inputGroups: InputGroup[];
+  inputGroups?: InputGroup[];
+  
   results: ResultConfig[];
-  infoCards: InfoCard[];
-  referenceData: ReferenceData[];
-  educationSections: EducationSection[];
-  faqs: FAQ[];
+  
+  // Detailed Table Modal (expandable schedule/comparison table)
+  detailedTable?: DetailedTableConfig;
+  
+  // Chart visualization (line, bar, area, composed)
+  chart?: ChartConfig;
+  
+  // Multi-chart tabbed visualization (NEW - array of charts with tab UI)
+  charts?: ChartConfig[];
+  
+  infoCards?: InfoCardConfig[];
+  referenceData?: ReferenceDataConfig[];
+  educationSections?: EducationSectionConfig[];
+  
   references: Reference[];
-  sidebar: SidebarConfig;
-  features: FeaturesConfig;
-  relatedCalculators: string[];
-  ads: AdsConfig;
+  
+  sidebar?: {
+    showSearch?: boolean;
+    showRelatedCalculators?: boolean;
+    showCTA?: boolean;
+    category?: string;
+  };
+  
+  features?: {
+    autoCalculate?: boolean;
+    exportPDF?: boolean;
+    exportCSV?: boolean;
+    shareResults?: boolean;
+    saveHistory?: boolean;
+    compareEnabled?: boolean;
+    sensitivityEnabled?: boolean;
+    presetsEnabled?: boolean;
+  };
+  
+  presets?: PresetConfig[];
+  sensitivity?: SensitivityConfig;
+  
+  showTopBanner?: boolean;
+  showPresets?: boolean;
+  showConversions?: boolean;
+  showRating?: boolean;
+  showAds?: boolean;
+  badgeVariant?: string;
+  currency?: string;
+  relatedCalculators?: string[];
+  
+  ads?: {
+    mobileHero?: boolean;
+    sidebar?: boolean;
+    mobileContent?: boolean;
+    bottom?: boolean;
+    afterResults?: boolean;
+  };
 }
 
-export interface AmortizationRow { month: number; payment: number; principal: number; interest: number; balance: number; }
-export interface ChartDataPoint { label: string; value: number; color?: string; }
-
+// ─────────────────────────────────────────────────────────────────────────────
+// CALCULATOR RESULTS
+// ─────────────────────────────────────────────────────────────────────────────
 export interface CalculatorResults {
-  values: Record<string, number | string>;
+  values: Record<string, unknown>;
   formatted: Record<string, string>;
-  summary: string;
+  summary?: string;
   isValid: boolean;
-  errors?: Record<string, string>;
-  amortizationTable?: AmortizationRow[];
-  chartData?: ChartDataPoint[];
+  metadata?: {
+    tableData?: Array<Record<string, unknown>>;
+    chartData?: Array<Record<string, unknown>>;
+    chartsData?: Record<string, Array<Record<string, unknown>>>;
+    distribution?: Array<{ id: string; label: string; value: number; max?: number }>;
+    [key: string]: unknown;
+  };
 }
 
-export interface CalculateInput { values: Record<string, unknown>; units: Record<string, string>; unitSystem: UnitSystem; }
-export type CalculateFunction = (data: CalculateInput) => CalculatorResults;
+// ─────────────────────────────────────────────────────────────────────────────
+// CALCULATE FUNCTION TYPE
+// ─────────────────────────────────────────────────────────────────────────────
+export type CalculateFn = (data: {
+  values: Record<string, unknown>;
+  units: Record<string, string>;
+  unitSystem: 'metric' | 'imperial';
+  mode?: string;
+  /** Per-field unit selections from dropdown system */
+  fieldUnits?: Record<string, string>;
+}) => CalculatorResults;
 
-export interface TranslationFile {
-  calculator: { title: string; subtitle?: string; breadcrumb?: string; yourInformation?: string; };
-  inputs: Record<string, { label: string; helpText?: string; suffix?: string; placeholder?: string; options?: Record<string, string>; }>;
-  results: Record<string, string>;
-  info: Record<string, { title: string; [key: string]: string; }>;
-  reference: Record<string, { title: string; items?: Record<string, string>; }>;
-  education: Record<string, { title: string; content?: string; description?: string; cards?: Record<string, { title: string; description: string; }>; items?: Record<string, { text: string }>; examples?: Record<string, { title: string; steps: Record<string, string>; result: string; }>; }>;
-  faq: { title?: string; [key: string]: string | { question: string; answer: string } | undefined; };
-  sources?: { title?: string; };
-  common?: { home?: string; calculators?: string; };
-  buttons?: { calculate?: string; reset?: string; pdf?: string; excel?: string; compare?: string; };
-  disclaimers?: { health?: string; finance?: string; };
-}
-
-export interface ValidationError { type: "missing_file" | "missing_keys" | "invalid_format" | "empty_value"; calculator: string; locale: Locale; path?: string; keys?: string[]; message: string; }
-export interface ValidationResult { isValid: boolean; errors: ValidationError[]; warnings: string[]; }
-export interface TranslationProgress { calculator: string; locales: { locale: Locale; isComplete: boolean; completedKeys: number; totalKeys: number; missingKeys: string[]; }[]; }
-
-export interface CalculatorModule { config: CalculatorConfigV4; calculate: CalculateFunction; }
-export interface CalculatorRegistryEntry { id: string; slug: LocalizedSlug; name: string; category: Category; icon: string; isPro: boolean; isActive: boolean; }
-export type CalculatorRegistry = Record<string, CalculatorRegistryEntry>;
-
-export default CalculatorConfigV4;
+// ─────────────────────────────────────────────────────────────────────────────
+// TRANSLATION FUNCTION TYPE
+// ─────────────────────────────────────────────────────────────────────────────
+export type TranslationFn = (key: string, fallback?: string) => string;

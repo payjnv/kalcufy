@@ -1,57 +1,250 @@
 {
-  "meta": {
-    "title": "Credit Card Payoff Calculator - Debt Free Plan | Kalcufy",
-    "description": "Free credit card payoff calculator to create a debt-free plan, compare payment strategies, and see how much you can save."
-  },
   "calculator": {
-    "title": "Credit Card Payoff Calculator",
-    "subtitle": "Create your debt-free plan",
-    "breadcrumb": "Credit Card Payoff",
-    "debtDetails": "Debt Details",
-    "inputs": {
-      "balance": "Current Balance",
-      "interestRate": "Interest Rate (APR)",
-      "minimumPayment": "Minimum Payment",
-      "extraPayment": "Extra Monthly Payment"
+    "name": "Credit Card Payoff Calculator",
+    "title": "Credit Card Payoff Calculator - Debt Snowball vs Avalanche Comparison",
+    "description": "Calculate how to pay off credit card debt faster. Compare snowball vs avalanche methods, see balance transfer savings, and get a personalized debt-free date with month-by-month payoff schedule.",
+    "shortDescription": "Calculate your debt-free date and compare payoff strategies",
+    "badge": "Finance"
+  },
+  "inputs": {
+    "card1Balance": {
+      "label": "Card 1 Balance",
+      "helpText": "Current balance owed on this card"
     },
-    "results": {
-      "monthsToPayoff": "Months to Payoff",
-      "totalInterest": "Total Interest",
-      "totalPayments": "Total Payments",
-      "payoffDate": "Payoff Date",
-      "interestSaved": "Interest Saved",
-      "timeSaved": "Time Saved"
+    "card1APR": {
+      "label": "Card 1 APR"
     },
-    "comparison": {
-      "title": "Payment Comparison",
-      "minimumOnly": "Minimum Only",
-      "withExtra": "With Extra Payment",
-      "months": "months",
-      "years": "years"
+    "card1MinPayment": {
+      "label": "Card 1 Minimum Payment",
+      "helpText": "Usually 2% of balance or $35, whichever is greater"
     },
-    "buttons": { "viewSchedule": "View Payment Schedule", "save": "Save", "pdf": "PDF", "excel": "Excel" },
-    "modal": { "title": "Payment Schedule", "month": "Month", "payment": "Payment", "principal": "Principal", "interest": "Interest", "balance": "Balance" },
-    "favorites": { "add": "Add to favorites", "remove": "Remove from favorites" },
-    "saving": { "saving": "Saving...", "saved": "Saved", "error": "Error saving" }
+    "card2Balance": {
+      "label": "Card 2 Balance (optional)"
+    },
+    "card2APR": {
+      "label": "Card 2 APR"
+    },
+    "card2MinPayment": {
+      "label": "Card 2 Minimum Payment"
+    },
+    "card3Balance": {
+      "label": "Card 3 Balance (optional)"
+    },
+    "card3APR": {
+      "label": "Card 3 APR"
+    },
+    "card3MinPayment": {
+      "label": "Card 3 Minimum Payment"
+    },
+    "extraPayment": {
+      "label": "Extra Monthly Payment",
+      "helpText": "Additional amount beyond minimum payments to accelerate payoff"
+    },
+    "payoffStrategy": {
+      "label": "Preferred Strategy",
+      "helpText": "Snowball = faster wins for motivation. Avalanche = save more on interest.",
+      "options": {
+        "compare": "Compare Both",
+        "snowball": "Snowball",
+        "avalanche": "Avalanche"
+      }
+    }
+  },
+  "results": {
+    "totalDebt": "Total Debt",
+    "debtFreeDate": "Debt-Free Date",
+    "monthsToPayoff": "Months to Pay Off",
+    "totalInterest": "Total Interest Paid",
+    "totalPayments": "Total Amount Paid",
+    "interestSavings": "Interest Savings vs Minimum",
+    "recommendedStrategy": "Recommended Strategy",
+    "minimumOnlyWarning": "Minimum Payment Warning"
+  },
+  "dynamic": {
+    "noCardsMessage": "Enter at least one credit card balance to calculate your payoff plan.",
+    "neverPaysOff": "Never (payment too low)",
+    "monthsNever": "Never",
+    "minimumOnlyWarningNever": "⚠️ Minimum payments will NEVER pay off this debt!",
+    "minimumOnlyWarningCalculated": "Minimum only: {years}y {months}m, ${totalInterest} interest",
+    "monthsSingular": "month",
+    "monthsPlural": "months",
+    "cardSingular": "card",
+    "cardsPlural": "cards",
+    "summaryNever": "Your monthly payment of ${totalPayment} is not enough to pay off ${totalDebt} in debt. Increase your payment to make progress.",
+    "summarySuccess": "Pay off ${totalDebt} in {months} months by {date}. You'll pay ${totalInterest} in interest—saving ${savings} vs minimum payments!",
+    "recommendedAvalanche": "Avalanche (saves ${savings} & {months} months)",
+    "recommendedEither": "Either method works - choose based on your preference",
+    "monthlyLabel": "Month {number}"
+  },
+  "infoCards": {
+    "strategyComparison": {
+      "title": "Strategy Comparison",
+      "items": {
+        "0": "Snowball Months",
+        "1": "Snowball Interest",
+        "2": "Avalanche Months",
+        "3": "Avalanche Interest",
+        "4": "Avalanche Savings"
+      }
+    },
+    "payoffBreakdown": {
+      "title": "Payment Breakdown",
+      "items": {
+        "0": "Monthly Payment",
+        "1": "Avg Interest/Month",
+        "2": "Cards to Pay"
+      }
+    }
+  },
+  "reference": {
+    "balancePayoffTable": {
+      "title": "Payoff Timeline by Balance",
+      "description": "How long it takes to pay off different balances at 22% APR with $200/month payment",
+      "items": {
+        "0": "$2,000 - 11 months - $200 interest - $2,200 total",
+        "1": "$5,000 - 32 months - $1,280 interest - $6,280 total",
+        "2": "$10,000 - 79 months - $5,640 interest - $15,640 total",
+        "3": "$15,000 - 152 months - $15,200 interest - $30,200 total",
+        "4": "$20,000 - Never pays off - Infinite interest"
+      }
+    }
   },
   "education": {
-    "title": "Breaking Free from Credit Card Debt",
-    "content1": "Credit card debt can be one of the most expensive forms of borrowing, with average APRs around 20%. Making only minimum payments can take decades to pay off.",
-    "content2": "The key to getting out of credit card debt is paying more than the minimum. Even small extra payments can save thousands in interest and years of payments.",
-    "tips": {
-      "title": "Debt Payoff Tips",
-      "tip1": { "title": "Pay More Than Minimum", "description": "Minimum payments mostly cover interest, not principal." },
-      "tip2": { "title": "Use the Avalanche Method", "description": "Pay highest interest debt first to save the most." },
-      "tip3": { "title": "Consider Balance Transfer", "description": "0% APR transfers can help if you pay off in time." },
-      "tip4": { "title": "Stop Adding Debt", "description": "Cut up the card or freeze it while paying down." }
+    "payoffMethods": {
+      "title": "Debt Payoff Methods Explained",
+      "items": {
+        "0": "Debt Snowball - Pay minimums on all cards, then attack the smallest balance first with extra money. When that card is paid off, roll that payment to the next smallest. Pros: Quick wins boost motivation. Cons: May pay more interest overall.",
+        "1": "Debt Avalanche - Pay minimums on all cards, then attack the highest APR card first with extra money. When paid off, roll to the next highest APR. Pros: Saves the most money. Cons: May take longer to see the first card paid off.",
+        "2": "Balance Transfer - Move high-APR debt to a card with 0% intro APR (typically 12-21 months). Pay a 3-5% transfer fee but save significantly on interest if you pay off before the promo ends. Best for: Those who can pay off within the intro period.",
+        "3": "Minimum Payment Trap - Paying only the minimum (usually 2% of balance) means most of your payment goes to interest. A $5,000 balance at 22% APR with minimum payments takes 27+ years to pay off and costs $9,000+ in interest!"
+      }
     },
-    "faqTitle": "Frequently Asked Questions"
+    "considerations": {
+      "title": "Important Considerations",
+      "items": {
+        "0": "Average credit card APR in 2025 is 21-23% - among the highest borrowing costs",
+        "1": "Paying only minimums can take 20-30 years to pay off and triple your total cost",
+        "2": "Stop using cards while paying off debt - new charges sabotage your progress",
+        "3": "Even $25-50 extra per month significantly accelerates your debt-free date",
+        "4": "The avalanche method saves money, but snowball may keep you motivated longer",
+        "5": "Consider a 0% balance transfer if you have good credit and can pay off in 12-18 months",
+        "6": "Build a small emergency fund first to avoid new debt when unexpected costs arise"
+      }
+    },
+    "exampleCalculation": {
+      "title": "Example: Paying Off $8,000 in Credit Card Debt",
+      "description": "Two cards: $5,000 at 24% APR and $3,000 at 18% APR. $400/month total budget.",
+      "examples": {
+        "0": {
+          "title": "Debt Snowball Method",
+          "steps": {
+            "0": "Total min payments: $160/month",
+            "1": "Extra payment: $240/month",
+            "2": "Target Card 2 first ($3,000 balance)",
+            "3": "Pay $265/month to Card 2, $135 min to Card 1",
+            "4": "Card 2 paid off in 13 months",
+            "5": "Roll $265 to Card 1 = $400 total",
+            "6": "Card 1 paid off in 21 months total"
+          },
+          "result": "Total Interest: $1,847 | 21 months to debt-free"
+        },
+        "1": {
+          "title": "Debt Avalanche Method",
+          "steps": {
+            "0": "Total min payments: $160/month",
+            "1": "Extra payment: $240/month",
+            "2": "Target Card 1 first (24% APR)",
+            "3": "Pay $340/month to Card 1, $60 min to Card 2",
+            "4": "Card 1 paid off in 17 months",
+            "5": "Roll $340 to Card 2 = $400 total",
+            "6": "Card 2 paid off in 20 months total"
+          },
+          "result": "Total Interest: $1,621 | 20 months to debt-free | Saves $226"
+        }
+      }
+    },
+    "interestExplanation": {
+      "title": "How Credit Card Interest Works",
+      "content": "Credit card interest compounds daily, not monthly. Your APR is divided by 365 to get a daily rate, which is applied to your average daily balance. For example, at 22% APR, the daily rate is 0.0603%. On a $5,000 balance, you accrue about $3 in interest per day. This means delaying payments—even by a few days—costs real money. When you make a payment, it first covers accrued interest, then any fees, and finally reduces your principal. This is why minimum payments feel like they barely make a dent: most goes to interest, leaving only a small amount to reduce what you actually owe."
+    },
+    "whyPayoffMatters": {
+      "title": "Why Paying Off Credit Cards Matters",
+      "content": "Credit card debt is one of the most expensive forms of borrowing, with average APRs exceeding 22% in 2025. Unlike mortgages or auto loans with fixed terms, credit cards have no set payoff date—making it easy to carry balances for years or decades. The longer you carry a balance, the more you pay in interest, which could have been invested or saved. Eliminating credit card debt frees up cash flow for emergency savings, retirement contributions, and other financial goals. It also improves your credit utilization ratio, potentially boosting your credit score."
+    },
+    "buildingGoodHabits": {
+      "title": "Building Credit Card Habits That Stick",
+      "content": "Once you pay off your credit cards, prevent future debt by treating them like debit cards—only charge what you can pay in full each month. Set up autopay for the full balance to avoid interest entirely. Use your cards for rewards and purchase protection, but never carry a balance. If you struggle with overspending, consider using cash or a debit card for discretionary purchases. Finally, build an emergency fund of 3-6 months expenses so unexpected costs don't force you back into credit card debt."
+    }
   },
-  "faq": [
-    { "question": "Why does minimum payment take so long?", "answer": "Minimum payments are designed to maximize interest for the bank. Most of your payment goes to interest, barely touching the principal." },
-    { "question": "Avalanche vs Snowball method?", "answer": "Avalanche pays highest interest first (saves most money). Snowball pays smallest balance first (psychological wins). Avalanche is mathematically optimal." },
-    { "question": "Should I use savings to pay off debt?", "answer": "If your credit card APR is 20% and savings earn 2%, paying off debt is like earning 20% guaranteed. Keep a small emergency fund, then attack the debt." }
-  ],
-  "sidebar": { "financeTitle": "Financial Calculators", "healthTitle": "Health Calculators" },
-  "common": { "home": "Home", "calculators": "Calculators", "pro": "PRO" }
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "items": {
+      "0": {
+        "question": "Which is better: debt snowball or debt avalanche?",
+        "answer": "Mathematically, the avalanche method (paying highest APR first) saves more money. However, research shows many people are more successful with the snowball method because paying off smaller balances quickly provides psychological wins that maintain motivation. Choose avalanche if you're disciplined and motivated by saving money. Choose snowball if you need quick wins to stay on track. The best method is the one you'll stick with."
+      },
+      "1": {
+        "question": "How is minimum payment calculated on credit cards?",
+        "answer": "Most credit card companies calculate minimum payment as 2-3% of your balance OR a flat amount ($25-$35), whichever is greater. Some calculate 1% of balance plus all interest and fees. For example, on a $5,000 balance, the minimum is typically $100-$150. Check your card agreement for the exact formula. Warning: Paying only minimums can take 20+ years to pay off a balance."
+      },
+      "2": {
+        "question": "Should I do a balance transfer to a 0% APR card?",
+        "answer": "A balance transfer can save significant money if: (1) You have good credit to qualify (usually 670+), (2) You can pay off the balance before the intro period ends (typically 12-21 months), (3) The 3-5% transfer fee is less than the interest you'd otherwise pay. For example, transferring $5,000 at a 3% fee costs $150, but saves $900+ in interest over 15 months at 22% APR. However, if you can't pay off before the promo ends, the regular APR (often 20%+) kicks in on any remaining balance."
+      },
+      "3": {
+        "question": "How much extra should I pay to make a real difference?",
+        "answer": "Even $25-50 extra per month makes a significant difference. On a $5,000 balance at 22% APR: paying only minimums takes 27 years and costs $9,200 total. Adding just $50/month reduces this to 43 months and $6,400 total—saving $2,800 and 24 years! Adding $100/month further reduces it to 29 months and $5,800. The key is consistency: any extra amount, paid every month, compounds to massive savings."
+      },
+      "4": {
+        "question": "Should I save money or pay off credit cards first?",
+        "answer": "Generally, pay off high-interest credit card debt first—it's hard to earn 20%+ returns investing. However, build a small emergency fund of $500-$1,000 first. Without this cushion, any unexpected expense forces you back onto credit cards. Once you have a mini emergency fund, aggressively pay down cards. After cards are paid off, build a full 3-6 month emergency fund."
+      },
+      "5": {
+        "question": "What happens if I miss a credit card payment?",
+        "answer": "Missing a payment triggers multiple consequences: (1) Late fee of $25-$40, (2) Penalty APR of up to 29.99% may apply to your entire balance, (3) After 30 days late, it's reported to credit bureaus and damages your score, (4) After 60 days, penalty APR definitely applies, (5) After 180 days, your account may be charged off and sold to collections. Always pay at least the minimum on time. If you can't afford it, call your card issuer to discuss hardship options before missing the payment."
+      }
+    }
+  },
+  "sources": {
+    "title": "Sources",
+    "viewSource": "View Source",
+    "opensNewTab": "(opens in new tab)",
+    "items": {
+      "0": "Consumer Financial Protection Bureau - Consumer Credit Card Market Report (2025)",
+      "1": "Federal Reserve - G.19 Consumer Credit Report - Credit Card Interest Rates (2025)"
+    }
+  },
+  "ui": {
+    "calculate": "Calculate",
+    "reset": "Reset",
+    "share": "Share",
+    "save": "Save",
+    "export": "Export",
+    "pdf": "PDF",
+    "excel": "Excel",
+    "copied": "Copied!",
+    "loading": "Calculating...",
+    "error": "Error calculating results",
+    "required": "Required",
+    "optional": "Optional",
+    "unitSystem": "Unit System",
+    "imperial": "Imperial",
+    "metric": "Metric",
+    "home": "Home",
+    "calculators": "Calculators"
+  },
+  "rating": {
+    "title": "Rate This Calculator",
+    "clickToRate": "Click to rate",
+    "youRated": "You rated this",
+    "stars": "stars",
+    "averageFrom": "Average of",
+    "ratings": "ratings",
+    "shareCalculator": "Share Calculator",
+    "thankYou": "Thank you for your rating!"
+  },
+  "disclaimers": {
+    "health": "This calculator provides estimates for educational purposes only. Results may vary. Consult a healthcare professional for medical advice.",
+    "finance": "This calculator provides estimates for educational purposes only. Actual results may vary. Consult a financial advisor for personalized advice."
+  }
 }

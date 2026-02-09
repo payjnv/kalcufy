@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import Link from 'next/link';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 
 export default function PricingPage() {
   const t = useTranslations('pricing');
@@ -261,23 +260,23 @@ export default function PricingPage() {
         >
           <div className="container text-center">
             <h2 id="cta-heading" className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Ready to get started?
+              {t("cta.title")}
             </h2>
             <p className="text-xl text-blue-100 mb-8">
-              Try PRO free for 7 days. No credit card required.
+              {t("cta.subtitle")}
             </p>
             <Link 
               href={`/${locale}/register`}
               className="inline-block px-8 py-4 bg-white text-blue-600 font-semibold rounded-xl hover:bg-slate-100 transition-colors motion-safe:hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600"
               aria-label="Start free 7-day PRO trial - no credit card required"
             >
-              Start Free Trial
+              {t("cta.button")}
             </Link>
           </div>
         </section>
       </main>
       
-      <Footer />
+      
     </>
   );
 }

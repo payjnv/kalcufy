@@ -1,57 +1,247 @@
 {
-  "meta": {
-    "title": "Calculadora de Pago de Tarjeta de Crédito | Kalcufy",
-    "description": "Calculadora gratuita para crear un plan libre de deudas, comparar estrategias de pago y ver cuánto puedes ahorrar."
-  },
   "calculator": {
-    "title": "Calculadora de Pago de Tarjeta",
-    "subtitle": "Crea tu plan libre de deudas",
-    "breadcrumb": "Pago de Tarjeta",
-    "debtDetails": "Detalles de la Deuda",
-    "inputs": {
-      "balance": "Saldo Actual",
-      "interestRate": "Tasa de Interés (TAE)",
-      "minimumPayment": "Pago Mínimo",
-      "extraPayment": "Pago Mensual Extra"
+    "name": "Calculadora de Liquidación de Tarjetas de Crédito",
+    "title": "Calculadora de Liquidación de Tarjetas de Crédito - Comparación entre Bola de Nieve vs Avalancha",
+    "description": "Calcula cómo pagar las deudas de tarjetas de crédito más rápido. Compara los métodos de bola de nieve vs avalancha, ve el ahorro en transferencias de saldo y obtén una fecha personalizada libre de deudas con un cronograma mensual de pagos.",
+    "shortDescription": "Calcula tu fecha libre de deudas y compara estrategias de pago",
+    "badge": "Finanzas"
+  },
+  "inputs": {
+    "card1Balance": {
+      "label": "Saldo de Tarjeta 1",
+      "helpText": "Saldo actual adeudado en esta tarjeta"
     },
-    "results": {
-      "monthsToPayoff": "Meses para Liquidar",
-      "totalInterest": "Interés Total",
-      "totalPayments": "Total de Pagos",
-      "payoffDate": "Fecha de Liquidación",
-      "interestSaved": "Interés Ahorrado",
-      "timeSaved": "Tiempo Ahorrado"
+    "card1APR": {
+      "label": "APR de Tarjeta 1"
     },
-    "comparison": {
-      "title": "Comparación de Pagos",
-      "minimumOnly": "Solo Mínimo",
-      "withExtra": "Con Pago Extra",
-      "months": "meses",
-      "years": "años"
+    "card1MinPayment": {
+      "label": "Pago Mínimo de Tarjeta 1",
+      "helpText": "Generalmente 2% del saldo o $35, lo que sea mayor"
     },
-    "buttons": { "viewSchedule": "Ver Calendario de Pagos", "save": "Guardar", "pdf": "PDF", "excel": "Excel" },
-    "modal": { "title": "Calendario de Pagos", "month": "Mes", "payment": "Pago", "principal": "Capital", "interest": "Interés", "balance": "Saldo" },
-    "favorites": { "add": "Agregar a favoritos", "remove": "Quitar de favoritos" },
-    "saving": { "saving": "Guardando...", "saved": "Guardado", "error": "Error al guardar" }
+    "card2Balance": {
+      "label": "Saldo de Tarjeta 2 (opcional)"
+    },
+    "card2APR": {
+      "label": "APR de Tarjeta 2"
+    },
+    "card2MinPayment": {
+      "label": "Pago Mínimo de Tarjeta 2"
+    },
+    "card3Balance": {
+      "label": "Saldo de Tarjeta 3 (opcional)"
+    },
+    "card3APR": {
+      "label": "APR de Tarjeta 3"
+    },
+    "card3MinPayment": {
+      "label": "Pago Mínimo de Tarjeta 3"
+    },
+    "extraPayment": {
+      "label": "Pago Mensual Adicional",
+      "helpText": "Cantidad adicional más allá de los pagos mínimos para acelerar la liquidación"
+    },
+    "payoffStrategy": {
+      "label": "Estrategia Preferida",
+      "helpText": "Bola de nieve = victorias rápidas para motivación. Avalancha = ahorra más en intereses.",
+      "options": {
+        "compare": "Comparar Ambas",
+        "snowball": "Bola de Nieve",
+        "avalanche": "Avalancha"
+      }
+    }
+  },
+  "results": {
+    "totalDebt": "Deuda Total",
+    "debtFreeDate": "Fecha Libre de Deudas",
+    "monthsToPayoff": "Meses para Liquidar",
+    "totalInterest": "Interés Total Pagado",
+    "totalPayments": "Monto Total Pagado",
+    "interestSavings": "Ahorro en Interés vs Mínimo",
+    "recommendedStrategy": "Estrategia Recomendada",
+    "minimumOnlyWarning": "Advertencia Pago Mínimo"
+  },
+  "dynamic": {
+    "enterAtLeastOneCard": "Ingresa al menos un saldo de tarjeta de crédito para calcular tu plan de liquidación.",
+    "paymentTooLow": "Tu pago mensual de ${amount} no es suficiente para pagar ${debt} en deudas. Aumenta tu pago para hacer progreso.",
+    "payoffSummary": "Paga ${totalDebt} en ${months} meses para ${date}. Pagarás ${interest} en intereses—¡ahorrando ${savings} vs pagos mínimos!",
+    "neverPaysOff": "Nunca (pago muy bajo)",
+    "minimumPaymentWarning": "⚠️ ¡Los pagos mínimos NUNCA pagarán esta deuda!",
+    "minimumOnlyTimeframe": "Solo mínimo: ${years}a ${months}m, ${interest} interés",
+    "avalancheSavings": "Avalancha (ahorra ${amount} y ${months} meses)",
+    "eitherMethod": "Cualquier método funciona - elige según tu preferencia",
+    "months": "meses",
+    "cards": "tarjetas",
+    "card": "tarjeta"
+  },
+  "infoCards": {
+    "strategyComparison": {
+      "title": "Comparación de Estrategias",
+      "items": {
+        "0": "Meses Bola de Nieve",
+        "1": "Interés Bola de Nieve",
+        "2": "Meses Avalancha",
+        "3": "Interés Avalancha",
+        "4": "Ahorro Avalancha"
+      }
+    },
+    "payoffBreakdown": {
+      "title": "Desglose de Pagos",
+      "items": {
+        "0": "Pago Mensual",
+        "1": "Interés Promedio/Mes",
+        "2": "Tarjetas a Pagar"
+      }
+    }
+  },
+  "reference": {
+    "balancePayoffTable": {
+      "title": "Cronograma de Liquidación por Saldo",
+      "description": "Cuánto tiempo toma pagar diferentes saldos al 22% APR con pago de $200/mes",
+      "items": {
+        "0": "Saldo: $2,000 | Meses: 11 | Interés Total: $200 | Total Pagado: $2,200",
+        "1": "Saldo: $5,000 | Meses: 32 | Interés Total: $1,280 | Total Pagado: $6,280",
+        "2": "Saldo: $10,000 | Meses: 79 | Interés Total: $5,640 | Total Pagado: $15,640",
+        "3": "Saldo: $15,000 | Meses: 152 | Interés Total: $15,200 | Total Pagado: $30,200",
+        "4": "Saldo: $20,000 | Meses: Nunca | Interés Total: Infinito | Total Pagado: Nunca se paga"
+      }
+    }
   },
   "education": {
-    "title": "Liberándote de la Deuda de Tarjeta",
-    "content1": "La deuda de tarjeta de crédito puede ser una de las formas más caras de pedir prestado, con TAE promedio alrededor del 20%. Pagar solo el mínimo puede tomar décadas.",
-    "content2": "La clave para salir de la deuda de tarjeta es pagar más que el mínimo. Incluso pequeños pagos extra pueden ahorrar miles en intereses y años de pagos.",
-    "tips": {
-      "title": "Consejos para Pagar Deudas",
-      "tip1": { "title": "Paga Más del Mínimo", "description": "Los pagos mínimos mayormente cubren interés, no capital." },
-      "tip2": { "title": "Usa el Método Avalancha", "description": "Paga primero la deuda de mayor interés para ahorrar más." },
-      "tip3": { "title": "Considera Transferir Saldo", "description": "Transferencias a 0% TAE pueden ayudar si pagas a tiempo." },
-      "tip4": { "title": "Deja de Agregar Deuda", "description": "Corta la tarjeta o congélala mientras pagas." }
+    "payoffMethods": {
+      "title": "Métodos de Liquidación de Deudas Explicados",
+      "items": {
+        "0": "Bola de Nieve de Deudas: Paga mínimos en todas las tarjetas, luego ataca primero el saldo más pequeño con dinero extra. Cuando esa tarjeta se pague, transfiere ese pago al siguiente saldo más pequeño. Ventajas: Las victorias rápidas aumentan la motivación. Desventajas: Puede pagar más interés en general.",
+        "1": "Avalancha de Deudas: Paga mínimos en todas las tarjetas, luego ataca primero la tarjeta con APR más alto con dinero extra. Cuando se pague, pasa al siguiente APR más alto. Ventajas: Ahorra más dinero. Desventajas: Puede tomar más tiempo ver la primera tarjeta pagada.",
+        "2": "Transferencia de Saldo: Mueve deuda de APR alto a una tarjeta con 0% APR introductorio (típicamente 12-21 meses). Paga una tarifa de transferencia del 3-5% pero ahorra significativamente en intereses si pagas antes de que termine la promoción. Mejor para: Aquellos que pueden pagar dentro del período introductorio.",
+        "3": "Trampa del Pago Mínimo: Pagar solo el mínimo (usualmente 2% del saldo) significa que la mayor parte de tu pago va a intereses. ¡Un saldo de $5,000 al 22% APR con pagos mínimos toma 27+ años en pagarse y cuesta $9,000+ en intereses!"
+      }
     },
-    "faqTitle": "Preguntas Frecuentes"
+    "considerations": {
+      "title": "Consideraciones Importantes",
+      "items": {
+        "0": "El APR promedio de tarjetas de crédito en 2025 es 21-23% - entre los costos de préstamo más altos",
+        "1": "Pagar solo mínimos puede tomar 20-30 años en pagarse y triplicar tu costo total",
+        "2": "Deja de usar tarjetas mientras pagas la deuda - nuevos cargos sabotean tu progreso",
+        "3": "Incluso $25-50 extra por mes acelera significativamente tu fecha libre de deudas",
+        "4": "El método avalancha ahorra dinero, pero la bola de nieve puede mantenerte motivado por más tiempo",
+        "5": "Considera una transferencia de saldo al 0% si tienes buen crédito y puedes pagar en 12-18 meses",
+        "6": "Construye primero un fondo de emergencia pequeño para evitar nueva deuda cuando surjan costos inesperados"
+      }
+    },
+    "exampleCalculation": {
+      "title": "Ejemplo: Pagando $8,000 en Deuda de Tarjeta de Crédito",
+      "description": "Dos tarjetas: $5,000 al 24% APR y $3,000 al 18% APR. Presupuesto total de $400/mes.",
+      "examples": {
+        "0": {
+          "title": "Método Bola de Nieve de Deudas",
+          "steps": {
+            "0": "Pagos mínimos totales: $160/mes",
+            "1": "Pago extra: $240/mes",
+            "2": "Dirigir primero a Tarjeta 2 (saldo $3,000)",
+            "3": "Pagar $265/mes a Tarjeta 2, $135 mín a Tarjeta 1",
+            "4": "Tarjeta 2 pagada en 13 meses",
+            "5": "Transferir $265 a Tarjeta 1 = $400 total",
+            "6": "Tarjeta 1 pagada en 21 meses total"
+          },
+          "result": "Interés Total: $1,847 | 21 meses libre de deudas"
+        },
+        "1": {
+          "title": "Método Avalancha de Deudas",
+          "steps": {
+            "0": "Pagos mínimos totales: $160/mes",
+            "1": "Pago extra: $240/mes",
+            "2": "Dirigir primero a Tarjeta 1 (24% APR)",
+            "3": "Pagar $340/mes a Tarjeta 1, $60 mín a Tarjeta 2",
+            "4": "Tarjeta 1 pagada en 17 meses",
+            "5": "Transferir $340 a Tarjeta 2 = $400 total",
+            "6": "Tarjeta 2 pagada en 20 meses total"
+          },
+          "result": "Interés Total: $1,621 | 20 meses libre de deudas | Ahorra $226"
+        }
+      }
+    },
+    "interestExplanation": {
+      "title": "Cómo Funciona el Interés de Tarjetas de Crédito",
+      "content": "El interés de tarjetas de crédito se compone diariamente, no mensualmente. Tu APR se divide entre 365 para obtener una tasa diaria, que se aplica a tu saldo diario promedio. Por ejemplo, al 22% APR, la tasa diaria es 0.0603%. En un saldo de $5,000, acumulas aproximadamente $3 en interés por día. Esto significa que retrasar pagos—incluso por unos días—cuesta dinero real. Cuando haces un pago, primero cubre el interés acumulado, luego cualquier tarifa, y finalmente reduce tu capital. Por eso los pagos mínimos parecen apenas hacer mella: la mayoría va a intereses, dejando solo una pequeña cantidad para reducir lo que realmente debes."
+    },
+    "whyPayoffMatters": {
+      "title": "Por Qué Importa Pagar las Tarjetas de Crédito",
+      "content": "La deuda de tarjetas de crédito es una de las formas más costosas de préstamo, con APRs promedio que exceden el 22% en 2025. A diferencia de hipotecas o préstamos de auto con términos fijos, las tarjetas de crédito no tienen fecha de pago establecida—haciendo fácil cargar saldos por años o décadas. Mientras más tiempo lleves un saldo, más pagas en intereses, que podrían haberse invertido o ahorrado. Eliminar la deuda de tarjetas de crédito libera flujo de efectivo para ahorros de emergencia, contribuciones de jubilación y otras metas financieras. También mejora tu relación de utilización de crédito, potencialmente aumentando tu puntaje crediticio."
+    },
+    "buildingGoodHabits": {
+      "title": "Construyendo Hábitos de Tarjetas de Crédito que Perduran",
+      "content": "Una vez que pagues tus tarjetas de crédito, prevé deuda futura tratándolas como tarjetas de débito—solo carga lo que puedas pagar completamente cada mes. Configura autopago para el saldo completo para evitar interés por completo. Usa tus tarjetas para recompensas y protección de compras, pero nunca lleves un saldo. Si luchas con el sobregasto, considera usar efectivo o tarjeta de débito para compras discrecionales. Finalmente, construye un fondo de emergencia de 3-6 meses de gastos para que costos inesperados no te fuercen de vuelta a la deuda de tarjetas de crédito."
+    }
   },
-  "faq": [
-    { "question": "¿Por qué el pago mínimo toma tanto tiempo?", "answer": "Los pagos mínimos están diseñados para maximizar intereses para el banco. La mayoría de tu pago va a interés, apenas tocando el capital." },
-    { "question": "¿Método Avalancha vs Bola de Nieve?", "answer": "Avalancha paga primero el mayor interés (ahorra más dinero). Bola de Nieve paga primero el menor saldo (victorias psicológicas). Avalancha es matemáticamente óptimo." },
-    { "question": "¿Debo usar ahorros para pagar deuda?", "answer": "Si tu tarjeta cobra 20% y tus ahorros ganan 2%, pagar la deuda es como ganar 20% garantizado. Mantén un pequeño fondo de emergencia, luego ataca la deuda." }
-  ],
-  "sidebar": { "financeTitle": "Calculadoras Financieras", "healthTitle": "Calculadoras de Salud" },
-  "common": { "home": "Inicio", "calculators": "Calculadoras", "pro": "PRO" }
+  "faq": {
+    "title": "Preguntas Frecuentes",
+    "items": {
+      "0": {
+        "question": "¿Cuál es mejor: bola de nieve o avalancha de deudas?",
+        "answer": "Matemáticamente, el método avalancha (pagando primero el APR más alto) ahorra más dinero. Sin embargo, la investigación muestra que muchas personas tienen más éxito con el método bola de nieve porque pagar saldos pequeños rápidamente proporciona victorias psicológicas que mantienen la motivación. Elige avalancha si eres disciplinado y te motiva ahorrar dinero. Elige bola de nieve si necesitas victorias rápidas para mantenerte en el camino. El mejor método es el que seguirás."
+      },
+      "1": {
+        "question": "¿Cómo se calcula el pago mínimo en las tarjetas de crédito?",
+        "answer": "La mayoría de las compañías de tarjetas de crédito calculan el pago mínimo como 2-3% de tu saldo O una cantidad fija ($25-$35), lo que sea mayor. Algunas calculan 1% del saldo más todos los intereses y tarifas. Por ejemplo, en un saldo de $5,000, el mínimo típicamente es $100-$150. Revisa el acuerdo de tu tarjeta para la fórmula exacta. Advertencia: Pagar solo mínimos puede tomar 20+ años para pagar un saldo."
+      },
+      "2": {
+        "question": "¿Debería hacer una transferencia de saldo a una tarjeta con 0% APR?",
+        "answer": "Una transferencia de saldo puede ahorrar dinero significativo si: (1) Tienes buen crédito para calificar (usualmente 670+), (2) Puedes pagar el saldo antes de que termine el período introductorio (típicamente 12-21 meses), (3) La tarifa de transferencia del 3-5% es menos que el interés que pagarías de otra manera. Por ejemplo, transferir $5,000 con tarifa del 3% cuesta $150, pero ahorra $900+ en intereses durante 15 meses al 22% APR. Sin embargo, si no puedes pagar antes de que termine la promoción, el APR regular (a menudo 20%+) entra en vigor en cualquier saldo restante."
+      },
+      "3": {
+        "question": "¿Cuánto extra debería pagar para hacer una diferencia real?",
+        "answer": "Incluso $25-50 extra por mes hace una diferencia significativa. En un saldo de $5,000 al 22% APR: pagar solo mínimos toma 27 años y cuesta $9,200 total. Agregar solo $50/mes reduce esto a 43 meses y $6,400 total—¡ahorrando $2,800 y 24 años! Agregar $100/mes lo reduce aún más a 29 meses y $5,800. La clave es consistencia: cualquier cantidad extra, pagada cada mes, se compone en ahorros masivos."
+      },
+      "4": {
+        "question": "¿Debería ahorrar dinero o pagar primero las tarjetas de crédito?",
+        "answer": "Generalmente, paga primero la deuda de tarjetas de crédito de alto interés—es difícil ganar 20%+ de retornos invirtiendo. Sin embargo, construye primero un pequeño fondo de emergencia de $500-$1,000. Sin este colchón, cualquier gasto inesperado te fuerza de vuelta a las tarjetas de crédito. Una vez que tengas un mini fondo de emergencia, paga agresivamente las tarjetas. Después de que las tarjetas estén pagadas, construye un fondo de emergencia completo de 3-6 meses."
+      },
+      "5": {
+        "question": "¿Qué pasa si no hago un pago de tarjeta de crédito?",
+        "answer": "Perder un pago desencadena múltiples consecuencias: (1) Tarifa por pago tardío de $25-$40, (2) APR de penalización de hasta 29.99% puede aplicarse a todo tu saldo, (3) Después de 30 días tarde, se reporta a las agencias de crédito y daña tu puntaje, (4) Después de 60 días, el APR de penalización definitivamente se aplica, (5) Después de 180 días, tu cuenta puede ser cancelada y vendida a cobranzas. Siempre paga al menos el mínimo a tiempo. Si no puedes permitírtelo, llama a tu emisor de tarjeta para discutir opciones de dificultad antes de perder el pago."
+      }
+    }
+  },
+  "sources": {
+    "title": "Fuentes",
+    "viewSource": "Ver fuente",
+    "opensNewTab": "(se abre en pestaña nueva)",
+    "items": {
+      "0": "Consumer Financial Protection Bureau (2025). Consumer Credit Card Market Report. CFPB Annual Report",
+      "1": "Federal Reserve (2025). G.19 Consumer Credit Report - Credit Card Interest Rates. Federal Reserve Statistical Release"
+    }
+  },
+  "ui": {
+    "calculate": "Calcular",
+    "reset": "Reiniciar",
+    "share": "Compartir",
+    "save": "Guardar",
+    "export": "Exportar",
+    "pdf": "PDF",
+    "excel": "Excel",
+    "copied": "¡Copiado!",
+    "loading": "Cargando...",
+    "error": "Error",
+    "required": "Requerido",
+    "optional": "Opcional",
+    "unitSystem": "Sistema de unidades",
+    "imperial": "Imperial",
+    "metric": "Métrico",
+    "home": "Inicio",
+    "calculators": "Calculadoras"
+  },
+  "rating": {
+    "title": "Califica esta calculadora",
+    "clickToRate": "Haz clic para calificar",
+    "youRated": "Tu calificación:",
+    "stars": "estrellas",
+    "averageFrom": "Promedio de",
+    "ratings": "calificaciones",
+    "shareCalculator": "Compartir calculadora",
+    "thankYou": "¡Gracias por tu calificación!"
+  },
+  "disclaimers": {
+    "health": "Esta calculadora proporciona estimaciones solo para fines educativos. Los resultados pueden variar. Consulta a un profesional de la salud para asesoramiento médico.",
+    "finance": "Esta calculadora proporciona estimaciones solo para fines educativos. Los resultados reales pueden variar. Consulta a un asesor financiero para consejos personalizados."
+  }
 }

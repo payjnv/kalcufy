@@ -1,0 +1,68 @@
+{
+  "site": {
+    "name": "Kalcufy",
+    "tagline": "Free Online Calculators",
+    "url": "https://kalcufy.com",
+    "logo": "/favicon.png",
+    "favicon": "/favicon.ico"
+  },
+  "seo": {
+    "titleTemplate": "%s | Kalcufy - Free Online Calculators",
+    "defaultTitle": "Kalcufy - Free Online Calculators for Finance, Health & More",
+    "defaultDescription": "Free online calculators for finance, health, math and everyday use. Professional tools with multi-language support.",
+    "defaultOgImage": "/og-default.png",
+    "defaultLocale": "en",
+    "canonicalBase": "https://kalcufy.com"
+  },
+  "google": {
+    "searchConsoleId": "",
+    "analyticsId": "",
+    "adsenseId": "",
+    "tagManagerId": ""
+  },
+  "social": {
+    "twitter": "",
+    "facebook": "",
+    "linkedin": "",
+    "github": "",
+    "youtube": ""
+  },
+  "schema": {
+    "organizationName": "Kalcufy",
+    "organizationLogo": "https://kalcufy.com/favicon.png",
+    "contactEmail": "",
+    "foundingDate": "2024",
+    "sameAs": []
+  },
+  "robots": {
+    "allowAll": true,
+    "disallowPaths": [
+      "/admin",
+      "/api",
+      "/auth"
+    ],
+    "customRules": ""
+  },
+  "sitemap": {
+    "autoGenerate": true,
+    "changeFrequency": "weekly",
+    "priority": "0.8",
+    "excludePaths": [
+      "/admin",
+      "/auth"
+    ]
+  },
+  "indexing": {
+    "noindexDrafts": true,
+    "noindexPagination": false,
+    "forceTrailingSlash": false,
+    "hreflangEnabled": true,
+    "activeLanguages": [
+      "en",
+      "es",
+      "pt",
+      "fr",
+      "de"
+    ]
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "calculator": {
+    "title": "Calculateur du Ratio d'Endettement",
+    "subtitle": "Calculez votre ratio d'endettement",
+    "breadcrumb": "Ratio d'Endettement",
+    "yourInformation": "Vos Informations"
+  },
+  "inputs": {
+    "value1": {
+      "label": "Valeur 1",
+      "helpText": "Saisissez la valeur 1"
+    },
+    "value2": {
+      "label": "Valeur 2",
+      "helpText": "Saisissez la valeur 2"
+    }
+  },
+  "results": {
+    "result": "Résultat",
+    "summary": "Résumé"
+  },
+  "info": {
+    "resultsCard": {
+      "0": "Résultat",
+      "title": "Vos Résultats"
+    },
+    "tipsCard": {
+      "0": "Conseil 1",
+      "1": "Conseil 2",
+      "2": "Conseil 3",
+      "3": "Conseil 4",
+      "title": "Conseils"
+    }
+  },
+  "reference": {
+    "reference": {
+      "title": "Référence"
+    }
+  },
+  "education": {
+    "whatIs": {
+      "title": "Qu'est-ce que le Ratio d'Endettement ?",
+      "content": "Explication du ratio d'endettement..."
+    },
+    "howTo": {
+      "title": "Comment Calculer",
+      "content": "Guide étape par étape..."
+    },
+    "considerations": {
+      "title": "Considérations Importantes",
+      "items": {
+        "0": {
+          "text": "Facteur 1"
+        },
+        "1": {
+          "text": "Facteur 2"
+        },
+        "2": {
+          "text": "Facteur 3"
+        },
+        "3": {
+          "text": "Facteur 4"
+        },
+        "4": {
+          "text": "Facteur 5"
+        }
+      }
+    },
+    "example": {
+      "title": "Exemple de Calcul",
+      "description": "Exemples"
+    }
+  },
+  "faq": {
+    "0": {
+      "question": "Qu'est-ce que le ratio d'endettement ?",
+      "answer": "..."
+    },
+    "1": {
+      "question": "Quelle est la précision ?",
+      "answer": "..."
+    },
+    "2": {
+      "question": "Quand l'utiliser ?",
+      "answer": "..."
+    },
+    "3": {
+      "question": "Quels facteurs ?",
+      "answer": "..."
+    },
+    "4": {
+      "question": "Usage professionnel ?",
+      "answer": "..."
+    },
+    "5": {
+      "question": "À quelle fréquence ?",
+      "answer": "..."
+    },
+    "title": "FAQ"
+  },
+  "sources": {
+    "title": "Sources"
+  },
+  "buttons": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser"
+  }
+}

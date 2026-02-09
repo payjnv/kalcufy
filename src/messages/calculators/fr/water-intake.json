@@ -1,0 +1,36 @@
+{
+  "meta": {
+    "title": "Water Intake Calculator - How Much Water Should You Drink Daily",
+    "description": "Free water intake calculator based on your weight, activity level, and climate. Get hourly hydration goals and tips for staying properly hydrated."
+  },
+  "calculator": {
+    "title": "Water Intake Calculator",
+    "subtitle": "Calculate how much water you should drink daily"
+  },
+  "faq": [
+    {
+      "question": "How much water should I drink per day?",
+      "answer": "The general recommendation is about 30-35ml per kg of body weight. For a 70kg person, that's about 2.1-2.5 liters. However, this varies based on activity level, climate, and individual factors."
+    },
+    {
+      "question": "Does coffee count toward water intake?",
+      "answer": "While coffee does contain water, caffeine has a mild diuretic effect. Moderate coffee consumption (1-3 cups) can count toward your intake, but it's best to compensate with extra water if you drink more."
+    },
+    {
+      "question": "What are signs of dehydration?",
+      "answer": "Common signs include dark yellow urine, thirst, dry mouth, fatigue, dizziness, and headaches. Aim for pale yellow urine as an indicator of good hydration."
+    },
+    {
+      "question": "Can I drink too much water?",
+      "answer": "Yes, overhydration (hyponatremia) can occur but is rare. It's more common in endurance athletes. Drinking to thirst and monitoring urine color is usually sufficient for most people."
+    },
+    {
+      "question": "Do fruits and vegetables count toward water intake?",
+      "answer": "Yes! Foods like watermelon, cucumbers, oranges, and lettuce are over 90% water and contribute to your daily hydration. About 20% of daily water intake typically comes from food."
+    },
+    {
+      "question": "Should I drink more water when exercising?",
+      "answer": "Yes, drink 200-300ml (7-10 oz) every 10-20 minutes during exercise. For workouts longer than an hour, consider drinks with electrolytes to replace what you lose through sweat."
+    }
+  ]
+}

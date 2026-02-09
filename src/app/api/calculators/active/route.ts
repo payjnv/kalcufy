@@ -1,69 +1,102 @@
 // src/app/api/calculators/active/route.ts
-// API to get only active calculators for frontend pages
-
+// API to get only active V4 calculators (excludes drafts and inactive)
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/db";
-import { ALL_CALCULATORS, type Calculator } from "@/config/calculators-config";
+import { prisma } from "@/lib/prisma";
+import { SLUG_REGISTRY } from "@/engine/v4/slugs/registry";
 
 export const dynamic = "force-dynamic";
-export const revalidate = 60; // Revalidate every 60 seconds
+export const revalidate = 60;
 
-export async function GET() {
+interface V4Calculator {
+  id: string;
+  slug: string;
+  name: string;
+  description: string;
+  icon: string;
+  category: string;
+  isNew?: boolean;
+}
+
+async function loadV4Calculators(locale: string = "en"): Promise<V4Calculator[]> {
+  const calculators: V4Calculator[] = [];
+  
+  // Get inactive calculators from DB
+  const inactiveStatuses = await prisma.calculatorStatus.findMany({
+    where: { isActive: false },
+    select: { slug: true },
+  });
+  const inactiveSlugs = new Set(inactiveStatuses.map((s) => s.slug));
+
+  // Filter registry: exclude drafts and inactive
+  const activeEntries = SLUG_REGISTRY.filter((entry) => {
+    if (entry.category === "drafts") return false;
+    const slug = entry.slugs.en;
+    if (inactiveSlugs.has(slug)) return false;
+    return true;
+  });
+
+  for (const entry of activeEntries) {
+    try {
+      const module = await import(`@/calculators/${entry.id}/index`);
+      const configKey = Object.keys(module).find(k => k.includes("Config") || k.includes("config"));
+      if (!configKey) continue;
+      
+      const config = module[configKey];
+      const t = config.t?.[locale] || config.t?.en;
+      
+      if (t) {
+        calculators.push({
+          id: entry.id,
+          slug: entry.slugs[locale as keyof typeof entry.slugs] || entry.slugs.en,
+          name: t.name || entry.id,
+          description: t.subtitle || t.seo?.description?.slice(0, 100) || "",
+          icon: config.icon || "🧮",
+          category: entry.category,
+          isNew: true,
+        });
+      }
+    } catch (e) {
+      console.log(`Could not load V4 calculator: ${entry.id}`, e);
+    }
+  }
+  
+  return calculators;
+}
+
+export async function GET(request: Request) {
   try {
-    // Get all calculator statuses from database
-    const statuses = await prisma.calculatorStatus.findMany({
-      where: {
-        isActive: false, // Only get inactive ones to filter out
-      },
-      select: {
-        slug: true,
-      },
-    });
-
-    // Create a Set of inactive slugs for fast lookup
-    const inactiveSlugs = new Set(statuses.map((s) => s.slug));
-
-    // Filter out inactive calculators
-    const activeCalculators = ALL_CALCULATORS.filter(
-      (calc) => !inactiveSlugs.has(calc.slug)
-    );
-
-    // Group by category
-    const finance = activeCalculators.filter((c) => c.category === "finance");
-    const health = activeCalculators.filter((c) => c.category === "health");
-    const everyday = activeCalculators.filter((c) => c.category === "everyday");
+    const { searchParams } = new URL(request.url);
+    const locale = searchParams.get("locale") || "en";
+    
+    const calculators = await loadV4Calculators(locale);
+    
+    const finance = calculators.filter((c) => c.category === "finance");
+    const health = calculators.filter((c) => c.category === "health");
+    const math = calculators.filter((c) => c.category === "math");
+    const everyday = calculators.filter((c) => c.category === "everyday");
 
     return NextResponse.json({
-      calculators: activeCalculators,
+      calculators,
       counts: {
-        total: activeCalculators.length,
+        total: calculators.length,
         finance: finance.length,
         health: health.length,
+        math: math.length,
         everyday: everyday.length,
       },
       byCategory: {
         finance,
         health,
+        math,
         everyday,
       },
     });
   } catch (error) {
     console.error("Error fetching active calculators:", error);
-    
-    // Fallback to all calculators on error
     return NextResponse.json({
-      calculators: ALL_CALCULATORS,
-      counts: {
-        total: ALL_CALCULATORS.length,
-        finance: ALL_CALCULATORS.filter((c) => c.category === "finance").length,
-        health: ALL_CALCULATORS.filter((c) => c.category === "health").length,
-        everyday: ALL_CALCULATORS.filter((c) => c.category === "everyday").length,
-      },
-      byCategory: {
-        finance: ALL_CALCULATORS.filter((c) => c.category === "finance"),
-        health: ALL_CALCULATORS.filter((c) => c.category === "health"),
-        everyday: ALL_CALCULATORS.filter((c) => c.category === "everyday"),
-      },
+      calculators: [],
+      counts: { total: 0, finance: 0, health: 0, math: 0, everyday: 0 },
+      byCategory: { finance: [], health: [], math: [], everyday: [] },
     });
   }
 }

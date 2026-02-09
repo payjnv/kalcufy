@@ -5,7 +5,6 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import AuthModal from "@/components/AuthModal";
 
 export default function RegisterPage() {
@@ -42,7 +41,7 @@ export default function RegisterPage() {
           <p className="text-slate-600">Join thousands of users making smarter decisions every day.</p>
         </div>
       </main>
-      <Footer />
+      
       <AuthModal isOpen={modalOpen} onClose={handleClose} defaultTab="signup" />
     </>
   );

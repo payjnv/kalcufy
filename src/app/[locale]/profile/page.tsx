@@ -5,7 +5,6 @@ import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import { useSession, signOut } from 'next-auth/react';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 
 export default function ProfilePage() {
   const locale = useLocale();
@@ -435,7 +434,7 @@ export default function ProfilePage() {
           </div>
         </div>
       </div>
-      <Footer />
+      
     </>
   );
 }

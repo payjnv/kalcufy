@@ -61,6 +61,20 @@ export const CATEGORY_ICONS: Record<string, (className?: string) => JSX.Element>
     </svg>
   ),
   
+
+  // Technology - CPU/chip
+  technology: (className = "w-5 h-5") => (
+    <svg className={className} fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5M4.5 15.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25zm.75-12h9v9h-9v-9z" />
+    </svg>
+  ),
+
+  // Home & Construction - Wrench
+  home: (className = "w-5 h-5") => (
+    <svg className={className} fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17l-5.1 5.1a2.121 2.121 0 01-3-3l5.1-5.1m0 0L2.25 6.75a2.25 2.25 0 013.182-3.182l6.318 6.318m-1.33 1.33l5.657-5.657a2.25 2.25 0 013.182 3.182l-5.657 5.657" />
+    </svg>
+  ),
   // Other/Default - Grid of dots
   other: (className = "w-5 h-5") => (
     <svg className={className} fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
@@ -131,6 +145,18 @@ export const CATEGORY_COLORS: Record<string, { bg: string; text: string; border:
     text: "text-amber-600", 
     border: "hover:border-amber-300",
     ring: "focus:ring-amber-500"
+  },
+  indigo: { 
+    bg: "bg-indigo-100", 
+    text: "text-indigo-600", 
+    border: "hover:border-indigo-300",
+    ring: "focus:ring-indigo-500"
+  },
+  teal: { 
+    bg: "bg-teal-100", 
+    text: "text-teal-600", 
+    border: "hover:border-teal-300",
+    ring: "focus:ring-teal-500"
   },
 };
 

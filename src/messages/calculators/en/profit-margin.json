@@ -1,0 +1,113 @@
+{
+  "calculator": {
+    "title": "Profit Margin Calculator - Calculate Gross, Net & Operating Margin",
+    "subtitle": "Calculate profit margin, markup, and optimal pricing",
+    "breadcrumb": "Profit Margin",
+    "yourInformation": "Your Information",
+    "mode": "Calculate"
+  },
+  "inputs": {
+    "cost": {
+      "label": "Cost (COGS)"
+    },
+    "revenue": {
+      "label": "Selling Price / Revenue"
+    },
+    "desiredMargin": {
+      "label": "Target Profit Margin"
+    },
+    "profit": {
+      "label": "Gross Profit"
+    },
+    "markup": {
+      "label": "Markup"
+    },
+    "sellingPrice": {
+      "label": "Selling Price"
+    },
+    "maxCost": {
+      "label": "Maximum Cost"
+    },
+    "revenuePerDollar": {
+      "label": "Profit per $1 Revenue"
+    },
+    "marginTypes": {
+      "label": "Gross Margin"
+    },
+    "quickTips": {
+      "label": "Higher margin ≠ always better (volume matters)"
+    }
+  },
+  "results": {
+    "profitMargin": "Profit Margin",
+    "profit": "Gross Profit",
+    "markup": "Markup",
+    "sellingPrice": "Selling Price",
+    "maxCost": "Maximum Cost",
+    "revenuePerDollar": "Profit per $1 Revenue"
+  },
+  "info": {},
+  "reference": {},
+  "education": {},
+  "faq": {
+    "0": {
+      "question": "What",
+      "answer": "Margin is calculated as a percentage of the selling price (Profit ÷ Price × 100), while markup is calculated as a percentage of cost (Profit ÷ Cost × 100). For example, if a product costs $60 and sells for $100, the margin is 40% ($40÷$100) but the markup is 66.7% ($40÷$60). This distinction is crucial for pricing strategy."
+    },
+    "1": {
+      "question": "What",
+      "answer": "It varies dramatically by industry. Software and SaaS typically achieve 70-90% gross margins. Retail clothing ranges 45-65%. Restaurants aim for 60-70% on food. Grocery operates on thin 20-30% margins. Compare your margins to industry benchmarks rather than arbitrary targets."
+    },
+    "2": {
+      "question": "How do I convert markup to margin?",
+      "answer": "Use this formula: Margin = Markup ÷ (1 + Markup). For example, a 50% markup (0.50) converts to: 0.50 ÷ 1.50 = 0.333 or 33.3% margin. Conversely, to convert margin to markup: Markup = Margin ÷ (1 - Margin). A 40% margin equals: 0.40 ÷ 0.60 = 66.7% markup."
+    },
+    "3": {
+      "question": "What",
+      "answer": "Gross margin = (Revenue - COGS) ÷ Revenue. It only considers direct production costs. Operating margin subtracts operating expenses (rent, salaries, marketing) from gross profit. Net margin is after ALL expenses including taxes and interest. Each tells a different story about business health."
+    },
+    "4": {
+      "question": "Should I price based on cost-plus or value-based pricing?",
+      "answer": "Cost-plus pricing (adding a fixed markup to cost) is simple but may leave money on the table. Value-based pricing sets prices according to customer perceived value, often achieving higher margins. Most businesses benefit from a hybrid approach - using cost as a floor but adjusting based on market positioning and customer willingness to pay."
+    },
+    "5": {
+      "question": "How can I increase profit margin without raising prices?",
+      "answer": "Focus on reducing costs: negotiate better supplier terms, reduce waste, automate processes, optimize inventory. Also consider your product mix - promoting high-margin items while phasing out low-margin ones. Improving operational efficiency and reducing overhead costs can significantly boost margins without touching prices."
+    },
+    "6": {
+      "question": "Why is my margin lower than my markup percentage?",
+      "answer": "Margin will always be lower than markup for the same product because they use different denominators. Margin uses the larger selling price as its base, while markup uses the smaller cost. A 100% markup only yields a 50% margin because you"
+    },
+    "7": {
+      "question": "How do I calculate the selling price for a target margin?",
+      "answer": "Use the formula: Selling Price = Cost ÷ (1 - Target Margin). For example, if your cost is $60 and you want a 40% margin: $60 ÷ (1 - 0.40) = $60 ÷ 0.60 = $100. This ensures your final margin is exactly what you targeted, not the common mistake of simply adding the percentage to cost."
+    },
+    "title": "Frequently Asked Questions"
+  },
+  "modes": {
+    "margin": {
+      "label": "Calculate Margin"
+    },
+    "price": {
+      "label": "Find Selling Price"
+    },
+    "cost": {
+      "label": "Find Max Cost"
+    }
+  },
+  "categories": {
+    "health": "Health",
+    "finance": "Finance"
+  },
+  "breadcrumbs": {
+    "home": "Home",
+    "calculators": "Calculators"
+  },
+  "sources": {
+    "title": "Sources & References"
+  },
+  "disclaimers": {
+    "health": "Results are estimates. Consult a professional.",
+    "finance": "For informational purposes only."
+  }
+}

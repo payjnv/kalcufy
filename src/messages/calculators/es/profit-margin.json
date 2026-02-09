@@ -1,0 +1,113 @@
+{
+  "calculator": {
+    "title": "Calculadora de Margen de Ganancia - Calcular Margen Bruto, Neto y Operativo",
+    "subtitle": "Calcular margen de ganancia, margen de beneficio y precios óptimos",
+    "breadcrumb": "Margen de Ganancia",
+    "yourInformation": "Tu Información",
+    "mode": "Calcular"
+  },
+  "inputs": {
+    "cost": {
+      "label": "Costo (COGS)"
+    },
+    "revenue": {
+      "label": "Precio de Venta / Ingresos"
+    },
+    "desiredMargin": {
+      "label": "Margen de Ganancia Objetivo"
+    },
+    "profit": {
+      "label": "Ganancia Bruta"
+    },
+    "markup": {
+      "label": "Margen de Beneficio"
+    },
+    "sellingPrice": {
+      "label": "Precio de Venta"
+    },
+    "maxCost": {
+      "label": "Costo Máximo"
+    },
+    "revenuePerDollar": {
+      "label": "Ganancia por $1 de Ingresos"
+    },
+    "marginTypes": {
+      "label": "Margen Bruto"
+    },
+    "quickTips": {
+      "label": "Margen más alto ≠ siempre mejor (el volumen importa)"
+    }
+  },
+  "results": {
+    "profitMargin": "Margen de Ganancia",
+    "profit": "Ganancia Bruta",
+    "markup": "Margen de Beneficio",
+    "sellingPrice": "Precio de Venta",
+    "maxCost": "Costo Máximo",
+    "revenuePerDollar": "Ganancia por $1 de Ingresos"
+  },
+  "info": {},
+  "reference": {},
+  "education": {},
+  "faq": {
+    "0": {
+      "question": "Qué",
+      "answer": "El margen se calcula como un porcentaje del precio de venta (Ganancia ÷ Precio × 100), mientras que el margen de beneficio se calcula como un porcentaje del costo (Ganancia ÷ Costo × 100). Por ejemplo, si un producto cuesta $60 y se vende por $100, el margen es 40% ($40÷$100) pero el margen de beneficio es 66.7% ($40÷$60). Esta distinción es crucial para la estrategia de precios."
+    },
+    "1": {
+      "question": "Qué",
+      "answer": "Varía dramáticamente por industria. El software y SaaS típicamente logran márgenes brutos de 70-90%. La ropa al por menor oscila entre 45-65%. Los restaurantes buscan 60-70% en alimentos. Los supermercados operan con márgenes delgados de 20-30%. Compara tus márgenes con referencias de la industria en lugar de objetivos arbitrarios."
+    },
+    "2": {
+      "question": "¿Cómo convierto el margen de beneficio a margen?",
+      "answer": "Usa esta fórmula: Margen = Margen de Beneficio ÷ (1 + Margen de Beneficio). Por ejemplo, un margen de beneficio de 50% (0.50) se convierte a: 0.50 ÷ 1.50 = 0.333 o 33.3% margen. Inversamente, para convertir margen a margen de beneficio: Margen de Beneficio = Margen ÷ (1 - Margen). Un margen de 40% equivale a: 0.40 ÷ 0.60 = 66.7% margen de beneficio."
+    },
+    "3": {
+      "question": "Qué",
+      "answer": "Margen bruto = (Ingresos - COGS) ÷ Ingresos. Solo considera costos directos de producción. El margen operativo resta gastos operativos (alquiler, salarios, marketing) de la ganancia bruta. El margen neto es después de TODOS los gastos incluyendo impuestos e intereses. Cada uno cuenta una historia diferente sobre la salud del negocio."
+    },
+    "4": {
+      "question": "¿Debo fijar precios basándome en costo-plus o precios basados en valor?",
+      "answer": "El precio costo-plus (agregar un margen de beneficio fijo al costo) es simple pero puede dejar dinero sobre la mesa. El precio basado en valor fija precios según el valor percibido por el cliente, a menudo logrando márgenes más altos. La mayoría de los negocios se benefician de un enfoque híbrido - usar el costo como base pero ajustar según el posicionamiento del mercado y la disposición del cliente a pagar."
+    },
+    "5": {
+      "question": "¿Cómo puedo aumentar el margen de ganancia sin subir precios?",
+      "answer": "Enfócate en reducir costos: negocia mejores términos con proveedores, reduce desperdicios, automatiza procesos, optimiza inventario. También considera tu mezcla de productos - promoviendo artículos de alto margen mientras eliminas gradualmente los de bajo margen. Mejorar la eficiencia operativa y reducir costos generales puede impulsar significativamente los márgenes sin tocar los precios."
+    },
+    "6": {
+      "question": "¿Por qué mi margen es menor que mi porcentaje de margen de beneficio?",
+      "answer": "El margen siempre será menor que el margen de beneficio para el mismo producto porque usan diferentes denominadores. El margen usa el precio de venta más grande como base, mientras que el margen de beneficio usa el costo más pequeño. Un margen de beneficio de 100% solo produce un margen de 50% porque"
+    },
+    "7": {
+      "question": "¿Cómo calculo el precio de venta para un margen objetivo?",
+      "answer": "Usa la fórmula: Precio de Venta = Costo ÷ (1 - Margen Objetivo). Por ejemplo, si tu costo es $60 y quieres un margen de 40%: $60 ÷ (1 - 0.40) = $60 ÷ 0.60 = $100. Esto asegura que tu margen final sea exactamente lo que buscabas, no el error común de simplemente agregar el porcentaje al costo."
+    },
+    "title": "Preguntas Frecuentes"
+  },
+  "modes": {
+    "margin": {
+      "label": "Calcular Margen"
+    },
+    "price": {
+      "label": "Encontrar Precio de Venta"
+    },
+    "cost": {
+      "label": "Encontrar Costo Máximo"
+    }
+  },
+  "categories": {
+    "health": "Salud",
+    "finance": "Finanzas"
+  },
+  "breadcrumbs": {
+    "home": "Inicio",
+    "calculators": "Calculadoras"
+  },
+  "sources": {
+    "title": "Fuentes y Referencias"
+  },
+  "disclaimers": {
+    "health": "Los resultados son estimaciones. Consulta a un profesional.",
+    "finance": "Solo con fines informativos."
+  }
+}

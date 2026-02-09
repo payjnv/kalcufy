@@ -1,98 +1,159 @@
+// KALCUFY V4 - SITEMAP MULTILENGUAJE COMPLETO
+// Incluye: Páginas estáticas, Category Pages, Calculadoras V4 (solo activas), Blog Posts
 import { MetadataRoute } from 'next';
-import { ALL_CALCULATORS } from '@/config/calculators-config';
+import { SLUG_REGISTRY } from '@/engine/v4/slugs/registry';
+import { CATEGORY_PAGES } from '@/lib/category-pages-config';
+import { prisma } from '@/lib/prisma';
 
-const baseUrl = 'https://kalcufy.com';
-const locales = ['en', 'es', 'pt'];
-
-// Static pages
-const staticPages = [
-  'calculators',
-  'pricing',
-  'blog',
-  'about',
-  'terms',
-  'privacy',
-  'cookies',
-  'accessibility',
-];
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://kalcufy.com';
+const LOCALES = ['en', 'es', 'pt', 'fr', 'de'] as const;
+type Locale = (typeof LOCALES)[number];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const routes: MetadataRoute.Sitemap = [];
+  const entries: MetadataRoute.Sitemap = [];
   const now = new Date();
 
-  // Generate routes for each locale
-  for (const locale of locales) {
-    // Home page - highest priority
-    routes.push({
-      url: `${baseUrl}/${locale}`,
-      lastModified: now,
-      changeFrequency: 'daily',
-      priority: 1.0,
-    });
+  // ─────────────────────────────────────────────────────────────────────────
+  // 1. PÁGINAS ESTÁTICAS (cada idioma tiene su propia entrada)
+  // ─────────────────────────────────────────────────────────────────────────
+  const staticPages = [
+    { path: '', priority: 1.0, changeFreq: 'weekly' as const },
+    { path: 'calculators', priority: 0.9, changeFreq: 'weekly' as const },
+    { path: 'blog', priority: 0.7, changeFreq: 'weekly' as const },
+    { path: 'about', priority: 0.5, changeFreq: 'monthly' as const },
+    { path: 'pricing', priority: 0.6, changeFreq: 'monthly' as const },
+    { path: 'accessibility', priority: 0.3, changeFreq: 'yearly' as const },
+    { path: 'privacy', priority: 0.3, changeFreq: 'yearly' as const },
+    { path: 'terms', priority: 0.3, changeFreq: 'yearly' as const },
+    { path: 'cookies', priority: 0.3, changeFreq: 'yearly' as const },
+  ];
 
-    // Static pages
-    for (const page of staticPages) {
-      routes.push({
-        url: `${baseUrl}/${locale}/${page}`,
-        lastModified: now,
-        changeFrequency: 'weekly',
-        priority: 0.8,
-      });
+  const createStaticAlternates = (path: string) => {
+    const languages: Record<string, string> = {};
+    for (const locale of LOCALES) {
+      languages[locale] = path ? `${BASE_URL}/${locale}/${path}` : `${BASE_URL}/${locale}`;
     }
+    return { languages };
+  };
 
-    // All calculators from config (51 calculators)
-    for (const calc of ALL_CALCULATORS) {
-      routes.push({
-        url: `${baseUrl}/${locale}/${calc.slug}`,
+  for (const page of staticPages) {
+    for (const locale of LOCALES) {
+      const url = page.path ? `${BASE_URL}/${locale}/${page.path}` : `${BASE_URL}/${locale}`;
+      entries.push({
+        url,
         lastModified: now,
-        changeFrequency: 'monthly',
-        priority: 0.9,
+        changeFrequency: page.changeFreq,
+        priority: page.priority,
+        alternates: createStaticAlternates(page.path),
       });
     }
   }
 
-  // Fetch blog posts from database
+  // ─────────────────────────────────────────────────────────────────────────
+  // 2. CATEGORY PAGES (for Google Sitelinks)
+  // ─────────────────────────────────────────────────────────────────────────
+  for (const cat of CATEGORY_PAGES) {
+    const alternates = {
+      languages: Object.fromEntries(
+        LOCALES.map((loc) => [loc, `${BASE_URL}/${loc}/${cat.slugs[loc] || cat.slugs.en}`])
+      ),
+    };
+
+    for (const locale of LOCALES) {
+      entries.push({
+        url: `${BASE_URL}/${locale}/${cat.slugs[locale] || cat.slugs.en}`,
+        lastModified: now,
+        changeFrequency: 'weekly',
+        priority: 0.85,
+        alternates,
+      });
+    }
+  }
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // 3. CALCULADORAS V4 (solo activas, sin drafts)
+  // ─────────────────────────────────────────────────────────────────────────
+  
+  let activeCalcSlugs: Set<string> = new Set();
   try {
-    const { prisma } = await import('@/lib/db');
-    const posts = await prisma.post.findMany({
-      where: { 
-        status: 'PUBLISHED'
+    const activeCalcs = await prisma.calculatorStatus.findMany({
+      where: { isActive: true },
+      select: { slug: true },
+    });
+    activeCalcSlugs = new Set(activeCalcs.map(c => c.slug));
+  } catch (error) {
+    console.error('Error fetching active calculators:', error);
+  }
+
+  for (const entry of SLUG_REGISTRY) {
+    if (entry.category === 'drafts') continue;
+    if (activeCalcSlugs.size > 0 && !activeCalcSlugs.has(entry.slugs.en)) continue;
+
+    const alternates = {
+      languages: {
+        en: `${BASE_URL}/en/${entry.slugs.en}`,
+        es: `${BASE_URL}/es/${entry.slugs.es}`,
+        pt: `${BASE_URL}/pt/${entry.slugs.pt}`,
+        fr: `${BASE_URL}/fr/${entry.slugs.fr}`,
+        de: `${BASE_URL}/de/${entry.slugs.de}`,
       },
-      select: { 
+    };
+
+    for (const locale of LOCALES) {
+      const slug = entry.slugs[locale];
+      entries.push({
+        url: `${BASE_URL}/${locale}/${slug}`,
+        lastModified: now,
+        changeFrequency: 'monthly',
+        priority: 0.8,
+        alternates,
+      });
+    }
+  }
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // 4. BLOG POSTS (5 idiomas, solo idiomas que tienen slug propio)
+  // ─────────────────────────────────────────────────────────────────────────
+  try {
+    const posts = await prisma.post.findMany({
+      where: { status: 'PUBLISHED' },
+      select: {
         slugEn: true,
         slugEs: true,
         slugPt: true,
-        updatedAt: true 
+        slugFr: true,
+        slugDe: true,
+        updatedAt: true,
       },
     });
 
-    // Add blog posts for each locale
     for (const post of posts) {
-      // English
-      if (post.slugEn) {
-        routes.push({
-          url: `${baseUrl}/en/blog/${post.slugEn}`,
-          lastModified: post.updatedAt,
+      const slugMap: Partial<Record<Locale, string>> = {};
+      if (post.slugEn) slugMap.en = post.slugEn;
+      if (post.slugEs) slugMap.es = post.slugEs;
+      if (post.slugPt) slugMap.pt = post.slugPt;
+      if (post.slugFr) slugMap.fr = post.slugFr;
+      if (post.slugDe) slugMap.de = post.slugDe;
+
+      const availableLocales = Object.keys(slugMap) as Locale[];
+      if (availableLocales.length === 0) continue;
+
+      const alternates = {
+        languages: Object.fromEntries(
+          availableLocales.map(locale => [
+            locale,
+            `${BASE_URL}/${locale}/blog/${slugMap[locale]}`,
+          ])
+        ),
+      };
+
+      for (const locale of availableLocales) {
+        entries.push({
+          url: `${BASE_URL}/${locale}/blog/${slugMap[locale]}`,
+          lastModified: post.updatedAt || now,
           changeFrequency: 'weekly',
           priority: 0.7,
-        });
-      }
-      // Spanish
-      if (post.slugEs) {
-        routes.push({
-          url: `${baseUrl}/es/blog/${post.slugEs}`,
-          lastModified: post.updatedAt,
-          changeFrequency: 'weekly',
-          priority: 0.7,
-        });
-      }
-      // Portuguese
-      if (post.slugPt) {
-        routes.push({
-          url: `${baseUrl}/pt/blog/${post.slugPt}`,
-          lastModified: post.updatedAt,
-          changeFrequency: 'weekly',
-          priority: 0.7,
+          alternates,
         });
       }
     }
@@ -100,5 +161,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error('Error fetching blog posts for sitemap:', error);
   }
 
-  return routes;
+  return entries;
 }

@@ -16,6 +16,7 @@ model User {
   image         String?
   emailVerified DateTime?
   isPro         Boolean             @default(false)
+  country       String?             @default("US")
   createdAt     DateTime            @default(now())
   updatedAt     DateTime            @updatedAt
   role          String              @default("USER")
@@ -25,6 +26,7 @@ model User {
   Post          Post[]
   sessions      Session[]
   subscription  Subscription?
+  sharedCalculations SharedCalculation[]
 
   @@map("users")
 }
@@ -160,21 +162,33 @@ model Post {
   slugEn            String        @unique
   slugEs            String?       @unique
   slugPt            String?       @unique
+  slugFr            String?       @unique
+  slugDe            String?       @unique
   titleEn           String
   titleEs           String?
   titlePt           String?
+  titleFr           String?
+  titleDe           String?
   excerptEn         String?
   excerptEs         String?
   excerptPt         String?
+  excerptFr         String?
+  excerptDe         String?
   contentEn         String
   contentEs         String?
   contentPt         String?
+  contentFr         String?
+  contentDe         String?
   metaTitleEn       String?
   metaTitleEs       String?
   metaTitlePt       String?
+  metaTitleFr       String?
+  metaTitleDe       String?
   metaDescriptionEn String?
   metaDescriptionEs String?
   metaDescriptionPt String?
+  metaDescriptionFr String?
+  metaDescriptionDe String?
   featuredImage     String?
   ogImage           String?
   tags              String[]
@@ -215,6 +229,8 @@ model BlogCategory {
   nameEn    String
   nameEs    String?
   namePt    String?
+  nameFr    String?
+  nameDe    String?
   icon      String?
   color     String   @default("blue")
   isActive  Boolean  @default(true)
@@ -239,11 +255,15 @@ enum TrackingType {
 }
 
 model CalculatorStatus {
-  id        String   @id @default(cuid())
-  slug      String   @unique
-  isActive  Boolean  @default(true)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id             String   @id @default(cuid())
+  slug           String   @unique
+  isActive       Boolean  @default(true)
+  deletedAt      DateTime?
+  subcategoryId  String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  subcategory    CalculatorSubcategory? @relation("CalcToSubcategory", fields: [subcategoryId], references: [id], onDelete: SetNull)
 
   @@map("calculator_status")
 }
@@ -271,6 +291,8 @@ model CalculatorCategory {
   nameEn      String
   nameEs      String?
   namePt      String?
+  nameFr      String?
+  nameDe      String?
   icon        String?
   color       String   @default("blue")
   description String?
@@ -282,6 +304,7 @@ model CalculatorCategory {
   updatedAt   DateTime @updatedAt
 
   calculators CalculatorToCategory[]
+  subcategories CalculatorSubcategory[]
 
   @@map("calculator_categories")
 }
@@ -299,4 +322,47 @@ model CalculatorToCategory {
   @@index([calculatorSlug])
   @@index([categoryId])
   @@map("calculator_to_category")
+}
+
+model SharedCalculation {
+  id             String    @id @default(cuid())
+  shortCode      String    @unique
+  calculatorId   String
+  calculatorSlug String
+  locale         String    @default("en")
+  values         Json
+  results        Json?
+  unitSystem     String?   @default("imperial")
+  views          Int       @default(0)
+  userId         String?
+  user           User?     @relation(fields: [userId], references: [id], onDelete: SetNull)
+  expiresAt      DateTime
+  createdAt      DateTime  @default(now())
+
+  @@index([shortCode])
+  @@index([expiresAt])
+  @@map("shared_calculations")
+}
+
+// === TEMPORARY: Add these fields to the Post model ===
+// slugFr, slugDe, titleFr, titleDe, etc.
+
+model CalculatorSubcategory {
+  id         String   @id @default(cuid())
+  slug       String   @unique
+  nameEn     String
+  nameEs     String?
+  namePt     String?
+  nameFr     String?
+  nameDe     String?
+  categoryId String
+  sortOrder  Int      @default(0)
+  isActive   Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  category    CalculatorCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  calculators CalculatorStatus[] @relation("CalcToSubcategory")
+
+  @@map("calculator_subcategories")
 }

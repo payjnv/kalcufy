@@ -1,0 +1,137 @@
+{
+  "meta": {
+    "title": "Ideal Weight Calculator - Calculate Your Ideal Body Weight",
+    "description": "Free ideal weight calculator using 5 scientific formulas (Robinson, Miller, Devine, Hamwi, BMI). Includes frame size adjustment, build type, and timeline to reach your goal."
+  },
+  "calculator": {
+    "title": "Ideal Weight Calculator",
+    "subtitle": "Calculate your ideal body weight using 5 scientific formulas"
+  },
+  "inputs": {
+    "unitSystem": "Unit System",
+    "imperial": "Imperial (lb, in)",
+    "metric": "Metric (kg, cm)",
+    "biologicalSex": "Biological Sex",
+    "male": "Male",
+    "female": "Female",
+    "age": "Age",
+    "years": "years",
+    "height": "Height",
+    "currentWeight": "Current Weight",
+    "buildType": "Build Type",
+    "wristCircumference": "Wrist Circumference",
+    "wristHelp": "Measure just below the wrist bone"
+  },
+  "buildTypes": {
+    "lean": {
+      "label": "Lean",
+      "description": "Minimal muscle, slim build"
+    },
+    "average": {
+      "label": "Average",
+      "description": "Typical body composition"
+    },
+    "athletic": {
+      "label": "Athletic",
+      "description": "Active, some muscle"
+    },
+    "muscular": {
+      "label": "Muscular",
+      "description": "Significant muscle mass"
+    }
+  },
+  "frameSizes": {
+    "small": "Small",
+    "medium": "Medium",
+    "large": "Large"
+  },
+  "results": {
+    "idealWeight": "Your Ideal Weight (Average)",
+    "healthyRange": "Healthy Range",
+    "weightToLose": "Weight to Lose",
+    "weightToGain": "Weight to Gain",
+    "atIdealWeight": "At Ideal Weight!",
+    "timeline": "Timeline",
+    "weeksAtRate": "at {rate} lb/week"
+  },
+  "formulas": {
+    "title": "Formula Comparison",
+    "robinson": {
+      "name": "Robinson",
+      "description": "1983 - Most commonly used"
+    },
+    "miller": {
+      "name": "Miller",
+      "description": "1983 - For smaller frames"
+    },
+    "devine": {
+      "name": "Devine",
+      "description": "1974 - Medical standard"
+    },
+    "hamwi": {
+      "name": "Hamwi",
+      "description": "1964 - Original formula"
+    },
+    "bmiRange": {
+      "name": "BMI Range",
+      "description": "Based on healthy BMI"
+    }
+  },
+  "frameSize": {
+    "title": "Frame Size Reference",
+    "detected": "Frame Size",
+    "adjustment": "adjustment",
+    "selectManually": "Or Select Frame Size Manually"
+  },
+  "advanced": {
+    "title": "Advanced Options",
+    "weightChangeRate": "Weight Change Rate",
+    "rateHelp": "Recommended: 0.5-2 lbs per week for safe weight loss"
+  },
+  "education": {
+    "whatIsIdealWeight": "What is Ideal Body Weight?",
+    "whatIsIdealWeightContent": "Ideal body weight (IBW) is a theoretical weight that is associated with the lowest risk of health problems for a person of a given height. However, IBW formulas were originally developed for calculating medication dosages, not for determining aesthetic or fitness goals.",
+    "whyDifferent": "Why Do Formulas Give Different Results?",
+    "whyDifferentContent": "Each formula was developed by different researchers for different purposes and populations. The variation between formulas actually gives you a realistic range to consider rather than a single target number."
+  },
+  "aboutFormulas": {
+    "title": "About the Formulas",
+    "robinson": "Robinson (1983): Most commonly used in clinical settings",
+    "miller": "Miller (1983): Tends to give lower estimates, good for smaller frames",
+    "devine": "Devine (1974): Original medical formula, still widely referenced",
+    "hamwi": "Hamwi (1964): The first ideal weight formula developed"
+  },
+  "considerations": {
+    "title": "Important Considerations",
+    "item1": "These are estimates - individual healthy weights vary",
+    "item2": "Athletes may exceed ideal weights due to muscle mass",
+    "item3": "Body fat percentage is often more meaningful",
+    "item4": "Consult a healthcare provider for personalized advice"
+  },
+  "faq": [
+    {
+      "question": "How accurate are ideal weight formulas?",
+      "answer": "These formulas provide estimates based on height and gender. They don't account for muscle mass, bone density, or body composition. Use them as general guidelines, not absolute targets."
+    },
+    {
+      "question": "Why do different formulas give different results?",
+      "answer": "Each formula was developed for different purposes and populations. Robinson and Miller modified Devine's original formula. The variation gives you a healthy range to consider."
+    },
+    {
+      "question": "What is frame size and why does it matter?",
+      "answer": "Frame size refers to your bone structure (small, medium, large). People with larger frames naturally weigh more due to bigger bones. Wrist circumference is a simple way to estimate frame size."
+    },
+    {
+      "question": "Should athletes use these formulas?",
+      "answer": "Athletes with significant muscle mass may exceed these ideal weights while being perfectly healthy. Consider using body fat percentage instead for a more accurate assessment."
+    },
+    {
+      "question": "What's a safe rate of weight loss?",
+      "answer": "Most health experts recommend 0.5-2 lbs (0.25-1 kg) per week. Faster weight loss can lead to muscle loss, nutritional deficiencies, and is harder to maintain long-term."
+    },
+    {
+      "question": "How do I measure my wrist for frame size?",
+      "answer": "Wrap a measuring tape around your wrist just below the wrist bone (where you'd wear a watch). Keep the tape snug but not tight. Compare to the thresholds for your gender."
+    }
+  ]
+}

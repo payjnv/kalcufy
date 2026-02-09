@@ -13,6 +13,8 @@ export async function GET() {
         nameEn: true,
         nameEs: true,
         namePt: true,
+        nameFr: true,
+        nameDe: true,
         icon: true,
         color: true,
       },

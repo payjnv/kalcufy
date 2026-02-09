@@ -32,19 +32,33 @@ export async function GET(request: NextRequest) {
 
     // Transform posts to return correct language content
     const transformedPosts = posts.map((post) => {
-      // Get content based on locale
-      let title = post.titleEn;
-      let excerpt = post.excerptEn;
-      let slug = post.slugEn;
+      let title, excerpt, slug;
 
-      if (locale === "es") {
-        title = post.titleEs || post.titleEn;
-        excerpt = post.excerptEs || post.excerptEn;
-        slug = post.slugEs || post.slugEn;
-      } else if (locale === "pt") {
-        title = post.titlePt || post.titleEn;
-        excerpt = post.excerptPt || post.excerptEn;
-        slug = post.slugPt || post.slugEn;
+      switch (locale) {
+        case "es":
+          title = post.titleEs || post.titleEn;
+          excerpt = post.excerptEs || post.excerptEn;
+          slug = post.slugEs || post.slugEn;
+          break;
+        case "pt":
+          title = post.titlePt || post.titleEn;
+          excerpt = post.excerptPt || post.excerptEn;
+          slug = post.slugPt || post.slugEn;
+          break;
+        case "fr":
+          title = post.titleFr || post.titleEn;
+          excerpt = post.excerptFr || post.excerptEn;
+          slug = post.slugFr || post.slugEn;
+          break;
+        case "de":
+          title = post.titleDe || post.titleEn;
+          excerpt = post.excerptDe || post.excerptEn;
+          slug = post.slugDe || post.slugEn;
+          break;
+        default:
+          title = post.titleEn;
+          excerpt = post.excerptEn;
+          slug = post.slugEn;
       }
 
       return {

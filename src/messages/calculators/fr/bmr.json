@@ -1,0 +1,171 @@
+{
+  "meta": {
+    "title": "BMR Calculator - Calculate Your Basal Metabolic Rate",
+    "description": "Calculate your Basal Metabolic Rate (BMR) using Mifflin-St Jeor, Harris-Benedict, and Katch-McArdle formulas. Find out how many calories your body burns at rest and get your TDEE for weight management."
+  },
+  "calculator": {
+    "title": "BMR Calculator",
+    "subtitle": "Calculate your Basal Metabolic Rate and daily calorie needs",
+    "breadcrumb": "BMR",
+    "srTitle": "BMR Calculator Tool",
+    "inputsTitle": "Your Information",
+    "inputs": {
+      "unitSystem": "Unit System",
+      "metric": "Metric",
+      "imperial": "Imperial",
+      "gender": "Gender",
+      "male": "Male",
+      "female": "Female",
+      "age": "Age",
+      "ageSlider": "Age slider",
+      "years": "years",
+      "weight": "Weight",
+      "weightSlider": "Weight slider",
+      "height": "Height",
+      "heightSlider": "Height slider",
+      "activityLevel": "Activity Level"
+    },
+    "activity": {
+      "sedentary": "Sedentary",
+      "sedentaryDesc": "Little or no exercise, desk job",
+      "light": "Lightly Active",
+      "lightDesc": "Light exercise 1-3 days/week",
+      "moderate": "Moderately Active",
+      "moderateDesc": "Moderate exercise 3-5 days/week",
+      "active": "Very Active",
+      "activeDesc": "Hard exercise 6-7 days/week",
+      "extreme": "Extremely Active",
+      "extremeDesc": "Very hard exercise, physical job"
+    },
+    "advanced": {
+      "title": "Advanced Options",
+      "formula": "BMR Formula",
+      "mifflinDesc": "Most accurate for general population",
+      "harrisDesc": "Classic formula, revised 1984",
+      "katchDesc": "Best if you know body fat %",
+      "bodyFat": "Body Fat %",
+      "optional": "optional",
+      "bodyFatHint": "Improves accuracy of Katch-McArdle formula",
+      "pregnancy": "Pregnancy Status",
+      "pregnancyNone": "Not pregnant",
+      "pregnancy1": "1st Trimester",
+      "pregnancy2": "2nd Trimester",
+      "pregnancy3": "3rd Trimester",
+      "breastfeeding": "Breastfeeding Status",
+      "breastfeedingNone": "Not breastfeeding",
+      "breastfeedingExclusive": "Exclusive breastfeeding",
+      "breastfeedingPartial": "Partial breastfeeding"
+    },
+    "results": {
+      "bmrLabel": "Your Basal Metabolic Rate",
+      "calDay": "cal/day",
+      "usingFormula": "Using",
+      "formula": "formula",
+      "tdee": "Total Daily Energy Expenditure",
+      "multiplier": "Activity multiplier",
+      "mifflin": "Mifflin-St Jeor",
+      "harris": "Harris-Benedict",
+      "katch": "Katch-McArdle",
+      "calorieGoals": "Daily Calorie Goals",
+      "weightLoss": "Weight Loss",
+      "maintain": "Maintain Weight",
+      "weightGain": "Weight Gain",
+      "tdeeByActivity": "TDEE by Activity Level"
+    },
+    "related": {
+      "tdee": "TDEE Calculator",
+      "macro": "Macro Calculator"
+    },
+    "quickExplanation": {
+      "title": "Quick Example",
+      "intro": "For a",
+      "example": "30-year-old male, 70 kg (154 lb), 170 cm (5'7\")",
+      "mifflinTitle": "Mifflin-St Jeor Formula",
+      "tdeeTitle": "TDEE Calculation",
+      "moderateActivity": "Moderately Active (×1.55)"
+    },
+    "buttons": {
+      "save": "💾 Save to History",
+      "saveHistory": "Save calculation to history"
+    },
+    "saving": {
+      "saving": "Saving...",
+      "saved": "Saved",
+      "error": "Error"
+    },
+    "favorites": {
+      "add": "Add to favorites",
+      "remove": "Remove from favorites"
+    }
+  },
+  "education": {
+    "title": "What is BMR (Basal Metabolic Rate)?",
+    "p1": "Basal Metabolic Rate (BMR) is the number of calories your body needs to perform basic life-sustaining functions while at complete rest. These functions include breathing, blood circulation, cell production, nutrient processing, and maintaining body temperature.",
+    "p2": "Your BMR accounts for approximately 60-75% of your total daily calorie expenditure. The remaining calories are burned through physical activity (15-30%) and the thermic effect of food (10%).",
+    "p3": "Understanding your BMR is crucial for setting appropriate calorie goals, whether you want to lose weight, maintain your current weight, or build muscle.",
+    "formula": {
+      "title": "The Formulas",
+      "mifflinTitle": "Mifflin-St Jeor Equation",
+      "recommended": "Recommended",
+      "harrisTitle": "Revised Harris-Benedict Equation",
+      "katchTitle": "Katch-McArdle Formula",
+      "katchNote": "Requires body fat percentage to calculate lean body mass",
+      "men": "Men",
+      "women": "Women"
+    },
+    "tips": {
+      "title": "Tips to Boost Your Metabolism",
+      "muscle": {
+        "title": "Build Muscle Mass",
+        "desc": "Muscle burns more calories at rest than fat. Strength training can increase your BMR over time."
+      },
+      "water": {
+        "title": "Stay Hydrated",
+        "desc": "Drinking cold water can temporarily boost metabolism as your body works to warm it up."
+      },
+      "protein": {
+        "title": "Eat Enough Protein",
+        "desc": "Protein has a higher thermic effect than carbs or fat, meaning you burn more calories digesting it."
+      },
+      "sleep": {
+        "title": "Get Quality Sleep",
+        "desc": "Poor sleep can lower your BMR and increase hunger hormones, making weight management harder."
+      }
+    },
+    "faqTitle": "Frequently Asked Questions"
+  },
+  "sidebar": {
+    "healthTitle": "Health Calculators",
+    "financeTitle": "Financial Calculators"
+  },
+  "common": {
+    "home": "Home",
+    "calculators": "Calculators"
+  },
+  "faq": [
+    {
+      "question": "What is BMR (Basal Metabolic Rate)?",
+      "answer": "BMR is the number of calories your body needs to maintain basic life-sustaining functions like breathing, circulation, cell production, and nutrient processing while at complete rest. It represents about 60-75% of your total daily calorie expenditure."
+    },
+    {
+      "question": "What's the difference between BMR and TDEE?",
+      "answer": "BMR is calories burned at complete rest, while TDEE (Total Daily Energy Expenditure) includes BMR plus calories burned through daily activities and exercise. TDEE = BMR × Activity Factor."
+    },
+    {
+      "question": "Which BMR formula is most accurate?",
+      "answer": "The Mifflin-St Jeor equation is considered most accurate for the general population. However, if you know your body fat percentage, the Katch-McArdle formula may be more precise as it accounts for lean body mass."
+    },
+    {
+      "question": "Why does pregnancy affect BMR?",
+      "answer": "During pregnancy, your body requires additional energy to support fetal development, increased blood volume, and metabolic changes. The second trimester requires about 340 extra calories/day, and the third trimester about 450 extra calories/day."
+    },
+    {
+      "question": "How does age affect BMR?",
+      "answer": "BMR typically decreases by about 1-2% per decade after age 20, primarily due to loss of muscle mass. Maintaining muscle through exercise can help slow this decline."
+    },
+    {
+      "question": "Can I increase my BMR?",
+      "answer": "Yes! Building muscle mass through strength training is the most effective way to increase BMR, as muscle tissue burns more calories at rest than fat tissue. Staying hydrated and getting adequate sleep also support healthy metabolism."
+    }
+  ]
+}

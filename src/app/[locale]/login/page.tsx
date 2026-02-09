@@ -1,13 +1,14 @@
 "use client";
+
+import { Suspense } from "react";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useLocale } from "next-intl";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import AuthModal from "@/components/AuthModal";
 
-export default function LoginPage() {
+function LoginContent() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const locale = useLocale();
@@ -19,7 +20,6 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (status === "authenticated") {
-      // Redirect to callback URL after login
       router.push(callbackUrl);
     }
   }, [status, router, callbackUrl]);
@@ -46,7 +46,7 @@ export default function LoginPage() {
           <p className="text-slate-600">Log in to access your calculations and saved data.</p>
         </div>
       </main>
-      <Footer />
+      
       <AuthModal 
         isOpen={modalOpen} 
         onClose={handleClose} 
@@ -54,5 +54,17 @@ export default function LoginPage() {
         callbackUrl={callbackUrl}
       />
     </>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="w-8 h-8 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
+      </div>
+    }>
+      <LoginContent />
+    </Suspense>
   );
 }

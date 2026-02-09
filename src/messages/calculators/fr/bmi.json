@@ -1,0 +1,222 @@
+{
+  "calculator": {
+    "name": "Calculateur d'IMC",
+    "title": "Calculateur d'IMC - Calculateur Gratuit d'Indice de Masse Corporelle",
+    "description": "Calculez instantanément votre Indice de Masse Corporelle (IMC) avec notre calculateur gratuit. Compatible avec les unités métriques et impériales. Découvrez ce que signifie votre IMC et obtenez des recommandations de poids santé.",
+    "shortDescription": "Calculez votre IMC et trouvez votre gamme de poids santé",
+    "badge": "Santé"
+  },
+  "inputs": {
+    "age": {
+      "label": "Âge",
+      "helpText": "L'interprétation de l'IMC varie selon l'âge chez les enfants"
+    },
+    "gender": {
+      "label": "Sexe",
+      "options": {
+        "male": "Homme",
+        "female": "Femme"
+      }
+    },
+    "heightFeet": {
+      "label": "Taille (pieds)"
+    },
+    "heightInches": {
+      "label": "Taille (pouces)"
+    },
+    "weightLbs": {
+      "label": "Poids"
+    },
+    "heightCm": {
+      "label": "Taille"
+    },
+    "weightKg": {
+      "label": "Poids"
+    }
+  },
+  "results": {
+    "bmi": "Votre IMC",
+    "category": "Catégorie",
+    "healthyWeightRange": "Gamme de poids santé",
+    "weightToHealthy": "Distance du poids santé",
+    "gainToHealthy": "Prendre",
+    "loseToHealthy": "Perdre",
+    "toReachHealthy": "pour atteindre la gamme santé",
+    "inHealthyRange": "Vous êtes dans la gamme santé ! 🎉",
+    "summaryStart": "Votre IMC est de",
+    "summaryClassified": "ce qui est classifié comme"
+  },
+  "dynamic": {
+    "severeThinness": "Maigreur sévère",
+    "moderateThinness": "Maigreur modérée",
+    "mildThinness": "Maigreur légère",
+    "normal": "Normal",
+    "overweight": "Surpoids",
+    "obeseClassI": "Obésité classe I",
+    "obeseClassII": "Obésité classe II",
+    "obeseClassIII": "Obésité classe III",
+    "underweight": "Insuffisance pondérale"
+  },
+  "infoCards": {
+    "bmiCategories": {
+      "title": "Catégories d'IMC",
+      "items": {
+        "0": "Insuffisance pondérale : < 18,5",
+        "1": "Poids normal : 18,5 - 24,9",
+        "2": "Surpoids : 25 - 29,9",
+        "3": "Obésité classe I : 30 - 34,9",
+        "4": "Obésité classe II : 35 - 39,9",
+        "5": "Obésité classe III : ≥ 40"
+      }
+    },
+    "healthTips": {
+      "title": "Conseils santé",
+      "items": {
+        "0": "L'IMC est un outil de dépistage, pas un diagnostic",
+        "1": "Les athlètes peuvent avoir un IMC élevé dû aux muscles",
+        "2": "Le tour de taille est également important",
+        "3": "Consultez un médecin pour les évaluations de santé"
+      }
+    }
+  },
+  "reference": {
+    "healthyWeightByHeight": {
+      "title": "Poids santé par taille",
+      "description": "Gammes de poids recommandées selon la taille",
+      "items": {
+        "0": "5'0\" (152 cm) : 97-127 lbs",
+        "1": "5'4\" (163 cm) : 110-144 lbs",
+        "2": "5'8\" (173 cm) : 125-163 lbs",
+        "3": "6'0\" (183 cm) : 140-183 lbs",
+        "4": "6'4\" (193 cm) : 156-204 lbs"
+      }
+    }
+  },
+  "education": {
+    "aboutBMI": {
+      "title": "Comprendre l'IMC",
+      "description": "Cartes informatives sur l'IMC et ses mesures"
+    },
+    "considerations": {
+      "title": "Considérations importantes",
+      "items": {
+        "0": "L'IMC est un outil de dépistage, pas une mesure diagnostique de santé",
+        "1": "Les athlètes et personnes musclées peuvent avoir un IMC élevé malgré un faible taux de graisse corporelle",
+        "2": "L'IMC ne tient pas compte des différences d'âge, de sexe ou d'origine ethnique",
+        "3": "Le tour de taille et le pourcentage de graisse corporelle fournissent des informations supplémentaires sur la santé",
+        "4": "Les enfants et adolescents doivent utiliser les percentiles d'IMC spécifiques à l'âge",
+        "5": "Consultez toujours un professionnel de santé pour une évaluation complète"
+      }
+    },
+    "exampleCalculation": {
+      "title": "Formule et exemple d'IMC",
+      "description": "Comment calculer l'IMC manuellement",
+      "examples": {
+        "0": {
+          "title": "Formule métrique",
+          "steps": {
+            "0": "IMC = poids (kg) ÷ taille² (m²)",
+            "1": "Exemple : 70 kg, 1,75 m de taille",
+            "2": "IMC = 70 ÷ (1,75 × 1,75)",
+            "3": "IMC = 70 ÷ 3,0625"
+          },
+          "result": "IMC = 22,9 (Normal)"
+        },
+        "1": {
+          "title": "Formule impériale",
+          "steps": {
+            "0": "IMC = (poids (lbs) × 703) ÷ taille² (po²)",
+            "1": "Exemple : 160 lbs, 5'10\" (70 po)",
+            "2": "IMC = (160 × 703) ÷ (70 × 70)",
+            "3": "IMC = 112 480 ÷ 4 900"
+          },
+          "result": "IMC = 23,0 (Normal)"
+        }
+      }
+    },
+    "whatIsBMI": {
+      "title": "Qu'est-ce que l'IMC ?",
+      "content": "L'Indice de Masse Corporelle (IMC) est une valeur numérique calculée à partir de votre poids et de votre taille. Développé par le mathématicien belge Adolphe Quetelet dans les années 1830, il fournit un moyen simple de catégoriser les individus comme ayant une insuffisance pondérale, un poids normal, un surpoids ou étant obèses. Bien qu'il ne soit pas une mesure directe de la graisse corporelle, l'IMC est corrélé avec des mesures plus précises et est largement utilisé comme outil de dépistage rapide pour les problèmes de santé potentiels."
+    },
+    "bmiHealth": {
+      "title": "IMC et risques pour la santé",
+      "content": "La recherche montre que les valeurs d'IMC très faibles et très élevées sont associées à des risques accrus pour la santé. Un IMC inférieur à 18,5 peut indiquer une malnutrition ou d'autres problèmes de santé, tandis qu'un IMC supérieur à 25 est associé à un risque accru de maladies cardiaques, de diabète de type 2, d'hypertension artérielle et de certains cancers. Cependant, l'IMC n'est qu'un facteur - le mode de vie, l'alimentation, l'activité physique et la génétique jouent tous des rôles importants dans la santé globale."
+    },
+    "beyondBMI": {
+      "title": "Au-delà de l'IMC : autres métriques de santé",
+      "content": "Bien que l'IMC soit utile, il a ses limites. Considérez le compléter avec le tour de taille (hommes >102 cm, femmes >88 cm indique un risque plus élevé), le rapport taille-hanches, les mesures de pourcentage de graisse corporelle, et les niveaux de pression artérielle/cholestérol. Ces éléments fournissent une image plus complète de la santé métabolique que l'IMC seul."
+    }
+  },
+  "faq": {
+    "title": "Questions fréquentes",
+    "items": {
+      "0": {
+        "question": "Qu'est-ce qu'un IMC sain ?",
+        "answer": "Un IMC sain est généralement considéré comme étant entre 18,5 et 24,9. Cette gamme est associée aux risques de santé les plus faibles pour la plupart des adultes. Cependant, l'IMC optimal peut varier selon l'âge, l'origine ethnique et les facteurs individuels."
+      },
+      "1": {
+        "question": "L'IMC est-il précis pour les athlètes ?",
+        "answer": "L'IMC peut ne pas être précis pour les athlètes ou les personnes très musclées. Puisque le muscle est plus dense que la graisse, les personnes sportives peuvent avoir un IMC élevé malgré un faible taux de graisse corporelle. Dans ces cas, le pourcentage de graisse corporelle ou d'autres mesures sont plus fiables."
+      },
+      "2": {
+        "question": "L'IMC s'applique-t-il aux enfants ?",
+        "answer": "Les enfants et adolescents utilisent les percentiles d'IMC-pour-âge plutôt que les catégories standard pour adultes. L'IMC d'un enfant est comparé à celui d'autres enfants du même âge et sexe car la composition corporelle varie pendant la croissance."
+      },
+      "3": {
+        "question": "Puis-je avoir un IMC normal mais être en mauvaise santé ?",
+        "answer": "Oui, cela s'appelle parfois 'maigre gras' ou obésité métabolique avec poids normal. Vous pouvez avoir un poids normal mais un pourcentage élevé de graisse corporelle, surtout autour des organes. L'exercice régulier et une alimentation équilibrée sont importants quel que soit l'IMC."
+      },
+      "4": {
+        "question": "À quelle fréquence dois-je vérifier mon IMC ?",
+        "answer": "Pour la plupart des adultes, vérifier l'IMC quelques fois par an est suffisant. Un suivi plus fréquent peut être utile si vous essayez activement de perdre ou prendre du poids. Concentrez-vous sur les tendances à long terme plutôt que sur les fluctuations quotidiennes."
+      },
+      "5": {
+        "question": "Quelle est la différence entre l'IMC et le pourcentage de graisse corporelle ?",
+        "answer": "L'IMC est calculé uniquement à partir de la taille et du poids, tandis que le pourcentage de graisse corporelle mesure directement la proportion de votre corps qui est constituée de tissu adipeux. Le pourcentage de graisse corporelle est plus précis mais nécessite un équipement spécialisé comme des plis cutanés, des balances à impédance bioélectrique ou des scanners DEXA."
+      }
+    }
+  },
+  "sources": {
+    "title": "Sources",
+    "viewSource": "Voir la source",
+    "opensNewTab": "Ouvre un nouvel onglet",
+    "items": {
+      "0": "Organisation mondiale de la santé (2024). Indice de masse corporelle - IMC. Bureau régional OMS pour l'Europe",
+      "1": "Centers for Disease Control and Prevention (2024). À propos de l'IMC adulte. CDC Poids santé",
+      "2": "National Institutes of Health (2023). Calculez votre indice de masse corporelle. NHLBI"
+    }
+  },
+  "ui": {
+    "calculate": "Calculer",
+    "reset": "Réinitialiser",
+    "share": "Partager",
+    "save": "Sauvegarder",
+    "export": "Exporter",
+    "pdf": "PDF",
+    "excel": "Excel",
+    "copied": "Copié !",
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "required": "Obligatoire",
+    "optional": "Optionnel",
+    "unitSystem": "Système d'unités",
+    "imperial": "Impérial (lb, pi/po)",
+    "metric": "Métrique (kg, cm)",
+    "home": "Accueil",
+    "calculators": "Calculateurs"
+  },
+  "rating": {
+    "title": "Évaluez ce calculateur",
+    "clickToRate": "Cliquez pour évaluer",
+    "youRated": "Vous avez évalué",
+    "stars": "étoiles",
+    "averageFrom": "Moyenne de",
+    "ratings": "évaluations",
+    "shareCalculator": "Partager ce calculateur",
+    "thankYou": "Merci pour votre évaluation !"
+  },
+  "disclaimers": {
+    "health": "Ce calculateur fournit des estimations à des fins éducatives uniquement. Les résultats peuvent varier. Consultez un professionnel de santé pour des conseils médicaux.",
+    "finance": "Ce calculateur fournit des estimations à des fins éducatives uniquement. Les résultats réels peuvent varier. Consultez un conseiller financier pour des conseils personnalisés."
+  }
+}

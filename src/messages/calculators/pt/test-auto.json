@@ -1,0 +1,108 @@
+{
+  "calculator": {
+    "title": "Calculadora de Teste Automático",
+    "subtitle": "Calcule seu teste automático",
+    "breadcrumb": "Teste Automático",
+    "yourInformation": "Suas Informações"
+  },
+  "inputs": {
+    "value1": {
+      "label": "Valor 1",
+      "helpText": "Digite o valor 1"
+    },
+    "value2": {
+      "label": "Valor 2",
+      "helpText": "Digite o valor 2"
+    }
+  },
+  "results": {
+    "result": "Resultado",
+    "summary": "Resumo"
+  },
+  "info": {
+    "resultsCard": {
+      "0": "Resultado",
+      "title": "Seus Resultados"
+    },
+    "tipsCard": {
+      "0": "Dica 1",
+      "1": "Dica 2",
+      "2": "Dica 3",
+      "3": "Dica 4",
+      "title": "Dicas"
+    }
+  },
+  "reference": {
+    "reference": {
+      "title": "Referência"
+    }
+  },
+  "education": {
+    "whatIs": {
+      "title": "O que é Teste Automático?",
+      "content": "Explicação do teste automático..."
+    },
+    "howTo": {
+      "title": "Como Calcular",
+      "content": "Guia passo a passo..."
+    },
+    "considerations": {
+      "title": "Considerações Importantes",
+      "items": {
+        "0": {
+          "text": "Fator 1"
+        },
+        "1": {
+          "text": "Fator 2"
+        },
+        "2": {
+          "text": "Fator 3"
+        },
+        "3": {
+          "text": "Fator 4"
+        },
+        "4": {
+          "text": "Fator 5"
+        }
+      }
+    },
+    "example": {
+      "title": "Exemplo de Cálculo",
+      "description": "Exemplos"
+    }
+  },
+  "faq": {
+    "0": {
+      "question": "O que é teste automático?",
+      "answer": "..."
+    },
+    "1": {
+      "question": "Qual a precisão?",
+      "answer": "..."
+    },
+    "2": {
+      "question": "Quando usar?",
+      "answer": "..."
+    },
+    "3": {
+      "question": "Quais fatores?",
+      "answer": "..."
+    },
+    "4": {
+      "question": "Uso profissional?",
+      "answer": "..."
+    },
+    "5": {
+      "question": "Com que frequência?",
+      "answer": "..."
+    },
+    "title": "Perguntas Frequentes"
+  },
+  "sources": {
+    "title": "Fontes"
+  },
+  "buttons": {
+    "calculate": "Calcular",
+    "reset": "Redefinir"
+  }
+}

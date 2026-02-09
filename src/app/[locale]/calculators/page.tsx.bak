@@ -1,0 +1,203 @@
+// src/app/[locale]/calculators/page.tsx
+// V4 Version - Only shows V4 calculators
+import { Suspense } from "react";
+import Header from "@/components/Header";
+import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+// V4 calculators loaded from registry
+import { getCategoryIcon, getCategoryColors } from "@/config/category-icons";
+import { prisma } from "@/lib/prisma";
+import CalculatorsClientWrapperV4 from "./CalculatorsClientWrapperV4";
+
+// Force dynamic rendering
+export const dynamic = "force-dynamic";
+
+// V4 Calculator metadata - loaded from configs
+interface V4Calculator {
+  id: string;
+  slug: string;
+  name: string;
+  description: string;
+  icon: string;
+  category: string;
+  isNew?: boolean;
+}
+
+// Load V4 calculator metadata dynamically
+async function loadV4Calculators(locale: string): Promise<V4Calculator[]> {
+  const calculators: V4Calculator[] = [];
+  
+  // Get inactive calculators from DB
+  const inactiveStatuses = await prisma.calculatorStatus.findMany({
+    where: { isActive: false },
+    select: { slug: true },
+  });
+  const inactiveSlugs = new Set(inactiveStatuses.map((s) => s.slug));
+
+  // Filter: use registry, exclude drafts and inactive
+  const { SLUG_REGISTRY } = await import("@/engine/v4/slugs/registry");
+  const activeEntries = SLUG_REGISTRY.filter((entry) => {
+    if (entry.category === "drafts") return false;
+    if (inactiveSlugs.has(entry.slugs.en)) return false;
+    return true;
+  });
+
+  for (const entry of activeEntries) {
+    try {
+      const module = await import(`@/calculators/${entry.id}/index`);
+      const configKey = Object.keys(module).find(k => k.includes("Config") || k.includes("config"));
+      if (!configKey) continue;
+      
+      const config = module[configKey];
+      const t = config.t?.[locale] || config.t?.en;
+      
+      if (t) {
+        calculators.push({
+          id: entry.id,
+          slug: entry.slugs[locale] || entry.slugs.en,
+          name: t.name || entry.id,
+          description: t.subtitle || t.seo?.description?.slice(0, 100) || "",
+          icon: config.icon || "🧮",
+          category: entry.category,
+          isNew: true,
+        });
+      }
+    } catch (e) {
+      console.log(`Could not load V4 calculator: ${entry.id}`, e);
+    }
+  }
+  
+  return calculators;
+}
+
+// Get categories from DB
+async function getCategories() {
+  try {
+    return await prisma.calculatorCategory.findMany({
+      orderBy: { sortOrder: "asc" },
+    });
+  } catch {
+    return [];
+  }
+}
+
+export default async function CalculatorsPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations("calculatorsPage");
+
+  const [calculators, categories] = await Promise.all([
+    loadV4Calculators(locale),
+    getCategories(),
+  ]);
+
+  const counts = {
+    total: calculators.length,
+    finance: calculators.filter((c) => c.category === "finance").length,
+    health: calculators.filter((c) => c.category === "health").length,
+    math: calculators.filter((c) => c.category === "math").length,
+    everyday: calculators.filter((c) => c.category === "everyday").length,
+  };
+
+  const getCategoryName = (cat: any): string => {
+    if (locale === "es" && cat.nameEs) return cat.nameEs;
+    if (locale === "fr" && cat.nameFr) return cat.nameFr;
+    if (locale === "de" && cat.nameDe) return cat.nameDe;
+    if (locale === "pt" && cat.namePt) return cat.namePt;
+    return cat.nameEn;
+  };
+
+  // Group calculators by category
+  const calculatorsByCategory: Record<string, V4Calculator[]> = {};
+  categories.forEach((cat) => {
+    calculatorsByCategory[cat.slug] = calculators.filter(
+      (c) => c.category === cat.slug
+    );
+  });
+
+  return (
+    <>
+      <Header />
+      <main id="main-content" className="pt-24 pb-16 min-h-screen bg-slate-50">
+        <div className="container mx-auto px-4">
+          {/* Header */}
+          <div className="mb-6">
+            <h1 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">
+              {t("title")}
+            </h1>
+            <p className="text-slate-600 text-sm md:text-base">
+              {t("subtitle")}
+            </p>
+          </div>
+
+          {/* Client wrapper for search/filter */}
+          <Suspense fallback={null}>
+            <CalculatorsClientWrapperV4
+              calculators={calculators}
+              categories={categories}
+              counts={counts}
+              locale={locale}
+            />
+          </Suspense>
+
+          {/* Static content for SEO */}
+          <noscript>
+            <div className="flex gap-8">
+              <div className="flex-1">
+                {categories.map((cat) => {
+                  const calcs = calculatorsByCategory[cat.slug] || [];
+                  if (calcs.length === 0) return null;
+                  const colors = getCategoryColors(cat.color);
+
+                  return (
+                    <section key={cat.id} className="mb-8">
+                      <h2 className="flex items-center gap-2 text-lg font-bold text-slate-900 mb-4">
+                        <span className={colors.text}>
+                          {getCategoryIcon(cat.slug, "w-5 h-5")}
+                        </span>
+                        {getCategoryName(cat)}
+                        <span className="text-slate-400 font-normal text-sm">
+                          ({calcs.length})
+                        </span>
+                      </h2>
+                      <ul className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+                        {calcs.map((calc) => (
+                          <li key={calc.slug}>
+                            <Link
+                              href={`/${locale}/${calc.slug}`}
+                              className="block bg-white p-5 rounded-xl shadow-sm border border-slate-100"
+                            >
+                              <h3 className="font-semibold text-slate-900 mb-2">
+                                {calc.icon} {calc.name}
+                              </h3>
+                              <p className="text-sm text-slate-600">
+                                {calc.description}
+                              </p>
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </section>
+                  );
+                })}
+              </div>
+            </div>
+          </noscript>
+
+          {/* Hidden SEO content */}
+          <div className="sr-only" aria-hidden="true">
+            <h2>All Calculators on Kalcufy</h2>
+            <ul>
+              {calculators.map((calc) => (
+                <li key={calc.slug}>
+                  <Link href={`/${locale}/${calc.slug}`}>
+                    {calc.name} - {calc.description}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </main>
+    </>
+  );
+}

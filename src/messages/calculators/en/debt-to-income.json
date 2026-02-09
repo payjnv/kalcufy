@@ -1,0 +1,108 @@
+{
+  "calculator": {
+    "title": "Debt To Income Calculator",
+    "subtitle": "Calculate your debt to income",
+    "breadcrumb": "Debt To Income",
+    "yourInformation": "Your Information"
+  },
+  "inputs": {
+    "value1": {
+      "label": "Value 1",
+      "helpText": "Enter value 1"
+    },
+    "value2": {
+      "label": "Value 2",
+      "helpText": "Enter value 2"
+    }
+  },
+  "results": {
+    "result": "Result",
+    "summary": "Summary"
+  },
+  "info": {
+    "resultsCard": {
+      "0": "Result",
+      "title": "Your Results"
+    },
+    "tipsCard": {
+      "0": "Tip 1",
+      "1": "Tip 2",
+      "2": "Tip 3",
+      "3": "Tip 4",
+      "title": "Tips"
+    }
+  },
+  "reference": {
+    "reference": {
+      "title": "Reference"
+    }
+  },
+  "education": {
+    "whatIs": {
+      "title": "What is Debt To Income?",
+      "content": "Explanation of debt to income..."
+    },
+    "howTo": {
+      "title": "How to Calculate",
+      "content": "Step by step guide..."
+    },
+    "considerations": {
+      "title": "Important Considerations",
+      "items": {
+        "0": {
+          "text": "Factor 1"
+        },
+        "1": {
+          "text": "Factor 2"
+        },
+        "2": {
+          "text": "Factor 3"
+        },
+        "3": {
+          "text": "Factor 4"
+        },
+        "4": {
+          "text": "Factor 5"
+        }
+      }
+    },
+    "example": {
+      "title": "Example Calculation",
+      "description": "Examples"
+    }
+  },
+  "faq": {
+    "0": {
+      "question": "What is debt to income?",
+      "answer": "..."
+    },
+    "1": {
+      "question": "How accurate?",
+      "answer": "..."
+    },
+    "2": {
+      "question": "When to use?",
+      "answer": "..."
+    },
+    "3": {
+      "question": "What factors?",
+      "answer": "..."
+    },
+    "4": {
+      "question": "Professional use?",
+      "answer": "..."
+    },
+    "5": {
+      "question": "How often?",
+      "answer": "..."
+    },
+    "title": "FAQ"
+  },
+  "sources": {
+    "title": "Sources"
+  },
+  "buttons": {
+    "calculate": "Calculate",
+    "reset": "Reset"
+  }
+}

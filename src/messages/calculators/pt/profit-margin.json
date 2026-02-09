@@ -1,0 +1,113 @@
+{
+  "calculator": {
+    "title": "Calculadora de Margem de Lucro - Calcule Margem Bruta, Líquida e Operacional",
+    "subtitle": "Calcule margem de lucro, markup e precificação otimizada",
+    "breadcrumb": "Margem de Lucro",
+    "yourInformation": "Suas Informações",
+    "mode": "Calcular"
+  },
+  "inputs": {
+    "cost": {
+      "label": "Custo (CPV)"
+    },
+    "revenue": {
+      "label": "Preço de Venda / Receita"
+    },
+    "desiredMargin": {
+      "label": "Margem de Lucro Desejada"
+    },
+    "profit": {
+      "label": "Lucro Bruto"
+    },
+    "markup": {
+      "label": "Markup"
+    },
+    "sellingPrice": {
+      "label": "Preço de Venda"
+    },
+    "maxCost": {
+      "label": "Custo Máximo"
+    },
+    "revenuePerDollar": {
+      "label": "Lucro por R$1 de Receita"
+    },
+    "marginTypes": {
+      "label": "Margem Bruta"
+    },
+    "quickTips": {
+      "label": "Margem maior ≠ sempre melhor (volume importa)"
+    }
+  },
+  "results": {
+    "profitMargin": "Margem de Lucro",
+    "profit": "Lucro Bruto",
+    "markup": "Markup",
+    "sellingPrice": "Preço de Venda",
+    "maxCost": "Custo Máximo",
+    "revenuePerDollar": "Lucro por R$1 de Receita"
+  },
+  "info": {},
+  "reference": {},
+  "education": {},
+  "faq": {
+    "0": {
+      "question": "O que",
+      "answer": "A margem é calculada como uma porcentagem do preço de venda (Lucro ÷ Preço × 100), enquanto o markup é calculado como uma porcentagem do custo (Lucro ÷ Custo × 100). Por exemplo, se um produto custa R$60 e é vendido por R$100, a margem é 40% (R$40÷R$100) mas o markup é 66,7% (R$40÷R$60). Esta distinção é crucial para a estratégia de precificação."
+    },
+    "1": {
+      "question": "O que",
+      "answer": "Varia drasticamente por setor. Software e SaaS tipicamente alcançam 70-90% de margem bruta. Varejo de roupas fica entre 45-65%. Restaurantes buscam 60-70% em alimentos. Supermercados operam com margens baixas de 20-30%. Compare suas margens com benchmarks do setor em vez de metas arbitrárias."
+    },
+    "2": {
+      "question": "Como converter markup em margem?",
+      "answer": "Use esta fórmula: Margem = Markup ÷ (1 + Markup). Por exemplo, um markup de 50% (0,50) converte para: 0,50 ÷ 1,50 = 0,333 ou 33,3% de margem. Inversamente, para converter margem em markup: Markup = Margem ÷ (1 - Margem). Uma margem de 40% equivale a: 0,40 ÷ 0,60 = 66,7% de markup."
+    },
+    "3": {
+      "question": "O que",
+      "answer": "Margem bruta = (Receita - CPV) ÷ Receita. Considera apenas custos diretos de produção. Margem operacional subtrai despesas operacionais (aluguel, salários, marketing) do lucro bruto. Margem líquida é após TODAS as despesas incluindo impostos e juros. Cada uma conta uma história diferente sobre a saúde do negócio."
+    },
+    "4": {
+      "question": "Devo precificar baseado em custo-plus ou precificação baseada em valor?",
+      "answer": "Precificação custo-plus (adicionar markup fixo ao custo) é simples mas pode deixar dinheiro na mesa. Precificação baseada em valor define preços conforme o valor percebido pelo cliente, frequentemente alcançando margens maiores. A maioria dos negócios se beneficia de uma abordagem híbrida - usando custo como piso mas ajustando baseado no posicionamento de mercado e disposição do cliente a pagar."
+    },
+    "5": {
+      "question": "Como posso aumentar a margem de lucro sem aumentar preços?",
+      "answer": "Foque em reduzir custos: negocie melhores termos com fornecedores, reduza desperdício, automatize processos, otimize estoque. Considere também seu mix de produtos - promovendo itens de alta margem enquanto elimina os de baixa margem. Melhorar a eficiência operacional e reduzir custos indiretos pode aumentar significativamente as margens sem tocar nos preços."
+    },
+    "6": {
+      "question": "Por que minha margem é menor que minha porcentagem de markup?",
+      "answer": "A margem sempre será menor que o markup para o mesmo produto porque usam denominadores diferentes. A margem usa o preço de venda maior como base, enquanto o markup usa o custo menor. Um markup de 100% resulta apenas em 50% de margem porque você"
+    },
+    "7": {
+      "question": "Como calcular o preço de venda para uma margem desejada?",
+      "answer": "Use a fórmula: Preço de Venda = Custo ÷ (1 - Margem Desejada). Por exemplo, se seu custo é R$60 e você quer 40% de margem: R$60 ÷ (1 - 0,40) = R$60 ÷ 0,60 = R$100. Isso garante que sua margem final seja exatamente o que você planejou, evitando o erro comum de simplesmente adicionar a porcentagem ao custo."
+    },
+    "title": "Perguntas Frequentes"
+  },
+  "modes": {
+    "margin": {
+      "label": "Calcular Margem"
+    },
+    "price": {
+      "label": "Encontrar Preço de Venda"
+    },
+    "cost": {
+      "label": "Encontrar Custo Máximo"
+    }
+  },
+  "categories": {
+    "health": "Saúde",
+    "finance": "Finanças"
+  },
+  "breadcrumbs": {
+    "home": "Início",
+    "calculators": "Calculadoras"
+  },
+  "sources": {
+    "title": "Fontes e Referências"
+  },
+  "disclaimers": {
+    "health": "Os resultados são estimativas. Consulte um profissional.",
+    "finance": "Apenas para fins informativos."
+  }
+}

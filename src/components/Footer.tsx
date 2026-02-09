@@ -3,16 +3,6 @@
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 
-// ============================================================================
-// FOOTER - WCAG 2.1 AA COMPLIANT
-// ✅ 1.1.1 Non-text Content - SVG has aria-hidden
-// ✅ 1.3.1 Info and Relationships - Semantic structure, role="contentinfo"
-// ✅ 1.4.3 Contrast - slate-400 on slate-900 meets 4.5:1
-// ✅ 2.4.4 Link Purpose - Descriptive link text
-// ✅ 2.4.7 Focus Visible - Clear focus indicators
-// ✅ 4.1.2 Name, Role, Value - Proper nav labeling
-// ============================================================================
-
 export default function Footer() {
   const locale = useLocale();
   const t = useTranslations("common");
@@ -26,7 +16,6 @@ export default function Footer() {
       aria-label="Site footer"
     >
       <div className="container">
-        {/* Navigation Links */}
         <nav 
           aria-label="Footer navigation"
           role="navigation"
@@ -38,7 +27,7 @@ export default function Footer() {
                 href={`/${locale}/calculators`} 
                 className="hover:text-white focus:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-slate-900 rounded px-1"
               >
-                {t("calculators") || "Calculators"}
+                {t("calculators")}
               </Link>
             </li>
             <li>
@@ -46,7 +35,7 @@ export default function Footer() {
                 href={`/${locale}/blog`} 
                 className="hover:text-white focus:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-slate-900 rounded px-1"
               >
-                {t("blog") || "Blog"}
+                {t("blog")}
               </Link>
             </li>
             <li>
@@ -54,7 +43,7 @@ export default function Footer() {
                 href={`/${locale}/about`} 
                 className="hover:text-white focus:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-slate-900 rounded px-1"
               >
-                {t("about") || "About"}
+                {t("about")}
               </Link>
             </li>
             <li>
@@ -62,7 +51,7 @@ export default function Footer() {
                 href={`/${locale}/privacy`} 
                 className="hover:text-white focus:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-slate-900 rounded px-1"
               >
-                Privacy
+                {t("privacy")}
               </Link>
             </li>
             <li>
@@ -70,7 +59,7 @@ export default function Footer() {
                 href={`/${locale}/terms`} 
                 className="hover:text-white focus:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-slate-900 rounded px-1"
               >
-                Terms
+                {t("terms")}
               </Link>
             </li>
             <li>
@@ -78,7 +67,7 @@ export default function Footer() {
                 href={`/${locale}/cookies`} 
                 className="hover:text-white focus:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-slate-900 rounded px-1"
               >
-                Cookies
+                {t("cookies")}
               </Link>
             </li>
             <li>
@@ -86,15 +75,14 @@ export default function Footer() {
                 href={`/${locale}/accessibility`} 
                 className="hover:text-white focus:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-slate-900 rounded px-1"
               >
-                Accessibility
+                {t("accessibility")}
               </Link>
             </li>
           </ul>
         </nav>
 
-        {/* Copyright */}
         <div className="pt-6 border-t border-slate-800 text-center text-slate-500 text-sm">
-          <p>© {currentYear} Kalcufy. All rights reserved.</p>
+          <p>© {currentYear} Kalcufy. {t("allRightsReserved")}</p>
         </div>
       </div>
     </footer>

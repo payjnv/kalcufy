@@ -1,0 +1,36 @@
+{
+  "meta": {
+    "title": "Protein Calculator - Calculate Your Daily Protein Intake",
+    "description": "Free protein calculator based on your weight, activity level, and goals. Get personalized recommendations with food sources and per-meal breakdown."
+  },
+  "calculator": {
+    "title": "Protein Calculator",
+    "subtitle": "Calculate your optimal daily protein intake"
+  },
+  "faq": [
+    {
+      "question": "How much protein do I really need?",
+      "answer": "The RDA of 0.8g/kg is the minimum to prevent deficiency. For active individuals, 1.6-2.2g/kg is recommended for optimal muscle growth and recovery. Athletes may need up to 2.7g/kg."
+    },
+    {
+      "question": "Can I eat too much protein?",
+      "answer": "For healthy individuals, high protein intake (up to 3g/kg) appears safe. However, those with kidney disease should consult a doctor. Excess protein beyond what your body needs won't build more muscle."
+    },
+    {
+      "question": "Does protein timing matter?",
+      "answer": "Distributing protein evenly across meals (20-40g per meal) optimizes muscle protein synthesis. The 'anabolic window' post-workout is less critical than once thought, but consuming protein within a few hours of training is still beneficial."
+    },
+    {
+      "question": "What is leucine and why does it matter?",
+      "answer": "Leucine is an amino acid that triggers muscle protein synthesis. Each meal should contain 2.5-3g of leucine for optimal results. Animal proteins are typically higher in leucine than plant proteins."
+    },
+    {
+      "question": "Is plant protein as good as animal protein?",
+      "answer": "Plant proteins can be equally effective if you consume a variety of sources to get all essential amino acids. You may need slightly more total protein (10-20%) from plants to match animal protein's muscle-building effects."
+    },
+    {
+      "question": "Should I use protein supplements?",
+      "answer": "Supplements are convenient but not necessary. Whole foods should be your primary protein source. Use supplements when you struggle to meet your protein needs through food alone."
+    }
+  ]
+}
