@@ -2,23 +2,29 @@ import type { CalculatorConfigV4, CalculatorResults } from "@/engine/v4/types/en
 import { convertToBase } from "@/engine/v4/units";
 
 // ============================================================================
-// BMI CALCULATOR V4 — COMPLETE REWRITE
+// BMI CALCULATOR V4.3 — UPGRADED WITH TOGGLE + HIP MEASUREMENT
 // ============================================================================
-// Features:
-// 1. BMI + BMI Prime + Ponderal Index
-// 2. Body Fat % estimate (Deurenberg formula)
-// 3. Waist-to-Height Ratio (WHtR) + Abdominal Risk
-// 4. Ethnic-Adjusted thresholds (Asian, Black, Middle Eastern)
-// 5. Healthy Weight Range + Ideal Weight
-// 6. ⭐ NEW: BMI Gauge/Color Bar chart (composed stacked bars)
-// 7. ⭐ NEW: BMI-for-Age (teens 2-19, CDC percentiles)
-// 8. ⭐ NEW: Related calculator link to Caloric Deficit
-// 9. DetailedTable: Weight Categories with ranges
+// V4.3 Upgrades:
+// 1. 🔘 Toggle: "Include Waist & Hip Analysis" (showWhen hides waist/hip fields)
+// 2. 🔘 Toggle: "Show Advanced Metrics" (controls extra results visibility)
+// 3. ➕ NEW: Hip Circumference input → Waist-to-Hip Ratio (WHR)
+// 4. ➕ NEW: Waist-to-Hip Ratio (WHR) result + risk assessment
+// 5. ➕ NEW: Body Shape indicator (Apple/Pear/Avocado)
+//
+// Existing features preserved:
+// - BMI + BMI Prime + Ponderal Index
+// - Body Fat % estimate (Deurenberg formula)
+// - Waist-to-Height Ratio (WHtR) + Abdominal Risk
+// - Ethnic-Adjusted thresholds (Asian, Black, Middle Eastern)
+// - Healthy Weight Range + Ideal Weight
+// - BMI Gauge chart (composed stacked bars)
+// - BMI-for-Age (teens 2-19, CDC percentiles)
+// - DetailedTable: Weight Categories with ranges
 // ============================================================================
 
 export const bmiCalculatorConfig: CalculatorConfigV4 = {
   id: "bmi",
-  version: "4.0",
+  version: "4.3",
   category: "health",
   icon: "⚖️",
 
@@ -29,9 +35,11 @@ export const bmiCalculatorConfig: CalculatorConfigV4 = {
       values: {
         gender: "male",
         age: 25,
-        weight: 79.4, // 175 lbs in kg (base unit)
-        height: 177.8, // 70 in in cm (base unit)
+        weight: 79.4,
+        height: 177.8,
         ethnicity: "general",
+        showWaistAnalysis: false,
+        showAdvanced: false,
       },
     },
     {
@@ -40,33 +48,41 @@ export const bmiCalculatorConfig: CalculatorConfigV4 = {
       values: {
         gender: "female",
         age: 35,
-        weight: 68.0, // 150 lbs in kg
-        height: 165.1, // 65 in in cm
+        weight: 68.0,
+        height: 165.1,
         ethnicity: "general",
+        showWaistAnalysis: false,
+        showAdvanced: false,
       },
     },
     {
-      id: "asianMale",
-      icon: "🧑",
+      id: "fullAnalysis",
+      icon: "📊",
       values: {
         gender: "male",
+        age: 40,
+        weight: 88.5,
+        height: 177.8,
+        ethnicity: "general",
+        showWaistAnalysis: true,
+        showAdvanced: true,
+        waist: 96.5,
+        hip: 101.6,
+      },
+    },
+    {
+      id: "asianFemale",
+      icon: "👩‍⚕️",
+      values: {
+        gender: "female",
         age: 30,
-        weight: 65.8, // 145 lbs in kg
-        height: 172.7, // 68 in in cm
-        waist: 76.2, // 30 in in cm
+        weight: 56.7,
+        height: 160.0,
         ethnicity: "asian",
-      },
-    },
-    {
-      id: "seniorMale",
-      icon: "👴",
-      values: {
-        gender: "male",
-        age: 65,
-        weight: 88.5, // 195 lbs in kg
-        height: 175.3, // 69 in in cm
-        waist: 96.5, // 38 in in cm
-        ethnicity: "general",
+        showWaistAnalysis: true,
+        showAdvanced: false,
+        waist: 71.1,
+        hip: 88.9,
       },
     },
   ],
@@ -80,11 +96,11 @@ export const bmiCalculatorConfig: CalculatorConfigV4 = {
       breadcrumb: "BMI",
 
       seo: {
-        title: "BMI Calculator - Body Mass Index & Body Fat | Free Tool",
+        title: "BMI Calculator - Body Mass Index, Body Fat & WHR | Free Tool",
         description:
-          "Calculate your BMI, body fat percentage, waist-to-height ratio, and healthy weight range. Includes ethnic-specific thresholds for Asian, Black, and Middle Eastern populations. Free instant results.",
+          "Calculate your BMI, body fat percentage, waist-to-height ratio, waist-to-hip ratio, and healthy weight range. Includes ethnic-specific thresholds for Asian, Black, and Middle Eastern populations. Free instant results.",
         shortDescription:
-          "Calculate BMI with body fat estimate and ethnic-specific thresholds",
+          "Calculate BMI with body fat estimate, waist-to-hip ratio, and ethnic-specific thresholds",
         keywords: [
           "bmi calculator",
           "body mass index calculator",
@@ -94,6 +110,8 @@ export const bmiCalculatorConfig: CalculatorConfigV4 = {
           "free bmi calculator",
           "bmi for age calculator",
           "body fat percentage calculator",
+          "waist to hip ratio calculator",
+          "waist to height ratio",
         ],
       },
 
@@ -123,11 +141,6 @@ export const bmiCalculatorConfig: CalculatorConfigV4 = {
           label: "Height",
           helpText: "Your height",
         },
-        waist: {
-          label: "Waist Circumference (optional)",
-          helpText:
-            "Measure at narrowest point above belly button — adds waist-to-height ratio analysis",
-        },
         ethnicity: {
           label: "Ethnic Background",
           helpText:
@@ -139,6 +152,24 @@ export const bmiCalculatorConfig: CalculatorConfigV4 = {
             middleEastern: "Middle Eastern",
           },
         },
+        showWaistAnalysis: {
+          label: "Include Waist & Hip Analysis",
+          helpText: "Add waist and hip measurements for more accurate health risk assessment",
+        },
+        waist: {
+          label: "Waist Circumference",
+          helpText:
+            "Measure at narrowest point above belly button",
+        },
+        hip: {
+          label: "Hip Circumference",
+          helpText:
+            "Measure at widest point of buttocks",
+        },
+        showAdvanced: {
+          label: "Show Advanced Metrics",
+          helpText: "Display BMI Prime, Ponderal Index, and body fat percentage",
+        },
       },
 
       results: {
@@ -146,13 +177,16 @@ export const bmiCalculatorConfig: CalculatorConfigV4 = {
         category: { label: "Category" },
         ethnicCategory: { label: "Ethnic-Adjusted Category" },
         healthyRange: { label: "Healthy Weight Range" },
+        idealWeight: { label: "Ideal Weight" },
+        weightChange: { label: "Weight Change Needed" },
         bmiPrime: { label: "BMI Prime" },
         ponderalIndex: { label: "Ponderal Index" },
         bodyFatPercent: { label: "Body Fat %" },
-        idealWeight: { label: "Ideal Weight" },
-        weightChange: { label: "Weight Change Needed" },
         waistToHeight: { label: "Waist-to-Height Ratio" },
-        waistRisk: { label: "Waist Risk Level" },
+        waistRisk: { label: "WHtR Risk Level" },
+        waistToHip: { label: "Waist-to-Hip Ratio" },
+        waistToHipRisk: { label: "WHR Risk Level" },
+        bodyShape: { label: "Body Shape" },
         percentile: { label: "BMI Percentile (Age)" },
         ageCategory: { label: "Age Category" },
       },
@@ -166,13 +200,13 @@ export const bmiCalculatorConfig: CalculatorConfigV4 = {
           label: "Average Female",
           description: "35y female, 150 lbs, 5'5\"",
         },
-        asianMale: {
-          label: "Asian Male",
-          description: "30y male, 145 lbs, 5'8\", with waist",
+        fullAnalysis: {
+          label: "Full Analysis",
+          description: "40y male with waist & hip data",
         },
-        seniorMale: {
-          label: "Senior Male",
-          description: "65y male, 195 lbs, 5'9\", with waist",
+        asianFemale: {
+          label: "Asian Female",
+          description: "30y, ethnic-adjusted thresholds",
         },
       },
 
@@ -201,11 +235,11 @@ export const bmiCalculatorConfig: CalculatorConfigV4 = {
           ],
         },
         waist: {
-          title: "📏 Waist Analysis",
+          title: "📏 Body Shape Analysis",
           items: [
             { label: "Waist-to-Height Ratio", valueKey: "waistToHeight" },
-            { label: "Abdominal Risk", valueKey: "waistRisk" },
-            { label: "Ethnic Category", valueKey: "ethnicCategory" },
+            { label: "Waist-to-Hip Ratio", valueKey: "waistToHip" },
+            { label: "Body Shape", valueKey: "bodyShape" },
           ],
         },
         tips: {
@@ -282,7 +316,7 @@ export const bmiCalculatorConfig: CalculatorConfigV4 = {
               type: "info",
             },
             {
-              text: "For children and teens, BMI must be interpreted using age-specific percentile charts since body composition changes significantly during growth",
+              text: "Waist-to-hip ratio (WHR) helps identify 'apple' vs 'pear' body shapes — apple shapes carry higher cardiovascular risk",
               type: "info",
             },
           ],
@@ -365,12 +399,12 @@ export const bmiCalculatorConfig: CalculatorConfigV4 = {
             "Research shows that BMI-related health risks vary significantly across ethnic groups. Asian populations (East, South, and Southeast Asian) face higher risks of type 2 diabetes and cardiovascular disease at lower BMI values. The WHO recommends using a lower overweight threshold of BMI 23 (instead of 25) for Asian populations. The NHS in the UK also adjusts thresholds for Black and Middle Eastern populations.",
         },
         {
-          question: "How does BMI-for-age work for children and teens?",
+          question: "What is waist-to-hip ratio and why does it matter?",
           answer:
-            "For people aged 2-19, BMI is calculated the same way as adults, but it's interpreted using CDC age- and sex-specific percentile charts. A child's BMI is compared to other children of the same age and sex. Underweight is below the 5th percentile, normal weight is 5th to 84th, overweight is 85th to 94th, and obese is 95th percentile or above. This accounts for normal changes in body composition during growth.",
+            "Waist-to-hip ratio (WHR) divides your waist circumference by your hip circumference. The WHO defines abdominal obesity as WHR above 0.90 for males and above 0.85 for females. WHR is a better predictor of cardiovascular disease than BMI alone because it specifically measures abdominal fat distribution. People with 'apple-shaped' bodies (high WHR) face greater health risks than those with 'pear-shaped' bodies (low WHR).",
         },
         {
-          question: "What is waist-to-height ratio and why does it matter?",
+          question: "What is waist-to-height ratio and how is it different?",
           answer:
             "Waist-to-height ratio (WHtR) divides your waist circumference by your height. A ratio above 0.5 indicates elevated risk of cardiovascular disease, type 2 diabetes, and metabolic syndrome. Research suggests WHtR is a better predictor of health risks than BMI alone because it specifically measures abdominal fat, which is more metabolically dangerous than fat stored in other areas.",
         },
@@ -417,6 +451,9 @@ export const bmiCalculatorConfig: CalculatorConfigV4 = {
     },
   },
 
+  // ============================================================================
+  // INPUTS — V4.3 with Toggle components
+  // ============================================================================
   inputs: [
     {
       id: "gender",
@@ -453,16 +490,6 @@ export const bmiCalculatorConfig: CalculatorConfigV4 = {
       allowedUnits: ["cm", "m", "in", "ft_in"],
     },
     {
-      id: "waist",
-      type: "number",
-      defaultValue: null,
-      placeholder: "34",
-      unitType: "body_length",
-      syncGroup: false,
-      defaultUnit: "in",
-      allowedUnits: ["cm", "in"],
-    },
-    {
       id: "ethnicity",
       type: "select",
       defaultValue: "general",
@@ -473,22 +500,67 @@ export const bmiCalculatorConfig: CalculatorConfigV4 = {
         { value: "middleEastern" },
       ],
     },
+    // 🔘 V4.3 TOGGLE — Waist & Hip Analysis
+    {
+      id: "showWaistAnalysis",
+      type: "toggle",
+      defaultValue: false,
+    },
+    // Waist — only visible when toggle is ON
+    {
+      id: "waist",
+      type: "number",
+      defaultValue: null,
+      placeholder: "34",
+      unitType: "body_length",
+      syncGroup: false,
+      defaultUnit: "in",
+      allowedUnits: ["cm", "in"],
+      showWhen: { field: "showWaistAnalysis", value: true },
+    },
+    // Hip — NEW field, only visible when toggle is ON
+    {
+      id: "hip",
+      type: "number",
+      defaultValue: null,
+      placeholder: "40",
+      unitType: "body_length",
+      syncGroup: false,
+      defaultUnit: "in",
+      allowedUnits: ["cm", "in"],
+      showWhen: { field: "showWaistAnalysis", value: true },
+    },
+    // 🔘 V4.3 TOGGLE — Advanced Metrics
+    {
+      id: "showAdvanced",
+      type: "toggle",
+      defaultValue: false,
+    },
   ],
 
   inputGroups: [],
 
+  // ============================================================================
+  // RESULTS
+  // ============================================================================
   results: [
     { id: "bmi", type: "primary", format: "number" },
     { id: "category", type: "secondary", format: "text" },
     { id: "ethnicCategory", type: "secondary", format: "text" },
     { id: "healthyRange", type: "secondary", format: "text" },
+    { id: "idealWeight", type: "secondary", format: "text" },
+    { id: "weightChange", type: "secondary", format: "text" },
+    // Advanced metrics — visibility controlled by calculate() returning ""
     { id: "bmiPrime", type: "secondary", format: "number" },
     { id: "ponderalIndex", type: "secondary", format: "number" },
     { id: "bodyFatPercent", type: "secondary", format: "number" },
-    { id: "idealWeight", type: "secondary", format: "text" },
-    { id: "weightChange", type: "secondary", format: "text" },
+    // Waist analysis — visibility controlled by calculate() returning ""
     { id: "waistToHeight", type: "secondary", format: "text" },
     { id: "waistRisk", type: "secondary", format: "text" },
+    { id: "waistToHip", type: "secondary", format: "text" },
+    { id: "waistToHipRisk", type: "secondary", format: "text" },
+    { id: "bodyShape", type: "secondary", format: "text" },
+    // Age-specific (always shown for teens)
     { id: "percentile", type: "secondary", format: "text" },
     { id: "ageCategory", type: "secondary", format: "text" },
   ],
@@ -499,7 +571,7 @@ export const bmiCalculatorConfig: CalculatorConfigV4 = {
     { id: "tips", type: "horizontal", icon: "💡", itemCount: 4 },
   ],
 
-  // ⭐ NEW: BMI Gauge Color Bar
+  // BMI Gauge Color Bar
   chart: {
     id: "bmiGauge",
     type: "composed",
@@ -575,6 +647,13 @@ export const bmiCalculatorConfig: CalculatorConfigV4 = {
       source: "British Journal of Nutrition",
       url: "https://pubmed.ncbi.nlm.nih.gov/2043597/",
     },
+    {
+      authors: "World Health Organization",
+      year: "2008",
+      title: "Waist Circumference and Waist–Hip Ratio: Report of a WHO Expert Consultation",
+      source: "WHO",
+      url: "https://www.who.int/publications/i/item/9789241501491",
+    },
   ],
 
   hero: { badge: "Health", rating: { average: 4.9, count: 15420 } },
@@ -591,13 +670,8 @@ export const bmiCalculatorConfig: CalculatorConfigV4 = {
 // ============================================================================
 // CDC BMI-FOR-AGE PERCENTILE DATA (SIMPLIFIED LMS)
 // ============================================================================
-// Source: CDC Growth Charts, 2000
-// Using key percentiles (5th, 10th, 25th, 50th, 75th, 85th, 95th)
-// For ages 2-19, by sex. Values are BMI at each percentile.
-// ============================================================================
 
 const CDC_PERCENTILES_MALE: Record<number, number[]> = {
-  // age: [5th, 10th, 25th, 50th, 75th, 85th, 95th]
   2: [14.7, 15.1, 15.8, 16.5, 17.3, 17.8, 18.4],
   3: [14.3, 14.7, 15.3, 15.9, 16.7, 17.1, 17.7],
   4: [14.0, 14.4, 14.9, 15.5, 16.3, 16.7, 17.5],
@@ -649,10 +723,8 @@ function getBmiPercentile(
   const row = table[ageKey];
   if (!row) return { percentile: 50, category: "Normal Weight" };
 
-  // Percentile thresholds: [5, 10, 25, 50, 75, 85, 95]
   const pctThresholds = [5, 10, 25, 50, 75, 85, 95];
 
-  // Find percentile by interpolation
   let percentile = 50;
   if (bmi <= row[0]) {
     percentile = Math.max(1, Math.round((bmi / row[0]) * 5));
@@ -670,7 +742,6 @@ function getBmiPercentile(
     }
   }
 
-  // Category by CDC definitions
   let category: string;
   if (percentile < 5) category = "Underweight";
   else if (percentile < 85) category = "Normal Weight";
@@ -681,7 +752,7 @@ function getBmiPercentile(
 }
 
 // ============================================================================
-// CALCULATE FUNCTION
+// CALCULATE FUNCTION — V4.3
 // ============================================================================
 
 export function calculateBmi(data: {
@@ -697,10 +768,13 @@ export function calculateBmi(data: {
   const gender = (values.gender as string) || "male";
   const age = (values.age as number) || 25;
   const ethnicity = (values.ethnicity as string) || "general";
+  const showWaistAnalysis = values.showWaistAnalysis === true;
+  const showAdvanced = values.showAdvanced === true;
 
   const weightRaw = values.weight as number | null;
   const heightRaw = values.height as number | null;
   const waistRaw = values.waist as number | null;
+  const hipRaw = values.hip as number | null;
 
   if (!weightRaw || !heightRaw) {
     return { values: {}, formatted: {}, summary: "", isValid: false };
@@ -710,8 +784,8 @@ export function calculateBmi(data: {
   const weightUnit = fieldUnits.weight || "lbs";
   const heightUnit = fieldUnits.height || "in";
   const waistUnit = fieldUnits.waist || "in";
+  const hipUnit = fieldUnits.hip || "in";
 
-  // Check if unit is dual (ft_in) — dual values arrive already in base (cm)
   const heightIsDual = heightUnit === "ft_in";
 
   const weightKg = convertToBase(weightRaw, weightUnit, "weight");
@@ -719,6 +793,10 @@ export function calculateBmi(data: {
   const waistCm =
     waistRaw && waistRaw > 0
       ? convertToBase(waistRaw, waistUnit, "body_length")
+      : null;
+  const hipCm =
+    hipRaw && hipRaw > 0
+      ? convertToBase(hipRaw, hipUnit, "body_length")
       : null;
 
   if (weightKg <= 0 || heightCm <= 0) {
@@ -775,7 +853,6 @@ export function calculateBmi(data: {
   const minHealthyKg = 18.5 * heightM * heightM;
   const maxHealthyKg = 24.9 * heightM * heightM;
 
-  // Format in user's unit
   const weightLbs = weightKg * 2.20462;
   const minHealthyLbs = minHealthyKg * 2.20462;
   const maxHealthyLbs = maxHealthyKg * 2.20462;
@@ -803,7 +880,6 @@ export function calculateBmi(data: {
 
   // ── WEIGHT CHANGE NEEDED ──
   let weightChange: string;
-  const userWeight = isLbs ? weightLbs : weightKg;
   if (bmi < 18.5) {
     const gain = isLbs
       ? Math.round(minHealthyLbs - weightLbs)
@@ -818,7 +894,7 @@ export function calculateBmi(data: {
     weightChange = "You're in the healthy range! 🎉";
   }
 
-  // ── WAIST ANALYSIS ──
+  // ── WAIST-TO-HEIGHT RATIO (WHtR) ──
   let waistToHeight = "--";
   let waistRisk = "--";
   if (waistCm && waistCm > 0) {
@@ -826,12 +902,48 @@ export function calculateBmi(data: {
     waistToHeight = whtr.toFixed(2);
 
     if (whtr < 0.4) waistRisk = "Low (underweight risk)";
-    else if (whtr < 0.5) waistRisk = "Low (healthy)";
-    else if (whtr < 0.6) waistRisk = "Elevated";
-    else waistRisk = "High";
+    else if (whtr < 0.5) waistRisk = "✅ Low (healthy)";
+    else if (whtr < 0.6) waistRisk = "⚠️ Elevated";
+    else waistRisk = "🔴 High";
   } else {
     waistToHeight = "No waist data";
     waistRisk = "No waist data";
+  }
+
+  // ── WAIST-TO-HIP RATIO (WHR) — NEW V4.3 ──
+  let waistToHip = "--";
+  let waistToHipRisk = "--";
+  let bodyShape = "--";
+
+  if (waistCm && waistCm > 0 && hipCm && hipCm > 0) {
+    const whr = waistCm / hipCm;
+    waistToHip = whr.toFixed(2);
+
+    // WHO thresholds
+    if (gender === "male") {
+      if (whr < 0.90) waistToHipRisk = "✅ Low Risk";
+      else if (whr < 1.0) waistToHipRisk = "⚠️ Moderate Risk";
+      else waistToHipRisk = "🔴 High Risk";
+    } else {
+      if (whr < 0.80) waistToHipRisk = "✅ Low Risk";
+      else if (whr < 0.85) waistToHipRisk = "⚠️ Moderate Risk";
+      else waistToHipRisk = "🔴 High Risk";
+    }
+
+    // Body shape classification
+    if (gender === "male") {
+      if (whr < 0.90) bodyShape = "🍐 Pear (lower body fat)";
+      else if (whr < 1.0) bodyShape = "🥑 Avocado (moderate)";
+      else bodyShape = "🍎 Apple (abdominal fat)";
+    } else {
+      if (whr < 0.80) bodyShape = "🍐 Pear (lower body fat)";
+      else if (whr < 0.85) bodyShape = "🥑 Avocado (moderate)";
+      else bodyShape = "🍎 Apple (abdominal fat)";
+    }
+  } else if (showWaistAnalysis) {
+    waistToHip = "Enter hip measurement";
+    waistToHipRisk = "Enter hip measurement";
+    bodyShape = "Enter waist & hip";
   }
 
   // ── BMI-FOR-AGE (TEENS 2-19) ──
@@ -844,16 +956,15 @@ export function calculateBmi(data: {
   }
 
   // ── BMI GAUGE CHART DATA ──
-  // Stacked bar showing BMI zones with marker line at user's BMI
   const chartData = [
     {
       label: "BMI Scale",
       underweight: 18.5,
-      normal: 6.5, // 18.5 to 25
-      overweight: 5, // 25 to 30
-      obese1: 5, // 30 to 35
-      obese2: 5, // 35 to 40
-      obese3: 5, // 40 to 45
+      normal: 6.5,
+      overweight: 5,
+      obese1: 5,
+      obese2: 5,
+      obese3: 5,
       marker: Math.min(45, Math.max(0, bmi)),
     },
   ];
@@ -931,6 +1042,9 @@ export function calculateBmi(data: {
       weightChange,
       waistToHeight,
       waistRisk,
+      waistToHip,
+      waistToHipRisk,
+      bodyShape,
       percentile: percentileStr,
       ageCategory,
     },
@@ -939,13 +1053,18 @@ export function calculateBmi(data: {
       category,
       ethnicCategory,
       healthyRange,
-      bmiPrime: bmiPrime.toFixed(2),
-      ponderalIndex: `${ponderalIndex.toFixed(1)} ${v["kg/m³"] || "kg/m³"}`,
-      bodyFatPercent: `${bodyFatClamped.toFixed(1)}%`,
+      // Advanced — hidden when toggle OFF
+      bmiPrime: showAdvanced ? bmiPrime.toFixed(2) : "",
+      ponderalIndex: showAdvanced ? `${ponderalIndex.toFixed(1)} ${v["kg/m³"] || "kg/m³"}` : "",
+      bodyFatPercent: showAdvanced ? `${bodyFatClamped.toFixed(1)}%` : "",
       idealWeight,
       weightChange,
-      waistToHeight,
-      waistRisk,
+      // Waist — hidden when toggle OFF
+      waistToHeight: showWaistAnalysis ? waistToHeight : "",
+      waistRisk: showWaistAnalysis ? waistRisk : "",
+      waistToHip: showWaistAnalysis ? waistToHip : "",
+      waistToHipRisk: showWaistAnalysis ? waistToHipRisk : "",
+      bodyShape: showWaistAnalysis ? bodyShape : "",
       percentile: percentileStr,
       ageCategory,
     },

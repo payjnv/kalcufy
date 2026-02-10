@@ -1145,14 +1145,26 @@
     "B": {
       "name": "Bytes"
     },
+    "kb": {
+      "name": "Kilobytes"
+    },
     "KB": {
       "name": "Kilobytes"
+    },
+    "mb": {
+      "name": "Megabytes"
     },
     "MB": {
       "name": "Megabytes"
     },
+    "gb": {
+      "name": "Gigabytes"
+    },
     "GB": {
       "name": "Gigabytes"
+    },
+    "tb": {
+      "name": "Terabytes"
     },
     "TB": {
       "name": "Terabytes"
@@ -1160,11 +1172,20 @@
     "bps": {
       "name": "Bits/Sekunde"
     },
+    "kbps": {
+      "name": "Kilobits/s"
+    },
     "Kbps": {
       "name": "Kilobits/s"
     },
+    "mbps": {
+      "name": "Megabits/s"
+    },
     "Mbps": {
       "name": "Megabits/s"
+    },
+    "gbps": {
+      "name": "Gigabits/s"
     },
     "Gbps": {
       "name": "Gigabits/s"

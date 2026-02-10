@@ -220,7 +220,10 @@ export default function ResultsCardV4({
             secondaryResults.length === 2 ? "grid-cols-2" :
             "grid-cols-3"
           }`}>
-            {secondaryResults.map((config) => {
+            {secondaryResults.filter((config) => {
+              const fv = results.formatted?.[config.id];
+              return fv !== undefined && fv !== null && fv !== "";
+            }).map((config) => {
               const value = formatValue(results.values[config.id], config);
               return (
                 <div key={config.id} className="bg-slate-50 rounded-xl p-3">

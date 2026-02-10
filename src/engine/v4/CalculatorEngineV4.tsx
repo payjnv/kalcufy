@@ -602,14 +602,7 @@ export default function CalculatorEngineV4({
         const mergedUnits = { ...units, ...fieldUnits };
         // Build legacy values for backwards compatibility with old calculate() functions
         const legacyValues = buildLegacyValues(values, fieldUnits);
-        // DEBUG: Log height changes
-        if (legacyValues.height !== undefined || legacyValues.heightCm !== undefined) {
-          console.log("[DEBUG-HEIGHT] raw height:", values.height, "| fieldUnit:", fieldUnits.height, "| legacyCm:", legacyValues.heightCm, "| legacyFt:", legacyValues.heightFt, "| legacyIn:", legacyValues.heightIn);
-        }
         const result = calculate({ values: legacyValues, units: mergedUnits, unitSystem, mode: currentMode, t: translations, fieldUnits });
-        if (legacyValues.heightCm !== undefined) {
-          console.log("[DEBUG-RESULT] isValid:", result.isValid, "| dailyCalories:", result.values?.dailyCalories || result.values?.totalCalories || "N/A");
-        }
         setResults(result);
         
         // Track first calculation

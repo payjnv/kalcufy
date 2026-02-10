@@ -1,13 +1,16 @@
 import type { CalculatorConfigV4, CalculatorResults } from "@/engine/v4/types/engine.types";
 
-// ============================================================
-// PSU Calculator — Power Supply Unit Wattage Calculator
-// Engine V4 — Kalcufy.com
-// ============================================================
+// ─────────────────────────────────────────────────────────────────────────────
+// PSU CALCULATOR — V4.3
+// ─────────────────────────────────────────────────────────────────────────────
+// Calculates: total system wattage, recommended PSU size, per-component
+// breakdown, 80+ efficiency levels, annual energy cost, capacitor aging,
+// transient spike warnings, ATX 3.x recommendations.
+// ─────────────────────────────────────────────────────────────────────────────
 
 export const psuCalculatorConfig: CalculatorConfigV4 = {
   id: "psu-calculator",
-  version: "4.0",
+  version: "4.3",
   category: "technology",
   icon: "⚡",
 
@@ -16,74 +19,58 @@ export const psuCalculatorConfig: CalculatorConfigV4 = {
       id: "officePc",
       icon: "🖥️",
       values: {
-        cpuWatts: 65,
-        gpuWatts: 0,
+        cpuTier: "mid_range",
+        gpuTier: "none",
         ramSticks: 2,
         sataStorage: 1,
         nvmeStorage: 1,
-        hddStorage: 0,
         fans: 2,
-        usbDevices: 3,
-        rgbLighting: "none",
-        overclocking: "none",
-        efficiencyRating: "80plus_bronze",
+        overclock: "none",
         usageHours: 8,
         electricityCost: 0.12,
       },
     },
     {
-      id: "midGaming",
+      id: "gamingPc",
       icon: "🎮",
       values: {
-        cpuWatts: 105,
-        gpuWatts: 200,
+        cpuTier: "high_end",
+        gpuTier: "high_end",
         ramSticks: 2,
         sataStorage: 1,
         nvmeStorage: 1,
-        hddStorage: 0,
         fans: 4,
-        usbDevices: 4,
-        rgbLighting: "moderate",
-        overclocking: "none",
-        efficiencyRating: "80plus_gold",
+        overclock: "moderate",
         usageHours: 6,
         electricityCost: 0.12,
       },
     },
     {
-      id: "highEndGaming",
+      id: "enthusiast",
       icon: "🔥",
       values: {
-        cpuWatts: 170,
-        gpuWatts: 450,
+        cpuTier: "flagship",
+        gpuTier: "flagship",
         ramSticks: 4,
-        sataStorage: 1,
+        sataStorage: 2,
         nvmeStorage: 2,
-        hddStorage: 0,
         fans: 6,
-        usbDevices: 5,
-        rgbLighting: "heavy",
-        overclocking: "moderate",
-        efficiencyRating: "80plus_gold",
-        usageHours: 6,
+        overclock: "heavy",
+        usageHours: 8,
         electricityCost: 0.12,
       },
     },
     {
       id: "workstation",
-      icon: "🏗️",
+      icon: "🏢",
       values: {
-        cpuWatts: 280,
-        gpuWatts: 350,
-        ramSticks: 8,
-        sataStorage: 2,
+        cpuTier: "workstation",
+        gpuTier: "workstation",
+        ramSticks: 4,
+        sataStorage: 4,
         nvmeStorage: 2,
-        hddStorage: 2,
         fans: 6,
-        usbDevices: 6,
-        rgbLighting: "none",
-        overclocking: "none",
-        efficiencyRating: "80plus_platinum",
+        overclock: "none",
         usageHours: 12,
         electricityCost: 0.12,
       },
@@ -94,278 +81,278 @@ export const psuCalculatorConfig: CalculatorConfigV4 = {
     en: {
       name: "PSU Calculator",
       slug: "psu-calculator",
-      subtitle: "Calculate the right power supply wattage for your PC build and see annual energy costs.",
-      breadcrumb: "PSU Calc",
+      subtitle: "Calculate the ideal power supply wattage for your PC build. Accounts for overclocking, capacitor aging, 80 PLUS efficiency, and annual energy cost.",
+      breadcrumb: "PSU Calculator",
 
       seo: {
-        title: "PSU Calculator - PC Power Supply Wattage Tool",
-        description: "Calculate the exact power supply wattage your PC needs. Enter your CPU, GPU, and components to get PSU recommendations with efficiency ratings and energy costs.",
-        shortDescription: "Find the right PSU wattage for your PC build.",
+        title: "PSU Calculator - PC Power Supply Wattage Calculator (2025)",
+        description: "Find the perfect PSU for your PC build. Calculates total wattage from CPU, GPU, RAM, storage, and fans. Includes overclocking headroom, 80+ efficiency ratings, transient spike warnings, and annual electricity cost. Free multilingual tool.",
+        shortDescription: "Calculate the right power supply wattage for your PC.",
         keywords: [
           "psu calculator",
           "power supply calculator",
           "pc wattage calculator",
           "psu wattage calculator",
-          "how many watts does my pc need",
-          "free psu calculator",
+          "how many watts do i need",
+          "rtx 5090 psu",
+          "gaming pc power supply",
           "pc power consumption calculator",
-          "power supply size",
         ],
       },
 
-      calculator: { yourInformation: "Your PC Components" },
+      calculator: { yourInformation: "System Components" },
       ui: {
-        yourInformation: "Your PC Components",
+        yourInformation: "System Components",
         calculate: "Calculate",
         reset: "Reset",
-        results: "Results",
+        results: "PSU Recommendation",
       },
 
       inputs: {
-        cpuWatts: {
-          label: "CPU TDP",
-          helpText: "Thermal Design Power of your processor (check manufacturer specs). Common: i5 = 65-125W, i7 = 125-253W, i9 = 150-253W, Ryzen 5 = 65W, Ryzen 7 = 105W, Ryzen 9 = 170W.",
+        cpuTier: {
+          label: "CPU Tier",
+          helpText: "Select the performance tier that matches your processor",
+          options: {
+            budget: "Budget — 45-65W (Ryzen 5 5600, i3-14100)",
+            mid_range: "Mid-Range — 65-105W (Ryzen 5 7600, i5-14600K)",
+            high_end: "High-End — 105-150W (Ryzen 7 9800X3D, i7-14700K)",
+            flagship: "Flagship — 150-253W (Ryzen 9 9950X, i9-14900K, Ultra 9 285K)",
+            workstation: "Workstation — 280-350W (Threadripper, Xeon W)",
+          },
         },
-        gpuWatts: {
-          label: "GPU TDP",
-          helpText: "Graphics card power draw. Enter 0 if using integrated graphics. Common: RTX 4060 = 115W, RTX 4070 = 200W, RTX 4080 = 320W, RTX 4090 = 450W, RX 7800 XT = 263W, RTX 5080 = 350W, RTX 5090 = 500W.",
+        gpuTier: {
+          label: "GPU Tier",
+          helpText: "Select the performance tier that matches your graphics card",
+          options: {
+            none: "None / Integrated Graphics — 0W",
+            budget: "Budget — 75-120W (RTX 4060, RX 7600)",
+            mid_range: "Mid-Range — 150-200W (RTX 4070, RX 7800 XT)",
+            high_end: "High-End — 220-320W (RTX 4080/5070 Ti, RX 7900 XT)",
+            flagship: "Flagship — 350-575W (RTX 4090, RTX 5080, RTX 5090)",
+            workstation: "Workstation — 300-450W (RTX A6000, Quadro)",
+          },
         },
         ramSticks: {
           label: "RAM Sticks",
-          helpText: "Number of RAM modules installed (each uses ~3-5W).",
+          helpText: "Number of memory modules (typically 2 or 4)",
         },
         sataStorage: {
-          label: "SATA SSDs",
-          helpText: "Number of 2.5-inch SATA SSDs (~5W each).",
+          label: "SATA Drives (HDD/SSD)",
+          helpText: "Number of 2.5\" SSDs or 3.5\" HDDs",
         },
         nvmeStorage: {
-          label: "NVMe SSDs",
-          helpText: "Number of M.2 NVMe drives (~7W each).",
-        },
-        hddStorage: {
-          label: "Hard Drives (HDD)",
-          helpText: "Number of mechanical hard drives (~10W each).",
+          label: "NVMe M.2 Drives",
+          helpText: "Number of NVMe M.2 SSDs",
         },
         fans: {
-          label: "Case Fans",
-          helpText: "Total number of case fans (~3W each). Include CPU cooler fans.",
+          label: "Case Fans + AIO/RGB",
+          helpText: "Total case fans, AIO pump, and RGB controllers",
         },
-        usbDevices: {
-          label: "USB Devices",
-          helpText: "Number of USB peripherals (keyboard, mouse, headset, webcam, etc.) (~2.5W each).",
-        },
-        rgbLighting: {
-          label: "RGB Lighting",
-          helpText: "Amount of RGB lighting in your build.",
-          options: {
-            none: "None",
-            minimal: "Minimal (1-2 strips)",
-            moderate: "Moderate (fans + strips)",
-            heavy: "Heavy (full RGB build)",
-          },
-        },
-        overclocking: {
+        overclock: {
           label: "Overclocking",
-          helpText: "Overclocking increases power consumption significantly.",
+          helpText: "Overclocking increases power draw significantly",
           options: {
-            none: "None (stock)",
-            light: "Light OC (+10%)",
-            moderate: "Moderate OC (+20%)",
-            heavy: "Heavy OC (+30%)",
-          },
-        },
-        efficiencyRating: {
-          label: "PSU Efficiency Rating",
-          helpText: "Higher efficiency = less wasted power as heat. 80+ Gold is the sweet spot for most builds.",
-          options: {
-            "80plus": "80 Plus (80%)",
-            "80plus_bronze": "80+ Bronze (85%)",
-            "80plus_silver": "80+ Silver (88%)",
-            "80plus_gold": "80+ Gold (90%)",
-            "80plus_platinum": "80+ Platinum (92%)",
-            "80plus_titanium": "80+ Titanium (94%)",
+            none: "None — Stock settings",
+            moderate: "Moderate — +10-15% power draw",
+            heavy: "Heavy — +20-30% power draw",
           },
         },
         usageHours: {
-          label: "Daily Usage",
-          helpText: "Average hours per day your PC is running.",
+          label: "Daily Usage (hours)",
+          helpText: "Average hours per day the PC is powered on (for energy cost calculation)",
         },
         electricityCost: {
           label: "Electricity Cost",
-          helpText: "Cost per kilowatt-hour (kWh). US average is ~$0.12. Check your electricity bill.",
+          helpText: "Cost per kWh in your area (for annual energy cost estimate)",
         },
       },
 
       results: {
-        totalSystemWatts: { label: "Total System Power Draw" },
         recommendedPsu: { label: "Recommended PSU" },
-        minimumPsu: { label: "Minimum PSU" },
-        loadPercentage: { label: "Load at Recommended PSU" },
-        annualEnergyCost: { label: "Estimated Annual Energy Cost" },
-        dailyKwh: { label: "Daily Energy Usage" },
+        totalSystemWattage: { label: "Total System Wattage" },
+        peakWithSpikes: { label: "Peak with Transients" },
+        cpuWattage: { label: "CPU Power Draw" },
+        gpuWattage: { label: "GPU Power Draw" },
+        otherWattage: { label: "Other Components" },
+        overclockBonus: { label: "Overclock Headroom" },
+        safetyMargin: { label: "Safety Margin (20%)" },
+        efficiencyAtLoad: { label: "Efficiency at Load" },
+        annualEnergyCost: { label: "Annual Energy Cost" },
+        atxStandard: { label: "ATX Standard" },
+        transientWarning: { label: "Transient Spikes" },
       },
 
       presets: {
-        officePc: {
-          label: "Office PC",
-          description: "Basic desktop for productivity and web browsing",
-        },
-        midGaming: {
-          label: "Mid-Range Gaming",
-          description: "RTX 4060-class gaming build",
-        },
-        highEndGaming: {
-          label: "High-End Gaming",
-          description: "RTX 4090-class enthusiast build",
-        },
-        workstation: {
-          label: "Workstation",
-          description: "Content creation and professional workloads",
-        },
+        officePc: { label: "Office PC", description: "Mid-range CPU, integrated graphics" },
+        gamingPc: { label: "Gaming PC", description: "High-end CPU + GPU, moderate OC" },
+        enthusiast: { label: "Enthusiast Build", description: "Flagship CPU + GPU, heavy OC" },
+        workstation: { label: "Workstation", description: "Threadripper/Xeon + Pro GPU" },
       },
 
       values: {
-        W: "W",
-        kWh: "kWh",
-        year: "year",
+        watts: "W",
+        hours: "hours",
+        perYear: "/year",
+        none: "None",
+        recommended: "Recommended",
+        minimum: "Minimum",
+        atx2: "ATX 2.x (standard)",
+        atx3: "ATX 3.0/3.1 (recommended for RTX 40/50)",
+        lowRisk: "Low — within safe margins",
+        mediumRisk: "Medium — GPU may spike 1.5× TDP",
+        highRisk: "High — GPU may spike 2× TDP, ATX 3.x strongly recommended",
       },
 
       formats: {
-        summary: "Your PC needs approximately {totalWatts}W. We recommend a {recommended}W power supply ({efficiency} efficiency) for optimal performance with headroom for upgrades.",
+        summary: "Your system draws approximately {totalWattage}W (peak {peakWattage}W with transients). Recommended PSU: {recommendedPsu}W ({efficiency} efficiency). Estimated annual energy cost: {annualCost}.",
       },
 
       infoCards: {
         metrics: {
           title: "Power Summary",
           items: [
-            { label: "Total System Draw", valueKey: "totalSystemWatts" },
             { label: "Recommended PSU", valueKey: "recommendedPsu" },
-            { label: "PSU Load %", valueKey: "loadPercentage" },
-            { label: "Annual Cost", valueKey: "annualEnergyCost" },
+            { label: "System Wattage", valueKey: "totalSystemWattage" },
+            { label: "Peak with Spikes", valueKey: "peakWithSpikes" },
+            { label: "Annual Energy Cost", valueKey: "annualEnergyCost" },
           ],
         },
         details: {
           title: "Component Breakdown",
           items: [
-            { label: "CPU Power", valueKey: "cpuPower" },
-            { label: "GPU Power", valueKey: "gpuPower" },
-            { label: "Other Components", valueKey: "otherPower" },
-            { label: "OC Overhead", valueKey: "ocOverhead" },
+            { label: "CPU", valueKey: "cpuWattage" },
+            { label: "GPU", valueKey: "gpuWattage" },
+            { label: "RAM + Storage + Fans", valueKey: "otherWattage" },
+            { label: "Overclock Headroom", valueKey: "overclockBonus" },
+            { label: "Safety Margin", valueKey: "safetyMargin" },
+            { label: "ATX Standard", valueKey: "atxStandard" },
+            { label: "Transient Spike Risk", valueKey: "transientWarning" },
+            { label: "Efficiency at Load", valueKey: "efficiencyAtLoad" },
           ],
         },
         tips: {
-          title: "PSU Tips",
+          title: "PSU Buying Tips",
           items: [
-            "Never run a PSU above 80% load for extended periods — it reduces lifespan and increases noise.",
-            "80+ Gold efficiency is the best value for most builds. Platinum and Titanium offer diminishing returns.",
-            "Always buy from reputable brands: Corsair, Seasonic, EVGA, be quiet!, Thermaltake. Cheap PSUs can damage components.",
-            "A modular PSU helps with cable management and airflow, improving overall system cooling.",
+            "Always buy more than you need — a PSU running at 50-80% load is most efficient and lasts longest.",
+            "80 PLUS Gold or higher saves real money on electricity. The difference between Bronze and Gold can be $20-50/year.",
+            "For RTX 4090/5080/5090, use an ATX 3.0/3.1 PSU with a native 12VHPWR connector to handle transient power spikes safely.",
+            "Capacitors degrade over time. After 3-5 years, expect ~10% less effective power. Size your PSU with this in mind.",
           ],
+        },
+      },
+
+      chart: {
+        title: "Power Distribution",
+        xLabel: "Component",
+        yLabel: "Watts",
+        series: {
+          value: "Wattage (W)",
+        },
+      },
+
+      detailedTable: {
+        efficiencyTable: {
+          button: "View 80 PLUS Efficiency Levels",
+          title: "80 PLUS Certification — Efficiency at Different Loads",
+          columns: {
+            tier: "Certification",
+            at20: "20% Load",
+            at50: "50% Load",
+            at100: "100% Load",
+            savings: "Annual Savings vs Bronze",
+          },
         },
       },
 
       education: {
         whatIs: {
           title: "What Is a PSU Calculator?",
-          content:
-            "A PSU (Power Supply Unit) calculator estimates the total power consumption of your computer system based on the components you've selected. Every component in your PC draws electrical power — from the CPU and GPU to RAM, storage drives, fans, and peripherals. The calculator sums these power requirements and adds a safety margin to recommend an appropriately sized power supply. Choosing the right PSU is critical: an underpowered unit can cause system instability, random shutdowns, and even permanent hardware damage, while an oversized PSU wastes money and operates less efficiently. Modern PSU calculators account for real-world power consumption rather than just TDP (Thermal Design Power) ratings, which represent maximum heat output rather than actual power draw under typical loads.",
+          content: "A PSU (Power Supply Unit) calculator estimates the total power consumption of your PC components and recommends the appropriate power supply wattage. Every component in your computer — from the CPU and GPU to RAM, storage drives, and fans — draws power from the PSU. If your power supply cannot deliver enough wattage, your system will crash, restart randomly, or fail to boot entirely. Conversely, an oversized PSU wastes money and operates at lower efficiency. The ideal PSU runs at 50-80% of its rated capacity, where modern 80 PLUS certified units achieve their highest efficiency. This calculator accounts for real-world factors that simpler tools ignore: overclocking headroom, GPU transient power spikes (which can briefly reach 2× the rated TDP), capacitor aging over time, and the efficiency losses inherent in AC-to-DC power conversion.",
         },
         howItWorks: {
           title: "How PSU Wattage Is Calculated",
-          content:
-            "The calculator adds up the TDP (Thermal Design Power) or TGP (Total Graphics Power) of each component in your system. The CPU and GPU are the two biggest power consumers, often accounting for 70-85% of total system power. RAM uses about 3-5W per stick, SSDs use 5-8W each, and HDDs about 10W. Fans, USB devices, and RGB lighting add smaller amounts. After summing all components, the calculator applies an overclocking multiplier if applicable (10-30% increase) and then adds a 20-25% headroom buffer for power spikes, efficiency losses, and future upgrades. The recommended PSU wattage is then rounded up to the nearest standard PSU size (450W, 550W, 650W, 750W, 850W, 1000W, etc.). The efficiency rating determines how much wall power is actually delivered to components — an 80+ Gold PSU at 50% load delivers 90% efficiency, meaning only 10% is wasted as heat.",
+          content: "The calculation starts by summing the TDP (Thermal Design Power) of each component. For CPUs, TDP ranges from 45W for budget chips to 350W for workstation processors. GPUs range from 75W to 575W for the latest flagship cards. RAM uses about 3-5W per stick, SATA drives 5-10W, NVMe drives 5-8W, and fans 2-5W each. Overclocking adds 10-30% on top. A 20% safety margin is applied for system stability and future headroom. For GPUs in the RTX 40/50 series, transient power spikes are a critical factor — these cards can briefly draw 1.5-2× their rated TDP in millisecond-scale bursts. ATX 3.0/3.1 power supplies are designed to handle these spikes; older ATX 2.x units may trigger over-current protection and shut down. The recommended PSU wattage is then rounded up to the nearest standard PSU size (450W, 550W, 650W, 750W, 850W, 1000W, 1200W, or 1500W).",
         },
         considerations: {
-          title: "Key Considerations",
+          title: "Important Considerations",
           items: [
-            { text: "CPU and GPU account for 70-85% of total power consumption. Get their TDP values from manufacturer specs.", type: "info" },
-            { text: "Modern GPUs like the RTX 4090 (450W) and RTX 5090 (500W) have transient power spikes that can briefly exceed their TDP by 2x.", type: "warning" },
-            { text: "Running a PSU at 40-60% load is the efficiency sweet spot. This is why we add headroom to recommendations.", type: "info" },
-            { text: "Cheap, unbranded PSUs often can't deliver their rated wattage and may damage components. Always buy from reputable brands.", type: "warning" },
-            { text: "Modular PSUs let you use only the cables you need, improving airflow and cable management.", type: "info" },
-            { text: "PSU efficiency degrades over time. A 5-year-old PSU may deliver 5-10% less than its rated output.", type: "warning" },
+            { text: "GPU transient spikes: Modern high-end GPUs (RTX 4090, 5080, 5090) can spike to 2× their TDP for microseconds. ATX 3.0/3.1 PSUs handle this natively; older PSUs may shut down.", type: "warning" },
+            { text: "Capacitor aging: PSU capacitors lose 5-15% capacity over 3-5 years. A PSU rated at 850W may only deliver 720-800W after years of use. Size accordingly.", type: "warning" },
+            { text: "80 PLUS efficiency matters: At 50% load, a Gold PSU is 90% efficient (draws 555W from wall to deliver 500W). A basic 80+ unit is only 82% efficient (draws 610W for the same 500W).", type: "info" },
+            { text: "Multi-GPU setups double GPU power. If running two GPUs, multiply GPU wattage by 2 and add 50W for motherboard overhead.", type: "info" },
+            { text: "USB peripherals, RGB strips, and external devices add 10-50W. Budget extra headroom if you have many USB devices.", type: "info" },
+            { text: "Modular PSUs reduce cable clutter and improve airflow. Fully modular is ideal for custom builds; semi-modular is fine for most users.", type: "info" },
           ],
         },
         categories: {
-          title: "PSU Efficiency Ratings",
+          title: "PSU Tiers by Build Type",
           items: [
-            { text: "80 Plus (80%): Entry-level certification. Adequate for budget builds but wastes more power as heat.", type: "info" },
-            { text: "80+ Bronze (85%): Good value for budget to mid-range builds. Most popular certification tier.", type: "info" },
-            { text: "80+ Silver (88%): Less common but a step up from Bronze. Good middle ground.", type: "info" },
-            { text: "80+ Gold (90%): Best value for most builds. Recommended for gaming and workstation PCs.", type: "info" },
-            { text: "80+ Platinum (92%): Premium efficiency for always-on workstations and servers.", type: "info" },
-            { text: "80+ Titanium (94%): Highest efficiency, premium price. Best for 24/7 high-load systems.", type: "info" },
+            { text: "Office/HTPC (300-450W): Integrated graphics, low-power CPU. A 450W 80+ Bronze is plenty. Prioritize quiet operation.", type: "info" },
+            { text: "Budget Gaming (450-550W): Mid-range GPU like RTX 4060 or RX 7600. A 550W 80+ Bronze/Gold handles this easily.", type: "info" },
+            { text: "Mid-Range Gaming (550-750W): RTX 4070/5070 Ti class GPU. A 650-750W 80+ Gold is the sweet spot for most gamers.", type: "info" },
+            { text: "High-End Gaming (750-1000W): RTX 4080/5080 class. Get an 850W+ ATX 3.0 Gold/Platinum for transient spike handling.", type: "info" },
+            { text: "Enthusiast/Flagship (1000-1200W): RTX 4090/5090 builds. 1000W+ ATX 3.1 Platinum is strongly recommended. These GPUs spike hard.", type: "warning" },
+            { text: "Workstation (1200-1600W): Threadripper/Xeon + Pro GPU. Consider redundant PSU setups for critical workloads.", type: "info" },
           ],
         },
         examples: {
-          title: "Example Builds",
-          description: "Step-by-step PSU calculation for common PC builds",
+          title: "PSU Calculation Examples",
+          description: "Step-by-step wattage calculations for real builds",
           examples: [
             {
-              title: "Mid-Range Gaming PC",
+              title: "Gaming Build: Ryzen 7 9800X3D + RTX 5080",
               steps: [
-                "CPU: Intel i5-14600K = 125W TDP",
-                "GPU: NVIDIA RTX 4070 = 200W TGP",
-                "2x 16GB DDR5 RAM = 2 × 5W = 10W",
-                "1x NVMe SSD = 7W, 1x SATA SSD = 5W",
-                "Motherboard = 50W, 4 fans = 12W, USB = 10W",
-                "Total: 125 + 200 + 10 + 12 + 50 + 12 + 10 = 419W",
-                "With 20% headroom: 419 × 1.20 = 503W",
-                "Recommended: 550W 80+ Gold PSU",
+                "CPU: Ryzen 7 9800X3D = 120W TDP",
+                "GPU: RTX 5080 = 360W TDP (spikes to ~540W)",
+                "RAM: 2× DDR5 = 10W | NVMe: 1× = 7W | SATA: 1× = 8W",
+                "Fans: 4× = 16W | Motherboard overhead: 80W",
+                "Base total: 120 + 360 + 10 + 7 + 8 + 16 + 80 = 601W",
+                "Safety margin (20%): 601 × 1.2 = 721W → 750W PSU",
               ],
-              result: "550W PSU",
+              result: "Recommended: 850W ATX 3.0 Gold — provides headroom for GPU transient spikes up to 540W and future upgrades.",
             },
             {
-              title: "High-End Enthusiast Build",
+              title: "Enthusiast: i9-14900K + RTX 5090 (Heavy OC)",
               steps: [
-                "CPU: AMD Ryzen 9 9900X = 170W TDP",
-                "GPU: NVIDIA RTX 4090 = 450W TGP",
-                "4x 16GB DDR5 RAM = 4 × 5W = 20W",
-                "2x NVMe SSD = 14W, 1x HDD = 10W",
-                "Motherboard = 80W, 6 fans = 18W, RGB = 15W, USB = 12W",
-                "Total: 170 + 450 + 20 + 24 + 80 + 18 + 15 + 12 = 789W",
-                "With moderate OC (+20%): 789 × 1.20 = 947W",
-                "With 20% headroom: 947 × 1.20 = 1136W",
-                "Recommended: 1200W 80+ Gold PSU",
+                "CPU: i9-14900K = 253W TDP + 30% OC = 329W",
+                "GPU: RTX 5090 = 575W TDP (spikes to ~1000W!)",
+                "RAM: 4× DDR5 = 20W | NVMe: 2× = 14W | SATA: 2× = 16W",
+                "Fans: 6× = 24W | Motherboard overhead: 80W",
+                "Base total: 329 + 575 + 20 + 14 + 16 + 24 + 80 = 1058W",
+                "Safety margin (20%): 1058 × 1.2 = 1270W → 1200W PSU",
               ],
-              result: "1200W PSU",
+              result: "Recommended: 1200-1500W ATX 3.1 Platinum. The RTX 5090 can spike to nearly 1000W, making ATX 3.x essential.",
             },
           ],
         },
       },
 
-      faqs: [
-        {
-          question: "What happens if my PSU is too small for my PC?",
-          answer:
-            "An underpowered PSU can cause random shutdowns, system instability, blue screens, and in worst cases, permanent damage to your components. Modern PSUs have overcurrent protection (OCP) that shuts the system down before damage occurs, but cheap units may not have adequate protections. If you're experiencing random crashes under heavy load (gaming, rendering), your PSU may be insufficient.",
+      faqs: {
+        "0": {
+          question: "How do I know what wattage PSU I need?",
+          answer: "Add up the TDP (Thermal Design Power) of your CPU and GPU — these are the two biggest power consumers. Then add roughly 100-150W for everything else (RAM, storage, fans, motherboard). Apply a 20% safety margin, and round up to the nearest standard PSU size. For example: a 150W CPU + 300W GPU + 120W other = 570W × 1.2 = 684W → get a 750W PSU. This calculator does all of this automatically.",
         },
-        {
+        "1": {
           question: "Is it bad to have a PSU that's too powerful?",
-          answer:
-            "Having a PSU rated higher than needed is not harmful — it simply means your system uses a smaller percentage of the PSU's capacity. However, PSUs are most efficient at 40-60% load, so a vastly oversized PSU (like 1200W for a 300W system) may be slightly less efficient at very low loads. The main downside is the extra cost. A moderately oversized PSU gives you room for future GPU upgrades.",
+          answer: "Not harmful, but inefficient. A 1200W PSU running a 400W system operates at about 33% load, which is below the optimal 50-80% efficiency range. You'll pay slightly more on electricity and the PSU costs more upfront. However, it does give maximum headroom for future upgrades. The sweet spot is a PSU where your typical load falls between 50-80% of its rated capacity.",
         },
-        {
-          question: "What's the difference between TDP and actual power consumption?",
-          answer:
-            "TDP (Thermal Design Power) specifies how much heat a cooling solution must dissipate, not actual power draw. Real-world power consumption is often lower than TDP during normal use but can spike above it during intense workloads. For GPU, TGP (Total Graphics Power) is a closer measure. Modern GPUs can have transient spikes up to 2x their rated TDP for microseconds, which is why PSU headroom is important.",
+        "2": {
+          question: "What are GPU transient power spikes?",
+          answer: "Modern GPUs, especially NVIDIA's RTX 40 and 50 series, can briefly draw 1.5-2× their rated TDP in microsecond-scale bursts. An RTX 4090 rated at 450W can spike to 600-900W momentarily. An RTX 5090 at 575W can spike to nearly 1000W. These transients can trigger overcurrent protection on older PSUs, causing shutdowns. ATX 3.0 and 3.1 power supplies are specifically designed to handle these spikes through the 12VHPWR/12V-2×6 connector, which supports up to 600W continuous per connector.",
         },
-        {
-          question: "Should I get a modular or non-modular PSU?",
-          answer:
-            "Modular PSUs let you detach unused cables, improving airflow and aesthetics. Semi-modular units have essential cables (24-pin ATX, 8-pin CPU) permanently attached with optional extras. Fully modular PSUs are best for clean builds. Non-modular units are cheaper but leave unused cables cluttering the case. For most builders, semi-modular is the best value.",
+        "3": {
+          question: "What does 80 PLUS Gold/Platinum mean?",
+          answer: "80 PLUS is an efficiency certification. It measures how much AC power from the wall is converted to usable DC power. 80 PLUS (basic) means at least 80% efficiency. Bronze adds about 2-3%, Gold about 87-90%, Platinum 89-92%, and Titanium 91-94% at typical loads. The difference is real money: a Gold PSU powering a 500W system saves about $15-25/year over Bronze. Over 5-7 years, Platinum pays for itself versus Bronze in many electricity markets.",
         },
-        {
-          question: "How long does a PSU last?",
-          answer:
-            "Quality PSUs from reputable brands typically last 7-10 years. Many premium units come with 10-year warranties. However, PSU efficiency degrades over time — a 5-year-old unit may deliver 5-10% less power than rated. Capacitor aging is the primary factor. If your PSU is over 5 years old and you're upgrading to a more power-hungry GPU, consider replacing the PSU as well.",
+        "4": {
+          question: "Do I need an ATX 3.0 or 3.1 power supply?",
+          answer: "If you're using an RTX 4070 Ti or higher GPU, ATX 3.0/3.1 is strongly recommended. These standards added the 12VHPWR (ATX 3.0) and 12V-2×6 (ATX 3.1) connectors, which support 600W per connector and are designed to handle GPU transient spikes. ATX 3.1 tightened voltage regulation tolerances and improved connector safety after early 12VHPWR melting issues. For lower-end builds, ATX 2.x is still perfectly fine.",
         },
-        {
-          question: "Does overclocking significantly increase power consumption?",
-          answer:
-            "Yes. Overclocking increases power consumption substantially because power scales with voltage squared times frequency. A moderate CPU overclock (+10-15% frequency) can increase power draw by 20-40%. GPU overclocking typically adds 10-20% power draw. Heavy overclocking with voltage increases can push power consumption 30-50% above stock. Always account for overclocking when sizing your PSU.",
+        "5": {
+          question: "How does overclocking affect PSU requirements?",
+          answer: "Overclocking increases both voltage and frequency, which dramatically increases power consumption. A moderate CPU overclock adds 10-15% power draw, while heavy overclocking can add 25-30% or more. GPU overclocking typically adds 10-20%. The formula is roughly: Power ∝ Voltage² × Frequency. So a 10% voltage increase actually adds about 21% more power consumption (1.1² = 1.21). Always account for overclocking when sizing your PSU.",
         },
-      ],
+      },
 
       rating: {
         title: "Rate this Calculator",
@@ -380,7 +367,6 @@ export const psuCalculatorConfig: CalculatorConfigV4 = {
       },
 
       common: { home: "Home", calculators: "Calculators" },
-
       buttons: {
         calculate: "Calculate",
         reset: "Reset",
@@ -391,65 +377,44 @@ export const psuCalculatorConfig: CalculatorConfigV4 = {
         saved: "Saved",
         saving: "Saving...",
       },
-
       share: { calculatedWith: "Calculated with Kalcufy.com" },
       accessibility: { mobileResults: "Results", closeModal: "Close", openMenu: "Menu" },
       sources: { title: "Sources & References" },
-
-      chart: {
-        title: "Power Distribution by Component",
-        xLabel: "Component",
-        yLabel: "Watts (W)",
-        series: {
-          watts: "Power Draw",
-        },
-      },
-
-      detailedTable: {
-        componentBreakdown: {
-          button: "View Component Breakdown",
-          title: "Power Consumption by Component",
-          columns: {
-            component: "Component",
-            watts: "Power Draw",
-            percentage: "% of Total",
-            notes: "Notes",
-          },
-        },
-      },
     },
   },
 
   inputs: [
-    // === CPU & GPU (biggest power consumers) ===
     {
-      id: "cpuWatts",
-      type: "number",
-      defaultValue: null,
-      placeholder: "125",
-      min: 15,
-      max: 500,
-      step: 1,
-      suffix: "W",
+      id: "cpuTier",
+      type: "select",
+      defaultValue: "mid_range",
+      options: [
+        { value: "budget" },
+        { value: "mid_range" },
+        { value: "high_end" },
+        { value: "flagship" },
+        { value: "workstation" },
+      ],
     },
     {
-      id: "gpuWatts",
-      type: "number",
-      defaultValue: null,
-      placeholder: "200",
-      min: 0,
-      max: 1000,
-      step: 1,
-      suffix: "W",
+      id: "gpuTier",
+      type: "select",
+      defaultValue: "mid_range",
+      options: [
+        { value: "none" },
+        { value: "budget" },
+        { value: "mid_range" },
+        { value: "high_end" },
+        { value: "flagship" },
+        { value: "workstation" },
+      ],
     },
-
-    // === Memory & Storage ===
     {
       id: "ramSticks",
       type: "number",
       defaultValue: 2,
       min: 1,
-      max: 16,
+      max: 8,
       step: 1,
     },
     {
@@ -465,29 +430,11 @@ export const psuCalculatorConfig: CalculatorConfigV4 = {
       type: "number",
       defaultValue: 1,
       min: 0,
-      max: 8,
+      max: 6,
       step: 1,
     },
-    {
-      id: "hddStorage",
-      type: "number",
-      defaultValue: 0,
-      min: 0,
-      max: 10,
-      step: 1,
-    },
-
-    // === Cooling & Peripherals ===
     {
       id: "fans",
-      type: "number",
-      defaultValue: 3,
-      min: 0,
-      max: 20,
-      step: 1,
-    },
-    {
-      id: "usbDevices",
       type: "number",
       defaultValue: 3,
       min: 0,
@@ -495,109 +442,81 @@ export const psuCalculatorConfig: CalculatorConfigV4 = {
       step: 1,
     },
     {
-      id: "rgbLighting",
+      id: "overclock",
       type: "select",
       defaultValue: "none",
       options: [
         { value: "none" },
-        { value: "minimal" },
         { value: "moderate" },
         { value: "heavy" },
       ],
     },
-
-    // === Overclocking ===
-    {
-      id: "overclocking",
-      type: "select",
-      defaultValue: "none",
-      options: [
-        { value: "none" },
-        { value: "light" },
-        { value: "moderate" },
-        { value: "heavy" },
-      ],
-    },
-
-    // === PSU Efficiency ===
-    {
-      id: "efficiencyRating",
-      type: "select",
-      defaultValue: "80plus_gold",
-      options: [
-        { value: "80plus" },
-        { value: "80plus_bronze" },
-        { value: "80plus_silver" },
-        { value: "80plus_gold" },
-        { value: "80plus_platinum" },
-        { value: "80plus_titanium" },
-      ],
-    },
-
-    // === Energy Cost ===
     {
       id: "usageHours",
       type: "number",
-      defaultValue: 6,
+      defaultValue: 8,
       min: 1,
       max: 24,
       step: 1,
-      suffix: "hrs/day",
     },
     {
       id: "electricityCost",
       type: "number",
-      defaultValue: 0.12,
+      defaultValue: null,
       min: 0.01,
-      max: 1.00,
+      max: 1.0,
       step: 0.01,
-      prefix: "$",
-      suffix: "/kWh",
+      placeholder: "0.12",
     },
   ],
-
   inputGroups: [],
 
   results: [
     { id: "recommendedPsu", type: "primary", format: "text" },
-    { id: "totalSystemWatts", type: "secondary", format: "text" },
-    { id: "minimumPsu", type: "secondary", format: "text" },
-    { id: "loadPercentage", type: "secondary", format: "text" },
+    { id: "totalSystemWattage", type: "secondary", format: "text" },
+    { id: "peakWithSpikes", type: "secondary", format: "text" },
+    { id: "cpuWattage", type: "secondary", format: "text" },
+    { id: "gpuWattage", type: "secondary", format: "text" },
+    { id: "otherWattage", type: "secondary", format: "text" },
+    { id: "overclockBonus", type: "secondary", format: "text" },
+    { id: "safetyMargin", type: "secondary", format: "text" },
+    { id: "efficiencyAtLoad", type: "secondary", format: "text" },
     { id: "annualEnergyCost", type: "secondary", format: "text" },
-    { id: "dailyKwh", type: "secondary", format: "text" },
+    { id: "atxStandard", type: "secondary", format: "text" },
+    { id: "transientWarning", type: "secondary", format: "text" },
   ],
 
   infoCards: [
     { id: "metrics", type: "list", icon: "⚡", itemCount: 4 },
-    { id: "details", type: "list", icon: "🖥️", itemCount: 4 },
+    { id: "details", type: "list", icon: "📊", itemCount: 8 },
     { id: "tips", type: "horizontal", icon: "💡", itemCount: 4 },
   ],
 
   chart: {
-    id: "powerDistribution",
+    id: "powerBreakdown",
     type: "bar",
     xKey: "component",
     height: 320,
-    stacked: false,
     showGrid: true,
     showLegend: false,
     showTooltip: true,
     yAxisFormat: "number",
     series: [
-      { key: "watts", type: "bar", color: "#f59e0b" },
+      { key: "value", color: "#3b82f6" },
     ],
   },
 
   detailedTable: {
-    id: "componentBreakdown",
-    buttonLabel: "View Component Breakdown",
-    buttonIcon: "📊",
-    modalTitle: "Power Consumption by Component",
+    id: "efficiencyTable",
+    buttonLabel: "View 80 PLUS Efficiency Levels",
+    buttonIcon: "⚡",
+    modalTitle: "80 PLUS Certification — Efficiency at Different Loads",
     columns: [
-      { id: "component", label: "Component", align: "left" },
-      { id: "watts", label: "Power Draw", align: "right", highlight: true },
-      { id: "percentage", label: "% of Total", align: "center" },
-      { id: "notes", label: "Notes", align: "left" },
+      { id: "tier", label: "Certification", align: "left" },
+      { id: "at20", label: "20% Load", align: "center" },
+      { id: "at50", label: "50% Load", align: "center", highlight: true },
+      { id: "at100", label: "100% Load", align: "center" },
+      { id: "savings", label: "Annual Savings vs Bronze", align: "right" },
     ],
   },
 
@@ -606,282 +525,290 @@ export const psuCalculatorConfig: CalculatorConfigV4 = {
   educationSections: [
     { id: "whatIs", type: "prose", icon: "📖" },
     { id: "howItWorks", type: "prose", icon: "⚙️" },
-    { id: "considerations", type: "list", icon: "📋", itemCount: 6 },
+    { id: "considerations", type: "list", icon: "⚠️", itemCount: 6 },
     { id: "categories", type: "list", icon: "📊", itemCount: 6 },
     { id: "examples", type: "code-example", icon: "🧮", columns: 2, exampleCount: 2 },
   ],
 
-  faqs: [
-    { id: "0" },
-    { id: "1" },
-    { id: "2" },
-    { id: "3" },
-    { id: "4" },
-    { id: "5" },
-  ],
+  faqs: [{ id: "0" }, { id: "1" }, { id: "2" }, { id: "3" }, { id: "4" }, { id: "5" }],
 
   references: [
     {
-      authors: "NVIDIA Corporation",
+      authors: "Intel Corporation",
       year: "2025",
-      title: "GeForce RTX 50 & 40 Series Specifications",
-      source: "NVIDIA",
-      url: "https://www.nvidia.com/en-us/geforce/",
+      title: "ATX12V Power Supply Design Guide v3.1",
+      source: "Intel Technical Documentation",
+      url: "https://www.intel.com/content/www/us/en/standards/atx12v-psu-design-guide.html",
     },
     {
-      authors: "CLEAResult / 80 PLUS",
-      year: "2024",
+      authors: "80 PLUS / Ecova",
+      year: "2025",
       title: "80 PLUS Certified Power Supplies and Manufacturers",
       source: "80 PLUS Program",
       url: "https://www.clearesult.com/80plus/",
     },
+    {
+      authors: "NVIDIA Corporation",
+      year: "2025",
+      title: "GeForce RTX 50 Series System Requirements",
+      source: "NVIDIA Technical Docs",
+      url: "https://www.nvidia.com/en-us/geforce/",
+    },
   ],
 
-  hero: {
-    badge: "Free Tool",
-    badgeVariant: "primary",
-  },
-
-  sidebar: {
-    showRelated: true,
-  },
-
-  features: {
-    pdf: true,
-    csv: true,
-    excel: true,
-    save: true,
-    share: true,
-  },
-
-  relatedCalculators: [
-    "electricity-cost-calculator",
-  ],
-
-  ads: {
-    showAds: true,
-  },
+  hero: { showRating: true, showShare: true },
+  sidebar: { showAds: true, showRelated: true },
+  features: { save: true, pdf: true, csv: true, excel: true },
+  relatedCalculators: ["electricity-cost", "bandwidth", "transfer-time", "ip-subnet"],
+  ads: { sidebar: true, footer: true },
 };
 
-// ============================================================
-// PSU Standard Sizes
-// ============================================================
-const PSU_STANDARD_SIZES = [300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 1000, 1100, 1200, 1300, 1500, 1600, 2000];
+// ─────────────────────────────────────────────────────────────────────────────
+// COMPONENT WATTAGE DATA
+// ─────────────────────────────────────────────────────────────────────────────
 
-function roundToNextPsuSize(watts: number): number {
-  for (const size of PSU_STANDARD_SIZES) {
-    if (size >= watts) return size;
-  }
-  return PSU_STANDARD_SIZES[PSU_STANDARD_SIZES.length - 1];
+interface ComponentPower {
+  typical: number;   // Typical load wattage
+  peak: number;      // Peak/TDP wattage
+  spikeFactor: number; // Transient spike multiplier (1.0 = no spikes)
 }
 
-// ============================================================
-// Efficiency map (at 50% load, typical values)
-// ============================================================
-const EFFICIENCY_MAP: Record<string, number> = {
-  "80plus": 0.80,
-  "80plus_bronze": 0.85,
-  "80plus_silver": 0.88,
-  "80plus_gold": 0.90,
-  "80plus_platinum": 0.92,
-  "80plus_titanium": 0.94,
+const CPU_TIERS: Record<string, ComponentPower> = {
+  budget:      { typical: 45,  peak: 65,  spikeFactor: 1.0 },
+  mid_range:   { typical: 65,  peak: 105, spikeFactor: 1.0 },
+  high_end:    { typical: 105, peak: 150, spikeFactor: 1.05 },
+  flagship:    { typical: 150, peak: 253, spikeFactor: 1.1 },
+  workstation: { typical: 280, peak: 350, spikeFactor: 1.1 },
 };
 
-const EFFICIENCY_LABELS: Record<string, string> = {
-  "80plus": "80 Plus",
-  "80plus_bronze": "80+ Bronze",
-  "80plus_silver": "80+ Silver",
-  "80plus_gold": "80+ Gold",
-  "80plus_platinum": "80+ Platinum",
-  "80plus_titanium": "80+ Titanium",
+const GPU_TIERS: Record<string, ComponentPower> = {
+  none:        { typical: 0,   peak: 0,   spikeFactor: 1.0 },
+  budget:      { typical: 75,  peak: 120, spikeFactor: 1.2 },
+  mid_range:   { typical: 150, peak: 200, spikeFactor: 1.3 },
+  high_end:    { typical: 220, peak: 320, spikeFactor: 1.5 },
+  flagship:    { typical: 350, peak: 575, spikeFactor: 1.8 },
+  workstation: { typical: 300, peak: 450, spikeFactor: 1.4 },
 };
 
-// ============================================================
-// RGB wattage
-// ============================================================
-const RGB_WATTS: Record<string, number> = {
-  none: 0,
-  minimal: 5,
-  moderate: 15,
-  heavy: 30,
+const PER_UNIT_WATTS = {
+  ram: 5,        // per stick (DDR4/DDR5 ~3-5W)
+  sata: 8,       // per HDD ~8-10W, SSD ~3-5W, average 8W
+  nvme: 7,       // per NVMe M.2
+  fan: 4,        // per fan/RGB strip
+  motherboard: 80, // base motherboard + chipset + USB etc.
 };
 
-// ============================================================
-// OC multiplier
-// ============================================================
-const OC_MULTIPLIER: Record<string, number> = {
+const OVERCLOCK_MULTIPLIER: Record<string, number> = {
   none: 1.0,
-  light: 1.10,
-  moderate: 1.20,
+  moderate: 1.15,
   heavy: 1.30,
 };
 
-// ============================================================
-// CALCULATE FUNCTION
-// ============================================================
-export function calculatePsuCalculator(data: {
+// Standard PSU sizes available on market
+const PSU_SIZES = [450, 550, 650, 750, 850, 1000, 1200, 1500, 1600];
+
+// 80 PLUS efficiency at 50% load (sweet spot)
+const EFFICIENCY_80PLUS: Record<string, number> = {
+  basic:    0.82,
+  bronze:   0.85,
+  silver:   0.88,
+  gold:     0.90,
+  platinum: 0.92,
+  titanium: 0.94,
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
+function roundToNearestPsu(watts: number): number {
+  for (const size of PSU_SIZES) {
+    if (size >= watts) return size;
+  }
+  return PSU_SIZES[PSU_SIZES.length - 1];
+}
+
+function getTransientRisk(gpuTier: string): string {
+  if (gpuTier === "flagship") return "highRisk";
+  if (gpuTier === "high_end") return "mediumRisk";
+  return "lowRisk";
+}
+
+function getAtxStandard(gpuTier: string): string {
+  if (gpuTier === "flagship" || gpuTier === "high_end") return "atx3";
+  return "atx2";
+}
+
+function fmtNum(val: number): string {
+  return Math.round(val).toLocaleString("en-US");
+}
+
+function fmtCurrency(val: number): string {
+  return `$${val.toFixed(2)}`;
+}
+
+// 80 PLUS efficiency table data
+function generateEfficiencyTable(systemWattage: number, usageHours: number, electricityCost: number): Array<Record<string, string>> {
+  const hoursPerYear = usageHours * 365;
+  const bronzeCost = (systemWattage / EFFICIENCY_80PLUS.bronze) * hoursPerYear / 1000 * electricityCost;
+
+  return Object.entries(EFFICIENCY_80PLUS).map(([tier, eff]) => {
+    const wallWatts = systemWattage / eff;
+    const annualKwh = wallWatts * hoursPerYear / 1000;
+    const annualCost = annualKwh * electricityCost;
+    const savings = bronzeCost - annualCost;
+
+    return {
+      tier: `80+ ${tier.charAt(0).toUpperCase() + tier.slice(1)}`,
+      at20: `${Math.round(eff * 100 - 5)}%`,
+      at50: `${Math.round(eff * 100)}%`,
+      at100: `${Math.round(eff * 100 - 3)}%`,
+      savings: tier === "bronze" ? "—" : `${fmtCurrency(savings)}/yr`,
+    };
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CALCULATE
+// ─────────────────────────────────────────────────────────────────────────────
+
+export function calculatePsu(data: {
   values: Record<string, unknown>;
   fieldUnits?: Record<string, string>;
   t?: Record<string, unknown>;
 }): CalculatorResults {
   const { values, t } = data;
-
   const v = (t?.values as Record<string, string>) || {};
   const f = (t?.formats as Record<string, string>) || {};
 
-  // Read inputs
-  const cpuWatts = values.cpuWatts as number | null;
-  const gpuWatts = values.gpuWatts as number | null;
+  const cpuTier = (values.cpuTier as string) || "mid_range";
+  const gpuTier = (values.gpuTier as string) || "mid_range";
+  const ramSticks = Number(values.ramSticks) || 2;
+  const sataStorage = Number(values.sataStorage) || 0;
+  const nvmeStorage = Number(values.nvmeStorage) || 1;
+  const fans = Number(values.fans) || 3;
+  const overclock = (values.overclock as string) || "none";
+  const usageHours = Number(values.usageHours) || 8;
+  const electricityCost = Number(values.electricityCost) || 0.12;
 
-  // Validate required
-  if (cpuWatts === null || cpuWatts === undefined) {
-    return { values: {}, formatted: {}, summary: "", isValid: false };
-  }
-  if (gpuWatts === null || gpuWatts === undefined) {
-    return { values: {}, formatted: {}, summary: "", isValid: false };
-  }
+  // ── Component wattages ──────────────────────────────────────────────
+  const cpu = CPU_TIERS[cpuTier] || CPU_TIERS.mid_range;
+  const gpu = GPU_TIERS[gpuTier] || GPU_TIERS.none;
 
-  const ramSticks = (values.ramSticks as number) || 2;
-  const sataStorage = (values.sataStorage as number) || 0;
-  const nvmeStorage = (values.nvmeStorage as number) || 0;
-  const hddStorage = (values.hddStorage as number) || 0;
-  const fans = (values.fans as number) || 0;
-  const usbDevices = (values.usbDevices as number) || 0;
-  const rgbLighting = (values.rgbLighting as string) || "none";
-  const overclocking = (values.overclocking as string) || "none";
-  const efficiencyRating = (values.efficiencyRating as string) || "80plus_gold";
-  const usageHours = (values.usageHours as number) || 6;
-  const electricityCost = (values.electricityCost as number) || 0.12;
+  const cpuWatts = cpu.peak;
+  const gpuWatts = gpu.peak;
+  const ramWatts = ramSticks * PER_UNIT_WATTS.ram;
+  const sataWatts = sataStorage * PER_UNIT_WATTS.sata;
+  const nvmeWatts = nvmeStorage * PER_UNIT_WATTS.nvme;
+  const fanWatts = fans * PER_UNIT_WATTS.fan;
+  const moboWatts = PER_UNIT_WATTS.motherboard;
 
-  // === Component power calculations ===
-  const motherboardWatts = 50 + (ramSticks > 4 ? 30 : 0); // higher-end boards for many RAM sticks
-  const ramWatts = ramSticks * 5; // ~5W per DDR5 stick
-  const sataWatts = sataStorage * 5;
-  const nvmeWatts = nvmeStorage * 7;
-  const hddWatts = hddStorage * 10;
-  const fanWatts = fans * 3;
-  const usbWatts = usbDevices * 2.5;
-  const rgbWatts = RGB_WATTS[rgbLighting] || 0;
+  const otherWatts = ramWatts + sataWatts + nvmeWatts + fanWatts + moboWatts;
 
-  // Base total (before OC)
-  const baseTotalWatts =
-    cpuWatts +
-    gpuWatts +
-    motherboardWatts +
-    ramWatts +
-    sataWatts +
-    nvmeWatts +
-    hddWatts +
-    fanWatts +
-    usbWatts +
-    rgbWatts;
+  // ── Base total (before OC) ──────────────────────────────────────────
+  const baseTotal = cpuWatts + gpuWatts + otherWatts;
 
-  // Apply overclocking multiplier (affects CPU + GPU only)
-  const ocMultiplier = OC_MULTIPLIER[overclocking] || 1.0;
-  const cpuWithOc = cpuWatts * ocMultiplier;
-  const gpuWithOc = gpuWatts * ocMultiplier;
-  const ocOverheadWatts = (cpuWithOc - cpuWatts) + (gpuWithOc - gpuWatts);
+  // ── Overclock adjustment (applied to CPU + GPU only) ────────────────
+  const ocMultiplier = OVERCLOCK_MULTIPLIER[overclock] || 1.0;
+  const ocCpuWatts = Math.round(cpuWatts * ocMultiplier);
+  const ocGpuWatts = Math.round(gpuWatts * ocMultiplier);
+  const overclockBonus = (ocCpuWatts - cpuWatts) + (ocGpuWatts - gpuWatts);
 
-  const totalSystemWatts = Math.round(baseTotalWatts + ocOverheadWatts);
+  const totalWithOc = ocCpuWatts + ocGpuWatts + otherWatts;
 
-  // Other components (everything except CPU and GPU)
-  const otherWatts = Math.round(
-    motherboardWatts + ramWatts + sataWatts + nvmeWatts + hddWatts + fanWatts + usbWatts + rgbWatts
-  );
+  // ── Safety margin (20%) ─────────────────────────────────────────────
+  const safetyMarginWatts = Math.round(totalWithOc * 0.20);
+  const totalWithSafety = totalWithOc + safetyMarginWatts;
 
-  // === PSU Recommendations ===
-  // Headroom: 20% buffer for spikes, degradation, future upgrades
-  const headroomMultiplier = 1.20;
-  const recommendedWatts = Math.round(totalSystemWatts * headroomMultiplier);
-  const recommendedPsu = roundToNextPsuSize(recommendedWatts);
+  // ── Transient spikes (GPU peak × spike factor) ──────────────────────
+  const gpuSpikeWatts = Math.round(ocGpuWatts * gpu.spikeFactor);
+  const peakWithSpikes = ocCpuWatts + gpuSpikeWatts + otherWatts;
 
-  // Minimum: 10% buffer (tight, not recommended)
-  const minimumWatts = Math.round(totalSystemWatts * 1.10);
-  const minimumPsu = roundToNextPsuSize(minimumWatts);
+  // ── Recommended PSU size ────────────────────────────────────────────
+  // Use the higher of (total + safety) or (peak with spikes)
+  const targetWattage = Math.max(totalWithSafety, peakWithSpikes);
+  const recommendedPsu = roundToNearestPsu(targetWattage);
 
-  // Load percentage at recommended PSU
-  const loadPercentage = Math.round((totalSystemWatts / recommendedPsu) * 100);
+  // ── Efficiency calculation ──────────────────────────────────────────
+  const loadPercentage = totalWithOc / recommendedPsu;
+  // Estimate 80+ Gold efficiency at this load
+  let efficiencyEstimate: number;
+  if (loadPercentage < 0.20) efficiencyEstimate = 0.87;
+  else if (loadPercentage <= 0.50) efficiencyEstimate = 0.90;
+  else if (loadPercentage <= 0.80) efficiencyEstimate = 0.89;
+  else efficiencyEstimate = 0.87;
 
-  // === Energy cost calculations ===
-  const efficiency = EFFICIENCY_MAP[efficiencyRating] || 0.90;
-  const wallWatts = totalSystemWatts / efficiency; // actual draw from wall
-  const dailyKwh = (wallWatts * usageHours) / 1000;
-  const monthlyKwh = dailyKwh * 30;
-  const annualKwh = dailyKwh * 365;
+  const wallWatts = totalWithOc / efficiencyEstimate;
+  const efficiencyStr = `~${Math.round(efficiencyEstimate * 100)}% (80+ Gold at ${Math.round(loadPercentage * 100)}% load)`;
+
+  // ── Annual energy cost ──────────────────────────────────────────────
+  // Use typical load (not peak) for energy cost
+  const typicalLoad = cpu.typical + gpu.typical + otherWatts;
+  const typicalWallWatts = typicalLoad / efficiencyEstimate;
+  const annualKwh = (typicalWallWatts * usageHours * 365) / 1000;
   const annualCost = annualKwh * electricityCost;
-  const monthlyCost = monthlyKwh * electricityCost;
 
-  const effLabel = EFFICIENCY_LABELS[efficiencyRating] || "80+ Gold";
-  const wUnit = v["W"] || "W";
-  const kwhUnit = v["kWh"] || "kWh";
+  // ── ATX standard ────────────────────────────────────────────────────
+  const atxKey = getAtxStandard(gpuTier);
+  const atxLabel = v[atxKey] || (atxKey === "atx3" ? "ATX 3.0/3.1 (recommended)" : "ATX 2.x (standard)");
 
-  // === Chart data ===
-  const chartData: Array<Record<string, unknown>> = [];
+  // ── Transient risk ──────────────────────────────────────────────────
+  const riskKey = getTransientRisk(gpuTier);
+  const riskLabel = v[riskKey] || riskKey;
 
-  if (Math.round(cpuWithOc) > 0) {
-    chartData.push({ component: "CPU", watts: Math.round(cpuWithOc) });
-  }
-  if (Math.round(gpuWithOc) > 0) {
-    chartData.push({ component: "GPU", watts: Math.round(gpuWithOc) });
-  }
-  if (motherboardWatts > 0) {
-    chartData.push({ component: "Motherboard", watts: motherboardWatts });
-  }
-  if (ramWatts > 0) {
-    chartData.push({ component: "RAM", watts: ramWatts });
-  }
-  const storageTotal = sataWatts + nvmeWatts + hddWatts;
-  if (storageTotal > 0) {
-    chartData.push({ component: "Storage", watts: storageTotal });
-  }
-  const peripheralTotal = fanWatts + usbWatts + rgbWatts;
-  if (peripheralTotal > 0) {
-    chartData.push({ component: "Fans/USB/RGB", watts: Math.round(peripheralTotal) });
-  }
+  const wattsLabel = v["watts"] || "W";
 
-  // === Detailed table: component breakdown ===
-  const tableData: Array<Record<string, string>> = [
-    { component: "CPU", watts: `${Math.round(cpuWithOc)} ${wUnit}`, percentage: `${Math.round((cpuWithOc / totalSystemWatts) * 100)}%`, notes: overclocking !== "none" ? `Includes OC (+${Math.round(ocMultiplier * 100 - 100)}%)` : "Stock" },
-    { component: "GPU", watts: `${Math.round(gpuWithOc)} ${wUnit}`, percentage: `${gpuWatts > 0 ? Math.round((gpuWithOc / totalSystemWatts) * 100) : 0}%`, notes: gpuWatts === 0 ? "Integrated graphics" : (overclocking !== "none" ? `Includes OC (+${Math.round(ocMultiplier * 100 - 100)}%)` : "Dedicated GPU") },
-    { component: "Motherboard", watts: `${motherboardWatts} ${wUnit}`, percentage: `${Math.round((motherboardWatts / totalSystemWatts) * 100)}%`, notes: ramSticks > 4 ? "High-end (8+ DIMM slots)" : "Standard ATX" },
-    { component: "RAM", watts: `${ramWatts} ${wUnit}`, percentage: `${Math.round((ramWatts / totalSystemWatts) * 100)}%`, notes: `${ramSticks} × 5W per stick` },
-    { component: "Storage", watts: `${storageTotal} ${wUnit}`, percentage: `${Math.round((storageTotal / totalSystemWatts) * 100)}%`, notes: `${nvmeStorage} NVMe + ${sataStorage} SATA + ${hddStorage} HDD` },
-    { component: "Fans", watts: `${fanWatts} ${wUnit}`, percentage: `${Math.round((fanWatts / totalSystemWatts) * 100)}%`, notes: `${fans} × 3W each` },
-    { component: "USB Devices", watts: `${Math.round(usbWatts)} ${wUnit}`, percentage: `${Math.round((usbWatts / totalSystemWatts) * 100)}%`, notes: `${usbDevices} × 2.5W each` },
-    { component: "RGB Lighting", watts: `${rgbWatts} ${wUnit}`, percentage: `${Math.round((rgbWatts / totalSystemWatts) * 100)}%`, notes: rgbLighting.charAt(0).toUpperCase() + rgbLighting.slice(1) },
-    { component: "Total", watts: `${totalSystemWatts} ${wUnit}`, percentage: "100%", notes: `Recommended: ${recommendedPsu}W PSU` },
-  ];
+  // ── Chart data ──────────────────────────────────────────────────────
+  const chartData = [
+    { component: "CPU", value: ocCpuWatts },
+    { component: "GPU", value: ocGpuWatts },
+    { component: "RAM", value: ramWatts },
+    { component: "Storage", value: sataWatts + nvmeWatts },
+    { component: "Fans/RGB", value: fanWatts },
+    { component: "Motherboard", value: moboWatts },
+  ].filter((d) => d.value > 0);
+
+  // ── Efficiency table ────────────────────────────────────────────────
+  const tableData = generateEfficiencyTable(totalWithOc, usageHours, electricityCost);
+
+  // ── Summary ─────────────────────────────────────────────────────────
+  const summary = (f.summary || "Your system draws approximately {totalWattage}W (peak {peakWattage}W with transients). Recommended PSU: {recommendedPsu}W ({efficiency} efficiency). Estimated annual energy cost: {annualCost}.")
+    .replace("{totalWattage}", `${totalWithOc}`)
+    .replace("{peakWattage}", `${peakWithSpikes}`)
+    .replace("{recommendedPsu}", `${recommendedPsu}`)
+    .replace("{efficiency}", `${Math.round(efficiencyEstimate * 100)}%`)
+    .replace("{annualCost}", fmtCurrency(annualCost));
 
   return {
     values: {
-      totalSystemWatts,
       recommendedPsu,
-      minimumPsu,
-      loadPercentage,
+      totalSystemWattage: totalWithOc,
+      peakWithSpikes,
+      cpuWattage: ocCpuWatts,
+      gpuWattage: ocGpuWatts,
+      otherWattage: otherWatts,
+      overclockBonus,
+      safetyMargin: safetyMarginWatts,
+      efficiencyAtLoad: efficiencyEstimate,
       annualEnergyCost: annualCost,
-      dailyKwh,
-      cpuPower: Math.round(cpuWithOc),
-      gpuPower: Math.round(gpuWithOc),
-      otherPower: otherWatts,
-      ocOverhead: Math.round(ocOverheadWatts),
+      atxStandard: atxLabel,
+      transientWarning: riskLabel,
     },
     formatted: {
-      totalSystemWatts: `${totalSystemWatts} ${wUnit}`,
-      recommendedPsu: `${recommendedPsu} ${wUnit}`,
-      minimumPsu: `${minimumPsu} ${wUnit}`,
-      loadPercentage: `${loadPercentage}%`,
-      annualEnergyCost: `$${annualCost.toFixed(2)}/${v["year"] || "year"}`,
-      dailyKwh: `${dailyKwh.toFixed(2)} ${kwhUnit}`,
-      cpuPower: `${Math.round(cpuWithOc)} ${wUnit}`,
-      gpuPower: `${Math.round(gpuWithOc)} ${wUnit}`,
-      otherPower: `${otherWatts} ${wUnit}`,
-      ocOverhead: ocOverheadWatts > 0 ? `+${Math.round(ocOverheadWatts)} ${wUnit}` : `0 ${wUnit}`,
+      recommendedPsu: `${fmtNum(recommendedPsu)}${wattsLabel}`,
+      totalSystemWattage: `${fmtNum(totalWithOc)}${wattsLabel}`,
+      peakWithSpikes: `${fmtNum(peakWithSpikes)}${wattsLabel}`,
+      cpuWattage: `${fmtNum(ocCpuWatts)}${wattsLabel}`,
+      gpuWattage: `${fmtNum(ocGpuWatts)}${wattsLabel}`,
+      otherWattage: `${fmtNum(otherWatts)}${wattsLabel}`,
+      overclockBonus: overclockBonus > 0 ? `+${fmtNum(overclockBonus)}${wattsLabel}` : `0${wattsLabel}`,
+      safetyMargin: `+${fmtNum(safetyMarginWatts)}${wattsLabel}`,
+      efficiencyAtLoad: efficiencyStr,
+      annualEnergyCost: `${fmtCurrency(annualCost)}${v["perYear"] || "/year"}`,
+      atxStandard: atxLabel,
+      transientWarning: riskLabel,
     },
-    summary:
-      f.summary
-        ?.replace("{totalWatts}", totalSystemWatts.toString())
-        .replace("{recommended}", recommendedPsu.toString())
-        .replace("{efficiency}", effLabel) || "",
+    summary,
     isValid: true,
     metadata: {
       chartData,

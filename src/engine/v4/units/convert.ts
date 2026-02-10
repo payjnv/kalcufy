@@ -489,8 +489,8 @@ export function guessDefaultUnit(unitType: UnitType | string, locale: string): s
   }
 
   // ── Data ──
-  if (unitType === "data") return "GB";
-  if (unitType === "data_rate") return "Mbps";
+  if (unitType === "data") return "gb";
+  if (unitType === "data_rate") return "mbps";
 
   // ── New groups: universal defaults ──
   if (unitType === "frequency_wave") return "Hz";

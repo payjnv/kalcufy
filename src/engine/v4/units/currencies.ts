@@ -275,6 +275,50 @@ export function getCurrenciesByRegion(region: string): CurrencyDefinition[] {
 /**
  * Format a number according to currency formatting rules
  */
+
+// Internal symbol mapping — maps ISO code to display symbol + position
+const CURRENCY_SYMBOLS: Record<string, { sym: string; pos: "prefix" | "suffix" }> = {
+  USD: { sym: "$", pos: "prefix" },
+  CAD: { sym: "C$", pos: "prefix" },
+  MXN: { sym: "MX$", pos: "prefix" },
+  BRL: { sym: "R$", pos: "prefix" },
+  COP: { sym: "COL$", pos: "prefix" },
+  ARS: { sym: "AR$", pos: "prefix" },
+  CLP: { sym: "CLP ", pos: "prefix" },
+  PEN: { sym: "S/", pos: "prefix" },
+  EUR: { sym: "€", pos: "suffix" },
+  GBP: { sym: "£", pos: "prefix" },
+  CHF: { sym: "CHF ", pos: "prefix" },
+  SEK: { sym: "kr", pos: "suffix" },
+  NOK: { sym: "kr", pos: "suffix" },
+  DKK: { sym: "kr", pos: "suffix" },
+  PLN: { sym: "zł", pos: "suffix" },
+  TRY: { sym: "₺", pos: "prefix" },
+  JPY: { sym: "¥", pos: "prefix" },
+  CNY: { sym: "¥", pos: "prefix" },
+  KRW: { sym: "₩", pos: "prefix" },
+  INR: { sym: "₹", pos: "prefix" },
+  AUD: { sym: "A$", pos: "prefix" },
+  NZD: { sym: "NZ$", pos: "prefix" },
+  SGD: { sym: "S$", pos: "prefix" },
+  HKD: { sym: "HK$", pos: "prefix" },
+  THB: { sym: "฿", pos: "prefix" },
+  PHP: { sym: "₱", pos: "prefix" },
+  IDR: { sym: "Rp", pos: "prefix" },
+  MYR: { sym: "RM", pos: "prefix" },
+  AED: { sym: "د.إ", pos: "suffix" },
+  SAR: { sym: "﷼", pos: "suffix" },
+  ILS: { sym: "₪", pos: "prefix" },
+  ZAR: { sym: "R", pos: "prefix" },
+  NGN: { sym: "₦", pos: "prefix" },
+  EGP: { sym: "E£", pos: "prefix" },
+  RUB: { sym: "₽", pos: "suffix" },
+  CZK: { sym: "Kč", pos: "suffix" },
+  HUF: { sym: "Ft", pos: "suffix" },
+  RON: { sym: "lei", pos: "suffix" },
+  TWD: { sym: "NT$", pos: "prefix" },
+};
+
 export function formatCurrency(value: number, currencyCode: string): string {
   const currency = getCurrency(currencyCode);
   if (!currency) return String(value);
@@ -290,11 +334,13 @@ export function formatCurrency(value: number, currencyCode: string): string {
   // Join with decimal separator
   const full = decPart ? `${formatted}${currency.decimalSeparator}${decPart}` : formatted;
 
-  // Position symbol
-  if (currency.symbolPosition === "prefix") {
-    return `${currency.currencySymbol}${full}`;
+  // Get display symbol and position from internal map
+  const info = CURRENCY_SYMBOLS[currencyCode] || { sym: currencyCode, pos: "prefix" as const };
+
+  if (info.pos === "prefix") {
+    return `${info.sym}${full}`;
   }
-  return `${full} ${currency.currencySymbol}`;
+  return `${full} ${info.sym}`;
 }
 
 /**

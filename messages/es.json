@@ -141,7 +141,38 @@
       "varasToMetrosConverter": "Varas to Meters Converter",
       "dateCalculator": "Date Calculadora de",
       "currencyConverter": "Currency Converter",
-      "lengthConverter": "Length Converter"
+      "lengthConverter": "Length Converter",
+      "percentageCalculator": "Percentage Calculadora de",
+      "discountCalculator": "Discount Calculadora de",
+      "gpaCalculator": "GPA Calculadora de",
+      "gradeCalculator": "Grade Calculadora de",
+      "timeCalculator": "Time Calculadora de",
+      "squareFootageCalculator": "Square Footage Calculadora de",
+      "flooringCalculator": "Flooring Calculadora de",
+      "roofingCalculator": "Roofing Calculadora de",
+      "savingsGoalCalculator": "Square Footage Calculadora de",
+      "drywallCalculator": "Drywall Calculadora de",
+      "mulchGravelCalculator": "Mulch & Gravel Calculadora de",
+      "grade": "Grade Calculadora de",
+      "time": "Time Calculadora de",
+      "squareFootage": "Square Footage Calculadora de",
+      "flooring": "Flooring Calculadora de",
+      "roofing": "Roofing Calculadora de",
+      "savingsGoal": "Savings Goal Calculadora de",
+      "drywall": "Drywall Calculadora de",
+      "mulchGravel": "Mulch & Gravel Calculadora de",
+      "btu": "BTU Calculadora de",
+      "debtPayoff": "Credit Card 1",
+      "fence": "Fence Calculadora de",
+      "tile": "Tile Calculadora de",
+      "creditCardInterest": "Credit Card Interest Calculadora de",
+      "kgToStonesConverter": "KG to Stones Converter",
+      "pintsToLitersConverter": "Pints to Liters Converter",
+      "stonesToKgConverter": "Stones to KG Converter",
+      "tablespoonToMlConverter": "Tablespoons to mL Converter",
+      "creditCardPayoff": "Credit Card Payoff Calculadora de",
+      "passwordGenerator": "Password Generator",
+      "loanCalculator": "Loan Calculadora de"
     }
   },
   "home": {
@@ -610,6 +641,102 @@
       },
       "lengthConverter": {
         "desc": "Calculate length converter"
+      },
+      "percentageCalculator": {
+        "desc": "Calculate percentage calculator"
+      },
+      "discountCalculator": {
+        "desc": "Calculate discount calculator"
+      },
+      "gpaCalculator": {
+        "desc": "Calculate gpa calculator"
+      },
+      "gradeCalculator": {
+        "desc": "Calculate grade calculator"
+      },
+      "timeCalculator": {
+        "desc": "Calculate time calculator"
+      },
+      "squareFootageCalculator": {
+        "desc": "Calculate square footage calculator"
+      },
+      "flooringCalculator": {
+        "desc": "Calculate flooring calculator"
+      },
+      "roofingCalculator": {
+        "desc": "Calculate roofing calculator"
+      },
+      "savingsGoalCalculator": {
+        "desc": "Calculate savings goal calculator"
+      },
+      "drywallCalculator": {
+        "desc": "Calculate drywall calculator"
+      },
+      "mulchGravelCalculator": {
+        "desc": "Calculate mulch gravel calculator"
+      },
+      "grade": {
+        "desc": "Calculate grade"
+      },
+      "time": {
+        "desc": "Calculate time"
+      },
+      "squareFootage": {
+        "desc": "Calculate square footage"
+      },
+      "flooring": {
+        "desc": "Calculate flooring"
+      },
+      "roofing": {
+        "desc": "Calculate roofing"
+      },
+      "savingsGoal": {
+        "desc": "Calculate savings goal"
+      },
+      "drywall": {
+        "desc": "Calculate drywall"
+      },
+      "mulchGravel": {
+        "desc": "Calculate mulch gravel"
+      },
+      "amortization": {
+        "desc": "Calculate amortization"
+      },
+      "btu": {
+        "desc": "Calculate btu"
+      },
+      "debtPayoff": {
+        "desc": "Calculate debt payoff"
+      },
+      "fence": {
+        "desc": "Calculate fence"
+      },
+      "tile": {
+        "desc": "Calculate tile"
+      },
+      "creditCardInterest": {
+        "desc": "Calculate credit card interest"
+      },
+      "kgToStonesConverter": {
+        "desc": "Calculate kg to stones converter"
+      },
+      "pintsToLitersConverter": {
+        "desc": "Calculate pints to liters converter"
+      },
+      "stonesToKgConverter": {
+        "desc": "Calculate stones to kg converter"
+      },
+      "tablespoonToMlConverter": {
+        "desc": "Calculate tablespoon to ml converter"
+      },
+      "creditCardPayoff": {
+        "desc": "Calculate credit card payoff"
+      },
+      "passwordGenerator": {
+        "desc": "Calculate password generator"
+      },
+      "loanCalculator": {
+        "desc": "Calculate loan calculator"
       }
     },
     "sortBy": "Ordenar por",
@@ -1136,14 +1263,26 @@
     "B": {
       "name": "Bytes"
     },
+    "kb": {
+      "name": "Kilobytes"
+    },
     "KB": {
       "name": "Kilobytes"
+    },
+    "mb": {
+      "name": "Megabytes"
     },
     "MB": {
       "name": "Megabytes"
     },
+    "gb": {
+      "name": "Gigabytes"
+    },
     "GB": {
       "name": "Gigabytes"
+    },
+    "tb": {
+      "name": "Terabytes"
     },
     "TB": {
       "name": "Terabytes"
@@ -1151,11 +1290,20 @@
     "bps": {
       "name": "Bits/segundo"
     },
+    "kbps": {
+      "name": "Kilobits/s"
+    },
     "Kbps": {
       "name": "Kilobits/s"
     },
+    "mbps": {
+      "name": "Megabits/s"
+    },
     "Mbps": {
       "name": "Megabits/s"
+    },
+    "gbps": {
+      "name": "Gigabits/s"
     },
     "Gbps": {
       "name": "Gigabits/s"

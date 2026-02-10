@@ -20,6 +20,7 @@ import type { UnitDefinition, DualUnitValue } from "../units/types";
 import { convertDualToBase, convertBaseToDual } from "../units/convert";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { ToggleInput, NumberStepperInput, TextAreaInput, TimeInput, DateRangeInput, ImageRadioInput, MultiSelectInput, RepeaterInput } from "./NewInputComponents";
 
 // =============================================================================
 // TYPES
@@ -27,11 +28,15 @@ import "react-datepicker/dist/react-datepicker.css";
 interface InputOption {
   value: string;
   label: string;
+  icon?: string;    // For ImageRadio - emoji/icon
+  image?: string;   // For ImageRadio - image URL
+  description?: string; // V4.3 - Subtitle below label in radio buttons
 }
 
 interface InputConfig {
   id: string;
-  type: "number" | "currency" | "percentage" | "select" | "slider" | "radio" | "date" | "text" | "checkbox";
+  type: "number" | "currency" | "percentage" | "select" | "slider" | "radio" | "date" | "text" | "checkbox"
+    | "toggle" | "stepper" | "textarea" | "time" | "daterange" | "imageradio" | "multiselect" | "repeater";
   label: string;
   required?: boolean;
   defaultValue?: unknown;
@@ -52,8 +57,43 @@ interface InputConfig {
   allowedUnits?: string[];
   excludeUnits?: string[];
   autoConvert?: boolean;
+  showSlider?: boolean; // Explicit override: true = force slider, false = never slider
   _fieldUnit?: string; // Current selected unit (injected by engine)
   _onFieldUnitChange?: (unitId: string) => void; // Unit change handler (injected by engine)
+  // ── New Component Properties ──
+  // Toggle
+  toggleLabel?: string;
+  // TextArea
+  rows?: number;
+  maxLength?: number;
+  // Time
+  timeFormat?: "hms" | "hm" | "ms";
+  timeOutputFormat?: "seconds" | "object";
+  // DateRange
+  dateRangeLabels?: { start?: string; end?: string };
+  // ImageRadio
+  columns?: number;
+  // MultiSelect
+  multiSelectColumns?: number;
+  maxSelections?: number;
+  // Repeater
+  repeaterFields?: Array<{
+    id: string;
+    type: "number" | "text" | "select";
+    label?: string;
+    placeholder?: string;
+    suffix?: string;
+    prefix?: string;
+    min?: number;
+    max?: number;
+    step?: number;
+    options?: InputOption[];
+    width?: "full" | "half" | "third";
+    defaultValue?: unknown;
+  }>;
+  maxRows?: number;
+  minRows?: number;
+  addButtonLabel?: string;
 }
 
 interface InputGroup {
@@ -1547,6 +1587,12 @@ function RadioInput({ input, value, onChange, errorId, t }: { input: InputConfig
   const containerRef = useRef<HTMLDivElement>(null);
   const [sliderStyle, setSliderStyle] = useState<{ left?: string; width?: string }>({});
 
+  // Check if any option has a description (from config or translations)
+  const hasDescriptions = options.some(opt => {
+    const descFromT = t("inputs." + input.id + ".descriptions." + opt.value, "");
+    return descFromT || opt.description;
+  });
+
   const updateSlider = useCallback(() => {
     if (!containerRef.current) return;
     const idx = options.findIndex(o => o.value === value);
@@ -1580,6 +1626,11 @@ function RadioInput({ input, value, onChange, errorId, t }: { input: InputConfig
         />
         {options.map((opt) => {
           const isSelected = value === opt.value;
+          const optLabel = t("inputs." + input.id + ".options." + opt.value, opt.label);
+          // Description: try translation first, then fall back to opt.description
+          const descFromT = t("inputs." + input.id + ".descriptions." + opt.value, "");
+          const description = descFromT || opt.description || "";
+
           return (
             <button
               key={opt.value}
@@ -1587,13 +1638,22 @@ function RadioInput({ input, value, onChange, errorId, t }: { input: InputConfig
               role="radio"
               aria-checked={isSelected}
               onClick={() => onChange(opt.value)}
-              className={`relative z-10 flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-1 ${
+              className={`relative z-10 flex-1 py-2 px-2 rounded-lg text-sm font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-1 ${
+                hasDescriptions ? "flex flex-col items-center gap-0" : ""
+              } ${
                 isSelected
                   ? "text-white"
                   : "text-slate-500 hover:text-slate-700"
               }`}
             >
-              {t("inputs." + input.id + ".options." + opt.value, opt.label)}
+              <span>{optLabel}</span>
+              {hasDescriptions && description && (
+                <span className={`text-[10px] font-normal leading-tight mt-0.5 ${
+                  isSelected ? "text-blue-100" : "text-slate-400"
+                }`}>
+                  {description}
+                </span>
+              )}
             </button>
           );
         })}
@@ -1880,6 +1940,13 @@ function CheckboxInput({ input, value, onChange, errorId, t }: { input: InputCon
 // Override: type: "slider" in config always forces slider
 // =============================================================================
 function shouldUseSlider(input) {
+  // ─── EXPLICIT OVERRIDE: Always respect showSlider property ────────────
+  if (input.showSlider === false) return false;
+  if (input.showSlider === true) return true;
+
+  // ─── CURRENCY FIELDS: Money inputs should NEVER be sliders ────────────
+  if (input.unitType === 'currency') return false;
+
   const id = input.id.toLowerCase();
   const label = (input.label || '').toLowerCase();
   const suffix = (input.suffix || '').toLowerCase();
@@ -2141,6 +2208,23 @@ function RenderInput({
       return <TextInput input={input} value={value as string} onChange={onChange} errorId={errorId} t={t} />;
     case "checkbox":
       return <CheckboxInput input={input} value={value as boolean} onChange={onChange} errorId={errorId} t={t} />;
+    // ── NEW V4.3 COMPONENTS ──
+    case "toggle":
+      return <ToggleInput input={input} value={value as boolean} onChange={onChange} t={t} />;
+    case "stepper":
+      return <NumberStepperInput input={input} value={value as number} onChange={onChange} onBlur={onBlur} t={t} validation={validation} />;
+    case "textarea":
+      return <TextAreaInput input={input} value={value as string} onChange={onChange} onBlur={onBlur} t={t} validation={validation} />;
+    case "time":
+      return <TimeInput input={input} value={value} onChange={onChange} onBlur={onBlur} t={t} validation={validation} />;
+    case "daterange":
+      return <DateRangeInput input={input} value={value} onChange={onChange} onBlur={onBlur} t={t} validation={validation} />;
+    case "imageradio":
+      return <ImageRadioInput input={input} value={value as string} onChange={onChange} t={t} />;
+    case "multiselect":
+      return <MultiSelectInput input={input} value={value} onChange={onChange} t={t} />;
+    case "repeater":
+      return <RepeaterInput input={input} value={value} onChange={onChange} onBlur={onBlur} t={t} validation={validation} />;
     default:
       return <NumberInput input={input} value={value as number} onChange={onChange} onBlur={onBlur} errorId={errorId} t={t} unitSystem={unitSystem} validation={validation} currencySymbol={currencySymbol} />;
   }

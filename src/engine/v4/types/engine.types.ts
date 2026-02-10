@@ -19,6 +19,20 @@ export interface InputTranslation {
   prefix?: string;
   placeholder?: string;
   options?: Record<string, string>;
+  descriptions?: Record<string, string>; // V4.3 - Radio option subtitles (e.g. { slow: "~0.5 lb/wk" })
+  // V4.3 - Time component
+  hoursLabel?: string;
+  minutesLabel?: string;
+  secondsLabel?: string;
+  // V4.3 - DateRange component
+  startLabel?: string;
+  endLabel?: string;
+  sameDay?: string;
+  oneDay?: string;
+  days?: string;
+  // V4.3 - Repeater component
+  addButton?: string;
+  fields?: Record<string, { label?: string; placeholder?: string }>;
 }
 
 export interface ResultTranslation {
@@ -156,11 +170,23 @@ export type InputType =
   | 'text'
   | 'date'
   | 'currency'
-  | 'percentage';
+  | 'percentage'
+  // ── V4.3 New Components ──
+  | 'toggle'
+  | 'stepper'
+  | 'textarea'
+  | 'time'
+  | 'daterange'
+  | 'imageradio'
+  | 'multiselect'
+  | 'repeater';
 
 export interface InputOption {
   value: string;
   icon?: string;
+  image?: string;
+  label?: string;
+  description?: string; // V4.3 - Subtitle shown below label in radio buttons
 }
 
 export interface UnitOption {
@@ -177,11 +203,27 @@ export interface ShowWhenConditionSingle {
 // Supports single condition or array of conditions (AND logic)
 export type ShowWhenCondition = ShowWhenConditionSingle | ShowWhenConditionSingle[];
 
+// ── V4.3 Repeater Field Config ──────────────────────────────────────────────
+export interface RepeaterFieldConfig {
+  id: string;
+  type: 'number' | 'text' | 'select';
+  label?: string;
+  placeholder?: string;
+  suffix?: string;
+  prefix?: string;
+  min?: number;
+  max?: number;
+  step?: number;
+  options?: Array<{ value: string; label: string }>;
+  width?: 'full' | 'half' | 'third';
+  defaultValue?: unknown;
+}
+
 export interface InputConfig {
   id: string;
   type: InputType;
   required?: boolean;
-  defaultValue?: string | number | boolean | null; // SMART DEFAULTS: null means "empty field with placeholder"
+  defaultValue?: string | number | boolean | null | Record<string, unknown> | Array<unknown>; // SMART DEFAULTS: null means "empty field with placeholder"
   placeholder?: string; // SMART DEFAULTS: Visual hint when field is empty
   min?: number;
   max?: number;
@@ -218,6 +260,35 @@ export interface InputConfig {
    * - undefined (default) = sync all fields with same unitType (backwards compatible)
    */
   syncGroup?: string | false;
+  
+  // ── V4.3 New Component Properties ─────────────────────────────────────────
+  
+  // Toggle
+  toggleLabel?: string;
+  
+  // TextArea
+  rows?: number;
+  maxLength?: number;
+  
+  // Time
+  timeFormat?: 'hms' | 'hm' | 'ms';
+  timeOutputFormat?: 'seconds' | 'object';
+  
+  // DateRange
+  dateRangeLabels?: { start?: string; end?: string };
+  
+  // ImageRadio
+  columns?: number;
+  
+  // MultiSelect
+  multiSelectColumns?: number;
+  maxSelections?: number;
+  
+  // Repeater
+  repeaterFields?: RepeaterFieldConfig[];
+  maxRows?: number;
+  minRows?: number;
+  addButtonLabel?: string;
 }
 
 export interface InputGroup {

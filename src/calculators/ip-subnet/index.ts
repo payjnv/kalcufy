@@ -1,12 +1,14 @@
 import type { CalculatorConfigV4, CalculatorResults } from "@/engine/v4/types/engine.types";
 
 // ─────────────────────────────────────────────────────────────────────────────
-// IP Subnet Calculator (IPv4)
+// IP Subnet Calculator (IPv4) — V4.3
+// Features: Cloud provider mode (AWS/Azure/GCP), binary/hex toggle,
+//           next/previous subnet, full subnet reference table
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const ipSubnetConfig: CalculatorConfigV4 = {
   id: "ip-subnet",
-  version: "4.0",
+  version: "4.3",
   category: "technology",
   icon: "🌐",
 
@@ -14,22 +16,22 @@ export const ipSubnetConfig: CalculatorConfigV4 = {
     {
       id: "homeNetwork",
       icon: "🏠",
-      values: { octet1: 192, octet2: 168, octet3: 1, octet4: 100, cidr: "24" },
+      values: { octet1: 192, octet2: 168, octet3: 1, octet4: 100, cidr: "24", cloudProvider: "standard" },
     },
     {
       id: "smallOffice",
       icon: "🏢",
-      values: { octet1: 10, octet2: 0, octet3: 1, octet4: 50, cidr: "28" },
+      values: { octet1: 10, octet2: 0, octet3: 1, octet4: 50, cidr: "28", cloudProvider: "standard" },
     },
     {
-      id: "corporate",
-      icon: "🏗️",
-      values: { octet1: 172, octet2: 16, octet3: 0, octet4: 1, cidr: "16" },
+      id: "awsVpc",
+      icon: "☁️",
+      values: { octet1: 10, octet2: 0, octet3: 0, octet4: 0, cidr: "24", cloudProvider: "aws" },
     },
     {
       id: "pointToPoint",
       icon: "🔗",
-      values: { octet1: 10, octet2: 1, octet3: 1, octet4: 0, cidr: "30" },
+      values: { octet1: 10, octet2: 1, octet3: 1, octet4: 0, cidr: "30", cloudProvider: "standard" },
     },
   ],
 
@@ -52,7 +54,7 @@ export const ipSubnetConfig: CalculatorConfigV4 = {
           "network address calculator",
           "free subnet calculator",
           "subnetting tool",
-          "wildcard mask calculator",
+          "aws vpc subnet calculator",
         ],
       },
 
@@ -112,10 +114,20 @@ export const ipSubnetConfig: CalculatorConfigV4 = {
             "32": "/32 — 255.255.255.255 (single host)",
           },
         },
+        cloudProvider: {
+          label: "Cloud Provider",
+          helpText: "Cloud providers reserve extra IPs — affects usable host count",
+          options: {
+            standard: "Standard Network",
+            aws: "AWS VPC (−5 IPs)",
+            azure: "Azure VNet (−5 IPs)",
+            gcp: "Google Cloud VPC (−4 IPs)",
+          },
+        },
       },
 
       results: {
-        ipAddress: { label: "IP Address" },
+        cidrNotation: { label: "CIDR Notation" },
         networkAddress: { label: "Network Address" },
         broadcastAddress: { label: "Broadcast Address" },
         subnetMask: { label: "Subnet Mask" },
@@ -123,21 +135,23 @@ export const ipSubnetConfig: CalculatorConfigV4 = {
         totalAddresses: { label: "Total Addresses" },
         usableHosts: { label: "Usable Hosts" },
         hostRange: { label: "Usable Host Range" },
-        cidrNotation: { label: "CIDR Notation" },
         ipClass: { label: "IP Class" },
         ipType: { label: "IP Type" },
+        networkBits: { label: "Network Bits" },
+        hostBits: { label: "Host Bits" },
+        nextSubnet: { label: "Next Subnet" },
+        previousSubnet: { label: "Previous Subnet" },
+        reservedIps: { label: "Reserved IPs" },
         binarySubnetMask: { label: "Binary Subnet Mask" },
         binaryIp: { label: "Binary IP Address" },
         hexIp: { label: "Hex IP Address" },
-        networkBits: { label: "Network Bits" },
-        hostBits: { label: "Host Bits" },
       },
 
       presets: {
         homeNetwork: { label: "Home Network /24", description: "192.168.1.100/24 — 254 usable hosts" },
         smallOffice: { label: "Small Office /28", description: "10.0.1.50/28 — 14 usable hosts" },
-        corporate: { label: "Corporate /16", description: "172.16.0.1/16 — 65,534 usable hosts" },
-        pointToPoint: { label: "Point-to-Point /30", description: "10.1.1.0/30 — 2 usable hosts (router link)" },
+        awsVpc: { label: "AWS VPC /24", description: "10.0.0.0/24 — 251 usable (5 reserved)" },
+        pointToPoint: { label: "Point-to-Point /30", description: "10.1.1.0/30 — 2 hosts (router link)" },
       },
 
       values: {
@@ -161,6 +175,13 @@ export const ipSubnetConfig: CalculatorConfigV4 = {
         "na": "N/A",
         "pointToPoint": "Point-to-Point (RFC 3021)",
         "singleHost": "Single Host Route",
+        "noSubnet": "—",
+        "awsReserved": "5 IPs (.0, .1, .2, .3, bcast)",
+        "azureReserved": "5 IPs (.0, .1, .2, .3, bcast)",
+        "gcpReserved": "4 IPs (.0, .1, bcast, DHCP)",
+        "standardReserved": "2 IPs (.0 net, bcast)",
+        "Network/Broadcast": "Reserved",
+        "Usable Hosts": "Usable Hosts",
       },
 
       formats: {
@@ -178,12 +199,12 @@ export const ipSubnetConfig: CalculatorConfigV4 = {
           ],
         },
         details: {
-          title: "Address Details",
+          title: "Binary & Technical Details",
           items: [
-            { label: "Subnet Mask", valueKey: "subnetMask" },
-            { label: "Wildcard Mask", valueKey: "wildcardMask" },
-            { label: "IP Class", valueKey: "ipClass" },
-            { label: "IP Type", valueKey: "ipType" },
+            { label: "Binary Subnet Mask", valueKey: "binarySubnetMask" },
+            { label: "Binary IP Address", valueKey: "binaryIp" },
+            { label: "Hex IP Address", valueKey: "hexIp" },
+            { label: "Reserved IPs", valueKey: "reservedIps" },
           ],
         },
         tips: {
@@ -192,8 +213,16 @@ export const ipSubnetConfig: CalculatorConfigV4 = {
             "Use /24 (254 hosts) for home or small office networks — most common subnet size.",
             "Private ranges (RFC 1918): 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 — free for internal use.",
             "First IP = network ID, last IP = broadcast — neither can be assigned to a device.",
-            "For router-to-router links, use /30 (2 hosts) or /31 (point-to-point, RFC 3021).",
+            "AWS/Azure reserve 3–5 extra IPs per subnet — always use the cloud provider mode for accurate counts.",
           ],
+        },
+      },
+
+      chart: {
+        title: "Subnet Visual Analysis",
+        tabs: {
+          "address-allocation": "Address Allocation",
+          "cloud-comparison": "Cloud Comparison",
         },
       },
 
@@ -245,29 +274,47 @@ export const ipSubnetConfig: CalculatorConfigV4 = {
               result: "192.168.1.0/24 supports 254 devices. Wildcard: 0.0.0.255",
             },
             {
-              title: "Example: 10.0.1.50 /28",
+              title: "Example: AWS VPC 10.0.0.0 /24",
               steps: [
-                "IP: 10.0.1.50 → Binary: 00001010.00000000.00000001.00110010",
-                "CIDR /28 → Mask: 255.255.255.240 → Last octet: 11110000",
-                "Each /28 block = 16 addresses: ...0–15, 16–31, 32–47, 48–63...",
-                "50 falls in block 48–63 → Network: 10.0.1.48",
-                "Usable hosts = 16 − 2 = 14",
-                "Range: 10.0.1.49 – 10.0.1.62 | Broadcast: 10.0.1.63",
+                "IP: 10.0.0.0/24 → 256 total addresses",
+                "Standard: 256 − 2 = 254 usable hosts",
+                "AWS reserves 5 IPs: .0 (network), .1 (VPC router), .2 (DNS), .3 (future), .255 (broadcast)",
+                "AWS usable: 256 − 5 = 251 hosts",
+                "First usable: 10.0.0.4 | Last usable: 10.0.0.254",
+                "Azure: same 251 hosts | GCP: 252 hosts (4 reserved)",
               ],
-              result: "10.0.1.48/28 supports 14 devices. Wildcard: 0.0.0.15",
+              result: "Always use cloud provider mode for accurate host counts in AWS/Azure/GCP.",
             },
           ],
         },
       },
 
-      faqs: [
-        { question: "What is the difference between a subnet mask and CIDR notation?", answer: "They express the same concept in different formats. A subnet mask like 255.255.255.0 uses four decimal octets, while CIDR writes it as /24 — the count of network bits. CIDR is more concise and has become the modern standard. For example, 255.255.255.240 equals /28, and 255.255.0.0 equals /16. To convert a subnet mask to CIDR, count the consecutive 1-bits in its binary form." },
-        { question: "Why can't the network and broadcast addresses be assigned to hosts?", answer: "The network address (first IP in the subnet) identifies the subnet itself in routing tables — assigning it to a device would confuse routers. The broadcast address (last IP) is reserved for sending packets to all hosts on the subnet simultaneously. Using either for a device would break routing and broadcast functionality, causing network errors." },
-        { question: "What are the RFC 1918 private IP address ranges?", answer: "RFC 1918 defines three ranges reserved for private networks: 10.0.0.0/8 (10.0.0.0 – 10.255.255.255, ~16.7 million addresses), 172.16.0.0/12 (172.16.0.0 – 172.31.255.255, ~1 million addresses), and 192.168.0.0/16 (192.168.0.0 – 192.168.255.255, ~65,000 addresses). These are not routable on the public internet. NAT (Network Address Translation) maps them to public IPs for internet access." },
-        { question: "What is a wildcard mask and when is it used?", answer: "A wildcard mask is the bitwise inverse of the subnet mask — where the mask has 1s, the wildcard has 0s, and vice versa. For subnet mask 255.255.255.0, the wildcard is 0.0.0.255. Wildcard masks are used in Cisco IOS for Access Control Lists (ACLs) and in OSPF area network statements to define which addresses a rule or route applies to." },
-        { question: "What is the difference between /30 and /31 for point-to-point links?", answer: "A /30 provides 4 addresses (2 usable hosts + network + broadcast), which is the traditional choice for router-to-router links. RFC 3021 introduced /31, which provides exactly 2 addresses with no network or broadcast overhead — more efficient for point-to-point links where broadcast is unnecessary. Most modern routers support /31, but some legacy equipment may not." },
-        { question: "How do I determine the right subnet size for my network?", answer: "Count the number of devices that need IP addresses (computers, phones, printers, servers, IoT, access points) and add 20–50% for future growth. Then find the smallest CIDR prefix that fits: for 50 devices, you'd need at least /26 (62 usable) but /25 (126 usable) gives more room. Remember each subnet loses 2 addresses (network + broadcast), and you may need IPs for gateways and management interfaces too." },
-      ],
+      faqs: {
+        "0": {
+          question: "What is a subnet mask and why is it important?",
+          answer: "A subnet mask is a 32-bit number that divides an IP address into the network portion and the host portion. It tells routers and devices which part of the IP address identifies the network and which part identifies individual devices. Without a subnet mask, devices cannot determine if a destination IP is on the same local network or needs to be forwarded through a router. The most common subnet mask is 255.255.255.0 (/24), which creates a network with 254 usable host addresses.",
+        },
+        "1": {
+          question: "How do AWS, Azure, and GCP differ in reserved IPs per subnet?",
+          answer: "Cloud providers reserve extra IP addresses beyond the standard network and broadcast addresses. AWS reserves 5 IPs per subnet: the network address (.0), the VPC router (.1), the DNS server (.2), reserved for future use (.3), and the broadcast address. Azure also reserves 5 IPs with a similar pattern. Google Cloud reserves 4 IPs: the network address, default gateway, broadcast, and one for DHCP. This means a /24 subnet gives you 254 hosts on standard networks, but only 251 on AWS/Azure or 252 on GCP.",
+        },
+        "2": {
+          question: "What is CIDR notation and how does it relate to subnet masks?",
+          answer: "CIDR (Classless Inter-Domain Routing) notation uses a slash followed by a number to indicate how many bits form the network prefix. For example, /24 means 24 bits are the network portion, equivalent to the subnet mask 255.255.255.0. CIDR replaced the old classful system (Class A, B, C) to allow more flexible address allocation. The formula is simple: total addresses = 2^(32 − prefix_length), and usable hosts = total addresses − 2 (subtracting the network and broadcast addresses).",
+        },
+        "3": {
+          question: "What is a wildcard mask and when is it used?",
+          answer: "A wildcard mask is the bitwise inverse of a subnet mask. Where a subnet mask has 1s, the wildcard mask has 0s, and vice versa. For example, if the subnet mask is 255.255.255.0, the wildcard mask is 0.0.0.255. Wildcard masks are primarily used in Cisco router ACLs (Access Control Lists) and OSPF routing configurations to specify which bits of an address should be matched. A wildcard mask of 0.0.0.255 means 'match the first three octets exactly, allow any value in the last octet.'",
+        },
+        "4": {
+          question: "What is the difference between /30 and /31 subnets?",
+          answer: "A /30 subnet provides 4 total addresses with 2 usable hosts — traditionally used for point-to-point links between routers. A /31 subnet (defined in RFC 3021) provides exactly 2 addresses with no network or broadcast address, making both IPs usable for point-to-point links. While /31 is more efficient (saves one IP), not all older network equipment supports it. Modern routers and most cloud providers fully support /31 for router-to-router connections.",
+        },
+        "5": {
+          question: "How do I choose the right subnet size for my network?",
+          answer: "Start by counting the number of devices that need IP addresses, then add 20–50% for growth. Use the formula: find the smallest CIDR prefix where 2^(32−prefix) − 2 ≥ your host count. For example, 50 devices need at least a /26 (62 usable), but a /25 (126 usable) provides room to grow. For cloud deployments, remember to account for the extra reserved IPs. For home networks, /24 (254 hosts) is almost always sufficient. For router links, use /30 or /31.",
+        },
+      },
 
       detailedTable: {
         subnetReference: {
@@ -356,6 +403,17 @@ export const ipSubnetConfig: CalculatorConfigV4 = {
       type: "select",
       defaultValue: "24",
     },
+    {
+      id: "cloudProvider",
+      type: "select",
+      defaultValue: "standard",
+      options: [
+        { value: "standard" },
+        { value: "aws" },
+        { value: "azure" },
+        { value: "gcp" },
+      ],
+    },
   ],
   inputGroups: [],
 
@@ -370,9 +428,11 @@ export const ipSubnetConfig: CalculatorConfigV4 = {
     { id: "totalAddresses", type: "secondary", format: "text" },
     { id: "ipClass", type: "secondary", format: "text" },
     { id: "ipType", type: "secondary", format: "text" },
-    { id: "binarySubnetMask", type: "secondary", format: "text" },
-    { id: "binaryIp", type: "secondary", format: "text" },
-    { id: "hexIp", type: "secondary", format: "text" },
+    { id: "networkBits", type: "secondary", format: "text" },
+    { id: "hostBits", type: "secondary", format: "text" },
+    { id: "nextSubnet", type: "secondary", format: "text" },
+    { id: "previousSubnet", type: "secondary", format: "text" },
+    { id: "reservedIps", type: "secondary", format: "text" },
   ],
 
   infoCards: [
@@ -423,6 +483,29 @@ export const ipSubnetConfig: CalculatorConfigV4 = {
       url: "https://datatracker.ietf.org/doc/html/rfc1918",
     },
   ],
+
+  chart: {
+    title: "Subnet Visual Analysis",
+    xKey: "name",
+    type: "bar",
+    stacked: false,
+    tabs: [
+      {
+        id: "address-allocation",
+        label: "Address Allocation",
+        series: [
+          { key: "value", name: "Addresses", color: "#3B82F6" },
+        ],
+      },
+      {
+        id: "cloud-comparison",
+        label: "Cloud Comparison",
+        series: [
+          { key: "value", name: "Usable Hosts", color: "#10B981" },
+        ],
+      },
+    ],
+  },
 
   hero: {
     showRating: true,
@@ -506,6 +589,17 @@ function formatNumber(n: number): string {
   return n.toLocaleString("en-US");
 }
 
+/** Cloud provider reserved IPs per subnet */
+function getReservedCount(provider: string, cidr: number): number {
+  if (cidr >= 31) return 0; // /31 and /32 are special cases
+  switch (provider) {
+    case "aws": return 5;    // .0 network, .1 VPC router, .2 DNS, .3 future, broadcast
+    case "azure": return 5;  // .0 network, .1 gateway, .2–.3 Azure DNS, broadcast
+    case "gcp": return 4;    // .0 network, .1 gateway, broadcast, DHCP
+    default: return 2;       // .0 network, broadcast
+  }
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // CALCULATE FUNCTION
 // ─────────────────────────────────────────────────────────────────────────────
@@ -519,14 +613,16 @@ export function calculateIpSubnet(data: {
   const { values, t } = data;
   const v = (t?.values as Record<string, string>) || {};
 
+  // ── Read inputs ────────────────────────────────────────────────────────
   const o1 = values.octet1 as number | null;
   const o2 = values.octet2 as number | null;
   const o3 = values.octet3 as number | null;
   const o4 = values.octet4 as number | null;
   const cidrStr = values.cidr as string;
   const cidr = parseInt(cidrStr, 10);
+  const cloudProvider = (values.cloudProvider as string) || "standard";
 
-  // Validate required fields
+  // ── Validate ───────────────────────────────────────────────────────────
   if (o1 === null || o2 === null || o3 === null || o4 === null) {
     return { values: {}, formatted: {}, summary: "", isValid: false };
   }
@@ -537,7 +633,7 @@ export function calculateIpSubnet(data: {
     return { values: {}, formatted: {}, summary: "", isValid: false };
   }
 
-  // Core calculations
+  // ── Core calculations ──────────────────────────────────────────────────
   const ipInt = ipToInt(o1, o2, o3, o4);
   const maskInt = cidrToMask(cidr);
   const wildcardInt = (~maskInt) >>> 0;
@@ -545,6 +641,7 @@ export function calculateIpSubnet(data: {
   const broadcastInt = (networkInt | wildcardInt) >>> 0;
 
   const totalAddresses = Math.pow(2, 32 - cidr);
+  const reservedCount = getReservedCount(cloudProvider, cidr);
   let usableHosts: number;
   let firstHostInt: number;
   let lastHostInt: number;
@@ -554,16 +651,23 @@ export function calculateIpSubnet(data: {
     firstHostInt = networkInt;
     lastHostInt = networkInt;
   } else if (cidr === 31) {
-    // RFC 3021 point-to-point
     usableHosts = 2;
     firstHostInt = networkInt;
     lastHostInt = broadcastInt;
   } else {
-    usableHosts = totalAddresses - 2;
-    firstHostInt = networkInt + 1;
+    usableHosts = Math.max(0, totalAddresses - reservedCount);
+    // Adjust first usable host for cloud providers
+    if (cloudProvider === "aws" || cloudProvider === "azure") {
+      firstHostInt = networkInt + 4; // Skip .0, .1, .2, .3
+    } else if (cloudProvider === "gcp") {
+      firstHostInt = networkInt + 2; // Skip .0, .1
+    } else {
+      firstHostInt = networkInt + 1;
+    }
     lastHostInt = broadcastInt - 1;
   }
 
+  // ── Derived values ─────────────────────────────────────────────────────
   const ipAddress = `${o1}.${o2}.${o3}.${o4}`;
   const networkAddress = intToIp(networkInt);
   const broadcastAddress = intToIp(broadcastInt);
@@ -572,7 +676,7 @@ export function calculateIpSubnet(data: {
   const firstHost = intToIp(firstHostInt);
   const lastHost = intToIp(lastHostInt);
   const hostRange = `${firstHost} – ${lastHost}`;
-  const cidrNotation = `${networkAddress}/${cidr}`;
+  const cidrNotation = `${networkAddress} /${cidr}`;
   const binarySubnetMask = intToBinary(maskInt);
   const binaryIp = intToBinary(ipInt);
   const hexIp = intToHex(ipInt);
@@ -581,17 +685,40 @@ export function calculateIpSubnet(data: {
   const ipTypeKey = getIpType(o1, o2);
   const ipClassLabel = v[ipClassKey] || ipClassKey;
   const ipTypeLabel = v[ipTypeKey] || ipTypeKey;
-
   const hostsLabel = usableHosts === 1 ? (v["host"] || "host") : (v["hosts"] || "hosts");
+  const bitsLabel = v["bits"] || "bits";
+  const noSubnet = v["noSubnet"] || "—";
 
-  // Build subnet reference table
+  // ── Next / Previous subnet ─────────────────────────────────────────────
+  let nextSubnet = noSubnet;
+  let previousSubnet = noSubnet;
+
+  if (cidr < 32) {
+    const nextNetworkInt = (broadcastInt + 1) >>> 0;
+    if (nextNetworkInt !== 0) {
+      nextSubnet = `${intToIp(nextNetworkInt)}/${cidr}`;
+    }
+    if (networkInt > 0) {
+      const prevNetworkInt = (networkInt - totalAddresses) >>> 0;
+      if (prevNetworkInt < networkInt) {
+        previousSubnet = `${intToIp(prevNetworkInt)}/${cidr}`;
+      }
+    }
+  }
+
+  // ── Reserved IPs description ───────────────────────────────────────────
+  const reservedKey = `${cloudProvider}Reserved`;
+  const reservedIps = v[reservedKey] || v["standardReserved"] || `${reservedCount} addresses reserved`;
+
+  // ── Subnet reference table (respects cloud provider) ───────────────────
   const tableData: Array<Record<string, string>> = [];
   const cidrValues = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32];
   for (const c of cidrValues) {
     const m = cidrToMask(c);
     const w = (~m) >>> 0;
     const total = Math.pow(2, 32 - c);
-    const usable = c === 32 ? 1 : c === 31 ? 2 : total - 2;
+    const reserved = getReservedCount(cloudProvider, c);
+    const usable = c === 32 ? 1 : c === 31 ? 2 : Math.max(0, total - reserved);
     tableData.push({
       cidr: `/${c}`,
       mask: intToIp(m),
@@ -601,12 +728,12 @@ export function calculateIpSubnet(data: {
     });
   }
 
-  // Highlight current selection row
   const currentIndex = cidrValues.indexOf(cidr);
   if (currentIndex !== -1) {
     tableData[currentIndex].cidr = `► /${cidr}`;
   }
 
+  // ── Summary ────────────────────────────────────────────────────────────
   const f = (t?.formats as Record<string, string>) || {};
   const summaryTemplate = f.summary || "{cidrNotation} — Usable: {usableHosts} hosts";
   const summary = summaryTemplate
@@ -617,6 +744,50 @@ export function calculateIpSubnet(data: {
     .replace("{firstHost}", firstHost)
     .replace("{lastHost}", lastHost);
 
+  // ── Chart data ─────────────────────────────────────────────────────────
+
+  // Tab 1: Address allocation for current subnet
+  const addressAllocationData = [
+    { name: v["Network/Broadcast"] || "Reserved", value: reservedCount },
+    { name: v["Usable Hosts"] || "Usable Hosts", value: usableHosts },
+  ];
+
+  // Tab 2: Cloud provider comparison
+  const stdUsable = cidr >= 31 ? (cidr === 32 ? 1 : 2) : totalAddresses - 2;
+  const awsUsable = cidr >= 31 ? (cidr === 32 ? 1 : 2) : Math.max(0, totalAddresses - 5);
+  const azUsable = cidr >= 31 ? (cidr === 32 ? 1 : 2) : Math.max(0, totalAddresses - 5);
+  const gcpUsable = cidr >= 31 ? (cidr === 32 ? 1 : 2) : Math.max(0, totalAddresses - 4);
+
+  const cloudComparisonData = [
+    { name: "Standard", value: stdUsable },
+    { name: "AWS VPC", value: awsUsable },
+    { name: "Azure VNet", value: azUsable },
+    { name: "GCP VPC", value: gcpUsable },
+  ];
+
+  // ── Format results (binary/hex only when toggle ON) ────────────────────
+  const formatted: Record<string, string> = {
+    cidrNotation,
+    networkAddress,
+    broadcastAddress,
+    subnetMask,
+    wildcardMask,
+    totalAddresses: formatNumber(totalAddresses),
+    usableHosts: `${formatNumber(usableHosts)} ${hostsLabel}`,
+    hostRange,
+    ipClass: ipClassLabel,
+    ipType: ipTypeLabel,
+    networkBits: `${cidr} ${bitsLabel}`,
+    hostBits: `${32 - cidr} ${bitsLabel}`,
+    nextSubnet,
+    previousSubnet,
+    reservedIps,
+    binarySubnetMask,
+    binaryIp,
+    hexIp,
+  };
+
+  // ── Return ─────────────────────────────────────────────────────────────
   return {
     values: {
       ipAddress,
@@ -630,34 +801,24 @@ export function calculateIpSubnet(data: {
       cidrNotation,
       ipClass: ipClassLabel,
       ipType: ipTypeLabel,
-      binarySubnetMask,
-      binaryIp,
-      hexIp,
       networkBits: cidr,
       hostBits: 32 - cidr,
-    },
-    formatted: {
-      ipAddress,
-      networkAddress,
-      broadcastAddress,
-      subnetMask,
-      wildcardMask,
-      totalAddresses: formatNumber(totalAddresses),
-      usableHosts: `${formatNumber(usableHosts)} ${hostsLabel}`,
-      hostRange,
-      cidrNotation,
-      ipClass: ipClassLabel,
-      ipType: ipTypeLabel,
+      nextSubnet,
+      previousSubnet,
+      reservedIps,
       binarySubnetMask,
       binaryIp,
       hexIp,
-      networkBits: `${cidr} ${v["bits"] || "bits"}`,
-      hostBits: `${32 - cidr} ${v["bits"] || "bits"}`,
     },
+    formatted,
     summary,
     isValid: true,
     metadata: {
       tableData,
+      chartsData: {
+        "address-allocation": addressAllocationData,
+        "cloud-comparison": cloudComparisonData,
+      },
     },
   };
 }

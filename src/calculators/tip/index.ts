@@ -1,664 +1,390 @@
-import type { CalculatorConfigV4, CalculatorResults } from "@/engine/v4";
+import type { CalculatorConfigV4, CalculatorResults } from "@/engine/v4/types/engine.types";
 
-// =============================================================================
-// TIP CALCULATOR V4 - WITH INLINE TRANSLATIONS
-// =============================================================================
+// ═══════════════════════════════════════════════════════════════════
+// TIP CALCULATOR V4
+// Features: Currency dropdown, service quality, bill split, rounding,
+// tip on total vs pre-tax, tipping guide by country, comparison chart
+// ═══════════════════════════════════════════════════════════════════
 
 export const tipCalculatorConfig: CalculatorConfigV4 = {
-  id: "tip-calculator",
-  category: "everyday",
+  id: "tip",
+  version: "4.0",
+  category: "finance",
   icon: "💰",
-  
+
+  presets: [
+    {
+      id: "quickDinner",
+      icon: "🍽️",
+      values: {
+        billAmount: 50,
+        serviceQuality: "good",
+        tipPercent: 18,
+        splitBetween: 1,
+        tipCalculation: "total",
+        roundTotal: "none",
+        taxAmount: null,
+      },
+    },
+    {
+      id: "groupDinner",
+      icon: "👥",
+      values: {
+        billAmount: 180,
+        serviceQuality: "great",
+        tipPercent: 20,
+        splitBetween: 4,
+        tipCalculation: "total",
+        roundTotal: "nearest1",
+        taxAmount: null,
+      },
+    },
+    {
+      id: "deliveryOrder",
+      icon: "🛵",
+      values: {
+        billAmount: 35,
+        serviceQuality: "good",
+        tipPercent: 18,
+        splitBetween: 1,
+        tipCalculation: "total",
+        roundTotal: "none",
+        taxAmount: null,
+      },
+    },
+    {
+      id: "salonVisit",
+      icon: "💇",
+      values: {
+        billAmount: 85,
+        serviceQuality: "great",
+        tipPercent: 20,
+        splitBetween: 1,
+        tipCalculation: "total",
+        roundTotal: "nearest1",
+        taxAmount: null,
+      },
+    },
+  ],
+
   t: {
     en: {
       name: "Tip Calculator",
       slug: "tip-calculator",
-      subtitle: "Calculate tips and split bills easily",
+      subtitle: "Calculate the tip, split the bill, and settle up fast — with pre-tax options for any group size",
       breadcrumb: "Tip",
+
       seo: {
-        title: "Tip Calculator - Calculate Tips and Split Bills Instantly",
-        description: "Free tip calculator to quickly calculate gratuity amounts, split bills among multiple people, and determine the total cost including tip. Perfect for restaurants, taxis, and services.",
-        keywords: ["tip calculator", "gratuity calculator", "bill splitter", "restaurant tip", "service tip"],
+        title: "Tip Calculator — Split Bill, Pre-Tax Tip & Rounding",
+        description: "Calculate tips by service quality, split bills evenly, tip before or after tax, and round to the nearest dollar. Supports multiple currencies with built-in tipping guide.",
+        shortDescription: "Calculate the perfect tip and split the bill instantly",
+        keywords: [
+          "tip calculator",
+          "tip calculator split bill",
+          "tip on pre tax amount",
+          "gratuity calculator",
+          "restaurant tip calculator",
+          "bill split calculator",
+          "how much to tip",
+          "tip percentage calculator",
+        ],
       },
+
+      calculator: { yourInformation: "Bill Details" },
       ui: {
         yourInformation: "Bill Details",
-        calculate: "Calculate",
+        calculate: "Calculate Tip",
         reset: "Reset",
-        results: "Tip Breakdown",
-        loading: "Calculating...",
+        results: "Tip Amount",
       },
+
       inputs: {
         billAmount: {
           label: "Bill Amount",
-          helpText: "Enter the total bill amount before tip",
-          prefix: "$",
+          helpText: "Enter the total amount on your bill",
         },
-        tipPercentage: {
-          label: "Tip Percentage",
-          helpText: "Enter your desired tip percentage",
-          suffix: "%",
+        serviceQuality: {
+          label: "Service Quality",
+          helpText: "Select service quality to guide your tip",
           options: {
-            "10": "10%",
-            "15": "15%",
-            "18": "18%",
-            "20": "20%",
-            "25": "25%",
-          }
+            poor: "😐 Poor",
+            fair: "🙂 Fair",
+            good: "😊 Good",
+            great: "😄 Great",
+            exceptional: "🌟 Exceptional",
+          },
         },
-        numberOfPeople: {
-          label: "Number of People",
-          helpText: "How many people are splitting the bill?"
-        }
+        tipPercent: {
+          label: "Tip Percentage",
+          helpText: "Auto-set by service quality, or adjust manually",
+        },
+        splitBetween: {
+          label: "Split Between",
+          helpText: "Number of people sharing the bill",
+        },
+        tipCalculation: {
+          label: "Tip Calculation",
+          helpText: "Choose whether to tip on the total bill or on the pre-tax amount",
+          options: {
+            total: "Tip on Total",
+            preTax: "Tip Before Tax",
+          },
+        },
+        taxAmount: {
+          label: "Tax Amount",
+          helpText: "Enter the tax amount from your bill (only needed for pre-tax tip calculation)",
+        },
+        roundTotal: {
+          label: "Round Total",
+          helpText: "Round the total per person for easier payment",
+          options: {
+            none: "No Rounding",
+            nearest1: "Nearest $1",
+            nearest5: "Nearest $5",
+            nearest10: "Nearest $10",
+          },
+        },
       },
+
       results: {
-        tipAmount: {
-          label: "Tip Amount",
-          description: "The total gratuity to be paid"
-        },
-        totalAmount: {
-          label: "Total Amount",
-          description: "Bill amount plus tip"
-        },
-        perPerson: {
-          label: "Per Person",
-          description: "Amount each person should pay including tip"
-        }
+        tipAmount: { label: "Tip Amount" },
+        totalWithTip: { label: "Total with Tip" },
+        tipPerPerson: { label: "Tip Per Person" },
+        totalPerPerson: { label: "Total Per Person" },
+        effectiveTipRate: { label: "Effective Tip Rate" },
+        tipCalculatedOn: { label: "Tip Calculated On" },
+        youSave: { label: "You Save (Pre-Tax)" },
       },
+
+      presets: {
+        quickDinner: {
+          label: "Quick Dinner",
+          description: "Solo dinner, $50 bill, good service",
+        },
+        groupDinner: {
+          label: "Group Dinner",
+          description: "4 people, $180 bill, great service, rounded",
+        },
+        deliveryOrder: {
+          label: "Delivery Order",
+          description: "$35 delivery, good service, no split",
+        },
+        salonVisit: {
+          label: "Salon Visit",
+          description: "$85 salon, great service, rounded to $1",
+        },
+      },
+
+      tooltips: {
+        tipAmount: "The total tip amount based on the selected percentage and calculation method.",
+        totalWithTip: "Your total bill including the tip. May be rounded if rounding is enabled.",
+        tipPerPerson: "How much each person pays in tip when splitting the bill.",
+        totalPerPerson: "Total amount each person pays including their share of the tip.",
+        effectiveTipRate: "The actual tip percentage after rounding adjustments.",
+        tipCalculatedOn: "The base amount used to calculate the tip — either the full total or the pre-tax subtotal.",
+        youSave: "Amount saved by tipping on the pre-tax amount instead of the total.",
+      },
+
+      values: {
+        "Total": "Total",
+        "Pre-tax subtotal": "Pre-tax subtotal",
+        "per person": "per person",
+      },
+
+      formats: {
+        summary: "Tip: {tipAmount} ({effectiveTipRate}). Total with tip: {totalWithTip}. Each person pays {totalPerPerson}.",
+      },
+
       infoCards: {
-        resultsCard: {
-          title: "Your Tip Breakdown",
-          items: ["Original bill amount", "Tip amount calculated", "Total with tip included"],
+        tipBreakdown: {
+          title: "Tip Breakdown",
+          items: {
+            "0": "Tip Amount",
+            "1": "Total with Tip",
+            "2": "Tip Per Person",
+            "3": "Total Per Person",
+          },
         },
-        tipsCard: {
-          title: "Tipping Guidelines",
-          items: ["15-20% for good restaurant service", "18-25% for exceptional service", "10-15% for average service", "Round up for convenience"],
+        tippingGuide: {
+          title: "🇺🇸 US Tipping Guide",
+          items: {
+            "0": "Restaurant",
+            "1": "Delivery",
+            "2": "Salon / Barber",
+            "3": "Bar / Bartender",
+            "4": "Taxi / Rideshare",
+            "5": "Hotel Housekeeping",
+          },
         },
-      },
-      referenceData: {
-        referenceTable: {
-          title: "Standard Tipping Rates",
+        tips: {
+          title: "Tipping Tips",
           items: [
-            { label: "Restaurant Server", value: "15-25%" },
-            { label: "Food Delivery", value: "10-20%" },
-            { label: "Taxi/Rideshare", value: "10-20%" },
-            { label: "Hair Stylist", value: "15-25%" },
+            "In the US, 15-20% is standard for sit-down restaurants",
+            "Tip on the pre-tax amount — tax goes to the government, not your server",
+            "For delivery, tip at least $3-5 even on small orders",
+            "Cash tips go directly to your server without delay",
           ],
         },
       },
+
       education: {
         whatIs: {
-          title: "What is Tipping?",
-          content: "Tipping is a customary practice of giving additional money to service workers beyond the stated price of goods or services. It's a way to show appreciation for good service and often represents a significant portion of service workers' income. Tip amounts typically range from 10% to 25% of the total bill, depending on the quality of service, type of establishment, and local customs. In many countries, particularly the United States, tipping is not just customary but expected in certain service industries like restaurants, bars, and personal services.",
+          title: "What Is a Tip?",
+          content: "A tip, or gratuity, is an extra amount of money given to a service worker to recognize the quality of their work. In the United States, tipping is customary and in many cases expected in restaurants, bars, salons, and for delivery services. Service workers in the US often earn a lower base wage because tips are expected to supplement their income. While tipping is voluntary, it plays a critical role in service industry compensation. The standard restaurant tip in the US ranges from 15% to 20% of the pre-tax bill, with 18-20% being the most common range for good service. Understanding when and how much to tip helps ensure fair compensation for the people who serve you.",
         },
-        howToCalculate: {
-          title: "How to Calculate Tips",
-          content: "To calculate a tip: 1) Determine your desired tip percentage based on service quality, 2) Multiply the bill amount by the tip percentage (as a decimal), 3) Add the tip amount to the original bill for the total. For example, on a $50 bill with 18% tip: $50 × 0.18 = $9 tip, total = $59. When splitting bills, divide the total amount (including tip) by the number of people.",
+        howItWorks: {
+          title: "How This Calculator Works",
+          content: "This calculator determines the appropriate tip based on your bill amount, chosen tip percentage, and preferred calculation method. You can tip on the full total or on the pre-tax amount to save money while still being generous. The service quality selector automatically adjusts the tip percentage to common standards: 10% for poor service, 15% for fair, 18% for good, 20% for great, and 25% for exceptional. You can override this manually at any time. The bill splitting feature divides both the tip and total evenly among your group. Rounding options let you round the total per person to the nearest dollar, $5, or $10 for easier payment. The calculator also shows your effective tip rate after rounding and how much you save by tipping pre-tax.",
         },
-        considerations: {
-          title: "Tipping Considerations",
+        tippingEtiquette: {
+          title: "Tipping Etiquette by Service",
           items: [
-            { text: "Consider service quality when determining tip percentage" },
-            { text: "Some establishments include automatic gratuity for large groups" },
-            { text: "Tipping customs vary significantly between countries and cultures" },
-            { text: "Always check if service charges are already included in the bill" },
-            { text: "Round amounts for convenience, but ensure fair compensation" },
+            { text: "Restaurants and bars: 15-20% of the pre-tax bill is standard in the US. For exceptional service, 25% or more is appreciated", type: "info" },
+            { text: "Food delivery: 15-20% or a minimum of $3-5, whichever is greater. Tip more for long distances or bad weather", type: "info" },
+            { text: "Hair salons and barbers: 15-20% of the service cost. Tip the person who washes your hair $2-5 separately", type: "info" },
+            { text: "Taxi and rideshare: 15-20% for taxis. For rideshare apps, $2-5 or 15-20% for longer rides", type: "info" },
+            { text: "Hotel housekeeping: $2-5 per night. Leave the tip daily since different staff may clean your room each day", type: "info" },
+            { text: "Never tip on tax — the tax goes to the government. Calculate your tip on the pre-tax subtotal for accuracy", type: "warning" },
+          ],
+        },
+        globalTipping: {
+          title: "Tipping Around the World",
+          items: [
+            { text: "United States and Canada: 15-20% expected at restaurants. Servers depend on tips as part of their income", type: "info" },
+            { text: "United Kingdom and Ireland: 10-15% is common but not mandatory. Some restaurants add a service charge", type: "info" },
+            { text: "Japan: Tipping is considered rude and can cause confusion. Excellent service is expected without extra payment", type: "warning" },
+            { text: "Australia and New Zealand: Tipping is not expected but appreciated for exceptional service, usually 10%", type: "info" },
+            { text: "Europe (France, Germany, Italy, Spain): Rounding up or adding 5-10% is customary. Service charge may be included", type: "info" },
+            { text: "China: Tipping is generally not practiced and may be refused. It is considered an insult in some settings", type: "warning" },
           ],
         },
         examples: {
           title: "Example Calculations",
-          description: "Common tipping scenarios with step-by-step calculations",
+          description: "See how different scenarios affect your tip",
           examples: [
             {
-              title: "Restaurant Bill",
-              steps: ["Bill amount: $80.00", "Good service tip: 18%", "Tip: $80 × 0.18 = $14.40"],
-              result: "Total: $94.40",
+              title: "Example 1: Standard Dinner",
+              steps: [
+                "Bill: $75.00",
+                "Service: Good (18%)",
+                "Tip: $75.00 × 18% = $13.50",
+                "Total: $75.00 + $13.50 = $88.50",
+              ],
+              result: "You pay $88.50 total with a $13.50 tip",
             },
             {
-              title: "Split Bill for 4 People",
-              steps: ["Bill: $120, Tip: 20% = $24", "Total with tip: $144", "Per person: $144 ÷ 4 = $36"],
-              result: "Each person pays: $36.00",
+              title: "Example 2: Group Split with Pre-Tax Tip",
+              steps: [
+                "Bill: $200.00 (includes $16.00 tax)",
+                "Pre-tax subtotal: $184.00",
+                "Tip 20% on pre-tax: $184.00 × 20% = $36.80",
+                "Total: $200.00 + $36.80 = $236.80",
+                "Split 4 ways: $59.20 per person",
+              ],
+              result: "Each person pays $59.20 — you saved $3.20 vs tipping on the full total",
             },
           ],
         },
       },
+
       faqs: [
-        { question: "What's the standard tip percentage at restaurants?", answer: "In the US, 15-20% is standard for good service, with 18% being most common. For exceptional service, 20-25% is appropriate." },
-        { question: "Should I tip on the pre-tax or post-tax amount?", answer: "It's generally acceptable to tip on either the pre-tax or post-tax amount. Many people tip on the pre-tax amount for simplicity." },
-        { question: "How do I split a bill with different tip preferences?", answer: "Calculate the total with the agreed-upon tip percentage first, then divide equally. Alternatively, each person can add their preferred tip to their portion." },
-        { question: "What if service was poor? Should I still tip?", answer: "While you can reduce the tip for poor service (10-12%), consider speaking with management about issues. Many servers depend on tips for their livelihood." },
-        { question: "Are there situations where tipping isn't expected?", answer: "Tipping customs vary by location and service type. Fast-casual restaurants, some coffee shops, and establishments with 'no tipping' policies may not expect tips." },
-        { question: "How do I handle automatic gratuity charges?", answer: "If automatic gratuity is added (often for large groups), you're not obligated to tip extra unless service was exceptional. Check your bill carefully." },
+        {
+          question: "Should I tip on the pre-tax or post-tax amount?",
+          answer: "Technically, tipping on the pre-tax amount is correct because the tax goes to the government, not the restaurant or server. However, many people tip on the total including tax for simplicity. For a $100 meal with 8% tax, tipping 20% on the pre-tax amount saves you $1.60 compared to tipping on the total. The difference is small on individual bills but adds up over time. This calculator lets you choose either method.",
+        },
+        {
+          question: "How much should I tip for different services?",
+          answer: "For sit-down restaurants in the US, 15-20% is standard with 18-20% being the norm for good service. Food delivery should get 15-20% or at least $3-5 minimum. Hair salons and barbers expect 15-20%. Bartenders typically receive $1-2 per drink or 15-20% of the tab. Taxi drivers get 15-20%. Hotel housekeeping should receive $2-5 per night left daily. For takeout, tipping is optional but 10-15% is appreciated especially for large orders.",
+        },
+        {
+          question: "Is it OK to not tip for bad service?",
+          answer: "While tipping is technically voluntary in the US, leaving no tip should be reserved for truly terrible service, not just slow or imperfect experiences. Remember that servers often earn a base wage below minimum wage and depend on tips. If service was poor, a 10% tip acknowledges their effort while signaling dissatisfaction. For genuinely bad experiences, speak to a manager rather than withholding tips entirely. The server may be dealing with kitchen delays or being short-staffed, which is not their fault.",
+        },
+        {
+          question: "How does bill splitting work with tips?",
+          answer: "This calculator divides the total bill plus tip equally among all people. Each person pays the same amount for both their share of the food and the tip. If rounding is enabled, the per-person amount is rounded for convenience. Note that when the total does not divide evenly, one person may need to pay slightly more — the calculator shows the rounded amount per person. For uneven orders, you may want to calculate individual shares separately.",
+        },
+        {
+          question: "Why does rounding change my effective tip rate?",
+          answer: "When you round the total per person up to the nearest dollar, $5, or $10, the actual amount you pay increases slightly. This means the effective tip percentage changes. For example, if your calculated total is $22.35 per person and you round to $23, the extra $0.65 per person effectively increases your tip. The calculator shows this adjusted effective tip rate so you know exactly what percentage you are actually tipping after rounding.",
+        },
+        {
+          question: "Do I need to tip on top of an automatic gratuity?",
+          answer: "Many restaurants automatically add 18-20% gratuity for large parties, typically groups of 6 or more. You do not need to tip additional on top of automatic gratuity unless you want to reward exceptional service. Always check your bill carefully — if a service charge or gratuity is already included, it will be listed as a separate line item. If you are unsure, ask your server whether gratuity has been added.",
+        },
       ],
-      disclaimer: "This calculator provides estimates based on standard tipping practices. Actual tip amounts may vary based on service quality, local customs, and personal preferences. Always verify calculations and consider local tipping conventions.",
-    },
-    fr: {
-      name: "Calculateur de Pourboire",
-      slug: "calculateur-pourboire",
-      subtitle: "Calculez pourboires et partagez",
-      breadcrumb: "Pourboire",
-      seo: {
-        title: "Calculateur de Pourboire - Calculez les Pourboires et Partagez les Additions Instantanément",
-        description: "Calculateur de pourboire gratuit pour calculer rapidement les montants de gratification, partager les additions entre plusieurs personnes et déterminer le coût total avec pourboire. Parfait pour les restaurants, taxis et services.",
-        keywords: ["calculateur de pourboire", "calculateur de gratification", "diviseur d'addition", "pourboire restaurant", "pourboire service"],
+
+      detailedTable: {
+        title: "Tip Comparison",
+        buttonLabel: "View Tip Comparison",
+        columns: ["Tip %", "Tip Amount", "Total", "Per Person"],
       },
-      ui: {
-        yourInformation: "Détails de l'Addition",
-        calculate: "Calculer",
-        reset: "Réinitialiser",
-        results: "Répartition du Pourboire",
-        loading: "Calcul en cours...",
-      },
-      inputs: {
-        billAmount: {
-          label: "Montant de l'Addition",
-          helpText: "Entrez le montant total de l'addition avant pourboire",
-          prefix: "€",
-        },
-        tipPercentage: {
-          label: "Pourcentage de Pourboire",
-          helpText: "Entrez le pourcentage de pourboire souhaité",
-          suffix: "%",
-          options: {
-            "10": "10%",
-            "15": "15%",
-            "18": "18%",
-            "20": "20%",
-            "25": "25%",
-          }
-        },
-        numberOfPeople: {
-          label: "Nombre de Personnes",
-          helpText: "Combien de personnes partagent l'addition ?"
-        }
-      },
-      results: {
-        tipAmount: {
-          label: "Montant du Pourboire",
-          description: "Le montant total de gratification à payer"
-        },
-        totalAmount: {
-          label: "Montant Total",
-          description: "Montant de l'addition plus le pourboire"
-        },
-        perPerson: {
-          label: "Par Personne",
-          description: "Montant que chaque personne doit payer pourboire inclus"
-        }
-      },
-      infoCards: {
-        resultsCard: {
-          title: "Votre Répartition de Pourboire",
-          items: ["Montant original de l'addition", "Montant du pourboire calculé", "Total avec pourboire inclus"],
-        },
-        tipsCard: {
-          title: "Guide des Pourboires",
-          items: ["15-20% pour un bon service au restaurant", "18-25% pour un service exceptionnel", "10-15% pour un service moyen", "Arrondissez pour plus de commodité"],
-        },
-      },
-      referenceData: {
-        referenceTable: {
-          title: "Taux de Pourboire Standards",
-          items: [
-            { label: "Serveur de Restaurant", value: "15-25%" },
-            { label: "Livraison de Nourriture", value: "10-20%" },
-            { label: "Taxi/VTC", value: "10-20%" },
-            { label: "Coiffeur", value: "15-25%" },
-          ],
-        },
-      },
-      education: {
-        whatIs: {
-          title: "Qu'est-ce que le Pourboire ?",
-          content: "Le pourboire est une pratique coutumière consistant à donner de l'argent supplémentaire aux travailleurs de service au-delà du prix indiqué des biens ou services. C'est une façon de montrer son appréciation pour un bon service et représente souvent une partie importante du revenu des travailleurs de service. Les montants de pourboire vont généralement de 10% à 25% de l'addition totale, selon la qualité du service, le type d'établissement et les coutumes locales. Dans de nombreux pays, particulièrement aux États-Unis, donner un pourboire n'est pas seulement coutumier mais attendu dans certaines industries de service comme les restaurants, bars et services personnels.",
-        },
-        howToCalculate: {
-          title: "Comment Calculer les Pourboires",
-          content: "Pour calculer un pourboire : 1) Déterminez le pourcentage de pourboire souhaité selon la qualité du service, 2) Multipliez le montant de l'addition par le pourcentage de pourboire (en décimal), 3) Ajoutez le montant du pourboire à l'addition originale pour le total. Par exemple, sur une addition de 50€ avec un pourboire de 18% : 50€ × 0,18 = 9€ de pourboire, total = 59€. Lors du partage d'additions, divisez le montant total (pourboire inclus) par le nombre de personnes.",
-        },
-        considerations: {
-          title: "Considérations sur les Pourboires",
-          items: [
-            { text: "Considérez la qualité du service lors de la détermination du pourcentage de pourboire" },
-            { text: "Certains établissements incluent une gratification automatique pour les grands groupes" },
-            { text: "Les coutumes de pourboire varient significativement entre les pays et cultures" },
-            { text: "Vérifiez toujours si les frais de service sont déjà inclus dans l'addition" },
-            { text: "Arrondissez les montants pour plus de commodité, mais assurez-vous d'une compensation équitable" },
-          ],
-        },
-        examples: {
-          title: "Exemples de Calculs",
-          description: "Scénarios de pourboire courants avec calculs détaillés",
-          examples: [
-            {
-              title: "Addition de Restaurant",
-              steps: ["Montant de l'addition : 80,00€", "Pourboire pour bon service : 18%", "Pourboire : 80€ × 0,18 = 14,40€"],
-              result: "Total : 94,40€",
-            },
-            {
-              title: "Addition Partagée pour 4 Personnes",
-              steps: ["Addition : 120€, Pourboire : 20% = 24€", "Total avec pourboire : 144€", "Par personne : 144€ ÷ 4 = 36€"],
-              result: "Chaque personne paie : 36,00€",
-            },
-          ],
-        },
-      },
-      faqs: [
-        { question: "Quel est le pourcentage de pourboire standard dans les restaurants ?", answer: "En France, 5-10% est généralement suffisant car le service est inclus. Dans d'autres pays comme les États-Unis, 15-20% est standard pour un bon service." },
-        { question: "Dois-je donner un pourboire sur le montant avant ou après taxes ?", answer: "Il est généralement acceptable de donner un pourboire sur le montant avant ou après taxes. Beaucoup de gens donnent un pourboire sur le montant avant taxes par simplicité." },
-        { question: "Comment partager une addition avec différentes préférences de pourboire ?", answer: "Calculez d'abord le total avec le pourcentage de pourboire convenu, puis divisez équitablement. Alternativement, chaque personne peut ajouter son pourboire préféré à sa portion." },
-        { question: "Et si le service était mauvais ? Dois-je quand même donner un pourboire ?", answer: "Bien que vous puissiez réduire le pourboire pour un mauvais service (10-12%), considérez parler à la direction des problèmes. Beaucoup de serveurs dépendent des pourboires pour leur subsistance." },
-        { question: "Y a-t-il des situations où le pourboire n'est pas attendu ?", answer: "Les coutumes de pourboire varient selon le lieu et le type de service. Les restaurants fast-casual, certains cafés et établissements avec des politiques 'sans pourboire' peuvent ne pas s'attendre à des pourboires." },
-        { question: "Comment gérer les frais de gratification automatique ?", answer: "Si une gratification automatique est ajoutée (souvent pour les grands groupes), vous n'êtes pas obligé de donner un pourboire supplémentaire sauf si le service était exceptionnel. Vérifiez votre addition attentivement." },
-      ],
-      disclaimer: "Ce calculateur fournit des estimations basées sur les pratiques de pourboire standards. Les montants de pourboire réels peuvent varier selon la qualité du service, les coutumes locales et les préférences personnelles. Vérifiez toujours les calculs et considérez les conventions de pourboire locales.",
+
       rating: {
-        title: "Évaluez ce Calculateur",
-        share: "Partager",
-        copied: "Copié !",
-        copyLink: "Copier le Lien",
-        clickToRate: "Cliquez pour évaluer",
-        youRated: "Vous avez évalué",
-        stars: "étoiles",
-        averageFrom: "moyenne de",
-        ratings: "évaluations",
-        shareCalculator: "Partagez ce calculateur :",
-        includesValues: "inclut vos valeurs",
-        creating: "Création en cours...",
-        thankYou: "Merci pour votre évaluation ! Aidez les autres en partageant."
+        title: "Rate this Calculator",
+        share: "Share",
+        copied: "Copied!",
+        copyLink: "Copy Link",
+        clickToRate: "Click to rate",
+        youRated: "You rated",
+        stars: "stars",
+        averageFrom: "average from",
+        ratings: "ratings",
       },
-      common: {
-        home: "Accueil",
-        calculators: "Calculateurs",
-        reviews: "avis"
-      }
-    },
-    de: {
-      name: "Trinkgeld Rechner",
-      slug: "trinkgeld-rechner",
-      subtitle: "Trinkgeld berechnen und teilen",
-      breadcrumb: "Trinkgeld",
-      seo: {
-        title: "Trinkgeld Rechner - Berechnen Sie Trinkgelder und teilen Sie Rechnungen sofort auf",
-        description: "Kostenloser Trinkgeld Rechner zur schnellen Berechnung von Trinkgeldbeträgen, Aufteilung von Rechnungen auf mehrere Personen und Bestimmung der Gesamtkosten inklusive Trinkgeld. Perfekt für Restaurants, Taxis und Dienstleistungen.",
-        keywords: ["Trinkgeld Rechner", "Trinkgeldrechner", "Rechnung teilen", "Restaurant Trinkgeld", "Service Trinkgeld"],
+      common: { home: "Home", calculators: "Calculators" },
+      buttons: {
+        calculate: "Calculate Tip",
+        reset: "Reset",
+        pdf: "PDF",
+        csv: "CSV",
+        excel: "Excel",
+        save: "Save",
+        saved: "Saved",
+        saving: "Saving...",
       },
-      ui: {
-        yourInformation: "Rechnungsdetails",
-        calculate: "Berechnen",
-        reset: "Zurücksetzen",
-        results: "Trinkgeld Aufschlüsselung",
-        loading: "Berechnet...",
+      share: { calculatedWith: "Calculated with Kalcufy.com" },
+      accessibility: {
+        mobileResults: "Tip results",
+        closeModal: "Close",
+        openMenu: "Menu",
       },
-      inputs: {
-        billAmount: {
-          label: "Rechnungsbetrag",
-          helpText: "Geben Sie den Gesamtrechnungsbetrag vor Trinkgeld ein",
-          prefix: "€",
-        },
-        tipPercentage: {
-          label: "Trinkgeld Prozentsatz",
-          helpText: "Geben Sie Ihren gewünschten Trinkgeld Prozentsatz ein",
-          suffix: "%",
-          options: {
-            "10": "10%",
-            "15": "15%",
-            "18": "18%",
-            "20": "20%",
-            "25": "25%",
-          }
-        },
-        numberOfPeople: {
-          label: "Anzahl Personen",
-          helpText: "Wie viele Personen teilen sich die Rechnung?"
-        }
-      },
-      results: {
-        tipAmount: {
-          label: "Trinkgeldbetrag",
-          description: "Das zu zahlende Gesamttrinkgeld"
-        },
-        totalAmount: {
-          label: "Gesamtbetrag",
-          description: "Rechnungsbetrag plus Trinkgeld"
-        },
-        perPerson: {
-          label: "Pro Person",
-          description: "Betrag, den jede Person inklusive Trinkgeld zahlen sollte"
-        }
-      },
-      infoCards: {
-        resultsCard: {
-          title: "Ihre Trinkgeld Aufschlüsselung",
-          items: ["Ursprünglicher Rechnungsbetrag", "Berechneter Trinkgeldbetrag", "Gesamt mit Trinkgeld"],
-        },
-        tipsCard: {
-          title: "Trinkgeld Richtlinien",
-          items: ["15-20% für guten Restaurant Service", "18-25% für außergewöhnlichen Service", "10-15% für durchschnittlichen Service", "Aufrunden für Bequemlichkeit"],
-        },
-      },
-      referenceData: {
-        referenceTable: {
-          title: "Standard Trinkgeldsätze",
-          items: [
-            { label: "Restaurant Kellner", value: "15-25%" },
-            { label: "Essenslieferung", value: "10-20%" },
-            { label: "Taxi/Rideshare", value: "10-20%" },
-            { label: "Friseur", value: "15-25%" },
-          ],
-        },
-      },
-      education: {
-        whatIs: {
-          title: "Was ist Trinkgeld?",
-          content: "Trinkgeld ist eine übliche Praxis, Servicemitarbeitern zusätzlich zum angegebenen Preis für Waren oder Dienstleistungen Geld zu geben. Es ist eine Art, Wertschätzung für guten Service zu zeigen und stellt oft einen bedeutenden Teil des Einkommens von Servicekräften dar. Trinkgeldbeträge reichen typischerweise von 10% bis 25% der Gesamtrechnung, abhängig von der Servicequalität, Art des Betriebs und lokalen Gepflogenheiten. In vielen Ländern, besonders in den USA, ist Trinkgeld nicht nur üblich, sondern in bestimmten Servicebranchen wie Restaurants, Bars und persönlichen Dienstleistungen erwartet.",
-        },
-        howToCalculate: {
-          title: "Wie man Trinkgeld berechnet",
-          content: "Um Trinkgeld zu berechnen: 1) Bestimmen Sie Ihren gewünschten Trinkgeldprozentsatz basierend auf der Servicequalität, 2) Multiplizieren Sie den Rechnungsbetrag mit dem Trinkgeldprozentsatz (als Dezimalzahl), 3) Addieren Sie den Trinkgeldbetrag zur ursprünglichen Rechnung für die Gesamtsumme. Zum Beispiel bei einer 50€ Rechnung mit 18% Trinkgeld: 50€ × 0,18 = 9€ Trinkgeld, Gesamt = 59€. Beim Teilen von Rechnungen teilen Sie den Gesamtbetrag (inklusive Trinkgeld) durch die Anzahl der Personen.",
-        },
-        considerations: {
-          title: "Trinkgeld Überlegungen",
-          items: [
-            { text: "Berücksichtigen Sie die Servicequalität bei der Bestimmung des Trinkgeldprozentsatzes" },
-            { text: "Manche Betriebe schließen automatisches Trinkgeld für große Gruppen ein" },
-            { text: "Trinkgeldgepflogenheiten variieren erheblich zwischen Ländern und Kulturen" },
-            { text: "Prüfen Sie immer, ob Servicegebühren bereits in der Rechnung enthalten sind" },
-            { text: "Runden Sie Beträge der Bequemlichkeit halber, aber stellen Sie faire Entschädigung sicher" },
-          ],
-        },
-        examples: {
-          title: "Beispielberechnungen",
-          description: "Häufige Trinkgeldszenarien mit schrittweisen Berechnungen",
-          examples: [
-            {
-              title: "Restaurant Rechnung",
-              steps: ["Rechnungsbetrag: 80,00€", "Guter Service Trinkgeld: 18%", "Trinkgeld: 80€ × 0,18 = 14,40€"],
-              result: "Gesamt: 94,40€",
-            },
-            {
-              title: "Geteilte Rechnung für 4 Personen",
-              steps: ["Rechnung: 120€, Trinkgeld: 20% = 24€", "Gesamt mit Trinkgeld: 144€", "Pro Person: 144€ ÷ 4 = 36€"],
-              result: "Jede Person zahlt: 36,00€",
-            },
-          ],
-        },
-      },
-      faqs: [
-        { question: "Was ist der Standard Trinkgeldprozentsatz in Restaurants?", answer: "In Deutschland sind 5-10% für guten Service üblich. In den USA sind 15-20% standard, wobei 18% am häufigsten ist. Für außergewöhnlichen Service sind 20-25% angemessen." },
-        { question: "Soll ich Trinkgeld auf den Betrag vor oder nach Steuern geben?", answer: "Es ist allgemein akzeptabel, auf beiden Beträgen Trinkgeld zu geben. Viele Menschen geben Trinkgeld auf den Betrag vor Steuern der Einfachheit halber." },
-        { question: "Wie teile ich eine Rechnung mit unterschiedlichen Trinkgeldvorstellungen?", answer: "Berechnen Sie zuerst die Gesamtsumme mit dem vereinbarten Trinkgeldprozentsatz, dann teilen Sie gleichmäßig auf. Alternativ kann jede Person ihr bevorzugtes Trinkgeld zu ihrem Anteil hinzufügen." },
-        { question: "Was, wenn der Service schlecht war? Soll ich trotzdem Trinkgeld geben?", answer: "Während Sie das Trinkgeld für schlechten Service reduzieren können (10-12%), sollten Sie mit dem Management über Probleme sprechen. Viele Kellner sind für ihren Lebensunterhalt auf Trinkgelder angewiesen." },
-        { question: "Gibt es Situationen, wo Trinkgeld nicht erwartet wird?", answer: "Trinkgeldgepflogenheiten variieren je nach Ort und Serviceart. Fast-Casual Restaurants, manche Cafés und Betriebe mit 'Kein Trinkgeld' Richtlinien erwarten möglicherweise keine Trinkgelder." },
-        { question: "Wie gehe ich mit automatischen Trinkgeldgebühren um?", answer: "Wenn automatisches Trinkgeld hinzugefügt wird (oft für große Gruppen), sind Sie nicht verpflichtet, extra Trinkgeld zu geben, es sei denn, der Service war außergewöhnlich. Prüfen Sie Ihre Rechnung sorgfältig." },
-      ],
-      disclaimer: "Dieser Rechner bietet Schätzungen basierend auf Standard-Trinkgeldpraktiken. Tatsächliche Trinkgeldbeträge können je nach Servicequalität, lokalen Gepflogenheiten und persönlichen Vorlieben variieren. Überprüfen Sie immer Berechnungen und berücksichtigen Sie lokale Trinkgeldkonventionen.",
-    },
-    es: {
-      name: "Calculadora de Propinas",
-      slug: "calculadora-propinas",
-      subtitle: "Calcula propinas y divide cuentas",
-      breadcrumb: "Propinas",
-      seo: {
-        title: "Calculadora de Propinas - Calcula Propinas y Divide Cuentas al Instante",
-        description: "Calculadora gratuita de propinas para calcular rápidamente montos de gratificación, dividir cuentas entre múltiples personas y determinar el costo total incluyendo propina.",
-        keywords: ["calculadora propinas", "calculadora gratificación", "dividir cuenta", "propina restaurante", "propina servicio"],
-      },
-      ui: {
-        yourInformation: "Detalles de la Cuenta",
-        calculate: "Calcular",
-        reset: "Reiniciar",
-        results: "Desglose de Propina",
-        loading: "Calculando...",
-      },
-      inputs: {
-        billAmount: {
-          label: "Monto de la Cuenta",
-          helpText: "Ingrese el monto total de la cuenta antes de la propina"
-        },
-        tipPercentage: {
-          label: "Porcentaje de Propina",
-          helpText: "Ingrese el porcentaje de propina deseado",
-          suffix: "%"
-        },
-        numberOfPeople: {
-          label: "Número de Personas",
-          helpText: "¿Cuántas personas van a dividir la cuenta?"
-        }
-      },
-      results: {
-        tipAmount: {
-          label: "Monto de Propina",
-          description: "La gratificación total a pagar"
-        },
-        totalAmount: {
-          label: "Monto Total",
-          description: "Monto de la cuenta más la propina"
-        },
-        perPerson: {
-          label: "Por Persona",
-          description: "Cantidad que debe pagar cada persona incluyendo propina"
-        }
-      },
-      infoCards: {
-        resultsCard: {
-          title: "Desglose de tu Propina",
-          items: ["Monto original de la cuenta", "Monto de propina calculado", "Total con propina incluida"],
-        },
-        tipsCard: {
-          title: "Guías de Propinas",
-          items: ["15-20% para buen servicio en restaurante", "18-25% para servicio excepcional", "10-15% para servicio promedio", "Redondear para mayor comodidad"],
-        },
-      },
-      referenceData: {
-        referenceTable: {
-          title: "Tasas de Propina Estándar",
-          items: [
-            { label: "Mesero de Restaurante", value: "15-25%" },
-            { label: "Entrega de Comida", value: "10-20%" },
-            { label: "Taxi/Viaje Compartido", value: "10-20%" },
-            { label: "Estilista", value: "15-25%" },
-          ],
-        },
-      },
-      education: {
-        whatIs: {
-          title: "¿Qué es dar Propina?",
-          content: "Dar propina es una práctica habitual de dar dinero adicional a los trabajadores de servicios más allá del precio establecido de bienes o servicios. Es una forma de mostrar aprecio por el buen servicio y a menudo representa una parte significativa de los ingresos de los trabajadores de servicios. Los montos de propina típicamente van del 10% al 25% de la cuenta total, dependiendo de la calidad del servicio, tipo de establecimiento y costumbres locales. En muchos países, particularmente Estados Unidos, dar propina no es solo habitual sino esperado en ciertas industrias de servicios como restaurantes, bares y servicios personales.",
-        },
-        howToCalculate: {
-          title: "Cómo Calcular Propinas",
-          content: "Para calcular una propina: 1) Determine el porcentaje de propina deseado basado en la calidad del servicio, 2) Multiplique el monto de la cuenta por el porcentaje de propina (como decimal), 3) Sume el monto de la propina a la cuenta original para el total. Por ejemplo, en una cuenta de $50 con propina del 18%: $50 × 0.18 = $9 de propina, total = $59. Al dividir cuentas, divida el monto total (incluyendo propina) por el número de personas.",
-        },
-        considerations: {
-          title: "Consideraciones para Propinas",
-          items: [
-            { text: "Considere la calidad del servicio al determinar el porcentaje de propina" },
-            { text: "Algunos establecimientos incluyen gratificación automática para grupos grandes" },
-            { text: "Las costumbres de propinas varían significativamente entre países y culturas" },
-            { text: "Siempre verifique si los cargos por servicio ya están incluidos en la cuenta" },
-            { text: "Redondee los montos para conveniencia, pero asegure compensación justa" },
-          ],
-        },
-        examples: {
-          title: "Ejemplos de Cálculos",
-          description: "Escenarios comunes de propinas con cálculos paso a paso",
-          examples: [
-            {
-              title: "Cuenta de Restaurante",
-              steps: ["Monto de cuenta: $80.00", "Propina por buen servicio: 18%", "Propina: $80 × 0.18 = $14.40"],
-              result: "Total: $94.40",
-            },
-            {
-              title: "Cuenta Dividida para 4 Personas",
-              steps: ["Cuenta: $120, Propina: 20% = $24", "Total con propina: $144", "Por persona: $144 ÷ 4 = $36"],
-              result: "Cada persona paga: $36.00",
-            },
-          ],
-        },
-      },
-      faqs: [
-        { question: "¿Cuál es el porcentaje de propina estándar en restaurantes?", answer: "En EE.UU., 15-20% es estándar para buen servicio, siendo 18% lo más común. Para servicio excepcional, 20-25% es apropiado." },
-        { question: "¿Debo dar propina sobre el monto antes o después de impuestos?", answer: "Generalmente es aceptable dar propina sobre cualquiera de los dos montos. Muchas personas dan propina sobre el monto antes de impuestos por simplicidad." },
-        { question: "¿Cómo divido una cuenta con diferentes preferencias de propina?", answer: "Calcule primero el total con el porcentaje de propina acordado, luego divida igualmente. Alternativamente, cada persona puede agregar su propina preferida a su porción." },
-        { question: "¿Qué pasa si el servicio fue malo? ¿Aún debo dar propina?", answer: "Aunque puede reducir la propina por mal servicio (10-12%), considere hablar con la gerencia sobre los problemas. Muchos meseros dependen de las propinas." },
-        { question: "¿Hay situaciones donde no se esperan propinas?", answer: "Las costumbres de propinas varían por ubicación y tipo de servicio. Restaurantes casuales rápidos, algunas cafeterías y establecimientos con políticas 'sin propinas' pueden no esperarlas." },
-        { question: "¿Cómo manejo los cargos de gratificación automática?", answer: "Si se agrega gratificación automática (a menudo para grupos grandes), no está obligado a dar propina extra a menos que el servicio fuera excepcional." },
-      ],
-      disclaimer: "Esta calculadora proporciona estimaciones basadas en prácticas estándar de propinas. Los montos reales pueden variar según la calidad del servicio, costumbres locales y preferencias personales. Siempre verifique los cálculos y considere las convenciones locales.",
-      rating: {
-        title: "Califica esta Calculadora",
-        share: "Compartir",
-        copied: "¡Copiado!",
-        copyLink: "Copiar Enlace",
-        clickToRate: "Haz clic para calificar",
-        youRated: "Calificaste",
-        stars: "estrellas",
-        averageFrom: "promedio de",
-        ratings: "calificaciones",
-        shareCalculator: "Comparte esta calculadora:",
-        includesValues: "incluye tus valores",
-        creating: "Creando...",
-        thankYou: "¡Gracias por tu calificación! Ayuda a otros compartiendo."
-      },
-    },
-    pt: {
-      name: "Calculadora de Gorjetas",
-      slug: "calculadora-gorjetas",
-      subtitle: "Calcule gorjetas e divida contas",
-      breadcrumb: "Gorjetas",
-      seo: {
-        title: "Calculadora de Gorjetas - Calcule Gorjetas e Divida Contas Instantaneamente",
-        description: "Calculadora gratuita de gorjetas para calcular rapidamente valores de gratificação, dividir contas entre múltiplas pessoas e determinar o custo total incluindo gorjeta.",
-        keywords: ["calculadora gorjeta", "calculadora gratificação", "dividir conta", "gorjeta restaurante", "gorjeta serviço"],
-      },
-      ui: {
-        yourInformation: "Detalhes da Conta",
-        calculate: "Calcular",
-        reset: "Reiniciar",
-        results: "Detalhamento da Gorjeta",
-        loading: "Calculando...",
-      },
-      inputs: {
-        billAmount: {
-          label: "Valor da Conta",
-          helpText: "Digite o valor total da conta antes da gorjeta"
-        },
-        tipPercentage: {
-          label: "Porcentagem da Gorjeta",
-          helpText: "Digite a porcentagem de gorjeta desejada",
-          suffix: "%"
-        },
-        numberOfPeople: {
-          label: "Número de Pessoas",
-          helpText: "Quantas pessoas vão dividir a conta?"
-        }
-      },
-      results: {
-        tipAmount: {
-          label: "Valor da Gorjeta",
-          description: "A gratificação total a ser paga"
-        },
-        totalAmount: {
-          label: "Valor Total",
-          description: "Valor da conta mais a gorjeta"
-        },
-        perPerson: {
-          label: "Por Pessoa",
-          description: "Quantia que cada pessoa deve pagar incluindo gorjeta"
-        }
-      },
-      infoCards: {
-        resultsCard: {
-          title: "Detalhamento da sua Gorjeta",
-          items: ["Valor original da conta", "Valor da gorjeta calculado", "Total com gorjeta incluída"],
-        },
-        tipsCard: {
-          title: "Guias de Gorjetas",
-          items: ["10-15% para bom atendimento em restaurante", "15-20% para atendimento excepcional", "5-10% para atendimento médio", "Arredondar para maior praticidade"],
-        },
-      },
-      referenceData: {
-        referenceTable: {
-          title: "Taxas Padrão de Gorjetas",
-          items: [
-            { label: "Garçom de Restaurante", value: "10-20%" },
-            { label: "Entrega de Comida", value: "5-15%" },
-            { label: "Táxi/Transporte", value: "10-15%" },
-            { label: "Cabeleireiro", value: "10-20%" },
-          ],
-        },
-      },
-      education: {
-        whatIs: {
-          title: "O que é Gorjeta?",
-          content: "Gorjeta é uma prática costumeira de dar dinheiro adicional aos trabalhadores de serviços além do preço estabelecido de bens ou serviços. É uma forma de mostrar apreço pelo bom atendimento e muitas vezes representa uma parte significativa da renda dos trabalhadores de serviços. Os valores de gorjetas tipicamente variam de 5% a 20% da conta total, dependendo da qualidade do serviço, tipo de estabelecimento e costumes locais. No Brasil, dar gorjeta é opcional e geralmente menor que em outros países, mas é uma forma importante de reconhecer bom atendimento.",
-        },
-        howToCalculate: {
-          title: "Como Calcular Gorjetas",
-          content: "Para calcular uma gorjeta: 1) Determine a porcentagem de gorjeta desejada baseada na qualidade do serviço, 2) Multiplique o valor da conta pela porcentagem da gorjeta (como decimal), 3) Some o valor da gorjeta à conta original para o total. Por exemplo, numa conta de R$ 50 com gorjeta de 10%: R$ 50 × 0.10 = R$ 5 de gorjeta, total = R$ 55. Ao dividir contas, divida o valor total (incluindo gorjeta) pelo número de pessoas.",
-        },
-        considerations: {
-          title: "Considerações sobre Gorjetas",
-          items: [
-            { text: "Considere a qualidade do atendimento ao determinar a porcentagem da gorjeta" },
-            { text: "Alguns estabelecimentos incluem taxa de serviço automaticamente" },
-            { text: "Os costumes de gorjetas variam significativamente entre países e culturas" },
-            { text: "Sempre verifique se taxas de serviço já estão incluídas na conta" },
-            { text: "Arredonde valores para conveniência, mas garanta compensação justa" },
-          ],
-        },
-        examples: {
-          title: "Exemplos de Cálculos",
-          description: "Cenários comuns de gorjetas com cálculos passo a passo",
-          examples: [
-            {
-              title: "Conta de Restaurante",
-              steps: ["Valor da conta: R$ 80,00", "Gorjeta por bom serviço: 10%", "Gorjeta: R$ 80 × 0.10 = R$ 8,00"],
-              result: "Total: R$ 88,00",
-            },
-            {
-              title: "Conta Dividida para 4 Pessoas",
-              steps: ["Conta: R$ 120, Gorjeta: 10% = R$ 12", "Total com gorjeta: R$ 132", "Por pessoa: R$ 132 ÷ 4 = R$ 33"],
-              result: "Cada pessoa paga: R$ 33,00",
-            },
-          ],
-        },
-      },
-      faqs: [
-        { question: "Qual é a porcentagem padrão de gorjeta em restaurantes?", answer: "No Brasil, 10% é comum para bom atendimento, embora seja opcional. Alguns estabelecimentos cobram taxa de serviço de 10% automaticamente." },
-        { question: "Devo dar gorjeta sobre o valor antes ou depois dos impostos?", answer: "Geralmente é aceitável dar gorjeta sobre qualquer um dos valores. Muitas pessoas dão gorjeta sobre o valor total da conta por simplicidade." },
-        { question: "Como divido uma conta com diferentes preferências de gorjeta?", answer: "Calcule primeiro o total com a porcentagem de gorjeta acordada, depois divida igualmente. Alternativamente, cada pessoa pode adicionar sua gorjeta preferida à sua parte." },
-        { question: "E se o atendimento foi ruim? Ainda devo dar gorjeta?", answer: "Gorjetas são opcionais no Brasil e refletem a qualidade do serviço. Para atendimento ruim, você pode optar por não dar gorjeta ou dar menos." },
-        { question: "Existem situações onde gorjetas não são esperadas?", answer: "Em fast-foods, bares casuais e alguns estabelecimentos, gorjetas não são esperadas. Sempre observe a política do local." },
-        { question: "Como lido com taxas de serviço automáticas?", answer: "Se taxa de serviço de 10% for adicionada automaticamente, você não é obrigado a dar gorjeta extra, a menos que o serviço tenha sido excepcional." },
-      ],
-      disclaimer: "Esta calculadora fornece estimativas baseadas em práticas padrão de gorjetas. Valores reais podem variar conforme qualidade do serviço, costumes locais e preferências pessoais. Sempre verifique os cálculos e considere convenções locais.",
+      sources: { title: "Sources & References" },
     },
   },
-  
-  hero: {
-    badge: "Everyday",
-    rating: { average: 4.8, count: 10000 },
-  },
-  
-  unitSystem: {
-    enabled: false,
-    default: "metric",
-  },
-  
+
   inputs: [
     {
       id: "billAmount",
-      type: "slider",
-      required: true,
-      defaultValue: 50,
-      min: 0,
-      step: 0.01,
+      type: "number",
+      defaultValue: null,
+      placeholder: "50",
+      unitType: "currency",
+      syncGroup: false,
+      autoConvert: false,
+      defaultUnit: "USD",
     },
     {
-      id: "tipPercentage",
-      type: "slider",
-      required: true,
+      id: "serviceQuality",
+      type: "radio",
+      defaultValue: "good",
+      options: [
+        { value: "poor" },
+        { value: "fair" },
+        { value: "good" },
+        { value: "great" },
+        { value: "exceptional" },
+      ],
+      linkedValues: {
+        poor: { tipPercent: 10 },
+        fair: { tipPercent: 15 },
+        good: { tipPercent: 18 },
+        great: { tipPercent: 20 },
+        exceptional: { tipPercent: 25 },
+      },
+    },
+    {
+      id: "tipPercent",
+      type: "number",
       defaultValue: 18,
       min: 0,
       max: 100,
@@ -666,105 +392,320 @@ export const tipCalculatorConfig: CalculatorConfigV4 = {
       suffix: "%",
     },
     {
-      id: "numberOfPeople",
-      type: "slider",
-      required: true,
+      id: "splitBetween",
+      type: "number",
       defaultValue: 1,
       min: 1,
       max: 50,
-      step: 1,
+    },
+    {
+      id: "tipCalculation",
+      type: "radio",
+      defaultValue: "total",
+      options: [{ value: "total" }, { value: "preTax" }],
+    },
+    {
+      id: "taxAmount",
+      type: "number",
+      defaultValue: null,
+      placeholder: "0",
+      unitType: "currency",
+      syncGroup: false,
+      autoConvert: false,
+      defaultUnit: "USD",
+      showWhen: { field: "tipCalculation", value: "preTax" },
+    },
+    {
+      id: "roundTotal",
+      type: "radio",
+      defaultValue: "none",
+      options: [
+        { value: "none" },
+        { value: "nearest1" },
+        { value: "nearest5" },
+        { value: "nearest10" },
+      ],
     },
   ],
-  
+
+  inputGroups: [],
+
   results: [
-    {
-      id: "tipAmount",
-      type: "primary",
-      format: "currency",
-      decimals: 2,
-      prefix: "$",
-    },
-    {
-      id: "totalAmount",
-      type: "secondary",
-      format: "currency",
-      decimals: 2,
-      prefix: "$",
-    },
-    {
-      id: "perPerson",
-      type: "secondary",
-      format: "currency",
-      decimals: 2,
-      prefix: "$",
-    },
+    { id: "tipAmount", type: "primary", format: "text" },
+    { id: "totalWithTip", type: "secondary", format: "text" },
+    { id: "tipPerPerson", type: "secondary", format: "text" },
+    { id: "totalPerPerson", type: "secondary", format: "text" },
+    { id: "effectiveTipRate", type: "secondary", format: "text" },
+    { id: "tipCalculatedOn", type: "secondary", format: "text" },
+    { id: "youSave", type: "secondary", format: "text" },
   ],
-  
+
   infoCards: [
-    { id: "resultsCard", icon: "📊", type: "list", items: [{ valueKey: "tipAmount" }, { valueKey: "totalAmount" }] },
-    { id: "tipsCard", icon: "💡", type: "horizontal", items: [{}, {}, {}, {}] },
+    { id: "tipBreakdown", type: "list", icon: "💰", itemCount: 4 },
+    { id: "tippingGuide", type: "list", icon: "🌎", itemCount: 6 },
+    { id: "tips", type: "horizontal", icon: "💡", itemCount: 4 },
   ],
-  
-  referenceData: [
-    { id: "referenceTable", icon: "📋", columns: 2 },
-  ],
-  
+
   educationSections: [
     { id: "whatIs", type: "prose", icon: "📖" },
-    { id: "howToCalculate", type: "prose", icon: "⚙️" },
-    { id: "considerations", type: "list", icon: "⚠️", itemTypes: ["info", "info", "info", "warning", "warning"] },
-    { id: "examples", type: "code-example", icon: "🧮", columns: 2 },
+    { id: "howItWorks", type: "prose", icon: "⚙️" },
+    { id: "tippingEtiquette", type: "list", icon: "🍽️", itemCount: 6 },
+    { id: "globalTipping", type: "list", icon: "🌍", itemCount: 6 },
+    { id: "examples", type: "code-example", icon: "🧮", columns: 2, exampleCount: 2 },
   ],
-  
+
+  faqs: [
+    { id: "0" },
+    { id: "1" },
+    { id: "2" },
+    { id: "3" },
+    { id: "4" },
+    { id: "5" },
+  ],
+
   references: [
-    { authors: "Bureau of Labor Statistics", year: "2024", title: "Occupational Employment and Wages for Food Service Workers", source: "U.S. Department of Labor", url: "https://www.bls.gov/ooh/food-preparation-and-serving/" },
-    { authors: "Emily Post Institute", year: "2024", title: "Tipping Guidelines and Etiquette", source: "Emily Post Institute", url: "https://emilypost.com/advice/general-tipping-guidelines" },
+    {
+      authors: "Emily Post Institute",
+      year: "2024",
+      title: "Tipping Guide — General Tipping Guidelines",
+      source: "Emily Post Institute",
+      url: "https://emilypost.com/advice/general-tipping-guide",
+    },
+    {
+      authors: "U.S. Department of Labor",
+      year: "2024",
+      title: "Fact Sheet — Tipped Employees Under the FLSA",
+      source: "DOL Wage and Hour Division",
+      url: "https://www.dol.gov/agencies/whd/fact-sheets/15-tipped-employees-flsa",
+    },
   ],
-  
-  sidebar: { showSearch: true, showRelatedCalculators: true, showCTA: false, category: "everyday" },
-  features: { autoCalculate: true, exportPDF: true, shareResults: true, saveHistory: true },
-  relatedCalculators: [],
-  ads: { mobileHero: true, sidebar: true, mobileContent: true, bottom: true },
+
+  detailedTable: {
+    id: "tipComparison",
+    buttonLabel: "View Tip Comparison",
+    buttonIcon: "📊",
+    modalTitle: "Tip Comparison by Percentage",
+    columns: [
+      { id: "percent", label: "Tip %", align: "center" },
+      { id: "tipAmt", label: "Tip Amount", align: "right", highlight: true },
+      { id: "total", label: "Total", align: "right" },
+      { id: "perPerson", label: "Per Person", align: "right" },
+    ],
+  },
+
+  chart: {
+    id: "tipComparison",
+    type: "bar",
+    xKey: "label",
+    height: 200,
+    showGrid: true,
+    showLegend: false,
+    series: [
+      { key: "tip", type: "bar", color: "#3b82f6" },
+    ],
+  },
+
+  hero: {
+    title: "Tip Calculator",
+    description: "Calculate the tip, split the bill, and settle up fast",
+  },
+
+  sidebar: {
+    title: "How to Use",
+    steps: [
+      "Enter your bill amount",
+      "Select service quality or adjust tip %",
+      "Choose to tip on total or pre-tax",
+      "Split the bill and round if needed",
+    ],
+  },
+
+  features: {
+    title: "Features",
+    items: [
+      "Auto-set tip by service quality",
+      "Tip on total or pre-tax amount",
+      "Split bill up to 50 people",
+      "Round to nearest $1, $5, or $10",
+      "Multi-currency support",
+    ],
+  },
+
+  relatedCalculators: ["percentage", "discount", "sales-tax"],
+
+  ads: {
+    enabled: true,
+    slots: ["top", "sidebar", "bottom"],
+  },
 };
 
-// =============================================================================
+// ═══════════════════════════════════════════════════════════════════
 // CALCULATE FUNCTION
-// =============================================================================
+// ═══════════════════════════════════════════════════════════════════
+
 export function calculateTip(data: {
   values: Record<string, unknown>;
-  units: Record<string, string>;
-  unitSystem: "metric" | "imperial";
-  mode?: string;
+  fieldUnits?: Record<string, string>;
+  t?: Record<string, unknown>;
 }): CalculatorResults {
-  const { values } = data;
-  
-  const billAmount = Number(values.billAmount) || 0;
-  const tipPercentage = Number(values.tipPercentage) || 15;
-  const numberOfPeople = Number(values.numberOfPeople) || 1;
-  
-  // Calculate tip
-  const tipAmount = billAmount * (tipPercentage / 100);
-  const totalAmount = billAmount + tipAmount;
-  const perPerson = numberOfPeople > 0 ? totalAmount / numberOfPeople : totalAmount;
-  const tipPerPerson = numberOfPeople > 0 ? tipAmount / numberOfPeople : tipAmount;
-  
+  const { values, fieldUnits, t } = data;
+  const v = (t?.values as Record<string, string>) || {};
+  const f = (t?.formats as Record<string, string>) || {};
+
+  // ═══════════════════════════════════════════════════════════════════
+  // EXTRACT INPUTS
+  // ═══════════════════════════════════════════════════════════════════
+  const billAmount = values.billAmount as number;
+  const tipPercent = values.tipPercent as number;
+  const splitBetween = Math.max(1, values.splitBetween as number);
+  const tipCalculation = values.tipCalculation as string;
+  const taxAmount = (values.taxAmount as number) || 0;
+  const roundTotal = values.roundTotal as string;
+
+  // Currency symbol
+  const curr = fieldUnits?.billAmount || "USD";
+  const SYMBOLS: Record<string, string> = {
+    USD: "$", EUR: "€", GBP: "£", MXN: "MX$", BRL: "R$",
+    JPY: "¥", INR: "₹", CAD: "C$", AUD: "A$", CHF: "CHF ",
+    COP: "COL$", ARS: "AR$", PEN: "S/", CLP: "CLP ",
+    CNY: "¥", KRW: "₩", SEK: "kr ", NOK: "kr ", DKK: "kr ",
+    PLN: "zł ", CZK: "Kč ", HUF: "Ft ", TRY: "₺",
+    RUB: "₽", THB: "฿", PHP: "₱", IDR: "Rp ", MYR: "RM ",
+    SGD: "S$", HKD: "HK$", TWD: "NT$", NZD: "NZ$",
+    ZAR: "R ", ILS: "₪", AED: "د.إ ", SAR: "﷼ ",
+    DOP: "RD$", GTQ: "Q", HNL: "L ", NIO: "C$", CRC: "₡",
+    PAB: "B/.", BOB: "Bs ", PYG: "₲", UYU: "$U ", VES: "Bs.D ",
+    JMD: "J$", TTD: "TT$", BBD: "Bds$", KYD: "CI$",
+    BSD: "B$", AWG: "Afl ", ANG: "NAf ", XCD: "EC$",
+    HTG: "G ", CUP: "₱", BZD: "BZ$",
+  };
+  const sym = SYMBOLS[curr] || "$";
+
+  // Helper: format currency
+  const fmtCurr = (val: number): string => {
+    if (Math.abs(val) >= 1000) {
+      return `${sym}${val.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    }
+    return `${sym}${val.toFixed(2)}`;
+  };
+
+  // ═══════════════════════════════════════════════════════════════════
+  // CALCULATE TIP
+  // ═══════════════════════════════════════════════════════════════════
+  let tipBase = billAmount;
+  let tipCalculatedOnRaw = "Total";
+  let preTaxSavings = 0;
+
+  if (tipCalculation === "preTax" && taxAmount > 0) {
+    tipBase = billAmount - taxAmount;
+    tipCalculatedOnRaw = "Pre-tax subtotal";
+    // Calculate savings vs tipping on total
+    preTaxSavings = (billAmount * tipPercent / 100) - (tipBase * tipPercent / 100);
+  }
+
+  const tipCalculatedOn = v[tipCalculatedOnRaw] || tipCalculatedOnRaw;
+  const tipAmount = tipBase * tipPercent / 100;
+  const totalWithTip = billAmount + tipAmount;
+
+  // ═══════════════════════════════════════════════════════════════════
+  // SPLIT & ROUND
+  // ═══════════════════════════════════════════════════════════════════
+  let totalPerPerson = totalWithTip / splitBetween;
+  let tipPerPerson = tipAmount / splitBetween;
+
+  // Rounding
+  if (roundTotal !== "none") {
+    const roundTo = roundTotal === "nearest1" ? 1 : roundTotal === "nearest5" ? 5 : 10;
+    totalPerPerson = Math.ceil(totalPerPerson / roundTo) * roundTo;
+  }
+
+  // Recalculate effective values after rounding
+  const actualTotal = totalPerPerson * splitBetween;
+  const actualTip = actualTotal - billAmount;
+  const effectiveTipRate = billAmount > 0 ? (actualTip / (tipCalculation === "preTax" && taxAmount > 0 ? tipBase : billAmount)) * 100 : 0;
+
+  // ═══════════════════════════════════════════════════════════════════
+  // TIPPING GUIDE (based on bill amount)
+  // ═══════════════════════════════════════════════════════════════════
+  const guidePercentages: Record<string, [number, number]> = {
+    restaurant: [15, 20],
+    delivery: [15, 20],
+    salon: [15, 20],
+    bar: [15, 20],
+    taxi: [15, 20],
+    hotel: [2, 5], // flat amount per night
+  };
+
+  // ═══════════════════════════════════════════════════════════════════
+  // CHART DATA — Tip amounts at different percentages
+  // ═══════════════════════════════════════════════════════════════════
+  const chartPercentages = [10, 15, 18, 20, 25];
+  const chartData = chartPercentages.map((pct) => {
+    const base = tipCalculation === "preTax" && taxAmount > 0 ? tipBase : billAmount;
+    return {
+      label: `${pct}%`,
+      tip: Math.round((base * pct / 100) * 100) / 100,
+    };
+  });
+
+  // ═══════════════════════════════════════════════════════════════════
+  // DETAILED TABLE — Comparison at multiple percentages
+  // ═══════════════════════════════════════════════════════════════════
+  const tablePercentages = [10, 12, 15, 18, 20, 22, 25, 30];
+  const tableData = tablePercentages.map((pct) => {
+    const base = tipCalculation === "preTax" && taxAmount > 0 ? tipBase : billAmount;
+    const t = base * pct / 100;
+    const tot = billAmount + t;
+    const pp = tot / splitBetween;
+    return {
+      percent: `${pct}%`,
+      tipAmt: fmtCurr(t),
+      total: fmtCurr(tot),
+      perPerson: splitBetween > 1 ? fmtCurr(pp) : "—",
+    };
+  });
+
+  // ═══════════════════════════════════════════════════════════════════
+  // FORMAT OUTPUTS
+  // ═══════════════════════════════════════════════════════════════════
+  const perPersonLabel = v["per person"] || "per person";
+
+  const summaryTemplate = f.summary || "Tip: {tipAmount} ({effectiveTipRate}). Total with tip: {totalWithTip}. Each person pays {totalPerPerson}.";
+  const summary = summaryTemplate
+    .replace("{tipAmount}", fmtCurr(roundTotal !== "none" ? actualTip : tipAmount))
+    .replace("{effectiveTipRate}", `${effectiveTipRate.toFixed(1)}%`)
+    .replace("{totalWithTip}", fmtCurr(roundTotal !== "none" ? actualTotal : totalWithTip))
+    .replace("{totalPerPerson}", fmtCurr(totalPerPerson));
+
+  // ═══════════════════════════════════════════════════════════════════
+  // RETURN
+  // ═══════════════════════════════════════════════════════════════════
   return {
     values: {
-      tipAmount,
-      totalAmount,
-      perPerson,
-      tipPerPerson,
-      billAmount,
+      tipAmount: roundTotal !== "none" ? actualTip : tipAmount,
+      totalWithTip: roundTotal !== "none" ? actualTotal : totalWithTip,
+      tipPerPerson: roundTotal !== "none" ? actualTip / splitBetween : tipPerPerson,
+      totalPerPerson,
+      effectiveTipRate: Math.round(effectiveTipRate * 10) / 10,
+      tipCalculatedOn: tipCalculatedOnRaw,
+      youSave: preTaxSavings,
     },
     formatted: {
-      tipAmount: "$" + tipAmount.toFixed(2),
-      totalAmount: "$" + totalAmount.toFixed(2),
-      perPerson: "$" + perPerson.toFixed(2),
-      tipPerPerson: "$" + tipPerPerson.toFixed(2),
-      billAmount: "$" + billAmount.toFixed(2),
+      tipAmount: fmtCurr(roundTotal !== "none" ? actualTip : tipAmount),
+      totalWithTip: fmtCurr(roundTotal !== "none" ? actualTotal : totalWithTip),
+      tipPerPerson: fmtCurr(roundTotal !== "none" ? actualTip / splitBetween : tipPerPerson),
+      totalPerPerson: fmtCurr(totalPerPerson),
+      effectiveTipRate: `${effectiveTipRate.toFixed(1)}%`,
+      tipCalculatedOn,
+      youSave: preTaxSavings > 0 ? fmtCurr(preTaxSavings) : "—",
     },
-    summary: `Tip: ${tipAmount.toFixed(2)} | Total: ${totalAmount.toFixed(2)} | Per person: ${perPerson.toFixed(2)}`,
-    isValid: billAmount > 0,
+    summary,
+    isValid: true,
+    metadata: {
+      chartData,
+      tableData,
+    },
   };
 }
+
 export default tipCalculatorConfig;
