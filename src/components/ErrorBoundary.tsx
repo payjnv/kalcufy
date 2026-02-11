@@ -1,7 +1,7 @@
 "use client";
 import { Component, ReactNode } from "react";
 
-export class GlobalErrorBoundary extends Component
+export class GlobalErrorBoundary extends Component<
   { children: ReactNode },
   { hasError: boolean }
 > {
@@ -11,11 +11,10 @@ export class GlobalErrorBoundary extends Component
   }
 
   static getDerivedStateFromError() {
-    return { hasError: false }; // Don't show error UI, just recover
+    return { hasError: false };
   }
 
   componentDidCatch(error: Error) {
-    // Ignore the known Next.js/React 19 DOM manipulation error
     if (error.message?.includes("removeChild") || error.message?.includes("insertBefore") || error.message?.includes("not a child")) {
       this.setState({ hasError: false });
       return;
