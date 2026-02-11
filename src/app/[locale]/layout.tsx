@@ -1,3 +1,4 @@
+import { GlobalErrorBoundary } from "@/components/ErrorBoundary";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../globals.css";
@@ -157,7 +158,7 @@ export default async function LocaleLayout({
             <div className="flex flex-col min-h-screen">
               <Header />
               <main id="main-content" className="flex-1 pt-16" tabIndex={-1}>
-                {children}
+                <GlobalErrorBoundary>{children}</GlobalErrorBoundary>
               </main>
               <Footer />
             </div>

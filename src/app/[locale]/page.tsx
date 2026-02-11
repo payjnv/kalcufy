@@ -26,7 +26,7 @@ export default async function Home({
   const calcCount = SLUG_REGISTRY.filter(e => e.category !== "drafts").length;
 
   return (
-    <>
+    <div>
       {/* Hero Section - Compact mobile, spacious desktop */}
       <section 
         className="pt-6 pb-6 md:pt-16 md:pb-16 bg-gradient-to-b from-blue-50 to-white"
@@ -94,6 +94,6 @@ export default async function Home({
           </Link>
         </div>
       </section>
-    </>
+    </div>
   );
 }
