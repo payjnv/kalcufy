@@ -49,7 +49,7 @@ export default async function Home({
           {/* Heading */}
           <h1 
             id="hero-heading"
-            className="text-[26px] leading-tight md:text-5xl font-extrabold text-slate-900 mb-4 md:mb-5"
+            className="text-4xl leading-tight md:text-5xl font-extrabold text-slate-900 mb-4 md:mb-5"
           >
             {t("title1")}
             <br />
@@ -59,7 +59,7 @@ export default async function Home({
           </h1>
 
           {/* Subtitle */}
-          <p className="hidden md:block text-xl text-slate-500 mb-8 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base md:text-xl text-slate-500 mb-6 md:mb-8 max-w-2xl mx-auto leading-relaxed">
             {t("subtitle")}
           </p>
 

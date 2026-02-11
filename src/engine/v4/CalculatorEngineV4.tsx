@@ -614,7 +614,7 @@ export default function CalculatorEngineV4({
             body: JSON.stringify({
               calculatorSlug: translations.slug,
               language: locale,
-              type: "CALCULATION",
+              type: "CALCULATION", sessionId: sessionId.current,
               pagePath: typeof window !== "undefined" ? window.location.pathname : null,
             })
           }).catch(() => {});
@@ -627,6 +627,7 @@ export default function CalculatorEngineV4({
 
   // Track page view + referrer + path + session duration
   const viewStartTime = useRef(Date.now());
+  const sessionId = useRef(typeof window !== "undefined" ? (sessionStorage.getItem("kalcufy_sid") || (() => { const id = crypto.randomUUID(); sessionStorage.setItem("kalcufy_sid", id); return id; })()) : null);
   useEffect(() => {
     if (hasTrackedView.current) return;
     hasTrackedView.current = true;
@@ -636,7 +637,7 @@ export default function CalculatorEngineV4({
       body: JSON.stringify({
         calculatorSlug: translations.slug,
         language: locale,
-        type: "VIEW",
+        type: "VIEW", sessionId: sessionId.current,
         referrer: typeof document !== "undefined" ? document.referrer || null : null,
         pagePath: typeof window !== "undefined" ? window.location.pathname : null,
       })
@@ -648,7 +649,7 @@ export default function CalculatorEngineV4({
         navigator.sendBeacon("/api/track", JSON.stringify({
           calculatorSlug: translations.slug,
           language: locale,
-          type: "VIEW",
+          type: "VIEW", sessionId: sessionId.current,
           durationSeconds: seconds,
           pagePath: window.location.pathname,
         }));

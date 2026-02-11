@@ -167,7 +167,7 @@ export default function DeepAnalyticsPage() {
           {[
             { icon: Eye, label: "Page Views", value: data.stats?.totalViews || 0, change: data.stats?.viewsChange, color: "bg-blue-50 text-blue-600", sub: `${data.stats?.todayViews || 0} today · ${data.stats?.totalAllTime || 0} all-time` },
             { icon: Calculator, label: "Calculations", value: data.stats?.totalCalcs || 0, change: data.stats?.calcsChange, color: "bg-emerald-50 text-emerald-600", sub: `${data.stats?.todayCalcs || 0} today` },
-            { icon: Users, label: "Sessions", value: data.stats?.uniqueSessions || 0, change: data.stats?.sessionsChange, color: "bg-purple-50 text-purple-600" },
+            { icon: Users, label: "Unique Visits", value: data.stats?.uniqueSessions || 0, change: data.stats?.sessionsChange, color: "bg-purple-50 text-purple-600" },
             { icon: DollarSign, label: "Revenue", value: "$0.00", color: "bg-amber-50 text-amber-600", sub: "0 subscriptions × $2.99/mo" },
           ].map((kpi, i) => (
             <div key={i} className="bg-white rounded-2xl border border-slate-200 p-5 hover:shadow-md hover:border-slate-300 transition-all group">
