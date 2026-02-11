@@ -10,7 +10,7 @@ const DEFAULT_SETTINGS = {
   site: {
     name: "Kalcufy",
     tagline: "Free Online Calculators",
-    url: "https://kalcufy.com",
+    url: "https://www.kalcufy.com",
     logo: "/favicon.png",
     favicon: "/favicon.ico",
   },
@@ -20,7 +20,7 @@ const DEFAULT_SETTINGS = {
     defaultDescription: "Free online calculators for finance, health, math and everyday use. Professional tools with multi-language support.",
     defaultOgImage: "/og-default.png",
     defaultLocale: "en",
-    canonicalBase: "https://kalcufy.com",
+    canonicalBase: "https://www.kalcufy.com",
   },
   google: {
     searchConsoleId: "",
@@ -37,7 +37,7 @@ const DEFAULT_SETTINGS = {
   },
   schema: {
     organizationName: "Kalcufy",
-    organizationLogo: "https://kalcufy.com/favicon.png",
+    organizationLogo: "https://www.kalcufy.com/favicon.png",
     contactEmail: "",
     foundingDate: "2024",
     sameAs: [],

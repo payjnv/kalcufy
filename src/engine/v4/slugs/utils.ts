@@ -31,7 +31,7 @@ export function getRewriteDestination(slug: string, locale: Locale): string | nu
 
 /**
  * Construye la URL canónica para una calculadora
- * @example getCanonicalUrl("bmi", "es", "https://kalcufy.com") → "https://kalcufy.com/es/calculadora-imc"
+ * @example getCanonicalUrl("bmi", "es", "https://www.kalcufy.com") → "https://www.kalcufy.com/es/calculadora-imc"
  */
 export function getCanonicalUrl(calculatorId: string, locale: Locale, baseUrl: string): string {
   const localizedSlug = getLocalizedSlug(calculatorId + "-calculator", locale);

@@ -10,6 +10,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import CookieConsent from '@/components/CookieConsent';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
+import Script from "next/script";
 import { getSiteSettings } from '@/lib/site-settings';
 
 export function generateStaticParams() {
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
   keywords: ["calculator", "financial calculator", "BMI calculator", "loan calculator", "investment calculator"],
   authors: [{ name: settings.site.name }],
   creator: settings.site.name,
-  metadataBase: new URL(settings.seo.canonicalBase || 'https://kalcufy.com'),
+  metadataBase: new URL(settings.seo.canonicalBase || 'https://www.kalcufy.com'),
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -99,31 +100,6 @@ export default async function LocaleLayout({
         {/* Bing Verification */}
         <meta name="msvalidate.01" content="8E13204C5894701E4DA8A48087384FC1" />
 
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-
-        {/* Google Tag Manager - if configured */}
-        {settings.google.tagManagerId && (
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','${settings.google.tagManagerId}');`,
-            }}
-          />
-        )}
-
-        {/* AdSense - if configured */}
-        {settings.google.adsenseId && (
-          <script
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${settings.google.adsenseId}`}
-            crossOrigin="anonymous"
-          />
-        )}
-
         {/* Schema.org Organization */}
         <script
           type="application/ld+json"
@@ -141,6 +117,31 @@ export default async function LocaleLayout({
               style={{ display: 'none', visibility: 'hidden' }}
             />
           </noscript>
+        )}
+
+        {/* GTM - non-blocking */}
+        {settings.google.tagManagerId && (
+          <Script
+            id="gtm-script"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','${settings.google.tagManagerId}');`,
+            }}
+          />
+        )}
+
+        {/* AdSense - lazy loaded */}
+        {settings.google.adsenseId && (
+          <Script
+            id="adsense-script"
+            strategy="lazyOnload"
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${settings.google.adsenseId}`}
+            crossOrigin="anonymous"
+          />
         )}
 
         <Providers>

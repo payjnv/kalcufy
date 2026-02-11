@@ -8,14 +8,10 @@ import { CalculatorEngineV4 } from "@/engine/v4";
 //
 // How it works:
 //   1. page.tsx (server) resolves slug → calcId via SLUG_REGISTRY
-//   2. This client component dynamically imports the calculator module
-//   3. Finds config + calculate function automatically
-//   4. Renders CalculatorEngineV4 with Suspense (required for Vercel build)
-//
-// Supported export patterns:
-//   - export const config = { ... }; export function calculateXxx() { ... }
-//   - export const xxxConfig = { ... }; export function calculateXxx() { ... }
-//   - export default config; export function calculateXxx() { ... }
+//   2. page.tsx server-renders hero (h1, subtitle, breadcrumbs) + skeleton
+//   3. This client component dynamically imports the calculator module
+//   4. On ready → removes SSR placeholder, renders full engine
+//   5. CalculatorEngineV4 renders its own hero (replaces SSR version)
 // ————————————————————————————————————————————————————————————————
 
 interface LoadedCalc {
@@ -94,6 +90,12 @@ function findCalculate(
 
 type Status = "loading" | "ready" | "not-found";
 
+/** Remove the server-rendered skeleton (keep the hero for LCP) */
+function removeSSRSkeleton() {
+  const el = document.getElementById("calc-ssr-skeleton");
+  if (el) el.remove();
+}
+
 function CalculatorInner({
   calcId,
   locale,
@@ -136,13 +138,16 @@ function CalculatorInner({
     };
   }, [calcId]);
 
-  // ── Loading ────────────────────────────────────────────────────
+  // Remove SSR skeleton when calculator is ready or not found
+  useEffect(() => {
+    if (status === "ready" || status === "not-found") {
+      removeSSRSkeleton();
+    }
+  }, [status]);
+
+  // ── Loading — SSR skeleton is already visible, render nothing ──
   if (status === "loading") {
-    return (
-      <div className="min-h-[60vh] flex items-center justify-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" />
-      </div>
-    );
+    return null;
   }
 
   // ── Calculator not built yet ───────────────────────────────────
@@ -175,6 +180,7 @@ function CalculatorInner({
       config={loaded.config}
       calculate={loaded.calculate}
       locale={locale}
+      skipHero
     />
   );
 }

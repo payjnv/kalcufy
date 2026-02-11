@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    const shareUrl = `${process.env.NEXT_PUBLIC_BASE_URL || 'https://kalcufy.com'}/share/${shortCode}`;
+    const shareUrl = `${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.kalcufy.com'}/share/${shortCode}`;
 
     return NextResponse.json({ 
       shortCode: shared.shortCode,

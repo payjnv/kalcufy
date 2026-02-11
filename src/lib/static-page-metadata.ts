@@ -14,7 +14,7 @@
 
 import type { Metadata } from "next";
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://kalcufy.com";
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://www.kalcufy.com";
 const LOCALES = ["en", "es", "pt", "fr", "de"] as const;
 
 export interface StaticPageConfig {

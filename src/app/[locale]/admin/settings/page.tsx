@@ -206,7 +206,7 @@ export default function SettingsPage() {
           <div className="space-y-5">
             <InputField section="site" field="name" label="Site Name" icon={<Globe className="w-4 h-4 text-slate-400" />} placeholder="Kalcufy" />
             <InputField section="site" field="tagline" label="Tagline" icon={<FileText className="w-4 h-4 text-slate-400" />} placeholder="Free Online Calculators" />
-            <InputField section="site" field="url" label="Site URL" icon={<Link2 className="w-4 h-4 text-slate-400" />} placeholder="https://kalcufy.com" helpText="Used for canonical URLs and OG tags" />
+            <InputField section="site" field="url" label="Site URL" icon={<Link2 className="w-4 h-4 text-slate-400" />} placeholder="https://www.kalcufy.com" helpText="Used for canonical URLs and OG tags" />
             <InputField section="site" field="logo" label="Logo Path" icon={<Image className="w-4 h-4 text-slate-400" />} placeholder="/logo.svg" />
             <InputField section="site" field="favicon" label="Favicon Path" icon={<Image className="w-4 h-4 text-slate-400" />} placeholder="/favicon.ico" />
           </div>
@@ -238,7 +238,7 @@ export default function SettingsPage() {
             <InputField section="seo" field="defaultOgImage" label="Default OG Image" icon={<Image className="w-4 h-4 text-slate-400" />}
               placeholder="/og-default.png" helpText="1200x630px recommended" />
             <InputField section="seo" field="canonicalBase" label="Canonical Base URL" icon={<Link2 className="w-4 h-4 text-slate-400" />}
-              placeholder="https://kalcufy.com" helpText="Without trailing slash" />
+              placeholder="https://www.kalcufy.com" helpText="Without trailing slash" />
 
             {/* OG Preview */}
             <div className="bg-white border border-slate-200 rounded-xl p-4">
@@ -304,7 +304,7 @@ export default function SettingsPage() {
             </div>
             <InputField section="schema" field="organizationName" label="Organization Name" icon={<Globe className="w-4 h-4 text-slate-400" />} />
             <InputField section="schema" field="organizationLogo" label="Organization Logo URL" icon={<Image className="w-4 h-4 text-slate-400" />}
-              placeholder="https://kalcufy.com/logo.svg" helpText="Full URL — min 112x112px" />
+              placeholder="https://www.kalcufy.com/logo.svg" helpText="Full URL — min 112x112px" />
             <InputField section="schema" field="contactEmail" label="Contact Email" icon={<Mail className="w-4 h-4 text-slate-400" />}
               placeholder="hello@kalcufy.com" />
             <InputField section="schema" field="foundingDate" label="Founding Year" icon={<Calendar className="w-4 h-4 text-slate-400" />}

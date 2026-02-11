@@ -406,7 +406,7 @@ function CurrencyInput({
           {label}
           {input.required && <span className="text-red-500 ml-1" aria-hidden="true">*</span>}
         </label>
-        {helpTextStr && (
+        {false && helpTextStr && (
           <span id={`help-${input.id}`} className="text-xs text-slate-400">{helpTextStr}</span>
         )}
       </div>
@@ -549,7 +549,7 @@ function PercentageInput({
           {label}
           {input.required && <span className="text-red-500 ml-1" aria-hidden="true">*</span>}
         </label>
-        {helpTextStr && (
+        {false && helpTextStr && (
           <span id={`help-${input.id}`} className="text-xs text-slate-400">{helpTextStr}</span>
         )}
       </div>
@@ -738,7 +738,7 @@ function SliderInput({
           <span className="bg-slate-100 px-1.5 py-0.5 rounded truncate">{prefix}{maxVal.toLocaleString()}{suffix ? ` ${suffix}` : ''}</span>
         </div>
         
-        {input.helpText && (
+        {false && input.helpText && (
           <p className="text-xs text-slate-400 mt-1">
             {t("inputs." + input.id + ".helpText", input.helpText)}
           </p>
@@ -872,7 +872,7 @@ function NumberInput({
             {label}
             {input.required && <span className="text-red-500 ml-1" aria-hidden="true">*</span>}
           </label>
-          {helpTextStr && (
+          {false && helpTextStr && (
             <span id={`help-${input.id}`} className="text-xs text-slate-400">{helpTextStr}</span>
           )}
         </div>
@@ -1054,7 +1054,7 @@ function DualNumberInput({
             {label}
             {input.required && <span className="text-red-500 ml-1" aria-hidden="true">*</span>}
           </label>
-          {helpTextStr && (
+          {false && helpTextStr && (
             <span id={`help-${input.id}`} className="text-xs text-slate-400">{helpTextStr}</span>
           )}
         </div>
@@ -1738,7 +1738,7 @@ function DateInput({ input, value, onChange, onBlur: onBlurProp, errorId, t, val
           {label}
           {input.required && <span className="text-red-500 ml-1" aria-hidden="true">*</span>}
         </label>
-        {helpTextStr && (
+        {false && helpTextStr && (
           <span id={`help-${input.id}`} className="text-xs text-slate-400">{helpTextStr}</span>
         )}
       </div>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://kalcufy.com";
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://www.kalcufy.com";
 
 type SlugField = "slugEn" | "slugEs" | "slugPt" | "slugFr" | "slugDe";
 type TitleField = "titleEn" | "titleEs" | "titlePt" | "titleFr" | "titleDe";
@@ -113,8 +113,8 @@ function buildArticleSchema(post: Record<string, unknown>, title: string, descri
     publisher: {
       "@type": "Organization",
       name: "Kalcufy",
-      url: "https://kalcufy.com",
-      logo: { "@type": "ImageObject", url: "https://kalcufy.com/favicon.png" },
+      url: "https://www.kalcufy.com",
+      logo: { "@type": "ImageObject", url: "https://www.kalcufy.com/favicon.png" },
     },
     ...(post.featuredImage && {
       image: { "@type": "ImageObject", url: post.featuredImage },

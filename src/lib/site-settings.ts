@@ -1,6 +1,5 @@
 import fs from 'fs';
 import path from 'path';
-
 export interface SiteSettings {
   site: { name: string; tagline: string; url: string; logo: string; favicon: string };
   seo: { titleTemplate: string; defaultTitle: string; defaultDescription: string; defaultOgImage: string; defaultLocale: string; canonicalBase: string };
@@ -11,20 +10,17 @@ export interface SiteSettings {
   sitemap: { autoGenerate: boolean; changeFrequency: string; priority: string; excludePaths: string[] };
   indexing: { noindexDrafts: boolean; noindexPagination: boolean; forceTrailingSlash: boolean; hreflangEnabled: boolean; activeLanguages: string[] };
 }
-
 const SETTINGS_PATH = path.join(process.cwd(), 'src', 'config', 'site-settings.json');
-
 const DEFAULTS: SiteSettings = {
-  site: { name: 'Kalcufy', tagline: 'Free Online Calculators', url: 'https://kalcufy.com', logo: '/favicon.png', favicon: '/favicon.png' },
-  seo: { titleTemplate: '%s | Kalcufy', defaultTitle: 'Kalcufy - Free Online Calculators', defaultDescription: 'Free online calculators for finance, health, and everyday decisions. Mortgage, loans, BMI, calories and 40+ more tools.', defaultOgImage: '/og-default.png', defaultLocale: 'en', canonicalBase: 'https://kalcufy.com' },
+  site: { name: 'Kalcufy', tagline: 'Free Online Calculators', url: 'https://www.kalcufy.com', logo: '/favicon.png', favicon: '/favicon.png' },
+  seo: { titleTemplate: '%s | Kalcufy', defaultTitle: 'Kalcufy - Free Online Calculators', defaultDescription: 'Free online calculators for finance, health, and everyday decisions. Mortgage, loans, BMI, calories and 40+ more tools.', defaultOgImage: '/og-default.png', defaultLocale: 'en', canonicalBase: 'https://www.kalcufy.com' },
   google: { searchConsoleId: '', analyticsId: '', adsenseId: '', tagManagerId: '' },
   social: { twitter: '', facebook: '', linkedin: '', github: '', youtube: '' },
-  schema: { organizationName: 'Kalcufy', organizationLogo: 'https://kalcufy.com/favicon.png', contactEmail: '', foundingDate: '2024', sameAs: [] },
+  schema: { organizationName: 'Kalcufy', organizationLogo: 'https://www.kalcufy.com/favicon.png', contactEmail: '', foundingDate: '2024', sameAs: [] },
   robots: { allowAll: true, disallowPaths: ['/api/', '/*/login', '/*/register', '/*/dashboard', '/*/profile', '/*/admin'], customRules: '' },
   sitemap: { autoGenerate: true, changeFrequency: 'weekly', priority: '0.8', excludePaths: ['/admin', '/auth'] },
   indexing: { noindexDrafts: true, noindexPagination: false, forceTrailingSlash: false, hreflangEnabled: true, activeLanguages: ['en', 'es', 'pt', 'fr', 'de'] },
 };
-
 export function getSiteSettings(): SiteSettings {
   try {
     if (fs.existsSync(SETTINGS_PATH)) {
@@ -37,7 +33,6 @@ export function getSiteSettings(): SiteSettings {
   }
   return DEFAULTS;
 }
-
 function deepMerge(target: Record<string, unknown>, source: Record<string, unknown>): Record<string, unknown> {
   const result = { ...target };
   for (const key of Object.keys(source)) {
@@ -49,4 +44,3 @@ function deepMerge(target: Record<string, unknown>, source: Record<string, unkno
   }
   return result;
 }
-

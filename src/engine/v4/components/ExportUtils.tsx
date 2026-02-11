@@ -333,7 +333,7 @@ export async function exportToPDF(data: ExportData, _options: ExportOptions = {}
   // Website link
   doc.setTextColor(...primaryColor);
   doc.setFont("helvetica", "bold");
-  doc.textWithLink("www.kalcufy.com", pageWidth - margin - 28, footerY, { url: "https://kalcufy.com" });
+  doc.textWithLink("www.kalcufy.com", pageWidth - margin - 28, footerY, { url: "https://www.kalcufy.com" });
   
   // ─────────────────────────────────────────────────────────────────────────
   // SAVE

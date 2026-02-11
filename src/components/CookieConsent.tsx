@@ -50,7 +50,7 @@ export default function CookieConsent() {
               We use cookies to improve your experience, analyze traffic, and show personalized ads. 
               By clicking "Accept All", you consent to our use of cookies. 
               <Link href={`/${locale}/cookies`} className="text-blue-600 hover:underline ml-1">
-                Learn more
+                Learn more about our cookie policy
               </Link>
             </p>
           </div>

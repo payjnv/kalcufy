@@ -1,16 +1,10 @@
 // ─────────────────────────────────────────────────────────────────
 // Homepage SEO Metadata Generator
-// 
-// Add this export to src/app/[locale]/layout.tsx alongside the 
-// existing layout, OR create a separate (homepage) group layout.
-//
-// Since the [locale]/layout.tsx wraps ALL pages under [locale],
-// we generate homepage-specific metadata in the page itself.
 // ─────────────────────────────────────────────────────────────────
 
 import type { Metadata } from "next";
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://kalcufy.com";
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://www.kalcufy.com";
 const LOCALES = ["en", "es", "pt", "fr", "de"] as const;
 
 const homeMeta: Record<string, { title: string; description: string }> = {

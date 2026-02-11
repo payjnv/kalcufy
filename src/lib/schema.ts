@@ -65,8 +65,8 @@ export function getAllSchemas(props: SchemaProps) {
   const schemas = [
     getWebApplicationSchema(props),
     getBreadcrumbSchema([
-      { name: "Home", url: `https://kalcufy.com/${props.locale}` },
-      { name: "Calculators", url: `https://kalcufy.com/${props.locale}/calculators` },
+      { name: "Home", url: `https://www.kalcufy.com/${props.locale}` },
+      { name: "Calculators", url: `https://www.kalcufy.com/${props.locale}/calculators` },
       { name: props.name, url: props.url }
     ])
   ];

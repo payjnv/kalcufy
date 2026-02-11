@@ -404,7 +404,7 @@ export default function PrivacyPage() {
                 <p>
                   <strong className="text-slate-800">Website:</strong>{" "}
                   <a
-                    href="https://kalcufy.com"
+                    href="https://www.kalcufy.com"
                     className="text-blue-600 hover:text-blue-700 underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded"
                   >
                     kalcufy.com
