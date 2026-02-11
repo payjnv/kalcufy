@@ -460,6 +460,1330 @@ export const creditCardPayoffConfig: CalculatorConfigV4 = {
 
       sources: { title: "Sources & References" },
     },
+    es: {
+      "name": "Calculadora de Pago de Tarjeta de Crédito",
+      "slug": "calculadora-pago-tarjeta-credito",
+      "subtitle": "Descubre cuánto tiempo te tomará pagar tu tarjeta de crédito, conoce el verdadero costo de los pagos mínimos y descubre qué tan rápido puedes estar libre de deudas",
+      "breadcrumb": "Pago de Tarjeta de Crédito",
+      "seo": {
+        "title": "Calculadora de Pago de Tarjeta de Crédito — Fecha Libre de Deudas y Ahorros | Gratis",
+        "description": "Calcula tu cronograma de pago de tarjeta de crédito con costo de interés diario, análisis de pagos mínimos, ahorros por transferencia de saldo y una fecha personalizada libre de deudas. Ve exactamente qué tan rápido los pagos extra eliminan tu deuda.",
+        "shortDescription": "Ve cuánto tiempo toma pagar tu tarjeta de crédito y ahorrar en intereses",
+        "keywords": [
+          "calculadora de pago de tarjeta de crédito",
+          "calculadora de pagos de tarjeta de crédito",
+          "pagar deuda de tarjeta de crédito",
+          "calculadora de interés de tarjeta de crédito",
+          "calculadora de pago mínimo",
+          "calculadora de pago de deudas",
+          "calculadora de ahorros por transferencia de saldo",
+          "fecha libre de deudas de tarjeta de crédito"
+        ]
+      },
+      "calculator": {
+        "yourInformation": "Tu Información"
+      },
+      "inputs": {
+        "currentBalance": {
+          "label": "Saldo Actual",
+          "helpText": "El saldo total pendiente en tu estado de cuenta de tarjeta de crédito",
+          "placeholder": "5000"
+        },
+        "apr": {
+          "label": "Tasa de Porcentaje Anual (APR)",
+          "helpText": "La tasa de interés de tu tarjeta — encuéntrala en tu estado de cuenta o contrato de tarjeta"
+        },
+        "minimumPaymentPercent": {
+          "label": "Porcentaje de Pago Mínimo",
+          "helpText": "El % de tu saldo usado para calcular el pago mínimo (típicamente 1–3%)"
+        },
+        "minimumPaymentFloor": {
+          "label": "Piso de Pago Mínimo",
+          "helpText": "El pago mínimo más bajo que permite tu emisor (usualmente $25–$35)"
+        },
+        "monthlyPayment": {
+          "label": "Tu Pago Mensual",
+          "helpText": "La cantidad fija que planeas pagar cada mes — deja vacío para ver resultados solo de mínimos",
+          "placeholder": "200"
+        },
+        "includeExtraPayment": {
+          "label": "Agregar Pago Mensual Extra",
+          "helpText": "Ve cómo un pago adicional cada mes acelera el pago total"
+        },
+        "extraPayment": {
+          "label": "Pago Mensual Extra",
+          "helpText": "Cantidad adicional más allá de tu pago mensual regular",
+          "placeholder": "50"
+        },
+        "includeBalanceTransfer": {
+          "label": "Comparar Transferencia de Saldo",
+          "helpText": "Ve cuánto podrías ahorrar transfiriendo a una tarjeta con APR introductorio del 0%"
+        },
+        "introAprMonths": {
+          "label": "Período de APR Introductorio del 0%",
+          "helpText": "Número de meses con 0% de interés en la nueva tarjeta (típicamente 12–21 meses)"
+        },
+        "transferFeePercent": {
+          "label": "Comisión por Transferencia de Saldo",
+          "helpText": "Comisión única cobrada por la transferencia (típicamente 3–5% del saldo)"
+        }
+      },
+      "results": {
+        "payoffTime": {
+          "label": "Tiempo para Pagar"
+        },
+        "totalInterestPaid": {
+          "label": "Interés Total Pagado"
+        },
+        "totalAmountPaid": {
+          "label": "Cantidad Total Pagada"
+        },
+        "dailyInterestCost": {
+          "label": "Costo de Interés Diario"
+        },
+        "interestRatioFirstPayment": {
+          "label": "Interés en el Primer Pago"
+        },
+        "minimumOnlyPayoff": {
+          "label": "Pago Solo Mínimos"
+        },
+        "savingsVsMinimum": {
+          "label": "Ahorros vs Mínimo"
+        },
+        "debtFreeDate": {
+          "label": "Fecha Libre de Deudas"
+        },
+        "balanceTransferSavings": {
+          "label": "Ahorros por Transferencia de Saldo"
+        },
+        "effectiveCostPerDollar": {
+          "label": "Costo por $1 Prestado"
+        }
+      },
+      "presets": {
+        "averageAmerican": {
+          "label": "Estadounidense Promedio",
+          "description": "Saldo de $6,501, APR 22.76%, pago de $200/mes"
+        },
+        "highInterest": {
+          "label": "Deuda de Alto Interés",
+          "description": "$10K al 29.99% APR, $300/mes + transferencia de saldo"
+        },
+        "manageable": {
+          "label": "Saldo Manejable",
+          "description": "$2,000 al 18.99% APR, pago de $150/mes"
+        },
+        "minimumTrap": {
+          "label": "Trampa del Pago Mínimo",
+          "description": "$5,000 al 24.99% — qué pasa solo con mínimos"
+        }
+      },
+      "tooltips": {
+        "payoffTime": "Cuántos meses y años hasta que tu saldo llegue a cero",
+        "totalInterestPaid": "Los cargos de interés totales que pagarás durante la vida de tu deuda — este es el 'costo' de pedir prestado",
+        "totalAmountPaid": "Tu saldo original más todos los intereses — el costo total verdadero",
+        "dailyInterestCost": "Cuánto interés te cobra tu tarjeta todos los días ahora mismo",
+        "interestRatioFirstPayment": "Qué porcentaje de tu primer pago va a intereses vs realmente pagar el saldo",
+        "minimumOnlyPayoff": "Cuánto tiempo y cuánto cuesta si solo pagas el mínimo — la métrica de shock",
+        "savingsVsMinimum": "Cuánto dinero ahorras en intereses pagando tu cantidad fija en lugar de solo el mínimo",
+        "debtFreeDate": "La fecha exacta del calendario en que harás tu pago final y estarás completamente libre de deudas",
+        "balanceTransferSavings": "Cuánto podrías ahorrar transfiriendo tu saldo a una tarjeta con APR introductorio del 0% (menos la comisión de transferencia)",
+        "effectiveCostPerDollar": "Por cada $1 que originalmente cargaste, esto es cuánto realmente terminarás pagando"
+      },
+      "values": {
+        "years": "años",
+        "year": "año",
+        "months": "meses",
+        "month": "mes",
+        "days": "días",
+        "/day": "/día",
+        "Month": "Mes",
+        "Payment": "Pago",
+        "Interest": "Interés",
+        "Principal": "Principal",
+        "Balance": "Saldo",
+        "Minimum Only": "Solo Mínimo",
+        "Your Payment": "Tu Pago",
+        "With Extra": "Con Extra",
+        "of first payment is interest": "del primer pago es interés",
+        "minimum only": "solo mínimo",
+        "saved vs minimum": "ahorrado vs mínimo",
+        "with balance transfer": "con transferencia de saldo",
+        "per $1 borrowed": "por $1 prestado",
+        "You pay": "Pagas",
+        "for every": "por cada",
+        "borrowed": "prestado",
+        "Transfer fee": "Comisión de transferencia",
+        "Debt-free": "Libre de deudas"
+      },
+      "formats": {
+        "summary": "Pagar {balance} al {apr}% APR en {payoffTime} con pagos de {payment}/mes. Interés total: {totalInterest}. Tu tarjeta cobra {dailyCost}/día. Libre de deudas para {debtFreeDate}."
+      },
+      "chart": {
+        "title": "Comparación de Pago de Saldo",
+        "xLabel": "Mes",
+        "yLabel": "Saldo Restante",
+        "series": {
+          "minimumOnly": "Solo Mínimo",
+          "fixedPayment": "Tu Pago",
+          "withExtra": "Con Extra"
+        }
+      },
+      "detailedTable": {
+        "paymentSchedule": {
+          "button": "Ver Cronograma de Pagos",
+          "title": "Cronograma de Pagos Mensuales",
+          "columns": {
+            "month": "Mes",
+            "payment": "Pago",
+            "interest": "Interés",
+            "principal": "Principal",
+            "balance": "Saldo"
+          }
+        }
+      },
+      "infoCards": {
+        "costBreakdown": {
+          "title": "💰 Desglose de Costo Verdadero",
+          "items": [
+            "Interés Total Pagado: el precio oculto de mantener un saldo mes tras mes",
+            "Costo de Interés Diario: tu tarjeta cobra interés todos los días, no solo mensualmente",
+            "Proporción de Interés: ve cuánto de tu primer pago realmente reduce tu deuda vs alimenta el interés",
+            "Costo Por Dólar: el precio real — por cada $1 cargado, puedes pagar $1.40 o más"
+          ]
+        },
+        "payoffStrategy": {
+          "title": "📊 Perspectivas de Estrategia de Pago",
+          "items": [
+            "Trampa del Pago Mínimo: solo pagar el mínimo puede convertir 3 años de deuda en 15+ años",
+            "Poder del Pago Extra: incluso $50/mes extra puede quitar años de tu cronograma de pago",
+            "Transferencia de Saldo: una tarjeta con APR introductorio del 0% puede ahorrar cientos o miles en intereses",
+            "Fecha Libre de Deudas: conocer tu fecha exacta de pago proporciona motivación para mantenerte en el camino"
+          ]
+        },
+        "actionTips": {
+          "title": "💡 Acelera tu Pago",
+          "items": [
+            "Paga más que el mínimo — cada dólar extra va directamente a reducir tu saldo",
+            "Considera la avalancha de deudas: paga primero las tarjetas con APR más alto para minimizar el interés total",
+            "Llama a tu emisor y negocia un APR más bajo — la tasa de éxito es más alta de lo que la mayoría piensa",
+            "Configura autopago por encima del mínimo para evitar cargos por pago tardío y garantizar progreso cada mes"
+          ]
+        }
+      },
+      "educationSections": {
+        "whatIs": {
+          "title": "📖 Cómo Funciona el Interés de Tarjeta de Crédito",
+          "content": "El interés de tarjeta de crédito se calcula diariamente usando el método de Saldo Diario Promedio (SDP). Tu Tasa de Porcentaje Anual (APR) se divide por 365 para obtener una Tasa Periódica Diaria (TPD). Cada día, la TPD se multiplica por tu saldo actual, y ese interés se suma a lo que debes. Esto significa que el interés se capitaliza diariamente — pagas interés sobre interés — razón por la cual la deuda de tarjeta de crédito puede crecer tan rápidamente incluso cuando estás haciendo pagos.\n\nPor ejemplo, un saldo de $5,000 al 22% APR significa que tu tasa diaria es aproximadamente 0.0603%. Eso es aproximadamente $3.01 cobrados todos los días. Durante un mes, eso suma aproximadamente $91.67 solo en intereses. Si tu pago mínimo es solo $100, solo $8.33 realmente reduce tu saldo. Por esto existe la trampa del pago mínimo: la mayor parte de tu dinero alimenta el interés, no la reducción de deuda."
+        },
+        "howItWorks": {
+          "title": "⚙️ Cómo Funciona Esta Calculadora",
+          "content": "Esta calculadora usa un modelo iterativo de amortización mes a mes que refleja cómo los emisores de tarjetas de crédito realmente procesan los pagos. Cada mes, calcula el cargo de interés (saldo × APR ÷ 12), lo resta de tu pago para determinar cuánto va al principal, luego reduce el saldo acordemente. Repite este proceso hasta que el saldo llegue a cero.\n\nA diferencia de estimadores simples de pago, esta herramienta también calcula: el costo exacto de hacer solo pagos mínimos (que disminuyen a medida que tu saldo baja, extendiendo dramáticamente el pago), el impacto de pagos extra, y los ahorros potenciales de una transferencia de saldo al 0%. El pago mínimo cada mes se recalcula como el mayor entre (saldo × % mínimo) o la cantidad mínima base, tal como lo calculan los emisores reales."
+        },
+        "payoffStrategies": {
+          "title": "✅ Estrategias de Pago Comprobadas",
+          "items": [
+            "Avalancha de Deudas: Paga mínimos en todas las tarjetas, pon extra hacia la tarjeta con APR más alto. Ahorra más dinero matemáticamente pero requiere paciencia.",
+            "Bola de Nieve de Deudas: Paga primero el saldo más pequeño para victorias psicológicas rápidas. Ligeramente más caro pero te mantiene motivado.",
+            "Transferencia de Saldo: Mueve la deuda a una tarjeta con APR introductorio del 0%. Pagarás una comisión de transferencia del 3–5% pero eliminarás intereses por 12–21 meses.",
+            "Pagos de Suma Global: Usa reembolsos de impuestos, bonos o ganancias inesperadas para hacer pagos únicos grandes que reduzcan dramáticamente tu cronograma.",
+            "Pagos Quincenales: Paga la mitad de tu pago mensual cada dos semanas — harás 26 medios pagos (13 pagos completos) por año en lugar de 12.",
+            "Negocia tu APR: Llama a tu emisor y pide una reducción de tasa. Clientes de largo tiempo con buen historial de pagos tienen una tasa de éxito del 60–70%."
+          ]
+        },
+        "commonMistakes": {
+          "title": "⚠️ Errores Costosos que Evitar",
+          "items": [
+            "Solo Pagar el Mínimo: Un saldo de $5,000 al 22% con pagos mínimos toma 25+ años y cuesta más de $8,000 solo en intereses.",
+            "Ignorar el APR: Muchos portadores de tarjetas no conocen su tasa. El promedio es 22.76% — revisa tu estado de cuenta y negocia más bajo si es posible.",
+            "Perder Pagos: Un solo pago tardío puede activar un APR de penalización del 29.99%, aumentar tu mínimo y dañar tu puntaje de crédito.",
+            "Continuar Cargando: Hacer pagos mientras sigues agregando al saldo crea un efecto de rueda de ejercicio donde nunca haces progreso.",
+            "Cerrar Tarjetas Pagadas: Cerrar cuentas reduce tu límite de crédito total, aumentando tu proporción de utilización y potencialmente bajando tu puntaje de crédito."
+          ]
+        },
+        "examples": {
+          "title": "🧮 Escenarios Reales de Pago",
+          "columns": 2,
+          "examples": [
+            {
+              "title": "Saldo Promedio — Fijo vs Mínimo",
+              "content": "Saldo: $6,501 | APR: 22.76% | Mínimo: 2% o $35\n\nSolo mínimo: 24 años, 3 meses — Total pagado: $17,476\nFijo $200/mes: 3 años, 4 meses — Total pagado: $7,987\n\n→ Ahorras $9,489 y 21 años pagando $200/mes en lugar del mínimo."
+            },
+            {
+              "title": "Alto Interés + Transferencia de Saldo",
+              "content": "Saldo: $10,000 | APR: 29.99% | Pago: $300/mes\n\nSin transferencia: 4 años, 4 meses — Interés total: $5,428\nCon transferencia 0% (18 meses, comisión 3%): Interés total: $1,868\n\n→ La transferencia de saldo ahorra $3,560 incluso después de la comisión de $300. Estás libre de deudas 14 meses antes."
+            }
+          ]
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "¿Cuánto tiempo tomará pagar mi tarjeta de crédito?",
+          "answer": "Depende de tu saldo, APR y pago mensual. Con un saldo de $5,000 al 22% APR, pagar $200/mes toma aproximadamente 31 meses. Pagar solo el mínimo podría tomar más de 20 años. Usa esta calculadora para obtener tu cronograma personalizado."
+        },
+        "1": {
+          "question": "¿Cuánto de mi pago de tarjeta de crédito va a interés vs principal?",
+          "answer": "En los primeros meses, la mayoría de tu pago va a intereses. Por ejemplo, en un saldo de $5,000 al 22% APR, el interés del primer mes es aproximadamente $91.67. Si pagas $200, solo $108.33 realmente reduce tu saldo. A medida que tu saldo disminuye, más de cada pago va al principal."
+        },
+        "2": {
+          "question": "¿Por qué es tan caro pagar solo el mínimo?",
+          "answer": "Los pagos mínimos están diseñados para mantener tu cuenta al día, no para pagar deuda eficientemente. Típicamente son 1–3% de tu saldo, lo que apenas cubre el interés. A medida que tu saldo baja, el mínimo también baja — así pagas menos y menos cada mes, extendiendo el pago por décadas. Un saldo de $5,000 al 24.99% APR con mínimos del 2% toma más de 30 años y cuesta más de $12,000 en intereses."
+        },
+        "3": {
+          "question": "¿Vale la pena una transferencia de saldo?",
+          "answer": "Una transferencia de saldo a una tarjeta con APR introductorio del 0% puede ahorrarte cientos o miles de dólares en intereses, pero solo si puedes pagar la mayor parte del saldo durante el período introductorio (típicamente 12–21 meses). Pagarás una comisión de transferencia del 3–5%, que se agrega a tu saldo. Esta calculadora compara ambos escenarios para que puedas ver los ahorros exactos."
+        },
+        "4": {
+          "question": "¿Debo usar el método de bola de nieve o avalancha de deudas?",
+          "answer": "La avalancha de deudas (APR más alto primero) ahorra más dinero matemáticamente. La bola de nieve de deudas (saldo más pequeño primero) proporciona victorias psicológicas más rápidas. La investigación muestra que el método de bola de nieve tiene tasas de finalización más altas porque las victorias rápidas mantienen a las personas motivadas. Elige el método que seguirás — la mejor estrategia es la que realmente sigues."
+        },
+        "5": {
+          "question": "¿Cómo se calcula el interés de tarjeta de crédito?",
+          "answer": "La mayoría de los emisores usan el método de Saldo Diario Promedio. Tu APR se divide por 365 para obtener una tasa diaria. Cada día, esa tasa se multiplica por tu saldo. Estos cargos diarios se suman al final del ciclo de facturación. Esto significa que el interés se capitaliza diariamente — te cobran interés sobre interés previamente acumulado — razón por la cual la deuda de tarjeta de crédito crece más rápido de lo que la mayoría espera."
+        },
+        "6": {
+          "question": "¿Qué pasa si pago más que el mínimo pero menos que el saldo completo?",
+          "answer": "Cualquier cantidad por encima del mínimo va directamente a reducir tu saldo principal. Incluso $25–$50 extra por mes puede quitar años de tu cronograma de pago y ahorrar interés significativo. Esta calculadora te permite comparar diferentes cantidades de pago para ver el impacto exacto."
+        },
+        "7": {
+          "question": "¿Puedo negociar un APR más bajo en mi tarjeta de crédito?",
+          "answer": "Sí, y vale la pena intentar. Los estudios muestran que 60–80% de las personas que llaman a su emisor y piden una reducción de tasa la reciben. Tener un buen historial de pagos, tenencia de cuenta larga y una oferta competitiva de otra tarjeta fortalece tu caso. Incluso una reducción del 2–3% puede ahorrar cientos de dólares durante la vida de tu saldo."
+        }
+      },
+      "buttons": {
+        "calculate": "Calcular",
+        "reset": "Reiniciar",
+        "pdf": "PDF",
+        "csv": "CSV",
+        "excel": "Excel",
+        "save": "Guardar",
+        "saved": "Guardado",
+        "saving": "Guardando..."
+      },
+      "share": {
+        "calculatedWith": "Calculado con Kalcufy.com"
+      },
+      "ui": {
+        "results": "Resultados",
+        "yourInformation": "Tu Información"
+      },
+      "accessibility": {
+        "mobileResults": "Resumen de resultados",
+        "closeModal": "Cerrar",
+        "openMenu": "Abrir menú"
+      },
+      "rating": {
+        "title": "Califica esta Calculadora",
+        "share": "Compartir",
+        "copied": "¡Copiado!",
+        "copyLink": "Copiar Enlace",
+        "clickToRate": "Clic para calificar",
+        "youRated": "Calificaste",
+        "stars": "estrellas",
+        "averageFrom": "promedio de",
+        "ratings": "calificaciones"
+      },
+      "common": {
+        "home": "Inicio",
+        "calculators": "Calculadoras"
+      },
+      "sources": {
+        "title": "Fuentes y Referencias"
+      }
+    },
+    pt: {
+      "name": "Calculadora de Quitação de Cartão de Crédito",
+      "slug": "calculadora-quitacao-cartao-credito",
+      "subtitle": "Descubra quanto tempo leva para quitar seu cartão de crédito, veja o custo real dos pagamentos mínimos e descubra o quão mais rápido você pode ficar livre de dívidas",
+      "breadcrumb": "Quitação de Cartão de Crédito",
+      "seo": {
+        "title": "Calculadora de Quitação de Cartão de Crédito — Data Livre de Dívidas e Economia | Grátis",
+        "description": "Calcule o prazo de quitação do seu cartão de crédito com custo diário de juros, análise de choque de pagamento mínimo, economia de portabilidade e uma data personalizada livre de dívidas. Veja exatamente o quão mais rápido pagamentos extras eliminam sua dívida.",
+        "shortDescription": "Veja quanto tempo para quitar seu cartão de crédito e economizar em juros",
+        "keywords": [
+          "calculadora quitação cartão crédito",
+          "calculadora pagamento cartão crédito",
+          "quitar dívida cartão crédito",
+          "calculadora juros cartão crédito",
+          "calculadora pagamento mínimo",
+          "calculadora quitação dívida",
+          "calculadora economia portabilidade saldo",
+          "data livre dívidas cartão crédito"
+        ]
+      },
+      "calculator": {
+        "yourInformation": "Suas Informações"
+      },
+      "inputs": {
+        "currentBalance": {
+          "label": "Saldo Atual",
+          "helpText": "O saldo total em aberto na fatura do seu cartão de crédito",
+          "placeholder": "5000"
+        },
+        "apr": {
+          "label": "Taxa Anual de Juros (TAC)",
+          "helpText": "A taxa de juros do seu cartão — encontre na sua fatura ou contrato do cartão"
+        },
+        "minimumPaymentPercent": {
+          "label": "Porcentagem do Pagamento Mínimo",
+          "helpText": "A % do seu saldo usada para calcular o pagamento mínimo (tipicamente 1–3%)"
+        },
+        "minimumPaymentFloor": {
+          "label": "Piso do Pagamento Mínimo",
+          "helpText": "O menor pagamento mínimo que sua operadora permite (geralmente R$ 25–R$ 35)"
+        },
+        "monthlyPayment": {
+          "label": "Seu Pagamento Mensal",
+          "helpText": "O valor fixo que você planeja pagar a cada mês — deixe vazio para ver resultados apenas do mínimo",
+          "placeholder": "200"
+        },
+        "includeExtraPayment": {
+          "label": "Adicionar Pagamento Extra Mensal",
+          "helpText": "Veja como um pagamento adicional a cada mês acelera a quitação"
+        },
+        "extraPayment": {
+          "label": "Pagamento Extra Mensal",
+          "helpText": "Valor adicional além do seu pagamento mensal regular",
+          "placeholder": "50"
+        },
+        "includeBalanceTransfer": {
+          "label": "Comparar Portabilidade de Saldo",
+          "helpText": "Veja quanto você poderia economizar transferindo para um cartão com juros 0% introdutório"
+        },
+        "introAprMonths": {
+          "label": "Período de Juros 0% Introdutório",
+          "helpText": "Número de meses com 0% de juros no novo cartão (tipicamente 12–21 meses)"
+        },
+        "transferFeePercent": {
+          "label": "Taxa de Portabilidade",
+          "helpText": "Taxa única cobrada pela transferência (tipicamente 3–5% do saldo)"
+        }
+      },
+      "results": {
+        "payoffTime": {
+          "label": "Tempo para Quitar"
+        },
+        "totalInterestPaid": {
+          "label": "Total de Juros Pagos"
+        },
+        "totalAmountPaid": {
+          "label": "Valor Total Pago"
+        },
+        "dailyInterestCost": {
+          "label": "Custo Diário de Juros"
+        },
+        "interestRatioFirstPayment": {
+          "label": "Juros no Primeiro Pagamento"
+        },
+        "minimumOnlyPayoff": {
+          "label": "Quitação Apenas Mínimo"
+        },
+        "savingsVsMinimum": {
+          "label": "Economia vs Mínimo"
+        },
+        "debtFreeDate": {
+          "label": "Data Livre de Dívidas"
+        },
+        "balanceTransferSavings": {
+          "label": "Economia com Portabilidade"
+        },
+        "effectiveCostPerDollar": {
+          "label": "Custo por R$ 1 Emprestado"
+        }
+      },
+      "presets": {
+        "averageAmerican": {
+          "label": "Brasileiro Médio",
+          "description": "Saldo de R$ 6.501, juros 22,76%, pagamento R$ 200/mês"
+        },
+        "highInterest": {
+          "label": "Dívida com Juros Altos",
+          "description": "R$ 10mil a 29,99% de juros, R$ 300/mês + portabilidade"
+        },
+        "manageable": {
+          "label": "Saldo Gerenciável",
+          "description": "R$ 2.000 a 18,99% de juros, pagamento R$ 150/mês"
+        },
+        "minimumTrap": {
+          "label": "Armadilha do Pagamento Mínimo",
+          "description": "R$ 5.000 a 24,99% — o que acontece apenas com mínimos"
+        }
+      },
+      "tooltips": {
+        "payoffTime": "Quantos meses e anos até seu saldo chegar a zero",
+        "totalInterestPaid": "O total de juros que você pagará durante a vida da sua dívida — este é o 'custo' do empréstimo",
+        "totalAmountPaid": "Seu saldo original mais todos os juros — o custo total real",
+        "dailyInterestCost": "Quanto de juros seu cartão te cobra todos os dias agora mesmo",
+        "interestRatioFirstPayment": "Qual porcentagem do seu primeiro pagamento vai para juros vs realmente abater o saldo",
+        "minimumOnlyPayoff": "Quanto tempo e quanto custa se você sempre pagar apenas o mínimo — a métrica de choque",
+        "savingsVsMinimum": "Quanto dinheiro você economiza em juros pagando seu valor fixo em vez de apenas o mínimo",
+        "debtFreeDate": "A data exata do calendário em que você fará seu pagamento final e estará completamente livre de dívidas",
+        "balanceTransferSavings": "Quanto você poderia economizar transferindo seu saldo para um cartão com juros 0% introdutório (menos a taxa de transferência)",
+        "effectiveCostPerDollar": "Para cada R$ 1 que você originalmente gastou, é quanto você realmente acabará pagando de volta"
+      },
+      "values": {
+        "years": "anos",
+        "year": "ano",
+        "months": "meses",
+        "month": "mês",
+        "days": "dias",
+        "/day": "/dia",
+        "Month": "Mês",
+        "Payment": "Pagamento",
+        "Interest": "Juros",
+        "Principal": "Principal",
+        "Balance": "Saldo",
+        "Minimum Only": "Apenas Mínimo",
+        "Your Payment": "Seu Pagamento",
+        "With Extra": "Com Extra",
+        "of first payment is interest": "do primeiro pagamento são juros",
+        "minimum only": "apenas mínimo",
+        "saved vs minimum": "economizado vs mínimo",
+        "with balance transfer": "com portabilidade de saldo",
+        "per $1 borrowed": "por R$ 1 emprestado",
+        "You pay": "Você paga",
+        "for every": "para cada",
+        "borrowed": "emprestado",
+        "Transfer fee": "Taxa de transferência",
+        "Debt-free": "Livre de dívidas"
+      },
+      "formats": {
+        "summary": "Quite {balance} a {apr}% de juros anuais em {payoffTime} com pagamentos de {payment}/mês. Total de juros: {totalInterest}. Seu cartão cobra {dailyCost}/dia. Livre de dívidas em {debtFreeDate}."
+      },
+      "chart": {
+        "title": "Comparação de Quitação de Saldo",
+        "xLabel": "Mês",
+        "yLabel": "Saldo Restante",
+        "series": {
+          "minimumOnly": "Apenas Mínimo",
+          "fixedPayment": "Seu Pagamento",
+          "withExtra": "Com Extra"
+        }
+      },
+      "detailedTable": {
+        "paymentSchedule": {
+          "button": "Ver Cronograma de Pagamentos",
+          "title": "Cronograma Mensal de Pagamentos",
+          "columns": {
+            "month": "Mês",
+            "payment": "Pagamento",
+            "interest": "Juros",
+            "principal": "Principal",
+            "balance": "Saldo"
+          }
+        }
+      },
+      "infoCards": {
+        "costBreakdown": {
+          "title": "💰 Detalhamento do Custo Real",
+          "items": [
+            "Total de Juros Pagos: o preço oculto de manter um saldo mês a mês",
+            "Custo Diário de Juros: seu cartão cobra juros todos os dias, não apenas mensalmente",
+            "Proporção de Juros: veja quanto do seu primeiro pagamento realmente reduz sua dívida vs alimenta juros",
+            "Custo por Real: o preço real — para cada R$ 1 gasto, você pode pagar de volta R$ 1,40+"
+          ]
+        },
+        "payoffStrategy": {
+          "title": "📊 Insights da Estratégia de Quitação",
+          "items": [
+            "Armadilha do Pagamento Mínimo: pagar apenas o mínimo pode transformar 3 anos de dívida em 15+ anos",
+            "Poder do Pagamento Extra: mesmo R$ 50/mês extra pode cortar anos do seu cronograma de quitação",
+            "Portabilidade de Saldo: um cartão com juros 0% introdutório pode economizar centenas ou milhares em juros",
+            "Data Livre de Dívidas: saber sua data exata de quitação proporciona motivação para manter o rumo"
+          ]
+        },
+        "actionTips": {
+          "title": "💡 Acelere Sua Quitação",
+          "items": [
+            "Pague mais que o mínimo — cada real extra vai diretamente para reduzir seu saldo",
+            "Considere a avalanche de dívidas: pague cartões com juros mais altos primeiro para minimizar juros totais",
+            "Ligue para sua operadora e negocie juros menores — a taxa de sucesso é maior do que a maioria pensa",
+            "Configure débito automático acima do mínimo para evitar multas e garantir progresso todo mês"
+          ]
+        }
+      },
+      "educationSections": {
+        "whatIs": {
+          "title": "📖 Como Funcionam os Juros do Cartão de Crédito",
+          "content": "Os juros do cartão de crédito são calculados diariamente usando o método de Saldo Médio Diário. Sua Taxa Anual de Juros é dividida por 365 para obter uma Taxa Periódica Diária. Cada dia, essa taxa é multiplicada pelo seu saldo atual, e esses juros são adicionados ao que você deve. Isso significa que os juros são compostos diariamente — você paga juros sobre juros — razão pela qual a dívida do cartão pode crescer tão rapidamente mesmo quando você está fazendo pagamentos.\n\nPor exemplo, um saldo de R$ 5.000 a 22% de juros anuais significa que sua taxa diária é cerca de 0,0603%. Isso é aproximadamente R$ 3,01 cobrados todos os dias. Durante um mês, isso soma cerca de R$ 91,67 apenas em juros. Se seu pagamento mínimo é apenas R$ 100, apenas R$ 8,33 realmente reduzem seu saldo. É por isso que a armadilha do pagamento mínimo existe: a maior parte do seu dinheiro alimenta juros, não redução de dívida."
+        },
+        "howItWorks": {
+          "title": "⚙️ Como Esta Calculadora Funciona",
+          "content": "Esta calculadora usa um modelo de amortização iterativo mês a mês que espelha como as operadoras de cartão realmente processam pagamentos. A cada mês, calcula a cobrança de juros (saldo × juros anuais ÷ 12), subtrai isso do seu pagamento para determinar quanto vai para o principal, então reduz o saldo adequadamente. Repete esse processo até o saldo chegar a zero.\n\nAo contrário de estimadores simples de quitação, esta ferramenta também calcula: o custo exato de fazer apenas pagamentos mínimos (que diminuem conforme seu saldo cai, estendendo a quitação dramaticamente), o impacto de pagamentos extras, e a economia potencial de uma portabilidade com 0% de juros. O pagamento mínimo a cada mês é recalculado como o maior entre (saldo × % mínima) ou o valor mínimo base, exatamente como operadoras reais calculam."
+        },
+        "payoffStrategies": {
+          "title": "✅ Estratégias Comprovadas de Quitação",
+          "items": [
+            "Avalanche de Dívidas: Pague mínimos em todos os cartões, coloque extra no cartão com maior taxa. Economiza mais dinheiro matematicamente mas requer paciência.",
+            "Bola de Neve de Dívidas: Quite primeiro o menor saldo para vitórias psicológicas rápidas. Ligeiramente mais caro mas mantém você motivado.",
+            "Portabilidade de Saldo: Mova a dívida para um cartão com 0% de juros introdutório. Você pagará uma taxa de 3–5% mas elimina juros por 12–21 meses.",
+            "Pagamentos em Parcela Única: Use restituições de imposto, bônus ou recursos extras para fazer grandes pagamentos únicos que reduzem drasticamente seu cronograma.",
+            "Pagamentos Quinzenais: Pague metade do seu pagamento mensal a cada duas semanas — você fará 26 meio-pagamentos (13 pagamentos completos) por ano em vez de 12.",
+            "Negocie Sua Taxa: Ligue para sua operadora e peça redução da taxa. Clientes antigos com bom histórico de pagamento têm 60–70% de taxa de sucesso."
+          ]
+        },
+        "commonMistakes": {
+          "title": "⚠️ Erros Custosos a Evitar",
+          "items": [
+            "Pagar Apenas o Mínimo: Um saldo de R$ 5.000 a 22% com pagamentos mínimos leva 25+ anos e custa mais de R$ 8.000 apenas em juros.",
+            "Ignorar a Taxa de Juros: Muitos portadores não conhecem sua taxa. A média é 22,76% — verifique sua fatura e negocie menor se possível.",
+            "Perder Pagamentos: Um único pagamento atrasado pode disparar taxa de juros punitiva de 29,99%, aumentar seu mínimo e danificar seu score.",
+            "Continuar Gastando: Fazer pagamentos enquanto ainda adiciona ao saldo cria um efeito esteira onde você nunca progride.",
+            "Fechar Cartões Quitados: Fechar contas reduz seu limite total de crédito, aumentando sua taxa de utilização e potencialmente baixando seu score."
+          ]
+        },
+        "examples": {
+          "title": "🧮 Cenários Reais de Quitação",
+          "columns": 2,
+          "examples": [
+            {
+              "title": "Saldo Médio — Fixo vs Mínimo",
+              "content": "Saldo: R$ 6.501 | Juros: 22,76% | Mínimo: 2% ou R$ 35\n\nApenas mínimo: 24 anos, 3 meses — Total pago: R$ 17.476\nFixo R$ 200/mês: 3 anos, 4 meses — Total pago: R$ 7.987\n\n→ Você economiza R$ 9.489 e 21 anos pagando R$ 200/mês em vez do mínimo."
+            },
+            {
+              "title": "Juros Altos + Portabilidade",
+              "content": "Saldo: R$ 10.000 | Juros: 29,99% | Pagamento: R$ 300/mês\n\nSem portabilidade: 4 anos, 4 meses — Juros totais: R$ 5.428\nCom portabilidade 0% (18 meses, taxa 3%): Juros totais: R$ 1.868\n\n→ Portabilidade economiza R$ 3.560 mesmo após a taxa de R$ 300. Você fica livre de dívidas 14 meses antes."
+            }
+          ]
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Quanto tempo levará para quitar meu cartão de crédito?",
+          "answer": "Depende do seu saldo, taxa de juros e pagamento mensal. Com um saldo de R$ 5.000 a 22% de juros, pagando R$ 200/mês leva cerca de 31 meses. Pagando apenas o mínimo pode levar mais de 20 anos. Use esta calculadora para obter seu cronograma personalizado."
+        },
+        "1": {
+          "question": "Quanto do meu pagamento vai para juros vs principal?",
+          "answer": "Nos primeiros meses, a maioria do seu pagamento vai para juros. Por exemplo, em um saldo de R$ 5.000 a 22% de juros, os juros do primeiro mês são cerca de R$ 91,67. Se você pagar R$ 200, apenas R$ 108,33 realmente reduzem seu saldo. Conforme seu saldo diminui, mais de cada pagamento vai para o principal."
+        },
+        "2": {
+          "question": "Por que pagar apenas o mínimo é tão caro?",
+          "answer": "Pagamentos mínimos são projetados para manter sua conta em dia, não para quitar dívida eficientemente. São tipicamente 1–3% do seu saldo, que mal cobre os juros. Conforme seu saldo cai, o mínimo cai também — então você paga cada vez menos por mês, estendendo a quitação por décadas. Um saldo de R$ 5.000 a 24,99% com mínimos de 2% leva mais de 30 anos e custa mais de R$ 12.000 em juros."
+        },
+        "3": {
+          "question": "Vale a pena fazer portabilidade?",
+          "answer": "Uma portabilidade para um cartão com 0% de juros introdutório pode economizar centenas ou milhares em juros, mas apenas se você conseguir quitar a maior parte do saldo durante o período introdutório (tipicamente 12–21 meses). Você pagará uma taxa de portabilidade de 3–5%, que é adicionada ao seu saldo. Esta calculadora compara ambos os cenários para você ver a economia exata."
+        },
+        "4": {
+          "question": "Devo usar o método bola de neve ou avalanche de dívidas?",
+          "answer": "A avalanche de dívidas (maior taxa primeiro) economiza mais dinheiro matematicamente. A bola de neve (menor saldo primeiro) proporciona vitórias psicológicas mais rápidas. Pesquisas mostram que o método bola de neve tem maiores taxas de conclusão porque as vitórias rápidas mantêm as pessoas motivadas. Escolha o método que você seguirá — a melhor estratégia é aquela que você realmente segue."
+        },
+        "5": {
+          "question": "Como são calculados os juros do cartão de crédito?",
+          "answer": "A maioria das operadoras usa o método de Saldo Médio Diário. Sua taxa anual é dividida por 365 para obter uma taxa diária. Cada dia, essa taxa é multiplicada pelo seu saldo. Essas cobranças diárias são somadas no final do ciclo de faturamento. Isso significa que os juros são compostos diariamente — você é cobrado juros sobre juros acumulados anteriormente — razão pela qual a dívida do cartão cresce mais rápido do que a maioria espera."
+        },
+        "6": {
+          "question": "O que acontece se eu pagar mais que o mínimo mas menos que o saldo total?",
+          "answer": "Qualquer valor acima do mínimo vai diretamente para reduzir seu saldo principal. Mesmo R$ 25–R$ 50 extras por mês podem cortar anos do seu cronograma de quitação e economizar juros significativos. Esta calculadora permite comparar diferentes valores de pagamento para ver o impacto exato."
+        },
+        "7": {
+          "question": "Posso negociar uma taxa menor no meu cartão de crédito?",
+          "answer": "Sim, e vale a pena tentar. Estudos mostram que 60–80% das pessoas que ligam para sua operadora e pedem redução da taxa recebem uma. Ter um bom histórico de pagamento, conta antiga e uma oferta concorrente de outro cartão fortalece seu caso. Mesmo uma redução de 2–3% pode economizar centenas de reais durante a vida do seu saldo."
+        }
+      },
+      "buttons": {
+        "calculate": "Calcular",
+        "reset": "Reiniciar",
+        "pdf": "PDF",
+        "csv": "CSV",
+        "excel": "Excel",
+        "save": "Salvar",
+        "saved": "Salvo",
+        "saving": "Salvando..."
+      },
+      "share": {
+        "calculatedWith": "Calculado com Kalcufy.com"
+      },
+      "ui": {
+        "results": "Resultados",
+        "yourInformation": "Suas Informações"
+      },
+      "accessibility": {
+        "mobileResults": "Resumo dos resultados",
+        "closeModal": "Fechar",
+        "openMenu": "Abrir menu"
+      },
+      "rating": {
+        "title": "Avalie esta Calculadora",
+        "share": "Compartilhar",
+        "copied": "Copiado!",
+        "copyLink": "Copiar Link",
+        "clickToRate": "Clique para avaliar",
+        "youRated": "Você avaliou",
+        "stars": "estrelas",
+        "averageFrom": "média de",
+        "ratings": "avaliações"
+      },
+      "common": {
+        "home": "Início",
+        "calculators": "Calculadoras"
+      },
+      "sources": {
+        "title": "Fontes e Referências"
+      }
+    },
+    fr: {
+      "name": "Calculateur de Remboursement de Carte de Crédit",
+      "slug": "calculateur-remboursement-carte-credit",
+      "subtitle": "Découvrez combien de temps il faut pour rembourser votre carte de crédit, voyez le vrai coût des paiements minimums, et découvrez à quelle vitesse vous pouvez être libre de dettes",
+      "breadcrumb": "Remboursement Carte de Crédit",
+      "seo": {
+        "title": "Calculateur de Remboursement de Carte de Crédit — Date de Liberté de Dette et Économies | Gratuit",
+        "description": "Calculez votre calendrier de remboursement de carte de crédit avec le coût d'intérêt quotidien, l'analyse de choc des paiements minimums, les économies de transfert de solde, et une date personnalisée de liberté de dette. Voyez exactement à quelle vitesse les paiements supplémentaires éliminent votre dette.",
+        "shortDescription": "Voyez combien de temps pour rembourser votre carte de crédit et économiser sur les intérêts",
+        "keywords": [
+          "calculateur remboursement carte crédit",
+          "calculateur paiement carte crédit",
+          "rembourser dette carte crédit",
+          "calculateur intérêt carte crédit",
+          "calculateur paiement minimum",
+          "calculateur remboursement dette",
+          "calculateur économies transfert solde",
+          "date liberté dette carte crédit"
+        ]
+      },
+      "calculator": {
+        "yourInformation": "Vos Informations"
+      },
+      "inputs": {
+        "currentBalance": {
+          "label": "Solde Actuel",
+          "helpText": "Le solde total impayé sur votre relevé de carte de crédit",
+          "placeholder": "5000"
+        },
+        "apr": {
+          "label": "Taux Annuel Effectif Global (TAEG)",
+          "helpText": "Le taux d'intérêt de votre carte — trouvez-le sur votre relevé ou contrat de carte"
+        },
+        "minimumPaymentPercent": {
+          "label": "Pourcentage de Paiement Minimum",
+          "helpText": "Le % de votre solde utilisé pour calculer le paiement minimum (généralement 1–3%)"
+        },
+        "minimumPaymentFloor": {
+          "label": "Plancher de Paiement Minimum",
+          "helpText": "Le paiement minimum le plus bas que votre émetteur autorise (habituellement 25–35€)"
+        },
+        "monthlyPayment": {
+          "label": "Votre Paiement Mensuel",
+          "helpText": "Le montant fixe que vous prévoyez payer chaque mois — laissez vide pour voir les résultats minimum seulement",
+          "placeholder": "200"
+        },
+        "includeExtraPayment": {
+          "label": "Ajouter Paiement Mensuel Supplémentaire",
+          "helpText": "Voyez comment un paiement supplémentaire chaque mois accélère le remboursement"
+        },
+        "extraPayment": {
+          "label": "Paiement Mensuel Supplémentaire",
+          "helpText": "Montant supplémentaire au-delà de votre paiement mensuel régulier",
+          "placeholder": "50"
+        },
+        "includeBalanceTransfer": {
+          "label": "Comparer Transfert de Solde",
+          "helpText": "Voyez combien vous pourriez économiser en transférant vers une carte avec TAEG promotionnel 0%"
+        },
+        "introAprMonths": {
+          "label": "Période TAEG Promotionnel 0%",
+          "helpText": "Nombre de mois avec 0% d'intérêt sur la nouvelle carte (généralement 12–21 mois)"
+        },
+        "transferFeePercent": {
+          "label": "Frais de Transfert de Solde",
+          "helpText": "Frais unique facturé pour le transfert (généralement 3–5% du solde)"
+        }
+      },
+      "results": {
+        "payoffTime": {
+          "label": "Temps de Remboursement"
+        },
+        "totalInterestPaid": {
+          "label": "Total des Intérêts Payés"
+        },
+        "totalAmountPaid": {
+          "label": "Montant Total Payé"
+        },
+        "dailyInterestCost": {
+          "label": "Coût d'Intérêt Quotidien"
+        },
+        "interestRatioFirstPayment": {
+          "label": "Intérêt dans le Premier Paiement"
+        },
+        "minimumOnlyPayoff": {
+          "label": "Remboursement Minimum Seulement"
+        },
+        "savingsVsMinimum": {
+          "label": "Économies vs Minimum"
+        },
+        "debtFreeDate": {
+          "label": "Date de Liberté de Dette"
+        },
+        "balanceTransferSavings": {
+          "label": "Économies Transfert de Solde"
+        },
+        "effectiveCostPerDollar": {
+          "label": "Coût par 1€ Emprunté"
+        }
+      },
+      "presets": {
+        "averageAmerican": {
+          "label": "Français Moyen",
+          "description": "Solde de 6 501€, TAEG 22,76%, paiement 200€/mois"
+        },
+        "highInterest": {
+          "label": "Dette à Taux Élevé",
+          "description": "10 000€ à 29,99% TAEG, 300€/mois + transfert de solde"
+        },
+        "manageable": {
+          "label": "Solde Gérable",
+          "description": "2 000€ à 18,99% TAEG, paiement 150€/mois"
+        },
+        "minimumTrap": {
+          "label": "Piège du Paiement Minimum",
+          "description": "5 000€ à 24,99% — ce qui arrive avec seulement les minimums"
+        }
+      },
+      "tooltips": {
+        "payoffTime": "Combien de mois et d'années jusqu'à ce que votre solde atteigne zéro",
+        "totalInterestPaid": "Le total des charges d'intérêt que vous paierez sur la durée de vie de votre dette — c'est le 'coût' de l'emprunt",
+        "totalAmountPaid": "Votre solde original plus tous les intérêts — le vrai coût total",
+        "dailyInterestCost": "Combien d'intérêt votre carte vous facture chaque jour en ce moment",
+        "interestRatioFirstPayment": "Quel pourcentage de votre tout premier paiement va aux intérêts vs réellement rembourser le solde",
+        "minimumOnlyPayoff": "Combien de temps et combien cela coûte si vous ne payez jamais que le minimum — la métrique choc",
+        "savingsVsMinimum": "Combien d'argent vous économisez en intérêts en payant votre montant fixe au lieu du minimum seulement",
+        "debtFreeDate": "La date exacte du calendrier où vous ferez votre paiement final et serez complètement libre de dettes",
+        "balanceTransferSavings": "Combien vous pourriez économiser en transférant votre solde vers une carte avec TAEG promotionnel 0% (moins les frais de transfert)",
+        "effectiveCostPerDollar": "Pour chaque 1€ que vous avez initialement facturé, c'est combien vous finirez par rembourser"
+      },
+      "values": {
+        "years": "années",
+        "year": "année",
+        "months": "mois",
+        "month": "mois",
+        "days": "jours",
+        "/day": "/jour",
+        "Month": "Mois",
+        "Payment": "Paiement",
+        "Interest": "Intérêt",
+        "Principal": "Principal",
+        "Balance": "Solde",
+        "Minimum Only": "Minimum Seulement",
+        "Your Payment": "Votre Paiement",
+        "With Extra": "Avec Supplément",
+        "of first payment is interest": "du premier paiement est de l'intérêt",
+        "minimum only": "minimum seulement",
+        "saved vs minimum": "économisé vs minimum",
+        "with balance transfer": "avec transfert de solde",
+        "per $1 borrowed": "par 1€ emprunté",
+        "You pay": "Vous payez",
+        "for every": "pour chaque",
+        "borrowed": "emprunté",
+        "Transfer fee": "Frais de transfert",
+        "Debt-free": "Libre de dettes"
+      },
+      "formats": {
+        "summary": "Remboursez {balance} à {apr}% TAEG en {payoffTime} avec des paiements de {payment}/mois. Intérêts totaux : {totalInterest}. Votre carte facture {dailyCost}/jour. Libre de dettes d'ici {debtFreeDate}."
+      },
+      "chart": {
+        "title": "Comparaison de Remboursement de Solde",
+        "xLabel": "Mois",
+        "yLabel": "Solde Restant",
+        "series": {
+          "minimumOnly": "Minimum Seulement",
+          "fixedPayment": "Votre Paiement",
+          "withExtra": "Avec Supplément"
+        }
+      },
+      "detailedTable": {
+        "paymentSchedule": {
+          "button": "Voir Calendrier de Paiements",
+          "title": "Calendrier de Paiements Mensuels",
+          "columns": {
+            "month": "Mois",
+            "payment": "Paiement",
+            "interest": "Intérêt",
+            "principal": "Principal",
+            "balance": "Solde"
+          }
+        }
+      },
+      "infoCards": {
+        "costBreakdown": {
+          "title": "💰 Ventilation du Coût Réel",
+          "items": [
+            "Total des Intérêts Payés : le prix caché de porter un solde mois après mois",
+            "Coût d'Intérêt Quotidien : votre carte facture des intérêts chaque jour, pas seulement mensuellement",
+            "Ratio d'Intérêt : voyez combien de votre premier paiement réduit réellement votre dette vs nourrit l'intérêt",
+            "Coût par Euro : le vrai prix — pour chaque 1€ facturé, vous pourriez rembourser 1,40€+"
+          ]
+        },
+        "payoffStrategy": {
+          "title": "📊 Aperçus de Stratégie de Remboursement",
+          "items": [
+            "Piège du Paiement Minimum : ne payer que le minimum peut transformer 3 ans de dette en 15+ ans",
+            "Pouvoir du Paiement Supplémentaire : même 50€/mois supplémentaires peuvent retrancher des années de votre chronologie de remboursement",
+            "Transfert de Solde : une carte avec TAEG promotionnel 0% peut économiser des centaines ou milliers d'euros d'intérêts",
+            "Date de Liberté de Dette : connaître votre date exacte de remboursement fournit la motivation pour rester sur la bonne voie"
+          ]
+        },
+        "actionTips": {
+          "title": "💡 Accélérez Votre Remboursement",
+          "items": [
+            "Payez plus que le minimum — chaque euro supplémentaire va directement à la réduction de votre solde",
+            "Considérez l'avalanche de dettes : payez d'abord les cartes avec le TAEG le plus élevé pour minimiser l'intérêt total",
+            "Appelez votre émetteur et négociez un TAEG plus bas — le taux de succès est plus élevé que la plupart des gens pensent",
+            "Configurez un paiement automatique au-dessus du minimum pour éviter les frais de retard et garantir des progrès chaque mois"
+          ]
+        }
+      },
+      "educationSections": {
+        "whatIs": {
+          "title": "📖 Comment Fonctionnent les Intérêts de Carte de Crédit",
+          "content": "Les intérêts de carte de crédit sont calculés quotidiennement en utilisant la méthode du Solde Quotidien Moyen (SQM). Votre Taux Annuel Effectif Global (TAEG) est divisé par 365 pour obtenir un Taux Périodique Quotidien (TPQ). Chaque jour, le TPQ est multiplié par votre solde actuel, et cet intérêt est ajouté à ce que vous devez. Cela signifie que l'intérêt se compose quotidiennement — vous payez de l'intérêt sur l'intérêt — c'est pourquoi la dette de carte de crédit peut croître si rapidement même quand vous faites des paiements.\n\nPar exemple, un solde de 5 000€ à 22% TAEG signifie que votre taux quotidien est d'environ 0,0603%. C'est environ 3,01€ facturé chaque jour. Sur un mois, cela s'additionne à environ 91,67€ d'intérêts seuls. Si votre paiement minimum n'est que de 100€, seulement 8,33€ réduisent réellement votre solde. C'est pourquoi le piège du paiement minimum existe : la plupart de votre argent nourrit l'intérêt, pas la réduction de dette."
+        },
+        "howItWorks": {
+          "title": "⚙️ Comment Fonctionne Ce Calculateur",
+          "content": "Ce calculateur utilise un modèle d'amortissement itératif mois par mois qui reflète comment les émetteurs de cartes de crédit traitent réellement les paiements. Chaque mois, il calcule les charges d'intérêt (solde × TAEG ÷ 12), soustrait cela de votre paiement pour déterminer combien va au principal, puis réduit le solde en conséquence. Il répète ce processus jusqu'à ce que le solde atteigne zéro.\n\nContrairement aux estimateurs de remboursement simples, cet outil calcule aussi : le coût exact de ne faire que des paiements minimums (qui diminuent à mesure que votre solde baisse, prolongeant dramatiquement le remboursement), l'impact des paiements supplémentaires, et les économies potentielles d'un transfert de solde à 0%. Le paiement minimum chaque mois est recalculé comme le plus grand entre (solde × % minimum) ou le montant plancher minimum, exactement comme les vrais émetteurs le calculent."
+        },
+        "payoffStrategies": {
+          "title": "✅ Stratégies de Remboursement Prouvées",
+          "items": [
+            "Avalanche de Dettes : Payez les minimums sur toutes les cartes, mettez l'extra vers la carte avec le TAEG le plus élevé. Économise le plus d'argent mathématiquement mais nécessite de la patience.",
+            "Boule de Neige de Dettes : Remboursez d'abord le plus petit solde pour des victoires psychologiques rapides. Légèrement plus cher mais vous garde motivé.",
+            "Transfert de Solde : Déplacez la dette vers une carte avec TAEG promotionnel 0%. Vous paierez des frais de transfert de 3–5% mais éliminerez les intérêts pendant 12–21 mois.",
+            "Paiements Forfaitaires : Utilisez les remboursements d'impôts, primes, ou aubaines pour faire de gros paiements uniques qui réduisent dramatiquement votre chronologie.",
+            "Paiements Bi-Hebdomadaires : Payez la moitié de votre paiement mensuel toutes les deux semaines — vous ferez 26 demi-paiements (13 paiements complets) par an au lieu de 12.",
+            "Négociez Votre TAEG : Appelez votre émetteur et demandez une réduction de taux. Les clients de longue date avec un bon historique de paiement ont un taux de succès de 60–70%."
+          ]
+        },
+        "commonMistakes": {
+          "title": "⚠️ Erreurs Coûteuses à Éviter",
+          "items": [
+            "Ne Payer Que le Minimum : Un solde de 5 000€ à 22% avec des paiements minimums prend 25+ ans et coûte plus de 8 000€ d'intérêts seuls.",
+            "Ignorer le TAEG : Beaucoup de porteurs de cartes ne connaissent pas leur taux. La moyenne est de 22,76% — vérifiez votre relevé et négociez plus bas si possible.",
+            "Manquer des Paiements : Un seul paiement en retard peut déclencher un TAEG de pénalité de 29,99%, faire monter votre minimum, et endommager votre score de crédit.",
+            "Continuer à Facturer : Faire des paiements tout en continuant à ajouter au solde crée un effet de tapis roulant où vous ne faites jamais de progrès.",
+            "Fermer les Cartes Remboursées : Fermer des comptes réduit votre limite de crédit totale, augmentant votre ratio d'utilisation et potentiellement baissant votre score de crédit."
+          ]
+        },
+        "examples": {
+          "title": "🧮 Scénarios de Remboursement Réels",
+          "columns": 2,
+          "examples": [
+            {
+              "title": "Solde Moyen — Fixe vs Minimum",
+              "content": "Solde : 6 501€ | TAEG : 22,76% | Minimum : 2% ou 35€\n\nMinimum seulement : 24 ans, 3 mois — Total payé : 17 476€\nFixe 200€/mois : 3 ans, 4 mois — Total payé : 7 987€\n\n→ Vous économisez 9 489€ et 21 ans en payant 200€/mois au lieu du minimum."
+            },
+            {
+              "title": "Taux Élevé + Transfert de Solde",
+              "content": "Solde : 10 000€ | TAEG : 29,99% | Paiement : 300€/mois\n\nSans transfert : 4 ans, 4 mois — Intérêts totaux : 5 428€\nAvec transfert 0% (18 mois, 3% frais) : Intérêts totaux : 1 868€\n\n→ Le transfert de solde économise 3 560€ même après les 300€ de frais. Vous êtes libre de dettes 14 mois plus tôt."
+            }
+          ]
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Combien de temps faudra-t-il pour rembourser ma carte de crédit ?",
+          "answer": "Cela dépend de votre solde, TAEG, et paiement mensuel. Avec un solde de 5 000€ à 22% TAEG, payer 200€/mois prend environ 31 mois. Ne payer que le minimum pourrait prendre plus de 20 ans. Utilisez ce calculateur pour obtenir votre chronologie personnalisée."
+        },
+        "1": {
+          "question": "Combien de mon paiement de carte de crédit va aux intérêts vs le principal ?",
+          "answer": "Dans les premiers mois, la majorité de votre paiement va aux intérêts. Par exemple, sur un solde de 5 000€ à 22% TAEG, l'intérêt du premier mois est d'environ 91,67€. Si vous payez 200€, seulement 108,33€ réduisent réellement votre solde. À mesure que votre solde diminue, plus de chaque paiement va au principal."
+        },
+        "2": {
+          "question": "Pourquoi payer seulement le minimum est-il si cher ?",
+          "answer": "Les paiements minimums sont conçus pour garder votre compte à jour, pas pour rembourser la dette efficacement. Ils sont généralement 1–3% de votre solde, ce qui couvre à peine les intérêts. À mesure que votre solde baisse, le minimum baisse aussi — donc vous payez de moins en moins chaque mois, étirant le remboursement sur des décennies. Un solde de 5 000€ à 24,99% TAEG avec 2% de minimums prend plus de 30 ans et coûte plus de 12 000€ d'intérêts."
+        },
+        "3": {
+          "question": "Un transfert de solde en vaut-il la peine ?",
+          "answer": "Un transfert de solde vers une carte avec TAEG promotionnel 0% peut vous faire économiser des centaines ou milliers d'euros d'intérêts, mais seulement si vous pouvez rembourser la plupart du solde pendant la période promotionnelle (généralement 12–21 mois). Vous paierez des frais de transfert de 3–5%, qui sont ajoutés à votre solde. Ce calculateur compare les deux scénarios pour que vous puissiez voir les économies exactes."
+        },
+        "4": {
+          "question": "Devrais-je utiliser la méthode boule de neige ou avalanche de dettes ?",
+          "answer": "L'avalanche de dettes (TAEG le plus élevé en premier) économise le plus d'argent mathématiquement. La boule de neige de dettes (plus petit solde en premier) fournit des victoires psychologiques plus rapides. La recherche montre que la méthode boule de neige a des taux d'achèvement plus élevés car les victoires rapides gardent les gens motivés. Choisissez la méthode à laquelle vous vous tiendrez — la meilleure stratégie est celle que vous suivez réellement."
+        },
+        "5": {
+          "question": "Comment les intérêts de carte de crédit sont-ils calculés ?",
+          "answer": "La plupart des émetteurs utilisent la méthode du Solde Quotidien Moyen. Votre TAEG est divisé par 365 pour obtenir un taux quotidien. Chaque jour, ce taux est multiplié par votre solde. Ces charges quotidiennes sont additionnées à la fin du cycle de facturation. Cela signifie que l'intérêt se compose quotidiennement — vous êtes facturé de l'intérêt sur l'intérêt précédemment accumulé — c'est pourquoi la dette de carte de crédit croît plus rapidement que la plupart des gens s'y attendent."
+        },
+        "6": {
+          "question": "Que se passe-t-il si je paie plus que le minimum mais moins que le solde complet ?",
+          "answer": "Tout montant au-dessus du minimum va directement à la réduction de votre solde principal. Même 25–50€ supplémentaires par mois peuvent retrancher des années de votre chronologie de remboursement et économiser des intérêts significatifs. Ce calculateur vous permet de comparer différents montants de paiement pour voir l'impact exact."
+        },
+        "7": {
+          "question": "Puis-je négocier un TAEG plus bas sur ma carte de crédit ?",
+          "answer": "Oui, et cela vaut la peine d'essayer. Les études montrent que 60–80% des personnes qui appellent leur émetteur et demandent une réduction de taux en reçoivent une. Avoir un bon historique de paiement, une ancienneté de compte longue, et une offre concurrente d'une autre carte renforce votre cas. Même une réduction de 2–3% peut économiser des centaines d'euros sur la durée de vie de votre solde."
+        }
+      },
+      "buttons": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser",
+        "pdf": "PDF",
+        "csv": "CSV",
+        "excel": "Excel",
+        "save": "Sauvegarder",
+        "saved": "Sauvegardé",
+        "saving": "Sauvegarde..."
+      },
+      "share": {
+        "calculatedWith": "Calculé avec Kalcufy.com"
+      },
+      "ui": {
+        "results": "Résultats",
+        "yourInformation": "Vos Informations"
+      },
+      "accessibility": {
+        "mobileResults": "Résumé des résultats",
+        "closeModal": "Fermer",
+        "openMenu": "Ouvrir le menu"
+      },
+      "rating": {
+        "title": "Notez cette Calculatrice",
+        "share": "Partager",
+        "copied": "Copié!",
+        "copyLink": "Copier le Lien",
+        "clickToRate": "Cliquez pour noter",
+        "youRated": "Vous avez noté",
+        "stars": "étoiles",
+        "averageFrom": "moyenne de",
+        "ratings": "évaluations"
+      },
+      "common": {
+        "home": "Accueil",
+        "calculators": "Calculatrices"
+      },
+      "sources": {
+        "title": "Sources et Références"
+      }
+    },
+    de: {
+      "name": "Kreditkarten-Tilgungsrechner",
+      "slug": "kreditkarten-tilgungs-rechner",
+      "subtitle": "Finden Sie heraus, wie lange es dauert, Ihre Kreditkarte abzubezahlen, sehen Sie die wahren Kosten von Mindestzahlungen und entdecken Sie, wie viel schneller Sie schuldenfrei sein können",
+      "breadcrumb": "Kreditkarten-Tilgung",
+      "seo": {
+        "title": "Kreditkarten-Tilgungsrechner — Schuldenfreies Datum & Ersparnisse | Kostenlos",
+        "description": "Berechnen Sie Ihren Kreditkarten-Tilgungsplan mit täglichen Zinskosten, Mindestzahlungsschock-Analyse, Umschuldungsersparnissen und einem personalisierten schuldenfreien Datum. Sehen Sie genau, wie viel schneller Zusatzzahlungen Ihre Schulden beseitigen.",
+        "shortDescription": "Sehen Sie, wie lange es dauert, Ihre Kreditkarte abzubezahlen und Zinsen zu sparen",
+        "keywords": [
+          "kreditkarten tilgungsrechner",
+          "kreditkarten zahlungsrechner",
+          "kreditkartenschulden abbezahlen",
+          "kreditkarten zinsrechner",
+          "mindestzahlungsrechner",
+          "schuldentilgungsrechner",
+          "umschuldungsersparnisrechner",
+          "kreditkarten schuldenfreies datum"
+        ]
+      },
+      "calculator": {
+        "yourInformation": "Ihre Informationen"
+      },
+      "inputs": {
+        "currentBalance": {
+          "label": "Aktueller Saldo",
+          "helpText": "Der gesamte ausstehende Saldo auf Ihrer Kreditkartenabrechnung",
+          "placeholder": "5000"
+        },
+        "apr": {
+          "label": "Effektiver Jahreszins (APR)",
+          "helpText": "Der Zinssatz Ihrer Karte — finden Sie ihn auf Ihrer Abrechnung oder dem Kartenvertrag"
+        },
+        "minimumPaymentPercent": {
+          "label": "Mindestzahlungsprozentsatz",
+          "helpText": "Der Prozentsatz Ihres Saldos zur Berechnung der Mindestzahlung (typischerweise 1–3%)"
+        },
+        "minimumPaymentFloor": {
+          "label": "Mindestzahlungsuntergrenze",
+          "helpText": "Die niedrigste Mindestzahlung, die Ihr Anbieter erlaubt (normalerweise 25–35€)"
+        },
+        "monthlyPayment": {
+          "label": "Ihre monatliche Zahlung",
+          "helpText": "Der feste Betrag, den Sie jeden Monat zu zahlen planen — lassen Sie es leer, um nur Mindestergebnisse zu sehen",
+          "placeholder": "200"
+        },
+        "includeExtraPayment": {
+          "label": "Zusätzliche monatliche Zahlung hinzufügen",
+          "helpText": "Sehen Sie, wie eine zusätzliche Zahlung jeden Monat die Tilgung beschleunigt"
+        },
+        "extraPayment": {
+          "label": "Zusätzliche monatliche Zahlung",
+          "helpText": "Zusätzlicher Betrag über Ihre reguläre monatliche Zahlung hinaus",
+          "placeholder": "50"
+        },
+        "includeBalanceTransfer": {
+          "label": "Umschuldung vergleichen",
+          "helpText": "Sehen Sie, wie viel Sie durch Übertragung auf eine 0% Einführungszins-Karte sparen könnten"
+        },
+        "introAprMonths": {
+          "label": "0% Einführungszins-Zeitraum",
+          "helpText": "Anzahl der Monate mit 0% Zinsen auf der neuen Karte (typischerweise 12–21 Monate)"
+        },
+        "transferFeePercent": {
+          "label": "Umschuldungsgebühr",
+          "helpText": "Einmalige Gebühr für die Übertragung (typischerweise 3–5% des Saldos)"
+        }
+      },
+      "results": {
+        "payoffTime": {
+          "label": "Zeit bis zur Tilgung"
+        },
+        "totalInterestPaid": {
+          "label": "Gezahlte Gesamtzinsen"
+        },
+        "totalAmountPaid": {
+          "label": "Gezahlter Gesamtbetrag"
+        },
+        "dailyInterestCost": {
+          "label": "Tägliche Zinskosten"
+        },
+        "interestRatioFirstPayment": {
+          "label": "Zinsen in erster Zahlung"
+        },
+        "minimumOnlyPayoff": {
+          "label": "Nur-Mindest-Tilgung"
+        },
+        "savingsVsMinimum": {
+          "label": "Ersparnisse vs. Minimum"
+        },
+        "debtFreeDate": {
+          "label": "Schuldenfreies Datum"
+        },
+        "balanceTransferSavings": {
+          "label": "Umschuldungsersparnisse"
+        },
+        "effectiveCostPerDollar": {
+          "label": "Kosten pro 1€ Kredit"
+        }
+      },
+      "presets": {
+        "averageAmerican": {
+          "label": "Durchschnittsdeutscher",
+          "description": "6.501€ Saldo, 22,76% APR, 200€/Monat Zahlung"
+        },
+        "highInterest": {
+          "label": "Hochzinsschulden",
+          "description": "10.000€ bei 29,99% APR, 300€/Monat + Umschuldung"
+        },
+        "manageable": {
+          "label": "Bewältigbarer Saldo",
+          "description": "2.000€ bei 18,99% APR, 150€/Monat Zahlung"
+        },
+        "minimumTrap": {
+          "label": "Mindestzahlungsfalle",
+          "description": "5.000€ bei 24,99% — was bei nur Mindestzahlungen passiert"
+        }
+      },
+      "tooltips": {
+        "payoffTime": "Wie viele Monate und Jahre bis Ihr Saldo null erreicht",
+        "totalInterestPaid": "Die gesamten Zinsgebühren, die Sie über die Laufzeit Ihrer Schuld zahlen werden — das sind die 'Kosten' des Kredits",
+        "totalAmountPaid": "Ihr ursprünglicher Saldo plus alle Zinsen — die wahren Gesamtkosten",
+        "dailyInterestCost": "Wie viel Zinsen Ihre Karte Ihnen jeden einzelnen Tag gerade jetzt berechnet",
+        "interestRatioFirstPayment": "Welcher Prozentsatz Ihrer allerersten Zahlung für Zinsen vs. tatsächliche Saldoreduktion verwendet wird",
+        "minimumOnlyPayoff": "Wie lange und wie viel es kostet, wenn Sie nur das Minimum zahlen — die Schockmetrik",
+        "savingsVsMinimum": "Wie viel Geld Sie bei Zinsen sparen, indem Sie Ihren festen Betrag statt nur das Minimum zahlen",
+        "debtFreeDate": "Das genaue Kalenderdatum, an dem Sie Ihre letzte Zahlung leisten und völlig schuldenfrei sein werden",
+        "balanceTransferSavings": "Wie viel Sie durch Übertragung Ihres Saldos auf eine 0% Einführungszins-Karte sparen könnten (minus Übertragungsgebühr)",
+        "effectiveCostPerDollar": "Für jeden 1€, den Sie ursprünglich belastet haben, ist dies, wie viel Sie tatsächlich zurückzahlen werden"
+      },
+      "values": {
+        "years": "Jahre",
+        "year": "Jahr",
+        "months": "Monate",
+        "month": "Monat",
+        "days": "Tage",
+        "/day": "/Tag",
+        "Month": "Monat",
+        "Payment": "Zahlung",
+        "Interest": "Zinsen",
+        "Principal": "Kapital",
+        "Balance": "Saldo",
+        "Minimum Only": "Nur Minimum",
+        "Your Payment": "Ihre Zahlung",
+        "With Extra": "Mit Extra",
+        "of first payment is interest": "der ersten Zahlung sind Zinsen",
+        "minimum only": "nur minimum",
+        "saved vs minimum": "gespart vs. minimum",
+        "with balance transfer": "mit umschuldung",
+        "per $1 borrowed": "pro 1€ kredit",
+        "You pay": "Sie zahlen",
+        "for every": "für jeden",
+        "borrowed": "geliehen",
+        "Transfer fee": "Übertragungsgebühr",
+        "Debt-free": "Schuldenfrei"
+      },
+      "formats": {
+        "summary": "Bezahlen Sie {balance} bei {apr}% APR in {payoffTime} mit {payment}€/Monat Zahlungen ab. Gesamtzinsen: {totalInterest}. Ihre Karte berechnet {dailyCost}/Tag. Schuldenfrei bis {debtFreeDate}."
+      },
+      "chart": {
+        "title": "Saldo-Tilgungsvergleich",
+        "xLabel": "Monat",
+        "yLabel": "Verbleibender Saldo",
+        "series": {
+          "minimumOnly": "Nur Minimum",
+          "fixedPayment": "Ihre Zahlung",
+          "withExtra": "Mit Extra"
+        }
+      },
+      "detailedTable": {
+        "paymentSchedule": {
+          "button": "Zahlungsplan anzeigen",
+          "title": "Monatlicher Zahlungsplan",
+          "columns": {
+            "month": "Monat",
+            "payment": "Zahlung",
+            "interest": "Zinsen",
+            "principal": "Kapital",
+            "balance": "Saldo"
+          }
+        }
+      },
+      "infoCards": {
+        "costBreakdown": {
+          "title": "💰 Wahre Kostenaufschlüsselung",
+          "items": [
+            "Gezahlte Gesamtzinsen: der versteckte Preis für das monatliche Führen eines Saldos",
+            "Tägliche Zinskosten: Ihre Karte berechnet Zinsen jeden einzelnen Tag, nicht nur monatlich",
+            "Zinsverhältnis: sehen Sie, wie viel Ihrer ersten Zahlung tatsächlich Ihre Schuld reduziert vs. Zinsen füttert",
+            "Kosten pro Euro: der echte Preisschild — für jeden geliehenen 1€ zahlen Sie möglicherweise 1,40€+ zurück"
+          ]
+        },
+        "payoffStrategy": {
+          "title": "📊 Tilgungsstrategie-Einblicke",
+          "items": [
+            "Mindestzahlungsfalle: nur das Minimum zu zahlen kann 3 Jahre Schulden in 15+ Jahre verwandeln",
+            "Extra-Zahlungskraft: selbst 50€/Monat extra können Jahre von Ihrem Tilgungsplan abschneiden",
+            "Umschuldung: eine 0% Einführungszins-Karte kann Hunderte oder Tausende an Zinsen sparen",
+            "Schuldenfreies Datum: Ihr genaues Tilgungsdatum zu kennen motiviert, am Ball zu bleiben"
+          ]
+        },
+        "actionTips": {
+          "title": "💡 Beschleunigen Sie Ihre Tilgung",
+          "items": [
+            "Zahlen Sie mehr als das Minimum — jeder Extra-Euro geht direkt zur Saldoreduktion",
+            "Erwägen Sie die Schuldenlawine: zahlen Sie zuerst Karten mit höchstem APR, um Gesamtzinsen zu minimieren",
+            "Rufen Sie Ihren Anbieter an und verhandeln Sie einen niedrigeren APR — Erfolgsrate ist höher als die meisten denken",
+            "Richten Sie Autopay über dem Minimum ein, um Verspätungsgebühren zu vermeiden und jeden Monat Fortschritt zu garantieren"
+          ]
+        }
+      },
+      "educationSections": {
+        "whatIs": {
+          "title": "📖 Wie Kreditkartenzinsen funktionieren",
+          "content": "Kreditkartenzinsen werden täglich mit der Durchschnittlichen Täglichen Saldo (ADB) Methode berechnet. Ihr Effektiver Jahreszins (APR) wird durch 365 geteilt, um einen Täglichen Periodischen Satz (DPR) zu erhalten. Jeden Tag wird der DPR mit Ihrem aktuellen Saldo multipliziert, und diese Zinsen werden zu dem hinzugefügt, was Sie schulden. Das bedeutet, Zinsen werden täglich kapitalisiert — Sie zahlen Zinsen auf Zinsen — weshalb Kreditkartenschulden so schnell wachsen können, selbst wenn Sie Zahlungen leisten.\n\nZum Beispiel bedeutet ein 5.000€ Saldo bei 22% APR, dass Ihr Tagessatz etwa 0,0603% beträgt. Das sind etwa 3,01€, die jeden Tag berechnet werden. Über einen Monat summiert sich das auf etwa 91,67€ nur an Zinsen. Wenn Ihre Mindestzahlung nur 100€ beträgt, reduzieren nur 8,33€ tatsächlich Ihren Saldo. Deshalb existiert die Mindestzahlungsfalle: das meiste Ihres Geldes füttert Zinsen, nicht Schuldenabbau."
+        },
+        "howItWorks": {
+          "title": "⚙️ Wie dieser Rechner funktioniert",
+          "content": "Dieser Rechner verwendet ein iteratives Monat-für-Monat-Tilgungsmodell, das widerspiegelt, wie Kreditkartenanbieter tatsächlich Zahlungen verarbeiten. Jeden Monat berechnet er die Zinsbelastung (Saldo × APR ÷ 12), subtrahiert das von Ihrer Zahlung, um zu bestimmen, wie viel zum Kapital geht, dann reduziert den Saldo entsprechend. Er wiederholt diesen Prozess, bis der Saldo null erreicht.\n\nIm Gegensatz zu einfachen Tilgungsschätzern berechnet dieses Tool auch: die genauen Kosten, nur Mindestzahlungen zu leisten (die sinken, wenn Ihr Saldo fällt, was die Tilgung dramatisch verlängert), die Auswirkung von Zusatzzahlungen und die potentiellen Ersparnisse einer 0% Umschuldung. Die Mindestzahlung jeden Monat wird neu berechnet als das Größere von (Saldo × Mindest-%) oder dem Mindestbetrag, genau wie echte Anbieter es berechnen."
+        },
+        "payoffStrategies": {
+          "title": "✅ Bewährte Tilgungsstrategien",
+          "items": [
+            "Schuldenlawine: Zahlen Sie Mindest auf alle Karten, setzen Sie Extra auf die höchste APR-Karte. Spart mathematisch das meiste Geld, erfordert aber Geduld.",
+            "Schuldenschneeball: Zahlen Sie zuerst den kleinsten Saldo ab für schnelle psychologische Siege. Etwas teurer, aber hält Sie motiviert.",
+            "Umschuldung: Verschieben Sie Schulden auf eine 0% Einführungszins-Karte. Sie zahlen eine 3–5% Übertragungsgebühr, aber eliminieren Zinsen für 12–21 Monate.",
+            "Einmalzahlungen: Nutzen Sie Steuerrückerstattungen, Boni oder Glücksfälle für große Einmalzahlungen, die Ihren Zeitplan dramatisch verkürzen.",
+            "Zweiwöchentliche Zahlungen: Zahlen Sie die Hälfte Ihrer Monatszahlung alle zwei Wochen — Sie machen 26 halbe Zahlungen (13 volle Zahlungen) pro Jahr statt 12.",
+            "Verhandeln Sie Ihren APR: Rufen Sie Ihren Anbieter an und bitten Sie um eine Zinssenkung. Langjährige Kunden mit guter Zahlungshistorie haben eine 60–70% Erfolgsrate."
+          ]
+        },
+        "commonMistakes": {
+          "title": "⚠️ Teure Fehler zu vermeiden",
+          "items": [
+            "Nur das Minimum zahlen: Ein 5.000€ Saldo bei 22% mit Mindestzahlungen dauert 25+ Jahre und kostet über 8.000€ nur an Zinsen.",
+            "Den APR ignorieren: Viele Karteninhaber kennen ihren Satz nicht. Der Durchschnitt liegt bei 22,76% — prüfen Sie Ihre Abrechnung und verhandeln Sie niedriger, wenn möglich.",
+            "Zahlungen verpassen: Eine einzige verspätete Zahlung kann einen Straf-APR von 29,99% auslösen, Ihr Minimum erhöhen und Ihre Kreditwürdigkeit schädigen.",
+            "Weiter belasten: Zahlungen zu leisten, während Sie weiterhin zum Saldo hinzufügen, erzeugt einen Laufbandeffekt, wo Sie nie Fortschritt machen.",
+            "Abbezahlte Karten schließen: Konten zu schließen reduziert Ihr Gesamtkreditlimit, erhöht Ihre Nutzungsrate und kann Ihre Kreditwürdigkeit senken."
+          ]
+        },
+        "examples": {
+          "title": "🧮 Echte Tilgungsszenarien",
+          "columns": 2,
+          "examples": [
+            {
+              "title": "Durchschnittssaldo — Fest vs. Minimum",
+              "content": "Saldo: 6.501€ | APR: 22,76% | Minimum: 2% oder 35€\n\nNur Minimum: 24 Jahre, 3 Monate — Gesamt gezahlt: 17.476€\nFest 200€/Monat: 3 Jahre, 4 Monate — Gesamt gezahlt: 7.987€\n\n→ Sie sparen 9.489€ und 21 Jahre durch Zahlung von 200€/Monat statt dem Minimum."
+            },
+            {
+              "title": "Hochzins + Umschuldung",
+              "content": "Saldo: 10.000€ | APR: 29,99% | Zahlung: 300€/Monat\n\nOhne Übertragung: 4 Jahre, 4 Monate — Gesamtzinsen: 5.428€\nMit 0% Übertragung (18 Mo, 3% Gebühr): Gesamtzinsen: 1.868€\n\n→ Umschuldung spart 3.560€ selbst nach der 300€ Gebühr. Sie sind 14 Monate früher schuldenfrei."
+            }
+          ]
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Wie lange dauert es, meine Kreditkarte abzubezahlen?",
+          "answer": "Es hängt von Ihrem Saldo, APR und monatlicher Zahlung ab. Mit einem 5.000€ Saldo bei 22% APR dauert die Zahlung von 200€/Monat etwa 31 Monate. Nur das Minimum zu zahlen könnte über 20 Jahre dauern. Nutzen Sie diesen Rechner für Ihren personalisierten Zeitplan."
+        },
+        "1": {
+          "question": "Wie viel meiner Kreditkartenzahlung geht für Zinsen vs. Kapital?",
+          "answer": "In den ersten Monaten geht der Großteil Ihrer Zahlung für Zinsen. Zum Beispiel bei einem 5.000€ Saldo bei 22% APR betragen die Zinsen des ersten Monats etwa 91,67€. Wenn Sie 200€ zahlen, reduzieren nur 108,33€ tatsächlich Ihren Saldo. Wenn Ihr Saldo sinkt, geht mehr von jeder Zahlung zum Kapital."
+        },
+        "2": {
+          "question": "Warum ist es so teuer, nur das Minimum zu zahlen?",
+          "answer": "Mindestzahlungen sind darauf ausgelegt, Ihr Konto aktuell zu halten, nicht Schulden effizient abzubezahlen. Sie betragen typischerweise 1–3% Ihres Saldos, was kaum die Zinsen abdeckt. Wenn Ihr Saldo sinkt, sinkt auch das Minimum — also zahlen Sie jeden Monat weniger und weniger, was die Tilgung über Jahrzehnte streckt. Ein 5.000€ Saldo bei 24,99% APR mit 2% Mindest dauert über 30 Jahre und kostet mehr als 12.000€ an Zinsen."
+        },
+        "3": {
+          "question": "Lohnt sich eine Umschuldung?",
+          "answer": "Eine Umschuldung auf eine 0% Einführungszins-Karte kann Ihnen Hunderte oder Tausende von Euros an Zinsen sparen, aber nur wenn Sie den größten Teil des Saldos während der Einführungsperiode abbezahlen können (typischerweise 12–21 Monate). Sie zahlen eine Übertragungsgebühr von 3–5%, die zu Ihrem Saldo hinzugefügt wird. Dieser Rechner vergleicht beide Szenarien, damit Sie die genauen Ersparnisse sehen können."
+        },
+        "4": {
+          "question": "Soll ich die Schuldenschneeball- oder Schuldenlawinen-Methode verwenden?",
+          "answer": "Die Schuldenlawine (höchster APR zuerst) spart mathematisch das meiste Geld. Der Schuldenschneeball (kleinster Saldo zuerst) bietet schnellere psychologische Siege. Forschung zeigt, dass die Schneeball-Methode höhere Abschlussraten hat, weil die schnellen Siege Menschen motiviert halten. Wählen Sie die Methode, bei der Sie bleiben — die beste Strategie ist die, die Sie tatsächlich befolgen."
+        },
+        "5": {
+          "question": "Wie werden Kreditkartenzinsen berechnet?",
+          "answer": "Die meisten Anbieter verwenden die Durchschnittliche Tägliche Saldo Methode. Ihr APR wird durch 365 geteilt, um einen Tagessatz zu erhalten. Jeden Tag wird dieser Satz mit Ihrem Saldo multipliziert. Diese täglichen Belastungen werden am Ende des Abrechnungszyklus summiert. Das bedeutet, Zinsen werden täglich kapitalisiert — Sie werden auf zuvor aufgelaufene Zinsen belastet — weshalb Kreditkartenschulden schneller wachsen, als die meisten Menschen erwarten."
+        },
+        "6": {
+          "question": "Was passiert, wenn ich mehr als das Minimum, aber weniger als den vollen Saldo zahle?",
+          "answer": "Jeder Betrag über dem Minimum geht direkt zur Reduzierung Ihres Hauptsaldos. Selbst zusätzliche 25–50€ pro Monat können Jahre von Ihrem Tilgungsplan abschneiden und erhebliche Zinsen sparen. Dieser Rechner lässt Sie verschiedene Zahlungsbeträge vergleichen, um die genaue Auswirkung zu sehen."
+        },
+        "7": {
+          "question": "Kann ich einen niedrigeren APR auf meiner Kreditkarte verhandeln?",
+          "answer": "Ja, und es ist einen Versuch wert. Studien zeigen, dass 60–80% der Menschen, die ihren Anbieter anrufen und um eine Zinssenkung bitten, eine erhalten. Eine gute Zahlungshistorie, lange Kontodauer und ein Konkurrenzangebot einer anderen Karte stärken Ihre Position. Selbst eine 2–3% Reduzierung kann Hunderte von Euros über die Laufzeit Ihres Saldos sparen."
+        }
+      },
+      "buttons": {
+        "calculate": "Berechnen",
+        "reset": "Zurücksetzen",
+        "pdf": "PDF",
+        "csv": "CSV",
+        "excel": "Excel",
+        "save": "Speichern",
+        "saved": "Gespeichert",
+        "saving": "Speichern..."
+      },
+      "share": {
+        "calculatedWith": "Berechnet mit Kalcufy.com"
+      },
+      "ui": {
+        "results": "Ergebnisse",
+        "yourInformation": "Ihre Informationen"
+      },
+      "accessibility": {
+        "mobileResults": "Ergebniszusammenfassung",
+        "closeModal": "Schließen",
+        "openMenu": "Menü öffnen"
+      },
+      "rating": {
+        "title": "Bewerten Sie diesen Rechner",
+        "share": "Teilen",
+        "copied": "Kopiert!",
+        "copyLink": "Link kopieren",
+        "clickToRate": "Klicken zum Bewerten",
+        "youRated": "Sie haben bewertet",
+        "stars": "Sterne",
+        "averageFrom": "Durchschnitt von",
+        "ratings": "Bewertungen"
+      },
+      "common": {
+        "home": "Startseite",
+        "calculators": "Rechner"
+      },
+      "sources": {
+        "title": "Quellen und Referenzen"
+      }
+    },
   },
 
   // ═══════════════════════════════════════════════════════════════

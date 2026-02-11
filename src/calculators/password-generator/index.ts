@@ -366,6 +366,1562 @@ export const passwordGeneratorConfig: CalculatorConfigV4 = {
       accessibility: { mobileResults: "Results", closeModal: "Close", openMenu: "Menu" },
       sources: { title: "Sources & References" },
     },
+    es: {
+      "name": "Generador de Contraseñas",
+      "slug": "calculadora-generador-contrasenas",
+      "subtitle": "Genera contraseñas aleatorias fuertes, frases de paso memorables y PINs seguros con análisis de fortaleza en tiempo real y estimaciones de tiempo de descifrado.",
+      "breadcrumb": "Generador de Contraseñas",
+      "seo": {
+        "title": "Generador de Contraseñas - Contraseñas Aleatorias Fuertes y Frases de Paso",
+        "description": "Genera contraseñas y frases de paso fuertes y aleatorias con estimaciones de tiempo de descifrado, análisis de entropía y puntuación de fortaleza. Herramienta gratuita con modos de contraseña, frase de paso y PIN.",
+        "shortDescription": "Genera contraseñas aleatorias fuertes con análisis de fortaleza.",
+        "keywords": [
+          "generador de contraseñas",
+          "generador de contraseñas fuertes",
+          "generador de contraseñas aleatorias",
+          "generador de frases de paso",
+          "creador de contraseñas seguras",
+          "verificador de fortaleza de contraseñas",
+          "calculadora de entropía de contraseñas",
+          "generador de contraseñas gratis"
+        ]
+      },
+      "inputs": {
+        "mode": {
+          "label": "Modo de Generación",
+          "helpText": "Elige entre caracteres aleatorios, combinaciones de palabras memorables, o PINs numéricos",
+          "options": {
+            "password": "Contraseña Aleatoria",
+            "passphrase": "Frase de Paso (Palabras)",
+            "pin": "PIN (Solo Números)"
+          }
+        },
+        "length": {
+          "label": "Longitud de Contraseña",
+          "helpText": "Las contraseñas más largas son exponencialmente más difíciles de descifrar — se recomienda 16+ caracteres"
+        },
+        "includeUppercase": {
+          "label": "Letras Mayúsculas (A–Z)",
+          "helpText": "Incluir letras mayúsculas para aumentar el conjunto de caracteres"
+        },
+        "includeLowercase": {
+          "label": "Letras Minúsculas (a–z)",
+          "helpText": "Incluir letras minúsculas"
+        },
+        "includeNumbers": {
+          "label": "Números (0–9)",
+          "helpText": "Incluir dígitos"
+        },
+        "includeSymbols": {
+          "label": "Símbolos (!@#$%...)",
+          "helpText": "Incluir caracteres especiales para máxima entropía"
+        },
+        "avoidAmbiguous": {
+          "label": "Evitar Caracteres Ambiguos",
+          "helpText": "Excluir caracteres de apariencia similar: 0/O, l/1/I, S/5, B/8"
+        },
+        "wordCount": {
+          "label": "Número de Palabras",
+          "helpText": "Más palabras = frase de paso más fuerte — se recomienda 4+"
+        },
+        "separator": {
+          "label": "Separador de Palabras",
+          "helpText": "Carácter entre palabras",
+          "options": {
+            "-": "Guión ( - )",
+            ".": "Punto ( . )",
+            "_": "Guión Bajo ( _ )",
+            " ": "Espacio",
+            "": "Ninguno"
+          }
+        },
+        "capitalizeWords": {
+          "label": "Capitalizar Palabras",
+          "helpText": "Capitalizar la primera letra de cada palabra (ej., Manzana-Valiente-Ajedrez)"
+        },
+        "includeWordNumber": {
+          "label": "Agregar Número a Frase de Paso",
+          "helpText": "Agregar un dígito aleatorio a una palabra para entropía extra"
+        },
+        "pinLength": {
+          "label": "Longitud de PIN",
+          "helpText": "Se recomiendan 6+ dígitos — los PINs de 4 dígitos son débiles"
+        }
+      },
+      "results": {
+        "generatedPassword": {
+          "label": "Tu Contraseña"
+        },
+        "strengthScore": {
+          "label": "Fortaleza"
+        },
+        "entropyBits": {
+          "label": "Entropía"
+        },
+        "charsetSize": {
+          "label": "Tamaño del Conjunto de Caracteres"
+        },
+        "totalCombinations": {
+          "label": "Combinaciones Posibles"
+        },
+        "crackTimeOnline": {
+          "label": "Tiempo de Descifrado (En línea, Limitado)"
+        },
+        "crackTimeOfflineSlow": {
+          "label": "Tiempo de Descifrado (Fuera de línea, Hash Lento)"
+        },
+        "crackTimeOfflineFast": {
+          "label": "Tiempo de Descifrado (Fuera de línea, Hash Rápido)"
+        }
+      },
+      "presets": {
+        "strong": {
+          "label": "Contraseña Fuerte",
+          "description": "20 caracteres, todos los tipos de caracteres — máxima seguridad"
+        },
+        "memorable": {
+          "label": "Frase de Paso Memorable",
+          "description": "5 palabras con números — fácil de recordar, difícil de descifrar"
+        },
+        "noSymbols": {
+          "label": "Sin Símbolos (24 caracteres)",
+          "description": "Solo letras + números — para sitios que bloquean símbolos"
+        },
+        "quickPin": {
+          "label": "PIN Rápido",
+          "description": "PIN numérico de 6 dígitos para aplicaciones y dispositivos"
+        }
+      },
+      "values": {
+        "veryWeak": "🔴 Muy Débil",
+        "weak": "🟠 Débil",
+        "fair": "🟡 Regular",
+        "strong": "🟢 Fuerte",
+        "veryStrong": "🟣 Muy Fuerte",
+        "instant": "Instantáneamente",
+        "seconds": "segundos",
+        "minutes": "minutos",
+        "hours": "horas",
+        "days": "días",
+        "months": "meses",
+        "years": "años",
+        "centuries": "siglos",
+        "millennia": "milenios",
+        "forever": "Más tiempo que la edad del universo",
+        "bits": "bits",
+        "characters": "caracteres"
+      },
+      "formats": {
+        "summary": "{mode} generada con {entropyBits} bits de entropía. Fortaleza: {strengthScore}. Tiempo de descifrado hash rápido fuera de línea: {crackTimeOfflineFast}."
+      },
+      "infoCards": {
+        "metrics": {
+          "title": "Análisis de Fortaleza",
+          "items": [
+            {
+              "label": "Fortaleza",
+              "valueKey": "strengthScore"
+            },
+            {
+              "label": "Entropía",
+              "valueKey": "entropyBits"
+            },
+            {
+              "label": "Conjunto de Caracteres",
+              "valueKey": "charsetSize"
+            },
+            {
+              "label": "Combinaciones",
+              "valueKey": "totalCombinations"
+            }
+          ]
+        },
+        "details": {
+          "title": "Estimaciones de Tiempo de Descifrado",
+          "items": [
+            {
+              "label": "En línea (Limitado)",
+              "valueKey": "crackTimeOnline"
+            },
+            {
+              "label": "Fuera de línea (Hash Lento)",
+              "valueKey": "crackTimeOfflineSlow"
+            },
+            {
+              "label": "Fuera de línea (Hash Rápido)",
+              "valueKey": "crackTimeOfflineFast"
+            },
+            {
+              "label": "Fortaleza",
+              "valueKey": "strengthScore"
+            }
+          ]
+        },
+        "tips": {
+          "title": "Consejos de Seguridad para Contraseñas",
+          "items": [
+            "Usa 16+ caracteres — cada carácter adicional hace tu contraseña exponencialmente más difícil de descifrar.",
+            "Nunca reutilices contraseñas entre sitios — una brecha expone todas las cuentas que comparten esa contraseña.",
+            "Frases de paso como Manzana-Valiente7-Ajedrez-Delta son tanto fuertes como memorables.",
+            "Habilita la autenticación de dos factores (2FA) incluso con contraseñas fuertes para cuentas críticas."
+          ]
+        }
+      },
+      "chart": {
+        "title": "Análisis de Tiempo de Descifrado",
+        "tabs": {
+          "crack-scenarios": "Escenarios de Ataque",
+          "length-comparison": "Longitud vs Tiempo de Descifrado"
+        }
+      },
+      "education": {
+        "whatIs": {
+          "title": "¿Qué Hace Fuerte a una Contraseña?",
+          "content": "Una contraseña fuerte tiene tres cualidades esenciales: longitud, complejidad y unicidad. La longitud es el factor más importante — cada carácter adicional multiplica el número de combinaciones posibles exponencialmente. Una contraseña de 12 caracteres usando todos los tipos de caracteres (minúsculas, mayúsculas, números, símbolos) tiene aproximadamente 475 trillones de billones de combinaciones posibles, mientras que una contraseña de 8 caracteres tiene solo 6 cuatrillones — aproximadamente 79 mil millones de veces menos posibilidades. La complejidad viene del uso de un conjunto de caracteres diverso: las letras minúsculas proporcionan 26 opciones por posición, agregar mayúsculas lo duplica a 52, los dígitos lo llevan a 62, y los símbolos lo empujan a 94 o más. Pero la longitud supera la complejidad cada vez: una contraseña de 20 caracteres solo en minúsculas (2.0 × 10²⁸ combinaciones) es vastamente más fuerte que una contraseña de 8 caracteres usando todos los tipos de caracteres (6.1 × 10¹⁵ combinaciones). La unicidad significa nunca reutilizar una contraseña — si un servicio sufre una brecha de datos, los atacantes probarán esa misma contraseña en cada otro sitio que uses a través de ataques de relleno de credenciales."
+        },
+        "howItWorks": {
+          "title": "Cómo Funciona la Entropía de Contraseñas",
+          "content": "La entropía, medida en bits, cuantifica la aleatoriedad en una contraseña. La fórmula es: entropía = longitud × log₂(tamaño_conjunto_caracteres). Una contraseña de 16 caracteres usando el conjunto completo de 94 caracteres (minúsculas + mayúsculas + números + símbolos) tiene aproximadamente 104.8 bits de entropía. Cada bit adicional de entropía duplica el número de intentos que un atacante necesita hacer. Para contexto: 40 bits de entropía pueden ser descifrados en segundos por hardware moderno, 60 bits toma horas, 80 bits toma años, y 128+ bits se considera indescifrable con la tecnología actual. Las frases de paso derivan su entropía de manera diferente — del tamaño de la lista de palabras elevado a la potencia del conteo de palabras. Una frase de paso de 4 palabras de una lista de 200 palabras tiene log₂(200⁴) ≈ 30.6 bits, mientras que 5 palabras da ~38.2 bits. Agregar capitalización, separadores y números aleatorios aumenta significativamente la entropía de la frase de paso. El punto clave: la entropía debe venir de una selección verdaderamente aleatoria. Un humano eligiendo 'Contraseña123!' puede usar mayúsculas, minúsculas, números y símbolos, pero tiene casi cero entropía efectiva porque sigue un patrón extremadamente predecible."
+        },
+        "considerations": {
+          "title": "Mejores Prácticas para Contraseñas",
+          "items": [
+            {
+              "text": "Usa 16+ caracteres para contraseñas y 5+ palabras para frases de paso — la longitud es la defensa más fuerte contra ataques de fuerza bruta.",
+              "type": "info"
+            },
+            {
+              "text": "Habilita 2FA en todas las cuentas críticas (email, banca, redes sociales) — incluso una contraseña comprometida no puede eludir un segundo factor.",
+              "type": "warning"
+            },
+            {
+              "text": "Usa un administrador de contraseñas para generar y almacenar contraseñas únicas para cada cuenta — los humanos no pueden recordar confiablemente docenas de contraseñas fuertes.",
+              "type": "info"
+            },
+            {
+              "text": "Nunca compartas contraseñas por email, texto o chat — estos canales pueden ser interceptados o almacenados en texto plano.",
+              "type": "warning"
+            },
+            {
+              "text": "Verifica si tus contraseñas han sido expuestas en brechas de datos usando servicios como Have I Been Pwned (haveibeenpwned.com).",
+              "type": "info"
+            },
+            {
+              "text": "Evita información personal en contraseñas — nombres, cumpleaños, nombres de mascotas y direcciones son lo primero que prueban los atacantes.",
+              "type": "warning"
+            }
+          ]
+        },
+        "categories": {
+          "title": "Métodos de Ataque y Tiempos de Descifrado",
+          "items": [
+            {
+              "text": "En línea Limitado (100/hr): Formularios de login web con limitación de velocidad — incluso contraseñas cortas sobreviven días. La mayoría de sitios usan esto.",
+              "type": "info"
+            },
+            {
+              "text": "En línea Sin Límites (10/seg): APIs sin limitación de velocidad — contraseñas débiles caen en horas. Siempre agrega limitación de velocidad.",
+              "type": "info"
+            },
+            {
+              "text": "Fuera de línea Hash Lento (10K/seg): Filtraciones de bases de datos hasheadas con bcrypt/Argon2 — sistemas bien diseñados hacen cada intento costoso.",
+              "type": "info"
+            },
+            {
+              "text": "Fuera de línea Hash Rápido (10B/seg): Filtraciones hasheadas con MD5/SHA-1 — GPUs modernas prueban miles de millones de combinaciones por segundo.",
+              "type": "warning"
+            },
+            {
+              "text": "Ataque de Diccionario: Prueba primero palabras comunes, nombres, patrones — 'Contraseña123!' cae instantáneamente a pesar de caracteres mixtos.",
+              "type": "warning"
+            },
+            {
+              "text": "Relleno de Credenciales: Usa listas de contraseñas filtradas en otros sitios — contraseñas reutilizadas permiten compromiso de cuentas en cascada.",
+              "type": "warning"
+            }
+          ]
+        },
+        "examples": {
+          "title": "Ejemplos de Fortaleza de Contraseñas",
+          "description": "Compara fortalezas reales de contraseñas",
+          "examples": [
+            {
+              "title": "Contraseñas Débiles vs Fuertes",
+              "steps": [
+                "❌ 'contraseña123' → 0 bits entropía (palabra de diccionario) → Descifrada INSTANTÁNEAMENTE",
+                "❌ 'Tr0ub4d0r&3' → ~28 bits (sustituciones comunes) → Descifrada en SEGUNDOS",
+                "⚠️ 'xK9#mL2$' (8 caracteres, todos los tipos) → 52.4 bits → Descifrada en 6 horas (hash rápido)",
+                "✅ 'aX7$mK9#pL2&nR5!' (16 caracteres) → 104.8 bits → 394 mil millones de años (hash rápido)",
+                "✅ 'Manzana-Valiente7-Ajedrez-Delta' (frase de paso) → ~45 bits → años (hash rápido)",
+                "✅ 'Escarcha-Destello4-Refugio-Joya-Luz' (5 palabras) → ~55 bits → siglos"
+              ],
+              "result": "La longitud importa más. Una contraseña de 16 caracteres con todos los tipos es esencialmente indescifrable."
+            },
+            {
+              "title": "Ejemplo de Matemática de Entropía",
+              "steps": [
+                "Contraseña: 16 caracteres usando minúsculas + mayúsculas + números + símbolos",
+                "Tamaño del conjunto de caracteres: 26 + 26 + 10 + 32 = 94 caracteres",
+                "Entropía = 16 × log₂(94) = 16 × 6.55 = 104.8 bits",
+                "Combinaciones totales = 94¹⁶ = 3.7 × 10³¹",
+                "A 10 mil millones de intentos/seg: 3.7 × 10³¹ ÷ 10¹⁰ = 3.7 × 10²¹ segundos",
+                "Eso es aproximadamente 117 billones de años para probar todas las combinaciones"
+              ],
+              "result": "Tiempo promedio de descifrado = la mitad del total = ~59 billones de años. Tu contraseña está segura."
+            }
+          ]
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "¿Cómo funciona este generador de contraseñas?",
+          "answer": "Esta herramienta usa aleatoriedad de calidad criptográfica para generar contraseñas. Para contraseñas aleatorias, selecciona caracteres de tu conjunto de caracteres elegido (mayúsculas, minúsculas, números, símbolos) con igual probabilidad. Para frases de paso, elige aleatoriamente palabras de una lista curada de 200 palabras. Para PINs, genera dígitos aleatorios. Toda la generación ocurre localmente en tu navegador — ninguna contraseña se envía jamás a ningún servidor o se almacena en ningún lugar."
+        },
+        "1": {
+          "question": "¿Qué longitud de contraseña debo usar?",
+          "answer": "Para contraseñas aleatorias, usa al menos 16 caracteres con todos los tipos de caracteres habilitados. Esto da más de 104 bits de entropía, haciendo los ataques de fuerza bruta inviables. Para frases de paso, usa al menos 4-5 palabras con separador y número. Para PINs, usa 6+ dígitos — los PINs de 4 dígitos tienen solo 10,000 combinaciones, que pueden ser descifradas en segundos. La regla general: más largo es siempre más fuerte, y cada carácter extra multiplica la seguridad exponencialmente."
+        },
+        "2": {
+          "question": "¿Qué significan las estimaciones de tiempo de descifrado?",
+          "answer": "Estimamos tiempos de descifrado para tres escenarios: En línea Limitado asume 100 intentos por hora (login web típico con limitación de velocidad). Fuera de línea Hash Lento asume 10,000 intentos por segundo (base de datos filtrada usando bcrypt o Argon2). Fuera de línea Hash Rápido asume 10 mil millones de intentos por segundo (base de datos filtrada usando hashing débil MD5 o SHA-1, descifrada en GPUs modernas). El escenario de hash rápido fuera de línea es el más peligroso y más realista para brechas de datos."
+        },
+        "3": {
+          "question": "¿Es mejor una frase de paso que una contraseña aleatoria?",
+          "answer": "Las frases de paso y contraseñas aleatorias sirven necesidades diferentes. Una frase de paso de 5 palabras como 'Escarcha-Destello4-Refugio-Joya-Luz' es fácil de teclear y memorizar, con entropía decente (~55 bits). Una contraseña aleatoria de 16 caracteres como 'aX7$mK9#pL2&nR5!' tiene mayor entropía (~105 bits) pero es más difícil de recordar. Si usas un administrador de contraseñas, elige contraseñas aleatorias para máxima seguridad. Si necesitas memorizarla (como una contraseña maestra), usa una frase de paso larga con 5+ palabras."
+        },
+        "4": {
+          "question": "¿Qué es la entropía de contraseñas?",
+          "answer": "La entropía mide la aleatoriedad de una contraseña en bits. Se calcula como: longitud × log₂(tamaño_conjunto_caracteres). Mayor entropía significa más combinaciones posibles y tiempos de descifrado más largos. Umbrales clave: menos de 40 bits es muy débil (descifrable en minutos), 40-59 bits es débil, 60-79 bits es regular, 80-99 bits es fuerte, y 100+ bits es muy fuerte (esencialmente indescifrable con tecnología actual). Cada bit adicional duplica el número de intentos necesarios."
+        },
+        "5": {
+          "question": "¿Debería evitar caracteres ambiguos?",
+          "answer": "La opción 'Evitar Caracteres Ambiguos' remueve caracteres que se ven similares en muchas fuentes: 0 (cero) vs O (letra), l (L minúscula) vs 1 (uno) vs I (i mayúscula), S vs 5, B vs 8. Habilita esto cuando puedas necesitar leer o dictar la contraseña en voz alta, copiarla a mano, o usarla en sistemas con fuentes difíciles de leer. La ligera reducción en el conjunto de caracteres tiene impacto mínimo en la seguridad si compensas con una contraseña ligeramente más larga."
+        }
+      },
+      "detailedTable": {
+        "crackTimeReference": {
+          "button": "Ver Referencia Completa de Tiempo de Descifrado",
+          "title": "Tiempo de Descifrado de Contraseñas por Longitud y Tipo de Carácter",
+          "columns": {
+            "length": "Longitud",
+            "lowercase": "Solo Minúsculas",
+            "mixed": "Caso Mixto",
+            "mixedNum": "+ Números",
+            "all": "Todos los Caracteres"
+          }
+        }
+      },
+      "buttons": {
+        "calculate": "Calcular",
+        "reset": "Reiniciar",
+        "pdf": "PDF",
+        "csv": "CSV",
+        "excel": "Excel",
+        "save": "Guardar",
+        "saved": "Guardado",
+        "saving": "Guardando..."
+      },
+      "share": {
+        "calculatedWith": "Calculado con Kalcufy.com"
+      },
+      "ui": {
+        "results": "Resultados",
+        "yourInformation": "Tu Información"
+      },
+      "accessibility": {
+        "mobileResults": "Resumen de resultados",
+        "closeModal": "Cerrar",
+        "openMenu": "Abrir menú"
+      },
+      "rating": {
+        "title": "Califica esta Calculadora",
+        "share": "Compartir",
+        "copied": "¡Copiado!",
+        "copyLink": "Copiar Enlace",
+        "clickToRate": "Clic para calificar",
+        "youRated": "Calificaste",
+        "stars": "estrellas",
+        "averageFrom": "promedio de",
+        "ratings": "calificaciones"
+      },
+      "common": {
+        "home": "Inicio",
+        "calculators": "Calculadoras"
+      },
+      "sources": {
+        "title": "Fuentes y Referencias"
+      },
+      "calculator": {
+        "yourInformation": "Tu Información"
+      }
+    },
+    pt: {
+      "name": "Gerador de Senhas",
+      "slug": "calculadora-gerador-senhas",
+      "subtitle": "Gere senhas aleatórias seguras, frases-chave memoráveis e PINs seguros com análise de força em tempo real e estimativas de tempo de quebra.",
+      "breadcrumb": "Gerador de Senhas",
+      "seo": {
+        "title": "Gerador de Senhas - Senhas Aleatórias Seguras e Frases-Chave",
+        "description": "Gere senhas e frases-chave aleatórias seguras com estimativas de tempo de quebra, análise de entropia e pontuação de força. Ferramenta gratuita com modos de senha, frase-chave e PIN.",
+        "shortDescription": "Gere senhas aleatórias seguras com análise de força.",
+        "keywords": [
+          "gerador de senhas",
+          "gerador de senhas seguras",
+          "gerador de senhas aleatórias",
+          "gerador de frases-chave",
+          "criador de senhas seguras",
+          "verificador de força de senha",
+          "calculadora de entropia de senha",
+          "gerador de senhas gratuito"
+        ]
+      },
+      "calculator": {
+        "yourInformation": "Suas Informações"
+      },
+      "inputs": {
+        "mode": {
+          "label": "Modo de Geração",
+          "helpText": "Escolha entre caracteres aleatórios, combinações de palavras memoráveis ou PINs numéricos",
+          "options": {
+            "password": "Senha Aleatória",
+            "passphrase": "Frase-chave (Palavras)",
+            "pin": "PIN (Apenas Números)"
+          }
+        },
+        "length": {
+          "label": "Comprimento da Senha",
+          "helpText": "Senhas mais longas são exponencialmente mais difíceis de quebrar — 16+ recomendado"
+        },
+        "includeUppercase": {
+          "label": "Letras Maiúsculas (A–Z)",
+          "helpText": "Inclua letras maiúsculas para aumentar o conjunto de caracteres"
+        },
+        "includeLowercase": {
+          "label": "Letras Minúsculas (a–z)",
+          "helpText": "Inclua letras minúsculas"
+        },
+        "includeNumbers": {
+          "label": "Números (0–9)",
+          "helpText": "Inclua dígitos"
+        },
+        "includeSymbols": {
+          "label": "Símbolos (!@#$%...)",
+          "helpText": "Inclua caracteres especiais para máxima entropia"
+        },
+        "avoidAmbiguous": {
+          "label": "Evitar Caracteres Ambíguos",
+          "helpText": "Exclua caracteres de aparência similar: 0/O, l/1/I, S/5, B/8"
+        },
+        "wordCount": {
+          "label": "Número de Palavras",
+          "helpText": "Mais palavras = frase-chave mais forte — 4+ recomendado"
+        },
+        "separator": {
+          "label": "Separador de Palavras",
+          "helpText": "Caractere entre palavras",
+          "options": {
+            "-": "Hífen ( - )",
+            ".": "Ponto ( . )",
+            "_": "Sublinhado ( _ )",
+            " ": "Espaço",
+            "": "Nenhum"
+          }
+        },
+        "capitalizeWords": {
+          "label": "Capitalizar Palavras",
+          "helpText": "Capitalizar primeira letra de cada palavra (ex: Maçã-Bravo-Xadrez)"
+        },
+        "includeWordNumber": {
+          "label": "Adicionar Número à Frase-chave",
+          "helpText": "Anexar um dígito aleatório a uma palavra para entropia extra"
+        },
+        "pinLength": {
+          "label": "Comprimento do PIN",
+          "helpText": "6+ dígitos recomendado — PINs de 4 dígitos são fracos"
+        }
+      },
+      "results": {
+        "generatedPassword": {
+          "label": "Sua Senha"
+        },
+        "strengthScore": {
+          "label": "Força"
+        },
+        "entropyBits": {
+          "label": "Entropia"
+        },
+        "charsetSize": {
+          "label": "Tamanho do Conjunto de Caracteres"
+        },
+        "totalCombinations": {
+          "label": "Combinações Possíveis"
+        },
+        "crackTimeOnline": {
+          "label": "Tempo de Quebra (Online, Limitado)"
+        },
+        "crackTimeOfflineSlow": {
+          "label": "Tempo de Quebra (Offline, Hash Lento)"
+        },
+        "crackTimeOfflineFast": {
+          "label": "Tempo de Quebra (Offline, Hash Rápido)"
+        }
+      },
+      "presets": {
+        "strong": {
+          "label": "Senha Forte",
+          "description": "20 caracteres, todos os tipos de caracteres — máxima segurança"
+        },
+        "memorable": {
+          "label": "Frase-chave Memorável",
+          "description": "5 palavras com números — fácil de lembrar, difícil de quebrar"
+        },
+        "noSymbols": {
+          "label": "Sem Símbolos (24 caracteres)",
+          "description": "Apenas letras + números — para sites que bloqueiam símbolos"
+        },
+        "quickPin": {
+          "label": "PIN Rápido",
+          "description": "PIN numérico de 6 dígitos para aplicativos e dispositivos"
+        }
+      },
+      "values": {
+        "veryWeak": "🔴 Muito Fraca",
+        "weak": "🟠 Fraca",
+        "fair": "🟡 Razoável",
+        "strong": "🟢 Forte",
+        "veryStrong": "🟣 Muito Forte",
+        "instant": "Instantaneamente",
+        "seconds": "segundos",
+        "minutes": "minutos",
+        "hours": "horas",
+        "days": "dias",
+        "months": "meses",
+        "years": "anos",
+        "centuries": "séculos",
+        "millennia": "milênios",
+        "forever": "Mais tempo que a idade do universo",
+        "bits": "bits",
+        "characters": "caracteres"
+      },
+      "formats": {
+        "summary": "{mode} gerada com {entropyBits} bits de entropia. Força: {strengthScore}. Tempo de quebra offline hash rápido: {crackTimeOfflineFast}."
+      },
+      "infoCards": {
+        "metrics": {
+          "title": "Análise de Força",
+          "items": [
+            {
+              "label": "Força",
+              "valueKey": "strengthScore"
+            },
+            {
+              "label": "Entropia",
+              "valueKey": "entropyBits"
+            },
+            {
+              "label": "Conjunto de Caracteres",
+              "valueKey": "charsetSize"
+            },
+            {
+              "label": "Combinações",
+              "valueKey": "totalCombinations"
+            }
+          ]
+        },
+        "details": {
+          "title": "Estimativas de Tempo de Quebra",
+          "items": [
+            {
+              "label": "Online (Limitado)",
+              "valueKey": "crackTimeOnline"
+            },
+            {
+              "label": "Offline (Hash Lento)",
+              "valueKey": "crackTimeOfflineSlow"
+            },
+            {
+              "label": "Offline (Hash Rápido)",
+              "valueKey": "crackTimeOfflineFast"
+            },
+            {
+              "label": "Força",
+              "valueKey": "strengthScore"
+            }
+          ]
+        },
+        "tips": {
+          "title": "Dicas de Segurança de Senhas",
+          "items": [
+            "Use 16+ caracteres — cada caractere extra torna sua senha exponencialmente mais difícil de quebrar.",
+            "Nunca reutilize senhas entre sites — uma violação expõe todas as contas que compartilham essa senha.",
+            "Frases-chave como Maçã-Bravo7-Xadrez-Delta são fortes e memoráveis.",
+            "Habilite autenticação de dois fatores (2FA) mesmo com senhas fortes para contas críticas."
+          ]
+        }
+      },
+      "chart": {
+        "title": "Análise de Tempo de Quebra",
+        "tabs": {
+          "crack-scenarios": "Cenários de Ataque",
+          "length-comparison": "Comprimento vs Tempo de Quebra"
+        }
+      },
+      "education": {
+        "whatIs": {
+          "title": "O que Torna uma Senha Forte?",
+          "content": "Uma senha forte tem três qualidades essenciais: comprimento, complexidade e singularidade. O comprimento é o fator mais importante — cada caractere adicional multiplica exponencialmente o número de combinações possíveis. Uma senha de 12 caracteres usando todos os tipos de caracteres (minúsculas, maiúsculas, números, símbolos) tem cerca de 475 trilhões de trilhões de combinações possíveis, enquanto uma senha de 8 caracteres tem apenas 6 quatrilhões — aproximadamente 79 bilhões de vezes menos possibilidades. A complexidade vem do uso de um conjunto de caracteres diversificado: letras minúsculas fornecem 26 opções por posição, adicionar maiúsculas dobra para 52, dígitos levam a 62, e símbolos empurram para 94 ou mais. Mas o comprimento supera a complexidade sempre: uma senha de 20 caracteres apenas minúsculas (2,0 × 10²⁸ combinações) é vastamente mais forte que uma senha de 8 caracteres usando todos os tipos de caracteres (6,1 × 10¹⁵ combinações). Singularidade significa nunca reutilizar uma senha — se um serviço sofre uma violação de dados, atacantes tentarão essa mesma senha em todos os outros sites que você usa através de ataques de credential stuffing."
+        },
+        "howItWorks": {
+          "title": "Como Funciona a Entropia da Senha",
+          "content": "Entropia, medida em bits, quantifica a aleatoriedade em uma senha. A fórmula é: entropia = comprimento × log₂(tamanho_do_conjunto_de_caracteres). Uma senha de 16 caracteres usando o conjunto completo de 94 caracteres (minúsculas + maiúsculas + números + símbolos) tem cerca de 104,8 bits de entropia. Cada bit adicional de entropia dobra o número de tentativas que um atacante precisa fazer. Para contexto: 40 bits de entropia podem ser quebrados em segundos pelo hardware moderno, 60 bits leva horas, 80 bits leva anos, e 128+ bits é considerado inquebrantável com a tecnologia atual. Frases-chave derivam sua entropia de forma diferente — do tamanho da lista de palavras elevado à potência da contagem de palavras. Uma frase-chave de 4 palavras de uma lista de 200 palavras tem log₂(200⁴) ≈ 30,6 bits, enquanto 5 palavras dão ~38,2 bits. Adicionar maiúsculas, separadores e números aleatórios aumenta significativamente a entropia da frase-chave. A percepção chave: a entropia deve vir de seleção verdadeiramente aleatória. Um humano escolhendo 'Senha123!' pode usar maiúsculas, minúsculas, números e símbolos, mas tem entropia efetiva próxima de zero porque segue um padrão extremamente previsível."
+        },
+        "considerations": {
+          "title": "Melhores Práticas de Senhas",
+          "items": [
+            {
+              "text": "Use 16+ caracteres para senhas e 5+ palavras para frases-chave — comprimento é a defesa mais forte contra ataques de força bruta.",
+              "type": "info"
+            },
+            {
+              "text": "Habilite 2FA em todas as contas críticas (email, bancárias, redes sociais) — mesmo uma senha comprometida não pode contornar um segundo fator.",
+              "type": "warning"
+            },
+            {
+              "text": "Use um gerenciador de senhas para gerar e armazenar senhas únicas para cada conta — humanos não conseguem lembrar com confiabilidade dezenas de senhas fortes.",
+              "type": "info"
+            },
+            {
+              "text": "Nunca compartilhe senhas via email, texto ou chat — esses canais podem ser interceptados ou armazenados em texto simples.",
+              "type": "warning"
+            },
+            {
+              "text": "Verifique se suas senhas foram expostas em violações de dados usando serviços como Have I Been Pwned (haveibeenpwned.com).",
+              "type": "info"
+            },
+            {
+              "text": "Evite informações pessoais em senhas — nomes, aniversários, nomes de animais e endereços são as primeiras coisas que atacantes tentam.",
+              "type": "warning"
+            }
+          ]
+        },
+        "categories": {
+          "title": "Métodos de Ataque e Tempos de Quebra",
+          "items": [
+            {
+              "text": "Online Limitado (100/hr): Formulários de login web com limitação de taxa — até senhas curtas sobrevivem dias. A maioria dos sites usa isso.",
+              "type": "info"
+            },
+            {
+              "text": "Online Sem Limite (10/seg): APIs sem limitação de taxa — senhas fracas caem em horas. Sempre adicione limitação de taxa.",
+              "type": "info"
+            },
+            {
+              "text": "Offline Hash Lento (10K/seg): Vazamentos de banco de dados com hash bcrypt/Argon2 — sistemas bem projetados tornam cada tentativa cara.",
+              "type": "info"
+            },
+            {
+              "text": "Offline Hash Rápido (10B/seg): Vazamentos com hash MD5/SHA-1 — GPUs modernas testam bilhões de combinações por segundo.",
+              "type": "warning"
+            },
+            {
+              "text": "Ataque de Dicionário: Tenta palavras comuns, nomes, padrões primeiro — 'Senha123!' cai instantaneamente apesar dos caracteres mistos.",
+              "type": "warning"
+            },
+            {
+              "text": "Credential Stuffing: Usa listas de senhas vazadas em outros sites — senhas reutilizadas permitem comprometimento de contas em cascata.",
+              "type": "warning"
+            }
+          ]
+        },
+        "examples": {
+          "title": "Exemplos de Força de Senhas",
+          "description": "Compare forças reais de senhas",
+          "examples": [
+            {
+              "title": "Senhas Fracas vs Fortes",
+              "steps": [
+                "❌ 'senha123' → 0 bits de entropia (palavra do dicionário) → Quebrada INSTANTANEAMENTE",
+                "❌ 'Tr0ub4dor&3' → ~28 bits (substituições comuns) → Quebrada em SEGUNDOS",
+                "⚠️ 'xK9#mL2$' (8 caracteres, todos os tipos) → 52,4 bits → Quebrada em 6 horas (hash rápido)",
+                "✅ 'aX7$mK9#pL2&nR5!' (16 caracteres) → 104,8 bits → 394 bilhões de anos (hash rápido)",
+                "✅ 'Maçã-Bravo7-Xadrez-Delta' (frase-chave) → ~45 bits → anos (hash rápido)",
+                "✅ 'Gelo-Brilho4-Refúgio-Jóia-Luz' (5 palavras) → ~55 bits → séculos"
+              ],
+              "result": "Comprimento importa mais. Uma senha de 16 caracteres com todos os tipos é essencialmente inquebrantável."
+            },
+            {
+              "title": "Exemplo de Matemática de Entropia",
+              "steps": [
+                "Senha: 16 caracteres usando minúsculas + maiúsculas + números + símbolos",
+                "Tamanho do conjunto de caracteres: 26 + 26 + 10 + 32 = 94 caracteres",
+                "Entropia = 16 × log₂(94) = 16 × 6,55 = 104,8 bits",
+                "Combinações totais = 94¹⁶ = 3,7 × 10³¹",
+                "A 10 bilhões de tentativas/seg: 3,7 × 10³¹ ÷ 10¹⁰ = 3,7 × 10²¹ segundos",
+                "Isso é aproximadamente 117 trilhões de anos para tentar todas as combinações"
+              ],
+              "result": "Tempo médio de quebra = metade do total = ~59 trilhões de anos. Sua senha está segura."
+            }
+          ]
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Como funciona este gerador de senhas?",
+          "answer": "Esta ferramenta usa aleatoriedade de qualidade criptográfica para gerar senhas. Para senhas aleatórias, seleciona caracteres do seu conjunto de caracteres escolhido (maiúsculas, minúsculas, números, símbolos) com probabilidade igual. Para frases-chave, escolhe aleatoriamente palavras de uma lista curada de 200 palavras. Para PINs, gera dígitos aleatórios. Toda a geração acontece localmente no seu navegador — nenhuma senha é enviada para qualquer servidor ou armazenada em qualquer lugar."
+        },
+        "1": {
+          "question": "Qual comprimento de senha devo usar?",
+          "answer": "Para senhas aleatórias, use pelo menos 16 caracteres com todos os tipos de caracteres habilitados. Isso dá mais de 104 bits de entropia, tornando ataques de força bruta inviáveis. Para frases-chave, use pelo menos 4-5 palavras com um separador e número. Para PINs, use 6+ dígitos — PINs de 4 dígitos têm apenas 10.000 combinações, que podem ser quebradas em segundos. A regra geral: mais longo é sempre mais forte, e cada caractere extra multiplica a segurança exponencialmente."
+        },
+        "2": {
+          "question": "O que significam as estimativas de tempo de quebra?",
+          "answer": "Estimamos tempos de quebra para três cenários: Online Limitado assume 100 tentativas por hora (login web típico com limitação de taxa). Offline Hash Lento assume 10.000 tentativas por segundo (um banco de dados vazado usando bcrypt ou Argon2). Offline Hash Rápido assume 10 bilhões de tentativas por segundo (um banco de dados vazado usando hash MD5 ou SHA-1 fraco, quebrado em GPUs modernas). O cenário offline hash rápido é o mais perigoso e mais realista para violações de dados."
+        },
+        "3": {
+          "question": "Uma frase-chave é melhor que uma senha aleatória?",
+          "answer": "Frases-chave e senhas aleatórias servem necessidades diferentes. Uma frase-chave de 5 palavras como 'Gelo-Brilho4-Refúgio-Jóia-Luz' é fácil de digitar e memorizar, com entropia decente (~55 bits). Uma senha aleatória de 16 caracteres como 'aX7$mK9#pL2&nR5!' tem entropia maior (~105 bits) mas é mais difícil de lembrar. Se você usa um gerenciador de senhas, escolha senhas aleatórias para máxima segurança. Se precisa memorizar (como uma senha mestra), use uma frase-chave longa com 5+ palavras."
+        },
+        "4": {
+          "question": "O que é entropia de senha?",
+          "answer": "Entropia mede a aleatoriedade de uma senha em bits. É calculada como: comprimento × log₂(tamanho_do_conjunto_de_caracteres). Entropia maior significa mais combinações possíveis e tempos de quebra mais longos. Limiares chave: abaixo de 40 bits é muito fraco (quebrável em minutos), 40-59 bits é fraco, 60-79 bits é razoável, 80-99 bits é forte, e 100+ bits é muito forte (essencialmente inquebrantável com a tecnologia atual). Cada bit adicional dobra o número de tentativas necessárias."
+        },
+        "5": {
+          "question": "Devo evitar caracteres ambíguos?",
+          "answer": "A opção 'Evitar Caracteres Ambíguos' remove caracteres que parecem similares em muitas fontes: 0 (zero) vs O (letra), l (L minúsculo) vs 1 (um) vs I (i maiúsculo), S vs 5, B vs 8. Habilite isso quando você pode precisar ler ou ditar a senha em voz alta, copiá-la à mão, ou usá-la em sistemas com fontes difíceis de ler. A ligeira redução no conjunto de caracteres tem impacto mínimo na segurança se você compensar com uma senha ligeiramente mais longa."
+        }
+      },
+      "detailedTable": {
+        "crackTimeReference": {
+          "button": "Ver Referência Completa de Tempo de Quebra",
+          "title": "Tempo de Quebra de Senha por Comprimento e Tipo de Caractere",
+          "columns": {
+            "length": "Comprimento",
+            "lowercase": "Apenas Minúsculas",
+            "mixed": "Maiúsculas e Minúsculas",
+            "mixedNum": "+ Números",
+            "all": "Todos os Caracteres"
+          }
+        }
+      },
+      "buttons": {
+        "calculate": "Calcular",
+        "reset": "Reiniciar",
+        "pdf": "PDF",
+        "csv": "CSV",
+        "excel": "Excel",
+        "save": "Salvar",
+        "saved": "Salvo",
+        "saving": "Salvando..."
+      },
+      "share": {
+        "calculatedWith": "Calculado com Kalcufy.com"
+      },
+      "ui": {
+        "results": "Resultados",
+        "yourInformation": "Suas Informações"
+      },
+      "accessibility": {
+        "mobileResults": "Resumo dos resultados",
+        "closeModal": "Fechar",
+        "openMenu": "Abrir menu"
+      },
+      "rating": {
+        "title": "Avalie esta Calculadora",
+        "share": "Compartilhar",
+        "copied": "Copiado!",
+        "copyLink": "Copiar Link",
+        "clickToRate": "Clique para avaliar",
+        "youRated": "Você avaliou",
+        "stars": "estrelas",
+        "averageFrom": "média de",
+        "ratings": "avaliações"
+      },
+      "common": {
+        "home": "Início",
+        "calculators": "Calculadoras"
+      },
+      "sources": {
+        "title": "Fontes e Referências"
+      }
+    },
+    fr: {
+      "name": "Générateur de Mots de Passe",
+      "slug": "calculateur-generateur-mots-de-passe",
+      "subtitle": "Générez des mots de passe aléatoires robustes, des phrases secrètes mémorables et des codes PIN sécurisés avec analyse de force en temps réel et estimations du temps de piratage.",
+      "breadcrumb": "Générateur de Mots de Passe",
+      "seo": {
+        "title": "Générateur de Mots de Passe - Mots de Passe Aléatoires Robustes et Phrases Secrètes",
+        "description": "Générez des mots de passe et phrases secrètes robustes et aléatoires avec estimations du temps de piratage, analyse d'entropie et évaluation de la force. Outil gratuit avec modes mot de passe, phrase secrète et code PIN.",
+        "shortDescription": "Générez des mots de passe aléatoires robustes avec analyse de force.",
+        "keywords": [
+          "générateur de mots de passe",
+          "générateur de mots de passe robustes",
+          "générateur de mots de passe aléatoires",
+          "générateur de phrases secrètes",
+          "créateur de mots de passe sécurisés",
+          "vérificateur de force de mot de passe",
+          "calculateur d'entropie de mot de passe",
+          "générateur de mots de passe gratuit"
+        ]
+      },
+      "inputs": {
+        "mode": {
+          "label": "Mode de Génération",
+          "helpText": "Choisissez entre caractères aléatoires, combinaisons de mots mémorables ou codes PIN numériques",
+          "options": {
+            "password": "Mot de Passe Aléatoire",
+            "passphrase": "Phrase Secrète (Mots)",
+            "pin": "Code PIN (Chiffres Uniquement)"
+          }
+        },
+        "length": {
+          "label": "Longueur du Mot de Passe",
+          "helpText": "Les mots de passe plus longs sont exponentiellement plus difficiles à pirater — 16+ recommandés"
+        },
+        "includeUppercase": {
+          "label": "Lettres Majuscules (A–Z)",
+          "helpText": "Inclure des lettres majuscules pour augmenter le jeu de caractères"
+        },
+        "includeLowercase": {
+          "label": "Lettres Minuscules (a–z)",
+          "helpText": "Inclure des lettres minuscules"
+        },
+        "includeNumbers": {
+          "label": "Chiffres (0–9)",
+          "helpText": "Inclure des chiffres"
+        },
+        "includeSymbols": {
+          "label": "Symboles (!@#$%...)",
+          "helpText": "Inclure des caractères spéciaux pour une entropie maximale"
+        },
+        "avoidAmbiguous": {
+          "label": "Éviter les Caractères Ambigus",
+          "helpText": "Exclure les caractères similaires : 0/O, l/1/I, S/5, B/8"
+        },
+        "wordCount": {
+          "label": "Nombre de Mots",
+          "helpText": "Plus de mots = phrase secrète plus forte — 4+ recommandés"
+        },
+        "separator": {
+          "label": "Séparateur de Mots",
+          "helpText": "Caractère entre les mots",
+          "options": {
+            "-": "Trait d'union ( - )",
+            ".": "Point ( . )",
+            "_": "Trait de soulignement ( _ )",
+            " ": "Espace",
+            "": "Aucun"
+          }
+        },
+        "capitalizeWords": {
+          "label": "Mettre les Mots en Majuscules",
+          "helpText": "Mettre en majuscule la première lettre de chaque mot (ex: Pomme-Brave-Échecs)"
+        },
+        "includeWordNumber": {
+          "label": "Ajouter un Chiffre à la Phrase Secrète",
+          "helpText": "Ajouter un chiffre aléatoire à un mot pour une entropie supplémentaire"
+        },
+        "pinLength": {
+          "label": "Longueur du Code PIN",
+          "helpText": "6+ chiffres recommandés — les codes PIN à 4 chiffres sont faibles"
+        }
+      },
+      "results": {
+        "generatedPassword": {
+          "label": "Votre Mot de Passe"
+        },
+        "strengthScore": {
+          "label": "Force"
+        },
+        "entropyBits": {
+          "label": "Entropie"
+        },
+        "charsetSize": {
+          "label": "Taille du Jeu de Caractères"
+        },
+        "totalCombinations": {
+          "label": "Combinaisons Possibles"
+        },
+        "crackTimeOnline": {
+          "label": "Temps de Piratage (En ligne, Limité)"
+        },
+        "crackTimeOfflineSlow": {
+          "label": "Temps de Piratage (Hors ligne, Hachage Lent)"
+        },
+        "crackTimeOfflineFast": {
+          "label": "Temps de Piratage (Hors ligne, Hachage Rapide)"
+        }
+      },
+      "presets": {
+        "strong": {
+          "label": "Mot de Passe Robuste",
+          "description": "20 caractères, tous types de caractères — sécurité maximale"
+        },
+        "memorable": {
+          "label": "Phrase Secrète Mémorable",
+          "description": "5 mots avec chiffres — facile à retenir, difficile à pirater"
+        },
+        "noSymbols": {
+          "label": "Sans Symboles (24 caractères)",
+          "description": "Lettres + chiffres uniquement — pour les sites qui bloquent les symboles"
+        },
+        "quickPin": {
+          "label": "Code PIN Rapide",
+          "description": "Code PIN numérique à 6 chiffres pour applications et appareils"
+        }
+      },
+      "values": {
+        "veryWeak": "🔴 Très Faible",
+        "weak": "🟠 Faible",
+        "fair": "🟡 Correct",
+        "strong": "🟢 Fort",
+        "veryStrong": "🟣 Très Fort",
+        "instant": "Instantanément",
+        "seconds": "secondes",
+        "minutes": "minutes",
+        "hours": "heures",
+        "days": "jours",
+        "months": "mois",
+        "years": "années",
+        "centuries": "siècles",
+        "millennia": "millénaires",
+        "forever": "Plus longtemps que l'âge de l'univers",
+        "bits": "bits",
+        "characters": "caractères"
+      },
+      "formats": {
+        "summary": "{mode} généré avec {entropyBits} bits d'entropie. Force : {strengthScore}. Temps de piratage hors ligne hachage rapide : {crackTimeOfflineFast}."
+      },
+      "infoCards": {
+        "metrics": {
+          "title": "Analyse de Force",
+          "items": [
+            {
+              "label": "Force",
+              "valueKey": "strengthScore"
+            },
+            {
+              "label": "Entropie",
+              "valueKey": "entropyBits"
+            },
+            {
+              "label": "Jeu de Caractères",
+              "valueKey": "charsetSize"
+            },
+            {
+              "label": "Combinaisons",
+              "valueKey": "totalCombinations"
+            }
+          ]
+        },
+        "details": {
+          "title": "Estimations du Temps de Piratage",
+          "items": [
+            {
+              "label": "En ligne (Limité)",
+              "valueKey": "crackTimeOnline"
+            },
+            {
+              "label": "Hors ligne (Hachage Lent)",
+              "valueKey": "crackTimeOfflineSlow"
+            },
+            {
+              "label": "Hors ligne (Hachage Rapide)",
+              "valueKey": "crackTimeOfflineFast"
+            },
+            {
+              "label": "Force",
+              "valueKey": "strengthScore"
+            }
+          ]
+        },
+        "tips": {
+          "title": "Conseils de Sécurité des Mots de Passe",
+          "items": [
+            "Utilisez 16+ caractères — chaque caractère supplémentaire rend votre mot de passe exponentiellement plus difficile à pirater.",
+            "Ne réutilisez jamais les mots de passe entre sites — une seule violation expose tous les comptes partageant ce mot de passe.",
+            "Les phrases secrètes comme Pomme-Brave7-Échecs-Delta sont à la fois fortes et mémorables.",
+            "Activez l'authentification à deux facteurs (2FA) même avec des mots de passe forts pour les comptes critiques."
+          ]
+        }
+      },
+      "chart": {
+        "title": "Analyse du Temps de Piratage",
+        "tabs": {
+          "crack-scenarios": "Scénarios d'Attaque",
+          "length-comparison": "Longueur vs Temps de Piratage"
+        }
+      },
+      "education": {
+        "whatIs": {
+          "title": "Qu'est-ce qui Rend un Mot de Passe Robuste ?",
+          "content": "Un mot de passe robuste possède trois qualités essentielles : la longueur, la complexité et l'unicité. La longueur est le facteur le plus important — chaque caractère supplémentaire multiplie exponentiellement le nombre de combinaisons possibles. Un mot de passe de 12 caractères utilisant tous les types de caractères (minuscules, majuscules, chiffres, symboles) a environ 475 trillions de trillions de combinaisons possibles, tandis qu'un mot de passe de 8 caractères n'en a que 6 quadrillions — environ 79 milliards de fois moins de possibilités. La complexité vient de l'utilisation d'un jeu de caractères diversifié : les lettres minuscules offrent 26 options par position, l'ajout de majuscules le double à 52, les chiffres l'amènent à 62, et les symboles le poussent à 94 ou plus. Mais la longueur l'emporte toujours sur la complexité : un mot de passe de 20 caractères en minuscules uniquement (2,0 × 10²⁸ combinaisons) est largement plus fort qu'un mot de passe de 8 caractères utilisant tous les types de caractères (6,1 × 10¹⁵ combinaisons). L'unicité signifie ne jamais réutiliser un mot de passe — si un service subit une violation de données, les attaquants essaieront ce même mot de passe sur tous les autres sites que vous utilisez via des attaques par bourrage d'identifiants."
+        },
+        "howItWorks": {
+          "title": "Comment Fonctionne l'Entropie des Mots de Passe",
+          "content": "L'entropie, mesurée en bits, quantifie le caractère aléatoire d'un mot de passe. La formule est : entropie = longueur × log₂(taille_jeu_caractères). Un mot de passe de 16 caractères utilisant l'ensemble complet de 94 caractères (minuscules + majuscules + chiffres + symboles) a environ 104,8 bits d'entropie. Chaque bit supplémentaire d'entropie double le nombre de tentatives qu'un attaquant doit faire. Pour contexte : 40 bits d'entropie peuvent être piratés en secondes par le matériel moderne, 60 bits prend des heures, 80 bits prend des années, et 128+ bits est considéré comme impossible à pirater avec la technologie actuelle. Les phrases secrètes tirent leur entropie différemment — de la taille d'une liste de mots élevée à la puissance du nombre de mots. Une phrase secrète de 4 mots d'une liste de 200 mots a log₂(200⁴) ≈ 30,6 bits, tandis que 5 mots donnent ~38,2 bits. L'ajout de majuscules, séparateurs et chiffres aléatoires augmente considérablement l'entropie de la phrase secrète. L'idée clé : l'entropie doit provenir d'une sélection vraiment aléatoire. Un humain choisissant 'MotDePasse123!' peut utiliser majuscules, minuscules, chiffres et symboles, mais cela a une entropie effective quasi nulle car cela suit un modèle extrêmement prévisible."
+        },
+        "considerations": {
+          "title": "Meilleures Pratiques pour les Mots de Passe",
+          "items": [
+            {
+              "text": "Utilisez 16+ caractères pour les mots de passe et 5+ mots pour les phrases secrètes — la longueur est la défense la plus forte contre les attaques par force brute.",
+              "type": "info"
+            },
+            {
+              "text": "Activez la 2FA sur tous les comptes critiques (email, banque, réseaux sociaux) — même un mot de passe compromis ne peut pas contourner un second facteur.",
+              "type": "warning"
+            },
+            {
+              "text": "Utilisez un gestionnaire de mots de passe pour générer et stocker des mots de passe uniques pour chaque compte — les humains ne peuvent pas retenir de manière fiable des dizaines de mots de passe forts.",
+              "type": "info"
+            },
+            {
+              "text": "Ne partagez jamais les mots de passe par email, SMS ou chat — ces canaux peuvent être interceptés ou stockés en texte clair.",
+              "type": "warning"
+            },
+            {
+              "text": "Vérifiez si vos mots de passe ont été exposés dans des violations de données en utilisant des services comme Have I Been Pwned (haveibeenpwned.com).",
+              "type": "info"
+            },
+            {
+              "text": "Évitez les informations personnelles dans les mots de passe — noms, dates de naissance, noms d'animaux et adresses sont les premières choses que les attaquants essaient.",
+              "type": "warning"
+            }
+          ]
+        },
+        "categories": {
+          "title": "Méthodes d'Attaque et Temps de Piratage",
+          "items": [
+            {
+              "text": "En ligne Limité (100/h) : Formulaires de connexion web avec limitation de débit — même les mots de passe courts survivent des jours. La plupart des sites utilisent ceci.",
+              "type": "info"
+            },
+            {
+              "text": "En ligne Non Limité (10/sec) : APIs sans limitations de débit — les mots de passe faibles tombent en heures. Ajoutez toujours une limitation de débit.",
+              "type": "info"
+            },
+            {
+              "text": "Hors ligne Hachage Lent (10K/sec) : Fuites de base de données hachées bcrypt/Argon2 — les systèmes bien conçus rendent chaque tentative coûteuse.",
+              "type": "info"
+            },
+            {
+              "text": "Hors ligne Hachage Rapide (10G/sec) : Fuites hachées MD5/SHA-1 — les GPU modernes testent des milliards de combinaisons par seconde.",
+              "type": "warning"
+            },
+            {
+              "text": "Attaque par Dictionnaire : Essaie d'abord les mots courants, noms, modèles — 'MotDePasse123!' tombe instantanément malgré les caractères mixtes.",
+              "type": "warning"
+            },
+            {
+              "text": "Bourrage d'Identifiants : Utilise les listes de mots de passe violés sur d'autres sites — les mots de passe réutilisés permettent une compromise de compte en cascade.",
+              "type": "warning"
+            }
+          ]
+        },
+        "examples": {
+          "title": "Exemples de Force de Mot de Passe",
+          "description": "Comparez les forces de mots de passe réels",
+          "examples": [
+            {
+              "title": "Mots de Passe Faibles vs Forts",
+              "steps": [
+                "❌ 'motdepasse123' → 0 bits d'entropie (mot de dictionnaire) → Piraté INSTANTANÉMENT",
+                "❌ 'Tr0ub4dor&3' → ~28 bits (substitutions courantes) → Piraté en SECONDES",
+                "⚠️ 'xK9#mL2$' (8 car., tous types) → 52,4 bits → Piraté en 6 heures (hachage rapide)",
+                "✅ 'aX7$mK9#pL2&nR5!' (16 car.) → 104,8 bits → 394 milliards d'années (hachage rapide)",
+                "✅ 'Pomme-Brave7-Échecs-Delta' (phrase secrète) → ~45 bits → années (hachage rapide)",
+                "✅ 'Givre-Lueur4-Refuge-Joyau-Lumière' (5 mots) → ~55 bits → siècles"
+              ],
+              "result": "La longueur compte le plus. Un mot de passe de 16 caractères avec tous les types est essentiellement impossible à pirater."
+            },
+            {
+              "title": "Exemple de Calcul d'Entropie",
+              "steps": [
+                "Mot de passe : 16 caractères utilisant minuscules + majuscules + chiffres + symboles",
+                "Taille du jeu de caractères : 26 + 26 + 10 + 32 = 94 caractères",
+                "Entropie = 16 × log₂(94) = 16 × 6,55 = 104,8 bits",
+                "Combinaisons totales = 94¹⁶ = 3,7 × 10³¹",
+                "À 10 milliards de tentatives/sec : 3,7 × 10³¹ ÷ 10¹⁰ = 3,7 × 10²¹ secondes",
+                "Cela représente environ 117 trillions d'années pour essayer toutes les combinaisons"
+              ],
+              "result": "Temps de piratage moyen = la moitié du total = ~59 trillions d'années. Votre mot de passe est sûr."
+            }
+          ]
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Comment fonctionne ce générateur de mots de passe ?",
+          "answer": "Cet outil utilise un caractère aléatoire de qualité cryptographique pour générer des mots de passe. Pour les mots de passe aléatoires, il sélectionne des caractères de votre jeu de caractères choisi (majuscules, minuscules, chiffres, symboles) avec une probabilité égale. Pour les phrases secrètes, il choisit aléatoirement des mots d'une liste organisée de 200 mots. Pour les codes PIN, il génère des chiffres aléatoires. Toute la génération se fait localement dans votre navigateur — aucun mot de passe n'est jamais envoyé à un serveur ou stocké quelque part."
+        },
+        "1": {
+          "question": "Quelle longueur de mot de passe dois-je utiliser ?",
+          "answer": "Pour les mots de passe aléatoires, utilisez au moins 16 caractères avec tous les types de caractères activés. Cela donne plus de 104 bits d'entropie, rendant les attaques par force brute irréalisables. Pour les phrases secrètes, utilisez au moins 4-5 mots avec un séparateur et un chiffre. Pour les codes PIN, utilisez 6+ chiffres — les codes PIN à 4 chiffres n'ont que 10 000 combinaisons, qui peuvent être piratées en secondes. La règle générale : plus long est toujours plus fort, et chaque caractère supplémentaire multiplie la sécurité exponentiellement."
+        },
+        "2": {
+          "question": "Que signifient les estimations du temps de piratage ?",
+          "answer": "Nous estimons les temps de piratage pour trois scénarios : En ligne Limité suppose 100 tentatives par heure (connexion web typique avec limitation de débit). Hors ligne Hachage Lent suppose 10 000 tentatives par seconde (une base de données fuie utilisant bcrypt ou Argon2). Hors ligne Hachage Rapide suppose 10 milliards de tentatives par seconde (une base de données fuie utilisant un hachage MD5 ou SHA-1 faible, piraté sur des GPU modernes). Le scénario hors ligne hachage rapide est le plus dangereux et le plus réaliste pour les violations de données."
+        },
+        "3": {
+          "question": "Une phrase secrète est-elle meilleure qu'un mot de passe aléatoire ?",
+          "answer": "Les phrases secrètes et les mots de passe aléatoires répondent à des besoins différents. Une phrase secrète de 5 mots comme 'Givre-Lueur4-Refuge-Joyau-Lumière' est facile à taper et mémoriser, avec une entropie décente (~55 bits). Un mot de passe aléatoire de 16 caractères comme 'aX7$mK9#pL2&nR5!' a une entropie plus élevée (~105 bits) mais est plus difficile à retenir. Si vous utilisez un gestionnaire de mots de passe, choisissez des mots de passe aléatoires pour une sécurité maximale. Si vous devez le mémoriser (comme un mot de passe principal), utilisez une phrase secrète longue avec 5+ mots."
+        },
+        "4": {
+          "question": "Qu'est-ce que l'entropie d'un mot de passe ?",
+          "answer": "L'entropie mesure le caractère aléatoire d'un mot de passe en bits. Elle est calculée comme : longueur × log₂(taille_jeu_caractères). Une entropie plus élevée signifie plus de combinaisons possibles et des temps de piratage plus longs. Seuils clés : moins de 40 bits est très faible (piratable en minutes), 40-59 bits est faible, 60-79 bits est correct, 80-99 bits est fort, et 100+ bits est très fort (essentiellement impossible à pirater avec la technologie actuelle). Chaque bit supplémentaire double le nombre de tentatives nécessaires."
+        },
+        "5": {
+          "question": "Dois-je éviter les caractères ambigus ?",
+          "answer": "L'option 'Éviter les Caractères Ambigus' supprime les caractères qui semblent similaires dans de nombreuses polices : 0 (zéro) vs O (lettre), l (L minuscule) vs 1 (un) vs I (i majuscule), S vs 5, B vs 8. Activez ceci quand vous pourriez avoir besoin de lire ou dicter le mot de passe à voix haute, le copier à la main, ou l'utiliser sur des systèmes avec des polices difficiles à lire. La légère réduction du jeu de caractères a un impact minimal sur la sécurité si vous compensez avec un mot de passe légèrement plus long."
+        }
+      },
+      "detailedTable": {
+        "crackTimeReference": {
+          "button": "Voir la Référence Complète des Temps de Piratage",
+          "title": "Temps de Piratage de Mot de Passe par Longueur et Type de Caractère",
+          "columns": {
+            "length": "Longueur",
+            "lowercase": "Minuscules Uniquement",
+            "mixed": "Casse Mixte",
+            "mixedNum": "+ Chiffres",
+            "all": "Tous Caractères"
+          }
+        }
+      },
+      "buttons": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser",
+        "pdf": "PDF",
+        "csv": "CSV",
+        "excel": "Excel",
+        "save": "Sauvegarder",
+        "saved": "Sauvegardé",
+        "saving": "Sauvegarde..."
+      },
+      "share": {
+        "calculatedWith": "Calculé avec Kalcufy.com"
+      },
+      "ui": {
+        "results": "Résultats",
+        "yourInformation": "Vos Informations"
+      },
+      "accessibility": {
+        "mobileResults": "Résumé des résultats",
+        "closeModal": "Fermer",
+        "openMenu": "Ouvrir le menu"
+      },
+      "rating": {
+        "title": "Notez cette Calculatrice",
+        "share": "Partager",
+        "copied": "Copié!",
+        "copyLink": "Copier le Lien",
+        "clickToRate": "Cliquez pour noter",
+        "youRated": "Vous avez noté",
+        "stars": "étoiles",
+        "averageFrom": "moyenne de",
+        "ratings": "évaluations"
+      },
+      "common": {
+        "home": "Accueil",
+        "calculators": "Calculatrices"
+      },
+      "sources": {
+        "title": "Sources et Références"
+      },
+      "calculator": {
+        "yourInformation": "Vos Informations"
+      }
+    },
+    de: {
+      "name": "Passwort Generator",
+      "slug": "passwort-generator-rechner",
+      "subtitle": "Generieren Sie starke zufällige Passwörter, merkbare Passphrasen und sichere PINs mit Echtzeit-Stärkenanalyse und Knackzeit-Schätzungen.",
+      "breadcrumb": "Passwort Generator",
+      "seo": {
+        "title": "Passwort Generator - Starke Zufällige Passwörter & Passphrasen",
+        "description": "Generieren Sie starke, zufällige Passwörter und Passphrasen mit Knackzeit-Schätzungen, Entropie-Analyse und Stärkenbewertung. Kostenloses Tool mit Passwort-, Passphrase- und PIN-Modi.",
+        "shortDescription": "Generieren Sie starke zufällige Passwörter mit Stärkenanalyse.",
+        "keywords": [
+          "Passwort Generator",
+          "starker Passwort Generator",
+          "zufälliger Passwort Generator",
+          "Passphrase Generator",
+          "sicherer Passwort Ersteller",
+          "Passwort Stärke Prüfer",
+          "Passwort Entropie Rechner",
+          "kostenloser Passwort Generator"
+        ]
+      },
+      "calculator": {
+        "yourInformation": "Ihre Informationen"
+      },
+      "inputs": {
+        "mode": {
+          "label": "Generierungsmodus",
+          "helpText": "Wählen Sie zwischen zufälligen Zeichen, merkbaren Wortkombinationen oder numerischen PINs",
+          "options": {
+            "password": "Zufälliges Passwort",
+            "passphrase": "Passphrase (Wörter)",
+            "pin": "PIN (Nur Zahlen)"
+          }
+        },
+        "length": {
+          "label": "Passwort Länge",
+          "helpText": "Längere Passwörter sind exponentiell schwerer zu knacken — 16+ empfohlen"
+        },
+        "includeUppercase": {
+          "label": "Großbuchstaben (A–Z)",
+          "helpText": "Großbuchstaben einschließen um den Zeichensatz zu erweitern"
+        },
+        "includeLowercase": {
+          "label": "Kleinbuchstaben (a–z)",
+          "helpText": "Kleinbuchstaben einschließen"
+        },
+        "includeNumbers": {
+          "label": "Zahlen (0–9)",
+          "helpText": "Ziffern einschließen"
+        },
+        "includeSymbols": {
+          "label": "Symbole (!@#$%...)",
+          "helpText": "Sonderzeichen für maximale Entropie einschließen"
+        },
+        "avoidAmbiguous": {
+          "label": "Mehrdeutige Zeichen vermeiden",
+          "helpText": "Ähnlich aussehende Zeichen ausschließen: 0/O, l/1/I, S/5, B/8"
+        },
+        "wordCount": {
+          "label": "Anzahl der Wörter",
+          "helpText": "Mehr Wörter = stärkere Passphrase — 4+ empfohlen"
+        },
+        "separator": {
+          "label": "Wort-Trennzeichen",
+          "helpText": "Zeichen zwischen Wörtern",
+          "options": {
+            "-": "Bindestrich ( - )",
+            ".": "Punkt ( . )",
+            "_": "Unterstrich ( _ )",
+            " ": "Leerzeichen",
+            "": "Keines"
+          }
+        },
+        "capitalizeWords": {
+          "label": "Wörter groß schreiben",
+          "helpText": "Ersten Buchstaben jedes Wortes groß schreiben (z.B. Apfel-Mutig-Schach)"
+        },
+        "includeWordNumber": {
+          "label": "Zahl zur Passphrase hinzufügen",
+          "helpText": "Eine zufällige Ziffer an ein Wort anhängen für zusätzliche Entropie"
+        },
+        "pinLength": {
+          "label": "PIN Länge",
+          "helpText": "6+ Ziffern empfohlen — 4-stellige PINs sind schwach"
+        }
+      },
+      "results": {
+        "generatedPassword": {
+          "label": "Ihr Passwort"
+        },
+        "strengthScore": {
+          "label": "Stärke"
+        },
+        "entropyBits": {
+          "label": "Entropie"
+        },
+        "charsetSize": {
+          "label": "Zeichensatz Größe"
+        },
+        "totalCombinations": {
+          "label": "Mögliche Kombinationen"
+        },
+        "crackTimeOnline": {
+          "label": "Knackzeit (Online, Gedrosselt)"
+        },
+        "crackTimeOfflineSlow": {
+          "label": "Knackzeit (Offline, Langsamer Hash)"
+        },
+        "crackTimeOfflineFast": {
+          "label": "Knackzeit (Offline, Schneller Hash)"
+        }
+      },
+      "presets": {
+        "strong": {
+          "label": "Starkes Passwort",
+          "description": "20 Zeichen, alle Zeichentypen — maximale Sicherheit"
+        },
+        "memorable": {
+          "label": "Merkbare Passphrase",
+          "description": "5 Wörter mit Zahlen — leicht zu merken, schwer zu knacken"
+        },
+        "noSymbols": {
+          "label": "Keine Symbole (24 Zeichen)",
+          "description": "Nur Buchstaben + Zahlen — für Seiten die Symbole blockieren"
+        },
+        "quickPin": {
+          "label": "Schnelle PIN",
+          "description": "6-stellige numerische PIN für Apps und Geräte"
+        }
+      },
+      "values": {
+        "veryWeak": "🔴 Sehr Schwach",
+        "weak": "🟠 Schwach",
+        "fair": "🟡 Mittelmäßig",
+        "strong": "🟢 Stark",
+        "veryStrong": "🟣 Sehr Stark",
+        "instant": "Sofort",
+        "seconds": "Sekunden",
+        "minutes": "Minuten",
+        "hours": "Stunden",
+        "days": "Tage",
+        "months": "Monate",
+        "years": "Jahre",
+        "centuries": "Jahrhunderte",
+        "millennia": "Jahrtausende",
+        "forever": "Länger als das Alter des Universums",
+        "bits": "Bits",
+        "characters": "Zeichen"
+      },
+      "formats": {
+        "summary": "{mode} mit {entropyBits} Bits Entropie generiert. Stärke: {strengthScore}. Offline schneller Hash Knackzeit: {crackTimeOfflineFast}."
+      },
+      "infoCards": {
+        "metrics": {
+          "title": "Stärkenanalyse",
+          "items": [
+            {
+              "label": "Stärke",
+              "valueKey": "strengthScore"
+            },
+            {
+              "label": "Entropie",
+              "valueKey": "entropyBits"
+            },
+            {
+              "label": "Zeichensatz",
+              "valueKey": "charsetSize"
+            },
+            {
+              "label": "Kombinationen",
+              "valueKey": "totalCombinations"
+            }
+          ]
+        },
+        "details": {
+          "title": "Knackzeit-Schätzungen",
+          "items": [
+            {
+              "label": "Online (Gedrosselt)",
+              "valueKey": "crackTimeOnline"
+            },
+            {
+              "label": "Offline (Langsamer Hash)",
+              "valueKey": "crackTimeOfflineSlow"
+            },
+            {
+              "label": "Offline (Schneller Hash)",
+              "valueKey": "crackTimeOfflineFast"
+            },
+            {
+              "label": "Stärke",
+              "valueKey": "strengthScore"
+            }
+          ]
+        },
+        "tips": {
+          "title": "Passwort-Sicherheitstipps",
+          "items": [
+            "Verwenden Sie 16+ Zeichen — jedes zusätzliche Zeichen macht Ihr Passwort exponentiell schwerer zu knacken.",
+            "Verwenden Sie niemals Passwörter mehrfach — ein Datenleck gefährdet alle Konten mit demselben Passwort.",
+            "Passphrasen wie Apfel-Mutig7-Schach-Delta sind sowohl stark als auch merkbar.",
+            "Aktivieren Sie Zwei-Faktor-Authentifizierung (2FA) auch mit starken Passwörtern für kritische Konten."
+          ]
+        }
+      },
+      "chart": {
+        "title": "Knackzeit-Analyse",
+        "tabs": {
+          "crack-scenarios": "Angriffs-Szenarien",
+          "length-comparison": "Länge vs Knackzeit"
+        }
+      },
+      "education": {
+        "whatIs": {
+          "title": "Was macht ein Passwort stark?",
+          "content": "Ein starkes Passwort hat drei wesentliche Eigenschaften: Länge, Komplexität und Einzigartigkeit. Länge ist der wichtigste Faktor — jedes zusätzliche Zeichen multipliziert die Anzahl möglicher Kombinationen exponentiell. Ein 12-Zeichen-Passwort mit allen Zeichentypen (Klein-, Großbuchstaben, Zahlen, Symbole) hat etwa 475 Trillion Billionen mögliche Kombinationen, während ein 8-Zeichen-Passwort nur 6 Billiarden hat — etwa 79 Milliarden mal weniger Möglichkeiten. Komplexität entsteht durch die Verwendung eines vielfältigen Zeichensatzes: Kleinbuchstaben bieten 26 Optionen pro Position, das Hinzufügen von Großbuchstaben verdoppelt es auf 52, Ziffern bringen es auf 62, und Symbole drücken es auf 94 oder mehr. Aber Länge übertrifft Komplexität jedes Mal: ein 20-Zeichen-Passwort nur mit Kleinbuchstaben (2,0 × 10²⁸ Kombinationen) ist deutlich stärker als ein 8-Zeichen-Passwort mit allen Zeichentypen (6,1 × 10¹⁵ Kombinationen). Einzigartigkeit bedeutet, niemals ein Passwort wiederzuverwenden — wenn ein Dienst einen Datenleck erleidet, werden Angreifer dasselbe Passwort auf jeder anderen von Ihnen verwendeten Seite durch Credential-Stuffing-Angriffe ausprobieren."
+        },
+        "howItWorks": {
+          "title": "Wie Passwort-Entropie funktioniert",
+          "content": "Entropie, gemessen in Bits, quantifiziert die Zufälligkeit in einem Passwort. Die Formel lautet: Entropie = Länge × log₂(Zeichensatz_Größe). Ein 16-Zeichen-Passwort mit dem vollen 94-Zeichen-Satz (Klein- + Großbuchstaben + Zahlen + Symbole) hat etwa 104,8 Bits Entropie. Jedes zusätzliche Bit Entropie verdoppelt die Anzahl der Versuche, die ein Angreifer machen muss. Zum Vergleich: 40 Bits Entropie können in Sekunden von moderner Hardware geknackt werden, 60 Bits dauern Stunden, 80 Bits dauern Jahre, und 128+ Bits gelten als unknackbar mit aktueller Technologie. Passphrasen leiten ihre Entropie anders ab — aus einer Wortlistengröße hoch zur Potenz der Wortanzahl. Eine 4-Wort-Passphrase aus einer 200-Wort-Liste hat log₂(200⁴) ≈ 30,6 Bits, während 5 Wörter ~38,2 Bits ergeben. Das Hinzufügen von Großschreibung, Trennzeichen und Zufallszahlen erhöht die Passphrase-Entropie erheblich. Die wichtigste Erkenntnis: Entropie muss aus wirklich zufälliger Auswahl stammen. Ein Mensch, der 'Passwort123!' wählt, mag Groß-, Kleinbuchstaben, Zahlen und Symbole verwenden, aber es hat nahezu null effektive Entropie, weil es einem extrem vorhersagbaren Muster folgt."
+        },
+        "considerations": {
+          "title": "Passwort Best Practices",
+          "items": [
+            {
+              "text": "Verwenden Sie 16+ Zeichen für Passwörter und 5+ Wörter für Passphrasen — Länge ist die stärkste Verteidigung gegen Brute-Force-Angriffe.",
+              "type": "info"
+            },
+            {
+              "text": "Aktivieren Sie 2FA auf allen kritischen Konten (E-Mail, Banking, Social Media) — selbst ein kompromittiertes Passwort kann einen zweiten Faktor nicht umgehen.",
+              "type": "warning"
+            },
+            {
+              "text": "Verwenden Sie einen Passwort-Manager um eindeutige Passwörter für jedes Konto zu generieren und zu speichern — Menschen können sich nicht zuverlässig Dutzende starker Passwörter merken.",
+              "type": "info"
+            },
+            {
+              "text": "Teilen Sie niemals Passwörter per E-Mail, SMS oder Chat — diese Kanäle können abgefangen oder im Klartext gespeichert werden.",
+              "type": "warning"
+            },
+            {
+              "text": "Überprüfen Sie, ob Ihre Passwörter in Datenlecks aufgedeckt wurden mit Diensten wie Have I Been Pwned (haveibeenpwned.com).",
+              "type": "info"
+            },
+            {
+              "text": "Vermeiden Sie persönliche Informationen in Passwörtern — Namen, Geburtstage, Haustiernamen und Adressen sind das Erste, was Angreifer versuchen.",
+              "type": "warning"
+            }
+          ]
+        },
+        "categories": {
+          "title": "Angriffsmethoden & Knackzeiten",
+          "items": [
+            {
+              "text": "Online Gedrosselt (100/Std): Web-Anmeldeformulare mit Ratenbegrenzung — selbst kurze Passwörter überleben Tage. Die meisten Seiten verwenden dies.",
+              "type": "info"
+            },
+            {
+              "text": "Online Ungedrosselt (10/Sek): APIs ohne Ratenbegrenzung — schwache Passwörter fallen in Stunden. Immer Ratenbegrenzung hinzufügen.",
+              "type": "info"
+            },
+            {
+              "text": "Offline Langsamer Hash (10K/Sek): bcrypt/Argon2 gehashte Datenbank-Lecks — gut gestaltete Systeme machen jeden Versuch teuer.",
+              "type": "info"
+            },
+            {
+              "text": "Offline Schneller Hash (10B/Sek): MD5/SHA-1 gehashte Lecks — moderne GPUs testen Milliarden von Kombinationen pro Sekunde.",
+              "type": "warning"
+            },
+            {
+              "text": "Wörterbuch-Angriff: Probiert zuerst häufige Wörter, Namen, Muster — 'Passwort123!' fällt trotz gemischter Zeichen sofort.",
+              "type": "warning"
+            },
+            {
+              "text": "Credential Stuffing: Verwendet Listen durchgesickerter Passwörter auf anderen Seiten — wiederverwendete Passwörter ermöglichen kaskadierende Kontokompromittierung.",
+              "type": "warning"
+            }
+          ]
+        },
+        "examples": {
+          "title": "Passwort-Stärke Beispiele",
+          "description": "Vergleichen Sie echte Passwort-Stärken",
+          "examples": [
+            {
+              "title": "Schwache vs Starke Passwörter",
+              "steps": [
+                "❌ 'passwort123' → 0 Bits Entropie (Wörterbuch-Wort) → SOFORT geknackt",
+                "❌ 'Tr0ub4d0r&3' → ~28 Bits (häufige Ersetzungen) → In SEKUNDEN geknackt",
+                "⚠️ 'xK9#mL2$' (8 Zeichen, alle Typen) → 52,4 Bits → In 6 Stunden geknackt (schneller Hash)",
+                "✅ 'aX7$mK9#pL2&nR5!' (16 Zeichen) → 104,8 Bits → 394 Milliarden Jahre (schneller Hash)",
+                "✅ 'Apfel-Mutig7-Schach-Delta' (Passphrase) → ~45 Bits → Jahre (schneller Hash)",
+                "✅ 'Frost-Glanz4-Hafen-Juwel-Licht' (5 Wörter) → ~55 Bits → Jahrhunderte"
+              ],
+              "result": "Länge ist am wichtigsten. Ein 16-Zeichen-Passwort mit allen Typen ist praktisch unknackbar."
+            },
+            {
+              "title": "Entropie-Mathe Beispiel",
+              "steps": [
+                "Passwort: 16 Zeichen mit Klein- + Großbuchstaben + Zahlen + Symbolen",
+                "Zeichensatz-Größe: 26 + 26 + 10 + 32 = 94 Zeichen",
+                "Entropie = 16 × log₂(94) = 16 × 6,55 = 104,8 Bits",
+                "Gesamte Kombinationen = 94¹⁶ = 3,7 × 10³¹",
+                "Bei 10 Milliarden Versuchen/Sek: 3,7 × 10³¹ ÷ 10¹⁰ = 3,7 × 10²¹ Sekunden",
+                "Das sind etwa 117 Billionen Jahre um alle Kombinationen zu probieren"
+              ],
+              "result": "Durchschnittliche Knackzeit = Hälfte der Gesamtzeit = ~59 Billionen Jahre. Ihr Passwort ist sicher."
+            }
+          ]
+        }
+      },
+      "faqs": {
+        "0": {
+          "question": "Wie funktioniert dieser Passwort-Generator?",
+          "answer": "Dieses Tool verwendet kryptographische Zufälligkeit zum Generieren von Passwörtern. Für zufällige Passwörter wählt es Zeichen aus Ihrem gewählten Zeichensatz (Groß-, Kleinbuchstaben, Zahlen, Symbole) mit gleicher Wahrscheinlichkeit aus. Für Passphrasen wählt es zufällig Wörter aus einer kuratierten 200-Wort-Liste. Für PINs generiert es zufällige Ziffern. Die gesamte Generierung erfolgt lokal in Ihrem Browser — keine Passwörter werden jemals an einen Server gesendet oder irgendwo gespeichert."
+        },
+        "1": {
+          "question": "Welche Passwort-Länge sollte ich verwenden?",
+          "answer": "Für zufällige Passwörter verwenden Sie mindestens 16 Zeichen mit allen aktivierten Zeichentypen. Dies ergibt über 104 Bits Entropie und macht Brute-Force-Angriffe undurchführbar. Für Passphrasen verwenden Sie mindestens 4-5 Wörter mit einem Trennzeichen und einer Zahl. Für PINs verwenden Sie 6+ Ziffern — 4-stellige PINs haben nur 10.000 Kombinationen, die in Sekunden geknackt werden können. Die allgemeine Regel: länger ist immer stärker, und jedes zusätzliche Zeichen multipliziert die Sicherheit exponentiell."
+        },
+        "2": {
+          "question": "Was bedeuten die Knackzeit-Schätzungen?",
+          "answer": "Wir schätzen Knackzeiten für drei Szenarien: Online Gedrosselt nimmt 100 Versuche pro Stunde an (typisches Web-Login mit Ratenbegrenzung). Offline Langsamer Hash nimmt 10.000 Versuche pro Sekunde an (eine durchgesickerte Datenbank mit bcrypt oder Argon2). Offline Schneller Hash nimmt 10 Milliarden Versuche pro Sekunde an (eine durchgesickerte Datenbank mit schwachem MD5- oder SHA-1-Hashing, geknackt auf modernen GPUs). Das Offline-Schneller-Hash-Szenario ist das gefährlichste und realistischste für Datenlecks."
+        },
+        "3": {
+          "question": "Ist eine Passphrase besser als ein zufälliges Passwort?",
+          "answer": "Passphrasen und zufällige Passwörter dienen verschiedenen Bedürfnissen. Eine 5-Wort-Passphrase wie 'Frost-Glanz4-Hafen-Juwel-Licht' ist leicht zu tippen und zu merken, mit anständiger Entropie (~55 Bits). Ein 16-Zeichen-Zufallspasswort wie 'aX7$mK9#pL2&nR5!' hat höhere Entropie (~105 Bits), ist aber schwerer zu merken. Wenn Sie einen Passwort-Manager verwenden, wählen Sie zufällige Passwörter für maximale Sicherheit. Wenn Sie es sich merken müssen (wie ein Master-Passwort), verwenden Sie eine lange Passphrase mit 5+ Wörtern."
+        },
+        "4": {
+          "question": "Was ist Passwort-Entropie?",
+          "answer": "Entropie misst die Zufälligkeit eines Passworts in Bits. Sie wird berechnet als: Länge × log₂(Zeichensatz_Größe). Höhere Entropie bedeutet mehr mögliche Kombinationen und längere Knackzeiten. Wichtige Schwellenwerte: unter 40 Bits ist sehr schwach (in Minuten knackbar), 40-59 Bits ist schwach, 60-79 Bits ist mittelmäßig, 80-99 Bits ist stark, und 100+ Bits ist sehr stark (praktisch unknackbar mit aktueller Technologie). Jedes zusätzliche Bit verdoppelt die Anzahl der benötigten Versuche."
+        },
+        "5": {
+          "question": "Sollte ich mehrdeutige Zeichen vermeiden?",
+          "answer": "Die Option 'Mehrdeutige Zeichen vermeiden' entfernt Zeichen, die in vielen Schriftarten ähnlich aussehen: 0 (Null) vs O (Buchstabe), l (kleines L) vs 1 (Eins) vs I (großes i), S vs 5, B vs 8. Aktivieren Sie dies, wenn Sie das Passwort möglicherweise laut vorlesen oder diktieren, handschriftlich kopieren oder auf Systemen mit schwer lesbaren Schriftarten verwenden müssen. Die geringe Verringerung des Zeichensatzes hat minimale Auswirkungen auf die Sicherheit, wenn Sie mit einem etwas längeren Passwort kompensieren."
+        }
+      },
+      "detailedTable": {
+        "crackTimeReference": {
+          "button": "Vollständige Knackzeit-Referenz anzeigen",
+          "title": "Passwort-Knackzeit nach Länge & Zeichentyp",
+          "columns": {
+            "length": "Länge",
+            "lowercase": "Nur Kleinbuchstaben",
+            "mixed": "Gemischte Groß-/Kleinschreibung",
+            "mixedNum": "+ Zahlen",
+            "all": "Alle Zeichen"
+          }
+        }
+      },
+      "buttons": {
+        "calculate": "Berechnen",
+        "reset": "Zurücksetzen",
+        "pdf": "PDF",
+        "csv": "CSV",
+        "excel": "Excel",
+        "save": "Speichern",
+        "saved": "Gespeichert",
+        "saving": "Speichern..."
+      },
+      "share": {
+        "calculatedWith": "Berechnet mit Kalcufy.com"
+      },
+      "ui": {
+        "results": "Ergebnisse",
+        "yourInformation": "Ihre Informationen"
+      },
+      "accessibility": {
+        "mobileResults": "Ergebniszusammenfassung",
+        "closeModal": "Schließen",
+        "openMenu": "Menü öffnen"
+      },
+      "rating": {
+        "title": "Bewerten Sie diesen Rechner",
+        "share": "Teilen",
+        "copied": "Kopiert!",
+        "copyLink": "Link kopieren",
+        "clickToRate": "Klicken zum Bewerten",
+        "youRated": "Sie haben bewertet",
+        "stars": "Sterne",
+        "averageFrom": "Durchschnitt von",
+        "ratings": "Bewertungen"
+      },
+      "common": {
+        "home": "Startseite",
+        "calculators": "Rechner"
+      },
+      "sources": {
+        "title": "Quellen und Referenzen"
+      }
+    },
   },
 
   inputs: [

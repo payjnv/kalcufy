@@ -1,6 +1,8 @@
 // src/app/api/track/route.ts
 // ═══════════════════════════════════════════════════════════════
-// TRACKING API — With city-level geolocation via Vercel headers
+// TRACKING API V2 — GOD MODE
+// Captures: geo (country/city/region/coords), device, browser,
+// OS, referrer, page path, session duration, language
 // ═══════════════════════════════════════════════════════════════
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
@@ -28,19 +30,14 @@ const COUNTRY_NAMES: Record<string, string> = {
 
 // ── Localhost detection ──
 function isLocalhost(request: NextRequest): boolean {
-  // In Vercel production, never localhost
   if (process.env.VERCEL_ENV === "production") return false;
   if (process.env.NODE_ENV === "production" && process.env.VERCEL) return false;
-
   const forwardedFor = request.headers.get("x-forwarded-for") || "";
   const realIp = request.headers.get("x-real-ip") || "";
   const host = request.headers.get("host") || "";
-
   const localhostIPs = ["127.0.0.1", "::1", "localhost"];
-  const isLocalIP = localhostIPs.some(ip => forwardedFor.includes(ip) || realIp.includes(ip));
-  const isLocalHost = host.includes("localhost") || host.includes("127.0.0.1");
-
-  return isLocalIP || isLocalHost;
+  return localhostIPs.some(ip => forwardedFor.includes(ip) || realIp.includes(ip)) ||
+    host.includes("localhost") || host.includes("127.0.0.1");
 }
 
 // ── Device detection ──
@@ -48,6 +45,32 @@ function getDevice(ua: string): string {
   if (/iPad|Android(?!.*Mobile)/i.test(ua)) return "tablet";
   if (/Mobile|Android|iPhone|iPod/i.test(ua)) return "mobile";
   return "desktop";
+}
+
+// ── Browser detection ──
+function getBrowser(ua: string): string {
+  if (/Edg\//i.test(ua)) return "Edge";
+  if (/OPR\/|Opera/i.test(ua)) return "Opera";
+  if (/SamsungBrowser/i.test(ua)) return "Samsung";
+  if (/UCBrowser/i.test(ua)) return "UC Browser";
+  if (/Firefox/i.test(ua)) return "Firefox";
+  if (/CriOS|Chrome/i.test(ua)) return "Chrome";
+  if (/Safari/i.test(ua)) return "Safari";
+  if (/bot|crawl|spider|slurp/i.test(ua)) return "Bot";
+  return "Other";
+}
+
+// ── OS detection ──
+function getOS(ua: string): string {
+  if (/Windows NT 10/i.test(ua)) return "Windows 10+";
+  if (/Windows/i.test(ua)) return "Windows";
+  if (/Mac OS X/i.test(ua)) return "macOS";
+  if (/CrOS/i.test(ua)) return "ChromeOS";
+  if (/Android/i.test(ua)) return "Android";
+  if (/iPhone|iPad|iPod/i.test(ua)) return "iOS";
+  if (/Linux/i.test(ua)) return "Linux";
+  if (/bot|crawl|spider/i.test(ua)) return "Bot";
+  return "Other";
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -60,7 +83,13 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: true, skipped: "localhost" });
     }
 
-    // ── Block owner IP (your home network) ──
+    // ── Block bots ──
+    const userAgent = request.headers.get("user-agent") || "";
+    if (/bot|crawl|spider|slurp|googlebot|bingbot|yandex|baidu/i.test(userAgent)) {
+      return NextResponse.json({ success: true, skipped: "bot" });
+    }
+
+    // ── Block owner IP ──
     const fwdFor = request.headers.get("x-forwarded-for") || "";
     const realIp = request.headers.get("x-real-ip") || "";
     if (fwdFor.includes("2600:4040:96ba:e00") || realIp.includes("2600:4040:96ba:e00")) {
@@ -69,24 +98,21 @@ export async function POST(request: NextRequest) {
 
     // ── Parse body ──
     const body = await request.json();
-    const { calculatorSlug, language, type = "VIEW", sessionId } = body;
+    const { calculatorSlug, language, type = "VIEW", sessionId, referrer, pagePath, durationSeconds } = body;
 
     if (!calculatorSlug) {
       return NextResponse.json({ error: "Missing calculatorSlug" }, { status: 400 });
     }
 
-    // ── Device ──
-    const userAgent = request.headers.get("user-agent") || "";
+    // ── Device / Browser / OS ──
     const device = getDevice(userAgent);
+    const browser = getBrowser(userAgent);
+    const os = getOS(userAgent);
 
     // ── Validate type ──
     const trackingType = type === "CALCULATION" ? "CALCULATION" : "VIEW";
 
-    // ═══════════════════════════════════════════════════════════
-    // 🆕 GEOLOCATION — Vercel free headers (no external API!)
-    // These headers are injected automatically by Vercel Edge
-    // In dev/localhost they don't exist → fields will be null
-    // ═══════════════════════════════════════════════════════════
+    // ── Geolocation (Vercel free headers) ──
     const countryCode = request.headers.get("x-vercel-ip-country");
     const country = countryCode && countryCode !== "XX"
       ? (COUNTRY_NAMES[countryCode] || countryCode)
@@ -98,6 +124,23 @@ export async function POST(request: NextRequest) {
     const latitude = latStr ? parseFloat(latStr) : null;
     const longitude = lngStr ? parseFloat(lngStr) : null;
 
+    // ── Referrer from header (fallback) ──
+    const headerReferer = request.headers.get("referer") || null;
+    const finalReferrer = referrer || headerReferer || null;
+
+    // ── Clean referrer (extract domain only for external) ──
+    let cleanReferrer: string | null = null;
+    if (finalReferrer) {
+      try {
+        const url = new URL(finalReferrer);
+        if (!url.hostname.includes("kalcufy.com") && !url.hostname.includes("localhost")) {
+          cleanReferrer = url.hostname.replace("www.", "");
+        }
+      } catch {
+        cleanReferrer = finalReferrer.slice(0, 100);
+      }
+    }
+
     // ── Save to DB ──
     await prisma.calculatorUsage.create({
       data: {
@@ -106,11 +149,17 @@ export async function POST(request: NextRequest) {
         type: trackingType,
         sessionId: sessionId || null,
         device,
+        browser,
+        os,
         country,
-        city,        // 🆕
-        region,      // 🆕
-        latitude,    // 🆕
-        longitude,   // 🆕
+        countryCode: countryCode || null,
+        city,
+        region,
+        latitude,
+        longitude,
+        referrer: cleanReferrer,
+        pagePath: pagePath || null,
+        durationSeconds: durationSeconds ? Math.min(durationSeconds, 3600) : null,
       },
     });
 

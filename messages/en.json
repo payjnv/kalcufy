@@ -860,6 +860,11 @@
       "a3": "We accept all major credit cards, PayPal, and bank transfers.",
       "q4": "Can I switch plans?",
       "a4": "Yes, you can upgrade or downgrade your plan at any time."
+    },
+    "cta": {
+      "title": "Ready to Calculate Smarter?",
+      "subtitle": "Join thousands of users who trust Kalcufy for their daily calculations.",
+      "button": "Get Started Free"
     }
   },
   "blog": {
@@ -905,7 +910,8 @@
       "notFound": "Article Not Found",
       "notFoundDesc": "The article you are looking for does not exist.",
       "backToBlog": "Back to Blog"
-    }
+    },
+    "allCategories": "All Categories"
   },
   "legal": {
     "terms": {

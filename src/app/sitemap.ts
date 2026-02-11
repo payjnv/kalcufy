@@ -2,7 +2,7 @@
 // Incluye: Páginas estáticas, Category Pages, Calculadoras V4 (solo activas), Blog Posts
 import { MetadataRoute } from 'next';
 import { SLUG_REGISTRY } from '@/engine/v4/slugs/registry';
-import { CATEGORY_PAGES } from '@/lib/category-pages-config';
+
 import { prisma } from '@/lib/prisma';
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://kalcufy.com';
@@ -49,26 +49,26 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // 2. CATEGORY PAGES (for Google Sitelinks)
-  // ─────────────────────────────────────────────────────────────────────────
-  for (const cat of CATEGORY_PAGES) {
-    const alternates = {
-      languages: Object.fromEntries(
-        LOCALES.map((loc) => [loc, `${BASE_URL}/${loc}/${cat.slugs[loc] || cat.slugs.en}`])
-      ),
-    };
-
-    for (const locale of LOCALES) {
-      entries.push({
-        url: `${BASE_URL}/${locale}/${cat.slugs[locale] || cat.slugs.en}`,
-        lastModified: now,
-        changeFrequency: 'weekly',
-        priority: 0.85,
-        alternates,
-      });
-    }
-  }
+  // DISABLED:   // ─────────────────────────────────────────────────────────────────────────
+  // DISABLED:   // 2. CATEGORY PAGES (for Google Sitelinks)
+  // DISABLED:   // ─────────────────────────────────────────────────────────────────────────
+  // DISABLED:   for (const cat of CATEGORY_PAGES) {
+  // DISABLED:     const alternates = {
+  // DISABLED:       languages: Object.fromEntries(
+  // DISABLED:         LOCALES.map((loc) => [loc, `${BASE_URL}/${loc}/${cat.slugs[loc] || cat.slugs.en}`])
+  // DISABLED:       ),
+  // DISABLED:     };
+  // DISABLED: 
+  // DISABLED:     for (const locale of LOCALES) {
+  // DISABLED:       entries.push({
+  // DISABLED:         url: `${BASE_URL}/${locale}/${cat.slugs[locale] || cat.slugs.en}`,
+  // DISABLED:         lastModified: now,
+  // DISABLED:         changeFrequency: 'weekly',
+  // DISABLED:         priority: 0.85,
+  // DISABLED:         alternates,
+  // DISABLED:       });
+  // DISABLED:     }
+  // DISABLED:   }
 
   // ─────────────────────────────────────────────────────────────────────────
   // 3. CALCULADORAS V4 (solo activas, sin drafts)

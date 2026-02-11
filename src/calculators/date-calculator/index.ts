@@ -369,6 +369,1386 @@ export const dateCalculatorConfig: CalculatorConfigV4 = {
       },
       sources: { title: "Sources & References" },
     },
+    es: {
+      "name": "Calculadora de Fechas",
+      "slug": "calculadora-fechas",
+      "subtitle": "Suma o resta días, semanas, meses, años a cualquier fecha. Calcula la diferencia entre dos fechas al instante.",
+      "breadcrumb": "Fechas",
+      "seo": {
+        "title": "Calculadora de Fechas - Sumar y Restar Días, Meses, Años",
+        "description": "Calcula fechas fácilmente. Suma o resta días, semanas, meses, años a cualquier fecha. Encuentra días entre dos fechas con opciones laborales.",
+        "shortDescription": "Suma o resta tiempo a cualquier fecha",
+        "keywords": [
+          "calculadora de fechas",
+          "sumar días a fecha",
+          "restar días de fecha",
+          "días entre fechas",
+          "calculadora diferencia fechas",
+          "calculadora días laborales",
+          "calculadora fechas online",
+          "calculadora fechas gratis"
+        ]
+      },
+      "inputs": {
+        "calculationType": {
+          "label": "Tipo de Cálculo",
+          "helpText": "Elige qué quieres calcular",
+          "options": {
+            "addSubtract": "Sumar/Restar a una Fecha",
+            "difference": "Días Entre Dos Fechas"
+          }
+        },
+        "startDate": {
+          "label": "Fecha Inicial",
+          "helpText": "Selecciona la fecha de inicio"
+        },
+        "endDate": {
+          "label": "Fecha Final",
+          "helpText": "Selecciona la fecha final"
+        },
+        "operation": {
+          "label": "Operación",
+          "helpText": "Sumar o restar tiempo",
+          "options": {
+            "add": "Sumar",
+            "subtract": "Restar"
+          }
+        },
+        "daysToAdd": {
+          "label": "Días",
+          "helpText": "Número de días a sumar o restar"
+        },
+        "weeksToAdd": {
+          "label": "Semanas",
+          "helpText": "Número de semanas a sumar o restar"
+        },
+        "monthsToAdd": {
+          "label": "Meses",
+          "helpText": "Número de meses a sumar o restar"
+        },
+        "yearsToAdd": {
+          "label": "Años",
+          "helpText": "Número de años a sumar o restar"
+        },
+        "includeEndDate": {
+          "label": "Incluir Fecha Final",
+          "helpText": "Contar la fecha final en el total",
+          "options": {
+            "yes": "Sí",
+            "no": "No"
+          }
+        }
+      },
+      "results": {
+        "resultDate": {
+          "label": "Fecha Resultado"
+        },
+        "totalDays": {
+          "label": "Días Totales"
+        },
+        "totalWeeks": {
+          "label": "Semanas Totales"
+        },
+        "totalMonths": {
+          "label": "Meses Totales"
+        },
+        "businessDays": {
+          "label": "Días Laborales"
+        },
+        "weekendDays": {
+          "label": "Días de Fin de Semana"
+        }
+      },
+      "presets": {
+        "thirtyDays": {
+          "label": "+30 Días",
+          "description": "Sumar 30 días a hoy"
+        },
+        "ninetyDays": {
+          "label": "+90 Días",
+          "description": "Sumar 90 días (trimestre)"
+        },
+        "sixMonths": {
+          "label": "+6 Meses",
+          "description": "Sumar 6 meses a la fecha"
+        },
+        "oneYear": {
+          "label": "+1 Año",
+          "description": "Sumar 1 año a la fecha"
+        }
+      },
+      "values": {
+        "locale": "es-ES",
+        "days": "días",
+        "day": "día",
+        "weeks": "semanas",
+        "week": "semana",
+        "months": "meses",
+        "month": "mes",
+        "years": "años",
+        "year": "año",
+        "businessDays": "días laborales",
+        "weekendDays": "días de fin de semana",
+        "weekLabel": "Semana",
+        "and": "y"
+      },
+      "formats": {
+        "summary": "{date}",
+        "difference": "{days} días entre fechas",
+        "dateResult": "Resultado: {date}"
+      },
+      "infoCards": {
+        "dateResult": {
+          "title": "Resultado de Fecha",
+          "items": [
+            {
+              "label": "Fecha Resultado",
+              "valueKey": "resultDate"
+            },
+            {
+              "label": "Día de la Semana",
+              "valueKey": "dayOfWeek"
+            },
+            {
+              "label": "Número de Semana",
+              "valueKey": "weekNumber"
+            },
+            {
+              "label": "Trimestre",
+              "valueKey": "quarter"
+            }
+          ]
+        },
+        "breakdown": {
+          "title": "Desglose de Tiempo",
+          "items": [
+            {
+              "label": "Días Totales",
+              "valueKey": "totalDays"
+            },
+            {
+              "label": "Días Laborales",
+              "valueKey": "businessDays"
+            },
+            {
+              "label": "Días de Fin de Semana",
+              "valueKey": "weekendDays"
+            },
+            {
+              "label": "Semanas Totales",
+              "valueKey": "totalWeeks"
+            }
+          ]
+        },
+        "tips": {
+          "title": "Consejos Rápidos",
+          "items": [
+            "Los días laborales excluyen sábados y domingos",
+            "Los años bisiestos tienen 366 días (29 de febrero)",
+            "Sumar meses mantiene el mismo día cuando es posible",
+            "Usa valores negativos para restar tiempo"
+          ]
+        }
+      },
+      "education": {
+        "whatIs": {
+          "title": "¿Qué es una Calculadora de Fechas?",
+          "content": "Una calculadora de fechas es una herramienta que realiza operaciones aritméticas en fechas del calendario. Puede sumar o restar días, semanas, meses y años para encontrar fechas futuras o pasadas, o calcular la diferencia entre dos fechas. A diferencia del conteo simple, las calculadoras de fechas manejan las complejidades de nuestro sistema de calendario: longitudes de mes variables (28-31 días), años bisiestos cada cuatro años, y la transición entre meses y años. Ya sea planificando plazos de proyectos, calculando términos de contratos, o simplemente preguntándose qué fecha será en 90 días, una calculadora de fechas proporciona respuestas instantáneas y precisas."
+        },
+        "howItWorks": {
+          "title": "Cómo Funcionan los Cálculos de Fechas",
+          "content": "Los cálculos de fechas siguen las reglas del calendario gregoriano, que usamos hoy. Al sumar meses, la calculadora avanza esa cantidad de meses manteniendo el mismo número de día (si es posible). Por ejemplo, 31 de enero + 1 mes = 28 de febrero (o 29 en años bisiestos), ya que febrero no tiene 31 días. Al sumar días, simplemente cuenta hacia adelante a través del calendario, considerando las diferentes longitudes de mes. Los años bisiestos ocurren cada 4 años (excepto años de siglo no divisibles por 400), agregando el 29 de febrero. Los cálculos de días laborales excluyen fines de semana y opcionalmente pueden excluir feriados."
+        },
+        "useCases": {
+          "title": "Casos de Uso Comunes",
+          "items": [
+            {
+              "text": "Plazos de proyectos: Sumar días laborales a una fecha de inicio",
+              "type": "info"
+            },
+            {
+              "text": "Términos de contrato: Calcular 30, 60 o 90 días desde la firma",
+              "type": "info"
+            },
+            {
+              "text": "Vencimiento de garantía: Sumar 1-2 años a la fecha de compra",
+              "type": "info"
+            },
+            {
+              "text": "Cálculo de edad: Días entre fecha de nacimiento y hoy",
+              "type": "info"
+            },
+            {
+              "text": "Planificación de eventos: Contar días hasta una fecha específica",
+              "type": "warning"
+            },
+            {
+              "text": "Seguimiento médico: Calcular días desde la última cita",
+              "type": "warning"
+            }
+          ]
+        },
+        "calendarFacts": {
+          "title": "Datos del Calendario",
+          "items": [
+            {
+              "text": "Un año tiene 365 días (366 en años bisiestos)",
+              "type": "info"
+            },
+            {
+              "text": "Los meses tienen 28, 29, 30 o 31 días",
+              "type": "info"
+            },
+            {
+              "text": "Una semana siempre tiene 7 días",
+              "type": "info"
+            },
+            {
+              "text": "Años bisiestos: divisibles por 4, excepto años de siglo a menos que sean divisibles por 400",
+              "type": "info"
+            },
+            {
+              "text": "Los días laborales típicamente excluyen sábado y domingo",
+              "type": "info"
+            },
+            {
+              "text": "La semana 1 ISO contiene el 4 de enero",
+              "type": "info"
+            }
+          ]
+        },
+        "examples": {
+          "title": "Ejemplos Paso a Paso",
+          "description": "Cálculos de fechas comunes explicados",
+          "examples": [
+            {
+              "title": "Sumar 90 días al 15 de marzo de 2024",
+              "steps": [
+                "Marzo tiene 31 días, entonces 31-15 = 16 días restantes",
+                "Abril tiene 30 días: 16+30 = 46 días",
+                "Mayo tiene 31 días: 46+31 = 77 días",
+                "Junio necesita 90-77 = 13 días más"
+              ],
+              "result": "13 de junio de 2024"
+            },
+            {
+              "title": "Días entre 1 de enero y 15 de marzo de 2024",
+              "steps": [
+                "Enero: 31 días (menos 1 de enero = 30)",
+                "Febrero 2024 (año bisiesto): 29 días",
+                "Marzo 1-15: 15 días",
+                "Total: 30 + 29 + 15 = 74 días"
+              ],
+              "result": "74 días"
+            }
+          ]
+        }
+      },
+      "faqs": [
+        {
+          "question": "¿Cómo calculo una fecha 30 días desde ahora?",
+          "answer": "Selecciona 'Sumar/Restar a una Fecha', elige hoy como fecha inicial, selecciona 'Sumar', ingresa 30 en el campo Días, y haz clic en Calcular. El resultado mostrará la fecha exactamente 30 días en el futuro."
+        },
+        {
+          "question": "¿Cómo encuentro el número de días entre dos fechas?",
+          "answer": "Selecciona 'Días Entre Dos Fechas' como tipo de cálculo, ingresa tu fecha inicial y fecha final, luego haz clic en Calcular. Verás los días totales, semanas y días laborales entre las fechas."
+        },
+        {
+          "question": "¿Qué son los días laborales?",
+          "answer": "Los días laborales (también llamados días hábiles) son de lunes a viernes, excluyendo sábado y domingo. Algunos cálculos también excluyen feriados públicos. Los conteos de días laborales se usan comúnmente para estimaciones de envío, términos de contrato y planificación de proyectos."
+        },
+        {
+          "question": "¿Cómo funciona sumar meses cuando el día no existe?",
+          "answer": "Cuando sumar meses resultaría en una fecha inválida (como 31 de enero + 1 mes), la calculadora usa el último día válido de ese mes. Entonces 31 de enero + 1 mes = 28 de febrero (o 29 en años bisiestos)."
+        },
+        {
+          "question": "¿Qué es un año bisiesto y cómo afecta los cálculos?",
+          "answer": "Un año bisiesto tiene 366 días en lugar de 365, con febrero teniendo 29 días en lugar de 28. Los años bisiestos ocurren cada 4 años, excepto para años de siglo (1900, 2100) a menos que sean divisibles por 400 (2000, 2400). La calculadora maneja automáticamente los años bisiestos."
+        },
+        {
+          "question": "¿Cómo resto tiempo de una fecha?",
+          "answer": "Selecciona 'Sumar/Restar a una Fecha', elige tu fecha inicial, selecciona 'Restar' como operación, ingresa los días/semanas/meses/años que quieres restar, y haz clic en Calcular. El resultado muestra la fecha pasada."
+        }
+      ],
+      "buttons": {
+        "calculate": "Calcular",
+        "reset": "Reiniciar",
+        "pdf": "PDF",
+        "csv": "CSV",
+        "excel": "Excel",
+        "save": "Guardar",
+        "saved": "Guardado",
+        "saving": "Guardando..."
+      },
+      "share": {
+        "calculatedWith": "Calculado con Kalcufy.com"
+      },
+      "ui": {
+        "results": "Resultados",
+        "yourInformation": "Tu Información"
+      },
+      "accessibility": {
+        "mobileResults": "Resumen de resultados",
+        "closeModal": "Cerrar",
+        "openMenu": "Abrir menú"
+      },
+      "rating": {
+        "title": "Califica esta Calculadora",
+        "share": "Compartir",
+        "copied": "¡Copiado!",
+        "copyLink": "Copiar Enlace",
+        "clickToRate": "Clic para calificar",
+        "youRated": "Calificaste",
+        "stars": "estrellas",
+        "averageFrom": "promedio de",
+        "ratings": "calificaciones"
+      },
+      "common": {
+        "home": "Inicio",
+        "calculators": "Calculadoras"
+      },
+      "sources": {
+        "title": "Fuentes y Referencias"
+      },
+      "calculator": {
+        "yourInformation": "Tu Información"
+      }
+    },
+    pt: {
+      "name": "Calculadora de Datas",
+      "slug": "calculadora-datas",
+      "subtitle": "Adicionar ou subtrair dias, semanas, meses, anos de qualquer data. Calcular a diferença entre duas datas instantaneamente.",
+      "breadcrumb": "Datas",
+      "seo": {
+        "title": "Calculadora de Datas - Adicionar e Subtrair Dias, Meses, Anos",
+        "description": "Calcule datas facilmente. Adicione ou subtraia dias, semanas, meses, anos de qualquer data. Encontre dias entre duas datas com opções de dias úteis.",
+        "shortDescription": "Adicionar ou subtrair tempo de qualquer data",
+        "keywords": [
+          "calculadora de datas",
+          "adicionar dias à data",
+          "subtrair dias da data",
+          "dias entre datas",
+          "calculadora diferença de datas",
+          "calculadora dias úteis",
+          "calculadora de datas online",
+          "calculadora de datas grátis"
+        ]
+      },
+      "inputs": {
+        "calculationType": {
+          "label": "Tipo de Cálculo",
+          "helpText": "Escolha o que você quer calcular",
+          "options": {
+            "addSubtract": "Adicionar/Subtrair da Data",
+            "difference": "Dias Entre Duas Datas"
+          }
+        },
+        "startDate": {
+          "label": "Data Inicial",
+          "helpText": "Selecione a data inicial"
+        },
+        "endDate": {
+          "label": "Data Final",
+          "helpText": "Selecione a data final"
+        },
+        "operation": {
+          "label": "Operação",
+          "helpText": "Adicionar ou subtrair tempo",
+          "options": {
+            "add": "Adicionar",
+            "subtract": "Subtrair"
+          }
+        },
+        "daysToAdd": {
+          "label": "Dias",
+          "helpText": "Número de dias para adicionar ou subtrair"
+        },
+        "weeksToAdd": {
+          "label": "Semanas",
+          "helpText": "Número de semanas para adicionar ou subtrair"
+        },
+        "monthsToAdd": {
+          "label": "Meses",
+          "helpText": "Número de meses para adicionar ou subtrair"
+        },
+        "yearsToAdd": {
+          "label": "Anos",
+          "helpText": "Número de anos para adicionar ou subtrair"
+        },
+        "includeEndDate": {
+          "label": "Incluir Data Final",
+          "helpText": "Contar a data final no total",
+          "options": {
+            "yes": "Sim",
+            "no": "Não"
+          }
+        }
+      },
+      "results": {
+        "resultDate": {
+          "label": "Data Resultado"
+        },
+        "totalDays": {
+          "label": "Total de Dias"
+        },
+        "totalWeeks": {
+          "label": "Total de Semanas"
+        },
+        "totalMonths": {
+          "label": "Total de Meses"
+        },
+        "businessDays": {
+          "label": "Dias Úteis"
+        },
+        "weekendDays": {
+          "label": "Dias de Fim de Semana"
+        }
+      },
+      "presets": {
+        "thirtyDays": {
+          "label": "+30 Dias",
+          "description": "Adicionar 30 dias a hoje"
+        },
+        "ninetyDays": {
+          "label": "+90 Dias",
+          "description": "Adicionar 90 dias (trimestre)"
+        },
+        "sixMonths": {
+          "label": "+6 Meses",
+          "description": "Adicionar 6 meses à data"
+        },
+        "oneYear": {
+          "label": "+1 Ano",
+          "description": "Adicionar 1 ano à data"
+        }
+      },
+      "values": {
+        "locale": "pt-BR",
+        "days": "dias",
+        "day": "dia",
+        "weeks": "semanas",
+        "week": "semana",
+        "months": "meses",
+        "month": "mês",
+        "years": "anos",
+        "year": "ano",
+        "businessDays": "dias úteis",
+        "weekendDays": "dias de fim de semana",
+        "weekLabel": "Semana",
+        "and": "e"
+      },
+      "formats": {
+        "summary": "{date}",
+        "difference": "{days} dias entre datas",
+        "dateResult": "Resultado: {date}"
+      },
+      "infoCards": {
+        "dateResult": {
+          "title": "Resultado da Data",
+          "items": [
+            {
+              "label": "Data Resultado",
+              "valueKey": "resultDate"
+            },
+            {
+              "label": "Dia da Semana",
+              "valueKey": "dayOfWeek"
+            },
+            {
+              "label": "Número da Semana",
+              "valueKey": "weekNumber"
+            },
+            {
+              "label": "Trimestre",
+              "valueKey": "quarter"
+            }
+          ]
+        },
+        "breakdown": {
+          "title": "Detalhamento do Tempo",
+          "items": [
+            {
+              "label": "Total de Dias",
+              "valueKey": "totalDays"
+            },
+            {
+              "label": "Dias Úteis",
+              "valueKey": "businessDays"
+            },
+            {
+              "label": "Dias de Fim de Semana",
+              "valueKey": "weekendDays"
+            },
+            {
+              "label": "Total de Semanas",
+              "valueKey": "totalWeeks"
+            }
+          ]
+        },
+        "tips": {
+          "title": "Dicas Rápidas",
+          "items": [
+            "Dias úteis excluem sábados e domingos",
+            "Anos bissextos têm 366 dias (29 de fevereiro)",
+            "Adicionar meses mantém o mesmo dia quando possível",
+            "Use valores negativos para subtrair tempo"
+          ]
+        }
+      },
+      "education": {
+        "whatIs": {
+          "title": "O que é uma Calculadora de Datas?",
+          "content": "Uma calculadora de datas é uma ferramenta que realiza operações aritméticas em datas do calendário. Ela pode adicionar ou subtrair dias, semanas, meses e anos para encontrar datas futuras ou passadas, ou calcular a diferença entre duas datas. Ao contrário da contagem simples, as calculadoras de datas lidam com as complexidades do nosso sistema de calendário — durações variáveis de meses (28-31 dias), anos bissextos a cada quatro anos, e a transição entre meses e anos. Se você está planejando prazos de projeto, calculando termos de contrato, ou simplesmente se perguntando que data será em 90 dias, uma calculadora de datas fornece respostas instantâneas e precisas."
+        },
+        "howItWorks": {
+          "title": "Como Funcionam os Cálculos de Data",
+          "content": "Os cálculos de data seguem as regras do calendário gregoriano, que usamos hoje. Ao adicionar meses, a calculadora avança por essa quantidade de meses mantendo o mesmo número do dia (se possível). Por exemplo, 31 de janeiro + 1 mês = 28 de fevereiro (ou 29 em anos bissextos), já que fevereiro não tem 31 dias. Ao adicionar dias, ela simplesmente conta através do calendário, considerando diferentes durações de meses. Anos bissextos ocorrem a cada 4 anos (exceto anos centenários não divisíveis por 400), adicionando 29 de fevereiro. Cálculos de dias úteis excluem fins de semana e podem opcionalmente excluir feriados."
+        },
+        "useCases": {
+          "title": "Casos de Uso Comuns",
+          "items": [
+            {
+              "text": "Prazos de projeto: Adicionar dias úteis a uma data inicial",
+              "type": "info"
+            },
+            {
+              "text": "Termos de contrato: Calcular 30, 60 ou 90 dias da assinatura",
+              "type": "info"
+            },
+            {
+              "text": "Expiração de garantia: Adicionar 1-2 anos à data de compra",
+              "type": "info"
+            },
+            {
+              "text": "Cálculo de idade: Dias entre data de nascimento e hoje",
+              "type": "info"
+            },
+            {
+              "text": "Planejamento de eventos: Contar dias até uma data específica",
+              "type": "warning"
+            },
+            {
+              "text": "Acompanhamento médico: Calcular dias desde a última consulta",
+              "type": "warning"
+            }
+          ]
+        },
+        "calendarFacts": {
+          "title": "Fatos sobre Calendário",
+          "items": [
+            {
+              "text": "Um ano tem 365 dias (366 em anos bissextos)",
+              "type": "info"
+            },
+            {
+              "text": "Meses têm 28, 29, 30 ou 31 dias",
+              "type": "info"
+            },
+            {
+              "text": "Uma semana sempre tem 7 dias",
+              "type": "info"
+            },
+            {
+              "text": "Anos bissextos: divisíveis por 4, exceto anos centenários a menos que divisíveis por 400",
+              "type": "info"
+            },
+            {
+              "text": "Dias úteis tipicamente excluem sábado e domingo",
+              "type": "info"
+            },
+            {
+              "text": "Semana ISO 1 contém 4 de janeiro",
+              "type": "info"
+            }
+          ]
+        },
+        "examples": {
+          "title": "Exemplos Passo a Passo",
+          "description": "Cálculos de data comuns explicados",
+          "examples": [
+            {
+              "title": "Adicionar 90 dias a 15 de março de 2024",
+              "steps": [
+                "Março tem 31 dias, então 31-15 = 16 dias restantes",
+                "Abril tem 30 dias: 16+30 = 46 dias",
+                "Maio tem 31 dias: 46+31 = 77 dias",
+                "Junho precisa de 90-77 = 13 dias a mais"
+              ],
+              "result": "13 de junho de 2024"
+            },
+            {
+              "title": "Dias entre 1º jan e 15 mar de 2024",
+              "steps": [
+                "Janeiro: 31 dias (menos 1º jan = 30)",
+                "Fevereiro 2024 (ano bissexto): 29 dias",
+                "Março 1-15: 15 dias",
+                "Total: 30 + 29 + 15 = 74 dias"
+              ],
+              "result": "74 dias"
+            }
+          ]
+        }
+      },
+      "faqs": [
+        {
+          "question": "Como calcular uma data 30 dias a partir de agora?",
+          "answer": "Selecione 'Adicionar/Subtrair da Data', escolha hoje como sua data inicial, selecione 'Adicionar', digite 30 no campo Dias, e clique em Calcular. O resultado mostrará a data exatamente 30 dias no futuro."
+        },
+        {
+          "question": "Como encontrar o número de dias entre duas datas?",
+          "answer": "Selecione 'Dias Entre Duas Datas' como tipo de cálculo, digite sua data inicial e data final, então clique em Calcular. Você verá o total de dias, semanas e dias úteis entre as datas."
+        },
+        {
+          "question": "O que são dias úteis?",
+          "answer": "Dias úteis (também chamados de dias de trabalho ou dias da semana) são de segunda a sexta-feira, excluindo sábado e domingo. Alguns cálculos também excluem feriados públicos. Contagens de dias úteis são comumente usadas para estimativas de entrega, termos de contrato e planejamento de projetos."
+        },
+        {
+          "question": "Como funciona adicionar meses quando o dia não existe?",
+          "answer": "Quando adicionar meses resultaria em uma data inválida (como 31 de janeiro + 1 mês), a calculadora usa o último dia válido daquele mês. Então 31 de janeiro + 1 mês = 28 de fevereiro (ou 29 em anos bissextos)."
+        },
+        {
+          "question": "O que é um ano bissexto e como afeta os cálculos?",
+          "answer": "Um ano bissexto tem 366 dias em vez de 365, com fevereiro tendo 29 dias em vez de 28. Anos bissextos ocorrem a cada 4 anos, exceto para anos centenários (1900, 2100) a menos que sejam divisíveis por 400 (2000, 2400). A calculadora lida automaticamente com anos bissextos."
+        },
+        {
+          "question": "Como subtrair tempo de uma data?",
+          "answer": "Selecione 'Adicionar/Subtrair da Data', escolha sua data inicial, selecione 'Subtrair' como operação, digite os dias/semanas/meses/anos que quer subtrair, e clique em Calcular. O resultado mostra a data passada."
+        }
+      ],
+      "buttons": {
+        "calculate": "Calcular",
+        "reset": "Reiniciar",
+        "pdf": "PDF",
+        "csv": "CSV",
+        "excel": "Excel",
+        "save": "Salvar",
+        "saved": "Salvo",
+        "saving": "Salvando..."
+      },
+      "share": {
+        "calculatedWith": "Calculado com Kalcufy.com"
+      },
+      "ui": {
+        "results": "Resultados",
+        "yourInformation": "Suas Informações"
+      },
+      "accessibility": {
+        "mobileResults": "Resumo dos resultados",
+        "closeModal": "Fechar",
+        "openMenu": "Abrir menu"
+      },
+      "rating": {
+        "title": "Avalie esta Calculadora",
+        "share": "Compartilhar",
+        "copied": "Copiado!",
+        "copyLink": "Copiar Link",
+        "clickToRate": "Clique para avaliar",
+        "youRated": "Você avaliou",
+        "stars": "estrelas",
+        "averageFrom": "média de",
+        "ratings": "avaliações"
+      },
+      "common": {
+        "home": "Início",
+        "calculators": "Calculadoras"
+      },
+      "sources": {
+        "title": "Fontes e Referências"
+      },
+      "calculator": {
+        "yourInformation": "Suas Informações"
+      }
+    },
+    fr: {
+      "name": "Calculateur de Date",
+      "slug": "calculateur-date",
+      "subtitle": "Ajoutez ou soustrayez des jours, semaines, mois, années à n'importe quelle date. Calculez la différence entre deux dates instantanément.",
+      "breadcrumb": "Date",
+      "seo": {
+        "title": "Calculateur de Date - Ajouter & Soustraire Jours, Mois, Années",
+        "description": "Calculez les dates facilement. Ajoutez ou soustrayez des jours, semaines, mois, années à n'importe quelle date. Trouvez les jours entre deux dates avec options de jours ouvrables.",
+        "shortDescription": "Ajoutez ou soustrayez du temps à n'importe quelle date",
+        "keywords": [
+          "calculateur de date",
+          "ajouter jours à date",
+          "soustraire jours de date",
+          "jours entre dates",
+          "calculateur différence de date",
+          "calculateur jours ouvrables",
+          "calculateur de date en ligne",
+          "calculateur de date gratuit"
+        ]
+      },
+      "inputs": {
+        "calculationType": {
+          "label": "Type de Calcul",
+          "helpText": "Choisissez ce que vous voulez calculer",
+          "options": {
+            "addSubtract": "Ajouter/Soustraire d'une Date",
+            "difference": "Jours Entre Deux Dates"
+          }
+        },
+        "startDate": {
+          "label": "Date de Début",
+          "helpText": "Sélectionnez la date de départ"
+        },
+        "endDate": {
+          "label": "Date de Fin",
+          "helpText": "Sélectionnez la date de fin"
+        },
+        "operation": {
+          "label": "Opération",
+          "helpText": "Ajouter ou soustraire du temps",
+          "options": {
+            "add": "Ajouter",
+            "subtract": "Soustraire"
+          }
+        },
+        "daysToAdd": {
+          "label": "Jours",
+          "helpText": "Nombre de jours à ajouter ou soustraire"
+        },
+        "weeksToAdd": {
+          "label": "Semaines",
+          "helpText": "Nombre de semaines à ajouter ou soustraire"
+        },
+        "monthsToAdd": {
+          "label": "Mois",
+          "helpText": "Nombre de mois à ajouter ou soustraire"
+        },
+        "yearsToAdd": {
+          "label": "Années",
+          "helpText": "Nombre d'années à ajouter ou soustraire"
+        },
+        "includeEndDate": {
+          "label": "Inclure la Date de Fin",
+          "helpText": "Compter la date de fin dans le total",
+          "options": {
+            "yes": "Oui",
+            "no": "Non"
+          }
+        }
+      },
+      "results": {
+        "resultDate": {
+          "label": "Date Résultante"
+        },
+        "totalDays": {
+          "label": "Total Jours"
+        },
+        "totalWeeks": {
+          "label": "Total Semaines"
+        },
+        "totalMonths": {
+          "label": "Total Mois"
+        },
+        "businessDays": {
+          "label": "Jours Ouvrables"
+        },
+        "weekendDays": {
+          "label": "Jours de Week-end"
+        }
+      },
+      "presets": {
+        "thirtyDays": {
+          "label": "+30 Jours",
+          "description": "Ajouter 30 jours à aujourd'hui"
+        },
+        "ninetyDays": {
+          "label": "+90 Jours",
+          "description": "Ajouter 90 jours (trimestre)"
+        },
+        "sixMonths": {
+          "label": "+6 Mois",
+          "description": "Ajouter 6 mois à la date"
+        },
+        "oneYear": {
+          "label": "+1 An",
+          "description": "Ajouter 1 an à la date"
+        }
+      },
+      "values": {
+        "locale": "fr-FR",
+        "days": "jours",
+        "day": "jour",
+        "weeks": "semaines",
+        "week": "semaine",
+        "months": "mois",
+        "month": "mois",
+        "years": "années",
+        "year": "année",
+        "businessDays": "jours ouvrables",
+        "weekendDays": "jours de week-end",
+        "weekLabel": "Semaine",
+        "and": "et"
+      },
+      "formats": {
+        "summary": "{date}",
+        "difference": "{days} jours entre les dates",
+        "dateResult": "Résultat : {date}"
+      },
+      "infoCards": {
+        "dateResult": {
+          "title": "Résultat de Date",
+          "items": [
+            {
+              "label": "Date Résultante",
+              "valueKey": "resultDate"
+            },
+            {
+              "label": "Jour de la Semaine",
+              "valueKey": "dayOfWeek"
+            },
+            {
+              "label": "Numéro de Semaine",
+              "valueKey": "weekNumber"
+            },
+            {
+              "label": "Trimestre",
+              "valueKey": "quarter"
+            }
+          ]
+        },
+        "breakdown": {
+          "title": "Détail Temporel",
+          "items": [
+            {
+              "label": "Total Jours",
+              "valueKey": "totalDays"
+            },
+            {
+              "label": "Jours Ouvrables",
+              "valueKey": "businessDays"
+            },
+            {
+              "label": "Jours de Week-end",
+              "valueKey": "weekendDays"
+            },
+            {
+              "label": "Total Semaines",
+              "valueKey": "totalWeeks"
+            }
+          ]
+        },
+        "tips": {
+          "title": "Conseils Rapides",
+          "items": [
+            "Les jours ouvrables excluent les samedis et dimanches",
+            "Les années bissextiles ont 366 jours (29 février)",
+            "Ajouter des mois conserve le même jour quand c'est possible",
+            "Utilisez des valeurs négatives pour soustraire du temps"
+          ]
+        }
+      },
+      "education": {
+        "whatIs": {
+          "title": "Qu'est-ce qu'un Calculateur de Date ?",
+          "content": "Un calculateur de date est un outil qui effectue des opérations arithmétiques sur les dates du calendrier. Il peut ajouter ou soustraire des jours, semaines, mois et années pour trouver des dates futures ou passées, ou calculer la différence entre deux dates. Contrairement au simple comptage, les calculateurs de date gèrent les complexités de notre système calendaire — les longueurs variables des mois (28-31 jours), les années bissextiles tous les quatre ans, et la transition entre mois et années. Que vous planifiiez des échéances de projet, calculiez des termes de contrat, ou vous demandiez simplement quelle date ce sera dans 90 jours, un calculateur de date fournit des réponses instantanées et précises."
+        },
+        "howItWorks": {
+          "title": "Comment Fonctionnent les Calculs de Date",
+          "content": "Les calculs de date suivent les règles du calendrier grégorien, que nous utilisons aujourd'hui. Lors de l'ajout de mois, le calculateur avance de ce nombre de mois tout en gardant le même numéro de jour (si possible). Par exemple, 31 janvier + 1 mois = 28 février (ou 29 en années bissextiles), puisque février n'a pas 31 jours. Lors de l'ajout de jours, il compte simplement à travers le calendrier, tenant compte des différentes longueurs de mois. Les années bissextiles surviennent tous les 4 ans (sauf les années de siècle non divisibles par 400), ajoutant le 29 février. Les calculs de jours ouvrables excluent les week-ends et peuvent optionnellement exclure les jours fériés."
+        },
+        "useCases": {
+          "title": "Cas d'Usage Courants",
+          "items": [
+            {
+              "text": "Échéances de projet : Ajouter des jours ouvrables à une date de début",
+              "type": "info"
+            },
+            {
+              "text": "Termes de contrat : Calculer 30, 60 ou 90 jours depuis la signature",
+              "type": "info"
+            },
+            {
+              "text": "Expiration de garantie : Ajouter 1-2 ans à la date d'achat",
+              "type": "info"
+            },
+            {
+              "text": "Calcul d'âge : Jours entre date de naissance et aujourd'hui",
+              "type": "info"
+            },
+            {
+              "text": "Planification d'événement : Compter les jours jusqu'à une date spécifique",
+              "type": "warning"
+            },
+            {
+              "text": "Suivi médical : Calculer les jours depuis le dernier rendez-vous",
+              "type": "warning"
+            }
+          ]
+        },
+        "calendarFacts": {
+          "title": "Faits sur le Calendrier",
+          "items": [
+            {
+              "text": "Une année a 365 jours (366 en années bissextiles)",
+              "type": "info"
+            },
+            {
+              "text": "Les mois ont 28, 29, 30 ou 31 jours",
+              "type": "info"
+            },
+            {
+              "text": "Une semaine a toujours 7 jours",
+              "type": "info"
+            },
+            {
+              "text": "Années bissextiles : divisibles par 4, sauf les années de siècle sauf si divisibles par 400",
+              "type": "info"
+            },
+            {
+              "text": "Les jours ouvrables excluent typiquement samedi et dimanche",
+              "type": "info"
+            },
+            {
+              "text": "La semaine ISO 1 contient le 4 janvier",
+              "type": "info"
+            }
+          ]
+        },
+        "examples": {
+          "title": "Exemples Étape par Étape",
+          "description": "Calculs de date courants expliqués",
+          "examples": [
+            {
+              "title": "Ajouter 90 jours au 15 mars 2024",
+              "steps": [
+                "Mars a 31 jours, donc 31-15 = 16 jours restants",
+                "Avril a 30 jours : 16+30 = 46 jours",
+                "Mai a 31 jours : 46+31 = 77 jours",
+                "Juin nécessite 90-77 = 13 jours de plus"
+              ],
+              "result": "13 juin 2024"
+            },
+            {
+              "title": "Jours entre 1er janvier et 15 mars 2024",
+              "steps": [
+                "Janvier : 31 jours (moins 1er jan = 30)",
+                "Février 2024 (année bissextile) : 29 jours",
+                "Mars 1-15 : 15 jours",
+                "Total : 30 + 29 + 15 = 74 jours"
+              ],
+              "result": "74 jours"
+            }
+          ]
+        }
+      },
+      "faqs": [
+        {
+          "question": "Comment calculer une date dans 30 jours ?",
+          "answer": "Sélectionnez 'Ajouter/Soustraire d'une Date', choisissez aujourd'hui comme date de début, sélectionnez 'Ajouter', entrez 30 dans le champ Jours, et cliquez sur Calculer. Le résultat montrera la date exactement 30 jours dans le futur."
+        },
+        {
+          "question": "Comment trouver le nombre de jours entre deux dates ?",
+          "answer": "Sélectionnez 'Jours Entre Deux Dates' comme type de calcul, entrez votre date de début et date de fin, puis cliquez sur Calculer. Vous verrez le total de jours, semaines et jours ouvrables entre les dates."
+        },
+        {
+          "question": "Que sont les jours ouvrables ?",
+          "answer": "Les jours ouvrables (aussi appelés jours de travail ou jours de semaine) sont du lundi au vendredi, excluant samedi et dimanche. Certains calculs excluent aussi les jours fériés. Les comptes de jours ouvrables sont couramment utilisés pour les estimations d'expédition, termes de contrat et planification de projet."
+        },
+        {
+          "question": "Comment fonctionne l'ajout de mois quand le jour n'existe pas ?",
+          "answer": "Quand ajouter des mois résulterait en une date invalide (comme 31 janvier + 1 mois), le calculateur utilise le dernier jour valide de ce mois. Donc 31 janvier + 1 mois = 28 février (ou 29 en années bissextiles)."
+        },
+        {
+          "question": "Qu'est-ce qu'une année bissextile et comment affecte-t-elle les calculs ?",
+          "answer": "Une année bissextile a 366 jours au lieu de 365, avec février ayant 29 jours au lieu de 28. Les années bissextiles surviennent tous les 4 ans, sauf pour les années de siècle (1900, 2100) sauf si divisibles par 400 (2000, 2400). Le calculateur gère automatiquement les années bissextiles."
+        },
+        {
+          "question": "Comment soustraire du temps d'une date ?",
+          "answer": "Sélectionnez 'Ajouter/Soustraire d'une Date', choisissez votre date de début, sélectionnez 'Soustraire' comme opération, entrez les jours/semaines/mois/années que vous voulez soustraire, et cliquez sur Calculer. Le résultat montre la date passée."
+        }
+      ],
+      "buttons": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser",
+        "pdf": "PDF",
+        "csv": "CSV",
+        "excel": "Excel",
+        "save": "Sauvegarder",
+        "saved": "Sauvegardé",
+        "saving": "Sauvegarde..."
+      },
+      "share": {
+        "calculatedWith": "Calculé avec Kalcufy.com"
+      },
+      "ui": {
+        "results": "Résultats",
+        "yourInformation": "Vos Informations"
+      },
+      "accessibility": {
+        "mobileResults": "Résumé des résultats",
+        "closeModal": "Fermer",
+        "openMenu": "Ouvrir le menu"
+      },
+      "rating": {
+        "title": "Notez cette Calculatrice",
+        "share": "Partager",
+        "copied": "Copié!",
+        "copyLink": "Copier le Lien",
+        "clickToRate": "Cliquez pour noter",
+        "youRated": "Vous avez noté",
+        "stars": "étoiles",
+        "averageFrom": "moyenne de",
+        "ratings": "évaluations"
+      },
+      "common": {
+        "home": "Accueil",
+        "calculators": "Calculatrices"
+      },
+      "sources": {
+        "title": "Sources et Références"
+      },
+      "calculator": {
+        "yourInformation": "Vos Informations"
+      }
+    },
+    de: {
+      "name": "Datumsrechner",
+      "slug": "datumsrechner-rechner",
+      "subtitle": "Addieren oder subtrahieren Sie Tage, Wochen, Monate, Jahre von jedem Datum. Berechnen Sie sofort die Differenz zwischen zwei Daten.",
+      "breadcrumb": "Datumsrechner",
+      "seo": {
+        "title": "Datumsrechner - Tage, Monate, Jahre addieren & subtrahieren",
+        "description": "Daten einfach berechnen. Addieren oder subtrahieren Sie Tage, Wochen, Monate, Jahre von jedem Datum. Finden Sie Tage zwischen zwei Daten mit Arbeitstag-Optionen.",
+        "shortDescription": "Zeit zu jedem Datum addieren oder subtrahieren",
+        "keywords": [
+          "datumsrechner",
+          "tage zu datum addieren",
+          "tage vom datum subtrahieren",
+          "tage zwischen daten",
+          "datumsdifferenz rechner",
+          "arbeitstage rechner",
+          "datumsrechner online",
+          "kostenloser datumsrechner"
+        ]
+      },
+      "inputs": {
+        "calculationType": {
+          "label": "Berechnungstyp",
+          "helpText": "Wählen Sie, was Sie berechnen möchten",
+          "options": {
+            "addSubtract": "Zu Datum addieren/subtrahieren",
+            "difference": "Tage zwischen zwei Daten"
+          }
+        },
+        "startDate": {
+          "label": "Startdatum",
+          "helpText": "Wählen Sie das Startdatum"
+        },
+        "endDate": {
+          "label": "Enddatum",
+          "helpText": "Wählen Sie das Enddatum"
+        },
+        "operation": {
+          "label": "Operation",
+          "helpText": "Zeit addieren oder subtrahieren",
+          "options": {
+            "add": "Addieren",
+            "subtract": "Subtrahieren"
+          }
+        },
+        "daysToAdd": {
+          "label": "Tage",
+          "helpText": "Anzahl der Tage zum Addieren oder Subtrahieren"
+        },
+        "weeksToAdd": {
+          "label": "Wochen",
+          "helpText": "Anzahl der Wochen zum Addieren oder Subtrahieren"
+        },
+        "monthsToAdd": {
+          "label": "Monate",
+          "helpText": "Anzahl der Monate zum Addieren oder Subtrahieren"
+        },
+        "yearsToAdd": {
+          "label": "Jahre",
+          "helpText": "Anzahl der Jahre zum Addieren oder Subtrahieren"
+        },
+        "includeEndDate": {
+          "label": "Enddatum einschließen",
+          "helpText": "Das Enddatum in die Gesamtsumme einrechnen",
+          "options": {
+            "yes": "Ja",
+            "no": "Nein"
+          }
+        }
+      },
+      "results": {
+        "resultDate": {
+          "label": "Ergebnisdatum"
+        },
+        "totalDays": {
+          "label": "Gesamttage"
+        },
+        "totalWeeks": {
+          "label": "Gesamtwochen"
+        },
+        "totalMonths": {
+          "label": "Gesamtmonate"
+        },
+        "businessDays": {
+          "label": "Arbeitstage"
+        },
+        "weekendDays": {
+          "label": "Wochenendtage"
+        }
+      },
+      "presets": {
+        "thirtyDays": {
+          "label": "+30 Tage",
+          "description": "30 Tage zu heute addieren"
+        },
+        "ninetyDays": {
+          "label": "+90 Tage",
+          "description": "90 Tage (Quartal) addieren"
+        },
+        "sixMonths": {
+          "label": "+6 Monate",
+          "description": "6 Monate zum Datum addieren"
+        },
+        "oneYear": {
+          "label": "+1 Jahr",
+          "description": "1 Jahr zum Datum addieren"
+        }
+      },
+      "values": {
+        "locale": "de-DE",
+        "days": "Tage",
+        "day": "Tag",
+        "weeks": "Wochen",
+        "week": "Woche",
+        "months": "Monate",
+        "month": "Monat",
+        "years": "Jahre",
+        "year": "Jahr",
+        "businessDays": "Arbeitstage",
+        "weekendDays": "Wochenendtage",
+        "weekLabel": "Woche",
+        "and": "und"
+      },
+      "formats": {
+        "summary": "{date}",
+        "difference": "{days} Tage zwischen den Daten",
+        "dateResult": "Ergebnis: {date}"
+      },
+      "infoCards": {
+        "dateResult": {
+          "title": "Datumsergebnis",
+          "items": [
+            {
+              "label": "Ergebnisdatum",
+              "valueKey": "resultDate"
+            },
+            {
+              "label": "Wochentag",
+              "valueKey": "dayOfWeek"
+            },
+            {
+              "label": "Wochennummer",
+              "valueKey": "weekNumber"
+            },
+            {
+              "label": "Quartal",
+              "valueKey": "quarter"
+            }
+          ]
+        },
+        "breakdown": {
+          "title": "Zeitaufschlüsselung",
+          "items": [
+            {
+              "label": "Gesamttage",
+              "valueKey": "totalDays"
+            },
+            {
+              "label": "Arbeitstage",
+              "valueKey": "businessDays"
+            },
+            {
+              "label": "Wochenendtage",
+              "valueKey": "weekendDays"
+            },
+            {
+              "label": "Gesamtwochen",
+              "valueKey": "totalWeeks"
+            }
+          ]
+        },
+        "tips": {
+          "title": "Schnelle Tipps",
+          "items": [
+            "Arbeitstage schließen Samstag und Sonntag aus",
+            "Schaltjahre haben 366 Tage (29. Februar)",
+            "Das Addieren von Monaten behält wenn möglich den gleichen Tag bei",
+            "Verwenden Sie negative Werte, um Zeit zu subtrahieren"
+          ]
+        }
+      },
+      "education": {
+        "whatIs": {
+          "title": "Was ist ein Datumsrechner?",
+          "content": "Ein Datumsrechner ist ein Werkzeug, das arithmetische Operationen mit Kalenderdaten durchführt. Er kann Tage, Wochen, Monate und Jahre addieren oder subtrahieren, um zukünftige oder vergangene Daten zu finden, oder die Differenz zwischen zwei Daten berechnen. Im Gegensatz zum einfachen Zählen bewältigen Datumsrechner die Komplexitäten unseres Kalendersystems – unterschiedliche Monatslängen (28-31 Tage), Schaltjahre alle vier Jahre und den Übergang zwischen Monaten und Jahren. Ob Sie Projektfristen planen, Vertragslaufzeiten berechnen oder einfach wissen möchten, welches Datum es in 90 Tagen sein wird, ein Datumsrechner liefert sofortige, genaue Antworten."
+        },
+        "howItWorks": {
+          "title": "Wie Datumsberechnungen funktionieren",
+          "content": "Datumsberechnungen folgen den Regeln des gregorianischen Kalenders, den wir heute verwenden. Beim Addieren von Monaten bewegt sich der Rechner um so viele Monate nach vorne und behält dabei die gleiche Tagesnummer bei (wenn möglich). Zum Beispiel: 31. Januar + 1 Monat = 28. Februar (oder 29 in Schaltjahren), da der Februar keinen 31. Tag hat. Beim Addieren von Tagen zählt er einfach durch den Kalender vorwärts und berücksichtigt dabei unterschiedliche Monatslängen. Schaltjahre treten alle 4 Jahre auf (außer bei Jahrhundertjahren, die nicht durch 400 teilbar sind) und fügen den 29. Februar hinzu. Arbeitstagberechnungen schließen Wochenenden aus und können optional Feiertage ausschließen."
+        },
+        "useCases": {
+          "title": "Häufige Anwendungsfälle",
+          "items": [
+            {
+              "text": "Projektfristen: Arbeitstage zu einem Startdatum addieren",
+              "type": "info"
+            },
+            {
+              "text": "Vertragslaufzeiten: 30, 60 oder 90 Tage ab Unterzeichnung berechnen",
+              "type": "info"
+            },
+            {
+              "text": "Garantieablauf: 1-2 Jahre zum Kaufdatum addieren",
+              "type": "info"
+            },
+            {
+              "text": "Altersberechnung: Tage zwischen Geburtsdatum und heute",
+              "type": "info"
+            },
+            {
+              "text": "Eventplanung: Tage bis zu einem bestimmten Datum zählen",
+              "type": "warning"
+            },
+            {
+              "text": "Medizinische Verfolgung: Tage seit dem letzten Termin berechnen",
+              "type": "warning"
+            }
+          ]
+        },
+        "calendarFacts": {
+          "title": "Kalenderfakten",
+          "items": [
+            {
+              "text": "Ein Jahr hat 365 Tage (366 in Schaltjahren)",
+              "type": "info"
+            },
+            {
+              "text": "Monate haben 28, 29, 30 oder 31 Tage",
+              "type": "info"
+            },
+            {
+              "text": "Eine Woche hat immer 7 Tage",
+              "type": "info"
+            },
+            {
+              "text": "Schaltjahre: durch 4 teilbar, außer Jahrhundertjahre, es sei denn durch 400 teilbar",
+              "type": "info"
+            },
+            {
+              "text": "Arbeitstage schließen normalerweise Samstag und Sonntag aus",
+              "type": "info"
+            },
+            {
+              "text": "ISO-Woche 1 enthält den 4. Januar",
+              "type": "info"
+            }
+          ]
+        },
+        "examples": {
+          "title": "Schritt-für-Schritt-Beispiele",
+          "description": "Häufige Datumsberechnungen erklärt",
+          "examples": [
+            {
+              "title": "90 Tage zum 15. März 2024 addieren",
+              "steps": [
+                "März hat 31 Tage, also 31-15 = 16 Tage übrig",
+                "April hat 30 Tage: 16+30 = 46 Tage",
+                "Mai hat 31 Tage: 46+31 = 77 Tage",
+                "Juni benötigt 90-77 = 13 weitere Tage"
+              ],
+              "result": "13. Juni 2024"
+            },
+            {
+              "title": "Tage zwischen 1. Januar und 15. März 2024",
+              "steps": [
+                "Januar: 31 Tage (minus 1. Januar = 30)",
+                "Februar 2024 (Schaltjahr): 29 Tage",
+                "März 1-15: 15 Tage",
+                "Gesamt: 30 + 29 + 15 = 74 Tage"
+              ],
+              "result": "74 Tage"
+            }
+          ]
+        }
+      },
+      "faqs": [
+        {
+          "question": "Wie berechne ich ein Datum 30 Tage von heute?",
+          "answer": "Wählen Sie 'Zu Datum addieren/subtrahieren', wählen Sie heute als Startdatum, wählen Sie 'Addieren', geben Sie 30 in das Tage-Feld ein und klicken Sie auf Berechnen. Das Ergebnis zeigt das Datum genau 30 Tage in der Zukunft."
+        },
+        {
+          "question": "Wie finde ich die Anzahl der Tage zwischen zwei Daten?",
+          "answer": "Wählen Sie 'Tage zwischen zwei Daten' als Berechnungstyp, geben Sie Ihr Start- und Enddatum ein und klicken Sie dann auf Berechnen. Sie sehen die Gesamttage, Wochen und Arbeitstage zwischen den Daten."
+        },
+        {
+          "question": "Was sind Arbeitstage?",
+          "answer": "Arbeitstage (auch Werktage genannt) sind Montag bis Freitag, ausgenommen Samstag und Sonntag. Einige Berechnungen schließen auch gesetzliche Feiertage aus. Arbeitstagzählungen werden häufig für Versandschätzungen, Vertragsbedingungen und Projektplanung verwendet."
+        },
+        {
+          "question": "Wie funktioniert das Addieren von Monaten, wenn der Tag nicht existiert?",
+          "answer": "Wenn das Addieren von Monaten zu einem ungültigen Datum führen würde (wie 31. Januar + 1 Monat), verwendet der Rechner den letzten gültigen Tag dieses Monats. So wird 31. Januar + 1 Monat = 28. Februar (oder 29 in Schaltjahren)."
+        },
+        {
+          "question": "Was ist ein Schaltjahr und wie beeinflusst es Berechnungen?",
+          "answer": "Ein Schaltjahr hat 366 Tage statt 365, wobei der Februar 29 Tage statt 28 hat. Schaltjahre treten alle 4 Jahre auf, außer bei Jahrhundertjahren (1900, 2100), es sei denn sie sind durch 400 teilbar (2000, 2400). Der Rechner behandelt Schaltjahre automatisch."
+        },
+        {
+          "question": "Wie subtrahiere ich Zeit von einem Datum?",
+          "answer": "Wählen Sie 'Zu Datum addieren/subtrahieren', wählen Sie Ihr Startdatum, wählen Sie 'Subtrahieren' als Operation, geben Sie die Tage/Wochen/Monate/Jahre ein, die Sie subtrahieren möchten, und klicken Sie auf Berechnen. Das Ergebnis zeigt das vergangene Datum."
+        }
+      ],
+      "buttons": {
+        "calculate": "Berechnen",
+        "reset": "Zurücksetzen",
+        "pdf": "PDF",
+        "csv": "CSV",
+        "excel": "Excel",
+        "save": "Speichern",
+        "saved": "Gespeichert",
+        "saving": "Speichern..."
+      },
+      "share": {
+        "calculatedWith": "Berechnet mit Kalcufy.com"
+      },
+      "ui": {
+        "results": "Ergebnisse",
+        "yourInformation": "Ihre Informationen"
+      },
+      "accessibility": {
+        "mobileResults": "Ergebniszusammenfassung",
+        "closeModal": "Schließen",
+        "openMenu": "Menü öffnen"
+      },
+      "rating": {
+        "title": "Bewerten Sie diesen Rechner",
+        "share": "Teilen",
+        "copied": "Kopiert!",
+        "copyLink": "Link kopieren",
+        "clickToRate": "Klicken zum Bewerten",
+        "youRated": "Sie haben bewertet",
+        "stars": "Sterne",
+        "averageFrom": "Durchschnitt von",
+        "ratings": "Bewertungen"
+      },
+      "common": {
+        "home": "Startseite",
+        "calculators": "Rechner"
+      },
+      "sources": {
+        "title": "Quellen und Referenzen"
+      },
+      "calculator": {
+        "yourInformation": "Ihre Informationen"
+      }
+    },
   },
 
   // ===========================================================================

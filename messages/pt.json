@@ -781,6 +781,11 @@
       "a3": "Aceitamos todos os cartões principais, PayPal e transferências bancárias.",
       "q4": "Posso mudar de plano?",
       "a4": "Sim, você pode melhorar ou reduzir seu plano a qualquer momento."
+    },
+    "cta": {
+      "title": "Pronto para Calcular Melhor?",
+      "subtitle": "Junte-se a milhares de usuários que confiam no Kalcufy para seus cálculos diários.",
+      "button": "Começar Grátis"
     }
   },
   "blog": {
@@ -826,7 +831,8 @@
       "notFound": "Artigo Não Encontrado",
       "notFoundDesc": "O artigo que você procura não existe.",
       "backToBlog": "Voltar ao Blog"
-    }
+    },
+    "allCategories": "Todas as Categorias"
   },
   "legal": {
     "terms": {

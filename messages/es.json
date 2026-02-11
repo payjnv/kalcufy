@@ -860,6 +860,11 @@
       "a3": "Aceptamos todas las tarjetas de crédito principales, PayPal y transferencias bancarias.",
       "q4": "¿Puedo cambiar de plan?",
       "a4": "Sí, puedes subir o bajar de plan en cualquier momento."
+    },
+    "cta": {
+      "title": "¿Listo para Calcular Mejor?",
+      "subtitle": "Únete a miles de usuarios que confían en Kalcufy para sus cálculos diarios.",
+      "button": "Comenzar Gratis"
     }
   },
   "blog": {

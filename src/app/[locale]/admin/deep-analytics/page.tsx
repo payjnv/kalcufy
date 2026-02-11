@@ -1,753 +1,412 @@
-// src/app/[locale]/admin/deep-analytics/page.tsx
 "use client";
-import { useState, useEffect, useCallback, useRef, useMemo } from "react";
+
+import { useState, useEffect, useCallback, useRef } from "react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 import {
-  Eye, Users, Calculator, TrendingUp, TrendingDown, Globe, Monitor, Smartphone, Tablet,
-  Activity, BarChart3, ArrowUpRight, ArrowDownRight, Zap, RefreshCw,
-  MapPin, Languages, UserPlus, Crown, Mail, DollarSign, FileText,
-  MessageSquare, Wifi, WifiOff,
+  Eye, Calculator, Users, Globe, Monitor, Smartphone, Tablet,
+  TrendingUp, Activity, Clock, RefreshCw, ArrowUpRight, ArrowDownRight,
+  Zap, FileText, BarChart3, Languages, ChevronRight, Target, UserPlus,
+  Flame, Mail, DollarSign, Crown, ExternalLink, Lightbulb, AlertTriangle,
+  Timer, Star, MessageSquare, Newspaper, CreditCard, Wifi, WifiOff,
+  LayoutGrid, MapPin,
 } from "lucide-react";
-import { geoNaturalEarth1, geoPath, geoGraticule } from "d3-geo";
-import { feature } from "topojson-client";
 
-type TabId = "overview" | "realtime" | "geographic" | "calculators" | "audience";
-
-const CC: Record<string, [number, number]> = {
-  "United States":[39.8,-98.5],"Canada":[56.1,-106.3],"Mexico":[23.6,-102.5],
-  "Brazil":[-14.2,-51.9],"Argentina":[-38.4,-63.6],"Colombia":[4.6,-74.3],
-  "Chile":[-35.7,-71.5],"Peru":[-9.2,-75.0],"Venezuela":[6.4,-66.6],
-  "Ecuador":[-1.8,-78.2],"Uruguay":[-32.5,-55.8],"Paraguay":[-23.4,-58.4],
-  "Bolivia":[-16.3,-63.6],"Costa Rica":[9.7,-83.8],"Panama":[8.5,-80.8],
-  "Dominican Republic":[18.7,-70.2],"Guatemala":[15.8,-90.2],"Honduras":[15.2,-86.2],
-  "El Salvador":[13.8,-88.9],"Nicaragua":[12.9,-85.2],"Cuba":[21.5,-77.8],
-  "United Kingdom":[55.4,-3.4],"Germany":[51.2,10.5],"France":[46.2,2.2],
-  "Spain":[40.5,-3.7],"Italy":[41.9,12.6],"Portugal":[39.4,-8.2],
-  "Netherlands":[52.1,5.3],"Belgium":[50.5,4.5],"Switzerland":[46.8,8.2],
-  "Sweden":[60.1,18.6],"Norway":[60.5,8.5],"Denmark":[56.3,9.5],
-  "Finland":[61.9,25.7],"Ireland":[53.1,-8.2],"Poland":[51.9,19.1],
-  "Austria":[47.5,14.6],"Czech Republic":[49.8,15.5],"Romania":[45.9,25.0],
-  "Greece":[39.1,21.8],"Hungary":[47.2,19.5],"Ukraine":[48.4,31.2],
-  "Russia":[61.5,105.3],"Turkey":[39.0,35.2],
-  "China":[35.9,104.2],"Japan":[36.2,138.3],"South Korea":[35.9,127.8],
-  "India":[20.6,78.9],"Indonesia":[-0.8,113.9],"Thailand":[15.9,101.0],
-  "Vietnam":[14.1,108.3],"Philippines":[12.9,121.8],"Malaysia":[4.2,101.9],
-  "Singapore":[1.4,103.8],"Taiwan":[23.7,121.0],"Pakistan":[30.4,69.3],
-  "Bangladesh":[23.7,90.4],"Sri Lanka":[7.9,80.8],
-  "Australia":[-25.3,133.8],"New Zealand":[-40.9,174.9],
-  "South Africa":[-30.6,22.9],"Nigeria":[9.1,8.7],"Egypt":[26.8,30.8],
-  "Kenya":[-0.0,37.9],"Ghana":[7.9,-1.0],"Morocco":[31.8,-7.1],
-  "Saudi Arabia":[23.9,45.1],"UAE":[23.4,53.8],"Israel":[31.0,34.9],
+const fmt = (n: number) => {
+  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
+  if (n >= 1_000) return `${(n / 1_000).toFixed(1)}K`;
+  return n.toLocaleString();
+};
+const slugToName = (s: string) =>
+  s.replace(/-calculator$/, "").replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+const timeAgo = (d: string) => {
+  const diff = Date.now() - new Date(d).getTime();
+  const m = Math.floor(diff / 60000);
+  if (m < 1) return "now";
+  if (m < 60) return `${m}m`;
+  const h = Math.floor(m / 60);
+  if (h < 24) return `${h}h`;
+  return `${Math.floor(h / 24)}d`;
 };
 
+type TabId = "overview" | "realtime" | "geographic" | "calculators" | "audience" | "insights";
+type RangeId = "today" | "7d" | "30d" | "90d" | "365d";
 
-
-// Real world map image URL (Equirectangular projection, matches Mercator at low latitudes)
-// Equirectangular projection for viewBox 1000x500
-// GeoJSON URL — Natural Earth 110m (free, tiny, every country outline)
-const GEO_URL = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
-const W = 960, H = 480;
-const projection = geoNaturalEarth1().scale(155).translate([W / 2, H / 2]);
-const pathGen = geoPath(projection);
-const graticule = geoGraticule().step([20, 20])();
-
-function WorldMap({ countries, cityDots = [] }: { countries: any[]; cityDots?: any[] }) {
-  const [hover, setHover] = useState<any>(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const ref = useRef<HTMLDivElement>(null);
-  const [land, setLand] = useState<any[]>([]);
-
-  useEffect(() => {
-    fetch(GEO_URL)
-      .then(r => r.json())
-      .then(topo => {
-        const feat = feature(topo, topo.objects.countries) as any;
-        setLand(feat.features || []);
-      })
-      .catch(() => {});
-  }, []);
-
-  // Build dots: prefer cityDots (real lat/lng), fallback to country coords
-  const dots = useMemo(() => {
-    let rawDots: any[] = [];
-
-    if (cityDots.length > 0) {
-      // 🆕 CITY-LEVEL: real lat/lng from Vercel headers
-      rawDots = cityDots.map((d: any) => {
-        const pt = projection([d.lng, d.lat]);
-        if (!pt) return null;
-        return {
-          x: pt[0], y: pt[1], count: d.count,
-          label: d.city + (d.region ? `, ${d.region}` : ""),
-          flag: "", // no flag for cities
-          country: d.country || "",
-          city: d.city,
-          region: d.region,
-          pct: 0, // calculated below
-        };
-      }).filter(Boolean);
-    } else {
-      // FALLBACK: country-level with CC dictionary (old data without city)
-      rawDots = countries.map((c: any) => {
-        const coord = CC[c.country];
-        if (!coord) return null;
-        const pt = projection([coord[1], coord[0]]);
-        if (!pt) return null;
-        return {
-          x: pt[0], y: pt[1], count: c.count,
-          label: c.country,
-          flag: c.flag || "🌍",
-          country: c.country,
-          city: null, region: null,
-          pct: c.pct || 0,
-        };
-      }).filter(Boolean);
-    }
-
-    // Calculate intensity + radius
-    const maxC = Math.max(...rawDots.map((d: any) => d.count), 1);
-    const totalC = rawDots.reduce((s: number, d: any) => s + d.count, 0);
-    return rawDots.map((d: any) => {
-      const intensity = Math.max(d.count / maxC, 0.12);
-      const r = 5 + intensity * 18;
-      const pct = totalC > 0 ? parseFloat(((d.count / totalC) * 100).toFixed(1)) : 0;
-      return { ...d, intensity, r, pct: d.pct || pct };
-    });
-  }, [countries, cityDots]);
-
+function ChangeBadge({ value }: { value: number }) {
+  if (value === 0) return null;
+  const up = value > 0;
   return (
-    <div ref={ref} className="relative w-full overflow-hidden rounded-b-2xl"
-      onMouseMove={e => { if (ref.current) { const b = ref.current.getBoundingClientRect(); setMousePos({ x: e.clientX - b.left, y: e.clientY - b.top }); } }}>
-      <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height: "auto", minHeight: 320, background: "#0c1222" }} preserveAspectRatio="xMidYMid meet">
-        <defs>
-          <radialGradient id="hs1"><stop offset="0%" stopColor="#f97316" stopOpacity="0.9"/><stop offset="30%" stopColor="#f97316" stopOpacity="0.3"/><stop offset="100%" stopColor="#f97316" stopOpacity="0"/></radialGradient>
-          <radialGradient id="hs2"><stop offset="0%" stopColor="#3b82f6" stopOpacity="0.8"/><stop offset="30%" stopColor="#3b82f6" stopOpacity="0.25"/><stop offset="100%" stopColor="#3b82f6" stopOpacity="0"/></radialGradient>
-          <radialGradient id="hs3"><stop offset="0%" stopColor="#22c55e" stopOpacity="0.7"/><stop offset="30%" stopColor="#22c55e" stopOpacity="0.2"/><stop offset="100%" stopColor="#22c55e" stopOpacity="0"/></radialGradient>
-          <filter id="gl"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-        </defs>
+    <span className={`inline-flex items-center gap-0.5 text-[11px] font-semibold px-1.5 py-0.5 rounded-full ${up ? "text-emerald-700 bg-emerald-50" : "text-red-600 bg-red-50"}`}>
+      {up ? <ArrowUpRight className="w-3 h-3" /> : <ArrowDownRight className="w-3 h-3" />}
+      {Math.abs(value).toFixed(1)}%
+    </span>
+  );
+}
 
-        {/* Globe outline */}
-        <path d={pathGen({ type: "Sphere" }) || ""} fill="#0c1222" stroke="#1e3a5f" strokeWidth="0.5" />
+function AreaChart({ data, mode }: { data: { date: string; views: number; calcs: number }[]; mode: "views" | "calcs" }) {
+  if (!data.length) return (<div className="h-[220px] flex items-center justify-center text-slate-300"><div className="text-center"><BarChart3 className="w-10 h-10 mx-auto mb-1 opacity-40" /><p className="text-xs">Waiting for data...</p></div></div>);
+  const vals = data.map(d => mode === "views" ? d.views : d.calcs);
+  const maxV = Math.max(...vals, 1);
+  const W = 680, H = 200, PX = 40, PY = 15, cW = W - PX * 2, cH = H - PY * 2;
+  const pts = vals.map((v, i) => ({ x: PX + (i / Math.max(vals.length - 1, 1)) * cW, y: PY + cH - (v / maxV) * cH }));
+  const line = pts.map((p, i) => { if (i === 0) return `M ${p.x} ${p.y}`; const prev = pts[i-1]; const cpx = (prev.x + p.x) / 2; return `C ${cpx} ${prev.y} ${cpx} ${p.y} ${p.x} ${p.y}`; }).join(" ");
+  const area = `${line} L ${pts[pts.length-1].x} ${H-PY} L ${pts[0].x} ${H-PY} Z`;
+  const yLabels = [0, 0.5, 1].map(pct => ({ val: Math.round(maxV * pct), y: PY + cH - pct * cH }));
+  const step = Math.max(1, Math.floor(data.length / 6));
+  const xLabels = data.filter((_, i) => i % step === 0).map(d => ({ label: d.date, x: PX + (data.indexOf(d) / Math.max(data.length - 1, 1)) * cW }));
+  const c = mode === "views" ? "#3b82f6" : "#10b981";
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-[220px]">
+      <defs><linearGradient id={`da-${mode}`} x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor={c} stopOpacity="0.2" /><stop offset="100%" stopColor={c} stopOpacity="0.01" /></linearGradient></defs>
+      {yLabels.map((yl, i) => (<g key={i}><line x1={PX} y1={yl.y} x2={W-PX} y2={yl.y} stroke="#f1f5f9" strokeWidth="1" /><text x={PX-6} y={yl.y+3} textAnchor="end" fill="#94a3b8" fontSize="10">{fmt(yl.val)}</text></g>))}
+      <path d={area} fill={`url(#da-${mode})`} /><path d={line} fill="none" stroke={c} strokeWidth="2" strokeLinecap="round" />
+      {pts.map((p, i) => (<circle key={i} cx={p.x} cy={p.y} r="2.5" fill="white" stroke={c} strokeWidth="1.5"><title>{`${data[i].date}: ${vals[i]}`}</title></circle>))}
+      {xLabels.map((xl, i) => (<text key={i} x={xl.x} y={H-1} textAnchor="middle" fill="#94a3b8" fontSize="9">{xl.label}</text>))}
+    </svg>
+  );
+}
 
-        {/* Graticule (lat/lng grid) */}
-        <path d={pathGen(graticule) || ""} fill="none" stroke="#1a2744" strokeWidth="0.3" />
+function HourlyBars({ data }: { data: number[][] }) {
+  const hours = Array.from({ length: 24 }, (_, i) => !data?.length ? 0 : data.reduce((s, day) => s + (day[i] || 0), 0));
+  const maxH = Math.max(...hours, 1);
+  return (<div className="flex items-end gap-[3px] h-16">{hours.map((h, i) => (<div key={i} className={`flex-1 rounded-t transition-all ${h > 0 ? "bg-blue-300 hover:bg-blue-400" : "bg-slate-100"}`} style={{ height: `${Math.max((h / maxH) * 100, 4)}%` }} title={`${i}:00 — ${h}`} />))}</div>);
+}
 
-        {/* REAL COUNTRIES — every country on earth */}
-        {land.map((f: any, i: number) => (
-          <path key={i} d={pathGen(f) || ""} fill="#162d50" stroke="#1e4070" strokeWidth="0.4" className="hover:fill-[#1e3a5f] transition-colors" />
-        ))}
-        {land.length === 0 && (
-          <text x={W/2} y={H/2} textAnchor="middle" fill="#334155" fontSize="13">Loading world map...</text>
-        )}
+function Heatmap({ data }: { data: number[][] }) {
+  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const max = Math.max(...data.flat(), 1);
+  return (
+    <div className="overflow-x-auto"><div className="min-w-[500px]">
+      <div className="flex gap-[2px] mb-[2px] ml-8">{Array.from({ length: 24 }, (_, i) => (<div key={i} className="flex-1 text-[8px] text-slate-300 text-center font-mono">{i % 4 === 0 ? `${i}` : ""}</div>))}</div>
+      {data.map((row, di) => (<div key={di} className="flex items-center gap-[2px] mb-[2px]"><div className="w-7 text-[9px] text-slate-400 text-right pr-1">{days[di]}</div>
+        {row.map((v, hi) => { const t = v / max; const bg = t === 0 ? "bg-slate-50" : t < 0.2 ? "bg-blue-100" : t < 0.4 ? "bg-blue-200" : t < 0.6 ? "bg-blue-400" : t < 0.8 ? "bg-blue-500" : "bg-blue-600"; return <div key={hi} className={`flex-1 aspect-square rounded-[2px] ${bg} hover:ring-1 hover:ring-blue-400 cursor-crosshair`} title={`${days[di]} ${hi}:00 — ${v}`} />; })}
+      </div>))}
+      <div className="flex items-center justify-end gap-1 mt-2"><span className="text-[8px] text-slate-400">Less</span>{["bg-slate-50","bg-blue-100","bg-blue-300","bg-blue-500","bg-blue-600"].map((c,i)=>(<div key={i} className={`w-2.5 h-2.5 rounded-[2px] ${c}`} />))}<span className="text-[8px] text-slate-400">More</span></div>
+    </div></div>
+  );
+}
 
-        {/* Connection lines between top countries */}
-        {dots.length > 1 && dots.slice(1, 7).map((d: any, i: number) => (
-          <line key={`cn${i}`} x1={d.x} y1={d.y} x2={dots[0].x} y2={dots[0].y} stroke="#60a5fa" strokeWidth="0.5" opacity="0.15" strokeDasharray="5 4">
-            <animate attributeName="stroke-dashoffset" from="9" to="0" dur="3s" repeatCount="indefinite"/>
-          </line>
-        ))}
-
-        {/* Heat blobs — soft glow */}
-        {dots.map((d: any, i: number) => {
-          const gr = i===0 ? "url(#hs1)" : i<3 ? "url(#hs2)" : "url(#hs3)";
-          const br = d.r * 2.5 + d.intensity * 28;
-          return <circle key={`hb${i}`} cx={d.x} cy={d.y} r={br} fill={gr} opacity={0.3 + d.intensity * 0.4}>
-            <animate attributeName="r" values={`${br*0.9};${br*1.12};${br*0.9}`} dur={`${3+i*0.4}s`} repeatCount="indefinite"/>
-          </circle>;
-        })}
-
-        {/* Pulse rings */}
-        {dots.map((d: any, i: number) => (
-          <circle key={`pr${i}`} cx={d.x} cy={d.y} r={d.r*0.5} fill="none" stroke={i===0?"#f97316":i<3?"#3b82f6":"#22c55e"} strokeWidth="1.5">
-            <animate attributeName="r" from={d.r*0.5} to={d.r*2} dur="2.5s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" from="0.7" to="0" dur="2.5s" repeatCount="indefinite"/>
-          </circle>
-        ))}
-
-        {/* Core dots + labels */}
-        {dots.map((d: any, i: number) => {
-          const col = i===0?"#f97316":i<3?"#3b82f6":"#22c55e";
-          return (
-            <g key={`dt${i}`} onMouseEnter={()=>setHover(d)} onMouseLeave={()=>setHover(null)} className="cursor-pointer">
-              <circle cx={d.x} cy={d.y} r={Math.max(d.r*0.35,4)} fill={col} opacity="0.95" filter="url(#gl)"/>
-              <circle cx={d.x} cy={d.y} r={Math.max(d.r*0.12,1.8)} fill="#fff" opacity="0.95"/>
-              {i<8 && <>
-                <text x={d.x} y={d.y-d.r*0.4-10} textAnchor="middle" fill="#fff" fontSize="9" fontWeight="bold" style={{textShadow:"0 1px 3px #000"}}>{d.flag} {d.label || d.country}</text>
-                <text x={d.x} y={d.y-d.r*0.4+1} textAnchor="middle" fill="#93c5fd" fontSize="8" fontWeight="600">{d.count.toLocaleString()}</text>
-              </>}
-            </g>
-          );
-        })}
+function DeviceDonut({ data }: { data: { device: string; count: number; pct: number }[] }) {
+  const total = data.reduce((s, d) => s + d.count, 0) || 1;
+  const colors: Record<string, string> = { desktop: "#10b981", mobile: "#3b82f6", tablet: "#8b5cf6" };
+  let offset = 0;
+  const segments = data.map(d => { const pct = d.count / total; const seg = { ...d, pctCalc: pct, offset, color: colors[d.device?.toLowerCase()] || "#94a3b8" }; offset += pct; return seg; });
+  const R = 40, C = 2 * Math.PI * R;
+  return (
+    <div className="flex items-center gap-5">
+      <svg width="100" height="100" viewBox="0 0 100 100" className="shrink-0">
+        <circle cx="50" cy="50" r={R} fill="none" stroke="#f1f5f9" strokeWidth="12" />
+        {segments.map((s, i) => (<circle key={i} cx="50" cy="50" r={R} fill="none" stroke={s.color} strokeWidth="12" strokeDasharray={`${s.pctCalc * C} ${C}`} strokeDashoffset={-s.offset * C} transform="rotate(-90 50 50)" strokeLinecap="round" />))}
+        <text x="50" y="50" textAnchor="middle" dominantBaseline="central" fill="#0f172a" fontSize="16" fontWeight="bold">{fmt(total)}</text>
       </svg>
-
-      {/* Tooltip */}
-      {hover && (
-        <div className="pointer-events-none absolute z-50 bg-white/95 backdrop-blur-md text-slate-900 rounded-xl px-5 py-3.5 shadow-2xl border border-slate-200"
-          style={{left:Math.min(mousePos.x+16,(ref.current?.clientWidth||800)-220),top:Math.max(mousePos.y-85,10)}}>
-          <div className="flex items-center gap-2 mb-2">
-            <span className="text-xl">{hover.flag || "📍"}</span>
-            <div>
-              <span className="font-bold text-sm">{hover.label || hover.country}</span>
-              {hover.city && hover.country && <span className="text-[10px] text-slate-400 ml-1">({hover.country})</span>}
-            </div>
-            <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">#{dots.indexOf(dots.find((d:any)=>d.label===hover.label))+1}</span>
-          </div>
-          <div className="grid grid-cols-2 gap-x-5 gap-y-1 text-xs border-t border-slate-100 pt-2">
-            <span className="text-slate-400">Events</span><span className="font-bold text-right">{hover.count.toLocaleString()}</span>
-            <span className="text-slate-400">Share</span><span className="font-bold text-right text-blue-600">{hover.pct}%</span>
-          </div>
-          <div className="w-full h-1.5 bg-slate-100 rounded-full mt-2 overflow-hidden"><div className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full" style={{width:`${Math.max(hover.pct,3)}%`}}/></div>
-        </div>
-      )}
+      <div className="space-y-2">{segments.map(s => (<div key={s.device} className="flex items-center gap-2"><div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: s.color }} /><span className="text-xs text-slate-600 capitalize">{s.device}</span><span className="text-xs font-semibold text-slate-900 ml-auto">{(s.pctCalc * 100).toFixed(0)}%</span></div>))}</div>
     </div>
   );
 }
 
-// ═══════════════════════════════════════════════════════════════
-// DONUT CHART
-// ═══════════════════════════════════════════════════════════════
-function DonutChart({ segments, size=160 }: { segments:{value:number;color:string;label:string}[]; size?:number }) {
-  const total = segments.reduce((s,x) => s+x.value, 0);
-  if (total===0) return null;
-  const r=size/2-12, cx=size/2, cy=size/2;
-  let cum=-90;
-  const arcs = segments.map(seg => {
-    const a=(seg.value/total)*360;
-    const s1=(cum*Math.PI)/180, s2=((cum+a)*Math.PI)/180;
-    const x1=cx+r*Math.cos(s1), y1=cy+r*Math.sin(s1);
-    const x2=cx+r*Math.cos(s2), y2=cy+r*Math.sin(s2);
-    cum+=a;
-    return {...seg, d:`M${cx},${cy} L${x1},${y1} A${r},${r} 0 ${a>180?1:0} 1 ${x2},${y2} Z`, pct:((seg.value/total)*100).toFixed(0)};
-  });
-  return (
-    <div className="flex items-center gap-4">
-      <svg width={size} height={size} className="flex-shrink-0">
-        {arcs.map((a,i) => <path key={i} d={a.d} fill={a.color} opacity="0.85" className="hover:opacity-100 transition-opacity cursor-pointer" />)}
-        <circle cx={cx} cy={cy} r={r*0.55} fill="white" />
-        <text x={cx} y={cy-4} textAnchor="middle" fill="#1e293b" fontSize="20" fontWeight="bold">{total.toLocaleString()}</text>
-        <text x={cx} y={cy+12} textAnchor="middle" fill="#94a3b8" fontSize="9" fontWeight="500">TOTAL</text>
-      </svg>
-      <div className="space-y-1.5">{arcs.map((a,i) => (
-        <div key={i} className="flex items-center gap-2 text-xs"><span className="w-2.5 h-2.5 rounded-sm flex-shrink-0" style={{background:a.color}} /><span className="text-slate-600 w-20 truncate">{a.label}</span><span className="font-bold text-slate-800">{a.pct}%</span></div>
-      ))}</div>
-    </div>
-  );
+function LiveDot() {
+  return (<span className="relative flex h-2.5 w-2.5 ml-1"><span className="animate-ping absolute h-full w-full rounded-full bg-emerald-400 opacity-60" /><span className="relative rounded-full h-2.5 w-2.5 bg-emerald-500" /></span>);
 }
-
-// ═══════════════════════════════════════════════════════════════
-// CHARTS (SVG — ZERO DEPS)
-// ═══════════════════════════════════════════════════════════════
-function AreaChart({data,height=200,color="#3b82f6",gid="g1"}:{data:number[];height?:number;color?:string;gid?:string}) {
-  if(data.length<2) return <div className="flex items-center justify-center text-xs text-slate-300" style={{height}}>No data</div>;
-  const max=Math.max(...data,1),p=8,h=height-p*2;
-  const pts=data.map((v,i)=>({x:(i/(data.length-1))*100,y:p+h-(v/max)*h}));
-  const line=pts.map((pt,i)=>`${i===0?"M":"L"}${pt.x.toFixed(2)},${pt.y.toFixed(2)}`).join(" ");
-  return (
-    <svg viewBox={`0 0 100 ${height}`} className="w-full" style={{height}} preserveAspectRatio="none">
-      <defs><linearGradient id={gid} x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor={color} stopOpacity="0.2"/><stop offset="100%" stopColor={color} stopOpacity="0.01"/></linearGradient></defs>
-      <path d={`${line} L100,${height} L0,${height} Z`} fill={`url(#${gid})`} />
-      <path d={line} fill="none" stroke={color} strokeWidth="1.8" strokeLinejoin="round" strokeLinecap="round" />
-      <circle cx={pts[pts.length-1].x} cy={pts[pts.length-1].y} r="2.5" fill={color} />
-    </svg>
-  );
-}
-
-function BarChart({data,height=200,color="#6366f1"}:{data:number[];height?:number;color?:string}) {
-  if(!data.length) return <div className="flex items-center justify-center text-xs text-slate-300" style={{height}}>No data</div>;
-  const max=Math.max(...data,1),w=100/data.length;
-  return (
-    <svg viewBox={`0 0 100 ${height}`} className="w-full" style={{height}} preserveAspectRatio="none">
-      {data.map((v,i)=>{const bh=Math.max((v/max)*(height-8),1); return <rect key={i} x={i*w+w*0.15} y={height-bh} width={w*0.7} height={bh} rx={1.5} fill={color} opacity={0.4+(v/max)*0.6} />;})}
-    </svg>
-  );
-}
-
-function DualAreaChart({d1,d2,height=200,c1="#3b82f6",c2="#10b981"}:{d1:number[];d2:number[];height?:number;c1?:string;c2?:string}) {
-  const len=Math.max(d1.length,d2.length);
-  if(len<2) return <div className="flex items-center justify-center text-xs text-slate-300" style={{height}}>No data</div>;
-  const allMax=Math.max(...d1,...d2,1),p=8,h=height-p*2;
-  const mkL=(d:number[])=>d.map((v,i)=>`${i===0?"M":"L"}${((i/(len-1))*100).toFixed(2)},${(p+h-(v/allMax)*h).toFixed(2)}`).join(" ");
-  return (
-    <svg viewBox={`0 0 100 ${height}`} className="w-full" style={{height}} preserveAspectRatio="none">
-      <defs>
-        <linearGradient id="da1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor={c1} stopOpacity="0.15"/><stop offset="100%" stopColor={c1} stopOpacity="0"/></linearGradient>
-        <linearGradient id="da2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor={c2} stopOpacity="0.15"/><stop offset="100%" stopColor={c2} stopOpacity="0"/></linearGradient>
-      </defs>
-      <path d={`${mkL(d1)} L100,${height} L0,${height} Z`} fill="url(#da1)" />
-      <path d={`${mkL(d2)} L100,${height} L0,${height} Z`} fill="url(#da2)" />
-      <path d={mkL(d1)} fill="none" stroke={c1} strokeWidth="1.8" strokeLinejoin="round" />
-      <path d={mkL(d2)} fill="none" stroke={c2} strokeWidth="1.8" strokeLinejoin="round" strokeDasharray="4 2" />
-    </svg>
-  );
-}
-
-function Sparkline({data,color="#3b82f6"}:{data:number[];color?:string}) {
-  if(data.length<2) return null;
-  const max=Math.max(...data,1);
-  const pts=data.map((v,i)=>`${(i/(data.length-1))*60},${24-(v/max)*20}`).join(" ");
-  return <svg viewBox="0 0 60 24" className="w-16 h-6"><polyline points={pts} fill="none" stroke={color} strokeWidth="1.5" strokeLinejoin="round" /></svg>;
-}
-
-function HeatmapGrid({data}:{data:{hour:number;count:number}[]}) {
-  const max=Math.max(...data.map(d=>d.count),1);
-  return (
-    <div>
-      <div className="flex gap-[2px]">{Array.from({length:24},(_,h)=>{
-        const v=data.find(x=>x.hour===h)?.count||0;
-        const i=v/max;
-        const bg=i===0?"#f1f5f9":i<0.25?"#bfdbfe":i<0.5?"#60a5fa":i<0.75?"#2563eb":"#1d4ed8";
-        return <div key={h} className="flex flex-col items-center gap-[2px]"><div className="w-5 h-5 rounded-sm" style={{background:bg}} title={`${h}:00 — ${v} events`} />{h%4===0&&<span className="text-[8px] text-slate-400">{h}h</span>}</div>;
-      })}</div>
-      <div className="flex items-center gap-1 mt-2"><span className="text-[9px] text-slate-400">Less</span>{["#f1f5f9","#bfdbfe","#60a5fa","#2563eb","#1d4ed8"].map(c=><div key={c} className="w-3 h-3 rounded-sm" style={{background:c}} />)}<span className="text-[9px] text-slate-400">More</span></div>
-    </div>
-  );
-}
-
-// ═══════════════════════════════════════════════════════════════
-// UI COMPONENTS
-// ═══════════════════════════════════════════════════════════════
-function Pbar({value,max,color="bg-blue-500"}:{value:number;max:number;color?:string}) {
-  const pct=max>0?Math.min((value/max)*100,100):0;
-  return <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden"><div className={`h-full rounded-full transition-all duration-700 ${color}`} style={{width:`${pct}%`}} /></div>;
-}
-
-function Badge({value}:{value:number}) {
-  if(!value && value !== 0) return null;
-  if(value===0) return <span className="text-[11px] text-slate-300">—</span>;
-  const pos=value>0;
-  return <span className={`inline-flex items-center gap-0.5 text-[11px] font-bold ${pos?"text-emerald-600":"text-red-500"}`}>{pos?<ArrowUpRight className="w-3 h-3" />:<ArrowDownRight className="w-3 h-3" />}{Math.abs(value)}%</span>;
-}
-
-const DC:Record<string,string>={desktop:"#3b82f6",mobile:"#10b981",tablet:"#f59e0b",unknown:"#94a3b8"};
-
-// ═══════════════════════════════════════════════════════════════
-// MAIN PAGE
-// ═══════════════════════════════════════════════════════════════
-const TABS:{id:TabId;label:string;icon:React.ReactNode}[] = [
-  {id:"overview",label:"Overview",icon:<BarChart3 className="w-4 h-4" />},
-  {id:"realtime",label:"Real-time",icon:<Activity className="w-4 h-4" />},
-  {id:"geographic",label:"Geographic",icon:<Globe className="w-4 h-4" />},
-  {id:"calculators",label:"Calculators",icon:<Calculator className="w-4 h-4" />},
-  {id:"audience",label:"Audience",icon:<Users className="w-4 h-4" />},
-];
-const RANGES=[{id:"today",l:"Today"},{id:"7d",l:"7D"},{id:"30d",l:"30D"},{id:"90d",l:"90D"}];
 
 export default function DeepAnalyticsPage() {
-  const [tab,setTab]=useState<TabId>("overview");
-  const [range,setRange]=useState("30d");
-  const [loading,setLoading]=useState(true);
-  const [data,setData]=useState<any>(null);
-  const [refreshing,setRefreshing]=useState(false);
+  const [tab, setTab] = useState<TabId>("overview");
+  const [range, setRange] = useState<RangeId>("30d");
+  const [data, setData] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [chartMode, setChartMode] = useState<"views" | "calcs">("views");
+  const [autoRefresh, setAutoRefresh] = useState(false);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const pathname = usePathname();
+  const locale = pathname.split("/")[1] || "en";
 
-  const fetchData=useCallback(async(t?:TabId,r?:string)=>{
-    setLoading(true);
-    try{const res=await fetch(`/api/admin/deep-analytics?tab=${t||tab}&range=${r||range}`);if(res.ok)setData(await res.json());}catch(e){console.error(e);}
-    finally{setLoading(false);}
-  },[tab,range]);
+  const fetchData = useCallback(async () => {
+    try { setLoading(true); const res = await fetch(`/api/admin/deep-analytics?tab=${tab}&range=${range}`); if (res.ok) setData(await res.json()); } catch (e) { console.error(e); } finally { setLoading(false); }
+  }, [tab, range]);
 
-  useEffect(()=>{fetchData();},[tab,range]);
-  useEffect(()=>{if(tab!=="realtime")return;const iv=setInterval(()=>fetchData("realtime"),30000);return()=>clearInterval(iv);},[tab]);
-  const refresh=async()=>{setRefreshing(true);await fetchData();setRefreshing(false);};
+  useEffect(() => { fetchData(); }, [fetchData]);
+  useEffect(() => { if (autoRefresh && tab === "realtime") intervalRef.current = setInterval(fetchData, 10000); return () => { if (intervalRef.current) clearInterval(intervalRef.current); }; }, [autoRefresh, tab, fetchData]);
+
+  const tabs: { id: TabId; label: string; icon: any }[] = [
+    { id: "overview", label: "Overview", icon: BarChart3 }, { id: "realtime", label: "Real-time", icon: Activity },
+    { id: "geographic", label: "Geographic", icon: Globe }, { id: "calculators", label: "Calculators", icon: Calculator },
+    { id: "audience", label: "Audience", icon: Users }, { id: "insights", label: "Insights", icon: Lightbulb },
+  ];
+  const ranges: { id: RangeId; label: string }[] = [
+    { id: "today", label: "Today" }, { id: "7d", label: "7 days" }, { id: "30d", label: "30 days" }, { id: "90d", label: "90 days" }, { id: "365d", label: "1 year" },
+  ];
+
+  if (loading && !data) return (<div className="space-y-6 animate-pulse"><div className="h-8 w-64 bg-slate-200 rounded-lg" /><div className="grid grid-cols-4 gap-4">{[...Array(4)].map((_, i) => <div key={i} className="h-[120px] bg-slate-200 rounded-2xl" />)}</div><div className="grid grid-cols-3 gap-4"><div className="col-span-2 h-72 bg-slate-200 rounded-2xl" /><div className="h-72 bg-slate-200 rounded-2xl" /></div></div>);
 
   return (
-    <div className="space-y-8">
-      {/* Header */}
-      <div className="flex items-start justify-between">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-600/20"><BarChart3 className="w-5 h-5 text-white" /></div>
-          <div><h1 className="text-2xl font-bold text-slate-900 tracking-tight">Deep Analytics</h1><p className="text-xs text-slate-400 mt-0.5">Real-time insights • Global tracking • Enterprise metrics</p></div>
+    <div className="space-y-6">
+      {/* HEADER */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-slate-900 flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center"><BarChart3 className="w-4 h-4 text-white" /></div>
+            Deep Analytics {tab === "realtime" && <LiveDot />}
+          </h1>
+          <p className="text-slate-500 text-sm mt-0.5">Advanced analytics &amp; insights for Kalcufy.</p>
         </div>
         <div className="flex items-center gap-2">
-          <div className="flex items-center bg-white border border-slate-200 rounded-xl p-1 shadow-sm">
-            {RANGES.map(r=><button key={r.id} onClick={()=>setRange(r.id)} className={`px-3.5 py-1.5 text-xs font-semibold rounded-lg transition-all ${range===r.id?"bg-blue-600 text-white shadow-sm":"text-slate-500 hover:text-slate-700 hover:bg-slate-50"}`}>{r.l}</button>)}
-          </div>
-          <button onClick={refresh} className={`p-2.5 rounded-xl border border-slate-200 bg-white text-slate-500 hover:text-slate-700 shadow-sm ${refreshing?"animate-spin":""}`}><RefreshCw className="w-4 h-4" /></button>
+          <div className="flex bg-slate-100 rounded-lg p-0.5">{ranges.map(r => (<button key={r.id} onClick={() => setRange(r.id)} className={`px-2.5 py-1 rounded-md text-[11px] font-medium transition-all ${range === r.id ? "bg-white text-slate-900 shadow-sm" : "text-slate-500"}`}>{r.label}</button>))}</div>
+          {tab === "realtime" && (<button onClick={() => setAutoRefresh(!autoRefresh)} className={`flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium border rounded-lg transition-all ${autoRefresh ? "bg-emerald-50 border-emerald-200 text-emerald-600" : "bg-white border-slate-200 text-slate-400"}`}>{autoRefresh ? <Wifi className="w-3 h-3" /> : <WifiOff className="w-3 h-3" />}{autoRefresh ? "Live" : "Paused"}</button>)}
+          <button onClick={fetchData} disabled={loading} className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-500 hover:text-slate-700 bg-white border border-slate-200 rounded-lg hover:border-slate-300 transition-all"><RefreshCw className={`w-3.5 h-3.5 ${loading ? "animate-spin" : ""}`} />Refresh</button>
+          <span className="text-[10px] text-slate-400 bg-slate-50 px-2 py-1 rounded-full">Auto-refresh 60s</span>
         </div>
       </div>
 
-      {/* Tabs */}
-      <div className="flex items-center gap-1 bg-white border border-slate-200 rounded-xl p-1 shadow-sm w-fit">
-        {TABS.map(t=><button key={t.id} onClick={()=>setTab(t.id)} className={`inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg transition-all ${tab===t.id?"bg-slate-900 text-white shadow-sm":"text-slate-500 hover:text-slate-700 hover:bg-slate-50"}`}>
-          {t.icon}{t.label}
-          {t.id==="realtime"&&tab==="realtime"&&<span className="relative flex h-2 w-2"><span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" /><span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" /></span>}
-        </button>)}
+      {/* TABS */}
+      <div className="flex gap-1 border-b border-slate-200 -mt-2">
+        {tabs.map(t => (<button key={t.id} onClick={() => { setTab(t.id); setData(null); }} className={`flex items-center gap-1.5 px-3 py-2.5 text-xs font-medium border-b-2 -mb-px transition-all ${tab === t.id ? "border-blue-500 text-blue-600" : "border-transparent text-slate-400 hover:text-slate-600"}`}><t.icon className="w-3.5 h-3.5" />{t.label}</button>))}
       </div>
 
-      {/* Loading */}
-      {loading&&!data ? (
-        <div className="flex items-center justify-center py-24"><div className="w-8 h-8 border-2 border-slate-900 border-t-transparent rounded-full animate-spin" /></div>
-      ) : (
-      <>
-        {/* ═══════════════ OVERVIEW TAB ═══════════════ */}
-        {tab==="overview"&&data&&(()=>{
-          const s=data.stats||{}, daily=data.dailyTrend||[], hr=data.hourly||[], bot=data.bottom||{};
-          return (
-            <div className="space-y-6">
-              {/* KPI Cards */}
-              <div className="grid grid-cols-4 gap-4">
-                {[
-                  {label:"TOTAL VIEWS",val:s.totalViews?.toLocaleString()||"0",sub:`${s.todayViews||0} today`,ch:s.viewsChange,icon:<Eye className="w-5 h-5" />,ic:"text-blue-600 bg-blue-50",sd:daily.map((d:any)=>d.views),sc:"#3b82f6"},
-                  {label:"UNIQUE VISITORS",val:s.uniqueSessions?.toLocaleString()||"0",sub:`${s.totalAllTime?.toLocaleString()||0} all-time`,ch:s.sessionsChange,icon:<Users className="w-5 h-5" />,ic:"text-purple-600 bg-purple-50",sd:daily.map((d:any)=>d.sessions),sc:"#8b5cf6"},
-                  {label:"CALCULATIONS",val:s.totalCalcs?.toLocaleString()||"0",sub:`${s.todayCalcs||0} today`,ch:s.calcsChange,icon:<Calculator className="w-5 h-5" />,ic:"text-emerald-600 bg-emerald-50",sd:daily.map((d:any)=>d.calcs),sc:"#10b981"},
-                  {label:"CONVERSION",val:`${s.conversionRate||0}%`,sub:"Views → Calcs",ch:s.conversionChange,icon:<TrendingUp className="w-5 h-5" />,ic:"text-amber-600 bg-amber-50",sd:null as any,sc:""},
-                ].map(c=>(
-                  <div key={c.label} className="bg-white rounded-2xl border border-slate-200/60 p-5 shadow-sm hover:shadow-md transition-shadow">
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{c.label}</span>
-                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${c.ic}`}>{c.icon}</div>
-                    </div>
-                    <div className="flex items-end justify-between">
-                      <div>
-                        <p className="text-3xl font-bold text-slate-900 tracking-tight">{c.val}</p>
-                        <div className="flex items-center gap-2 mt-1.5">
-                          <span className="text-xs text-slate-400">{c.sub}</span>
-                          <Badge value={c.ch} />
-                        </div>
-                      </div>
-                      {c.sd && c.sd.length > 1 && <Sparkline data={c.sd} color={c.sc} />}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Charts row */}
-              <div className="grid grid-cols-3 gap-4">
-                <div className="col-span-2 bg-white rounded-2xl border border-slate-200/60 p-6 shadow-sm">
-                  <div className="flex items-center justify-between mb-1">
-                    <h3 className="text-sm font-bold text-slate-900">Visitors Trend</h3>
-                    <div className="flex items-center gap-4 text-xs">
-                      <span className="flex items-center gap-1.5"><span className="w-3 h-0.5 bg-blue-500 rounded" />Views</span>
-                      <span className="flex items-center gap-1.5"><span className="w-3 h-0.5 rounded" style={{borderTop:"1.5px dashed #10b981",background:"none"}} />Calcs</span>
-                    </div>
-                  </div>
-                  <p className="text-xs text-slate-400 mb-4">{daily.length} days</p>
-                  <DualAreaChart d1={daily.map((d:any)=>d.views)} d2={daily.map((d:any)=>d.calcs)} height={220} />
-                  {daily.length>0 && (
-                    <div className="flex justify-between mt-3 pt-3 border-t border-slate-50 text-[10px] text-slate-400 font-medium uppercase tracking-wider">
-                      <span>{daily[0]?.date}</span>
-                      <span>{daily[Math.floor(daily.length/2)]?.date}</span>
-                      <span>{daily[daily.length-1]?.date}</span>
-                    </div>
-                  )}
+      {/* ═══ OVERVIEW ═══ */}
+      {tab === "overview" && data && (<>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {[
+            { icon: Eye, label: "Page Views", value: data.stats?.totalViews || 0, change: data.stats?.viewsChange, color: "bg-blue-50 text-blue-600", sub: `${data.stats?.todayViews || 0} today · ${data.stats?.totalAllTime || 0} all-time` },
+            { icon: Calculator, label: "Calculations", value: data.stats?.totalCalcs || 0, change: data.stats?.calcsChange, color: "bg-emerald-50 text-emerald-600", sub: `${data.stats?.todayCalcs || 0} today` },
+            { icon: Users, label: "Sessions", value: data.stats?.uniqueSessions || 0, change: data.stats?.sessionsChange, color: "bg-purple-50 text-purple-600" },
+            { icon: DollarSign, label: "Revenue", value: "$0.00", color: "bg-amber-50 text-amber-600", sub: "0 subscriptions × $2.99/mo" },
+          ].map((kpi, i) => (
+            <div key={i} className="bg-white rounded-2xl border border-slate-200 p-5 hover:shadow-md hover:border-slate-300 transition-all group">
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center gap-2">
+                  <div className={`w-9 h-9 rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform ${kpi.color}`}><kpi.icon className="w-[18px] h-[18px]" /></div>
+                  <span className="text-xs font-medium text-slate-500">{kpi.label}</span>
                 </div>
-                <div className="bg-white rounded-2xl border border-slate-200/60 p-6 shadow-sm">
-                  <h3 className="text-sm font-bold text-slate-900 mb-1">Activity Heatmap</h3>
-                  <p className="text-xs text-slate-400 mb-4">Events by hour</p>
-                  <HeatmapGrid data={hr} />
-                  <div className="mt-4 pt-4 border-t border-slate-50">
-                    <h4 className="text-xs font-bold text-slate-700 mb-2">Peak Hours</h4>
-                    <BarChart data={hr.map((h:any)=>h.count)} height={80} color="#6366f1" />
-                    <div className="flex justify-between mt-1 text-[9px] text-slate-400"><span>12am</span><span>6am</span><span>12pm</span><span>6pm</span><span>11pm</span></div>
-                  </div>
-                </div>
+                {kpi.change !== undefined && <ChangeBadge value={kpi.change} />}
               </div>
+              <p className="text-2xl font-bold text-slate-900">{typeof kpi.value === "number" ? kpi.value.toLocaleString() : kpi.value}</p>
+              {kpi.sub && <p className="text-[11px] text-slate-400 mt-0.5">{kpi.sub}</p>}
+            </div>
+          ))}
+        </div>
 
-              {/* Bottom stats */}
-              <div className="grid grid-cols-3 gap-4">
-                {[
-                  {label:"Avg Calcs/Session",val:bot.calcsPerSession||"0",icon:<Zap className="w-5 h-5" />,ic:"text-blue-600 bg-blue-50"},
-                  {label:"Bounce Rate",val:`${bot.bounceRate||0}%`,icon:<TrendingDown className="w-5 h-5" />,ic:"text-rose-600 bg-rose-50"},
-                  {label:"Active Countries",val:bot.activeCountries||0,icon:<Globe className="w-5 h-5" />,ic:"text-emerald-600 bg-emerald-50"},
-                ].map(b=>(
-                  <div key={b.label} className="bg-white rounded-2xl border border-slate-200/60 p-5 shadow-sm flex items-center gap-4">
-                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${b.ic}`}>{b.icon}</div>
-                    <div><p className="text-xs text-slate-400 font-medium">{b.label}</p><p className="text-2xl font-bold text-slate-900">{b.val}</p></div>
-                  </div>
-                ))}
+        {/* Chart + Pulse */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <div className="lg:col-span-2 bg-white rounded-2xl border border-slate-200 overflow-hidden">
+            <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
+              <h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2"><Activity className="w-4 h-4 text-blue-500" />Daily Trend</h3>
+              <div className="flex bg-slate-100 rounded-lg p-0.5">{(["views","calcs"] as const).map(m => (<button key={m} onClick={() => setChartMode(m)} className={`px-2.5 py-1 rounded-md text-[11px] font-medium transition-all ${chartMode === m ? "bg-white text-slate-900 shadow-sm" : "text-slate-500"}`}>{m === "views" ? "Views" : "Calculations"}</button>))}</div>
+            </div>
+            <div className="p-4"><AreaChart data={data.dailyTrend || []} mode={chartMode} /></div>
+          </div>
+          <div className="space-y-4">
+            <div className="bg-white rounded-2xl border border-slate-200 p-5">
+              <h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2 mb-3"><Flame className="w-4 h-4 text-orange-500" />Traffic Pulse</h3>
+              <HourlyBars data={data.heatmap || []} />
+              <div className="flex justify-between mt-2"><span className="text-[10px] text-slate-400">12am</span><span className="text-[10px] text-slate-400">12pm</span><span className="text-[10px] text-slate-400">11pm</span></div>
+              <div className="grid grid-cols-2 gap-3 mt-4">
+                <div className="bg-blue-50/60 rounded-xl p-3 text-center"><p className="text-lg font-bold text-blue-700">{data.stats?.todayViews || 0}</p><p className="text-[10px] text-blue-500 font-medium">Views today</p></div>
+                <div className="bg-emerald-50/60 rounded-xl p-3 text-center"><p className="text-lg font-bold text-emerald-700">{data.stats?.todayCalcs || 0}</p><p className="text-[10px] text-emerald-500 font-medium">Calcs today</p></div>
               </div>
             </div>
-          );
-        })()}
-
-        {/* ═══════════════ REALTIME TAB ═══════════════ */}
-        {tab==="realtime"&&data&&(()=>(
-          <div className="space-y-6">
-            <div className="grid grid-cols-3 gap-4">
-              <div className="bg-white rounded-2xl border border-slate-200/60 p-6 shadow-sm">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="relative flex h-3 w-3"><span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" /><span className="relative inline-flex rounded-full h-3 w-3 bg-green-500" /></span>
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Active Now</span>
-                </div>
-                <p className="text-5xl font-bold text-slate-900">{data.activeNow||0}</p>
-                <p className="text-xs text-slate-400 mt-1">users in last 5 min</p>
-              </div>
-              <div className="bg-white rounded-2xl border border-slate-200/60 p-6 shadow-sm">
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Last Hour Views</span>
-                <p className="text-5xl font-bold text-slate-900 mt-3">{data.lastHourViews||0}</p>
-              </div>
-              <div className="bg-white rounded-2xl border border-slate-200/60 p-6 shadow-sm">
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Last Hour Calcs</span>
-                <p className="text-5xl font-bold text-slate-900 mt-3">{data.lastHourCalcs||0}</p>
-              </div>
-            </div>
-
-            {data.minuteTrend?.length > 0 && (
-              <div className="bg-white rounded-2xl border border-slate-200/60 p-6 shadow-sm">
-                <h3 className="text-sm font-bold text-slate-900 mb-1">Activity — Last 60 Minutes</h3>
-                <p className="text-xs text-slate-400 mb-4">Events per minute</p>
-                <BarChart data={data.minuteTrend.map((m:any)=>m.count)} height={120} color="#10b981" />
-              </div>
-            )}
-
-            <div className="bg-white rounded-2xl border border-slate-200/60 shadow-sm overflow-hidden">
-              <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
-                <div className="flex items-center gap-2"><Wifi className="w-4 h-4 text-emerald-500" /><h3 className="text-sm font-bold text-slate-900">Live Event Feed</h3></div>
-                <span className="text-xs text-slate-400">{data.recentEvents?.length||0} events · refreshes 30s</span>
-              </div>
-              <div className="divide-y divide-slate-50 max-h-[500px] overflow-y-auto">
-                {(data.recentEvents||[]).map((ev:any,i:number)=>(
-                  <div key={i} className="px-6 py-3 flex items-center gap-4 hover:bg-slate-50/50 transition-colors">
-                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${ev.type==="VIEW"?"bg-blue-50 text-blue-600":"bg-emerald-50 text-emerald-600"}`}>
-                      {ev.type==="VIEW"?<Eye className="w-4 h-4" />:<Calculator className="w-4 h-4" />}
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <span className="text-sm font-medium text-slate-800">{ev.calculatorSlug}</span>
-                      <div className="flex items-center gap-2 mt-0.5 text-xs text-slate-400">
-                        {ev.flag && <span>{ev.flag} {ev.country}</span>}
-                        {ev.device && <span>• {ev.device}</span>}
-                        <span>• {ev.language}</span>
-                      </div>
-                    </div>
-                    <span className="text-[11px] text-slate-400 font-mono flex-shrink-0">{new Date(ev.createdAt).toLocaleTimeString("en-US",{hour:"2-digit",minute:"2-digit",second:"2-digit"})}</span>
-                  </div>
-                ))}
-                {(!data.recentEvents||data.recentEvents.length===0) && (
-                  <div className="px-6 py-16 text-center">
-                    <WifiOff className="w-8 h-8 text-slate-200 mx-auto mb-2" />
-                    <p className="text-sm text-slate-400">No events in the last hour</p>
-                  </div>
-                )}
-              </div>
+            <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-5 text-white">
+              <div className="flex items-center gap-2 mb-2"><Target className="w-4 h-4 text-cyan-400" /><span className="text-xs font-medium text-slate-300">Conversion Rate</span></div>
+              <p className="text-3xl font-bold">{data.stats?.conversionRate || 0}%</p>
+              <p className="text-[11px] text-slate-400 mt-1">Views → Calculations</p>
+              <div className="w-full bg-slate-700 rounded-full h-1.5 mt-3"><div className="bg-gradient-to-r from-cyan-400 to-blue-400 h-1.5 rounded-full" style={{ width: `${Math.min(data.stats?.conversionRate || 0, 100)}%` }} /></div>
             </div>
           </div>
-        ))()}
+        </div>
 
-        {/* ═══════════════ GEOGRAPHIC TAB ═══════════════ */}
-        {tab==="geographic"&&data&&(()=>{
-          const countries=data.countries||[], languages=data.languages||[], devices=data.devices||[];
-          const cityDots=data.cityDots||[];
-          const devSeg=devices.map((d:any)=>({value:d.count,color:DC[d.device?.toLowerCase()]||"#94a3b8",label:d.device||"Unknown"}));
-          return (
-            <div className="space-y-6">
-              {/* WORLD MAP */}
-              <div className="bg-white rounded-2xl border border-slate-200/60 shadow-sm overflow-hidden">
-                <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
-                  <div className="flex items-center gap-2"><Globe className="w-4 h-4 text-blue-600" /><h3 className="text-sm font-bold text-slate-900">Global Traffic Map</h3></div>
-                  <div className="flex items-center gap-3 text-xs text-slate-400">
-                    <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />Live data</span>
-                    {cityDots.length > 0
-                      ? <span>{cityDots.length} cities</span>
-                      : <span>{countries.length} countries</span>}
-                  </div>
-                </div>
-                <WorldMap countries={countries} cityDots={cityDots} />
-              </div>
-
-              {/* Stats */}
-              <div className="grid grid-cols-3 gap-4">
-                <div className="bg-white rounded-2xl border border-slate-200/60 p-5 shadow-sm">
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-blue-50 text-blue-600 mb-3"><MapPin className="w-5 h-5" /></div>
-                  <p className="text-2xl font-bold text-slate-900">{countries.length}</p>
-                  <p className="text-xs text-slate-500 uppercase tracking-wider font-medium mt-0.5">Countries</p>
-                </div>
-                <div className="bg-white rounded-2xl border border-slate-200/60 p-5 shadow-sm">
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-purple-50 text-purple-600 mb-3"><Languages className="w-5 h-5" /></div>
-                  <p className="text-2xl font-bold text-slate-900">{languages.length}</p>
-                  <p className="text-xs text-slate-500 uppercase tracking-wider font-medium mt-0.5">Languages</p>
-                </div>
-                <div className="bg-white rounded-2xl border border-slate-200/60 p-5 shadow-sm">
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-amber-50 text-amber-600 mb-3"><Monitor className="w-5 h-5" /></div>
-                  <p className="text-2xl font-bold text-slate-900">{devices.length}</p>
-                  <p className="text-xs text-slate-500 uppercase tracking-wider font-medium mt-0.5">Device Types</p>
-                </div>
-              </div>
-
-              {/* Countries + Languages + Devices */}
-              <div className="grid grid-cols-5 gap-4">
-                <div className="col-span-3 bg-white rounded-2xl border border-slate-200/60 shadow-sm overflow-hidden">
-                  <div className="px-6 py-4 border-b border-slate-100"><h3 className="text-sm font-bold text-slate-900">Top Countries</h3></div>
-                  <div className="divide-y divide-slate-50 max-h-[400px] overflow-y-auto">
-                    {countries.map((c:any,i:number)=>(
-                      <div key={c.country} className="px-6 py-3 flex items-center gap-3 hover:bg-blue-50/30 transition-colors">
-                        <span className={`text-[10px] font-bold w-5 text-center ${i<3?"text-blue-600 bg-blue-50 rounded-full w-5 h-5 leading-5":"text-slate-300"}`}>{i+1}</span>
-                        <span className="text-lg leading-none">{c.flag}</span>
-                        <span className="text-sm font-medium text-slate-700 flex-1 truncate">{c.country}</span>
-                        <div className="w-32"><Pbar value={c.count} max={countries[0]?.count||1} /></div>
-                        <span className="text-xs font-bold text-slate-600 w-12 text-right">{c.count.toLocaleString()}</span>
-                        <span className="text-[11px] text-slate-400 w-12 text-right">{c.pct}%</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="col-span-2 space-y-4">
-                  <div className="bg-white rounded-2xl border border-slate-200/60 shadow-sm overflow-hidden">
-                    <div className="px-6 py-4 border-b border-slate-100"><h3 className="text-sm font-bold text-slate-900">Languages</h3></div>
-                    <div className="p-5 space-y-3">
-                      {languages.map((l:any)=>(
-                        <div key={l.code} className="flex items-center gap-3">
-                          <span className="text-lg">{l.flag}</span>
-                          <span className="text-sm font-medium text-slate-700 w-24">{l.name}</span>
-                          <div className="flex-1"><Pbar value={l.count} max={languages[0]?.count||1} color="bg-purple-500" /></div>
-                          <span className="text-xs font-bold text-slate-600 w-10 text-right">{l.pct}%</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="bg-white rounded-2xl border border-slate-200/60 shadow-sm overflow-hidden">
-                    <div className="px-6 py-4 border-b border-slate-100"><h3 className="text-sm font-bold text-slate-900">Devices</h3></div>
-                    <div className="p-5"><DonutChart segments={devSeg} size={140} /></div>
-                  </div>
-                </div>
-              </div>
+        {/* Heatmap + Referrers */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <div className="lg:col-span-2 bg-white rounded-2xl border border-slate-200 overflow-hidden">
+            <div className="px-5 py-4 border-b border-slate-100"><h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2"><LayoutGrid className="w-4 h-4 text-violet-500" />Traffic Heatmap<span className="text-[10px] text-slate-400 font-normal ml-1">Day × Hour</span></h3></div>
+            <div className="p-5">{data.heatmap ? <Heatmap data={data.heatmap} /> : <div className="py-8 text-center text-slate-300"><BarChart3 className="w-8 h-8 mx-auto mb-1 opacity-30" /><p className="text-xs">No heatmap data yet</p></div>}</div>
+          </div>
+          <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+            <div className="px-5 py-4 border-b border-slate-100"><h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2"><ExternalLink className="w-4 h-4 text-cyan-500" />Top Referrers</h3></div>
+            <div className="p-4 space-y-2.5">
+              {(data.referrers || []).slice(0, 8).map((r: any, i: number) => { const mx = Math.max(...(data.referrers || []).map((x: any) => x.count), 1); return (<div key={i} className="flex items-center gap-2.5"><span className="text-xs font-medium text-slate-700 w-28 truncate">{r.source}</span><div className="flex-1 bg-slate-100 rounded-full h-1"><div className="bg-cyan-400 h-1 rounded-full" style={{ width: `${(r.count / mx) * 100}%` }} /></div><span className="text-[10px] text-slate-400 w-8 text-right">{r.count}</span></div>); })}
+              {(!data.referrers?.length) && <div className="text-center py-6 text-slate-400"><ExternalLink className="w-8 h-8 mx-auto mb-1 opacity-30" /><p className="text-xs">Appears after deploy</p></div>}
             </div>
-          );
-        })()}
+          </div>
+        </div>
 
-        {/* ═══════════════ CALCULATORS TAB ═══════════════ */}
-        {tab==="calculators"&&data&&(()=>{
-          const calcs=data.calculators||[], byCat=data.byCategory||[];
-          return (
-            <div className="space-y-6">
-              {byCat.length>0 && (
-                <div className="grid grid-cols-4 gap-4">
-                  {byCat.slice(0,4).map((c:any)=>(
-                    <div key={c.category} className="bg-white rounded-2xl border border-slate-200/60 p-5 shadow-sm">
-                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2 truncate">{c.category}</p>
-                      <p className="text-2xl font-bold text-slate-900">{c.views.toLocaleString()}</p>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-xs text-slate-400">{c.calcs} calcs</span>
-                        <span className={`text-[11px] font-bold ${c.conversion>=40?"text-emerald-600":c.conversion>=20?"text-blue-600":"text-amber-600"}`}>{c.conversion}%</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-              <div className="bg-white rounded-2xl border border-slate-200/60 shadow-sm overflow-hidden">
-                <div className="px-6 py-4 border-b border-slate-100">
-                  <h3 className="text-sm font-bold text-slate-900">Calculator Performance</h3>
-                  <p className="text-xs text-slate-400">{calcs.length} calculators</p>
-                </div>
-                <div className="grid grid-cols-12 gap-2 px-6 py-2.5 bg-slate-50 text-[10px] font-bold text-slate-400 uppercase tracking-widest border-b border-slate-100">
-                  <div className="col-span-1">#</div>
-                  <div className="col-span-3">Calculator</div>
-                  <div className="col-span-2">Category</div>
-                  <div className="col-span-2 text-right">Views</div>
-                  <div className="col-span-2 text-right">Calcs</div>
-                  <div className="col-span-2 text-right">Conv.</div>
-                </div>
-                <div className="divide-y divide-slate-50 max-h-[600px] overflow-y-auto">
-                  {calcs.map((c:any,i:number)=>(
-                    <div key={c.slug} className="grid grid-cols-12 gap-2 px-6 py-3 items-center hover:bg-slate-50/50 transition-colors">
-                      <div className="col-span-1"><span className={`text-xs font-bold ${i<3?"text-blue-600":"text-slate-300"}`}>{i+1}</span></div>
-                      <div className="col-span-3 truncate"><span className="text-sm font-medium text-slate-800">{c.slug}</span></div>
-                      <div className="col-span-2"><span className="text-[11px] text-slate-400 bg-slate-50 px-2 py-0.5 rounded font-medium truncate">{c.category}</span></div>
-                      <div className="col-span-2 text-right"><span className="text-sm font-semibold text-slate-700">{c.views.toLocaleString()}</span></div>
-                      <div className="col-span-2 text-right"><span className="text-sm font-semibold text-emerald-600">{c.calcs.toLocaleString()}</span></div>
-                      <div className="col-span-2 text-right">
-                        <span className={`text-sm font-bold px-2 py-0.5 rounded-md ${c.conversionRate>=40?"text-emerald-700 bg-emerald-50":c.conversionRate>=20?"text-blue-700 bg-blue-50":"text-amber-700 bg-amber-50"}`}>{c.conversionRate}%</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+        {/* Browsers + OS + Stats */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+            <div className="px-5 py-4 border-b border-slate-100"><h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2"><Monitor className="w-4 h-4 text-blue-500" />Browsers</h3></div>
+            <div className="p-4 space-y-3">
+              {(data.browsers || []).length ? data.browsers.map((b: any, i: number) => (<div key={i} className="flex items-center gap-2.5"><div className="flex-1"><div className="flex justify-between mb-0.5"><span className="text-xs font-medium text-slate-700">{b.name}</span><span className="text-[10px] text-slate-400">{b.count} ({b.pct}%)</span></div><div className="w-full bg-slate-100 rounded-full h-1"><div className="bg-blue-400 h-1 rounded-full" style={{ width: `${b.pct}%` }} /></div></div></div>)) : <div className="text-center py-6 text-slate-400"><Monitor className="w-8 h-8 mx-auto mb-1 opacity-30" /><p className="text-xs">No browser data</p></div>}
             </div>
-          );
-        })()}
-
-        {/* ═══════════════ AUDIENCE TAB ═══════════════ */}
-        {tab==="audience"&&data&&(()=>{
-          const subs=data.subscribersByLang||[], users=data.recentUsers||[], growth=data.userGrowth||[];
-          return (
-            <div className="space-y-6">
-              {/* KPI row */}
-              <div className="grid grid-cols-5 gap-4">
-                {[
-                  {label:"Total Users",val:data.totalUsers||0,icon:<Users className="w-5 h-5" />,ic:"text-blue-600 bg-blue-50"},
-                  {label:"PRO Users",val:data.proUsers||0,icon:<Crown className="w-5 h-5" />,ic:"text-amber-600 bg-amber-50"},
-                  {label:"New This Period",val:data.newUsers||0,icon:<UserPlus className="w-5 h-5" />,ic:"text-emerald-600 bg-emerald-50",ch:data.newUsersChange},
-                  {label:"Newsletter",val:data.totalSubscribers||0,icon:<Mail className="w-5 h-5" />,ic:"text-purple-600 bg-purple-50"},
-                  {label:"Monthly Rev.",val:`$${data.monthlyRevenue||0}`,icon:<DollarSign className="w-5 h-5" />,ic:"text-green-600 bg-green-50"},
-                ].map(c=>(
-                  <div key={c.label} className="bg-white rounded-2xl border border-slate-200/60 p-4 shadow-sm">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">{c.label}</span>
-                      <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${c.ic}`}>{c.icon}</div>
-                    </div>
-                    <p className="text-xl font-bold text-slate-900">{typeof c.val==="number"?c.val.toLocaleString():c.val}</p>
-                    {(c as any).ch !== undefined && <Badge value={(c as any).ch} />}
-                  </div>
-                ))}
-              </div>
-
-              {/* Charts + Lists */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-white rounded-2xl border border-slate-200/60 p-6 shadow-sm">
-                  <h3 className="text-sm font-bold text-slate-900 mb-1">User Registrations</h3>
-                  <p className="text-xs text-slate-400 mb-4">New sign-ups per day</p>
-                  <AreaChart data={growth.map((d:any)=>d.count)} height={180} color="#10b981" gid="ug" />
-                  {growth.length>1 && (
-                    <div className="flex justify-between mt-3 pt-3 border-t border-slate-50 text-[10px] text-slate-400 font-medium">
-                      <span>{growth[0]?.date}</span><span>{growth[growth.length-1]?.date}</span>
-                    </div>
-                  )}
-                </div>
-
-                <div className="space-y-4">
-                  {/* Subscribers */}
-                  <div className="bg-white rounded-2xl border border-slate-200/60 shadow-sm overflow-hidden">
-                    <div className="px-6 py-3 border-b border-slate-100"><h3 className="text-sm font-bold text-slate-900">Subscribers by Language</h3></div>
-                    <div className="p-5 space-y-3">
-                      {subs.map((s:any)=>(
-                        <div key={s.code} className="flex items-center gap-3">
-                          <span className="text-lg">{s.flag}</span>
-                          <span className="text-sm font-medium text-slate-700 w-24">{s.name}</span>
-                          <div className="flex-1"><Pbar value={s.count} max={subs[0]?.count||1} color="bg-purple-500" /></div>
-                          <span className="text-sm font-bold text-slate-700 w-8 text-right">{s.count}</span>
-                        </div>
-                      ))}
-                      {subs.length===0 && <p className="text-sm text-slate-400 text-center py-4">No subscribers</p>}
-                    </div>
-                  </div>
-
-                  {/* Recent Users */}
-                  <div className="bg-white rounded-2xl border border-slate-200/60 shadow-sm overflow-hidden">
-                    <div className="px-6 py-3 border-b border-slate-100 flex items-center justify-between">
-                      <h3 className="text-sm font-bold text-slate-900">Recent Users</h3>
-                      {data.unreadMessages>0 && <span className="text-[10px] font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full">{data.unreadMessages} msgs</span>}
-                    </div>
-                    <div className="divide-y divide-slate-50 max-h-48 overflow-y-auto">
-                      {users.map((u:any)=>(
-                        <div key={u.id} className="px-6 py-2.5 flex items-center gap-3">
-                          <div className="w-7 h-7 rounded-full bg-slate-100 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">{(u.name||u.email||"?")[0].toUpperCase()}</div>
-                          <div className="min-w-0 flex-1">
-                            <p className="text-sm font-medium text-slate-700 truncate">{u.name||u.email}</p>
-                            <p className="text-[11px] text-slate-400">{new Date(u.createdAt).toLocaleDateString()}</p>
-                          </div>
-                          {u.isPro && <span className="text-[9px] font-bold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded">PRO</span>}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Bottom stats */}
-              <div className="grid grid-cols-3 gap-4">
-                {[
-                  {label:"Blog Posts",val:data.blog?.totalPosts||0,icon:<FileText className="w-5 h-5" />,ic:"text-indigo-600 bg-indigo-50"},
-                  {label:"Blog Views",val:(data.blog?.totalViews||0).toLocaleString(),icon:<Eye className="w-5 h-5" />,ic:"text-sky-600 bg-sky-50"},
-                  {label:"Unread Messages",val:data.unreadMessages||0,icon:<MessageSquare className="w-5 h-5" />,ic:"text-slate-600 bg-slate-100"},
-                ].map(b=>(
-                  <div key={b.label} className="bg-white rounded-2xl border border-slate-200/60 p-5 shadow-sm flex items-center gap-4">
-                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${b.ic}`}>{b.icon}</div>
-                    <div><p className="text-xs text-slate-400">{b.label}</p><p className="text-2xl font-bold text-slate-900">{b.val}</p></div>
-                  </div>
-                ))}
-              </div>
+          </div>
+          <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+            <div className="px-5 py-4 border-b border-slate-100"><h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2"><Smartphone className="w-4 h-4 text-emerald-500" />Operating Systems</h3></div>
+            <div className="p-4 space-y-3">
+              {(data.operatingSystems || []).length ? data.operatingSystems.map((o: any, i: number) => (<div key={i} className="flex items-center gap-2.5"><div className="flex-1"><div className="flex justify-between mb-0.5"><span className="text-xs font-medium text-slate-700">{o.name}</span><span className="text-[10px] text-slate-400">{o.count} ({o.pct}%)</span></div><div className="w-full bg-slate-100 rounded-full h-1"><div className="bg-emerald-400 h-1 rounded-full" style={{ width: `${o.pct}%` }} /></div></div></div>)) : <div className="text-center py-6 text-slate-400"><Smartphone className="w-8 h-8 mx-auto mb-1 opacity-30" /><p className="text-xs">No OS data</p></div>}
             </div>
-          );
-        })()}
-      </>
-      )}
+          </div>
+          <div className="space-y-4">
+            {[
+              { label: "Avg. Duration", value: data.stats?.avgDuration || "0:00", icon: Timer, color: "text-orange-600 bg-orange-50" },
+              { label: "Bounce Rate", value: `${data.stats?.bounceRate || 0}%`, icon: ArrowDownRight, color: "text-red-600 bg-red-50" },
+              { label: "Active Countries", value: data.bottom?.activeCountries || 0, icon: Globe, color: "text-sky-600 bg-sky-50" },
+            ].map((item, i) => (
+              <div key={i} className="bg-white rounded-xl border border-slate-200 p-4 flex items-center gap-3">
+                <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${item.color}`}><item.icon className="w-4 h-4" /></div>
+                <div><p className="text-lg font-bold text-slate-900">{typeof item.value === "number" ? item.value.toLocaleString() : item.value}</p><p className="text-[11px] text-slate-500">{item.label}</p></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </>)}
+
+      {/* ═══ REALTIME ═══ */}
+      {tab === "realtime" && data && (<>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {[
+            { icon: Zap, label: "Active Now (5min)", value: data.activeNow || 0, color: "bg-emerald-50 text-emerald-600" },
+            { icon: Eye, label: "Views (1h)", value: data.lastHourViews || 0, color: "bg-blue-50 text-blue-600" },
+            { icon: Calculator, label: "Calcs (1h)", value: data.lastHourCalcs || 0, color: "bg-purple-50 text-purple-600" },
+          ].map((kpi, i) => (
+            <div key={i} className="bg-white rounded-2xl border border-slate-200 p-5 hover:shadow-md transition-all group">
+              <div className="flex items-center gap-2 mb-3"><div className={`w-9 h-9 rounded-xl flex items-center justify-center ${kpi.color}`}><kpi.icon className="w-[18px] h-[18px]" /></div><span className="text-xs font-medium text-slate-500">{kpi.label}</span></div>
+              <p className="text-2xl font-bold text-slate-900">{kpi.value.toLocaleString()}</p>
+            </div>
+          ))}
+        </div>
+        <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+          <div className="px-5 py-4 border-b border-slate-100 flex items-center gap-2"><Activity className="w-4 h-4 text-emerald-500" /><h3 className="text-sm font-semibold text-slate-900">Last 60 Minutes</h3><LiveDot /></div>
+          <div className="p-5"><div className="flex items-end gap-[2px] h-28">{(data.minuteTrend || []).map((m: any, i: number) => { const mx = Math.max(...(data.minuteTrend || []).map((x: any) => x.count), 1); return (<div key={i} className="flex-1 bg-emerald-300 hover:bg-emerald-400 rounded-t transition-all cursor-pointer" style={{ height: `${Math.max((m.count / mx) * 100, m.count ? 3 : 0)}%` }} title={`${m.time}: ${m.count}`} />); })}</div></div>
+        </div>
+        <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+          <div className="px-5 py-4 border-b border-slate-100 flex items-center gap-2"><Activity className="w-4 h-4 text-slate-500" /><h3 className="text-sm font-semibold text-slate-900">Live Feed</h3></div>
+          <div className="divide-y divide-slate-50 max-h-[500px] overflow-y-auto">
+            {(data.recentEvents || []).map((e: any, i: number) => (
+              <div key={i} className="px-5 py-2.5 flex items-center gap-3 hover:bg-slate-50/50 transition-colors">
+                <div className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 ${e.type === "CALCULATION" ? "bg-emerald-100 text-emerald-600" : "bg-blue-100 text-blue-600"}`}>{e.type === "CALCULATION" ? <Calculator className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}</div>
+                <div className="flex-1 min-w-0"><p className="text-xs text-slate-700"><span className="font-medium">{slugToName(e.calculatorSlug)}</span><span className="text-slate-400"> — {e.type === "CALCULATION" ? "calc" : "view"}</span></p></div>
+                <span className="text-slate-400 text-xs hidden sm:inline">{e.location || e.flag}</span>
+                {e.browser && <span className="text-[10px] text-slate-300 hidden md:inline">{e.browser}</span>}
+                <span className="text-[10px] text-slate-400 shrink-0">{timeAgo(e.createdAt)}</span>
+              </div>
+            ))}
+            {(!data.recentEvents?.length) && <div className="px-5 py-8 text-center text-slate-400 text-xs">No events in the last hour</div>}
+          </div>
+        </div>
+      </>)}
+
+      {/* ═══ GEOGRAPHIC ═══ */}
+      {tab === "geographic" && data && (<>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+            <div className="px-5 py-4 border-b border-slate-100"><h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2"><Globe className="w-4 h-4 text-purple-500" />Top Countries</h3></div>
+            <div className="p-4 space-y-2 max-h-[400px] overflow-y-auto">
+              {(data.countries || []).length ? data.countries.map((c: any, i: number) => (<div key={i} className="flex items-center gap-2.5"><span className="text-base shrink-0">{c.flag}</span><div className="flex-1 min-w-0"><div className="flex justify-between mb-0.5"><span className="text-xs font-medium text-slate-700 truncate">{c.country}</span><span className="text-[10px] text-slate-400 ml-1">{c.count} ({c.pct}%)</span></div><div className="w-full bg-slate-100 rounded-full h-1"><div className="bg-purple-400 h-1 rounded-full" style={{ width: `${c.pct}%` }} /></div></div></div>)) : <div className="text-center py-6 text-slate-400"><Globe className="w-8 h-8 mx-auto mb-1 opacity-30" /><p className="text-xs">No country data</p></div>}
+            </div>
+          </div>
+          <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+            <div className="px-5 py-4 border-b border-slate-100"><h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2"><Monitor className="w-4 h-4 text-emerald-500" />Devices</h3></div>
+            <div className="p-5 flex items-center justify-center min-h-[160px]">
+              {(data.devices || []).length ? <DeviceDonut data={data.devices} /> : <div className="text-center text-slate-400"><Monitor className="w-8 h-8 mx-auto mb-1 opacity-30" /><p className="text-xs">No device data</p></div>}
+            </div>
+          </div>
+          <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+            <div className="px-5 py-4 border-b border-slate-100"><h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2"><Languages className="w-4 h-4 text-amber-500" />Languages</h3></div>
+            <div className="p-4 space-y-3">
+              {(data.languages || []).length ? data.languages.map((l: any, i: number) => (<div key={i} className="flex items-center gap-2.5"><span className="text-base shrink-0">{l.flag}</span><div className="flex-1"><div className="flex justify-between mb-0.5"><span className="text-xs font-medium text-slate-700">{l.name}</span><span className="text-[10px] text-slate-400">{l.count} ({l.pct}%)</span></div><div className="w-full bg-slate-100 rounded-full h-1"><div className="bg-amber-400 h-1 rounded-full" style={{ width: `${l.pct}%` }} /></div></div></div>)) : <div className="text-center py-6 text-slate-400"><Languages className="w-8 h-8 mx-auto mb-1 opacity-30" /><p className="text-xs">No language data</p></div>}
+            </div>
+          </div>
+        </div>
+        <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+          <div className="px-5 py-4 border-b border-slate-100"><h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2"><MapPin className="w-4 h-4 text-rose-500" />Top Cities</h3></div>
+          <div className="overflow-x-auto"><table className="w-full"><thead><tr className="bg-slate-50/60"><th className="text-left px-5 py-2.5 text-[10px] font-semibold text-slate-400 uppercase tracking-wider w-8">#</th><th className="text-left px-5 py-2.5 text-[10px] font-semibold text-slate-400 uppercase tracking-wider">City</th><th className="text-left px-5 py-2.5 text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Country</th><th className="text-right px-5 py-2.5 text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Events</th></tr></thead>
+            <tbody className="divide-y divide-slate-50">{(data.cities || []).slice(0, 15).map((c: any, i: number) => (<tr key={i} className="hover:bg-slate-50/50 transition-colors"><td className="px-5 py-2.5 text-xs text-slate-400">{i+1}</td><td className="px-5 py-2.5 text-sm font-medium text-slate-900">{c.city}</td><td className="px-5 py-2.5 text-xs text-slate-500">{c.flag} {c.country}</td><td className="px-5 py-2.5 text-right text-sm font-semibold text-slate-700">{c.count}</td></tr>))}
+              {(!data.cities?.length) && <tr><td colSpan={4} className="px-5 py-10 text-center text-sm text-slate-400">City data appears after deploy</td></tr>}
+            </tbody></table></div>
+        </div>
+      </>)}
+
+      {/* ═══ CALCULATORS ═══ */}
+      {tab === "calculators" && data && (<>
+        <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+          <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between"><h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2"><TrendingUp className="w-4 h-4 text-emerald-500" />Calculator Performance<span className="text-[10px] text-slate-400 font-normal ml-1">Top 30</span></h3></div>
+          <div className="overflow-x-auto"><table className="w-full"><thead><tr className="bg-slate-50/60"><th className="text-left px-5 py-2.5 text-[10px] font-semibold text-slate-400 uppercase tracking-wider w-8">#</th><th className="text-left px-5 py-2.5 text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Calculator</th><th className="text-right px-5 py-2.5 text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Views</th><th className="text-right px-5 py-2.5 text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Calcs</th><th className="text-right px-5 py-2.5 text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Conv.</th><th className="text-right px-5 py-2.5 text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Avg Time</th><th className="px-5 py-2.5 w-28"></th></tr></thead>
+            <tbody className="divide-y divide-slate-50">
+              {(data.calculators || []).map((c: any, i: number) => { const maxV = data.calculators[0]?.views || 1; return (<tr key={i} className="hover:bg-slate-50/50 transition-colors"><td className="px-5 py-2.5 text-xs text-slate-400 font-medium">{i+1}</td><td className="px-5 py-2.5"><p className="text-sm font-medium text-slate-900">{slugToName(c.slug)}</p></td><td className="px-5 py-2.5 text-right text-sm font-semibold text-slate-700">{c.views.toLocaleString()}</td><td className="px-5 py-2.5 text-right text-sm text-slate-600">{c.calcs.toLocaleString()}</td><td className="px-5 py-2.5 text-right"><span className={`text-xs font-semibold px-1.5 py-0.5 rounded-full ${c.conversionRate >= 50 ? "bg-emerald-50 text-emerald-700" : c.conversionRate >= 25 ? "bg-amber-50 text-amber-700" : "bg-slate-50 text-slate-600"}`}>{c.conversionRate}%</span></td><td className="px-5 py-2.5 text-right text-xs text-slate-500">{c.avgDuration}</td><td className="px-5 py-2.5"><div className="w-full bg-slate-100 rounded-full h-1.5"><div className="bg-blue-400 h-1.5 rounded-full" style={{ width: `${(c.views / maxV) * 100}%` }} /></div></td></tr>); })}
+              {(!data.calculators?.length) && <tr><td colSpan={7} className="px-5 py-10 text-center text-sm text-slate-400">No calculator data yet</td></tr>}
+            </tbody></table></div>
+        </div>
+      </>)}
+
+      {/* ═══ AUDIENCE ═══ */}
+      {tab === "audience" && data && (<>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {[
+            { icon: Users, label: "Total Users", value: data.totalUsers || 0, color: "bg-blue-50 text-blue-600" },
+            { icon: Crown, label: "PRO Users", value: data.proUsers || 0, color: "bg-amber-50 text-amber-600" },
+            { icon: UserPlus, label: "New Users", value: data.newUsers || 0, change: data.newUsersChange, color: "bg-emerald-50 text-emerald-600" },
+            { icon: DollarSign, label: "Monthly Revenue", value: `$${data.monthlyRevenue || 0}`, color: "bg-purple-50 text-purple-600" },
+          ].map((kpi, i) => (
+            <div key={i} className="bg-white rounded-2xl border border-slate-200 p-5 hover:shadow-md transition-all group">
+              <div className="flex items-center justify-between mb-3"><div className="flex items-center gap-2"><div className={`w-9 h-9 rounded-xl flex items-center justify-center ${kpi.color}`}><kpi.icon className="w-[18px] h-[18px]" /></div><span className="text-xs font-medium text-slate-500">{kpi.label}</span></div>{kpi.change !== undefined && <ChangeBadge value={kpi.change} />}</div>
+              <p className="text-2xl font-bold text-slate-900">{typeof kpi.value === "number" ? kpi.value.toLocaleString() : kpi.value}</p>
+            </div>
+          ))}
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+            <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between"><h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2"><UserPlus className="w-4 h-4 text-purple-500" />Recent Users</h3><Link href={`/${locale}/admin/users`} className="text-xs text-blue-600 hover:text-blue-700 font-medium flex items-center gap-0.5">View all <ChevronRight className="w-3 h-3" /></Link></div>
+            <div className="divide-y divide-slate-50">
+              {(data.recentUsers || []).slice(0, 5).map((u: any) => (<div key={u.id} className="px-5 py-3 flex items-center gap-3 hover:bg-slate-50/50 transition-colors"><div className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white text-xs font-bold shrink-0">{(u.name || u.email || "?").substring(0, 2).toUpperCase()}</div><div className="flex-1 min-w-0"><p className="text-sm font-medium text-slate-900 truncate">{u.name || "No name"}</p><p className="text-[11px] text-slate-400 truncate">{u.email}</p></div><span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${u.isPro ? "bg-blue-100 text-blue-700" : "bg-slate-100 text-slate-500"}`}>{u.isPro ? "PRO" : "FREE"}</span><span className="text-[10px] text-slate-400">{timeAgo(u.createdAt)}</span></div>))}
+              {(!data.recentUsers?.length) && <div className="px-5 py-8 text-center text-slate-400 text-xs">No users yet</div>}
+            </div>
+          </div>
+          <div className="space-y-4">
+            <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+              <div className="px-5 py-4 border-b border-slate-100"><h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2"><Mail className="w-4 h-4 text-pink-500" />Newsletter ({data.totalSubscribers || 0})</h3></div>
+              <div className="p-4 space-y-3">{(data.subscribersByLang || []).map((s: any, i: number) => (<div key={i} className="flex items-center gap-2.5"><span className="text-base shrink-0">{s.flag}</span><div className="flex-1"><div className="flex justify-between mb-0.5"><span className="text-xs font-medium text-slate-700">{s.name}</span><span className="text-[10px] text-slate-400">{s.count}</span></div><div className="w-full bg-slate-100 rounded-full h-1"><div className="bg-pink-400 h-1 rounded-full" style={{ width: `${(s.count / Math.max(data.totalSubscribers, 1)) * 100}%` }} /></div></div></div>))}</div>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              {[{ label: "Blog Posts", value: data.blog?.totalPosts || 0, icon: FileText, color: "text-sky-600 bg-sky-50" }, { label: "Blog Views", value: (data.blog?.totalViews || 0).toLocaleString(), icon: Eye, color: "text-violet-600 bg-violet-50" }].map((item, i) => (
+                <div key={i} className="bg-white rounded-xl border border-slate-200 p-4 flex items-center gap-3"><div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${item.color}`}><item.icon className="w-4 h-4" /></div><div><p className="text-lg font-bold text-slate-900">{item.value}</p><p className="text-[11px] text-slate-500">{item.label}</p></div></div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </>)}
+
+      {/* ═══ INSIGHTS ═══ */}
+      {tab === "insights" && data && (<>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+            <div className="px-5 py-4 border-b border-slate-100"><h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2"><ExternalLink className="w-4 h-4 text-cyan-500" />Traffic Sources</h3></div>
+            <div className="p-4 space-y-2.5">
+              {(data.referrers || []).slice(0, 10).map((r: any, i: number) => { const mx = Math.max(...(data.referrers || []).map((x: any) => x.count), 1); const ic = r.source.includes("google") ? "🔍" : r.source.includes("twitter") || r.source.includes("x.com") ? "𝕏" : r.source.includes("reddit") ? "🤖" : "🌐"; return (<div key={i} className="flex items-center gap-2.5"><span className="text-sm w-5 text-center">{ic}</span><span className="text-xs font-medium text-slate-700 flex-1 truncate">{r.source}</span><div className="w-24 bg-slate-100 rounded-full h-1"><div className="bg-cyan-400 h-1 rounded-full" style={{ width: `${(r.count / mx) * 100}%` }} /></div><span className="text-[10px] text-slate-400 w-8 text-right">{r.count}</span></div>); })}
+              {(!data.referrers?.length) && <div className="text-center py-6 text-slate-400"><ExternalLink className="w-8 h-8 mx-auto mb-1 opacity-30" /><p className="text-xs">Appears after deploy</p></div>}
+            </div>
+          </div>
+          <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+            <div className="px-5 py-4 border-b border-slate-100"><h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2"><TrendingUp className="w-4 h-4 text-emerald-500" />Weekly Growth (90d)</h3></div>
+            <div className="p-5"><div className="flex items-end gap-2 h-32">{(data.growthTrend || []).map((w: any, i: number) => { const mx = Math.max(...(data.growthTrend || []).map((x: any) => x.views), 1); return (<div key={i} className="flex-1 bg-emerald-300 hover:bg-emerald-400 rounded-t transition-all cursor-pointer" style={{ height: `${Math.max((w.views / mx) * 100, 3)}%` }} title={`${w.week}: ${w.views} views`} />); })}</div></div>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+            <div className="px-5 py-4 border-b border-slate-100"><h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2"><Star className="w-4 h-4 text-emerald-500" />Top Converting</h3></div>
+            <div className="divide-y divide-slate-50">{(data.topConverting || []).slice(0, 8).map((c: any, i: number) => (<div key={i} className="px-5 py-2.5 flex items-center gap-3 hover:bg-slate-50/50"><span className="text-xs text-slate-400 w-4">{i+1}</span><span className="text-sm font-medium text-slate-900 flex-1 truncate">{slugToName(c.slug)}</span><span className="text-xs font-semibold px-1.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700">{c.rate}%</span><span className="text-[10px] text-slate-400">{c.views}v</span></div>))}{(!data.topConverting?.length) && <div className="px-5 py-8 text-center text-slate-400 text-xs">No data yet</div>}</div>
+          </div>
+          <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+            <div className="px-5 py-4 border-b border-slate-100"><h3 className="text-sm font-semibold text-slate-900 flex items-center gap-2"><AlertTriangle className="w-4 h-4 text-amber-500" />Needs Improvement</h3></div>
+            <div className="divide-y divide-slate-50">{(data.lowConverting || []).slice(0, 8).map((c: any, i: number) => (<div key={i} className="px-5 py-2.5 flex items-center gap-3 hover:bg-slate-50/50"><span className="text-xs text-slate-400 w-4">{i+1}</span><span className="text-sm font-medium text-slate-900 flex-1 truncate">{slugToName(c.slug)}</span><span className="text-xs font-semibold px-1.5 py-0.5 rounded-full bg-amber-50 text-amber-700">{c.rate}%</span><span className="text-[10px] text-slate-400">{c.views}v</span></div>))}{(!data.lowConverting?.length) && <div className="px-5 py-8 text-center text-slate-400 text-xs">No data yet</div>}</div>
+          </div>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          {[
+            { label: "Avg Duration", value: data.engagement?.[0]?.avgFormatted || "-", icon: Timer, color: "text-orange-600 bg-orange-50" },
+            { label: "Peak Hour", value: data.peakHours?.[0]?.label || "-", icon: Clock, color: "text-amber-600 bg-amber-50" },
+            { label: "Top Browser", value: data.browsers?.[0]?.name || "-", icon: Monitor, color: "text-blue-600 bg-blue-50" },
+            { label: "Top OS", value: data.operatingSystems?.[0]?.name || "-", icon: Smartphone, color: "text-emerald-600 bg-emerald-50" },
+          ].map((item) => (
+            <div key={item.label} className="bg-white rounded-xl border border-slate-200 p-4 flex items-center gap-3"><div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${item.color}`}><item.icon className="w-4 h-4" /></div><div><p className="text-lg font-bold text-slate-900">{item.value}</p><p className="text-[11px] text-slate-500">{item.label}</p></div></div>
+          ))}
+        </div>
+      </>)}
     </div>
   );
 }

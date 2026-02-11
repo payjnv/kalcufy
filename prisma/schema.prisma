@@ -129,18 +129,34 @@ model Newsletter {
 }
 
 model CalculatorUsage {
-  id             String       @id @default(cuid())
-  calculatorSlug String
-  sessionId      String?
-  userId         String?
-  language       String       @default("en")
-  country        String?
-  device         String?
-  createdAt      DateTime     @default(now())
-  type           TrackingType @default(VIEW)
+  id              String       @id @default(cuid())
+  calculatorSlug  String
+  sessionId       String?
+  userId          String?
+  language        String       @default("en")
+  country         String?
+  countryCode     String?      @map("country_code")
+  city            String?
+  region          String?
+  latitude        Float?
+  longitude       Float?
+  device          String?
+  browser         String?
+  os              String?
+  referrer        String?
+  pagePath        String?      @map("page_path")
+  durationSeconds Int?         @map("duration_seconds")
+  createdAt       DateTime     @default(now())
+  type            TrackingType @default(VIEW)
 
   @@index([calculatorSlug])
   @@index([createdAt])
+  @@index([country])
+  @@index([device])
+  @@index([language])
+  @@index([type])
+  @@index([city])
+  @@index([browser])
   @@map("calculator_usage")
 }
 

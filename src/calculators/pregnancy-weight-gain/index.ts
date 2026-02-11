@@ -519,6 +519,2188 @@ export const pregnancyDueDateConfig: CalculatorConfigV4 = {
         series: { weightOz: "Baby Weight" },
       },
     },
+    es: {
+      "name": "Calculadora de Fecha de Parto",
+      "slug": "calculadora-fecha-parto-embarazo",
+      "subtitle": "Estima tu fecha de parto, rastrea el crecimiento semanal del bebé y visualiza tu cronograma completo de hitos prenatales con fechas personalizadas",
+      "breadcrumb": "Fecha de Parto",
+      "seo": {
+        "title": "Calculadora de Fecha de Parto - Estimador de Embarazo y Parto",
+        "description": "Calcula tu fecha de parto usando FUM, ecografía, FIV o fecha de concepción. Rastrea el tamaño del bebé por semana, ve hitos prenatales y obtén tu ventana de parto.",
+        "shortDescription": "Estima tu fecha de parto y rastrea hitos del embarazo",
+        "keywords": [
+          "calculadora fecha parto",
+          "calculadora embarazo",
+          "fecha parto embarazo",
+          "fecha estimada parto",
+          "calculadora edad gestacional",
+          "calculadora fecha parto FIV",
+          "cuándo nace mi bebé",
+          "tamaño bebé por semana"
+        ]
+      },
+      "inputs": {
+        "method": {
+          "label": "Método de Cálculo",
+          "helpText": "Elige cómo quieres estimar tu fecha de parto",
+          "options": {
+            "lmp": "Fecha de Última Menstruación (FUM)",
+            "conception": "Fecha de Concepción",
+            "ivf": "Fecha de Transferencia FIV",
+            "ultrasound": "Fecha de Ecografía",
+            "knownDueDate": "Ya Conozco mi Fecha de Parto"
+          }
+        },
+        "inputDate": {
+          "label": "Fecha",
+          "helpText": "Selecciona la fecha para el método de cálculo elegido"
+        },
+        "cycleLength": {
+          "label": "Duración Promedio del Ciclo",
+          "helpText": "Días promedio en tu ciclo menstrual (21–45, por defecto 28)"
+        },
+        "lutealPhase": {
+          "label": "Duración de la Fase Lútea",
+          "helpText": "Días entre ovulación y próximo período (10–16, por defecto 14)"
+        },
+        "ivfEmbryo": {
+          "label": "Edad del Embrión en Transferencia",
+          "helpText": "Las transferencias de día 5 (blastocisto) son más comunes",
+          "options": {
+            "day3": "Embrión Día 3",
+            "day5": "Blastocisto Día 5",
+            "day6": "Blastocisto Día 6"
+          }
+        },
+        "gestWeeks": {
+          "label": "Semanas en Ecografía",
+          "helpText": "Edad gestacional en semanas al momento de la ecografía"
+        },
+        "gestDays": {
+          "label": "Días",
+          "helpText": "Días adicionales (0–6)"
+        },
+        "motherBirthYear": {
+          "label": "Año de Nacimiento de la Madre (opcional)",
+          "helpText": "Para Predicción China de Género — ¡solo por diversión! No es consejo médico"
+        }
+      },
+      "inputGroups": {},
+      "results": {
+        "dueDate": {
+          "label": "Fecha Estimada de Parto"
+        },
+        "gestationalAge": {
+          "label": "Edad Gestacional"
+        },
+        "trimester": {
+          "label": "Trimestre Actual"
+        },
+        "daysRemaining": {
+          "label": "Días Restantes"
+        },
+        "conceptionDate": {
+          "label": "Concepción Estimada"
+        },
+        "deliveryWindow": {
+          "label": "Ventana de Parto"
+        },
+        "currentWeek": {
+          "label": "Semana Actual"
+        },
+        "babySizeFruit": {
+          "label": "Tamaño del Bebé"
+        },
+        "babyMeasurements": {
+          "label": "Longitud y Peso"
+        },
+        "babyDevelopment": {
+          "label": "Desarrollo Destacado"
+        },
+        "zodiacSign": {
+          "label": "Signo Zodiacal del Bebé"
+        },
+        "birthstone": {
+          "label": "Piedra de Nacimiento"
+        },
+        "birthSeason": {
+          "label": "Estación de Nacimiento"
+        },
+        "trimesterProgress": {
+          "label": "Progreso del Embarazo"
+        },
+        "genderPrediction": {
+          "label": "Predicción China de Género"
+        }
+      },
+      "tooltips": {
+        "dueDate": "Basado en una gestación de 40 semanas (280 días) desde tu última menstruación, ajustado por la duración de tu ciclo y fase lútea",
+        "gestationalAge": "Qué tan avanzado está tu embarazo, contado desde el primer día de tu última menstruación",
+        "deliveryWindow": "La mayoría de bebés nacen entre 37 y 42 semanas — solo cerca del 5% llegan en la fecha exacta",
+        "daysRemaining": "Días calendario hasta tu fecha estimada de parto",
+        "conceptionDate": "Fecha estimada de fertilización, aproximadamente 2 semanas después de FUM para un ciclo de 28 días",
+        "babySizeFruit": "Una comparación divertida del tamaño aproximado de tu bebé con frutas y vegetales familiares",
+        "babyDevelopment": "Hito clave de desarrollo que ocurre esta semana",
+        "zodiacSign": "El signo astrológico basado en tu fecha estimada de parto",
+        "birthstone": "La piedra preciosa tradicional asociada con el mes esperado de nacimiento de tu bebé",
+        "trimesterProgress": "Porcentaje de embarazo completado basado en 40 semanas",
+        "genderPrediction": "Predicción del calendario chino antiguo — solo para entretenimiento, no consejo médico (50/50 de precisión)"
+      },
+      "values": {
+        "January": "Enero",
+        "February": "Febrero",
+        "March": "Marzo",
+        "April": "Abril",
+        "May": "Mayo",
+        "June": "Junio",
+        "July": "Julio",
+        "August": "Agosto",
+        "September": "Septiembre",
+        "October": "Octubre",
+        "November": "Noviembre",
+        "December": "Diciembre",
+        "First Trimester": "Primer Trimestre",
+        "Second Trimester": "Segundo Trimestre",
+        "Third Trimester": "Tercer Trimestre",
+        "Post-Term": "Post-Término",
+        "Not Yet Pregnant": "Aún No Embarazada",
+        "day": "día",
+        "days": "días",
+        "week": "semana",
+        "weeks": "semanas",
+        "Week": "Semana",
+        "Aries": "Aries",
+        "Taurus": "Tauro",
+        "Gemini": "Géminis",
+        "Cancer": "Cáncer",
+        "Leo": "Leo",
+        "Virgo": "Virgo",
+        "Libra": "Libra",
+        "Scorpio": "Escorpio",
+        "Sagittarius": "Sagitario",
+        "Capricorn": "Capricornio",
+        "Aquarius": "Acuario",
+        "Pisces": "Piscis",
+        "Spring": "Primavera",
+        "Summer": "Verano",
+        "Fall": "Otoño",
+        "Winter": "Invierno",
+        "Poppy Seed": "Semilla de Amapola",
+        "Sesame Seed": "Semilla de Sésamo",
+        "Lentil": "Lenteja",
+        "Blueberry": "Arándano",
+        "Raspberry": "Frambuesa",
+        "Cherry": "Cereza",
+        "Strawberry": "Fresa",
+        "Fig": "Higo",
+        "Lime": "Lima",
+        "Lemon": "Limón",
+        "Peach": "Durazno",
+        "Apple": "Manzana",
+        "Avocado": "Aguacate",
+        "Pear": "Pera",
+        "Bell Pepper": "Pimiento",
+        "Mango": "Mango",
+        "Banana": "Plátano",
+        "Carrot": "Zanahoria",
+        "Corn on the Cob": "Mazorca de Maíz",
+        "Large Mango": "Mango Grande",
+        "Ear of Corn": "Mazorca de Maíz",
+        "Rutabaga": "Nabo Sueco",
+        "Lettuce Head": "Lechuga",
+        "Cauliflower": "Coliflor",
+        "Eggplant": "Berenjena",
+        "Acorn Squash": "Calabaza Bellota",
+        "Cabbage": "Repollo",
+        "Coconut": "Coco",
+        "Jicama": "Jícama",
+        "Pineapple": "Piña",
+        "Cantaloupe": "Melón",
+        "Honeydew Melon": "Melón Verde",
+        "Romaine Lettuce": "Lechuga Romana",
+        "Swiss Chard": "Acelga",
+        "Mini Watermelon": "Sandía Mini",
+        "Pumpkin": "Calabaza",
+        "Watermelon": "Sandía",
+        "Large Watermelon": "Sandía Grande",
+        "Jackfruit": "Jaca",
+        "complete": "completo",
+        "today": "hoy",
+        "Early Term": "Término Temprano",
+        "Full Term": "Término Completo",
+        "Late Term": "Término Tardío",
+        "Garnet": "Granate",
+        "Amethyst": "Amatista",
+        "Aquamarine": "Aguamarina",
+        "Diamond": "Diamante",
+        "Emerald": "Esmeralda",
+        "Alexandrite": "Alejandrita",
+        "Ruby": "Rubí",
+        "Peridot": "Peridoto",
+        "Sapphire": "Zafiro",
+        "Opal": "Ópalo",
+        "Topaz": "Topacio",
+        "Tanzanite": "Tanzanita",
+        "Boy": "Niño",
+        "Girl": "Niña",
+        "Just for fun!": "¡Solo por diversión!",
+        "protection & strength": "protección y fuerza",
+        "wisdom & peace": "sabiduría y paz",
+        "courage & serenity": "valor y serenidad",
+        "eternal love & clarity": "amor eterno y claridad",
+        "rebirth & fertility": "renacimiento y fertilidad",
+        "luck & good fortune": "suerte y buena fortuna",
+        "passion & vitality": "pasión y vitalidad",
+        "strength & healing": "fuerza y sanación",
+        "truth & loyalty": "verdad y lealtad",
+        "hope & creativity": "esperanza y creatividad",
+        "joy & abundance": "alegría y abundancia",
+        "transformation & new beginnings": "transformación y nuevos comienzos",
+        "First Heartbeat Detectable": "Primer Latido Detectable",
+        "First Prenatal Visit": "Primera Visita Prenatal",
+        "NIPT / Nuchal Translucency Screen": "Prueba NIPT / Translucencia Nucal",
+        "End of First Trimester": "Fin del Primer Trimestre",
+        "Quad Screen Window": "Ventana de Cuádruple Marcador",
+        "Anatomy Scan (Level 2 Ultrasound)": "Ecografía Anatómica (Nivel 2)",
+        "Viability Milestone": "Hito de Viabilidad",
+        "Glucose Screening Test": "Prueba de Glucosa",
+        "Tdap Vaccine Window": "Ventana Vacuna Tdap",
+        "Third Trimester Begins": "Comienza Tercer Trimestre",
+        "Fetal Position Check": "Control Posición Fetal",
+        "Group B Strep (GBS) Test": "Prueba Estreptococo B",
+        "Early Term Begins": "Comienza Término Temprano",
+        "Full Term Begins": "Comienza Término Completo",
+        "Estimated Due Date": "Fecha Estimada de Parto",
+        "Post-Term Consideration": "Consideración Post-Término",
+        "Detectable via transvaginal ultrasound": "Detectable vía ecografía transvaginal",
+        "Initial bloodwork, medical history, physical exam": "Análisis inicial, historial médico, examen físico",
+        "Non-invasive chromosomal screening window": "Ventana de tamizaje cromosómico no invasivo",
+        "Major organ systems formed; miscarriage risk drops": "Sistemas de órganos principales formados; riesgo de aborto disminuye",
+        "Screens for neural tube defects and chromosomal conditions": "Detecta defectos del tubo neural y condiciones cromosómicas",
+        "Detailed structural ultrasound; sex may be visible": "Ecografía estructural detallada; sexo puede ser visible",
+        "Baby could potentially survive outside the womb with NICU care": "Bebé podría sobrevivir fuera del útero con cuidados de UCIN",
+        "Screens for gestational diabetes mellitus (GDM)": "Detecta diabetes mellitus gestacional",
+        "Recommended between 27–36 weeks to protect newborn from whooping cough": "Recomendada entre semanas 27–36 para proteger al recién nacido de tos ferina",
+        "Final growth and development phase begins": "Comienza fase final de crecimiento y desarrollo",
+        "Doctor checks if baby is head-down (cephalic) or breech": "Médico verifica si bebé está cabeza abajo (cefálico) o podálico",
+        "Vaginal swab screens for Group B Streptococcus": "Hisopado vaginal detecta Estreptococo Grupo B",
+        "Baby is considered early term (37–38 weeks)": "Bebé se considera término temprano (37–38 semanas)",
+        "Baby is considered full term (39–40 weeks)": "Bebé se considera término completo (39–40 semanas)",
+        "Average 40-week gestation target": "Objetivo promedio de gestación de 40 semanas",
+        "Doctor may discuss induction if labor hasn't begun": "Médico puede discutir inducción si no ha comenzado trabajo de parto"
+      },
+      "formats": {
+        "summary": "Tu fecha estimada de parto es {dueDate}. Actualmente estás en {gestationalAge} ({trimester}). El bebé es del tamaño de {babySizeFruit}. {daysRemaining} días restantes."
+      },
+      "presets": {
+        "firstPregnancyLmp": {
+          "label": "Primer Embarazo (FUM)",
+          "description": "Ciclo 28 días, FUM nov 2025"
+        },
+        "ivfBlastocyst": {
+          "label": "Transferencia FIV Día 5",
+          "description": "Transferencia blastocisto ene 2026"
+        },
+        "earlyUltrasound": {
+          "label": "Ecografía Temprana",
+          "description": "Ecografía 8 semanas ene 2026"
+        },
+        "irregularCycle": {
+          "label": "Ciclo Irregular (35 días)",
+          "description": "Ciclo largo, FUM oct 2025"
+        }
+      },
+      "infoCards": {
+        "keyDates": {
+          "title": "📅 Fechas Clave",
+          "items": [
+            {
+              "label": "Fecha de Parto",
+              "valueKey": "dueDate"
+            },
+            {
+              "label": "Ventana de Parto",
+              "valueKey": "deliveryWindow"
+            },
+            {
+              "label": "Fecha de Concepción",
+              "valueKey": "conceptionDate"
+            },
+            {
+              "label": "Días Restantes",
+              "valueKey": "daysRemaining"
+            }
+          ]
+        },
+        "babyNow": {
+          "title": "👶 Bebé Esta Semana",
+          "items": [
+            {
+              "label": "Semana Actual",
+              "valueKey": "currentWeek"
+            },
+            {
+              "label": "Tamaño del Bebé",
+              "valueKey": "babySizeFruit"
+            },
+            {
+              "label": "Longitud y Peso",
+              "valueKey": "babyMeasurements"
+            },
+            {
+              "label": "Desarrollo",
+              "valueKey": "babyDevelopment"
+            }
+          ]
+        },
+        "tips": {
+          "title": "💡 Consejos del Embarazo",
+          "items": [
+            "Solo cerca del 5% de bebés llegan en su fecha exacta — 80% nacen dentro de 10 días de la fecha estimada",
+            "La ecografía del primer trimestre (antes de 13 semanas) es el método más preciso, dentro de ±5–7 días",
+            "Ajustar la duración del ciclo y fase lútea da una fecha de parto más personalizada que asumir 28 días estándar",
+            "Tu cronograma de hitos prenatales abajo muestra fechas estimadas para cada prueba y control clave"
+          ]
+        }
+      },
+      "detailedTable": {
+        "prenatalTimeline": {
+          "button": "Ver Cronograma Prenatal",
+          "title": "Cronograma de Pruebas e Hitos Prenatales",
+          "columns": {
+            "milestone": "Hito",
+            "estimatedDate": "Fecha Estimada",
+            "gestAge": "Edad Gestacional",
+            "notes": "Notas"
+          }
+        }
+      },
+      "education": {
+        "whatIs": {
+          "title": "¿Qué es una Fecha Estimada de Parto?",
+          "content": "Una fecha estimada de parto (FEP) es la fecha proyectada cuando se espera que una persona embarazada dé a luz a su bebé. Típicamente se calcula como 280 días (40 semanas) desde el primer día de la última menstruación, asumiendo un ciclo estándar de 28 días. Sin embargo, porque las duraciones de ciclos varían ampliamente (21–45 días) y la ovulación no siempre ocurre en el día 14, métodos más personalizados — incluyendo ajuste de duración del ciclo, corrección de fase lútea, fechas de transferencia FIV, y mediciones tempranas de ecografía — mejoran significativamente la precisión. La investigación muestra que solo cerca del 4–5% de bebés nacen en su fecha exacta. Cerca del 80% llegan dentro de 10 días de la FEP, y cualquier nacimiento entre 37 y 42 semanas se considera dentro del rango normal. Tu fecha de parto se entiende mejor como el punto central de una ventana de parto, no una fecha límite precisa."
+        },
+        "howItWorks": {
+          "title": "Cómo se Calculan las Fechas de Parto",
+          "content": "Esta calculadora soporta cinco métodos de estimación. El método de Fecha de Última Menstruación (FUM) usa la regla de Naegele con ajustes para tu duración personal de ciclo y fase lútea: calcula la fecha probable de ovulación (duración del ciclo menos duración de fase lútea), luego añade 266 días para llegar a la fecha de parto. El método de Fecha de Concepción añade 266 días a la fecha conocida de fertilización. Para transferencias FIV, la calculadora cuenta la edad del embrión en la transferencia (3, 5, o 6 días) y añade el número apropiado de días para llegar a 40 semanas de edad gestacional — las fechas FIV tienden a ser las más precisas ya que el momento exacto de fertilización es conocido. El método de Ecografía trabaja hacia atrás desde la edad gestacional determinada durante un escaneo temprano, y las ecografías del primer trimestre (antes de 13 semanas) se consideran el estándar dorado para precisión de datación. Finalmente, el método de Fecha de Parto Conocida (reverso) retro-calcula tu fecha de concepción y FUM, útil para entender tu cronograma completo de embarazo."
+        },
+        "considerations": {
+          "title": "Consideraciones Importantes",
+          "items": [
+            {
+              "text": "Las ecografías del primer trimestre (antes de 13 semanas) son el estándar dorado para precisión de datación del embarazo, con un margen de error de solo ±5–7 días según las guías ACOG",
+              "type": "info"
+            },
+            {
+              "text": "Los ciclos menstruales irregulares pueden hacer menos confiable la datación basada en FUM — si tus ciclos varían más de 7 días, considera el método de ecografía o concepción",
+              "type": "warning"
+            },
+            {
+              "text": "Solo cerca del 4–5% de bebés nacen en su fecha exacta; 80% llegan dentro de 10 días, y la ventana de 37–42 semanas es completamente normal",
+              "type": "info"
+            },
+            {
+              "text": "Las fechas de parto FIV tienden a ser las más precisas de todos los métodos porque las fechas exactas de fertilización y transferencia son conocidas",
+              "type": "info"
+            },
+            {
+              "text": "Tu proveedor de salud puede ajustar tu fecha de parto después de una ecografía temprana si difiere por más de 7 días de las estimaciones basadas en FUM",
+              "type": "warning"
+            },
+            {
+              "text": "Los embarazos que duran más de 42 semanas (post-término) conllevan riesgos mayores — ACOG recomienda discutir inducción entre 41 y 42 semanas",
+              "type": "warning"
+            }
+          ]
+        },
+        "milestones": {
+          "title": "Definiciones de Términos e Hitos Clave",
+          "items": [
+            {
+              "text": "Primer Trimestre (Semanas 1–13): El corazón del bebé comienza a latir alrededor de la semana 6; para la semana 12, todos los órganos principales se han formado y el riesgo de aborto baja significativamente a cerca del 2%",
+              "type": "info"
+            },
+            {
+              "text": "Segundo Trimestre (Semanas 14–27): La ecografía anatómica en 18–22 semanas verifica desarrollo estructural y puede revelar el sexo; movimientos fetales (aceleración) típicamente se sienten entre semanas 18–22",
+              "type": "info"
+            },
+            {
+              "text": "Tercer Trimestre (Semanas 28–40): Aumento rápido de peso y desarrollo cerebral; bebé alcanza viabilidad alrededor de 24 semanas; pulmones continúan madurando hasta 36 semanas",
+              "type": "info"
+            },
+            {
+              "text": "Pretérmino: Antes de 37 semanas | Término Temprano: 37–38 semanas | Término Completo: 39–40 semanas | Término Tardío: 41 semanas | Post-Término: 42+ semanas",
+              "type": "warning"
+            },
+            {
+              "text": "Tamizajes Clave: NIPT/translucencia nucal (10–13 semanas), Cuádruple marcador (15–20 semanas), Ecografía anatómica (18–22 semanas), Prueba glucosa (24–28 semanas), Prueba EGB (35–37 semanas)",
+              "type": "info"
+            },
+            {
+              "text": "El calendario chino de predicción de género es una herramienta tradicional divertida con ~50% precisión (no mejor que el azar) — basada en edad lunar de la madre y mes de concepción, solo para entretenimiento",
+              "type": "info"
+            }
+          ]
+        },
+        "examples": {
+          "title": "Ejemplos de Cálculos",
+          "description": "Ejemplos paso a paso para diferentes métodos de estimación",
+          "examples": [
+            {
+              "title": "Método FUM (ciclo 28 días)",
+              "steps": [
+                "Última menstruación comenzó: 1 de enero, 2026",
+                "Duración del ciclo: 28 días, Fase lútea: 14 días",
+                "Día de ovulación: 28 − 14 = día 14 → 15 de enero",
+                "Fecha de parto: 15 de enero + 266 días = 8 de octubre, 2026",
+                "Atajo de Naegele: 1 ene + 1 año − 3 meses + 7 días = 8 oct"
+              ],
+              "result": "Fecha de Parto: 8 de octubre, 2026"
+            },
+            {
+              "title": "Transferencia FIV Blastocisto Día 5",
+              "steps": [
+                "Fecha de transferencia: 10 de febrero, 2026",
+                "Edad del embrión: 5 días (blastocisto)",
+                "Gestación en transferencia: 2 semanas + 5 días = 19 días",
+                "Días restantes: 280 − 19 = 261 días",
+                "Fecha de parto: 10 de febrero + 261 = 29 de octubre, 2026"
+              ],
+              "result": "Fecha de Parto: 29 de octubre, 2026"
+            }
+          ]
+        }
+      },
+      "faqs": [
+        {
+          "question": "¿Qué tan precisa es una calculadora de fecha de parto?",
+          "answer": "Las calculadoras de fecha de parto proporcionan una estimación basada en la duración promedio gestacional (280 días desde FUM). La precisión depende del método: la ecografía del primer trimestre es más precisa (±5–7 días), las fechas FIV son casi tan precisas, y el cálculo basado en FUM puede estar errado por 1–2 semanas para ciclos irregulares. Solo cerca del 4–5% de bebés llegan en la fecha exacta — la mayoría nacen dentro de una ventana de 10 días alrededor de la FEP."
+        },
+        {
+          "question": "¿Cuál es la diferencia entre edad gestacional y edad fetal?",
+          "answer": "La edad gestacional se cuenta desde el primer día de tu última menstruación (FUM), que es cerca de 2 semanas antes de que la concepción realmente ocurra. La edad fetal (edad embrionaria) se cuenta desde la fecha real de concepción. Entonces a las '8 semanas de embarazo' (edad gestacional), el embrión tiene realmente cerca de 6 semanas. Los profesionales médicos casi siempre usan edad gestacional."
+        },
+        {
+          "question": "¿Puede cambiar mi fecha de parto durante el embarazo?",
+          "answer": "Sí. Si una ecografía temprana (antes de 13 semanas) muestra una edad gestacional que difiere de tu estimación basada en FUM por más de 7 días, tu proveedor de salud puede ajustar tu fecha de parto. Según las guías ACOG, las mediciones de ecografía del primer trimestre son el método de datación más confiable."
+        },
+        {
+          "question": "¿Cómo se calcula una fecha de parto FIV?",
+          "answer": "Las fechas de parto FIV se calculan desde la fecha de transferencia del embrión. Para un blastocisto Día 5, se añaden 261 días a la fecha de transferencia. Los embriones Día 3 añaden 263 días, y los blastocistos Día 6 añaden 260 días. Los cálculos FIV están entre los más precisos porque la fecha exacta de fertilización es conocida."
+        },
+        {
+          "question": "¿Qué significa 'término completo' vs 'término temprano'?",
+          "answer": "ACOG define: Pretérmino (antes de 37 semanas), Término Temprano (37–38 semanas), Término Completo (39–40 semanas), Término Tardío (41 semanas), Post-Término (42+ semanas). Término completo es la ventana ideal con los mejores resultados de salud."
+        },
+        {
+          "question": "¿Realmente afecta la duración del ciclo la fecha de parto?",
+          "answer": "Sí, significativamente. El cálculo estándar de 280 días asume un ciclo de 28 días con ovulación en el día 14. Un ciclo de 35 días significa ovulación alrededor del día 21 — desplazando tu fecha de parto por 7 días. Esta calculadora se ajusta tanto para duración del ciclo como fase lútea para mejor precisión."
+        },
+        {
+          "question": "¿Qué es el calendario chino de predicción de género?",
+          "answer": "Una herramienta tradicional supuestamente de más de 700 años que afirma predecir el sexo del bebé basado en la edad lunar de la madre y mes de concepción. Los estudios científicos muestran que es cerca del 50% preciso — lo mismo que lanzar una moneda. Se incluye aquí como una tradición divertida, no una herramienta médica."
+        },
+        {
+          "question": "¿Qué es una 'ecografía de datación' y cuándo debería hacerme una?",
+          "answer": "Una ecografía de datación (típicamente 7–12 semanas) mide la longitud corona-rabadilla del embrión para determinar edad gestacional. Es el método de datación más preciso con ±5–7 días de margen de error. Tanto ACOG como NHS la recomiendan en el primer trimestre, especialmente para ciclos irregulares."
+        },
+        {
+          "question": "¿Qué pasa si paso mi fecha de parto?",
+          "answer": "Cerca del 50% de madres primerizas dan a luz después de 40 semanas. A las 41 semanas, tu proveedor aumenta el monitoreo. Para las 42 semanas, la mayoría de guías (ACOG, NICE) recomiendan discutir inducción ya que los riesgos aumentan por declive de función placentaria y reducción de líquido amniótico."
+        },
+        {
+          "question": "¿Pueden los gemelos tener una fecha de parto diferente?",
+          "answer": "Los embarazos gemelares usan el mismo cálculo inicial, pero el parto esperado es más temprano — alrededor de 36–37 semanas en promedio. Tu proveedor puede recomendar parto entre 36–38 semanas dependiendo de si los gemelos son idénticos (monocoriónicos) o fraternales (dicoriónicos)."
+        }
+      ],
+      "chart": {
+        "title": "Crecimiento del Bebé por Semana",
+        "xLabel": "Semana",
+        "yLabel": "Peso (oz / lb)",
+        "series": {
+          "weightOz": "Peso del Bebé"
+        }
+      },
+      "buttons": {
+        "calculate": "Calcular",
+        "reset": "Reiniciar",
+        "pdf": "PDF",
+        "csv": "CSV",
+        "excel": "Excel",
+        "save": "Guardar",
+        "saved": "Guardado",
+        "saving": "Guardando..."
+      },
+      "share": {
+        "calculatedWith": "Calculado con Kalcufy.com"
+      },
+      "ui": {
+        "results": "Resultados",
+        "yourInformation": "Tu Información"
+      },
+      "accessibility": {
+        "mobileResults": "Resumen de resultados",
+        "closeModal": "Cerrar",
+        "openMenu": "Abrir menú"
+      },
+      "rating": {
+        "title": "Califica esta Calculadora",
+        "share": "Compartir",
+        "copied": "¡Copiado!",
+        "copyLink": "Copiar Enlace",
+        "clickToRate": "Clic para calificar",
+        "youRated": "Calificaste",
+        "stars": "estrellas",
+        "averageFrom": "promedio de",
+        "ratings": "calificaciones"
+      },
+      "common": {
+        "home": "Inicio",
+        "calculators": "Calculadoras"
+      },
+      "sources": {
+        "title": "Fuentes y Referencias"
+      },
+      "calculator": {
+        "yourInformation": "Tu Información"
+      }
+    },
+    pt: {
+      "name": "Calculadora de Data Prevista de Parto",
+      "slug": "calculadora-data-prevista-parto",
+      "subtitle": "Estime sua data prevista de parto, acompanhe o crescimento semanal do bebê e visualize sua linha do tempo completa de marcos pré-natais com datas personalizadas",
+      "breadcrumb": "Data de Parto",
+      "seo": {
+        "title": "Calculadora Data de Parto - Estimador de Gravidez e Entrega",
+        "description": "Calcule sua data prevista de parto usando DUM, ultrassom, FIV ou data de concepção. Acompanhe o tamanho do bebê por semana, visualize marcos pré-natais e obtenha sua janela de parto.",
+        "shortDescription": "Estime sua data prevista de parto e acompanhe marcos da gravidez",
+        "keywords": [
+          "calculadora data de parto",
+          "calculadora gravidez",
+          "data prevista parto",
+          "data estimada nascimento",
+          "calculadora idade gestacional",
+          "calculadora FIV data parto",
+          "quando meu bebê vai nascer",
+          "tamanho bebê por semana"
+        ]
+      },
+      "inputs": {
+        "method": {
+          "label": "Método de Cálculo",
+          "helpText": "Escolha como você quer estimar sua data prevista de parto",
+          "options": {
+            "lmp": "Data da Última Menstruação (DUM)",
+            "conception": "Data da Concepção",
+            "ivf": "Data da Transferência de FIV",
+            "ultrasound": "Data do Ultrassom",
+            "knownDueDate": "Já Sei Minha Data Prevista"
+          }
+        },
+        "inputDate": {
+          "label": "Data",
+          "helpText": "Selecione a data para o método de cálculo escolhido"
+        },
+        "cycleLength": {
+          "label": "Duração Média do Ciclo",
+          "helpText": "Dias médios do seu ciclo menstrual (21–45, padrão 28)"
+        },
+        "lutealPhase": {
+          "label": "Duração da Fase Lútea",
+          "helpText": "Dias entre ovulação e próxima menstruação (10–16, padrão 14)"
+        },
+        "ivfEmbryo": {
+          "label": "Idade do Embrião na Transferência",
+          "helpText": "Transferências do 5º dia (blastocisto) são mais comuns",
+          "options": {
+            "day3": "Embrião 3º Dia",
+            "day5": "Blastocisto 5º Dia",
+            "day6": "Blastocisto 6º Dia"
+          }
+        },
+        "gestWeeks": {
+          "label": "Semanas no Ultrassom",
+          "helpText": "Idade gestacional em semanas no momento do ultrassom"
+        },
+        "gestDays": {
+          "label": "Dias",
+          "helpText": "Dias adicionais (0–6)"
+        },
+        "motherBirthYear": {
+          "label": "Ano de Nascimento da Mãe (opcional)",
+          "helpText": "Para Previsão de Gênero Chinesa — apenas por diversão! Não é conselho médico"
+        }
+      },
+      "inputGroups": {},
+      "results": {
+        "dueDate": {
+          "label": "Data Prevista de Parto"
+        },
+        "gestationalAge": {
+          "label": "Idade Gestacional"
+        },
+        "trimester": {
+          "label": "Trimestre Atual"
+        },
+        "daysRemaining": {
+          "label": "Dias Restantes"
+        },
+        "conceptionDate": {
+          "label": "Concepção Estimada"
+        },
+        "deliveryWindow": {
+          "label": "Janela de Parto"
+        },
+        "currentWeek": {
+          "label": "Semana Atual"
+        },
+        "babySizeFruit": {
+          "label": "Tamanho do Bebê"
+        },
+        "babyMeasurements": {
+          "label": "Comprimento e Peso"
+        },
+        "babyDevelopment": {
+          "label": "Destaque do Desenvolvimento"
+        },
+        "zodiacSign": {
+          "label": "Signo do Bebê"
+        },
+        "birthstone": {
+          "label": "Pedra de Nascimento"
+        },
+        "birthSeason": {
+          "label": "Estação do Nascimento"
+        },
+        "trimesterProgress": {
+          "label": "Progresso da Gravidez"
+        },
+        "genderPrediction": {
+          "label": "Previsão de Gênero Chinesa"
+        }
+      },
+      "tooltips": {
+        "dueDate": "Baseado em gestação de 40 semanas (280 dias) da sua última menstruação, ajustado para duração do ciclo e fase lútea",
+        "gestationalAge": "Quão avançada está sua gravidez, contado do primeiro dia da última menstruação",
+        "deliveryWindow": "A maioria dos bebês nasce entre 37 e 42 semanas — apenas cerca de 5% chegam na data prevista exata",
+        "daysRemaining": "Dias de calendário até sua data prevista de parto",
+        "conceptionDate": "Data estimada de fertilização, cerca de 2 semanas após DUM para ciclo de 28 dias",
+        "babySizeFruit": "Comparação divertida do tamanho aproximado do bebê com frutas e vegetais familiares",
+        "babyDevelopment": "Marco-chave do desenvolvimento acontecendo nesta semana",
+        "zodiacSign": "O signo astrológico baseado na sua data prevista de parto",
+        "birthstone": "A pedra de nascimento tradicional associada ao mês esperado de nascimento do bebê",
+        "trimesterProgress": "Percentual de gravidez completado baseado em 40 semanas",
+        "genderPrediction": "Previsão do mapa chinês antigo — apenas para entretenimento, não conselho médico (50% de precisão)"
+      },
+      "values": {
+        "Janeiro": "Janeiro",
+        "Fevereiro": "Fevereiro",
+        "Março": "Março",
+        "Abril": "Abril",
+        "Maio": "Maio",
+        "Junho": "Junho",
+        "Julho": "Julho",
+        "Agosto": "Agosto",
+        "Setembro": "Setembro",
+        "Outubro": "Outubro",
+        "Novembro": "Novembro",
+        "Dezembro": "Dezembro",
+        "Primeiro Trimestre": "Primeiro Trimestre",
+        "Segundo Trimestre": "Segundo Trimestre",
+        "Terceiro Trimestre": "Terceiro Trimestre",
+        "Pós-Termo": "Pós-Termo",
+        "Ainda Não Grávida": "Ainda Não Grávida",
+        "dia": "dia",
+        "dias": "dias",
+        "semana": "semana",
+        "semanas": "semanas",
+        "Semana": "Semana",
+        "Áries": "Áries",
+        "Touro": "Touro",
+        "Gêmeos": "Gêmeos",
+        "Câncer": "Câncer",
+        "Leão": "Leão",
+        "Virgem": "Virgem",
+        "Libra": "Libra",
+        "Escorpião": "Escorpião",
+        "Sagitário": "Sagitário",
+        "Capricórnio": "Capricórnio",
+        "Aquário": "Aquário",
+        "Peixes": "Peixes",
+        "Primavera": "Primavera",
+        "Verão": "Verão",
+        "Outono": "Outono",
+        "Inverno": "Inverno",
+        "Semente de Papoula": "Semente de Papoula",
+        "Semente de Gergelim": "Semente de Gergelim",
+        "Lentilha": "Lentilha",
+        "Mirtilo": "Mirtilo",
+        "Framboesa": "Framboesa",
+        "Cereja": "Cereja",
+        "Morango": "Morango",
+        "Figo": "Figo",
+        "Lima": "Lima",
+        "Limão": "Limão",
+        "Pêssego": "Pêssego",
+        "Maçã": "Maçã",
+        "Abacate": "Abacate",
+        "Pêra": "Pêra",
+        "Pimentão": "Pimentão",
+        "Manga": "Manga",
+        "Banana": "Banana",
+        "Cenoura": "Cenoura",
+        "Milho na Espiga": "Milho na Espiga",
+        "Manga Grande": "Manga Grande",
+        "Espiga de Milho": "Espiga de Milho",
+        "Nabo Sueco": "Nabo Sueco",
+        "Alface": "Alface",
+        "Couve-flor": "Couve-flor",
+        "Berinjela": "Berinjela",
+        "Abóbora Bolota": "Abóbora Bolota",
+        "Repolho": "Repolho",
+        "Coco": "Coco",
+        "Jicama": "Jicama",
+        "Abacaxi": "Abacaxi",
+        "Melão Cantaloupe": "Melão Cantaloupe",
+        "Melão": "Melão",
+        "Alface Romana": "Alface Romana",
+        "Acelga": "Acelga",
+        "Mini Melancia": "Mini Melancia",
+        "Abóbora": "Abóbora",
+        "Melancia": "Melancia",
+        "Melancia Grande": "Melancia Grande",
+        "Jaca": "Jaca",
+        "completo": "completo",
+        "hoje": "hoje",
+        "Termo Precoce": "Termo Precoce",
+        "Termo Completo": "Termo Completo",
+        "Termo Tardio": "Termo Tardio",
+        "Granada": "Granada",
+        "Ametista": "Ametista",
+        "Água-marinha": "Água-marinha",
+        "Diamante": "Diamante",
+        "Esmeralda": "Esmeralda",
+        "Alexandrita": "Alexandrita",
+        "Rubi": "Rubi",
+        "Peridoto": "Peridoto",
+        "Safira": "Safira",
+        "Opala": "Opala",
+        "Topázio": "Topázio",
+        "Tanzanita": "Tanzanita",
+        "Menino": "Menino",
+        "Menina": "Menina",
+        "Apenas por diversão!": "Apenas por diversão!",
+        "proteção e força": "proteção e força",
+        "sabedoria e paz": "sabedoria e paz",
+        "coragem e serenidade": "coragem e serenidade",
+        "amor eterno e clareza": "amor eterno e clareza",
+        "renascimento e fertilidade": "renascimento e fertilidade",
+        "sorte e boa fortuna": "sorte e boa fortuna",
+        "paixão e vitalidade": "paixão e vitalidade",
+        "força e cura": "força e cura",
+        "verdade e lealdade": "verdade e lealdade",
+        "esperança e criatividade": "esperança e criatividade",
+        "alegria e abundância": "alegria e abundância",
+        "transformação e novos começos": "transformação e novos começos",
+        "Primeiro Batimento Cardíaco Detectável": "Primeiro Batimento Cardíaco Detectável",
+        "Primeira Consulta Pré-natal": "Primeira Consulta Pré-natal",
+        "NIPT / Triagem Translucência Nucal": "NIPT / Triagem Translucência Nucal",
+        "Final do Primeiro Trimestre": "Final do Primeiro Trimestre",
+        "Janela Triagem Quádrupla": "Janela Triagem Quádrupla",
+        "Ultrassom Anatômico (Nível 2)": "Ultrassom Anatômico (Nível 2)",
+        "Marco de Viabilidade": "Marco de Viabilidade",
+        "Teste de Triagem de Glicose": "Teste de Triagem de Glicose",
+        "Janela Vacina Tdap": "Janela Vacina Tdap",
+        "Terceiro Trimestre Inicia": "Terceiro Trimestre Inicia",
+        "Verificação Posição Fetal": "Verificação Posição Fetal",
+        "Teste Estreptococo Grupo B (EGB)": "Teste Estreptococo Grupo B (EGB)",
+        "Termo Precoce Inicia": "Termo Precoce Inicia",
+        "Termo Completo Inicia": "Termo Completo Inicia",
+        "Data Prevista de Parto": "Data Prevista de Parto",
+        "Consideração Pós-Termo": "Consideração Pós-Termo",
+        "Detectável via ultrassom transvaginal": "Detectável via ultrassom transvaginal",
+        "Exames de sangue iniciais, histórico médico, exame físico": "Exames de sangue iniciais, histórico médico, exame físico",
+        "Janela de triagem cromossômica não invasiva": "Janela de triagem cromossômica não invasiva",
+        "Principais sistemas orgânicos formados; risco de aborto diminui": "Principais sistemas orgânicos formados; risco de aborto diminui",
+        "Triagem para defeitos do tubo neural e condições cromossômicas": "Triagem para defeitos do tubo neural e condições cromossômicas",
+        "Ultrassom estrutural detalhado; sexo pode ser visível": "Ultrassom estrutural detalhado; sexo pode ser visível",
+        "Bebê poderia potencialmente sobreviver fora do útero com cuidados de UTI neonatal": "Bebê poderia potencialmente sobreviver fora do útero com cuidados de UTI neonatal",
+        "Triagem para diabetes mellitus gestacional (DMG)": "Triagem para diabetes mellitus gestacional (DMG)",
+        "Recomendada entre 27–36 semanas para proteger recém-nascido da coqueluche": "Recomendada entre 27–36 semanas para proteger recém-nascido da coqueluche",
+        "Fase final de crescimento e desenvolvimento inicia": "Fase final de crescimento e desenvolvimento inicia",
+        "Médico verifica se bebê está de cabeça para baixo (cefálico) ou pélvico": "Médico verifica se bebê está de cabeça para baixo (cefálico) ou pélvico",
+        "Coleta vaginal triagem para Estreptococo Grupo B": "Coleta vaginal triagem para Estreptococo Grupo B",
+        "Bebê é considerado termo precoce (37–38 semanas)": "Bebê é considerado termo precoce (37–38 semanas)",
+        "Bebê é considerado termo completo (39–40 semanas)": "Bebê é considerado termo completo (39–40 semanas)",
+        "Meta média de gestação de 40 semanas": "Meta média de gestação de 40 semanas",
+        "Médico pode discutir indução se trabalho de parto não começou": "Médico pode discutir indução se trabalho de parto não começou"
+      },
+      "formats": {
+        "summary": "Sua data prevista de parto é {dueDate}. Você está atualmente com {gestationalAge} ({trimester}). O bebê tem aproximadamente o tamanho de {babySizeFruit}. {daysRemaining} dias restantes."
+      },
+      "presets": {
+        "firstPregnancyLmp": {
+          "label": "Primeira Gravidez (DUM)",
+          "description": "Ciclo 28 dias, DUM Nov 2025"
+        },
+        "ivfBlastocyst": {
+          "label": "Transferência FIV 5º Dia",
+          "description": "Transferência blastocisto Jan 2026"
+        },
+        "earlyUltrasound": {
+          "label": "Ultrassom Precoce",
+          "description": "Ultrassom datação 8 semanas Jan 2026"
+        },
+        "irregularCycle": {
+          "label": "Ciclo Irregular (35 dias)",
+          "description": "Ciclo longo, DUM Out 2025"
+        }
+      },
+      "infoCards": {
+        "keyDates": {
+          "title": "📅 Datas Importantes",
+          "items": [
+            {
+              "label": "Data de Parto",
+              "valueKey": "dueDate"
+            },
+            {
+              "label": "Janela de Parto",
+              "valueKey": "deliveryWindow"
+            },
+            {
+              "label": "Data de Concepção",
+              "valueKey": "conceptionDate"
+            },
+            {
+              "label": "Dias Restantes",
+              "valueKey": "daysRemaining"
+            }
+          ]
+        },
+        "babyNow": {
+          "title": "👶 Bebê Esta Semana",
+          "items": [
+            {
+              "label": "Semana Atual",
+              "valueKey": "currentWeek"
+            },
+            {
+              "label": "Tamanho do Bebê",
+              "valueKey": "babySizeFruit"
+            },
+            {
+              "label": "Comprimento e Peso",
+              "valueKey": "babyMeasurements"
+            },
+            {
+              "label": "Desenvolvimento",
+              "valueKey": "babyDevelopment"
+            }
+          ]
+        },
+        "tips": {
+          "title": "💡 Dicas de Gravidez",
+          "items": [
+            "Apenas cerca de 5% dos bebês chegam na data prevista exata — 80% nascem dentro de 10 dias da data estimada",
+            "Ultrassom do primeiro trimestre (antes de 13 semanas) é o método de datação mais preciso, com margem de ±5–7 dias",
+            "Ajustar duração do ciclo e fase lútea fornece uma data de parto mais personalizada que a suposição padrão de 28 dias",
+            "Sua linha do tempo de marcos pré-natais abaixo mostra datas estimadas para cada teste e consulta importante"
+          ]
+        }
+      },
+      "detailedTable": {
+        "prenatalTimeline": {
+          "button": "Ver Linha do Tempo Pré-natal",
+          "title": "Linha do Tempo de Testes e Marcos Pré-natais",
+          "columns": {
+            "milestone": "Marco",
+            "estimatedDate": "Data Estimada",
+            "gestAge": "Idade Gestacional",
+            "notes": "Observações"
+          }
+        }
+      },
+      "education": {
+        "whatIs": {
+          "title": "O Que É Uma Data Prevista de Parto?",
+          "content": "Uma data prevista de parto (DPP), também chamada de data estimada de confinamento (DEC), é a data projetada quando uma pessoa grávida espera dar à luz seu bebê. É tipicamente calculada como 280 dias (40 semanas) do primeiro dia da última menstruação, assumindo um ciclo padrão de 28 dias. Contudo, como as durações dos ciclos variam amplamente (21–45 dias) e a ovulação nem sempre acontece no 14º dia, métodos mais personalizados — incluindo ajuste da duração do ciclo, correção da fase lútea, datas de transferência de FIV e medições de ultrassom precoce — melhoram significativamente a precisão. Pesquisas mostram que apenas cerca de 4–5% dos bebês nascem na data prevista exata. Cerca de 80% chegam dentro de 10 dias da DPP, e qualquer nascimento entre 37 e 42 semanas é considerado dentro da faixa normal. Sua data de parto é melhor entendida como o ponto central de uma janela de parto, não um prazo preciso."
+        },
+        "howItWorks": {
+          "title": "Como as Datas de Parto São Calculadas",
+          "content": "Esta calculadora suporta cinco métodos de estimativa. O método da Data da Última Menstruação (DUM) usa a regra de Naegele com ajustes para sua duração pessoal do ciclo e fase lútea: calcula a data provável de ovulação (duração do ciclo menos duração da fase lútea), então adiciona 266 dias para chegar à data de parto. O método da Data de Concepção adiciona 266 dias à data conhecida de fertilização. Para transferências de FIV, a calculadora considera a idade do embrião na transferência (3, 5 ou 6 dias) e adiciona o número apropriado de dias para atingir 40 semanas de idade gestacional — datas de FIV tendem a ser as mais precisas já que o tempo exato de fertilização é conhecido. O método do Ultrassom trabalha retroativamente a partir da idade gestacional determinada durante um exame precoce, e ultrassons do primeiro trimestre (antes de 13 semanas) são considerados o padrão ouro para precisão de datação. Finalmente, o método de Data Prevista Conhecida (reverso) calcula retroativamente sua data de concepção e DUM, útil para entender sua linha do tempo completa de gravidez."
+        },
+        "considerations": {
+          "title": "Considerações Importantes",
+          "items": [
+            {
+              "text": "Ultrassons do primeiro trimestre (antes de 13 semanas) são o padrão ouro para precisão de datação de gravidez, com margem de erro de apenas ±5–7 dias segundo diretrizes do ACOG",
+              "type": "info"
+            },
+            {
+              "text": "Ciclos menstruais irregulares podem tornar a datação baseada em DUM menos confiável — se seus ciclos variam mais de 7 dias, considere o método de ultrassom ou concepção",
+              "type": "warning"
+            },
+            {
+              "text": "Apenas cerca de 4–5% dos bebês nascem na data prevista exata; 80% chegam dentro de 10 dias, e a janela de 37–42 semanas é completamente normal",
+              "type": "info"
+            },
+            {
+              "text": "Datas de parto de FIV tendem a ser as mais precisas de todos os métodos porque as datas exatas de fertilização e transferência são conhecidas",
+              "type": "info"
+            },
+            {
+              "text": "Seu profissional de saúde pode ajustar sua data de parto após um ultrassom precoce se diferir mais de 7 dias das estimativas baseadas em DUM",
+              "type": "warning"
+            },
+            {
+              "text": "Gravidezes que se estendem além de 42 semanas (pós-termo) carregam riscos maiores — ACOG recomenda discutir indução entre 41 e 42 semanas",
+              "type": "warning"
+            }
+          ]
+        },
+        "milestones": {
+          "title": "Definições de Termos e Marcos Importantes",
+          "items": [
+            {
+              "text": "Primeiro Trimestre (Semanas 1–13): Coração do bebê começa a bater por volta da semana 6; na semana 12, todos os órgãos principais se formaram e o risco de aborto cai significativamente para cerca de 2%",
+              "type": "info"
+            },
+            {
+              "text": "Segundo Trimestre (Semanas 14–27): O ultrassom anatômico nas semanas 18–22 verifica desenvolvimento estrutural e pode revelar o sexo; movimentos fetais (aceleração) tipicamente sentidos entre semanas 18–22",
+              "type": "info"
+            },
+            {
+              "text": "Terceiro Trimestre (Semanas 28–40): Ganho rápido de peso e desenvolvimento cerebral; bebê atinge viabilidade por volta de 24 semanas; pulmões continuam amadurecendo até 36 semanas",
+              "type": "info"
+            },
+            {
+              "text": "Pré-termo: Antes de 37 semanas | Termo Precoce: 37–38 semanas | Termo Completo: 39–40 semanas | Termo Tardio: 41 semanas | Pós-Termo: 42+ semanas",
+              "type": "warning"
+            },
+            {
+              "text": "Triagens Importantes: NIPT/Translucência nucal (10–13 semanas), Triagem quádrupla (15–20 semanas), Ultrassom anatômico (18–22 semanas), Teste de glicose (24–28 semanas), Teste EGB (35–37 semanas)",
+              "type": "info"
+            },
+            {
+              "text": "O mapa de Previsão de Gênero Chinês é uma ferramenta tradicional divertida com ~50% de precisão (não melhor que chance) — baseado na idade lunar da mãe e mês de concepção, apenas para entretenimento",
+              "type": "info"
+            }
+          ]
+        },
+        "examples": {
+          "title": "Exemplos de Cálculo",
+          "description": "Exemplos passo a passo para diferentes métodos de estimativa",
+          "examples": [
+            {
+              "title": "Método DUM (ciclo 28 dias)",
+              "steps": [
+                "Última menstruação começou: 1º de janeiro de 2026",
+                "Duração do ciclo: 28 dias, Fase lútea: 14 dias",
+                "Dia da ovulação: 28 − 14 = dia 14 → 15 de janeiro",
+                "Data de parto: 15 de janeiro + 266 dias = 8 de outubro de 2026",
+                "Atalho de Naegele: 1º jan + 1 ano − 3 meses + 7 dias = 8 out"
+              ],
+              "result": "Data de Parto: 8 de outubro de 2026"
+            },
+            {
+              "title": "Transferência FIV Blastocisto 5º Dia",
+              "steps": [
+                "Data da transferência: 10 de fevereiro de 2026",
+                "Idade do embrião: 5 dias (blastocisto)",
+                "Gestação na transferência: 2 semanas + 5 dias = 19 dias",
+                "Dias restantes: 280 − 19 = 261 dias",
+                "Data de parto: 10 de fevereiro + 261 = 29 de outubro de 2026"
+              ],
+              "result": "Data de Parto: 29 de outubro de 2026"
+            }
+          ]
+        }
+      },
+      "faqs": [
+        {
+          "question": "Quão precisa é uma calculadora de data de parto?",
+          "answer": "Calculadoras de data de parto fornecem uma estimativa baseada na duração gestacional média (280 dias da DUM). A precisão depende do método: ultrassom do primeiro trimestre é mais preciso (±5–7 dias), datas de FIV são quase tão precisas, e cálculo baseado em DUM pode estar 1–2 semanas fora para ciclos irregulares. Apenas cerca de 4–5% dos bebês chegam na data prevista exata — a maioria nasce dentro de uma janela de 10 dias em torno da DPP."
+        },
+        {
+          "question": "Qual a diferença entre idade gestacional e idade fetal?",
+          "answer": "Idade gestacional é contada do primeiro dia da sua última menstruação (DUM), que é cerca de 2 semanas antes da concepção realmente ocorrer. Idade fetal (idade embrionária) é contada da data real de concepção. Então com '8 semanas de gravidez' (idade gestacional), o embrião tem na verdade cerca de 6 semanas. Profissionais médicos quase sempre usam idade gestacional."
+        },
+        {
+          "question": "Minha data de parto pode mudar durante a gravidez?",
+          "answer": "Sim. Se um ultrassom precoce (antes de 13 semanas) mostra uma idade gestacional que difere da sua estimativa baseada em DUM por mais de 7 dias, seu profissional de saúde pode ajustar sua data de parto. Segundo diretrizes do ACOG, medições de ultrassom do primeiro trimestre são o método de datação mais confiável."
+        },
+        {
+          "question": "Como uma data de parto de FIV é calculada?",
+          "answer": "Datas de parto de FIV são calculadas da data de transferência do embrião. Para um blastocisto do 5º dia, 261 dias são adicionados à data de transferência. Embriões do 3º dia adicionam 263 dias, e blastocistos do 6º dia adicionam 260 dias. Cálculos de FIV estão entre os mais precisos porque a data exata de fertilização é conhecida."
+        },
+        {
+          "question": "O que significa 'termo completo' vs 'termo precoce'?",
+          "answer": "ACOG define: Pré-termo (antes de 37 semanas), Termo Precoce (37–38 semanas), Termo Completo (39–40 semanas), Termo Tardio (41 semanas), Pós-Termo (42+ semanas). Termo completo é a janela ideal com os melhores resultados de saúde."
+        },
+        {
+          "question": "A duração do ciclo realmente afeta a data de parto?",
+          "answer": "Sim, significativamente. O cálculo padrão de 280 dias assume um ciclo de 28 dias com ovulação no 14º dia. Um ciclo de 35 dias significa ovulação por volta do 21º dia — mudando sua data de parto em 7 dias. Esta calculadora ajusta tanto para duração do ciclo quanto fase lútea para melhor precisão."
+        },
+        {
+          "question": "O que é o mapa de Previsão de Gênero Chinês?",
+          "answer": "Uma ferramenta tradicional supostamente com mais de 700 anos que afirma prever o sexo do bebê baseado na idade lunar da mãe e mês de concepção. Estudos científicos mostram que tem cerca de 50% de precisão — o mesmo que cara ou coroa. É incluído aqui como tradição divertida, não ferramenta médica."
+        },
+        {
+          "question": "O que é um 'ultrassom de datação' e quando devo fazer um?",
+          "answer": "Um ultrassom de datação (tipicamente 7–12 semanas) mede o comprimento crânio-nádega do embrião para determinar idade gestacional. É o método de datação mais preciso com margem de erro de ±5–7 dias. ACOG e NHS recomendam no primeiro trimestre, especialmente para ciclos irregulares."
+        },
+        {
+          "question": "O que acontece se eu passar da data prevista?",
+          "answer": "Cerca de 50% das mães de primeira viagem dão à luz após 40 semanas. Às 41 semanas, seu provedor aumenta o monitoramento. Às 42 semanas, a maioria das diretrizes (ACOG, NICE) recomendam discutir indução conforme os riscos aumentam por declínio da função placentária e redução do líquido amniótico."
+        },
+        {
+          "question": "Gêmeos podem ter uma data de parto diferente?",
+          "answer": "Gravidezes de gêmeos usam o mesmo cálculo inicial, mas o parto esperado é mais cedo — por volta de 36–37 semanas em média. Seu provedor pode recomendar parto entre 36–38 semanas dependendo se os gêmeos são idênticos (monocoriônicos) ou fraternos (dicoriônicos)."
+        }
+      ],
+      "chart": {
+        "title": "Crescimento do Bebê por Semana",
+        "xLabel": "Semana",
+        "yLabel": "Peso (g / kg)",
+        "series": {
+          "weightOz": "Peso do Bebê"
+        }
+      },
+      "buttons": {
+        "calculate": "Calcular",
+        "reset": "Reiniciar",
+        "pdf": "PDF",
+        "csv": "CSV",
+        "excel": "Excel",
+        "save": "Salvar",
+        "saved": "Salvo",
+        "saving": "Salvando..."
+      },
+      "share": {
+        "calculatedWith": "Calculado com Kalcufy.com"
+      },
+      "ui": {
+        "results": "Resultados",
+        "yourInformation": "Suas Informações"
+      },
+      "accessibility": {
+        "mobileResults": "Resumo dos resultados",
+        "closeModal": "Fechar",
+        "openMenu": "Abrir menu"
+      },
+      "rating": {
+        "title": "Avalie esta Calculadora",
+        "share": "Compartilhar",
+        "copied": "Copiado!",
+        "copyLink": "Copiar Link",
+        "clickToRate": "Clique para avaliar",
+        "youRated": "Você avaliou",
+        "stars": "estrelas",
+        "averageFrom": "média de",
+        "ratings": "avaliações"
+      },
+      "common": {
+        "home": "Início",
+        "calculators": "Calculadoras"
+      },
+      "sources": {
+        "title": "Fontes e Referências"
+      },
+      "calculator": {
+        "yourInformation": "Suas Informações"
+      }
+    },
+    fr: {
+      "name": "Calculateur de Date d'Accouchement",
+      "slug": "calculateur-date-accouchement",
+      "subtitle": "Estimez votre date d'accouchement, suivez la croissance hebdomadaire de bébé et consultez votre calendrier complet des étapes prénatales avec dates personnalisées",
+      "breadcrumb": "Date d'Accouchement",
+      "seo": {
+        "title": "Calculateur de Date d'Accouchement - Estimateur de Grossesse et Livraison",
+        "description": "Calculez votre date d'accouchement en utilisant DDR, échographie, FIV ou date de conception. Suivez la taille de bébé par semaine, consultez les étapes prénatales et obtenez votre fenêtre de livraison.",
+        "shortDescription": "Estimez votre date d'accouchement et suivez les étapes de grossesse",
+        "keywords": [
+          "calculateur date accouchement",
+          "calculateur grossesse",
+          "date accouchement grossesse",
+          "date estimée livraison",
+          "calculateur âge gestationnel",
+          "calculateur date accouchement FIV",
+          "quand naît mon bébé",
+          "taille bébé par semaine"
+        ]
+      },
+      "calculator": {
+        "yourInformation": "Vos Informations"
+      },
+      "inputs": {
+        "method": {
+          "label": "Méthode de Calcul",
+          "helpText": "Choisissez comment vous voulez estimer votre date d'accouchement",
+          "options": {
+            "lmp": "Dernières Règles (DDR)",
+            "conception": "Date de Conception",
+            "ivf": "Date de Transfert FIV",
+            "ultrasound": "Date d'Échographie",
+            "knownDueDate": "Je Connais Déjà Ma Date d'Accouchement"
+          }
+        },
+        "inputDate": {
+          "label": "Date",
+          "helpText": "Sélectionnez la date pour votre méthode de calcul choisie"
+        },
+        "cycleLength": {
+          "label": "Durée Moyenne du Cycle",
+          "helpText": "Jours moyens dans votre cycle menstruel (21–45, défaut 28)"
+        },
+        "lutealPhase": {
+          "label": "Durée de la Phase Lutéale",
+          "helpText": "Jours entre ovulation et prochaines règles (10–16, défaut 14)"
+        },
+        "ivfEmbryo": {
+          "label": "Âge de l'Embryon au Transfert",
+          "helpText": "Les transferts jour 5 (blastocyste) sont les plus courants",
+          "options": {
+            "day3": "Embryon Jour 3",
+            "day5": "Blastocyste Jour 5",
+            "day6": "Blastocyste Jour 6"
+          }
+        },
+        "gestWeeks": {
+          "label": "Semaines à l'Échographie",
+          "helpText": "Âge gestationnel en semaines au moment de l'échographie"
+        },
+        "gestDays": {
+          "label": "Jours",
+          "helpText": "Jours supplémentaires (0–6)"
+        },
+        "motherBirthYear": {
+          "label": "Année de Naissance de la Mère (optionnel)",
+          "helpText": "Pour la Prédiction du Sexe Chinoise — juste pour s'amuser ! Pas un conseil médical"
+        }
+      },
+      "inputGroups": {},
+      "results": {
+        "dueDate": {
+          "label": "Date d'Accouchement Estimée"
+        },
+        "gestationalAge": {
+          "label": "Âge Gestationnel"
+        },
+        "trimester": {
+          "label": "Trimestre Actuel"
+        },
+        "daysRemaining": {
+          "label": "Jours Restants"
+        },
+        "conceptionDate": {
+          "label": "Conception Estimée"
+        },
+        "deliveryWindow": {
+          "label": "Fenêtre d'Accouchement"
+        },
+        "currentWeek": {
+          "label": "Semaine Actuelle"
+        },
+        "babySizeFruit": {
+          "label": "Taille de Bébé"
+        },
+        "babyMeasurements": {
+          "label": "Longueur et Poids"
+        },
+        "babyDevelopment": {
+          "label": "Point Fort du Développement"
+        },
+        "zodiacSign": {
+          "label": "Signe Zodiacal de Bébé"
+        },
+        "birthstone": {
+          "label": "Pierre de Naissance"
+        },
+        "birthSeason": {
+          "label": "Saison de Naissance"
+        },
+        "trimesterProgress": {
+          "label": "Progrès de Grossesse"
+        },
+        "genderPrediction": {
+          "label": "Prédiction du Sexe Chinoise"
+        }
+      },
+      "tooltips": {
+        "dueDate": "Basé sur une gestation de 40 semaines (280 jours) depuis vos dernières règles, ajusté selon la durée de votre cycle et phase lutéale",
+        "gestationalAge": "À quel point vous êtes avancée, compté depuis le premier jour de vos dernières règles",
+        "deliveryWindow": "La plupart des bébés naissent entre 37 et 42 semaines — seulement environ 5% arrivent à la date exacte prévue",
+        "daysRemaining": "Jours calendaires jusqu'à votre date d'accouchement estimée",
+        "conceptionDate": "Date estimée de fécondation, environ 2 semaines après DDR pour un cycle de 28 jours",
+        "babySizeFruit": "Une comparaison amusante de la taille approximative de votre bébé avec des fruits et légumes familiers",
+        "babyDevelopment": "Étape clé du développement qui se passe cette semaine",
+        "zodiacSign": "Le signe astrologique basé sur votre date d'accouchement estimée",
+        "birthstone": "La pierre de naissance traditionnelle associée au mois de naissance prévu de votre bébé",
+        "trimesterProgress": "Pourcentage de grossesse terminé basé sur 40 semaines",
+        "genderPrediction": "Prédiction du tableau de naissance chinois ancien — pour divertissement seulement, pas conseil médical (précision 50/50)"
+      },
+      "values": {
+        "January": "Janvier",
+        "February": "Février",
+        "March": "Mars",
+        "April": "Avril",
+        "May": "Mai",
+        "June": "Juin",
+        "July": "Juillet",
+        "August": "Août",
+        "September": "Septembre",
+        "October": "Octobre",
+        "November": "Novembre",
+        "December": "Décembre",
+        "First Trimester": "Premier Trimestre",
+        "Second Trimester": "Deuxième Trimestre",
+        "Third Trimester": "Troisième Trimestre",
+        "Post-Term": "Post-Terme",
+        "Not Yet Pregnant": "Pas Encore Enceinte",
+        "day": "jour",
+        "days": "jours",
+        "week": "semaine",
+        "weeks": "semaines",
+        "Week": "Semaine",
+        "Aries": "Bélier",
+        "Taurus": "Taureau",
+        "Gemini": "Gémeaux",
+        "Cancer": "Cancer",
+        "Leo": "Lion",
+        "Virgo": "Vierge",
+        "Libra": "Balance",
+        "Scorpio": "Scorpion",
+        "Sagittarius": "Sagittaire",
+        "Capricorn": "Capricorne",
+        "Aquarius": "Verseau",
+        "Pisces": "Poissons",
+        "Spring": "Printemps",
+        "Summer": "Été",
+        "Fall": "Automne",
+        "Winter": "Hiver",
+        "Poppy Seed": "Graine de Pavot",
+        "Sesame Seed": "Graine de Sésame",
+        "Lentil": "Lentille",
+        "Blueberry": "Myrtille",
+        "Raspberry": "Framboise",
+        "Cherry": "Cerise",
+        "Strawberry": "Fraise",
+        "Fig": "Figue",
+        "Lime": "Citron Vert",
+        "Lemon": "Citron",
+        "Peach": "Pêche",
+        "Apple": "Pomme",
+        "Avocado": "Avocat",
+        "Pear": "Poire",
+        "Bell Pepper": "Poivron",
+        "Mango": "Mangue",
+        "Banana": "Banane",
+        "Carrot": "Carotte",
+        "Corn on the Cob": "Épi de Maïs",
+        "Large Mango": "Grande Mangue",
+        "Ear of Corn": "Épi de Maïs",
+        "Rutabaga": "Rutabaga",
+        "Lettuce Head": "Tête de Laitue",
+        "Cauliflower": "Chou-fleur",
+        "Eggplant": "Aubergine",
+        "Acorn Squash": "Courge Gland",
+        "Cabbage": "Chou",
+        "Coconut": "Noix de Coco",
+        "Jicama": "Jicama",
+        "Pineapple": "Ananas",
+        "Cantaloupe": "Cantaloup",
+        "Honeydew Melon": "Melon Miel",
+        "Romaine Lettuce": "Laitue Romaine",
+        "Swiss Chard": "Bette à Carde",
+        "Mini Watermelon": "Mini Pastèque",
+        "Pumpkin": "Citrouille",
+        "Watermelon": "Pastèque",
+        "Large Watermelon": "Grande Pastèque",
+        "Jackfruit": "Jacquier",
+        "complete": "terminé",
+        "today": "aujourd'hui",
+        "Early Term": "Terme Précoce",
+        "Full Term": "Terme Complet",
+        "Late Term": "Terme Tardif",
+        "Garnet": "Grenat",
+        "Amethyst": "Améthyste",
+        "Aquamarine": "Aigue-marine",
+        "Diamond": "Diamant",
+        "Emerald": "Émeraude",
+        "Alexandrite": "Alexandrite",
+        "Ruby": "Rubis",
+        "Peridot": "Péridot",
+        "Sapphire": "Saphir",
+        "Opal": "Opale",
+        "Topaz": "Topaze",
+        "Tanzanite": "Tanzanite",
+        "Boy": "Garçon",
+        "Girl": "Fille",
+        "Just for fun!": "Juste pour s'amuser !",
+        "protection & strength": "protection et force",
+        "wisdom & peace": "sagesse et paix",
+        "courage & serenity": "courage et sérénité",
+        "eternal love & clarity": "amour éternel et clarté",
+        "rebirth & fertility": "renaissance et fertilité",
+        "luck & good fortune": "chance et bonne fortune",
+        "passion & vitality": "passion et vitalité",
+        "strength & healing": "force et guérison",
+        "truth & loyalty": "vérité et loyauté",
+        "hope & creativity": "espoir et créativité",
+        "joy & abundance": "joie et abondance",
+        "transformation & new beginnings": "transformation et nouveaux débuts",
+        "First Heartbeat Detectable": "Premier Battement de Cœur Détectable",
+        "First Prenatal Visit": "Première Visite Prénatale",
+        "NIPT / Nuchal Translucency Screen": "DPNI / Dépistage Clarté Nucale",
+        "End of First Trimester": "Fin du Premier Trimestre",
+        "Quad Screen Window": "Fenêtre Dépistage Quadruple",
+        "Anatomy Scan (Level 2 Ultrasound)": "Échographie Anatomique (Échographie Niveau 2)",
+        "Viability Milestone": "Étape de Viabilité",
+        "Glucose Screening Test": "Test de Dépistage du Glucose",
+        "Tdap Vaccine Window": "Fenêtre Vaccin Tdap",
+        "Third Trimester Begins": "Début du Troisième Trimestre",
+        "Fetal Position Check": "Vérification Position Fœtale",
+        "Group B Strep (GBS) Test": "Test Streptocoque Groupe B (SGB)",
+        "Early Term Begins": "Début du Terme Précoce",
+        "Full Term Begins": "Début du Terme Complet",
+        "Estimated Due Date": "Date d'Accouchement Estimée",
+        "Post-Term Consideration": "Considération Post-Terme",
+        "Detectable via transvaginal ultrasound": "Détectable par échographie transvaginale",
+        "Initial bloodwork, medical history, physical exam": "Analyses sanguines initiales, antécédents médicaux, examen physique",
+        "Non-invasive chromosomal screening window": "Fenêtre de dépistage chromosomique non-invasif",
+        "Major organ systems formed; miscarriage risk drops": "Principaux systèmes organiques formés ; risque de fausse couche diminue",
+        "Screens for neural tube defects and chromosomal conditions": "Dépiste les défauts du tube neural et conditions chromosomiques",
+        "Detailed structural ultrasound; sex may be visible": "Échographie structurelle détaillée ; le sexe peut être visible",
+        "Baby could potentially survive outside the womb with NICU care": "Bébé pourrait potentiellement survivre hors de l'utérus avec soins USIN",
+        "Screens for gestational diabetes mellitus (GDM)": "Dépiste le diabète gestationnel (DG)",
+        "Recommended between 27–36 weeks to protect newborn from whooping cough": "Recommandé entre 27–36 semaines pour protéger le nouveau-né de la coqueluche",
+        "Final growth and development phase begins": "Phase finale de croissance et développement commence",
+        "Doctor checks if baby is head-down (cephalic) or breech": "Le médecin vérifie si bébé est tête en bas (céphalique) ou siège",
+        "Vaginal swab screens for Group B Streptococcus": "Prélèvement vaginal dépiste le Streptocoque du Groupe B",
+        "Baby is considered early term (37–38 weeks)": "Bébé est considéré terme précoce (37–38 semaines)",
+        "Baby is considered full term (39–40 weeks)": "Bébé est considéré terme complet (39–40 semaines)",
+        "Average 40-week gestation target": "Objectif de gestation moyenne de 40 semaines",
+        "Doctor may discuss induction if labor hasn't begun": "Le médecin peut discuter déclenchement si travail pas commencé"
+      },
+      "formats": {
+        "summary": "Votre date d'accouchement estimée est le {dueDate}. Vous êtes actuellement à {gestationalAge} ({trimester}). Bébé fait environ la taille d'une {babySizeFruit}. {daysRemaining} jours restants."
+      },
+      "presets": {
+        "firstPregnancyLmp": {
+          "label": "Première Grossesse (DDR)",
+          "description": "Cycle de 28 jours, DDR nov 2025"
+        },
+        "ivfBlastocyst": {
+          "label": "Transfert FIV Jour 5",
+          "description": "Transfert blastocyste jan 2026"
+        },
+        "earlyUltrasound": {
+          "label": "Échographie Précoce",
+          "description": "Échographie datation 8 semaines jan 2026"
+        },
+        "irregularCycle": {
+          "label": "Cycle Irrégulier (35 jours)",
+          "description": "Cycle plus long, DDR oct 2025"
+        }
+      },
+      "infoCards": {
+        "keyDates": {
+          "title": "📅 Dates Clés",
+          "items": [
+            {
+              "label": "Date d'Accouchement",
+              "valueKey": "dueDate"
+            },
+            {
+              "label": "Fenêtre d'Accouchement",
+              "valueKey": "deliveryWindow"
+            },
+            {
+              "label": "Date de Conception",
+              "valueKey": "conceptionDate"
+            },
+            {
+              "label": "Jours Restants",
+              "valueKey": "daysRemaining"
+            }
+          ]
+        },
+        "babyNow": {
+          "title": "👶 Bébé Cette Semaine",
+          "items": [
+            {
+              "label": "Semaine Actuelle",
+              "valueKey": "currentWeek"
+            },
+            {
+              "label": "Taille de Bébé",
+              "valueKey": "babySizeFruit"
+            },
+            {
+              "label": "Longueur et Poids",
+              "valueKey": "babyMeasurements"
+            },
+            {
+              "label": "Développement",
+              "valueKey": "babyDevelopment"
+            }
+          ]
+        },
+        "tips": {
+          "title": "💡 Conseils de Grossesse",
+          "items": [
+            "Seulement environ 5% des bébés arrivent à leur date exacte d'accouchement — 80% naissent dans les 10 jours de la DPA",
+            "L'échographie du premier trimestre (avant 13 semaines) est la méthode de datation la plus précise, à ±5–7 jours près",
+            "Ajuster la durée du cycle et la phase lutéale donne une date d'accouchement plus personnalisée que l'hypothèse standard de 28 jours",
+            "Votre calendrier des étapes prénatales ci-dessous montre les dates estimées pour chaque test et contrôle clé"
+          ]
+        }
+      },
+      "detailedTable": {
+        "prenatalTimeline": {
+          "button": "Voir Calendrier Prénatal",
+          "title": "Calendrier des Tests et Étapes Prénatales",
+          "columns": {
+            "milestone": "Étape",
+            "estimatedDate": "Date Estimée",
+            "gestAge": "Âge Gestationnel",
+            "notes": "Notes"
+          }
+        }
+      },
+      "education": {
+        "whatIs": {
+          "title": "Qu'est-ce qu'une Date d'Accouchement Estimée ?",
+          "content": "Une date d'accouchement estimée (DPA), aussi appelée date prévue d'accouchement (DPA), est la date projetée quand une personne enceinte devrait accoucher de son bébé. Elle est typiquement calculée comme 280 jours (40 semaines) depuis le premier jour des dernières règles, en supposant un cycle standard de 28 jours. Cependant, comme les durées de cycle varient largement (21–45 jours) et l'ovulation n'arrive pas toujours le jour 14, des méthodes plus personnalisées — incluant l'ajustement de la durée du cycle, la correction de la phase lutéale, les dates de transfert FIV, et les mesures d'échographie précoce — améliorent significativement la précision. La recherche montre que seulement environ 4–5% des bébés naissent à leur date exacte d'accouchement. Environ 80% arrivent dans les 10 jours de la DPA, et toute naissance entre 37 et 42 semaines est considérée dans la plage normale. Votre date d'accouchement est mieux comprise comme le point central d'une fenêtre d'accouchement, pas une échéance précise."
+        },
+        "howItWorks": {
+          "title": "Comment les Dates d'Accouchement sont Calculées",
+          "content": "Ce calculateur supporte cinq méthodes d'estimation. La méthode des Dernières Règles (DDR) utilise la règle de Naegele avec ajustements pour votre durée de cycle personnelle et phase lutéale : elle calcule la date d'ovulation probable (durée du cycle moins durée de la phase lutéale), puis ajoute 266 jours pour atteindre la date d'accouchement. La méthode Date de Conception ajoute 266 jours à la date connue de fécondation. Pour les transferts FIV, le calculateur tient compte de l'âge de l'embryon au transfert (3, 5, ou 6 jours) et ajoute le nombre approprié de jours pour atteindre 40 semaines d'âge gestationnel — les dates FIV tendent à être les plus précises puisque le timing exact de fécondation est connu. La méthode Échographie travaille à rebours depuis l'âge gestationnel déterminé lors d'un scan précoce, et les échographies du premier trimestre (avant 13 semaines) sont considérées l'étalon-or pour la précision de datation. Finalement, la méthode Date d'Accouchement Connue (inverse) recalcule votre date de conception et DDR, utile pour comprendre votre calendrier complet de grossesse."
+        },
+        "considerations": {
+          "title": "Considérations Importantes",
+          "items": [
+            {
+              "text": "Les échographies du premier trimestre (avant 13 semaines) sont l'étalon-or pour la précision de datation de grossesse, avec une marge d'erreur de seulement ±5–7 jours selon les directives ACOG",
+              "type": "info"
+            },
+            {
+              "text": "Les cycles menstruels irréguliers peuvent rendre la datation basée sur DDR moins fiable — si vos cycles varient de plus de 7 jours, considérez la méthode échographie ou conception à la place",
+              "type": "warning"
+            },
+            {
+              "text": "Seulement environ 4–5% des bébés naissent à leur date exacte d'accouchement ; 80% arrivent dans les 10 jours, et la fenêtre 37–42 semaines est complètement normale",
+              "type": "info"
+            },
+            {
+              "text": "Les dates d'accouchement FIV tendent à être les plus précises de toutes les méthodes car les dates exactes de fécondation et transfert sont connues",
+              "type": "info"
+            },
+            {
+              "text": "Votre fournisseur de soins peut ajuster votre date d'accouchement après une échographie précoce si elle diffère de plus de 7 jours des estimations basées sur DDR",
+              "type": "warning"
+            },
+            {
+              "text": "Les grossesses durant au-delà de 42 semaines (post-terme) portent des risques plus élevés — ACOG recommande de discuter déclenchement entre 41 et 42 semaines",
+              "type": "warning"
+            }
+          ]
+        },
+        "milestones": {
+          "title": "Définitions des Termes et Étapes Clés",
+          "items": [
+            {
+              "text": "Premier Trimestre (Semaines 1–13) : Le cœur de bébé commence à battre vers la semaine 6 ; vers la semaine 12, tous les organes majeurs sont formés et le risque de fausse couche chute significativement à environ 2%",
+              "type": "info"
+            },
+            {
+              "text": "Deuxième Trimestre (Semaines 14–27) : L'échographie anatomique à 18–22 semaines vérifie le développement structurel et peut révéler le sexe ; les mouvements fœtaux (premiers mouvements) typiquement ressentis entre les semaines 18–22",
+              "type": "info"
+            },
+            {
+              "text": "Troisième Trimestre (Semaines 28–40) : Prise de poids rapide et développement cérébral ; bébé atteint la viabilité vers 24 semaines ; les poumons continuent à maturer jusqu'à 36 semaines",
+              "type": "info"
+            },
+            {
+              "text": "Prématuré : Avant 37 semaines | Terme Précoce : 37–38 semaines | Terme Complet : 39–40 semaines | Terme Tardif : 41 semaines | Post-Terme : 42+ semaines",
+              "type": "warning"
+            },
+            {
+              "text": "Dépistages Clés : DPNI/Clarté nucale (10–13 semaines), Dépistage quadruple (15–20 semaines), Échographie anatomique (18–22 semaines), Test glucose (24–28 semaines), Test SGB (35–37 semaines)",
+              "type": "info"
+            },
+            {
+              "text": "Le tableau de prédiction du sexe chinois est un outil traditionnel amusant avec ~50% de précision (pas mieux que le hasard) — basé sur l'âge lunaire de la mère et le mois de conception, pour divertissement seulement",
+              "type": "info"
+            }
+          ]
+        },
+        "examples": {
+          "title": "Exemples de Calcul",
+          "description": "Exemples étape par étape pour différentes méthodes d'estimation",
+          "examples": [
+            {
+              "title": "Méthode DDR (cycle de 28 jours)",
+              "steps": [
+                "Dernières règles commencées : 1er janvier 2026",
+                "Durée du cycle : 28 jours, Phase lutéale : 14 jours",
+                "Jour d'ovulation : 28 − 14 = jour 14 → 15 janvier",
+                "Date d'accouchement : 15 janvier + 266 jours = 8 octobre 2026",
+                "Raccourci Naegele : 1er jan + 1 an − 3 mois + 7 jours = 8 oct"
+              ],
+              "result": "Date d'Accouchement : 8 octobre 2026"
+            },
+            {
+              "title": "Transfert Blastocyste FIV Jour 5",
+              "steps": [
+                "Date de transfert : 10 février 2026",
+                "Âge de l'embryon : 5 jours (blastocyste)",
+                "Gestation au transfert : 2 semaines + 5 jours = 19 jours",
+                "Jours restants : 280 − 19 = 261 jours",
+                "Date d'accouchement : 10 février + 261 = 29 octobre 2026"
+              ],
+              "result": "Date d'Accouchement : 29 octobre 2026"
+            }
+          ]
+        }
+      },
+      "faqs": [
+        {
+          "question": "Quelle est la précision d'un calculateur de date d'accouchement ?",
+          "answer": "Les calculateurs de date d'accouchement fournissent une estimation basée sur la durée gestationnelle moyenne (280 jours depuis DDR). La précision dépend de la méthode : l'échographie du premier trimestre est la plus précise (±5–7 jours), les dates FIV sont presque aussi précises, et le calcul basé sur DDR peut être décalé de 1–2 semaines pour les cycles irréguliers. Seulement environ 4–5% des bébés arrivent à la date exacte d'accouchement — la plupart naissent dans une fenêtre de 10 jours autour de la DPA."
+        },
+        {
+          "question": "Quelle est la différence entre âge gestationnel et âge fœtal ?",
+          "answer": "L'âge gestationnel est compté depuis le premier jour de vos dernières règles (DDR), qui est environ 2 semaines avant que la conception se produise réellement. L'âge fœtal (âge embryonnaire) est compté depuis la date réelle de conception. Donc à '8 semaines de grossesse' (âge gestationnel), l'embryon a réellement environ 6 semaines. Les professionnels médicaux utilisent presque toujours l'âge gestationnel."
+        },
+        {
+          "question": "Ma date d'accouchement peut-elle changer pendant la grossesse ?",
+          "answer": "Oui. Si une échographie précoce (avant 13 semaines) montre un âge gestationnel qui diffère de votre estimation basée sur DDR de plus de 7 jours, votre fournisseur de soins peut ajuster votre date d'accouchement. Selon les directives ACOG, les mesures d'échographie du premier trimestre sont la méthode de datation la plus fiable."
+        },
+        {
+          "question": "Comment une date d'accouchement FIV est-elle calculée ?",
+          "answer": "Les dates d'accouchement FIV sont calculées depuis la date de transfert d'embryon. Pour un blastocyste Jour 5, 261 jours sont ajoutés à la date de transfert. Les embryons Jour 3 ajoutent 263 jours, et les blastocystes Jour 6 ajoutent 260 jours. Les calculs FIV sont parmi les plus précis car la date exacte de fécondation est connue."
+        },
+        {
+          "question": "Que signifie 'terme complet' vs 'terme précoce' ?",
+          "answer": "ACOG définit : Prématuré (avant 37 semaines), Terme Précoce (37–38 semaines), Terme Complet (39–40 semaines), Terme Tardif (41 semaines), Post-Terme (42+ semaines). Le terme complet est la fenêtre idéale avec les meilleurs résultats de santé."
+        },
+        {
+          "question": "La durée du cycle affecte-t-elle vraiment la date d'accouchement ?",
+          "answer": "Oui, significativement. Le calcul standard de 280 jours suppose un cycle de 28 jours avec ovulation le jour 14. Un cycle de 35 jours signifie ovulation vers le jour 21 — décalant votre date d'accouchement de 7 jours. Ce calculateur ajuste pour la durée du cycle et la phase lutéale pour une meilleure précision."
+        },
+        {
+          "question": "Qu'est-ce que le tableau de prédiction du sexe chinois ?",
+          "answer": "Un outil traditionnel supposément vieux de plus de 700 ans qui prétend prédire le sexe du bébé basé sur l'âge lunaire de la mère et le mois de conception. Les études scientifiques montrent qu'il est précis à environ 50% — pareil qu'un tirage à pile ou face. Il est inclus ici comme une tradition amusante, pas un outil médical."
+        },
+        {
+          "question": "Qu'est-ce qu'une 'échographie de datation' et quand devrais-je en avoir une ?",
+          "answer": "Une échographie de datation (typiquement 7–12 semaines) mesure la longueur vertex-coccyx de l'embryon pour déterminer l'âge gestationnel. C'est la méthode de datation la plus précise avec ±5–7 jours de marge d'erreur. ACOG et NHS recommandent tous deux cela au premier trimestre, surtout pour les cycles irréguliers."
+        },
+        {
+          "question": "Que se passe-t-il si je dépasse ma date d'accouchement ?",
+          "answer": "Environ 50% des mères pour la première fois accouchent après 40 semaines. À 41 semaines, votre fournisseur augmente la surveillance. À 42 semaines, la plupart des directives (ACOG, NICE) recommandent de discuter déclenchement car les risques augmentent du déclin de fonction placentaire et réduction du liquide amniotique."
+        },
+        {
+          "question": "Les jumeaux peuvent-ils avoir une date d'accouchement différente ?",
+          "answer": "Les grossesses gémellaires utilisent le même calcul initial, mais l'accouchement prévu est plus tôt — vers 36–37 semaines en moyenne. Votre fournisseur peut recommander l'accouchement entre 36–38 semaines selon que les jumeaux sont identiques (monochorioniques) ou fraternels (bichorioniques)."
+        }
+      ],
+      "chart": {
+        "title": "Croissance de Bébé par Semaine",
+        "xLabel": "Semaine",
+        "yLabel": "Poids (oz / lb)",
+        "series": {
+          "weightOz": "Poids de Bébé"
+        }
+      },
+      "buttons": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser",
+        "pdf": "PDF",
+        "csv": "CSV",
+        "excel": "Excel",
+        "save": "Sauvegarder",
+        "saved": "Sauvegardé",
+        "saving": "Sauvegarde..."
+      },
+      "share": {
+        "calculatedWith": "Calculé avec Kalcufy.com"
+      },
+      "ui": {
+        "results": "Résultats",
+        "yourInformation": "Vos Informations"
+      },
+      "accessibility": {
+        "mobileResults": "Résumé des résultats",
+        "closeModal": "Fermer",
+        "openMenu": "Ouvrir le menu"
+      },
+      "rating": {
+        "title": "Notez cette Calculatrice",
+        "share": "Partager",
+        "copied": "Copié!",
+        "copyLink": "Copier le Lien",
+        "clickToRate": "Cliquez pour noter",
+        "youRated": "Vous avez noté",
+        "stars": "étoiles",
+        "averageFrom": "moyenne de",
+        "ratings": "évaluations"
+      },
+      "common": {
+        "home": "Accueil",
+        "calculators": "Calculatrices"
+      },
+      "sources": {
+        "title": "Sources et Références"
+      }
+    },
+    de: {
+      "name": "Schwangerschafts-Geburtstermin-Rechner",
+      "slug": "schwangerschafts-geburtstermin-rechner",
+      "subtitle": "Schätzen Sie Ihren Geburtstermin, verfolgen Sie das wöchentliche Wachstum Ihres Babys und sehen Sie Ihre vollständige pränatale Meilenstein-Zeitleiste mit personalisierten Terminen",
+      "breadcrumb": "Geburtstermin",
+      "seo": {
+        "title": "Geburtstermin-Rechner - Schwangerschafts- & Entbindungsschätzer",
+        "description": "Berechnen Sie Ihren Geburtstermin mit letzter Regel, Ultraschall, IVF oder Empfängnisdatum. Verfolgen Sie die Babygröße pro Woche, sehen Sie pränatale Meilensteine und erhalten Sie Ihr Entbindungsfenster.",
+        "shortDescription": "Schätzen Sie Ihren Geburtstermin und verfolgen Sie Schwangerschaftsmeilensteine",
+        "keywords": [
+          "geburtstermin rechner",
+          "schwangerschaftsrechner",
+          "schwangerschafts geburtstermin",
+          "errechneter geburtstermin",
+          "schwangerschaftsalter rechner",
+          "ivf geburtstermin rechner",
+          "wann kommt mein baby",
+          "babygröße pro woche"
+        ]
+      },
+      "calculator": {
+        "yourInformation": "Ihre Informationen"
+      },
+      "inputs": {
+        "method": {
+          "label": "Berechnungsmethode",
+          "helpText": "Wählen Sie, wie Sie Ihren Geburtstermin schätzen möchten",
+          "options": {
+            "lmp": "Letzte Regelblutung (LMP)",
+            "conception": "Empfängnisdatum",
+            "ivf": "IVF-Transferdatum",
+            "ultrasound": "Ultraschalldatum",
+            "knownDueDate": "Ich kenne bereits meinen Geburtstermin"
+          }
+        },
+        "inputDate": {
+          "label": "Datum",
+          "helpText": "Wählen Sie das Datum für Ihre gewählte Berechnungsmethode"
+        },
+        "cycleLength": {
+          "label": "Durchschnittliche Zykluslänge",
+          "helpText": "Durchschnittliche Tage in Ihrem Menstruationszyklus (21–45, Standard 28)"
+        },
+        "lutealPhase": {
+          "label": "Gelbkörperphasenlänge",
+          "helpText": "Tage zwischen Eisprung und nächster Periode (10–16, Standard 14)"
+        },
+        "ivfEmbryo": {
+          "label": "Embryoalter beim Transfer",
+          "helpText": "Tag 5 (Blastozyste) Transfers sind am häufigsten",
+          "options": {
+            "day3": "Tag 3 Embryo",
+            "day5": "Tag 5 Blastozyste",
+            "day6": "Tag 6 Blastozyste"
+          }
+        },
+        "gestWeeks": {
+          "label": "Wochen beim Ultraschall",
+          "helpText": "Schwangerschaftsalter in Wochen zum Zeitpunkt des Ultraschalls"
+        },
+        "gestDays": {
+          "label": "Tage",
+          "helpText": "Zusätzliche Tage (0–6)"
+        },
+        "motherBirthYear": {
+          "label": "Geburtsjahr der Mutter (optional)",
+          "helpText": "Für chinesische Geschlechtsvorhersage — nur zum Spaß! Keine medizinische Beratung"
+        }
+      },
+      "inputGroups": {},
+      "results": {
+        "dueDate": {
+          "label": "Errechneter Geburtstermin"
+        },
+        "gestationalAge": {
+          "label": "Schwangerschaftsalter"
+        },
+        "trimester": {
+          "label": "Aktuelles Trimester"
+        },
+        "daysRemaining": {
+          "label": "Verbleibende Tage"
+        },
+        "conceptionDate": {
+          "label": "Geschätztes Empfängnisdatum"
+        },
+        "deliveryWindow": {
+          "label": "Entbindungsfenster"
+        },
+        "currentWeek": {
+          "label": "Aktuelle Woche"
+        },
+        "babySizeFruit": {
+          "label": "Babygröße"
+        },
+        "babyMeasurements": {
+          "label": "Länge & Gewicht"
+        },
+        "babyDevelopment": {
+          "label": "Entwicklungshighlight"
+        },
+        "zodiacSign": {
+          "label": "Sternzeichen des Babys"
+        },
+        "birthstone": {
+          "label": "Geburtsstein"
+        },
+        "birthSeason": {
+          "label": "Geburtssaison"
+        },
+        "trimesterProgress": {
+          "label": "Schwangerschaftsfortschritt"
+        },
+        "genderPrediction": {
+          "label": "Chinesische Geschlechtsvorhersage"
+        }
+      },
+      "tooltips": {
+        "dueDate": "Basiert auf einer 40-wöchigen (280-Tage) Schwangerschaft ab Ihrer letzten Regelblutung, angepasst für Ihre Zykluslänge und Gelbkörperphase",
+        "gestationalAge": "Wie weit Sie sind, gezählt vom ersten Tag Ihrer letzten Regelblutung",
+        "deliveryWindow": "Die meisten Babys werden zwischen 37 und 42 Wochen geboren — nur etwa 5% kommen am exakten Geburtstermin",
+        "daysRemaining": "Kalendertage bis zu Ihrem errechneten Geburtstermin",
+        "conceptionDate": "Geschätztes Befruchtungsdatum, etwa 2 Wochen nach LMP bei einem 28-Tage-Zyklus",
+        "babySizeFruit": "Ein lustiger Vergleich der ungefähren Größe Ihres Babys mit bekannten Früchten und Gemüse",
+        "babyDevelopment": "Wichtiger Entwicklungsmeilenstein dieser Woche",
+        "zodiacSign": "Das astrologische Zeichen basierend auf Ihrem errechneten Geburtstermin",
+        "birthstone": "Der traditionelle Geburtsstein für den erwarteten Geburtsmonat Ihres Babys",
+        "trimesterProgress": "Prozentsatz der abgeschlossenen Schwangerschaft basierend auf 40 Wochen",
+        "genderPrediction": "Alte chinesische Geburtstafel-Vorhersage — nur zur Unterhaltung, keine medizinische Beratung (50/50 Genauigkeit)"
+      },
+      "values": {
+        "Januar": "Januar",
+        "Februar": "Februar",
+        "März": "März",
+        "April": "April",
+        "Mai": "Mai",
+        "Juni": "Juni",
+        "Juli": "Juli",
+        "August": "August",
+        "September": "September",
+        "Oktober": "Oktober",
+        "November": "November",
+        "Dezember": "Dezember",
+        "Erstes Trimester": "Erstes Trimester",
+        "Zweites Trimester": "Zweites Trimester",
+        "Drittes Trimester": "Drittes Trimester",
+        "Übertragen": "Übertragen",
+        "Noch nicht schwanger": "Noch nicht schwanger",
+        "Tag": "Tag",
+        "Tage": "Tage",
+        "Woche": "Woche",
+        "Wochen": "Wochen",
+        "Widder": "Widder",
+        "Stier": "Stier",
+        "Zwillinge": "Zwillinge",
+        "Krebs": "Krebs",
+        "Löwe": "Löwe",
+        "Jungfrau": "Jungfrau",
+        "Waage": "Waage",
+        "Skorpion": "Skorpion",
+        "Schütze": "Schütze",
+        "Steinbock": "Steinbock",
+        "Wassermann": "Wassermann",
+        "Fische": "Fische",
+        "Frühling": "Frühling",
+        "Sommer": "Sommer",
+        "Herbst": "Herbst",
+        "Winter": "Winter",
+        "Mohnsamen": "Mohnsamen",
+        "Sesamsamen": "Sesamsamen",
+        "Linse": "Linse",
+        "Blaubeere": "Blaubeere",
+        "Himbeere": "Himbeere",
+        "Kirsche": "Kirsche",
+        "Erdbeere": "Erdbeere",
+        "Feige": "Feige",
+        "Limette": "Limette",
+        "Zitrone": "Zitrone",
+        "Pfirsich": "Pfirsich",
+        "Apfel": "Apfel",
+        "Avocado": "Avocado",
+        "Birne": "Birne",
+        "Paprika": "Paprika",
+        "Mango": "Mango",
+        "Banane": "Banane",
+        "Karotte": "Karotte",
+        "Maiskolben": "Maiskolben",
+        "Große Mango": "Große Mango",
+        "Steckrübe": "Steckrübe",
+        "Salatkopf": "Salatkopf",
+        "Blumenkohl": "Blumenkohl",
+        "Aubergine": "Aubergine",
+        "Eichelkürbis": "Eichelkürbis",
+        "Kohl": "Kohl",
+        "Kokosnuss": "Kokosnuss",
+        "Jicama": "Jicama",
+        "Ananas": "Ananas",
+        "Cantaloupe-Melone": "Cantaloupe-Melone",
+        "Honigmelone": "Honigmelone",
+        "Römersalat": "Römersalat",
+        "Mangold": "Mangold",
+        "Mini-Wassermelone": "Mini-Wassermelone",
+        "Kürbis": "Kürbis",
+        "Wassermelone": "Wassermelone",
+        "Große Wassermelone": "Große Wassermelone",
+        "Jackfrucht": "Jackfrucht",
+        "vollständig": "vollständig",
+        "heute": "heute",
+        "Früh termingerecht": "Früh termingerecht",
+        "Voll termingerecht": "Voll termingerecht",
+        "Spät termingerecht": "Spät termingerecht",
+        "Granat": "Granat",
+        "Amethyst": "Amethyst",
+        "Aquamarin": "Aquamarin",
+        "Diamant": "Diamant",
+        "Smaragd": "Smaragd",
+        "Alexandrit": "Alexandrit",
+        "Rubin": "Rubin",
+        "Peridot": "Peridot",
+        "Saphir": "Saphir",
+        "Opal": "Opal",
+        "Topas": "Topas",
+        "Tansanit": "Tansanit",
+        "Junge": "Junge",
+        "Mädchen": "Mädchen",
+        "Nur zum Spaß!": "Nur zum Spaß!",
+        "Schutz & Stärke": "Schutz & Stärke",
+        "Weisheit & Frieden": "Weisheit & Frieden",
+        "Mut & Gelassenheit": "Mut & Gelassenheit",
+        "Ewige Liebe & Klarheit": "Ewige Liebe & Klarheit",
+        "Wiedergeburt & Fruchtbarkeit": "Wiedergeburt & Fruchtbarkeit",
+        "Glück & Wohlstand": "Glück & Wohlstand",
+        "Leidenschaft & Vitalität": "Leidenschaft & Vitalität",
+        "Stärke & Heilung": "Stärke & Heilung",
+        "Wahrheit & Treue": "Wahrheit & Treue",
+        "Hoffnung & Kreativität": "Hoffnung & Kreativität",
+        "Freude & Überfluss": "Freude & Überfluss",
+        "Transformation & Neuanfang": "Transformation & Neuanfang",
+        "Erster Herzschlag erkennbar": "Erster Herzschlag erkennbar",
+        "Erster Vorsorgetermin": "Erster Vorsorgetermin",
+        "NIPT / Nackentransparenz-Screening": "NIPT / Nackentransparenz-Screening",
+        "Ende des ersten Trimesters": "Ende des ersten Trimesters",
+        "Quad-Screen-Fenster": "Quad-Screen-Fenster",
+        "Organ-Ultraschall (Level 2 Ultraschall)": "Organ-Ultraschall (Level 2 Ultraschall)",
+        "Lebensfähigkeits-Meilenstein": "Lebensfähigkeits-Meilenstein",
+        "Glukose-Screening-Test": "Glukose-Screening-Test",
+        "Tdap-Impfung-Fenster": "Tdap-Impfung-Fenster",
+        "Drittes Trimester beginnt": "Drittes Trimester beginnt",
+        "Kontrolle der Kindslage": "Kontrolle der Kindslage",
+        "Gruppe B Streptokokken (GBS) Test": "Gruppe B Streptokokken (GBS) Test",
+        "Früh termingerecht beginnt": "Früh termingerecht beginnt",
+        "Voll termingerecht beginnt": "Voll termingerecht beginnt",
+        "Errechneter Geburtstermin": "Errechneter Geburtstermin",
+        "Übertragung erwägen": "Übertragung erwägen",
+        "Erkennbar via transvaginaler Ultraschall": "Erkennbar via transvaginaler Ultraschall",
+        "Anfängliche Blutuntersuchung, Krankengeschichte, körperliche Untersuchung": "Anfängliche Blutuntersuchung, Krankengeschichte, körperliche Untersuchung",
+        "Nicht-invasives chromosomales Screening-Fenster": "Nicht-invasives chromosomales Screening-Fenster",
+        "Hauptorgansysteme gebildet; Fehlgeburtsrisiko sinkt": "Hauptorgansysteme gebildet; Fehlgeburtsrisiko sinkt",
+        "Screent auf Neuralrohrdefekte und Chromosomenstörungen": "Screent auf Neuralrohrdefekte und Chromosomenstörungen",
+        "Detaillierter struktureller Ultraschall; Geschlecht möglicherweise sichtbar": "Detaillierter struktureller Ultraschall; Geschlecht möglicherweise sichtbar",
+        "Baby könnte potenziell außerhalb der Gebärmutter mit NICU-Betreuung überleben": "Baby könnte potenziell außerhalb der Gebärmutter mit NICU-Betreuung überleben",
+        "Screent auf Schwangerschaftsdiabetes mellitus (GDM)": "Screent auf Schwangerschaftsdiabetes mellitus (GDM)",
+        "Empfohlen zwischen 27–36 Wochen zum Schutz des Neugeborenen vor Keuchhusten": "Empfohlen zwischen 27–36 Wochen zum Schutz des Neugeborenen vor Keuchhusten",
+        "Finale Wachstums- und Entwicklungsphase beginnt": "Finale Wachstums- und Entwicklungsphase beginnt",
+        "Arzt überprüft, ob Baby mit dem Kopf nach unten (Schädellage) oder Steißlage liegt": "Arzt überprüft, ob Baby mit dem Kopf nach unten (Schädellage) oder Steißlage liegt",
+        "Vaginaler Abstrich screent auf Gruppe B Streptokokken": "Vaginaler Abstrich screent auf Gruppe B Streptokokken",
+        "Baby gilt als früh termingerecht (37–38 Wochen)": "Baby gilt als früh termingerecht (37–38 Wochen)",
+        "Baby gilt als voll termingerecht (39–40 Wochen)": "Baby gilt als voll termingerecht (39–40 Wochen)",
+        "Durchschnittliche 40-Wochen-Schwangerschafts-Zielzeit": "Durchschnittliche 40-Wochen-Schwangerschafts-Zielzeit",
+        "Arzt bespricht möglicherweise Einleitung, falls Wehen nicht begonnen haben": "Arzt bespricht möglicherweise Einleitung, falls Wehen nicht begonnen haben"
+      },
+      "formats": {
+        "summary": "Ihr errechneter Geburtstermin ist {dueDate}. Sie sind derzeit {gestationalAge} ({trimester}). Baby ist etwa so groß wie eine {babySizeFruit}. {daysRemaining} Tage verbleibend."
+      },
+      "presets": {
+        "firstPregnancyLmp": {
+          "label": "Erste Schwangerschaft (LMP)",
+          "description": "28-Tage-Zyklus, Nov 2025 LMP"
+        },
+        "ivfBlastocyst": {
+          "label": "IVF Tag 5 Transfer",
+          "description": "Blastozysten-Transfer Jan 2026"
+        },
+        "earlyUltrasound": {
+          "label": "Früher Ultraschall",
+          "description": "8-Wochen-Dating-Scan Jan 2026"
+        },
+        "irregularCycle": {
+          "label": "Unregelmäßiger Zyklus (35-Tage)",
+          "description": "Längerer Zyklus, Okt 2025 LMP"
+        }
+      },
+      "infoCards": {
+        "keyDates": {
+          "title": "📅 Wichtige Termine",
+          "items": [
+            {
+              "label": "Geburtstermin",
+              "valueKey": "dueDate"
+            },
+            {
+              "label": "Entbindungsfenster",
+              "valueKey": "deliveryWindow"
+            },
+            {
+              "label": "Empfängnisdatum",
+              "valueKey": "conceptionDate"
+            },
+            {
+              "label": "Verbleibende Tage",
+              "valueKey": "daysRemaining"
+            }
+          ]
+        },
+        "babyNow": {
+          "title": "👶 Baby diese Woche",
+          "items": [
+            {
+              "label": "Aktuelle Woche",
+              "valueKey": "currentWeek"
+            },
+            {
+              "label": "Babygröße",
+              "valueKey": "babySizeFruit"
+            },
+            {
+              "label": "Länge & Gewicht",
+              "valueKey": "babyMeasurements"
+            },
+            {
+              "label": "Entwicklung",
+              "valueKey": "babyDevelopment"
+            }
+          ]
+        },
+        "tips": {
+          "title": "💡 Schwangerschaftstipps",
+          "items": [
+            "Nur etwa 5% der Babys kommen an ihrem exakten Geburtstermin — 80% werden innerhalb von 10 Tagen um den ET geboren",
+            "Ultraschall im ersten Trimester (vor 13 Wochen) ist die genaueste Dating-Methode, innerhalb von ±5–7 Tagen",
+            "Die Anpassung von Zykluslänge und Gelbkörperphase ergibt einen personalisierten Geburtstermin im Vergleich zur Standard-28-Tage-Annahme",
+            "Ihre pränatale Meilenstein-Zeitleiste unten zeigt geschätzte Termine für jeden wichtigen Test und Termin"
+          ]
+        }
+      },
+      "detailedTable": {
+        "prenatalTimeline": {
+          "button": "Pränatale Zeitleiste anzeigen",
+          "title": "Pränatale Test- & Meilenstein-Zeitleiste",
+          "columns": {
+            "milestone": "Meilenstein",
+            "estimatedDate": "Geschätztes Datum",
+            "gestAge": "Schwangerschaftsalter",
+            "notes": "Notizen"
+          }
+        }
+      },
+      "education": {
+        "whatIs": {
+          "title": "Was ist ein errechneter Geburtstermin?",
+          "content": "Ein errechneter Geburtstermin (ET), auch geschätztes Entbindungsdatum genannt, ist das projizierte Datum, an dem eine schwangere Person voraussichtlich ihr Baby zur Welt bringen wird. Er wird typischerweise als 280 Tage (40 Wochen) ab dem ersten Tag der letzten Regelblutung berechnet, unter Annahme eines Standard-28-Tage-Zyklus. Da jedoch Zykluslängen stark variieren (21–45 Tage) und der Eisprung nicht immer an Tag 14 stattfindet, verbessern personalisiertere Methoden — einschließlich Zykluslängen-Anpassung, Gelbkörperphase-Korrektur, IVF-Transferdaten und frühe Ultraschallmessungen — die Genauigkeit erheblich. Forschung zeigt, dass nur etwa 4–5% der Babys an ihrem exakten Geburtstermin geboren werden. Etwa 80% kommen innerhalb von 10 Tagen um den ET, und jede Geburt zwischen 37 und 42 Wochen gilt als im normalen Bereich. Ihr Geburtstermin wird am besten als Mittelpunkt eines Entbindungsfensters verstanden, nicht als präzise Deadline."
+        },
+        "howItWorks": {
+          "title": "Wie Geburtstermine berechnet werden",
+          "content": "Dieser Rechner unterstützt fünf Schätzmethoden. Die Letzte Regelblutung (LMP) Methode verwendet Naegeles Regel mit Anpassungen für Ihre persönliche Zykluslänge und Gelbkörperphase: sie berechnet das wahrscheinliche Eisprungdatum (Zykluslänge minus Gelbkörperphasenlänge), dann fügt 266 Tage hinzu, um den Geburtstermin zu erreichen. Die Empfängnisdatum-Methode fügt 266 Tage zum bekannten Befruchtungsdatum hinzu. Bei IVF-Transfers berücksichtigt der Rechner das Alter des Embryos beim Transfer (3, 5 oder 6 Tage) und fügt die entsprechende Anzahl von Tagen hinzu, um 40 Wochen Schwangerschaftsalter zu erreichen — IVF-Daten sind meist präzise, da der exakte Befruchtungszeitpunkt bekannt ist. Die Ultraschall-Methode arbeitet rückwärts vom Schwangerschaftsalter, das während einer frühen Untersuchung bestimmt wurde, und Ultraschall im ersten Trimester (vor 13 Wochen) gilt als Goldstandard für Dating-Genauigkeit. Schließlich berechnet die Bekannter Geburtstermin (umgekehrt) Methode Ihr Empfängnisdatum und LMP zurück, nützlich zum Verständnis Ihrer vollständigen Schwangerschafts-Zeitleiste."
+        },
+        "considerations": {
+          "title": "Wichtige Überlegungen",
+          "items": [
+            {
+              "text": "Ultraschall im ersten Trimester (vor 13 Wochen) ist der Goldstandard für Schwangerschafts-Dating-Genauigkeit, mit einer Fehlertoleranz von nur ±5–7 Tagen laut ACOG-Richtlinien",
+              "type": "info"
+            },
+            {
+              "text": "Unregelmäßige Menstruationszyklen können LMP-basierte Datierung weniger zuverlässig machen — wenn Ihre Zyklen um mehr als 7 Tage variieren, erwägen Sie stattdessen die Ultraschall- oder Empfängnismethode",
+              "type": "warning"
+            },
+            {
+              "text": "Nur etwa 4–5% der Babys werden an ihrem exakten Geburtstermin geboren; 80% kommen innerhalb von 10 Tagen, und das 37–42 Wochen-Fenster ist völlig normal",
+              "type": "info"
+            },
+            {
+              "text": "IVF-Geburtstermine sind meist die präzisesten aller Methoden, weil die exakten Befruchtungs- und Transferdaten bekannt sind",
+              "type": "info"
+            },
+            {
+              "text": "Ihr Gesundheitsversorger kann Ihren Geburtstermin nach einem frühen Ultraschall anpassen, wenn er um mehr als 7 Tage von LMP-basierten Schätzungen abweicht",
+              "type": "warning"
+            },
+            {
+              "text": "Schwangerschaften, die über 42 Wochen dauern (übertragen), tragen höhere Risiken — ACOG empfiehlt, Einleitung zwischen 41 und 42 Wochen zu besprechen",
+              "type": "warning"
+            }
+          ]
+        },
+        "milestones": {
+          "title": "Begriffsdefinitionen & wichtige Meilensteine",
+          "items": [
+            {
+              "text": "Erstes Trimester (Wochen 1–13): Babys Herz beginnt um Woche 6 zu schlagen; bis Woche 12 haben sich alle Hauptorgane gebildet und das Fehlgeburtsrisiko sinkt erheblich auf etwa 2%",
+              "type": "info"
+            },
+            {
+              "text": "Zweites Trimester (Wochen 14–27): Der Organ-Ultraschall in Wochen 18–22 überprüft strukturelle Entwicklung und kann das Geschlecht zeigen; fötale Bewegungen (Kindsbewegungen) typischerweise zwischen Wochen 18–22 gespürt",
+              "type": "info"
+            },
+            {
+              "text": "Drittes Trimester (Wochen 28–40): Schnelle Gewichtszunahme und Gehirnentwicklung; Baby erreicht Lebensfähigkeit um Woche 24; Lungen reifen weiter bis Woche 36",
+              "type": "info"
+            },
+            {
+              "text": "Frühgeburt: Vor 37 Wochen | Früh termingerecht: 37–38 Wochen | Voll termingerecht: 39–40 Wochen | Spät termingerecht: 41 Wochen | Übertragen: 42+ Wochen",
+              "type": "warning"
+            },
+            {
+              "text": "Wichtige Screenings: NIPT/Nackentransparenz (10–13 Wochen), Quad-Screen (15–20 Wochen), Organ-Ultraschall (18–22 Wochen), Glukose-Test (24–28 Wochen), GBS-Test (35–37 Wochen)",
+              "type": "info"
+            },
+            {
+              "text": "Die chinesische Geschlechtsvorhersage-Tabelle ist ein lustiges traditionelles Werkzeug mit ~50% Genauigkeit (nicht besser als Zufall) — basiert auf Mondmonat der Mutter und Empfängnismonat, nur zur Unterhaltung",
+              "type": "info"
+            }
+          ]
+        },
+        "examples": {
+          "title": "Berechnungsbeispiele",
+          "description": "Schritt-für-Schritt-Beispiele für verschiedene Schätzmethoden",
+          "examples": [
+            {
+              "title": "LMP-Methode (28-Tage-Zyklus)",
+              "steps": [
+                "Letzte Periode begann: 1. Januar 2026",
+                "Zykluslänge: 28 Tage, Gelbkörperphase: 14 Tage",
+                "Eisprung-Tag: 28 − 14 = Tag 14 → 15. Januar",
+                "Geburtstermin: 15. Januar + 266 Tage = 8. Oktober 2026",
+                "Naegeles Abkürzung: 1. Jan + 1 Jahr − 3 Monate + 7 Tage = 8. Okt"
+              ],
+              "result": "Geburtstermin: 8. Oktober 2026"
+            },
+            {
+              "title": "IVF Tag 5 Blastozysten-Transfer",
+              "steps": [
+                "Transferdatum: 10. Februar 2026",
+                "Embryoalter: 5 Tage (Blastozyste)",
+                "Schwangerschaft beim Transfer: 2 Wochen + 5 Tage = 19 Tage",
+                "Verbleibende Tage: 280 − 19 = 261 Tage",
+                "Geburtstermin: 10. Februar + 261 = 29. Oktober 2026"
+              ],
+              "result": "Geburtstermin: 29. Oktober 2026"
+            }
+          ]
+        }
+      },
+      "faqs": [
+        {
+          "question": "Wie genau ist ein Geburtstermin-Rechner?",
+          "answer": "Geburtstermin-Rechner liefern eine Schätzung basierend auf durchschnittlicher Schwangerschaftslänge (280 Tage ab LMP). Genauigkeit hängt von der Methode ab: Ultraschall im ersten Trimester ist genaueste (±5–7 Tage), IVF-Daten sind fast so präzise, und LMP-basierte Berechnung kann bei unregelmäßigen Zyklen um 1–2 Wochen abweichen. Nur etwa 4–5% der Babys kommen am exakten Geburtstermin — die meisten werden innerhalb eines 10-Tage-Fensters um den ET geboren."
+        },
+        {
+          "question": "Was ist der Unterschied zwischen Schwangerschaftsalter und fötalem Alter?",
+          "answer": "Schwangerschaftsalter wird ab dem ersten Tag Ihrer letzten Regelblutung (LMP) gezählt, was etwa 2 Wochen vor der tatsächlichen Empfängnis liegt. Fötales Alter (embryonales Alter) wird ab dem tatsächlichen Empfängnisdatum gezählt. Also bei '8 Wochen schwanger' (Schwangerschaftsalter) ist der Embryo tatsächlich etwa 6 Wochen alt. Medizinische Fachkräfte verwenden fast immer das Schwangerschaftsalter."
+        },
+        {
+          "question": "Kann sich mein Geburtstermin während der Schwangerschaft ändern?",
+          "answer": "Ja. Wenn ein früher Ultraschall (vor 13 Wochen) ein Schwangerschaftsalter zeigt, das um mehr als 7 Tage von Ihrer LMP-basierten Schätzung abweicht, kann Ihr Gesundheitsversorger Ihren Geburtstermin anpassen. Laut ACOG-Richtlinien sind Ultraschallmessungen im ersten Trimester die zuverlässigste Dating-Methode."
+        },
+        {
+          "question": "Wie wird ein IVF-Geburtstermin berechnet?",
+          "answer": "IVF-Geburtstermine werden vom Embryo-Transferdatum berechnet. Für eine Tag 5 Blastozyste werden 261 Tage zum Transferdatum hinzugefügt. Tag 3 Embryonen fügen 263 Tage hinzu, und Tag 6 Blastozysten fügen 260 Tage hinzu. IVF-Berechnungen gehören zu den genauesten, weil das exakte Befruchtungsdatum bekannt ist."
+        },
+        {
+          "question": "Was bedeutet 'voll termingerecht' vs. 'früh termingerecht'?",
+          "answer": "ACOG definiert: Frühgeburt (vor 37 Wochen), Früh termingerecht (37–38 Wochen), Voll termingerecht (39–40 Wochen), Spät termingerecht (41 Wochen), Übertragen (42+ Wochen). Voll termingerecht ist das ideale Fenster mit den besten Gesundheitsergebnissen."
+        },
+        {
+          "question": "Beeinflusst die Zykluslänge wirklich den Geburtstermin?",
+          "answer": "Ja, erheblich. Die Standard-280-Tage-Berechnung nimmt einen 28-Tage-Zyklus mit Eisprung an Tag 14 an. Ein 35-Tage-Zyklus bedeutet Eisprung um Tag 21 — das verschiebt Ihren Geburtstermin um 7 Tage. Dieser Rechner passt sowohl Zykluslänge als auch Gelbkörperphase für bessere Genauigkeit an."
+        },
+        {
+          "question": "Was ist die chinesische Geschlechtsvorhersage-Tabelle?",
+          "answer": "Ein traditionelles Werkzeug, das angeblich über 700 Jahre alt ist und behauptet, das Geschlecht des Babys basierend auf dem Mondalter der Mutter und dem Empfängnismonat vorherzusagen. Wissenschaftliche Studien zeigen etwa 50% Genauigkeit — dasselbe wie ein Münzwurf. Es ist hier als lustige Tradition enthalten, nicht als medizinisches Werkzeug."
+        },
+        {
+          "question": "Was ist ein 'Dating-Ultraschall' und wann sollte ich einen bekommen?",
+          "answer": "Ein Dating-Ultraschall (typischerweise 7–12 Wochen) misst die Scheitel-Steiß-Länge des Embryos, um das Schwangerschaftsalter zu bestimmen. Es ist die genaueste Dating-Methode mit ±5–7 Tage Fehlertoleranz. Sowohl ACOG als auch NHS empfehlen ihn im ersten Trimester, besonders bei unregelmäßigen Zyklen."
+        },
+        {
+          "question": "Was passiert, wenn ich über meinen Geburtstermin hinausgehe?",
+          "answer": "Etwa 50% der Erstgebärenden entbinden nach 40 Wochen. Bei 41 Wochen verstärkt Ihr Versorger die Überwachung. Bei 42 Wochen empfehlen die meisten Richtlinien (ACOG, NICE), Einleitung zu besprechen, da Risiken durch abnehmende Plazentafunktion und reduziertes Fruchtwasser steigen."
+        },
+        {
+          "question": "Können Zwillinge einen anderen Geburtstermin haben?",
+          "answer": "Zwillingsschwangerschaften verwenden dieselbe anfängliche Berechnung, aber erwartete Entbindung ist früher — durchschnittlich um 36–37 Wochen. Ihr Versorger kann Entbindung zwischen 36–38 Wochen empfehlen, abhängig davon, ob Zwillinge eineiig (monochorial) oder zweieiig (dichorial) sind."
+        }
+      ],
+      "chart": {
+        "title": "Babywachstum pro Woche",
+        "xLabel": "Woche",
+        "yLabel": "Gewicht (oz / lb)",
+        "series": {
+          "weightOz": "Babygewicht"
+        }
+      },
+      "buttons": {
+        "calculate": "Berechnen",
+        "reset": "Zurücksetzen",
+        "pdf": "PDF",
+        "csv": "CSV",
+        "excel": "Excel",
+        "save": "Speichern",
+        "saved": "Gespeichert",
+        "saving": "Speichern..."
+      },
+      "share": {
+        "calculatedWith": "Berechnet mit Kalcufy.com"
+      },
+      "ui": {
+        "results": "Ergebnisse",
+        "yourInformation": "Ihre Informationen"
+      },
+      "accessibility": {
+        "mobileResults": "Ergebniszusammenfassung",
+        "closeModal": "Schließen",
+        "openMenu": "Menü öffnen"
+      },
+      "rating": {
+        "title": "Bewerten Sie diesen Rechner",
+        "share": "Teilen",
+        "copied": "Kopiert!",
+        "copyLink": "Link kopieren",
+        "clickToRate": "Klicken zum Bewerten",
+        "youRated": "Sie haben bewertet",
+        "stars": "Sterne",
+        "averageFrom": "Durchschnitt von",
+        "ratings": "Bewertungen"
+      },
+      "common": {
+        "home": "Startseite",
+        "calculators": "Rechner"
+      },
+      "sources": {
+        "title": "Quellen und Referenzen"
+      }
+    },
   },
 
   inputs: [

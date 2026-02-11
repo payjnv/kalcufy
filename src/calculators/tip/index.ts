@@ -113,6 +113,13 @@ export const tipCalculatorConfig: CalculatorConfigV4 = {
             great: "😄 Great",
             exceptional: "🌟 Exceptional",
           },
+          descriptions: {
+            poor: "~10%",
+            fair: "~15%",
+            good: "~18%",
+            great: "~20%",
+            exceptional: "~25%",
+          },
         },
         tipPercent: {
           label: "Tip Percentage",
@@ -129,6 +136,10 @@ export const tipCalculatorConfig: CalculatorConfigV4 = {
             total: "Tip on Total",
             preTax: "Tip Before Tax",
           },
+          descriptions: {
+            total: "",
+            preTax: "Save money",
+          },
         },
         taxAmount: {
           label: "Tax Amount",
@@ -142,6 +153,12 @@ export const tipCalculatorConfig: CalculatorConfigV4 = {
             nearest1: "Nearest $1",
             nearest5: "Nearest $5",
             nearest10: "Nearest $10",
+          },
+          descriptions: {
+            none: "",
+            nearest1: "",
+            nearest5: "",
+            nearest10: "",
           },
         },
       },

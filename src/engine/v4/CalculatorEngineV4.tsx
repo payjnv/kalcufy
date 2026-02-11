@@ -614,7 +614,8 @@ export default function CalculatorEngineV4({
             body: JSON.stringify({
               calculatorSlug: translations.slug,
               language: locale,
-              type: "CALCULATION"
+              type: "CALCULATION",
+              pagePath: typeof window !== "undefined" ? window.location.pathname : null,
             })
           }).catch(() => {});
         }
@@ -624,7 +625,8 @@ export default function CalculatorEngineV4({
     }
   }, [values, units, unitSystem, currentMode, calculate, config.features?.autoCalculate, translations.slug, locale, fieldUnits, buildLegacyValues]);
 
-  // Track page view
+  // Track page view + referrer + path + session duration
+  const viewStartTime = useRef(Date.now());
   useEffect(() => {
     if (hasTrackedView.current) return;
     hasTrackedView.current = true;
@@ -634,9 +636,26 @@ export default function CalculatorEngineV4({
       body: JSON.stringify({
         calculatorSlug: translations.slug,
         language: locale,
-        type: "VIEW"
+        type: "VIEW",
+        referrer: typeof document !== "undefined" ? document.referrer || null : null,
+        pagePath: typeof window !== "undefined" ? window.location.pathname : null,
       })
     }).catch(() => {});
+    // Track duration on page leave
+    const sendDuration = () => {
+      const seconds = Math.round((Date.now() - viewStartTime.current) / 1000);
+      if (seconds > 2 && seconds < 3600) {
+        navigator.sendBeacon("/api/track", JSON.stringify({
+          calculatorSlug: translations.slug,
+          language: locale,
+          type: "VIEW",
+          durationSeconds: seconds,
+          pagePath: window.location.pathname,
+        }));
+      }
+    };
+    window.addEventListener("beforeunload", sendDuration);
+    return () => window.removeEventListener("beforeunload", sendDuration);
   }, [translations.slug, locale]);
 
   // Auto-save values to localStorage (debounced, non-sensitive only)
@@ -1221,7 +1240,7 @@ export default function CalculatorEngineV4({
 
                 {/* Info Cards */}
                 {config.infoCards?.map((card) => {
-                  const cardT = translations.infoCards[card.id];
+                  const cardT = translations.infoCards?.[card.id];
                   if (!cardT) return null;
                   
                   // Build items array - support both array and object formats
@@ -1261,7 +1280,7 @@ export default function CalculatorEngineV4({
 
                 {/* Reference Data */}
                 {config.referenceData?.map((ref) => {
-                  const refT = translations.referenceData[ref.id];
+                  const refT = translations.referenceData?.[ref.id];
                   if (!refT) return null;
                   
                   return (
@@ -1316,7 +1335,7 @@ export default function CalculatorEngineV4({
               <div className="container mx-auto px-2 sm:px-4 max-w-6xl space-y-3 overflow-hidden">
                 {/* Card Sections */}
                 {cardSections.map((section) => {
-                  const sectionT = translations.education[section.id];
+                  const sectionT = translations.education?.[section.id];
                   if (!sectionT) return null;
                   return (
                     <CollapsibleSection 
@@ -1335,7 +1354,7 @@ export default function CalculatorEngineV4({
                 
                 {/* List Sections */}
                 {listSections.map((section) => {
-                  const sectionT = translations.education[section.id];
+                  const sectionT = translations.education?.[section.id];
                   if (!sectionT) return null;
                   return (
                     <CollapsibleSection 
@@ -1354,7 +1373,7 @@ export default function CalculatorEngineV4({
                 
                 {/* Example Sections */}
                 {exampleSections.map((section) => {
-                  const sectionT = translations.education[section.id];
+                  const sectionT = translations.education?.[section.id];
                   if (!sectionT) return null;
                   return (
                     <CollapsibleSection 
@@ -1373,7 +1392,7 @@ export default function CalculatorEngineV4({
                 
                 {/* Prose Sections */}
                 {proseSections.map((section) => {
-                  const sectionT = translations.education[section.id];
+                  const sectionT = translations.education?.[section.id];
                   if (!sectionT) return null;
                   return (
                     <CollapsibleSection 
@@ -1429,7 +1448,7 @@ export default function CalculatorEngineV4({
               <div className="container mx-auto px-2 sm:px-4 max-w-6xl">
                 <div className="grid md:grid-cols-2 gap-6">
                   {[...cardSections, ...listSections].slice(0, 2).map((section) => {
-                    const sectionT = translations.education[section.id];
+                    const sectionT = translations.education?.[section.id];
                     if (!sectionT) return null;
                     return (
                       <RenderEducationSection 
@@ -1447,7 +1466,7 @@ export default function CalculatorEngineV4({
 
           {/* Full Width: Examples */}
           {exampleSections.map((section) => {
-            const sectionT = translations.education[section.id];
+            const sectionT = translations.education?.[section.id];
             if (!sectionT) return null;
             return (
               <RenderEducationSection 
@@ -1467,7 +1486,7 @@ export default function CalculatorEngineV4({
                   <div className="lg:col-span-2 space-y-8">
                     {/* Prose Sections */}
                     {proseSections.map((section) => {
-                      const sectionT = translations.education[section.id];
+                      const sectionT = translations.education?.[section.id];
                       if (!sectionT) return null;
                       return (
                         <RenderEducationSection 

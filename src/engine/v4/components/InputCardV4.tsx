@@ -1589,7 +1589,8 @@ function RadioInput({ input, value, onChange, errorId, t }: { input: InputConfig
 
   // Check if any option has a description (from config or translations)
   const hasDescriptions = options.some(opt => {
-    const descFromT = t("inputs." + input.id + ".descriptions." + opt.value, "");
+    const _rawDesc = t("inputs." + input.id + ".descriptions." + opt.value, "");
+          const descFromT = _rawDesc.startsWith("inputs.") ? "" : _rawDesc;
     return descFromT || opt.description;
   });
 
@@ -1628,7 +1629,8 @@ function RadioInput({ input, value, onChange, errorId, t }: { input: InputConfig
           const isSelected = value === opt.value;
           const optLabel = t("inputs." + input.id + ".options." + opt.value, opt.label);
           // Description: try translation first, then fall back to opt.description
-          const descFromT = t("inputs." + input.id + ".descriptions." + opt.value, "");
+          const _rawDesc = t("inputs." + input.id + ".descriptions." + opt.value, "");
+          const descFromT = _rawDesc.startsWith("inputs.") ? "" : _rawDesc;
           const description = descFromT || opt.description || "";
 
           return (
@@ -2432,7 +2434,7 @@ export default function InputCardV4({
   return (
     <form 
       id={formId}
-      className="bg-white rounded-2xl border border-blue-200 px-2.5 py-4 sm:px-4 md:p-6 shadow-sm ring-1 ring-blue-100 overflow-x-hidden overflow-y-visible max-w-full box-border"
+      className="bg-white rounded-2xl border border-blue-200 px-2.5 py-4 sm:px-4 md:p-6 shadow-sm ring-1 ring-blue-100 overflow-visible max-w-full box-border"
       onSubmit={(e) => e.preventDefault()}
       noValidate
     >

@@ -1,8 +1,8 @@
 // src/app/api/admin/deep-analytics/route.ts
 // ═══════════════════════════════════════════════════════════════
-// DEEP ANALYTICS ENTERPRISE — ONE API TO RULE THEM ALL
-// Replaces: /api/admin/analytics + /api/admin/calculator-usage + /api/admin/stats
-// 5 tabs: overview | realtime | geographic | calculators | audience
+// DEEP ANALYTICS V3 — GOD MODE DASHBOARD API
+// 6 tabs: overview | realtime | geographic | calculators | audience | insights
+// New: browser, OS, referrer, duration, city-level geo, funnel analysis
 // ═══════════════════════════════════════════════════════════════
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
@@ -69,7 +69,7 @@ export async function GET(request: NextRequest) {
     let startDate = new Date();
     let prevStart = new Date();
 
-    const daysMap: Record<string, number> = { today: 0, "7d": 7, "30d": 30, "90d": 90 };
+    const daysMap: Record<string, number> = { today: 0, "7d": 7, "30d": 30, "90d": 90, "365d": 365 };
     const days = daysMap[range] ?? 30;
 
     if (range === "today") {
@@ -97,6 +97,10 @@ export async function GET(request: NextRequest) {
         sessionViewCounts,
         countryCount,
         totalAllTime,
+        avgDuration,
+        topReferrers,
+        topBrowsers,
+        topOS,
       ] = await Promise.all([
         prisma.calculatorUsage.count({ where: { ...baseW, type: "VIEW" } }),
         prisma.calculatorUsage.count({ where: { ...baseW, type: "CALCULATION" } }),
@@ -118,13 +122,15 @@ export async function GET(request: NextRequest) {
           GROUP BY DATE("createdAt")
           ORDER BY date ASC
         `,
-        // Hourly distribution
+        // Hourly heatmap
         prisma.$queryRaw`
-          SELECT EXTRACT(HOUR FROM "createdAt") as hour, COUNT(*) as count
+          SELECT EXTRACT(HOUR FROM "createdAt") as hour, 
+                 EXTRACT(DOW FROM "createdAt") as dow,
+                 COUNT(*) as count
           FROM calculator_usage
           WHERE "createdAt" >= ${startDate} AND type = 'VIEW'
-          GROUP BY EXTRACT(HOUR FROM "createdAt")
-          ORDER BY hour ASC
+          GROUP BY EXTRACT(HOUR FROM "createdAt"), EXTRACT(DOW FROM "createdAt")
+          ORDER BY dow, hour
         `,
         // Session view counts for bounce rate
         prisma.calculatorUsage.groupBy({
@@ -139,6 +145,35 @@ export async function GET(request: NextRequest) {
         }).then(r => r.length),
         // All time total
         prisma.calculatorUsage.count(),
+        // Average duration
+        prisma.calculatorUsage.aggregate({
+          _avg: { durationSeconds: true },
+          where: { ...baseW, durationSeconds: { not: null, gt: 0 } },
+        }),
+        // Top referrers
+        prisma.calculatorUsage.groupBy({
+          by: ["referrer"],
+          where: { ...baseW, referrer: { not: null } },
+          _count: { id: true },
+          orderBy: { _count: { id: "desc" } },
+          take: 10,
+        }),
+        // Top browsers
+        prisma.calculatorUsage.groupBy({
+          by: ["browser"],
+          where: { ...baseW, browser: { not: null } },
+          _count: { id: true },
+          orderBy: { _count: { id: "desc" } },
+          take: 6,
+        }),
+        // Top OS
+        prisma.calculatorUsage.groupBy({
+          by: ["os"],
+          where: { ...baseW, os: { not: null } },
+          _count: { id: true },
+          orderBy: { _count: { id: "desc" } },
+          take: 6,
+        }),
       ]);
 
       const convRate = totalViews > 0 ? parseFloat(((totalCalcs / totalViews) * 100).toFixed(1)) : 0;
@@ -146,21 +181,19 @@ export async function GET(request: NextRequest) {
       const singleView = sessionViewCounts.filter(s => s._count === 1).length;
       const bounceRate = sessionViewCounts.length > 0 ? Math.round((singleView / sessionViewCounts.length) * 100) : 0;
 
-      // Avg calcs per session
-      const calcSessions = await prisma.calculatorUsage.groupBy({
-        by: ["sessionId"],
-        where: { ...baseW, type: "CALCULATION", sessionId: { not: null } },
-        _count: true,
-      });
-      const avgCalcsPerSession = calcSessions.length > 0
-        ? (calcSessions.reduce((s, x) => s + x._count, 0) / calcSessions.length).toFixed(1)
-        : "0";
+      const avgDur = avgDuration._avg.durationSeconds || 0;
+      const avgDurFormatted = avgDur > 0 ? `${Math.floor(avgDur / 60)}:${String(Math.round(avgDur % 60)).padStart(2, "0")}` : "0:00";
 
-      // Hourly array (0-23)
-      const hourly = Array.from({ length: 24 }, (_, i) => {
-        const found = (hourlyStats as any[]).find(h => Number(h.hour) === i);
-        return { hour: i, count: found ? Number(found.count) : 0 };
+      // Hourly heatmap (7 days x 24 hours)
+      const heatmap = Array.from({ length: 7 }, () => Array(24).fill(0));
+      (hourlyStats as any[]).forEach(h => {
+        const dow = Number(h.dow);
+        const hour = Number(h.hour);
+        heatmap[dow][hour] = Number(h.count);
       });
+
+      const totalBrowsers = topBrowsers.reduce((s, b) => s + b._count.id, 0);
+      const totalOS = topOS.reduce((s, o) => s + o._count.id, 0);
 
       return NextResponse.json({
         stats: {
@@ -171,6 +204,8 @@ export async function GET(request: NextRequest) {
           sessionsChange: pct(uniqueSessions, prevUniqueSessions),
           conversionChange: parseFloat((convRate - prevConv).toFixed(1)),
           totalAllTime,
+          avgDuration: avgDurFormatted,
+          bounceRate,
         },
         dailyTrend: (dailyStats as any[]).map(d => ({
           date: new Date(d.date).toLocaleDateString("en-US", { month: "short", day: "numeric" }),
@@ -178,8 +213,22 @@ export async function GET(request: NextRequest) {
           calcs: Number(d.calculations),
           sessions: Number(d.sessions),
         })),
-        hourly,
-        bottom: { bounceRate, activeCountries: countryCount, calcsPerSession: avgCalcsPerSession },
+        heatmap,
+        referrers: topReferrers.map(r => ({
+          source: r.referrer || "Direct",
+          count: r._count.id,
+        })),
+        browsers: topBrowsers.map(b => ({
+          name: b.browser || "Unknown",
+          count: b._count.id,
+          pct: totalBrowsers > 0 ? parseFloat(((b._count.id / totalBrowsers) * 100).toFixed(1)) : 0,
+        })),
+        operatingSystems: topOS.map(o => ({
+          name: o.os || "Unknown",
+          count: o._count.id,
+          pct: totalOS > 0 ? parseFloat(((o._count.id / totalOS) * 100).toFixed(1)) : 0,
+        })),
+        bottom: { bounceRate, activeCountries: countryCount },
       });
     }
 
@@ -201,7 +250,11 @@ export async function GET(request: NextRequest) {
           where: { createdAt: { gte: oneHourAgo } },
           orderBy: { createdAt: "desc" },
           take: 50,
-          select: { calculatorSlug: true, type: true, country: true, device: true, language: true, createdAt: true },
+          select: {
+            calculatorSlug: true, type: true, country: true, city: true,
+            device: true, browser: true, os: true, language: true, referrer: true,
+            createdAt: true,
+          },
         }),
         prisma.$queryRaw`
           SELECT DATE_TRUNC('minute', "createdAt") as minute, COUNT(*) as count
@@ -219,6 +272,7 @@ export async function GET(request: NextRequest) {
         recentEvents: recentEvents.map(e => ({
           ...e,
           flag: COUNTRY_FLAGS[e.country || ""] || "🌍",
+          location: [e.city, e.country].filter(Boolean).join(", "),
           createdAt: (e.createdAt as Date).toISOString(),
         })),
         minuteTrend: (minuteRaw as any[]).map(m => ({
@@ -229,16 +283,24 @@ export async function GET(request: NextRequest) {
     }
 
     // ═══════════════════════════════════════
-    // TAB: GEOGRAPHIC (with city-level dots)
+    // TAB: GEOGRAPHIC
     // ═══════════════════════════════════════
     if (tab === "geographic") {
-      const [byCountry, byLanguage, byDevice] = await Promise.all([
+      const [byCountry, byCity, byLanguage, byDevice, cityDots] = await Promise.all([
         prisma.calculatorUsage.groupBy({
-          by: ["country"],
+          by: ["country", "countryCode"],
           where: { ...baseW, country: { not: null } },
           _count: { id: true },
           orderBy: { _count: { id: "desc" } },
           take: 25,
+        }),
+        // Top cities
+        prisma.calculatorUsage.groupBy({
+          by: ["city", "country"],
+          where: { ...baseW, city: { not: null } },
+          _count: { id: true },
+          orderBy: { _count: { id: "desc" } },
+          take: 20,
         }),
         prisma.calculatorUsage.groupBy({
           by: ["language"],
@@ -252,47 +314,23 @@ export async function GET(request: NextRequest) {
           _count: { id: true },
           orderBy: { _count: { id: "desc" } },
         }),
-      ]);
-
-      // 🆕 City-level dots for the map
-      let cityDots: Array<{
-        city: string; region: string | null; country: string | null;
-        lat: number; lng: number; count: number;
-      }> = [];
-
-      try {
-        const rawCityDots = await prisma.$queryRaw<Array<{
-          city: string; region: string | null; country: string | null;
-          lat: number; lng: number; count: bigint;
-        }>>`
+        // City dots for map
+        prisma.$queryRaw`
           SELECT 
-            city,
-            region,
-            country,
+            city, region, country,
             AVG(latitude)::float as lat,
             AVG(longitude)::float as lng,
-            COUNT(*)::bigint as count
+            COUNT(*)::int as count
           FROM calculator_usage
-          WHERE created_at >= ${dateFrom}
+          WHERE "createdAt" >= ${startDate}
             AND city IS NOT NULL
             AND latitude IS NOT NULL
             AND longitude IS NOT NULL
           GROUP BY city, region, country
           ORDER BY count DESC
           LIMIT 200
-        `;
-        cityDots = rawCityDots.map(d => ({
-          city: d.city,
-          region: d.region,
-          country: d.country,
-          lat: Number(d.lat),
-          lng: Number(d.lng),
-          count: Number(d.count),
-        }));
-      } catch (e) {
-        // If city columns don't exist yet (pre-migration), return empty
-        console.warn("cityDots query failed (fields may not exist yet):", e);
-      }
+        `.catch(() => []),
+      ]);
 
       const totalC = byCountry.reduce((s, c) => s + c._count.id, 0);
       const totalL = byLanguage.reduce((s, l) => s + l._count.id, 0);
@@ -301,11 +339,21 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({
         countries: byCountry.map(c => ({
           country: c.country || "Unknown",
+          code: c.countryCode || "",
           flag: COUNTRY_FLAGS[c.country || ""] || "🌍",
           count: c._count.id,
           pct: totalC > 0 ? parseFloat(((c._count.id / totalC) * 100).toFixed(1)) : 0,
         })),
-        cityDots,  // 🆕 Array of { city, region, country, lat, lng, count }
+        cities: byCity.map(c => ({
+          city: c.city || "Unknown",
+          country: c.country || "",
+          flag: COUNTRY_FLAGS[c.country || ""] || "🌍",
+          count: c._count.id,
+        })),
+        cityDots: (cityDots as any[]).map(d => ({
+          city: d.city, region: d.region, country: d.country,
+          lat: Number(d.lat), lng: Number(d.lng), count: Number(d.count),
+        })),
         languages: byLanguage.map(l => ({
           code: l.language,
           name: LANG_META[l.language]?.name || l.language,
@@ -325,62 +373,60 @@ export async function GET(request: NextRequest) {
     // TAB: CALCULATORS
     // ═══════════════════════════════════════
     if (tab === "calculators") {
-      const topCalcs = await prisma.$queryRaw`
-        SELECT
-          "calculatorSlug" as slug,
-          COUNT(*) as total,
-          COUNT(*) FILTER (WHERE type = 'VIEW') as views,
-          COUNT(*) FILTER (WHERE type = 'CALCULATION') as calculations
-        FROM calculator_usage
-        WHERE "createdAt" >= ${startDate}
-        GROUP BY "calculatorSlug"
-        ORDER BY views DESC
-        LIMIT 30
-      `;
+      const [topCalcs, topByDuration] = await Promise.all([
+        prisma.$queryRaw`
+          SELECT
+            "calculatorSlug" as slug,
+            COUNT(*) as total,
+            COUNT(*) FILTER (WHERE type = 'VIEW') as views,
+            COUNT(*) FILTER (WHERE type = 'CALCULATION') as calculations,
+            AVG(duration_seconds) FILTER (WHERE duration_seconds > 0) as avg_duration
+          FROM calculator_usage
+          WHERE "createdAt" >= ${startDate}
+          GROUP BY "calculatorSlug"
+          ORDER BY views DESC
+          LIMIT 30
+        `,
+        // Top by engagement (duration)
+        prisma.$queryRaw`
+          SELECT
+            "calculatorSlug" as slug,
+            AVG(duration_seconds)::int as avg_duration,
+            COUNT(*) as total
+          FROM calculator_usage
+          WHERE "createdAt" >= ${startDate}
+            AND duration_seconds > 0
+            AND duration_seconds < 3600
+          GROUP BY "calculatorSlug"
+          HAVING COUNT(*) >= 3
+          ORDER BY avg_duration DESC
+          LIMIT 10
+        `,
+      ]);
 
-      // Get daily trend for TOP calculator (for sparkline)
       const formatted = (topCalcs as any[]).map(c => {
         const v = Number(c.views);
         const calc = Number(c.calculations);
+        const dur = c.avg_duration ? Number(c.avg_duration) : 0;
         return {
           slug: c.slug,
           total: Number(c.total),
           views: v,
           calcs: calc,
           conversionRate: v > 0 ? parseFloat(((calc / v) * 100).toFixed(1)) : 0,
+          avgDuration: dur > 0 ? `${Math.floor(dur / 60)}:${String(Math.round(dur % 60)).padStart(2, "0")}` : "-",
         };
       });
 
-      // Category-level breakdown via subcategory → category
-      const categoryMap: Record<string, string> = {};
-      try {
-        const catAssignments = await prisma.calculatorStatus.findMany({
-          where: { subcategoryId: { not: null } },
-          select: { slug: true, subcategory: { select: { category: { select: { nameEn: true } } } } },
-        });
-        catAssignments.forEach((ca: any) => {
-          if (ca.subcategory?.category?.nameEn) categoryMap[ca.slug] = ca.subcategory.category.nameEn;
-        });
-      } catch { /* relation may not exist */ }
-
-      const withCategory = formatted.map(c => ({
-        ...c,
-        category: categoryMap[c.slug] || "Uncategorized",
+      const mostEngaging = (topByDuration as any[]).map(c => ({
+        slug: c.slug,
+        avgDuration: `${Math.floor(Number(c.avg_duration) / 60)}:${String(Math.round(Number(c.avg_duration) % 60)).padStart(2, "0")}`,
+        total: Number(c.total),
       }));
 
-      // Category aggregate
-      const catAgg: Record<string, { views: number; calcs: number }> = {};
-      withCategory.forEach(c => {
-        if (!catAgg[c.category]) catAgg[c.category] = { views: 0, calcs: 0 };
-        catAgg[c.category].views += c.views;
-        catAgg[c.category].calcs += c.calcs;
-      });
-
       return NextResponse.json({
-        calculators: withCategory,
-        byCategory: Object.entries(catAgg)
-          .map(([cat, data]) => ({ category: cat, ...data, conversion: data.views > 0 ? parseFloat(((data.calcs / data.views) * 100).toFixed(1)) : 0 }))
-          .sort((a, b) => b.views - a.views),
+        calculators: formatted,
+        mostEngaging,
       });
     }
 
@@ -420,7 +466,6 @@ export async function GET(request: NextRequest) {
         `.catch(() => []),
       ]);
 
-      // Blog stats
       let blogStats = { totalPosts: 0, totalViews: 0 };
       try {
         const [postCount, viewSum] = await Promise.all([
@@ -451,6 +496,161 @@ export async function GET(request: NextRequest) {
         userGrowth: (userGrowthRaw as any[]).map((d: any) => ({
           date: new Date(d.date).toLocaleDateString("en-US", { month: "short", day: "numeric" }),
           count: Number(d.count),
+        })),
+      });
+    }
+
+    // ═══════════════════════════════════════
+    // TAB: INSIGHTS (NEW — AI-powered)
+    // ═══════════════════════════════════════
+    if (tab === "insights") {
+      const [
+        topReferrers,
+        browserBreakdown,
+        osBreakdown,
+        topByConversion,
+        lowConversion,
+        avgDurationByCalc,
+        peakHours,
+        growthTrend,
+      ] = await Promise.all([
+        // Where traffic comes from
+        prisma.calculatorUsage.groupBy({
+          by: ["referrer"],
+          where: { ...baseW, referrer: { not: null } },
+          _count: { id: true },
+          orderBy: { _count: { id: "desc" } },
+          take: 15,
+        }),
+        // Browser market share
+        prisma.calculatorUsage.groupBy({
+          by: ["browser"],
+          where: { ...baseW, browser: { not: null } },
+          _count: { id: true },
+          orderBy: { _count: { id: "desc" } },
+        }),
+        // OS market share
+        prisma.calculatorUsage.groupBy({
+          by: ["os"],
+          where: { ...baseW, os: { not: null } },
+          _count: { id: true },
+          orderBy: { _count: { id: "desc" } },
+        }),
+        // Top converting calculators
+        prisma.$queryRaw`
+          SELECT
+            "calculatorSlug" as slug,
+            COUNT(*) FILTER (WHERE type = 'VIEW') as views,
+            COUNT(*) FILTER (WHERE type = 'CALCULATION') as calcs,
+            CASE WHEN COUNT(*) FILTER (WHERE type = 'VIEW') > 0
+              THEN ROUND((COUNT(*) FILTER (WHERE type = 'CALCULATION')::numeric / COUNT(*) FILTER (WHERE type = 'VIEW')::numeric) * 100, 1)
+              ELSE 0
+            END as conversion_rate
+          FROM calculator_usage
+          WHERE "createdAt" >= ${startDate}
+          GROUP BY "calculatorSlug"
+          HAVING COUNT(*) FILTER (WHERE type = 'VIEW') >= 5
+          ORDER BY conversion_rate DESC
+          LIMIT 10
+        `,
+        // Lowest converting (opportunity)
+        prisma.$queryRaw`
+          SELECT
+            "calculatorSlug" as slug,
+            COUNT(*) FILTER (WHERE type = 'VIEW') as views,
+            COUNT(*) FILTER (WHERE type = 'CALCULATION') as calcs,
+            CASE WHEN COUNT(*) FILTER (WHERE type = 'VIEW') > 0
+              THEN ROUND((COUNT(*) FILTER (WHERE type = 'CALCULATION')::numeric / COUNT(*) FILTER (WHERE type = 'VIEW')::numeric) * 100, 1)
+              ELSE 0
+            END as conversion_rate
+          FROM calculator_usage
+          WHERE "createdAt" >= ${startDate}
+          GROUP BY "calculatorSlug"
+          HAVING COUNT(*) FILTER (WHERE type = 'VIEW') >= 5
+          ORDER BY conversion_rate ASC
+          LIMIT 10
+        `,
+        // Average time on page by calculator
+        prisma.$queryRaw`
+          SELECT
+            "calculatorSlug" as slug,
+            AVG(duration_seconds)::int as avg_seconds,
+            COUNT(*) as sample_size
+          FROM calculator_usage
+          WHERE "createdAt" >= ${startDate}
+            AND duration_seconds > 2 AND duration_seconds < 3600
+          GROUP BY "calculatorSlug"
+          HAVING COUNT(*) >= 3
+          ORDER BY avg_seconds DESC
+          LIMIT 15
+        `,
+        // Peak traffic hours
+        prisma.$queryRaw`
+          SELECT EXTRACT(HOUR FROM "createdAt")::int as hour, COUNT(*)::int as count
+          FROM calculator_usage
+          WHERE "createdAt" >= ${startDate} AND type = 'VIEW'
+          GROUP BY EXTRACT(HOUR FROM "createdAt")
+          ORDER BY count DESC
+          LIMIT 5
+        `,
+        // Weekly growth trend
+        prisma.$queryRaw`
+          SELECT
+            DATE_TRUNC('week', "createdAt") as week,
+            COUNT(*) FILTER (WHERE type = 'VIEW') as views,
+            COUNT(*) FILTER (WHERE type = 'CALCULATION') as calcs
+          FROM calculator_usage
+          WHERE "createdAt" >= ${new Date(now.getTime() - 90 * 86400000)}
+          GROUP BY DATE_TRUNC('week', "createdAt")
+          ORDER BY week ASC
+        `,
+      ]);
+
+      const totalBrowsers = browserBreakdown.reduce((s, b) => s + b._count.id, 0);
+      const totalOS = osBreakdown.reduce((s, o) => s + o._count.id, 0);
+
+      return NextResponse.json({
+        referrers: topReferrers.map(r => ({
+          source: r.referrer || "Direct",
+          count: r._count.id,
+        })),
+        browsers: browserBreakdown.map(b => ({
+          name: b.browser || "Unknown",
+          count: b._count.id,
+          pct: totalBrowsers > 0 ? parseFloat(((b._count.id / totalBrowsers) * 100).toFixed(1)) : 0,
+        })),
+        operatingSystems: osBreakdown.map(o => ({
+          name: o.os || "Unknown",
+          count: o._count.id,
+          pct: totalOS > 0 ? parseFloat(((o._count.id / totalOS) * 100).toFixed(1)) : 0,
+        })),
+        topConverting: (topByConversion as any[]).map(c => ({
+          slug: c.slug,
+          views: Number(c.views),
+          calcs: Number(c.calcs),
+          rate: Number(c.conversion_rate),
+        })),
+        lowConverting: (lowConversion as any[]).map(c => ({
+          slug: c.slug,
+          views: Number(c.views),
+          calcs: Number(c.calcs),
+          rate: Number(c.conversion_rate),
+        })),
+        engagement: (avgDurationByCalc as any[]).map(c => ({
+          slug: c.slug,
+          avgSeconds: Number(c.avg_seconds),
+          avgFormatted: `${Math.floor(Number(c.avg_seconds) / 60)}:${String(Math.round(Number(c.avg_seconds) % 60)).padStart(2, "0")}`,
+          sampleSize: Number(c.sample_size),
+        })),
+        peakHours: (peakHours as any[]).map(h => ({
+          hour: Number(h.hour),
+          label: `${Number(h.hour) % 12 || 12}${Number(h.hour) < 12 ? "am" : "pm"}`,
+          count: Number(h.count),
+        })),
+        growthTrend: (growthTrend as any[]).map(w => ({
+          week: new Date(w.week).toLocaleDateString("en-US", { month: "short", day: "numeric" }),
+          views: Number(w.views),
+          calcs: Number(w.calcs),
         })),
       });
     }

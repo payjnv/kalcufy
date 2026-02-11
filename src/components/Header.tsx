@@ -40,7 +40,7 @@ export default function Header() {
     fetch('/api/calculator-categories')
       .then(res => res.json())
       .then(data => {
-        const menuCategories = data.filter((c: Category) => c.showInMenu !== false);
+        const menuCategories = data.filter((c: Category) => c.slug !== 'drafts');
         setCategories(menuCategories);
       })
       .catch(console.error);
@@ -56,27 +56,22 @@ export default function Header() {
 
   // Change language function - ROBUST VERSION
   const changeLanguage = (newLocale: Locale) => {
-    // Extract path without any locale prefix
-    // pathname could be: /en/calculators, /es/calculadora-propinas, etc.
     let pathWithoutLocale = pathname;
     
-    // Remove ALL known locale prefixes to handle edge cases
     for (const loc of locales) {
       if (pathWithoutLocale.startsWith(`/${loc}/`)) {
-        pathWithoutLocale = pathWithoutLocale.slice(loc.length + 1); // +1 for the leading /
-        break; // Only remove one locale
+        pathWithoutLocale = pathWithoutLocale.slice(loc.length + 1);
+        break;
       } else if (pathWithoutLocale === `/${loc}`) {
         pathWithoutLocale = '';
         break;
       }
     }
     
-    // Ensure pathWithoutLocale starts with / or is empty
     if (pathWithoutLocale && !pathWithoutLocale.startsWith('/')) {
       pathWithoutLocale = '/' + pathWithoutLocale;
     }
     
-    // If it's just the home page
     if (!pathWithoutLocale || pathWithoutLocale === '/') {
       router.push(`/${newLocale}`);
       setLangMenuOpen(false);
@@ -84,18 +79,14 @@ export default function Header() {
       return;
     }
     
-    // Extract the slug (first segment after /)
     const segments = pathWithoutLocale.split('/').filter(Boolean);
     const slug = segments[0];
     
-    // Check if this slug is a calculator in the registry
     const entry = getEntryBySlug(slug, locale);
     
     if (entry) {
-      // It's a calculator - get the translated slug for the new locale
       const newSlug = getSlugForLocale(entry.id, newLocale);
       if (newSlug) {
-        // Preserve any additional path segments (like /results)
         const remainingPath = segments.slice(1).join('/');
         const newPath = remainingPath ? `/${newLocale}/${newSlug}/${remainingPath}` : `/${newLocale}/${newSlug}`;
         router.push(newPath);
@@ -105,8 +96,6 @@ export default function Header() {
       }
     }
     
-
-    // Check if it is a blog post
     if (segments[0] === "blog" && segments[1]) {
       fetch(`/api/blog/${segments[1]}?locale=${newLocale}`)
         .then(res => res.json())
@@ -125,7 +114,6 @@ export default function Header() {
       return;
     }
 
-    // Not a calculator or no translation found - keep the same path
     router.push(`/${newLocale}${pathWithoutLocale}`);
     setLangMenuOpen(false);
     setMenuOpen(false);
@@ -320,213 +308,264 @@ export default function Header() {
       </header>
 
       {/* Mobile Menu Overlay */}
-      {menuOpen && (
-        <div className="md:hidden fixed inset-0 z-40" aria-modal="true" role="dialog">
-          <div 
-            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-            onClick={() => setMenuOpen(false)}
-            aria-hidden="true"
-          />
-          
-          <div className="absolute top-0 left-0 w-[75%] max-w-[300px] h-full bg-white shadow-2xl flex flex-col">
-            {/* Header */}
-            <div className="flex items-center justify-between h-16 px-4 border-b border-slate-200">
-              <Link href={`/${locale}`} onClick={() => setMenuOpen(false)} className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">K</span>
+      <div 
+        className={`md:hidden fixed inset-0 z-40 transition-opacity duration-300 ${menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+        aria-modal={menuOpen} 
+        role="dialog"
+      >
+        <div 
+          className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+          onClick={() => setMenuOpen(false)}
+          aria-hidden="true"
+        />
+        
+        <div className={`absolute top-0 left-0 w-[80%] max-w-[320px] h-full bg-white shadow-2xl flex flex-col transition-transform duration-300 ease-out ${menuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+          {/* Header */}
+          <div className="flex items-center justify-between h-14 px-4 border-b border-slate-100 flex-shrink-0">
+            <Link href={`/${locale}`} onClick={() => setMenuOpen(false)} className="flex items-center gap-2">
+              <svg width="28" height="28" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="kalcufyMenuBg" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.9"/>
+                    <stop offset="100%" stopColor="#1d4ed8" stopOpacity="0.95"/>
+                  </linearGradient>
+                </defs>
+                <rect width="64" height="64" rx="16" fill="url(#kalcufyMenuBg)"/>
+                <circle cx="18" cy="18" r="6" fill="#22d3ee"/>
+                <circle cx="32" cy="18" r="6" fill="rgba(255,255,255,0.95)"/>
+                <circle cx="46" cy="18" r="6" fill="#22d3ee"/>
+                <circle cx="18" cy="32" r="6" fill="#22d3ee"/>
+                <circle cx="32" cy="32" r="6" fill="#22d3ee"/>
+                <circle cx="46" cy="32" r="6" fill="rgba(255,255,255,0.95)"/>
+                <circle cx="18" cy="46" r="6" fill="#22d3ee"/>
+                <circle cx="32" cy="46" r="6" fill="rgba(255,255,255,0.95)"/>
+                <circle cx="46" cy="46" r="6" fill="rgba(255,255,255,0.95)"/>
+              </svg>
+              <span className="text-lg font-bold text-slate-900">Kalcufy</span>
+            </Link>
+            <button
+              onClick={() => setMenuOpen(false)}
+              className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-50 rounded-lg min-w-[40px] min-h-[40px] flex items-center justify-center"
+              aria-label="Close menu"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          {/* User Card (if logged in) */}
+          {session && (
+            <div className="px-4 py-3 bg-slate-50 border-b border-slate-100 flex-shrink-0">
+              <div className="flex items-center gap-3">
+                {user?.image ? (
+                  <img src={user.image} alt="" className="w-10 h-10 rounded-full" />
+                ) : (
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-violet-500 flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
+                    {initials}
+                  </div>
+                )}
+                <div className="min-w-0">
+                  <p className="text-sm font-semibold text-slate-900 truncate">{user?.name}</p>
+                  <p className="text-xs text-slate-500 truncate">{user?.email}</p>
                 </div>
-                <span className="text-xl font-bold text-slate-900">Kalcufy</span>
-              </Link>
-              <button
-                onClick={() => setMenuOpen(false)}
-                className="p-2 text-slate-600 hover:bg-slate-100 rounded-lg min-w-[44px] min-h-[44px] flex items-center justify-center"
-                aria-label="Close menu"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
+              </div>
+            </div>
+          )}
+
+          {/* Scrollable Content */}
+          <div className="flex-1 overflow-y-auto overscroll-contain">
+            {/* Navigation Links */}
+            <div className="px-3 pt-3 pb-1">
+              <p className="px-3 pb-2 text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Menu</p>
+              <ul className="space-y-0.5">
+                {[
+                  { href: `/${locale}/calculators`, label: t('calculators'), icon: (
+                    <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
+                    </svg>
+                  )},
+                  { href: `/${locale}/pricing`, label: t('pricing'), icon: (
+                    <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+                    </svg>
+                  )},
+                  { href: `/${locale}/blog`, label: t('blog'), icon: (
+                    <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                    </svg>
+                  )},
+                  { href: `/${locale}/about`, label: t('about') || 'About', icon: (
+                    <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+                    </svg>
+                  )},
+                ].map((item) => {
+                  const isActive = pathname === item.href || pathname.startsWith(item.href + '/');
+                  return (
+                    <li key={item.href}>
+                      <Link
+                        href={item.href}
+                        onClick={() => setMenuOpen(false)}
+                        className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors min-h-[42px] ${
+                          isActive 
+                            ? 'bg-blue-50 text-blue-700' 
+                            : 'text-slate-700 hover:bg-slate-50 active:bg-slate-100'
+                        }`}
+                      >
+                        <span className={isActive ? 'text-blue-600' : 'text-slate-400'}>{item.icon}</span>
+                        <span className="text-[14px] font-medium">{item.label}</span>
+                        {isActive && <div className="ml-auto w-1.5 h-1.5 rounded-full bg-blue-500" />}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
 
-            {/* Scrollable Content */}
-            <div className="flex-1 overflow-y-auto">
-              {/* Language Selector - Mobile */}
-              <div className="p-4 border-b border-slate-200">
-                <h2 className="text-sm font-semibold text-slate-500 uppercase tracking-wider px-2 mb-3">Language</h2>
-                <div className="flex gap-2">
-                  {locales.map((loc) => (
-                    <button
-                      key={loc}
-                      onClick={() => changeLanguage(loc)}
-                      className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-xl border transition-colors min-h-[44px] ${
-                        locale === loc 
-                          ? 'bg-blue-50 border-blue-200 text-blue-700' 
-                          : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50'
-                      }`}
-                    >
-                      <span className="text-sm">{localeFlags[loc]}</span>
-                      <span className="font-medium text-xs">{loc.toUpperCase()}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
+            {/* Divider */}
+            <div className="mx-6 my-1 border-t border-slate-100" />
 
-              {/* Dynamic Categories */}
-              <div className="p-4">
-                <h2 className="text-sm font-semibold text-slate-500 uppercase tracking-wider px-2 mb-3">Categories</h2>
-                <ul className="space-y-1">
-                  {categories.map((cat) => {
-                    const colors = getCategoryColors(cat.color);
-                    return (
-                      <li key={cat.id}>
-                        <Link
-                          href={`/${locale}/calculators?category=${cat.slug}`}
-                          onClick={() => setMenuOpen(false)}
-                          className="flex items-center gap-4 px-3 py-3 text-slate-700 hover:bg-slate-50 rounded-xl transition-colors min-h-[44px]"
-                        >
+            {/* Categories */}
+            <div className="px-3 py-2">
+              <p className="px-3 pb-2 text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Categories</p>
+              <ul className="space-y-0.5">
+                {categories.map((cat) => {
+                  const colors = getCategoryColors(cat.color);
+                  return (
+                    <li key={cat.id}>
+                      <Link
+                        href={`/${locale}/calculators?category=${cat.slug}`}
+                        onClick={() => setMenuOpen(false)}
+                        className="flex items-center gap-3 px-3 py-2.5 text-slate-700 hover:bg-slate-50 active:bg-slate-100 rounded-lg transition-colors min-h-[42px]"
+                      >
+                        <span className={`w-7 h-7 rounded-md ${colors.bg} flex items-center justify-center flex-shrink-0`}>
                           <span className={colors.text}>
-                            {getCategoryIcon(cat.slug, "w-5 h-5")}
+                            {getCategoryIcon(cat.slug, "w-3.5 h-3.5")}
                           </span>
-                          <span className="font-medium">{getCategoryName(cat)}</span>
-                        </Link>
+                        </span>
+                        <span className="text-[14px] font-medium">{getCategoryName(cat)}</span>
+                        <svg className="w-4 h-4 text-slate-300 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </Link>
+                    </li>
+                  );
+                })}
+                {categories.length === 0 && (
+                  <>
+                    {[1,2,3,4].map(i => (
+                      <li key={i} className="flex items-center gap-3 px-3 py-2.5">
+                        <div className="w-7 h-7 rounded-md bg-slate-100 animate-pulse" />
+                        <div className="h-3.5 w-24 bg-slate-100 rounded animate-pulse" />
                       </li>
-                    );
-                  })}
-                  {categories.length === 0 && (
-                    <li className="px-3 py-3 text-slate-400 text-sm">Loading...</li>
-                  )}
-                </ul>
-              </div>
+                    ))}
+                  </>
+                )}
+              </ul>
+            </div>
 
-              {/* Divider */}
-              <div className="mx-4 border-t border-slate-200" />
-
-              {/* Other Links */}
-              <div className="p-4">
-                <ul className="space-y-1">
-                  <li>
-                    <Link
-                      href={`/${locale}/calculators`}
-                      onClick={() => setMenuOpen(false)}
-                      className="flex items-center gap-4 px-3 py-3 text-slate-700 hover:bg-slate-50 rounded-xl transition-colors min-h-[44px]"
-                    >
-                      <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
-                      </svg>
-                      <span className="font-medium">{t('calculators')}</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href={`/${locale}/pricing`}
-                      onClick={() => setMenuOpen(false)}
-                      className="flex items-center gap-4 px-3 py-3 text-slate-700 hover:bg-slate-50 rounded-xl transition-colors min-h-[44px]"
-                    >
-                      <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
-                      </svg>
-                      <span className="font-medium">{t('pricing')}</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href={`/${locale}/blog`}
-                      onClick={() => setMenuOpen(false)}
-                      className="flex items-center gap-4 px-3 py-3 text-slate-700 hover:bg-slate-50 rounded-xl transition-colors min-h-[44px]"
-                    >
-                      <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-                      </svg>
-                      <span className="font-medium">{t('blog')}</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href={`/${locale}/about`}
-                      onClick={() => setMenuOpen(false)}
-                      className="flex items-center gap-4 px-3 py-3 text-slate-700 hover:bg-slate-50 rounded-xl transition-colors min-h-[44px]"
-                    >
-                      <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
-                      </svg>
-                      <span className="font-medium">{t('about') || 'About'}</span>
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-
-              {/* User Section (if logged in) */}
-              {session && (
-                <>
-                  <div className="mx-4 border-t border-slate-200" />
-                  <div className="p-4">
-                    <h2 className="text-sm font-semibold text-slate-500 uppercase tracking-wider px-2 mb-3">Account</h2>
-                    <ul className="space-y-1">
-                      <li>
-                        <Link
-                          href={`/${locale}/dashboard`}
-                          onClick={() => setMenuOpen(false)}
-                          className="flex items-center gap-4 px-3 py-3 text-slate-700 hover:bg-slate-50 rounded-xl transition-colors min-h-[44px]"
-                        >
-                          <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+            {/* Account Section (if logged in) */}
+            {session && (
+              <>
+                <div className="mx-6 my-1 border-t border-slate-100" />
+                <div className="px-3 py-2">
+                  <p className="px-3 pb-2 text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Account</p>
+                  <ul className="space-y-0.5">
+                    <li>
+                      <Link
+                        href={`/${locale}/dashboard`}
+                        onClick={() => setMenuOpen(false)}
+                        className="flex items-center gap-3 px-3 py-2.5 text-slate-700 hover:bg-slate-50 rounded-lg transition-colors min-h-[42px]"
+                      >
+                        <span className="text-slate-400">
+                          <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
                           </svg>
-                          <span className="font-medium">Dashboard</span>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          href={`/${locale}/profile`}
-                          onClick={() => setMenuOpen(false)}
-                          className="flex items-center gap-4 px-3 py-3 text-slate-700 hover:bg-slate-50 rounded-xl transition-colors min-h-[44px]"
-                        >
-                          <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                        </span>
+                        <span className="text-[14px] font-medium">Dashboard</span>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href={`/${locale}/profile`}
+                        onClick={() => setMenuOpen(false)}
+                        className="flex items-center gap-3 px-3 py-2.5 text-slate-700 hover:bg-slate-50 rounded-lg transition-colors min-h-[42px]"
+                      >
+                        <span className="text-slate-400">
+                          <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
                           </svg>
-                          <span className="font-medium">Profile</span>
-                        </Link>
-                      </li>
-                      <li>
-                        <button
-                          onClick={() => { setMenuOpen(false); signOut({ callbackUrl: `/${locale}` }); }}
-                          className="flex items-center gap-4 px-3 py-3 text-red-600 hover:bg-red-50 rounded-xl transition-colors w-full min-h-[44px]"
-                        >
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
-                          </svg>
-                          <span className="font-medium">Sign Out</span>
-                        </button>
-                      </li>
-                    </ul>
-                  </div>
-                </>
-              )}
+                        </span>
+                        <span className="text-[14px] font-medium">Profile</span>
+                      </Link>
+                    </li>
+                    <li>
+                      <button
+                        onClick={() => { setMenuOpen(false); signOut({ callbackUrl: `/${locale}` }); }}
+                        className="flex items-center gap-3 px-3 py-2.5 text-red-600 hover:bg-red-50 rounded-lg transition-colors w-full min-h-[42px]"
+                      >
+                        <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+                        </svg>
+                        <span className="text-[14px] font-medium">Sign Out</span>
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </>
+            )}
+          </div>
+
+          {/* Footer */}
+          <div className="flex-shrink-0 border-t border-slate-100 bg-slate-50/50">
+            {/* Language Row */}
+            <div className="px-4 pt-3 pb-2">
+              <div className="flex gap-1.5">
+                {locales.map((loc) => (
+                  <button
+                    key={loc}
+                    onClick={() => changeLanguage(loc)}
+                    className={`flex-1 flex items-center justify-center gap-1 py-2 rounded-lg text-xs font-medium transition-colors ${
+                      locale === loc 
+                        ? 'bg-blue-100 text-blue-700 border border-blue-200' 
+                        : 'bg-white text-slate-500 border border-slate-200 hover:bg-slate-50 active:bg-slate-100'
+                    }`}
+                  >
+                    <span className="text-xs">{localeFlags[loc]}</span>
+                    <span>{loc.toUpperCase()}</span>
+                  </button>
+                ))}
+              </div>
             </div>
 
-            {/* Footer - Login/Signup */}
+            {/* Login/Signup (if not logged in) */}
             {!session && (
-              <div className="flex-shrink-0 bg-white border-t border-slate-200 p-4 pb-8">
-                <div className="flex items-center gap-3">
+              <div className="px-4 pb-6 pt-1">
+                <div className="flex items-center gap-2">
                   <Link
                     href={`/${locale}/login`}
                     onClick={() => setMenuOpen(false)}
-                    className="flex-1 py-3 text-center text-slate-700 font-medium hover:bg-slate-50 rounded-xl border border-slate-200 transition-colors min-h-[44px] flex items-center justify-center"
+                    className="flex-1 py-2.5 text-center text-slate-700 text-sm font-semibold hover:bg-slate-100 rounded-lg border border-slate-200 transition-colors min-h-[42px] flex items-center justify-center"
                   >
                     {t('login')}
                   </Link>
                   <Link
                     href={`/${locale}/register`}
                     onClick={() => setMenuOpen(false)}
-                    className="flex-1 py-3 text-center bg-blue-600 text-white font-medium rounded-xl hover:bg-blue-700 transition-colors min-h-[44px] flex items-center justify-center"
+                    className="flex-1 py-2.5 text-center bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 transition-colors min-h-[42px] flex items-center justify-center"
                   >
                     {t('signup')}
                   </Link>
                 </div>
               </div>
             )}
+
+            {/* Logged in: just padding */}
+            {session && <div className="pb-4" />}
           </div>
         </div>
-      )}
+      </div>
     </>
   );
 }

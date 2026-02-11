@@ -192,7 +192,7 @@ export default function HomeSearchBar() {
           onFocus={() => setShowResults(true)}
           onKeyDown={handleKeyDown}
           placeholder={t("searchPlaceholder") || "Search calculators..."}
-          className="w-full pl-12 pr-24 py-4 text-lg border-2 border-slate-200 rounded-2xl bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+          className="w-full pl-10 pr-4 py-3 text-sm md:pl-12 md:pr-24 md:py-4 md:text-lg border-2 border-slate-200 rounded-xl md:rounded-2xl bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
           autoComplete="off"
           aria-autocomplete="list"
           aria-controls="search-results"
@@ -204,7 +204,7 @@ export default function HomeSearchBar() {
         />
         <button
           type="submit"
-          className="absolute right-2 top-1/2 -translate-y-1/2 px-5 py-2.5 bg-blue-600 text-white rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 font-semibold transition-colors"
+          className="hidden md:block absolute right-2 top-1/2 -translate-y-1/2 px-5 py-2.5 bg-blue-600 text-white rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 font-semibold transition-colors"
         >
           <span className="sr-only">Submit search for </span>
           {t("searchButton") || "Search"}

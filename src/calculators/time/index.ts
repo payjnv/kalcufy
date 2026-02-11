@@ -262,6 +262,945 @@ export const timeCalculatorConfig: CalculatorConfigV4 = {
       accessibility: { mobileResults: "Results", closeModal: "Close", openMenu: "Menu" },
       sources: { title: "Sources & References" },
     },
+    pt: {
+      "name": "Calculadora de Tempo",
+      "slug": "calculadora-tempo",
+      "subtitle": "Some, subtraia e converta durações de tempo com horas, minutos e segundos.",
+      "breadcrumb": "Calc Tempo",
+      "seo": {
+        "title": "Calculadora de Tempo - Somar e Subtrair Horas, Minutos, Segundos",
+        "description": "Calcule durações de tempo somando ou subtraindo horas, minutos e segundos. Obtenha resultados instantâneos em múltiplos formatos com uma ferramenta online gratuita e fácil de usar.",
+        "shortDescription": "Some e subtraia durações de tempo instantaneamente.",
+        "keywords": [
+          "calculadora de tempo",
+          "somar tempo",
+          "subtrair tempo",
+          "calculadora horas minutos segundos",
+          "calculadora duração tempo",
+          "calculadora tempo gratuita",
+          "calculadora tempo online",
+          "adição de tempo"
+        ]
+      },
+      "inputs": {
+        "operation": {
+          "label": "Operação",
+          "helpText": "Escolha somar ou subtrair durações",
+          "options": {
+            "add": "Somar (+)",
+            "subtract": "Subtrair (−)"
+          }
+        },
+        "time1": {
+          "label": "Tempo 1",
+          "helpText": "Insira a primeira duração",
+          "hoursLabel": "hrs",
+          "minutesLabel": "min",
+          "secondsLabel": "seg"
+        },
+        "time2": {
+          "label": "Tempo 2",
+          "helpText": "Insira a segunda duração",
+          "hoursLabel": "hrs",
+          "minutesLabel": "min",
+          "secondsLabel": "seg"
+        },
+        "outputFormat": {
+          "label": "Formato de Saída",
+          "helpText": "Escolha como os resultados são exibidos",
+          "options": {
+            "hms": "Horas : Minutos : Segundos",
+            "decimal": "Horas Decimais (ex: 2,50 hrs)",
+            "minutes": "Total em Minutos",
+            "seconds": "Total em Segundos"
+          }
+        }
+      },
+      "results": {
+        "totalTime": {
+          "label": "Tempo Total"
+        },
+        "totalHours": {
+          "label": "Em Horas"
+        },
+        "totalMinutes": {
+          "label": "Em Minutos"
+        },
+        "totalSeconds": {
+          "label": "Em Segundos"
+        }
+      },
+      "presets": {
+        "workday": {
+          "label": "Dia de Trabalho",
+          "description": "8h 30m + 1h 15m"
+        },
+        "marathon": {
+          "label": "Maratona",
+          "description": "4h 30m − 3h 45m"
+        },
+        "cooking": {
+          "label": "Culinária",
+          "description": "45m + 1h 30m"
+        }
+      },
+      "values": {
+        "h": "h",
+        "m": "m",
+        "s": "s",
+        "hours": "horas",
+        "hour": "hora",
+        "minutes": "minutos",
+        "minute": "minuto",
+        "seconds": "segundos",
+        "second": "segundo"
+      },
+      "formats": {
+        "summary": "Resultado: {value}"
+      },
+      "infoCards": {
+        "metrics": {
+          "title": "Detalhamento do Tempo",
+          "items": [
+            {
+              "label": "Horas:Minutos:Segundos",
+              "valueKey": "totalTime"
+            },
+            {
+              "label": "Horas Decimais",
+              "valueKey": "totalHours"
+            },
+            {
+              "label": "Total em Minutos",
+              "valueKey": "totalMinutes"
+            },
+            {
+              "label": "Total em Segundos",
+              "valueKey": "totalSeconds"
+            }
+          ]
+        },
+        "details": {
+          "title": "Resumo da Entrada",
+          "items": [
+            {
+              "label": "Tempo 1",
+              "valueKey": "time1Display"
+            },
+            {
+              "label": "Tempo 2",
+              "valueKey": "time2Display"
+            },
+            {
+              "label": "Operação",
+              "valueKey": "operationDisplay"
+            },
+            {
+              "label": "Formato de Saída",
+              "valueKey": "formatDisplay"
+            }
+          ]
+        },
+        "tips": {
+          "title": "Dicas Rápidas",
+          "items": [
+            "Digite horas, minutos e segundos separadamente em cada campo",
+            "Horas decimais são úteis para cálculos de folha de ponto e faturamento",
+            "Resultados negativos mostram quanto o Tempo 2 excede o Tempo 1 no modo subtração",
+            "Use predefinições para cenários comuns como horas de trabalho ou tempos de cozinha"
+          ]
+        }
+      },
+      "education": {
+        "whatIs": {
+          "title": "O que é uma Calculadora de Tempo?",
+          "content": "Uma calculadora de tempo é uma ferramenta que realiza operações aritméticas em durações de tempo. Diferente dos números regulares, o tempo segue um sistema de base-60 onde 60 segundos fazem um minuto e 60 minutos fazem uma hora. Isso torna os cálculos mentais com tempo desafiadores, especialmente ao lidar com horas, minutos e segundos simultaneamente.\n\nCalculadoras de tempo são essenciais para profissionais que controlam horas faturáveis, atletas monitorando durações de treino, cozinheiros combinando tempos de preparo de receitas, e qualquer pessoa trabalhando com horários através de fusos horários. Ao automatizar a conversão entre unidades de tempo, essas ferramentas eliminam erros comuns na aritmética temporal."
+        },
+        "howItWorks": {
+          "title": "Como Funciona a Soma e Subtração de Tempo",
+          "content": "A soma e subtração de tempo seguem o sistema sexagesimal (base-60). Ao somar dois valores de tempo, os segundos são somados primeiro. Se a soma exceder 59, o excesso é transferido para os minutos. A mesma lógica de transferência se aplica dos minutos para as horas.\n\nPor exemplo, somando 2h 45m 30s e 1h 20m 45s: Primeiro, 30s + 45s = 75s = 1m 15s (transfere 1 minuto). Então, 45m + 20m + 1m (transferido) = 66m = 1h 6m (transfere 1 hora). Finalmente, 2h + 1h + 1h (transferido) = 4h. Resultado: 4h 6m 15s.\n\nA subtração funciona de forma similar, mas com empréstimo em vez de transferência. Se os segundos no primeiro tempo forem menores que no segundo, você empresta 1 minuto (60 segundos) da coluna dos minutos."
+        },
+        "considerations": {
+          "title": "Casos de Uso Comuns",
+          "items": [
+            {
+              "text": "Controle de horas de trabalho: Some períodos diários de trabalho para encontrar o total de horas para folha de pagamento ou faturamento",
+              "type": "info"
+            },
+            {
+              "text": "Culinária e confeitaria: Combine tempo de preparo, tempo de cozimento e tempo de descanso para receitas",
+              "type": "info"
+            },
+            {
+              "text": "Cronometragem de corridas: Calcule diferenças de tempo entre voltas, etapas ou tempos finais",
+              "type": "info"
+            },
+            {
+              "text": "Gestão de projetos: Estime duração total somando tempos de tarefas individuais",
+              "type": "info"
+            },
+            {
+              "text": "Planejamento de viagem: Some tempos de conexão, durações de voo e tempos de transferência",
+              "type": "info"
+            },
+            {
+              "text": "Resultados negativos na subtração indicam que o segundo tempo excede o primeiro",
+              "type": "warning"
+            }
+          ]
+        },
+        "categories": {
+          "title": "Conversões de Unidades de Tempo",
+          "items": [
+            {
+              "text": "1 hora = 60 minutos = 3.600 segundos",
+              "type": "info"
+            },
+            {
+              "text": "1 minuto = 60 segundos",
+              "type": "info"
+            },
+            {
+              "text": "1 dia = 24 horas = 1.440 minutos = 86.400 segundos",
+              "type": "info"
+            },
+            {
+              "text": "Horas decimais: 1h 30m = 1,50 horas (divida minutos por 60)",
+              "type": "info"
+            },
+            {
+              "text": "Minutos decimais: 2m 30s = 2,50 minutos (divida segundos por 60)",
+              "type": "info"
+            },
+            {
+              "text": "Horário militar usa formato de 24 horas: 13:30 = 1:30 PM",
+              "type": "info"
+            }
+          ]
+        },
+        "examples": {
+          "title": "Exemplos Passo a Passo",
+          "description": "Como somar e subtrair durações de tempo",
+          "examples": [
+            {
+              "title": "Somando Horas de Trabalho: 8h 30m + 1h 15m",
+              "steps": [
+                "Digite 8 em horas, 30 em minutos para Tempo 1",
+                "Digite 1 em horas, 15 em minutos para Tempo 2",
+                "Selecione operação Somar (+)",
+                "Resultado: 8h30m + 1h15m = 9h 45m 00s"
+              ],
+              "result": "9h 45m 00s (9,75 horas decimais)"
+            },
+            {
+              "title": "Subtraindo Tempos de Corrida: 4h 30m − 3h 45m",
+              "steps": [
+                "Digite 4 em horas, 30 em minutos para Tempo 1",
+                "Digite 3 em horas, 45 em minutos para Tempo 2",
+                "Selecione operação Subtrair (−)",
+                "Resultado: 4h30m − 3h45m = 0h 45m 00s"
+              ],
+              "result": "0h 45m 00s (45 minutos)"
+            }
+          ]
+        }
+      },
+      "faqs": [
+        {
+          "question": "Como somo horas e minutos?",
+          "answer": "Digite as horas no campo 'hrs' e os minutos no campo 'min' para cada valor de tempo. Selecione Somar (+) e a calculadora lidará automaticamente com a conversão de base-60 — por exemplo, 45 minutos + 30 minutos corretamente resulta em 1 hora 15 minutos, não 75 minutos."
+        },
+        {
+          "question": "O que significam horas decimais?",
+          "answer": "Horas decimais expressam tempo como uma fração decimal de uma hora. Por exemplo, 1 hora 30 minutos = 1,50 horas, e 2 horas 15 minutos = 2,25 horas. Este formato é comumente usado para faturamento, folhas de ponto e cálculos de folha de pagamento onde frações de horas precisam ser multiplicadas por taxas horárias."
+        },
+        {
+          "question": "Esta calculadora lida com resultados negativos?",
+          "answer": "Sim. Ao subtrair, se o Tempo 2 for maior que o Tempo 1, o resultado será negativo, mostrado com um sinal de menos (−). Por exemplo, subtrair 3h 45m de 2h 30m resulta em −1h 15m 00s, significando que o Tempo 2 excedeu o Tempo 1 em 1 hora e 15 minutos."
+        },
+        {
+          "question": "Quão preciso é o cálculo de tempo?",
+          "answer": "A calculadora é precisa até o segundo. Ela usa aritmética inteira precisa para conversão de tempo, evitando erros de ponto flutuante que podem ocorrer com representações decimais. Todas as conversões entre horas, minutos e segundos usam fatores exatos (60 segundos por minuto, 3600 segundos por hora)."
+        },
+        {
+          "question": "Posso usar isso para controle de horas de trabalho?",
+          "answer": "Absolutamente. Digite seus períodos de trabalho de início ao fim como valores de tempo e some-os. A saída em horas decimais é especialmente útil para multiplicar pela sua taxa horária. Por exemplo, 8h 30m = 8,50 horas decimais × R$ 25/hr = R$ 212,50."
+        },
+        {
+          "question": "Quais formatos de tempo estão disponíveis?",
+          "answer": "A calculadora oferece quatro formatos de saída: Horas:Minutos:Segundos (formato de tempo padrão), Horas Decimais (para faturamento e folha de pagamento), Total em Minutos (para durações curtas), e Total em Segundos (para cronometragem precisa). Você pode alternar entre formatos usando o seletor de Formato de Saída."
+        }
+      ],
+      "buttons": {
+        "calculate": "Calcular",
+        "reset": "Reiniciar",
+        "pdf": "PDF",
+        "csv": "CSV",
+        "excel": "Excel",
+        "save": "Salvar",
+        "saved": "Salvo",
+        "saving": "Salvando..."
+      },
+      "share": {
+        "calculatedWith": "Calculado com Kalcufy.com"
+      },
+      "ui": {
+        "results": "Resultados",
+        "yourInformation": "Suas Informações"
+      },
+      "accessibility": {
+        "mobileResults": "Resumo dos resultados",
+        "closeModal": "Fechar",
+        "openMenu": "Abrir menu"
+      },
+      "rating": {
+        "title": "Avalie esta Calculadora",
+        "share": "Compartilhar",
+        "copied": "Copiado!",
+        "copyLink": "Copiar Link",
+        "clickToRate": "Clique para avaliar",
+        "youRated": "Você avaliou",
+        "stars": "estrelas",
+        "averageFrom": "média de",
+        "ratings": "avaliações"
+      },
+      "common": {
+        "home": "Início",
+        "calculators": "Calculadoras"
+      },
+      "sources": {
+        "title": "Fontes e Referências"
+      },
+      "calculator": {
+        "yourInformation": "Suas Informações"
+      }
+    },
+    fr: {
+      "name": "Calculateur de Temps",
+      "slug": "calculateur-temps",
+      "subtitle": "Additionnez, soustrayez et convertissez des durées avec heures, minutes et secondes.",
+      "breadcrumb": "Calc Temps",
+      "seo": {
+        "title": "Calculateur de Temps - Additionner et Soustraire Heures, Minutes, Secondes",
+        "description": "Calculez des durées en additionnant ou soustrayant des heures, minutes et secondes. Obtenez des résultats instantanés dans plusieurs formats avec un outil en ligne gratuit et facile à utiliser.",
+        "shortDescription": "Additionnez et soustrayez des durées instantanément.",
+        "keywords": [
+          "calculateur de temps",
+          "additionner temps",
+          "soustraire temps",
+          "calculateur heures minutes secondes",
+          "calculateur durée temps",
+          "calculateur temps gratuit",
+          "calculateur temps en ligne",
+          "addition temps"
+        ]
+      },
+      "inputs": {
+        "operation": {
+          "label": "Opération",
+          "helpText": "Choisissez d'additionner ou soustraire des durées",
+          "options": {
+            "add": "Additionner (+)",
+            "subtract": "Soustraire (−)"
+          }
+        },
+        "time1": {
+          "label": "Temps 1",
+          "helpText": "Entrez la première durée",
+          "hoursLabel": "h",
+          "minutesLabel": "min",
+          "secondsLabel": "sec"
+        },
+        "time2": {
+          "label": "Temps 2",
+          "helpText": "Entrez la seconde durée",
+          "hoursLabel": "h",
+          "minutesLabel": "min",
+          "secondsLabel": "sec"
+        },
+        "outputFormat": {
+          "label": "Format de Sortie",
+          "helpText": "Choisissez comment les résultats sont affichés",
+          "options": {
+            "hms": "Heures : Minutes : Secondes",
+            "decimal": "Heures Décimales (ex. 2,50 h)",
+            "minutes": "Minutes Totales",
+            "seconds": "Secondes Totales"
+          }
+        }
+      },
+      "results": {
+        "totalTime": {
+          "label": "Temps Total"
+        },
+        "totalHours": {
+          "label": "En Heures"
+        },
+        "totalMinutes": {
+          "label": "En Minutes"
+        },
+        "totalSeconds": {
+          "label": "En Secondes"
+        }
+      },
+      "presets": {
+        "workday": {
+          "label": "Journée Travail",
+          "description": "8h 30m + 1h 15m"
+        },
+        "marathon": {
+          "label": "Marathon",
+          "description": "4h 30m − 3h 45m"
+        },
+        "cooking": {
+          "label": "Cuisine",
+          "description": "45m + 1h 30m"
+        }
+      },
+      "values": {
+        "h": "h",
+        "m": "m",
+        "s": "s",
+        "hours": "heures",
+        "hour": "heure",
+        "minutes": "minutes",
+        "minute": "minute",
+        "seconds": "secondes",
+        "second": "seconde"
+      },
+      "formats": {
+        "summary": "Résultat : {value}"
+      },
+      "infoCards": {
+        "metrics": {
+          "title": "Répartition du Temps",
+          "items": [
+            {
+              "label": "Heures:Minutes:Secondes",
+              "valueKey": "totalTime"
+            },
+            {
+              "label": "Heures Décimales",
+              "valueKey": "totalHours"
+            },
+            {
+              "label": "Minutes Totales",
+              "valueKey": "totalMinutes"
+            },
+            {
+              "label": "Secondes Totales",
+              "valueKey": "totalSeconds"
+            }
+          ]
+        },
+        "details": {
+          "title": "Résumé des Entrées",
+          "items": [
+            {
+              "label": "Temps 1",
+              "valueKey": "time1Display"
+            },
+            {
+              "label": "Temps 2",
+              "valueKey": "time2Display"
+            },
+            {
+              "label": "Opération",
+              "valueKey": "operationDisplay"
+            },
+            {
+              "label": "Format de Sortie",
+              "valueKey": "formatDisplay"
+            }
+          ]
+        },
+        "tips": {
+          "title": "Conseils Rapides",
+          "items": [
+            "Entrez les heures, minutes et secondes séparément dans chaque champ",
+            "Les heures décimales sont utiles pour les calculs de feuilles de temps et facturation",
+            "Les résultats négatifs montrent de combien le Temps 2 dépasse le Temps 1 en mode soustraction",
+            "Utilisez les préréglages pour des scénarios courants comme les heures de travail ou temps de cuisine"
+          ]
+        }
+      },
+      "education": {
+        "whatIs": {
+          "title": "Qu'est-ce qu'un Calculateur de Temps ?",
+          "content": "Un calculateur de temps est un outil qui effectue des opérations arithmétiques sur des durées. Contrairement aux nombres ordinaires, le temps suit un système base-60 où 60 secondes font une minute et 60 minutes font une heure. Cela rend le calcul mental avec le temps difficile, surtout en traitant simultanément heures, minutes et secondes.\n\nLes calculateurs de temps sont essentiels pour les professionnels qui suivent les heures facturables, les athlètes surveillant les durées d'entraînement, les cuisiniers combinant les temps de préparation des recettes, et quiconque travaille avec des horaires à travers les fuseaux horaires. En automatisant la conversion entre unités de temps, ces outils éliminent les erreurs courantes dans l'arithmétique temporelle."
+        },
+        "howItWorks": {
+          "title": "Comment Fonctionnent l'Addition et la Soustraction de Temps",
+          "content": "L'addition et la soustraction de temps suivent le système sexagésimal (base-60). Lors de l'addition de deux valeurs temporelles, les secondes sont ajoutées en premier. Si la somme dépasse 59, le dépassement se reporte sur les minutes. La même logique de report s'applique des minutes aux heures.\n\nPar exemple, en ajoutant 2h 45m 30s et 1h 20m 45s : D'abord, 30s + 45s = 75s = 1m 15s (report 1 minute). Puis, 45m + 20m + 1m (report) = 66m = 1h 6m (report 1 heure). Enfin, 2h + 1h + 1h (report) = 4h. Résultat : 4h 6m 15s.\n\nLa soustraction fonctionne de même mais avec emprunt au lieu de report. Si les secondes du premier temps sont inférieures au second, vous empruntez 1 minute (60 secondes) de la colonne des minutes."
+        },
+        "considerations": {
+          "title": "Cas d'Usage Courants",
+          "items": [
+            {
+              "text": "Suivi heures de travail : Additionnez les périodes de travail quotidiennes pour trouver les heures totales pour paie ou facturation",
+              "type": "info"
+            },
+            {
+              "text": "Cuisine et pâtisserie : Combinez temps de préparation, cuisson et repos pour les recettes",
+              "type": "info"
+            },
+            {
+              "text": "Chronométrage de course : Calculez les différences de temps entre segments, tours ou temps d'arrivée",
+              "type": "info"
+            },
+            {
+              "text": "Gestion de projet : Estimez la durée totale en additionnant les temps de tâches individuelles",
+              "type": "info"
+            },
+            {
+              "text": "Planification voyage : Ajoutez temps d'escale, durées de vol et temps de transfert",
+              "type": "info"
+            },
+            {
+              "text": "Les résultats négatifs en soustraction indiquent que le second temps dépasse le premier",
+              "type": "warning"
+            }
+          ]
+        },
+        "categories": {
+          "title": "Conversions d'Unités de Temps",
+          "items": [
+            {
+              "text": "1 heure = 60 minutes = 3 600 secondes",
+              "type": "info"
+            },
+            {
+              "text": "1 minute = 60 secondes",
+              "type": "info"
+            },
+            {
+              "text": "1 jour = 24 heures = 1 440 minutes = 86 400 secondes",
+              "type": "info"
+            },
+            {
+              "text": "Heures décimales : 1h 30m = 1,50 heures (diviser minutes par 60)",
+              "type": "info"
+            },
+            {
+              "text": "Minutes décimales : 2m 30s = 2,50 minutes (diviser secondes par 60)",
+              "type": "info"
+            },
+            {
+              "text": "Temps militaire utilise format 24 heures : 13h30 = 1:30 PM",
+              "type": "info"
+            }
+          ]
+        },
+        "examples": {
+          "title": "Exemples Étape par Étape",
+          "description": "Comment additionner et soustraire des durées",
+          "examples": [
+            {
+              "title": "Addition Heures Travail : 8h 30m + 1h 15m",
+              "steps": [
+                "Entrez 8 en heures, 30 en minutes pour Temps 1",
+                "Entrez 1 en heures, 15 en minutes pour Temps 2",
+                "Sélectionnez opération Additionner (+)",
+                "Résultat : 8h30m + 1h15m = 9h 45m 00s"
+              ],
+              "result": "9h 45m 00s (9,75 heures décimales)"
+            },
+            {
+              "title": "Soustraction Temps Course : 4h 30m − 3h 45m",
+              "steps": [
+                "Entrez 4 en heures, 30 en minutes pour Temps 1",
+                "Entrez 3 en heures, 45 en minutes pour Temps 2",
+                "Sélectionnez opération Soustraire (−)",
+                "Résultat : 4h30m − 3h45m = 0h 45m 00s"
+              ],
+              "result": "0h 45m 00s (45 minutes)"
+            }
+          ]
+        }
+      },
+      "faqs": [
+        {
+          "question": "Comment additionner heures et minutes ?",
+          "answer": "Entrez les heures dans le champ 'h' et les minutes dans le champ 'min' pour chaque valeur temporelle. Sélectionnez Additionner (+) et le calculateur gérera automatiquement la conversion base-60 — par exemple, 45 minutes + 30 minutes donne correctement 1 heure 15 minutes, pas 75 minutes."
+        },
+        {
+          "question": "Que signifient les heures décimales ?",
+          "answer": "Les heures décimales expriment le temps comme fraction décimale d'une heure. Par exemple, 1 heure 30 minutes = 1,50 heures, et 2 heures 15 minutes = 2,25 heures. Ce format est couramment utilisé pour facturation, feuilles de temps et calculs de paie où les fractions d'heures doivent être multipliées par des taux horaires."
+        },
+        {
+          "question": "Ce calculateur peut-il gérer les résultats négatifs ?",
+          "answer": "Oui. Lors de soustraction, si Temps 2 est plus grand que Temps 1, le résultat sera négatif, affiché avec un signe moins (−). Par exemple, soustraire 3h 45m de 2h 30m donne −1h 15m 00s, signifiant que Temps 2 a dépassé Temps 1 de 1 heure et 15 minutes."
+        },
+        {
+          "question": "Quelle est la précision du calcul temporel ?",
+          "answer": "Le calculateur est précis à la seconde près. Il utilise l'arithmétique entière précise pour la conversion temporelle, évitant les erreurs en virgule flottante qui peuvent survenir avec les représentations décimales. Toutes conversions entre heures, minutes et secondes utilisent des facteurs exacts (60 secondes par minute, 3600 secondes par heure)."
+        },
+        {
+          "question": "Puis-je l'utiliser pour suivre mes heures de travail ?",
+          "answer": "Absolument. Entrez vos périodes de travail début-fin comme valeurs temporelles et additionnez-les. La sortie en heures décimales est particulièrement utile pour multiplier par votre taux horaire. Par exemple, 8h 30m = 8,50 heures décimales × 25€/h = 212,50€."
+        },
+        {
+          "question": "Quels formats temporels sont disponibles ?",
+          "answer": "Le calculateur offre quatre formats de sortie : Heures:Minutes:Secondes (format temps standard), Heures Décimales (pour facturation et paie), Minutes Totales (pour courtes durées), et Secondes Totales (pour chronométrage précis). Vous pouvez basculer entre formats avec le sélecteur Format de Sortie."
+        }
+      ],
+      "buttons": {
+        "calculate": "Calculer",
+        "reset": "Réinitialiser",
+        "pdf": "PDF",
+        "csv": "CSV",
+        "excel": "Excel",
+        "save": "Sauvegarder",
+        "saved": "Sauvegardé",
+        "saving": "Sauvegarde..."
+      },
+      "share": {
+        "calculatedWith": "Calculé avec Kalcufy.com"
+      },
+      "ui": {
+        "results": "Résultats",
+        "yourInformation": "Vos Informations"
+      },
+      "accessibility": {
+        "mobileResults": "Résumé des résultats",
+        "closeModal": "Fermer",
+        "openMenu": "Ouvrir le menu"
+      },
+      "rating": {
+        "title": "Notez cette Calculatrice",
+        "share": "Partager",
+        "copied": "Copié!",
+        "copyLink": "Copier le Lien",
+        "clickToRate": "Cliquez pour noter",
+        "youRated": "Vous avez noté",
+        "stars": "étoiles",
+        "averageFrom": "moyenne de",
+        "ratings": "évaluations"
+      },
+      "common": {
+        "home": "Accueil",
+        "calculators": "Calculatrices"
+      },
+      "sources": {
+        "title": "Sources et Références"
+      },
+      "calculator": {
+        "yourInformation": "Vos Informations"
+      }
+    },
+    de: {
+      "name": "Zeit-Rechner",
+      "slug": "zeit-rechner",
+      "subtitle": "Addieren, subtrahieren und konvertieren Sie Zeitdauern mit Stunden, Minuten und Sekunden.",
+      "breadcrumb": "Zeit-Rechner",
+      "seo": {
+        "title": "Zeit-Rechner - Stunden, Minuten, Sekunden addieren & subtrahieren",
+        "description": "Berechnen Sie Zeitdauern durch Addieren oder Subtrahieren von Stunden, Minuten und Sekunden. Erhalten Sie sofortige Ergebnisse in verschiedenen Formaten mit einem kostenlosen, einfach zu bedienenden Online-Tool.",
+        "shortDescription": "Addieren und subtrahieren Sie Zeitdauern sofort.",
+        "keywords": [
+          "zeit rechner",
+          "zeit addieren",
+          "zeit subtrahieren",
+          "stunden minuten sekunden rechner",
+          "zeitdauer rechner",
+          "kostenloser zeit rechner",
+          "online zeit rechner",
+          "zeit addition"
+        ]
+      },
+      "inputs": {
+        "operation": {
+          "label": "Operation",
+          "helpText": "Wählen Sie, ob Dauern addiert oder subtrahiert werden sollen",
+          "options": {
+            "add": "Addieren (+)",
+            "subtract": "Subtrahieren (−)"
+          }
+        },
+        "time1": {
+          "label": "Zeit 1",
+          "helpText": "Geben Sie die erste Dauer ein",
+          "hoursLabel": "Std",
+          "minutesLabel": "Min",
+          "secondsLabel": "Sek"
+        },
+        "time2": {
+          "label": "Zeit 2",
+          "helpText": "Geben Sie die zweite Dauer ein",
+          "hoursLabel": "Std",
+          "minutesLabel": "Min",
+          "secondsLabel": "Sek"
+        },
+        "outputFormat": {
+          "label": "Ausgabeformat",
+          "helpText": "Wählen Sie, wie Ergebnisse angezeigt werden",
+          "options": {
+            "hms": "Stunden : Minuten : Sekunden",
+            "decimal": "Dezimalstunden (z.B. 2,50 Std)",
+            "minutes": "Gesamtminuten",
+            "seconds": "Gesamtsekunden"
+          }
+        }
+      },
+      "results": {
+        "totalTime": {
+          "label": "Gesamtzeit"
+        },
+        "totalHours": {
+          "label": "In Stunden"
+        },
+        "totalMinutes": {
+          "label": "In Minuten"
+        },
+        "totalSeconds": {
+          "label": "In Sekunden"
+        }
+      },
+      "presets": {
+        "workday": {
+          "label": "Arbeitstag",
+          "description": "8h 30m + 1h 15m"
+        },
+        "marathon": {
+          "label": "Marathon",
+          "description": "4h 30m − 3h 45m"
+        },
+        "cooking": {
+          "label": "Kochen",
+          "description": "45m + 1h 30m"
+        }
+      },
+      "values": {
+        "h": "h",
+        "m": "m",
+        "s": "s",
+        "hours": "Stunden",
+        "hour": "Stunde",
+        "minutes": "Minuten",
+        "minute": "Minute",
+        "seconds": "Sekunden",
+        "second": "Sekunde"
+      },
+      "formats": {
+        "summary": "Ergebnis: {value}"
+      },
+      "infoCards": {
+        "metrics": {
+          "title": "Zeitaufschlüsselung",
+          "items": [
+            {
+              "label": "Stunden:Minuten:Sekunden",
+              "valueKey": "totalTime"
+            },
+            {
+              "label": "Dezimalstunden",
+              "valueKey": "totalHours"
+            },
+            {
+              "label": "Gesamtminuten",
+              "valueKey": "totalMinutes"
+            },
+            {
+              "label": "Gesamtsekunden",
+              "valueKey": "totalSeconds"
+            }
+          ]
+        },
+        "details": {
+          "title": "Eingabezusammenfassung",
+          "items": [
+            {
+              "label": "Zeit 1",
+              "valueKey": "time1Display"
+            },
+            {
+              "label": "Zeit 2",
+              "valueKey": "time2Display"
+            },
+            {
+              "label": "Operation",
+              "valueKey": "operationDisplay"
+            },
+            {
+              "label": "Ausgabeformat",
+              "valueKey": "formatDisplay"
+            }
+          ]
+        },
+        "tips": {
+          "title": "Schnelle Tipps",
+          "items": [
+            "Geben Sie Stunden, Minuten und Sekunden separat in jedes Feld ein",
+            "Dezimalstunden sind nützlich für Stundenzettel- und Abrechnungsberechnungen",
+            "Negative Ergebnisse zeigen, um wie viel Zeit 2 Zeit 1 im Subtraktionsmodus übersteigt",
+            "Verwenden Sie Vorlagen für häufige Szenarien wie Arbeitszeiten oder Kochzeiten"
+          ]
+        }
+      },
+      "education": {
+        "whatIs": {
+          "title": "Was ist ein Zeit-Rechner?",
+          "content": "Ein Zeit-Rechner ist ein Tool, das arithmetische Operationen mit Zeitdauern durchführt. Im Gegensatz zu normalen Zahlen folgt die Zeit einem 60er-System, bei dem 60 Sekunden eine Minute und 60 Minuten eine Stunde ergeben. Dies macht Kopfrechnen mit Zeit herausfordernd, besonders beim gleichzeitigen Umgang mit Stunden, Minuten und Sekunden.\n\nZeit-Rechner sind unverzichtbar für Fachkräfte, die abrechenbare Stunden verfolgen, Athleten, die Trainingsdauern überwachen, Köche, die Rezept-Vorbereitungszeiten kombinieren, und alle, die mit Zeitplänen über Zeitzonen hinweg arbeiten. Durch die Automatisierung der Umrechnung zwischen Zeiteinheiten eliminieren diese Tools häufige Fehler in der Zeitarithmetik."
+        },
+        "howItWorks": {
+          "title": "Wie Zeit-Addition und -Subtraktion funktioniert",
+          "content": "Zeit-Addition und -Subtraktion folgen dem Sexagesimalsystem (60er-System). Beim Addieren zweier Zeitwerte werden zuerst die Sekunden addiert. Wenn die Summe 59 übersteigt, fließt der Übertrag in die Minuten. Die gleiche Übertragungslogik gilt von Minuten zu Stunden.\n\nZum Beispiel beim Addieren von 2h 45m 30s und 1h 20m 45s: Zuerst 30s + 45s = 75s = 1m 15s (1 Minute übertragen). Dann 45m + 20m + 1m (Übertrag) = 66m = 1h 6m (1 Stunde übertragen). Schließlich 2h + 1h + 1h (Übertrag) = 4h. Ergebnis: 4h 6m 15s.\n\nSubtraktion funktioniert ähnlich, aber mit Borgen statt Übertragen. Wenn die Sekunden in der ersten Zeit kleiner sind als die zweite, borgen Sie sich 1 Minute (60 Sekunden) aus der Minutenspalte."
+        },
+        "considerations": {
+          "title": "Häufige Anwendungsfälle",
+          "items": [
+            {
+              "text": "Arbeitsstundenverfolgung: Tägliche Arbeitsperioden addieren, um Gesamtstunden für Lohn oder Abrechnung zu finden",
+              "type": "info"
+            },
+            {
+              "text": "Kochen und Backen: Vorbereitungszeit, Garzeit und Ruhezeit für Rezepte kombinieren",
+              "type": "info"
+            },
+            {
+              "text": "Rennzeitmessung: Zeitunterschiede zwischen Splits, Runden oder Zielzeiten berechnen",
+              "type": "info"
+            },
+            {
+              "text": "Projektmanagement: Gesamtdauer durch Addition einzelner Aufgabenzeiten schätzen",
+              "type": "info"
+            },
+            {
+              "text": "Reiseplanung: Zwischenstoppzeiten, Flugdauern und Transferzeiten addieren",
+              "type": "info"
+            },
+            {
+              "text": "Negative Ergebnisse bei der Subtraktion zeigen an, dass die zweite Zeit die erste übersteigt",
+              "type": "warning"
+            }
+          ]
+        },
+        "categories": {
+          "title": "Zeiteinheiten-Umrechnungen",
+          "items": [
+            {
+              "text": "1 Stunde = 60 Minuten = 3.600 Sekunden",
+              "type": "info"
+            },
+            {
+              "text": "1 Minute = 60 Sekunden",
+              "type": "info"
+            },
+            {
+              "text": "1 Tag = 24 Stunden = 1.440 Minuten = 86.400 Sekunden",
+              "type": "info"
+            },
+            {
+              "text": "Dezimalstunden: 1h 30m = 1,50 Stunden (Minuten durch 60 teilen)",
+              "type": "info"
+            },
+            {
+              "text": "Dezimalminuten: 2m 30s = 2,50 Minuten (Sekunden durch 60 teilen)",
+              "type": "info"
+            },
+            {
+              "text": "Militärzeit verwendet 24-Stunden-Format: 13:30 = 1:30 PM",
+              "type": "info"
+            }
+          ]
+        },
+        "examples": {
+          "title": "Schritt-für-Schritt-Beispiele",
+          "description": "Wie man Zeitdauern addiert und subtrahiert",
+          "examples": [
+            {
+              "title": "Arbeitsstunden addieren: 8h 30m + 1h 15m",
+              "steps": [
+                "Geben Sie 8 bei Stunden, 30 bei Minuten für Zeit 1 ein",
+                "Geben Sie 1 bei Stunden, 15 bei Minuten für Zeit 2 ein",
+                "Wählen Sie Addieren (+) Operation",
+                "Ergebnis: 8h30m + 1h15m = 9h 45m 00s"
+              ],
+              "result": "9h 45m 00s (9,75 Dezimalstunden)"
+            },
+            {
+              "title": "Rennzeiten subtrahieren: 4h 30m − 3h 45m",
+              "steps": [
+                "Geben Sie 4 bei Stunden, 30 bei Minuten für Zeit 1 ein",
+                "Geben Sie 3 bei Stunden, 45 bei Minuten für Zeit 2 ein",
+                "Wählen Sie Subtrahieren (−) Operation",
+                "Ergebnis: 4h30m − 3h45m = 0h 45m 00s"
+              ],
+              "result": "0h 45m 00s (45 Minuten)"
+            }
+          ]
+        }
+      },
+      "faqs": [
+        {
+          "question": "Wie addiere ich Stunden und Minuten?",
+          "answer": "Geben Sie die Stunden in das 'Std'-Feld und Minuten in das 'Min'-Feld für jeden Zeitwert ein. Wählen Sie Addieren (+) und der Rechner übernimmt die 60er-System-Umrechnung automatisch — zum Beispiel ergeben 45 Minuten + 30 Minuten korrekt 1 Stunde 15 Minuten, nicht 75 Minuten."
+        },
+        {
+          "question": "Was bedeuten Dezimalstunden?",
+          "answer": "Dezimalstunden drücken Zeit als Dezimalbruch einer Stunde aus. Zum Beispiel: 1 Stunde 30 Minuten = 1,50 Stunden und 2 Stunden 15 Minuten = 2,25 Stunden. Dieses Format wird häufig für Abrechnungen, Stundenzettel und Lohnberechnungen verwendet, wo Stundenbruchteile mit Stundensätzen multipliziert werden müssen."
+        },
+        {
+          "question": "Kann dieser Rechner negative Ergebnisse verarbeiten?",
+          "answer": "Ja. Bei der Subtraktion wird das Ergebnis negativ sein, wenn Zeit 2 größer als Zeit 1 ist, angezeigt mit einem Minuszeichen (−). Zum Beispiel ergibt die Subtraktion von 3h 45m von 2h 30m −1h 15m 00s, was bedeutet, dass Zeit 2 Zeit 1 um 1 Stunde und 15 Minuten überstieg."
+        },
+        {
+          "question": "Wie genau ist die Zeitberechnung?",
+          "answer": "Der Rechner ist sekundengenau. Er verwendet präzise Ganzzahlarithmetik für Zeitumrechnungen und vermeidet Fließkomma-Fehler, die bei Dezimaldarstellungen auftreten können. Alle Umrechnungen zwischen Stunden, Minuten und Sekunden verwenden exakte Faktoren (60 Sekunden pro Minute, 3600 Sekunden pro Stunde)."
+        },
+        {
+          "question": "Kann ich dies für die Arbeitsstundenverfolgung verwenden?",
+          "answer": "Absolut. Geben Sie Ihre Arbeitsperioden von Start bis Ende als Zeitwerte ein und addieren Sie sie zusammen. Die Dezimalstunden-Ausgabe ist besonders nützlich für die Multiplikation mit Ihrem Stundensatz. Zum Beispiel: 8h 30m = 8,50 Dezimalstunden × 25€/Std = 212,50€."
+        },
+        {
+          "question": "Welche Zeitformate sind verfügbar?",
+          "answer": "Der Rechner bietet vier Ausgabeformate: Stunden:Minuten:Sekunden (Standard-Zeitformat), Dezimalstunden (für Abrechnung und Lohn), Gesamtminuten (für kurze Dauern) und Gesamtsekunden (für präzise Zeitmessung). Sie können zwischen den Formaten mit dem Ausgabeformat-Selektor wechseln."
+        }
+      ],
+      "buttons": {
+        "calculate": "Berechnen",
+        "reset": "Zurücksetzen",
+        "pdf": "PDF",
+        "csv": "CSV",
+        "excel": "Excel",
+        "save": "Speichern",
+        "saved": "Gespeichert",
+        "saving": "Speichern..."
+      },
+      "share": {
+        "calculatedWith": "Berechnet mit Kalcufy.com"
+      },
+      "ui": {
+        "results": "Ergebnisse",
+        "yourInformation": "Ihre Informationen"
+      },
+      "accessibility": {
+        "mobileResults": "Ergebniszusammenfassung",
+        "closeModal": "Schließen",
+        "openMenu": "Menü öffnen"
+      },
+      "rating": {
+        "title": "Bewerten Sie diesen Rechner",
+        "share": "Teilen",
+        "copied": "Kopiert!",
+        "copyLink": "Link kopieren",
+        "clickToRate": "Klicken zum Bewerten",
+        "youRated": "Sie haben bewertet",
+        "stars": "Sterne",
+        "averageFrom": "Durchschnitt von",
+        "ratings": "Bewertungen"
+      },
+      "common": {
+        "home": "Startseite",
+        "calculators": "Rechner"
+      },
+      "sources": {
+        "title": "Quellen und Referenzen"
+      },
+      "calculator": {
+        "yourInformation": "Ihre Informationen"
+      }
+    },
 
     es: {
       name: "Calculadora de Tiempo",
