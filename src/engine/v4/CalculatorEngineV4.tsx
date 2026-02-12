@@ -612,7 +612,7 @@ export default function CalculatorEngineV4({
         // Track first calculation
         if (!hasTrackedCalculation.current && result.isValid) {
           hasTrackedCalculation.current = true;
-          fetch("/api/track", {
+          fetch("/api/track", { credentials: "include",
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -635,7 +635,7 @@ export default function CalculatorEngineV4({
   useEffect(() => {
     if (hasTrackedView.current) return;
     hasTrackedView.current = true;
-    fetch("/api/track", {
+    fetch("/api/track", { credentials: "include",
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
