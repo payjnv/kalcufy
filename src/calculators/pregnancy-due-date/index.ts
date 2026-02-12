@@ -2068,8 +2068,8 @@ function getZodiac(date: Date): string {
   return "♑ Capricorn";
 }
 
-function fmtDate(date: Date): string {
-  return date.toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+function fmtDate(date: Date, loc: string = "en"): string {
+  const locMap: Record<string,string> = {en:"en-US",es:"es-ES",pt:"pt-BR",fr:"fr-FR",de:"de-DE"}; return date.toLocaleDateString(locMap[loc] || "en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
 }
 
 function addDays(date: Date, days: number): Date {
@@ -2087,7 +2087,8 @@ export function calculatePregnancyDueDate(data: {
   fieldUnits?: Record<string, string>;
   t?: Record<string, unknown>;
 }): CalculatorResults {
-  const { values, t } = data;
+  const { values, t, locale: dataLocale } = data;
+  const loc = (dataLocale as string) || "en";
   const v = (t?.values as Record<string, string>) || {};
   const f = (t?.formats as Record<string, string>) || {};
 
@@ -2218,7 +2219,7 @@ export function calculatePregnancyDueDate(data: {
     const isPast = milestoneDate <= today;
     return {
       week: `Week ${m.weekNum}`,
-      date: milestoneDate.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }),
+      date: milestoneDate.toLocaleDateString({en:"en-US",es:"es-ES",pt:"pt-BR",fr:"fr-FR",de:"de-DE"}[loc] || "en-US", { month: "short", day: "numeric", year: "numeric" }),
       milestone: `${isPast ? "✅" : "⬜"} ${m.name}`,
       notes: m.note,
     };
@@ -2227,7 +2228,7 @@ export function calculatePregnancyDueDate(data: {
   // ─── Build summary ──────────────────────────────────────────────────────
   const gestAgeStr = `${gestWeeks} ${v.weeks || "weeks"}, ${gestDays} ${v.days || "days"}`;
   const summary = (f.summary || "Your estimated due date is {dueDate}. You are currently {gestationalAge} pregnant with {daysRemaining} days to go ({progressPercent}% complete).")
-    .replace("{dueDate}", fmtDate(dueDate))
+    .replace("{dueDate}", fmtDate(dueDate, loc))
     .replace("{gestationalAge}", gestAgeStr)
     .replace("{daysRemaining}", String(daysRemaining))
     .replace("{progressPercent}", String(progressPercent));
@@ -2247,13 +2248,13 @@ export function calculatePregnancyDueDate(data: {
       birthstone,
     },
     formatted: {
-      dueDate: fmtDate(dueDate),
+      dueDate: fmtDate(dueDate, loc),
       gestationalAge: gestAgeStr,
       daysRemaining: `${daysRemaining} ${v.days || "days"}`,
       trimester,
-      conceptionEstimate: fmtDate(conceptionEstimate),
-      safeWindowStart: fmtDate(safeStart),
-      safeWindowEnd: fmtDate(safeEnd),
+      conceptionEstimate: fmtDate(conceptionEstimate, loc),
+      safeWindowStart: fmtDate(safeStart, loc),
+      safeWindowEnd: fmtDate(safeEnd, loc),
       progressPercent: `${progressPercent}%`,
       zodiacSign: zodiac,
       birthstone: birthstone,

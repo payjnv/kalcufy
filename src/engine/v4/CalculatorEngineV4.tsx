@@ -606,7 +606,7 @@ export default function CalculatorEngineV4({
         const mergedUnits = { ...units, ...fieldUnits };
         // Build legacy values for backwards compatibility with old calculate() functions
         const legacyValues = buildLegacyValues(values, fieldUnits);
-        const result = calculate({ values: legacyValues, units: mergedUnits, unitSystem, mode: currentMode, t: translations, fieldUnits });
+        const result = calculate({ values: legacyValues, units: mergedUnits, unitSystem, mode: currentMode, t: translations, fieldUnits, locale });
         setResults(result);
         
         // Track first calculation
@@ -1432,11 +1432,11 @@ export default function CalculatorEngineV4({
                 {/* FAQs */}
                 {translations.faqs.length > 0 && (
                   <CollapsibleSection 
-                    title={t("faq.title", "Frequently Asked Questions")}
+                    title={({en:"Frequently Asked Questions",es:"Preguntas Frecuentes",pt:"Perguntas Frequentes",fr:"Questions fréquemment posées",de:"Häufig gestellte Fragen"}[locale] || "Frequently Asked Questions")}
                     icon="❓"
                   >
                     <FAQAccordionV4
-                      title={t("faq.title", "Frequently Asked Questions")}
+                      title={({en:"Frequently Asked Questions",es:"Preguntas Frecuentes",pt:"Perguntas Frequentes",fr:"Questions fréquemment posées",de:"Häufig gestellte Fragen"}[locale] || "Frequently Asked Questions")}
                       faqs={translations.faqs}
                       calculatorSlug={translations.slug}
                     />
@@ -1516,7 +1516,7 @@ export default function CalculatorEngineV4({
                     {/* FAQs */}
                     {translations.faqs.length > 0 && (
                       <FAQAccordionV4
-                        title={t("faq.title", "Frequently Asked Questions")}
+                        title={({en:"Frequently Asked Questions",es:"Preguntas Frecuentes",pt:"Perguntas Frequentes",fr:"Questions fréquemment posées",de:"Häufig gestellte Fragen"}[locale] || "Frequently Asked Questions")}
                         faqs={translations.faqs}
                         calculatorSlug={translations.slug}
                       />
