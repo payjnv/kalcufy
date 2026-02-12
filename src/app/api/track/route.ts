@@ -1,8 +1,8 @@
 // src/app/api/track/route.ts
 // ═══════════════════════════════════════════════════════════════
-// TRACKING API V2 — GOD MODE
-// Captures: geo (country/city/region/coords), device, browser,
-// OS, referrer, page path, session duration, language
+// TRACKING API V3 — WITH IP GEOLOCATION FALLBACK
+// When Vercel headers are missing, falls back to ip-api.com (free, no key needed)
+// Fixes: URL-encoded cities, missing international countries
 // ═══════════════════════════════════════════════════════════════
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
@@ -18,14 +18,22 @@ const COUNTRY_NAMES: Record<string, string> = {
   PT: "Portugal", NL: "Netherlands", BE: "Belgium", CH: "Switzerland", AT: "Austria",
   SE: "Sweden", NO: "Norway", DK: "Denmark", FI: "Finland", IE: "Ireland",
   PL: "Poland", CZ: "Czech Republic", RO: "Romania", GR: "Greece", HU: "Hungary",
+  HR: "Croatia", BG: "Bulgaria", SK: "Slovakia", SI: "Slovenia", RS: "Serbia",
+  LT: "Lithuania", LV: "Latvia", EE: "Estonia", IS: "Iceland", LU: "Luxembourg",
+  MT: "Malta", CY: "Cyprus", AL: "Albania", BA: "Bosnia", ME: "Montenegro",
+  MK: "North Macedonia", MD: "Moldova", BY: "Belarus",
   RU: "Russia", UA: "Ukraine", TR: "Turkey",
   CN: "China", JP: "Japan", KR: "South Korea", IN: "India", ID: "Indonesia",
   TH: "Thailand", VN: "Vietnam", PH: "Philippines", MY: "Malaysia", SG: "Singapore",
   TW: "Taiwan", HK: "Hong Kong", PK: "Pakistan", BD: "Bangladesh", LK: "Sri Lanka",
-  AU: "Australia", NZ: "New Zealand",
+  MM: "Myanmar", KH: "Cambodia", LA: "Laos", NP: "Nepal", MN: "Mongolia",
+  AU: "Australia", NZ: "New Zealand", FJ: "Fiji", PG: "Papua New Guinea",
   ZA: "South Africa", NG: "Nigeria", EG: "Egypt", KE: "Kenya", GH: "Ghana",
-  MA: "Morocco", TN: "Tunisia", DZ: "Algeria",
+  MA: "Morocco", TN: "Tunisia", DZ: "Algeria", ET: "Ethiopia", TZ: "Tanzania",
+  UG: "Uganda", CM: "Cameroon", CI: "Ivory Coast", SN: "Senegal",
   SA: "Saudi Arabia", AE: "UAE", IL: "Israel", QA: "Qatar", KW: "Kuwait",
+  BH: "Bahrain", OM: "Oman", JO: "Jordan", LB: "Lebanon", IQ: "Iraq",
+  IR: "Iran", AF: "Afghanistan", AZ: "Azerbaijan", GE: "Georgia", AM: "Armenia",
 };
 
 // ── Localhost detection ──
@@ -73,6 +81,73 @@ function getOS(ua: string): string {
   return "Other";
 }
 
+// ── Get visitor IP ──
+function getVisitorIP(request: NextRequest): string | null {
+  const forwarded = request.headers.get("x-forwarded-for");
+  if (forwarded) {
+    // x-forwarded-for can have multiple IPs: "client, proxy1, proxy2"
+    const firstIP = forwarded.split(",")[0].trim();
+    if (firstIP && firstIP !== "127.0.0.1" && firstIP !== "::1") {
+      return firstIP;
+    }
+  }
+  const realIp = request.headers.get("x-real-ip");
+  if (realIp && realIp !== "127.0.0.1" && realIp !== "::1") {
+    return realIp;
+  }
+  return null;
+}
+
+// ── Decode URL-encoded strings ──
+function decodeCity(city: string | null): string | null {
+  if (!city) return null;
+  try {
+    return decodeURIComponent(city);
+  } catch {
+    return city;
+  }
+}
+
+// ── IP Geolocation fallback using ip-api.com (free, 45 req/min, no key) ──
+interface GeoResult {
+  country: string | null;
+  countryCode: string | null;
+  city: string | null;
+  region: string | null;
+  latitude: number | null;
+  longitude: number | null;
+}
+
+async function getGeoFromIP(ip: string): Promise<GeoResult | null> {
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 2000); // 2s timeout
+
+    const res = await fetch(
+      `http://ip-api.com/json/${ip}?fields=status,country,countryCode,regionName,city,lat,lon`,
+      { signal: controller.signal }
+    );
+    clearTimeout(timeout);
+
+    if (!res.ok) return null;
+
+    const data = await res.json();
+    if (data.status !== "success") return null;
+
+    return {
+      country: data.country || null,
+      countryCode: data.countryCode || null,
+      city: data.city || null,
+      region: data.regionName || null,
+      latitude: data.lat ?? null,
+      longitude: data.lon ?? null,
+    };
+  } catch {
+    // Timeout or network error — don't block tracking
+    return null;
+  }
+}
+
 // ═══════════════════════════════════════════════════════════════
 // POST /api/track
 // ═══════════════════════════════════════════════════════════════
@@ -112,23 +187,48 @@ export async function POST(request: NextRequest) {
     // ── Validate type ──
     const trackingType = type === "CALCULATION" ? "CALCULATION" : "VIEW";
 
-    // ── Geolocation (Vercel free headers) ──
-    const countryCode = request.headers.get("x-vercel-ip-country");
-    const country = countryCode && countryCode !== "XX"
-      ? (COUNTRY_NAMES[countryCode] || countryCode)
-      : null;
-    const city = request.headers.get("x-vercel-ip-city") || null;
-    const region = request.headers.get("x-vercel-ip-country-region") || null;
-    const latStr = request.headers.get("x-vercel-ip-latitude");
-    const lngStr = request.headers.get("x-vercel-ip-longitude");
-    const latitude = latStr ? parseFloat(latStr) : null;
-    const longitude = lngStr ? parseFloat(lngStr) : null;
+    // ── Geolocation: Try Vercel headers first ──
+    const vercelCountry = request.headers.get("x-vercel-ip-country");
+    const vercelCity = request.headers.get("x-vercel-ip-city");
+    const vercelRegion = request.headers.get("x-vercel-ip-country-region");
+    const vercelLat = request.headers.get("x-vercel-ip-latitude");
+    const vercelLng = request.headers.get("x-vercel-ip-longitude");
 
-    // ── Referrer from header (fallback) ──
+    let country: string | null = null;
+    let countryCode: string | null = null;
+    let city: string | null = null;
+    let region: string | null = null;
+    let latitude: number | null = null;
+    let longitude: number | null = null;
+
+    if (vercelCountry && vercelCountry !== "XX") {
+      // ✅ Vercel headers available
+      countryCode = vercelCountry;
+      country = COUNTRY_NAMES[vercelCountry] || vercelCountry;
+      city = decodeCity(vercelCity);
+      region = decodeCity(vercelRegion);
+      latitude = vercelLat ? parseFloat(vercelLat) : null;
+      longitude = vercelLng ? parseFloat(vercelLng) : null;
+    } else {
+      // ⚡ FALLBACK: Use IP geolocation
+      const visitorIP = getVisitorIP(request);
+      if (visitorIP) {
+        const geo = await getGeoFromIP(visitorIP);
+        if (geo) {
+          country = geo.country;
+          countryCode = geo.countryCode;
+          city = geo.city;
+          region = geo.region;
+          latitude = geo.latitude;
+          longitude = geo.longitude;
+        }
+      }
+    }
+
+    // ── Referrer ──
     const headerReferer = request.headers.get("referer") || null;
     const finalReferrer = referrer || headerReferer || null;
 
-    // ── Clean referrer (extract domain only for external) ──
     let cleanReferrer: string | null = null;
     if (finalReferrer) {
       try {
