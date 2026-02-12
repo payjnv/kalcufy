@@ -120,7 +120,7 @@ export default function AnalyticsPage() {
   const AreaChart = ({ dailyData }: { dailyData: AnalyticsData["dailyStats"] }) => {
     if (!dailyData || dailyData.length === 0) {
       return (
-        <div className="h-[300px] flex items-center justify-center text-slate-400">
+        <div className="h-[200px] sm:h-[300px] flex items-center justify-center text-slate-400">
           <div className="text-center">
             <BarChart3 className="w-12 h-12 mx-auto mb-2 opacity-30" />
             <p className="text-sm">No data for this period</p>
@@ -173,7 +173,7 @@ export default function AnalyticsPage() {
     const colorLight = chartMode === "views" ? "#3b82f620" : "#10b98120";
 
     return (
-      <svg viewBox={`0 0 ${w} ${h}`} className="w-full h-[300px]">
+      <svg viewBox={`0 0 ${w} ${h}`} className="w-full h-[200px] sm:h-[300px]">
         <defs>
           <linearGradient id={`grad-${chartMode}`} x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor={color} stopOpacity="0.3" />
@@ -226,9 +226,9 @@ export default function AnalyticsPage() {
 
   if (loading && !data) {
     return (
-      <div className="space-y-6">
-        <div className="h-10 w-56 bg-slate-200 rounded-lg animate-pulse" />
-        <div className="grid grid-cols-4 gap-4">
+      <div className="space-y-4 sm:space-y-6">
+        <div className="h-8 w-40 sm:w-56 bg-slate-200 rounded-lg animate-pulse" />
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {[...Array(4)].map((_, i) => (
             <div key={i} className="h-28 bg-slate-200 rounded-xl animate-pulse" />
           ))}
@@ -239,11 +239,11 @@ export default function AnalyticsPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
+          <h1 className="text-lg sm:text-lg sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
             <BarChart3 className="w-6 h-6 text-blue-500" />
             Analytics
           </h1>
@@ -317,7 +317,7 @@ export default function AnalyticsPage() {
               <div className={`p-2 rounded-lg ${card.color}`}>{card.icon}</div>
             </div>
             <div className="flex items-end gap-2">
-              <span className="text-2xl font-bold text-slate-900">
+              <span className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-slate-900">
                 {card.suffix ? `${card.value}${card.suffix}` : formatNumber(card.value as number)}
               </span>
               {card.change !== null && card.change !== 0 && (
@@ -337,7 +337,7 @@ export default function AnalyticsPage() {
 
       {/* Chart */}
       <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
-        <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+        <div className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4 border-b border-slate-100 flex items-center justify-between">
           <h3 className="font-semibold text-slate-900 flex items-center gap-2">
             <Activity className="w-5 h-5 text-blue-500" />
             Traffic Over Time
@@ -358,14 +358,14 @@ export default function AnalyticsPage() {
             ))}
           </div>
         </div>
-        <div className="p-4">
+        <div className="p-2 sm:p-4">
           <AreaChart dailyData={data?.dailyStats || []} />
         </div>
       </div>
 
       {/* Top Calculators Table */}
       <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
-        <div className="px-6 py-4 border-b border-slate-100">
+        <div className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4 border-b border-slate-100">
           <h3 className="font-semibold text-slate-900 flex items-center gap-2">
             <TrendingUp className="w-5 h-5 text-emerald-500" />
             Top Calculators
@@ -375,12 +375,12 @@ export default function AnalyticsPage() {
           <table className="w-full">
             <thead>
               <tr className="bg-slate-50/80">
-                <th className="text-left px-6 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">#</th>
-                <th className="text-left px-6 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Calculator</th>
-                <th className="text-right px-6 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Views</th>
-                <th className="text-right px-6 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Calculations</th>
-                <th className="text-right px-6 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Conversion</th>
-                <th className="px-6 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Bar</th>
+                <th className="text-left px-3 sm:px-6 py-2.5 sm:py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">#</th>
+                <th className="text-left px-3 sm:px-6 py-2.5 sm:py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Calculator</th>
+                <th className="text-right px-3 sm:px-6 py-2.5 sm:py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Views</th>
+                <th className="text-right px-3 sm:px-6 py-2.5 sm:py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Calculations</th>
+                <th className="text-right px-3 sm:px-6 py-2.5 sm:py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Conversion</th>
+                <th className="px-3 sm:px-6 py-2.5 sm:py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Bar</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
@@ -389,14 +389,14 @@ export default function AnalyticsPage() {
                 const barWidth = (calc.views / maxViews) * 100;
                 return (
                   <tr key={calc.slug} className="hover:bg-slate-50/50 transition-colors">
-                    <td className="px-6 py-3.5 text-sm text-slate-400 font-medium">{i + 1}</td>
-                    <td className="px-6 py-3.5">
+                    <td className="px-3 sm:px-6 py-2.5 sm:py-3.5 text-sm text-slate-400 font-medium">{i + 1}</td>
+                    <td className="px-3 sm:px-6 py-2.5 sm:py-3.5">
                       <span className="text-sm font-medium text-slate-900">{formatSlug(calc.slug)}</span>
                       <span className="text-xs text-slate-400 block">{calc.slug}</span>
                     </td>
-                    <td className="px-6 py-3.5 text-right text-sm font-semibold text-slate-700">{calc.views.toLocaleString()}</td>
-                    <td className="px-6 py-3.5 text-right text-sm text-slate-600">{calc.calculations.toLocaleString()}</td>
-                    <td className="px-6 py-3.5 text-right">
+                    <td className="px-3 sm:px-6 py-2.5 sm:py-3.5 text-right text-sm font-semibold text-slate-700">{calc.views.toLocaleString()}</td>
+                    <td className="px-3 sm:px-6 py-2.5 sm:py-3.5 text-right text-sm text-slate-600">{calc.calculations.toLocaleString()}</td>
+                    <td className="px-3 sm:px-6 py-2.5 sm:py-3.5 text-right">
                       <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium ${
                         parseFloat(calc.conversion) >= 50
                           ? "bg-green-100 text-green-700"
@@ -407,7 +407,7 @@ export default function AnalyticsPage() {
                         {calc.conversion}%
                       </span>
                     </td>
-                    <td className="px-6 py-3.5 w-40">
+                    <td className="px-3 sm:px-6 py-2.5 sm:py-3.5 w-40">
                       <div className="w-full bg-slate-100 rounded-full h-2">
                         <div
                           className="bg-blue-500 h-2 rounded-full transition-all duration-500"
@@ -420,7 +420,7 @@ export default function AnalyticsPage() {
               })}
               {(!data?.topCalculators || data.topCalculators.length === 0) && (
                 <tr>
-                  <td colSpan={6} className="px-6 py-12 text-center text-slate-400">
+                  <td colSpan={6} className="px-3 sm:px-6 py-8 sm:py-12 text-center text-slate-400">
                     <BarChart3 className="w-10 h-10 mx-auto mb-2 opacity-30" />
                     <p className="text-sm">No calculator data yet</p>
                     <p className="text-xs mt-1">Data appears once visitors use calculators in production</p>
@@ -436,7 +436,7 @@ export default function AnalyticsPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Countries */}
         <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
-          <div className="px-6 py-4 border-b border-slate-100">
+          <div className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4 border-b border-slate-100">
             <h3 className="font-semibold text-slate-900 flex items-center gap-2">
               <Globe className="w-5 h-5 text-purple-500" />
               Top Countries
@@ -474,13 +474,13 @@ export default function AnalyticsPage() {
 
         {/* Devices */}
         <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
-          <div className="px-6 py-4 border-b border-slate-100">
+          <div className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4 border-b border-slate-100">
             <h3 className="font-semibold text-slate-900 flex items-center gap-2">
               <Monitor className="w-5 h-5 text-emerald-500" />
               Devices
             </h3>
           </div>
-          <div className="p-6">
+          <div className="p-3 sm:p-6">
             {data?.byDevice && data.byDevice.length > 0 ? (
               <>
                 {/* Visual breakdown */}
@@ -498,7 +498,7 @@ export default function AnalyticsPage() {
                 {/* Device list */}
                 <div className="space-y-4">
                   {data.byDevice.map(d => (
-                    <div key={d.device} className="flex items-center justify-between">
+                    <div key={d.device} className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                       <div className="flex items-center gap-3">
                         <DeviceIcon device={d.device} />
                         <div>
@@ -522,7 +522,7 @@ export default function AnalyticsPage() {
 
         {/* Languages */}
         <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
-          <div className="px-6 py-4 border-b border-slate-100">
+          <div className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4 border-b border-slate-100">
             <h3 className="font-semibold text-slate-900 flex items-center gap-2">
               <Languages className="w-5 h-5 text-amber-500" />
               Languages
@@ -560,7 +560,7 @@ export default function AnalyticsPage() {
 
       {/* Recent Activity */}
       <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
-        <div className="px-6 py-4 border-b border-slate-100">
+        <div className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4 border-b border-slate-100">
           <h3 className="font-semibold text-slate-900 flex items-center gap-2">
             <Clock className="w-5 h-5 text-slate-500" />
             Recent Activity
@@ -568,7 +568,7 @@ export default function AnalyticsPage() {
         </div>
         <div className="divide-y divide-slate-50">
           {data?.recentActivity?.slice(0, 15).map((event, i) => (
-            <div key={i} className="px-6 py-3 flex items-center gap-4 hover:bg-slate-50/50 transition-colors">
+            <div key={i} className="px-3 sm:px-6 py-2.5 sm:py-3 flex items-center gap-4 hover:bg-slate-50/50 transition-colors">
               <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${
                 event.type === "CALCULATION"
                   ? "bg-emerald-100 text-emerald-600"
@@ -597,7 +597,7 @@ export default function AnalyticsPage() {
             </div>
           ))}
           {(!data?.recentActivity || data.recentActivity.length === 0) && (
-            <div className="px-6 py-12 text-center text-slate-400">
+            <div className="px-3 sm:px-6 py-8 sm:py-12 text-center text-slate-400">
               <Activity className="w-10 h-10 mx-auto mb-2 opacity-30" />
               <p className="text-sm">No activity recorded yet</p>
               <p className="text-xs mt-1">Events appear when users visit calculators in production</p>

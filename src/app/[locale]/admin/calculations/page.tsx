@@ -48,9 +48,9 @@ export default function CalculationsPage() {
   const pageCount = Math.ceil(total / pageSize);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-slate-900">Calculations</h1>
+        <h1 className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-slate-900">Calculations</h1>
         <p className="text-slate-600">User calculation history ({total} total)</p>
       </div>
 
@@ -58,38 +58,38 @@ export default function CalculationsPage() {
         <table className="w-full">
           <thead className="bg-slate-50 border-b border-slate-200">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-semibold text-slate-600 uppercase">Calculator</th>
-              <th className="px-6 py-3 text-left text-xs font-semibold text-slate-600 uppercase">User</th>
-              <th className="px-6 py-3 text-left text-xs font-semibold text-slate-600 uppercase">Date</th>
+              <th className="px-3 sm:px-6 py-2.5 sm:py-3 text-left text-xs font-semibold text-slate-600 uppercase">Calculator</th>
+              <th className="px-3 sm:px-6 py-2.5 sm:py-3 text-left text-xs font-semibold text-slate-600 uppercase">User</th>
+              <th className="px-3 sm:px-6 py-2.5 sm:py-3 text-left text-xs font-semibold text-slate-600 uppercase">Date</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100">
             {loading ? (
               [...Array(5)].map((_, i) => (
                 <tr key={i} className="animate-pulse">
-                  <td className="px-6 py-4"><div className="h-4 bg-slate-200 rounded w-32"></div></td>
-                  <td className="px-6 py-4"><div className="h-4 bg-slate-200 rounded w-48"></div></td>
-                  <td className="px-6 py-4"><div className="h-4 bg-slate-200 rounded w-24"></div></td>
+                  <td className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4"><div className="h-4 bg-slate-200 rounded w-32"></div></td>
+                  <td className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4"><div className="h-4 bg-slate-200 rounded w-48"></div></td>
+                  <td className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4"><div className="h-4 bg-slate-200 rounded w-24"></div></td>
                 </tr>
               ))
             ) : calculations.length === 0 ? (
               <tr>
-                <td colSpan={3} className="px-6 py-12 text-center text-slate-500">
+                <td colSpan={3} className="px-3 sm:px-6 py-8 sm:py-12 text-center text-slate-500">
                   No calculations yet
                 </td>
               </tr>
             ) : (
               calculations.map((calc) => (
                 <tr key={calc.id} className="hover:bg-slate-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4">
                     <span className="font-medium text-slate-900 capitalize">
                       {calc.calculatorName || calc.calculatorSlug.replace(/-/g, " ")}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-slate-600">
+                  <td className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4 text-slate-600">
                     {calc.user?.email || "Anonymous"}
                   </td>
-                  <td className="px-6 py-4 text-slate-500 text-sm">
+                  <td className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4 text-slate-500 text-sm">
                     {new Date(calc.createdAt).toLocaleString()}
                   </td>
                 </tr>
@@ -99,7 +99,7 @@ export default function CalculationsPage() {
         </table>
 
         {pageCount > 1 && (
-          <div className="flex items-center justify-between px-6 py-4 border-t border-slate-200 bg-slate-50">
+          <div className="flex items-center justify-between px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4 border-t border-slate-200 bg-slate-50">
             <p className="text-sm text-slate-600">Page {page} of {pageCount}</p>
             <div className="flex items-center gap-2">
               <button onClick={() => setPage(page - 1)} disabled={page === 1} className="p-2 border border-slate-200 rounded-lg disabled:opacity-50 hover:bg-white">

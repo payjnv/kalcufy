@@ -122,7 +122,7 @@ export default function CategoriesPage() {
       {/* Header */}
       <div className="flex items-start justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Categories</h1>
+          <h1 className="text-lg sm:text-lg sm:text-2xl font-bold text-slate-900 tracking-tight">Categories</h1>
           <p className="text-sm text-slate-500 mt-1">Manage calculator categories and subcategories</p>
         </div>
         <button onClick={() => openModal()} className="inline-flex items-center gap-2 px-5 py-2.5 bg-slate-900 text-white text-sm font-medium rounded-xl hover:bg-slate-800 transition-all shadow-sm hover:shadow-md active:scale-[0.98]">
@@ -132,7 +132,7 @@ export default function CategoriesPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
           { label: "Categories", value: categories.length, icon: <Folder className="w-5 h-5" />, color: "text-blue-600 bg-blue-50" },
           { label: "Subcategories", value: subcategories.length, icon: <Tag className="w-5 h-5" />, color: "text-purple-600 bg-purple-50" },
@@ -141,7 +141,7 @@ export default function CategoriesPage() {
         ].map(s => (
           <div key={s.label} className="bg-white rounded-2xl border border-slate-200/60 p-5 shadow-sm">
             <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${s.color} mb-3`}>{s.icon}</div>
-            <p className="text-2xl font-bold text-slate-900 tracking-tight">{s.value}</p>
+            <p className="text-lg sm:text-lg sm:text-2xl font-bold text-slate-900 tracking-tight">{s.value}</p>
             <p className="text-xs text-slate-500 mt-0.5 font-medium uppercase tracking-wider">{s.label}</p>
           </div>
         ))}
@@ -210,7 +210,7 @@ export default function CategoriesPage() {
 
                 {exp && (
                   <div className="border-t border-slate-100 bg-slate-50/50">
-                    <div className="px-5 sm:px-6 py-4">
+                    <div className="px-5 sm:px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4">
                       <div className="ml-[72px]">
                         <div className="flex items-center justify-between mb-4">
                           <h4 className="text-sm font-semibold text-slate-700">Subcategories for {cat.nameEn}</h4>
@@ -275,7 +275,7 @@ export default function CategoriesPage() {
             <div className="p-6 space-y-5">
               <div><label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Slug *</label><input type="text" value={form.slug} onChange={e => setForm({ ...form, slug: e.target.value.toLowerCase().replace(/\s+/g, "-") })} placeholder="finance" className="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 text-sm" disabled={!!editing} /></div>
               <div><label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Name (English) *</label><input type="text" value={form.nameEn} onChange={e => setForm({ ...form, nameEn: e.target.value })} placeholder="Finance" className="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 text-sm" /></div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div><label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Spanish</label><input type="text" value={form.nameEs} onChange={e => setForm({ ...form, nameEs: e.target.value })} placeholder="Finanzas" className="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 text-sm" /></div>
                 <div><label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Portuguese</label><input type="text" value={form.namePt} onChange={e => setForm({ ...form, namePt: e.target.value })} placeholder="Finanças" className="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 text-sm" /></div>
               </div>
@@ -305,11 +305,11 @@ export default function CategoriesPage() {
             <div className="p-6 space-y-5">
               <div><label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Slug *</label><input type="text" value={subForm.slug} onChange={e => setSubForm({ ...subForm, slug: e.target.value.toLowerCase().replace(/\s+/g, "-") })} placeholder="loans" className="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 text-sm" disabled={!!editingSub} /></div>
               <div><label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Name (English) *</label><input type="text" value={subForm.nameEn} onChange={e => setSubForm({ ...subForm, nameEn: e.target.value })} placeholder="Loans & Mortgages" className="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 text-sm" /></div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div><label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Spanish</label><input type="text" value={subForm.nameEs} onChange={e => setSubForm({ ...subForm, nameEs: e.target.value })} placeholder="Préstamos" className="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 text-sm" /></div>
                 <div><label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Portuguese</label><input type="text" value={subForm.namePt} onChange={e => setSubForm({ ...subForm, namePt: e.target.value })} placeholder="Empréstimos" className="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 text-sm" /></div>
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div><label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">French</label><input type="text" value={subForm.nameFr} onChange={e => setSubForm({ ...subForm, nameFr: e.target.value })} placeholder="Prêts" className="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 text-sm" /></div>
                 <div><label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">German</label><input type="text" value={subForm.nameDe} onChange={e => setSubForm({ ...subForm, nameDe: e.target.value })} placeholder="Darlehen" className="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-slate-900/10 focus:border-slate-300 text-sm" /></div>
               </div>

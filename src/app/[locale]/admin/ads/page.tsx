@@ -157,11 +157,11 @@ export default function AdminAdsPage() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Page Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Ad Management</h1>
+          <h1 className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-slate-900">Ad Management</h1>
           <p className="text-slate-600">Manage your advertisement slots and AdSense codes</p>
         </div>
         <button
@@ -188,15 +188,15 @@ export default function AdminAdsPage() {
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         <div className="bg-white rounded-xl p-4 border border-slate-200">
           <p className="text-sm text-slate-600">Total Slots</p>
-          <p className="text-2xl font-bold text-slate-900">{adSlots.length}</p>
+          <p className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-slate-900">{adSlots.length}</p>
         </div>
         <div className="bg-white rounded-xl p-4 border border-slate-200">
           <p className="text-sm text-slate-600">Active</p>
-          <p className="text-2xl font-bold text-emerald-600">{adSlots.filter((s) => s.isActive).length}</p>
+          <p className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-emerald-600">{adSlots.filter((s) => s.isActive).length}</p>
         </div>
         <div className="bg-white rounded-xl p-4 border border-slate-200">
           <p className="text-sm text-slate-600">With Code</p>
-          <p className="text-2xl font-bold text-blue-600">{adSlots.filter((s) => s.adCode).length}</p>
+          <p className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-blue-600">{adSlots.filter((s) => s.adCode).length}</p>
         </div>
       </div>
 
@@ -211,7 +211,7 @@ export default function AdminAdsPage() {
           <div className="divide-y divide-slate-100">
             {adSlots.map((slot) => (
               <div key={slot.id} className="p-4 hover:bg-slate-50 transition-colors">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                   <div className="flex items-center gap-4">
                     <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${slot.isActive && slot.adCode ? "bg-emerald-100" : "bg-slate-100"}`}>
                       <svg className={`w-6 h-6 ${slot.isActive && slot.adCode ? "text-emerald-600" : "text-slate-400"}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -278,7 +278,7 @@ export default function AdminAdsPage() {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden">
             <div className="p-6 border-b border-slate-200">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                 <h2 className="text-lg font-semibold text-slate-900">Edit Ad Code</h2>
                 <button onClick={() => setEditingSlot(null)} className="p-2 text-slate-400 hover:text-slate-600 rounded-lg">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -288,7 +288,7 @@ export default function AdminAdsPage() {
               </div>
               <p className="text-sm text-slate-600 mt-1">{editingSlot.name} - {getLocationLabel(editingSlot.location)}</p>
             </div>
-            <div className="p-6">
+            <div className="p-3 sm:p-6">
               <label className="block text-sm font-medium text-slate-700 mb-2">AdSense / Custom HTML Code</label>
               <textarea 
                 value={adCode} 
@@ -313,7 +313,7 @@ export default function AdminAdsPage() {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden">
             <div className="p-6 border-b border-slate-200">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                 <h2 className="text-lg font-semibold text-slate-900">Create New Ad Slot</h2>
                 <button onClick={() => setShowCreateModal(false)} className="p-2 text-slate-400 hover:text-slate-600 rounded-lg">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -230,11 +230,11 @@ export default function AdminCalculatorsPage() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Calculators</h1>
+          <h1 className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-slate-900">Calculators</h1>
           <p className="text-sm text-slate-500 mt-1">Manage calculator settings, categories and URLs</p>
         </div>
         <button
@@ -253,7 +253,7 @@ export default function AdminCalculatorsPage() {
             <svg className="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
           </div>
           <div>
-            <p className="text-2xl font-bold text-slate-900">{calculators.length}</p>
+            <p className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-slate-900">{calculators.length}</p>
             <p className="text-sm text-slate-500">Total</p>
           </div>
         </div>
@@ -262,7 +262,7 @@ export default function AdminCalculatorsPage() {
             <svg className="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
           </div>
           <div>
-            <p className="text-2xl font-bold text-slate-900">{activeCalcs.length}</p>
+            <p className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-slate-900">{activeCalcs.length}</p>
             <p className="text-sm text-slate-500">Active</p>
           </div>
         </div>
@@ -271,7 +271,7 @@ export default function AdminCalculatorsPage() {
             <svg className="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" /></svg>
           </div>
           <div>
-            <p className="text-2xl font-bold text-slate-900">{inactiveCalcs.length}</p>
+            <p className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-slate-900">{inactiveCalcs.length}</p>
             <p className="text-sm text-slate-500">Inactive</p>
           </div>
         </div>
@@ -280,7 +280,7 @@ export default function AdminCalculatorsPage() {
             <svg className="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
           </div>
           <div>
-            <p className="text-2xl font-bold text-slate-900">{draftCalcs.length}</p>
+            <p className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-slate-900">{draftCalcs.length}</p>
             <p className="text-sm text-slate-500">Drafts</p>
           </div>
         </div>
@@ -289,7 +289,7 @@ export default function AdminCalculatorsPage() {
             <Trash2 className="w-6 h-6 text-red-400" />
           </div>
           <div>
-            <p className="text-2xl font-bold text-slate-900">{trashedCalcs.length}</p>
+            <p className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-slate-900">{trashedCalcs.length}</p>
             <p className="text-sm text-slate-500">Trash</p>
           </div>
         </div>
@@ -356,11 +356,11 @@ export default function AdminCalculatorsPage() {
               <table className="w-full">
                 <thead>
                   <tr className="border-b border-slate-100 bg-slate-50/50">
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Calculator</th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Category</th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Subcategory</th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Status</th>
-                    <th className="px-6 py-4 text-right text-xs font-semibold text-slate-500 uppercase tracking-wider">Actions</th>
+                    <th className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Calculator</th>
+                    <th className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Category</th>
+                    <th className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Subcategory</th>
+                    <th className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Status</th>
+                    <th className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4 text-right text-xs font-semibold text-slate-500 uppercase tracking-wider">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
@@ -368,13 +368,13 @@ export default function AdminCalculatorsPage() {
                     const availableSubs = getSubcategoriesForCategory(calc.category);
                     return (
                       <tr key={calc.id} className={`hover:bg-slate-50/50 transition-colors ${!calc.isActive && tab !== "trash" ? "opacity-60" : ""}`}>
-                        <td className="px-6 py-4">
+                        <td className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4">
                           <div>
                             <p className="font-medium text-slate-900">{calc.name}</p>
                             <p className="text-xs text-slate-400 font-mono">{calc.slug}</p>
                           </div>
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4">
                           {tab === "trash" ? (
                             <span className={`inline-flex items-center px-3 py-1 text-xs font-medium rounded-full border ${getCategoryColor(calc.category)}`}>
                               {getCategoryName(calc.category)}
@@ -394,7 +394,7 @@ export default function AdminCalculatorsPage() {
                             </select>
                           )}
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4">
                           {tab === "trash" ? (
                             <span className="text-xs text-slate-400">{getSubcategoryName(calc.subcategoryId) || "—"}</span>
                           ) : availableSubs.length > 0 ? (
@@ -413,14 +413,14 @@ export default function AdminCalculatorsPage() {
                             <span className="text-xs text-slate-300">No subs</span>
                           )}
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4">
                           {tab === "trash" ? (
                             <span className="text-xs text-red-500 font-medium">Trashed</span>
                           ) : (
                             <ToggleSwitch calc={calc} />
                           )}
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4">
                           <div className="flex items-center justify-end gap-1">
                             {tab === "trash" ? (
                               <button className="px-3 py-1.5 text-xs font-medium text-blue-600 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
@@ -458,7 +458,7 @@ export default function AdminCalculatorsPage() {
               </div>
             )}
 
-            <div className="px-6 py-4 border-t border-slate-100 flex items-center justify-between bg-slate-50/50">
+            <div className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4 border-t border-slate-100 flex items-center justify-between bg-slate-50/50">
               <p className="text-sm text-slate-500">
                 Showing <span className="font-medium text-slate-900">{filteredCalculators.length}</span> of{" "}
                 <span className="font-medium text-slate-900">{calculators.length}</span> calculators

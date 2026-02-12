@@ -88,9 +88,9 @@ export default function TranslationsDashboard() {
 
   if (loading) {
     return (
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-6">
         <div className="h-8 w-64 bg-slate-200 rounded animate-pulse" />
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {[1,2,3,4].map(i => <div key={i} className="h-24 bg-slate-200 rounded-xl animate-pulse" />)}
         </div>
         <div className="h-96 bg-slate-200 rounded-xl animate-pulse" />
@@ -99,11 +99,11 @@ export default function TranslationsDashboard() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
+          <h1 className="text-lg sm:text-lg sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
             <Languages className="w-6 h-6 text-blue-500" />
             Translations
           </h1>
@@ -115,12 +115,12 @@ export default function TranslationsDashboard() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-white rounded-xl border border-slate-200 p-5">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-blue-50 rounded-lg"><FileText className="w-5 h-5 text-blue-500" /></div>
             <div>
-              <p className="text-2xl font-bold text-slate-900">{stats?.totalCalculators}</p>
+              <p className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-slate-900">{stats?.totalCalculators}</p>
               <p className="text-sm text-slate-500">Total</p>
             </div>
           </div>
@@ -129,7 +129,7 @@ export default function TranslationsDashboard() {
           <div className="flex items-center gap-3">
             <div className="p-2 bg-green-50 rounded-lg"><CheckCircle className="w-5 h-5 text-green-500" /></div>
             <div>
-              <p className="text-2xl font-bold text-green-600">{stats?.fullyTranslated}</p>
+              <p className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-green-600">{stats?.fullyTranslated}</p>
               <p className="text-sm text-slate-500">Complete</p>
             </div>
           </div>
@@ -138,7 +138,7 @@ export default function TranslationsDashboard() {
           <div className="flex items-center gap-3">
             <div className="p-2 bg-amber-50 rounded-lg"><AlertCircle className="w-5 h-5 text-amber-500" /></div>
             <div>
-              <p className="text-2xl font-bold text-amber-600">{stats?.partiallyTranslated}</p>
+              <p className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-amber-600">{stats?.partiallyTranslated}</p>
               <p className="text-sm text-slate-500">Partial</p>
             </div>
           </div>
@@ -147,7 +147,7 @@ export default function TranslationsDashboard() {
           <div className="flex items-center gap-3">
             <div className="p-2 bg-red-50 rounded-lg"><XCircle className="w-5 h-5 text-red-400" /></div>
             <div>
-              <p className="text-2xl font-bold text-red-500">{stats?.missingTranslations}</p>
+              <p className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-red-500">{stats?.missingTranslations}</p>
               <p className="text-sm text-slate-500">Missing</p>
             </div>
           </div>

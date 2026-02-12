@@ -280,7 +280,7 @@ export default function AdminBlogEditorPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* ── Header ── */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-center gap-4">
@@ -293,7 +293,7 @@ export default function AdminBlogEditorPage() {
             </svg>
           </Link>
           <div>
-            <h1 className="text-2xl font-bold text-slate-900">
+            <h1 className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-slate-900">
               {isEditing ? "Edit Post" : "New Post"}
             </h1>
             <p className="text-slate-500 mt-0.5 text-sm">
@@ -338,7 +338,7 @@ export default function AdminBlogEditorPage() {
 
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
         {/* ══════════════════ MAIN CONTENT (2/3) ══════════════════ */}
-        <div className="xl:col-span-2 space-y-6">
+        <div className="xl:col-span-2 space-y-4 sm:space-y-6">
 
           {/* ── Language Tabs ── */}
           <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
@@ -557,7 +557,7 @@ export default function AdminBlogEditorPage() {
           {/* ── Translation Overview Card ── */}
           <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
             <h3 className="font-semibold text-slate-900 mb-4">Translation Status</h3>
-            <div className="grid grid-cols-5 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
               {LANGS.map((lang) => {
                 const s = langStatus(lang.code);
                 const title = form[langField("title", lang.code)] as string;
@@ -601,7 +601,7 @@ export default function AdminBlogEditorPage() {
             <div className="space-y-4">
               <div>
                 <label className="block text-sm text-slate-600 mb-1.5">Status</label>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {statusOptions.map((opt) => (
                     <button
                       key={opt.value}

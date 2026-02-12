@@ -195,11 +195,11 @@ export default function AdminNewsletterPage() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
+          <h1 className="text-lg sm:text-lg sm:text-2xl font-bold text-slate-900 flex items-center gap-3">
             <div className="bg-amber-100 p-2 rounded-lg">
               <Mail className="w-6 h-6 text-amber-600" />
             </div>
@@ -234,41 +234,41 @@ export default function AdminNewsletterPage() {
 
       {/* Stats Cards */}
       {stats && (
-        <div className="grid grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
           <div className="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
             <div className="flex items-center gap-2 mb-2">
               <Users className="w-4 h-4 text-blue-600" />
               <span className="text-xs text-slate-500 uppercase tracking-wider font-medium">Total</span>
             </div>
-            <p className="text-2xl font-bold text-slate-900">{stats.total.toLocaleString()}</p>
+            <p className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-slate-900">{stats.total.toLocaleString()}</p>
           </div>
           <div className="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
             <div className="flex items-center gap-2 mb-2">
               <ToggleRight className="w-4 h-4 text-green-600" />
               <span className="text-xs text-slate-500 uppercase tracking-wider font-medium">Active</span>
             </div>
-            <p className="text-2xl font-bold text-green-600">{stats.active.toLocaleString()}</p>
+            <p className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-green-600">{stats.active.toLocaleString()}</p>
           </div>
           <div className="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
             <div className="flex items-center gap-2 mb-2">
               <ToggleLeft className="w-4 h-4 text-slate-400" />
               <span className="text-xs text-slate-500 uppercase tracking-wider font-medium">Inactive</span>
             </div>
-            <p className="text-2xl font-bold text-slate-400">{stats.inactive.toLocaleString()}</p>
+            <p className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-slate-400">{stats.inactive.toLocaleString()}</p>
           </div>
           <div className="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
             <div className="flex items-center gap-2 mb-2">
               <TrendingUp className="w-4 h-4 text-purple-600" />
               <span className="text-xs text-slate-500 uppercase tracking-wider font-medium">This Week</span>
             </div>
-            <p className="text-2xl font-bold text-purple-600">+{stats.newThisWeek}</p>
+            <p className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-purple-600">+{stats.newThisWeek}</p>
           </div>
           <div className="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
             <div className="flex items-center gap-2 mb-2">
               <TrendingUp className="w-4 h-4 text-amber-600" />
               <span className="text-xs text-slate-500 uppercase tracking-wider font-medium">This Month</span>
             </div>
-            <p className="text-2xl font-bold text-amber-600">+{stats.newThisMonth}</p>
+            <p className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-amber-600">+{stats.newThisMonth}</p>
           </div>
         </div>
       )}
@@ -490,7 +490,7 @@ export default function AdminNewsletterPage() {
       {showAddModal && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md">
-            <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+            <div className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4 border-b border-slate-100 flex items-center justify-between">
               <h3 className="text-lg font-bold text-slate-900">Add Subscriber</h3>
               <button
                 onClick={() => {
@@ -541,7 +541,7 @@ export default function AdminNewsletterPage() {
                 <p className="text-sm text-red-600 bg-red-50 px-3 py-2 rounded-lg">{addError}</p>
               )}
             </div>
-            <div className="px-6 py-4 border-t border-slate-100 flex justify-end gap-2">
+            <div className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4 border-t border-slate-100 flex justify-end gap-2">
               <button
                 onClick={() => {
                   setShowAddModal(false);

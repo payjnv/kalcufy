@@ -436,7 +436,7 @@ Sitemap: ${settings.site.url}/sitemap.xml${settings.robots.customRules ? "\n\n" 
 
   if (loading) {
     return (
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-6">
         <div className="h-8 w-48 bg-slate-200 rounded animate-pulse" />
         <div className="h-96 bg-slate-200 rounded-xl animate-pulse" />
       </div>
@@ -444,11 +444,11 @@ Sitemap: ${settings.site.url}/sitemap.xml${settings.robots.customRules ? "\n\n" 
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
+          <h1 className="text-lg sm:text-lg sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
             <Settings className="w-6 h-6 text-blue-500" />
             Settings
           </h1>

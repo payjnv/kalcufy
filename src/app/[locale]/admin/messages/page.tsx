@@ -90,11 +90,11 @@ export default function MessagesPage() {
   const unreadCount = messages.filter(m => !m.read).length;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Page Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Messages</h1>
+          <h1 className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-slate-900">Messages</h1>
           <p className="text-slate-600">
             Contact form submissions
             {unreadCount > 0 && (
@@ -187,8 +187,8 @@ export default function MessagesPage() {
           {selectedMessage ? (
             <div className="flex flex-col h-full">
               {/* Header */}
-              <div className="px-6 py-4 border-b border-slate-100">
-                <div className="flex items-center justify-between">
+              <div className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4 border-b border-slate-100">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                   <div>
                     <h3 className="font-semibold text-slate-900">{selectedMessage.name}</h3>
                     <a 
@@ -216,7 +216,7 @@ export default function MessagesPage() {
               </div>
 
               {/* Actions */}
-              <div className="px-6 py-4 border-t border-slate-100 flex items-center justify-between">
+              <div className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4 border-t border-slate-100 flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <a
                     href={`mailto:${selectedMessage.email}?subject=Re: ${selectedMessage.subject || "Your message to Kalcufy"}`}

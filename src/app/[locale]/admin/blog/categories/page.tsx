@@ -193,9 +193,9 @@ export default function AdminBlogCategoriesPage() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
         <div>
           <div className="flex items-center gap-3 mb-1">
             <Link href="/en/admin/blog" className="text-slate-400 hover:text-slate-600">
@@ -203,7 +203,7 @@ export default function AdminBlogCategoriesPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </Link>
-            <h1 className="text-2xl font-bold text-slate-900">Blog Categories</h1>
+            <h1 className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-slate-900">Blog Categories</h1>
           </div>
           <p className="text-slate-600">Manage categories for your blog posts</p>
         </div>
@@ -228,7 +228,7 @@ export default function AdminBlogCategoriesPage() {
               </svg>
             </div>
             <div>
-              <p className="text-2xl font-bold text-slate-900">{categories.length}</p>
+              <p className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-slate-900">{categories.length}</p>
               <p className="text-sm text-slate-600">Total Categories</p>
             </div>
           </div>
@@ -241,7 +241,7 @@ export default function AdminBlogCategoriesPage() {
               </svg>
             </div>
             <div>
-              <p className="text-2xl font-bold text-slate-900">{categories.filter(c => c.isActive).length}</p>
+              <p className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-slate-900">{categories.filter(c => c.isActive).length}</p>
               <p className="text-sm text-slate-600">Active</p>
             </div>
           </div>
@@ -254,7 +254,7 @@ export default function AdminBlogCategoriesPage() {
               </svg>
             </div>
             <div>
-              <p className="text-2xl font-bold text-slate-900">{categories.reduce((sum, c) => sum + (c._count?.posts || 0), 0)}</p>
+              <p className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-slate-900">{categories.reduce((sum, c) => sum + (c._count?.posts || 0), 0)}</p>
               <p className="text-sm text-slate-600">Total Posts</p>
             </div>
           </div>
@@ -267,7 +267,7 @@ export default function AdminBlogCategoriesPage() {
               </svg>
             </div>
             <div>
-              <p className="text-2xl font-bold text-slate-900">{categories.filter(c => !c.isActive).length}</p>
+              <p className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-slate-900">{categories.filter(c => !c.isActive).length}</p>
               <p className="text-sm text-slate-600">Inactive</p>
             </div>
           </div>
@@ -459,7 +459,7 @@ export default function AdminBlogCategoriesPage() {
               </div>
 
               {/* Name ES & PT */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-1.5">Name (Spanish)</label>
                   <input

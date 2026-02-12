@@ -128,9 +128,9 @@ export default function AdminBlogPage() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
         <div>
           <h1 className="text-2xl font-semibold text-slate-900">Blog Posts</h1>
           <p className="text-slate-600 mt-1">Manage your blog articles and content</p>

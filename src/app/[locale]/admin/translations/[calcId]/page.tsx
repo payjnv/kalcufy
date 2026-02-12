@@ -95,7 +95,7 @@ export default function TranslationDetailPage() {
 
   if (loading) {
     return (
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-6">
         <div className="h-8 w-64 bg-slate-200 rounded animate-pulse" />
         <div className="h-24 bg-slate-200 rounded-xl animate-pulse" />
         <div className="h-96 bg-slate-200 rounded-xl animate-pulse" />
@@ -114,15 +114,15 @@ export default function TranslationDetailPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
         <div className="flex items-center gap-4">
           <Link href={`/${locale}/admin/translations`} className="p-2 hover:bg-slate-100 rounded-lg transition-colors">
             <ArrowLeft className="w-5 h-5 text-slate-600" />
           </Link>
           <div>
-            <h1 className="text-2xl font-bold text-slate-900">{data?.name}</h1>
+            <h1 className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-slate-900">{data?.name}</h1>
             <p className="text-slate-500 text-sm font-mono">{data?.id}</p>
           </div>
         </div>

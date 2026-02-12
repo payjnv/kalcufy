@@ -76,10 +76,10 @@ export default function UsersListPage() {
   const pageCount = Math.ceil(total / pageSize);
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="space-y-4 sm:space-y-6">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Users</h1>
+          <h1 className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-slate-900">Users</h1>
           <p className="text-slate-600">Manage all registered users ({total} total)</p>
         </div>
         <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium">
@@ -88,7 +88,7 @@ export default function UsersListPage() {
       </div>
 
       <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-        <div className="relative flex-1 max-w-md w-full">
+        <div className="relative flex-1 max-w-full sm:max-w-md w-full">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
           <input
             type="text"
@@ -116,25 +116,25 @@ export default function UsersListPage() {
           <table className="w-full">
             <thead className="bg-slate-50 border-b border-slate-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-slate-600 uppercase">User</th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-slate-600 uppercase">Plan</th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-slate-600 uppercase">Role</th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-slate-600 uppercase">Activity</th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-slate-600 uppercase">Joined</th>
-                <th className="px-6 py-3 text-right text-xs font-semibold text-slate-600 uppercase">Actions</th>
+                <th className="px-3 sm:px-6 py-2.5 sm:py-3 text-left text-xs font-semibold text-slate-600 uppercase">User</th>
+                <th className="px-3 sm:px-6 py-2.5 sm:py-3 text-left text-xs font-semibold text-slate-600 uppercase">Plan</th>
+                <th className="px-3 sm:px-6 py-2.5 sm:py-3 text-left text-xs font-semibold text-slate-600 uppercase">Role</th>
+                <th className="px-3 sm:px-6 py-2.5 sm:py-3 text-left text-xs font-semibold text-slate-600 uppercase">Activity</th>
+                <th className="px-3 sm:px-6 py-2.5 sm:py-3 text-left text-xs font-semibold text-slate-600 uppercase">Joined</th>
+                <th className="px-3 sm:px-6 py-2.5 sm:py-3 text-right text-xs font-semibold text-slate-600 uppercase">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
               {loading ? (
                 [...Array(5)].map((_, i) => (
-                  <tr key={i}><td colSpan={6} className="px-6 py-4"><div className="h-10 bg-slate-100 rounded animate-pulse" /></td></tr>
+                  <tr key={i}><td colSpan={6} className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4"><div className="h-10 bg-slate-100 rounded animate-pulse" /></td></tr>
                 ))
               ) : users.length === 0 ? (
-                <tr><td colSpan={6} className="px-6 py-12 text-center text-slate-500">No users found</td></tr>
+                <tr><td colSpan={6} className="px-3 sm:px-6 py-8 sm:py-12 text-center text-slate-500">No users found</td></tr>
               ) : (
                 users.map((user) => (
                   <tr key={user.id} className="hover:bg-slate-50">
-                    <td className="px-6 py-4">
+                    <td className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4">
                       <div className="flex items-center gap-3">
                         {user.image ? (
                           <img src={user.image} alt="" className="w-10 h-10 rounded-full" />
@@ -149,7 +149,7 @@ export default function UsersListPage() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4">
                       <button
                         onClick={() => togglePro(user.id, user.isPro)}
                         className={`inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-full ${user.isPro ? "bg-blue-100 text-blue-700 hover:bg-blue-200" : "bg-slate-100 text-slate-600 hover:bg-slate-200"}`}
@@ -158,17 +158,17 @@ export default function UsersListPage() {
                         {user.isPro ? "PRO" : "FREE"}
                       </button>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4">
                       <span className={`px-2.5 py-1 text-xs font-medium rounded-full ${user.role === "ADMIN" ? "bg-purple-100 text-purple-700" : "bg-slate-100 text-slate-600"}`}>
                         {user.role}
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-sm text-slate-600">
+                    <td className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4 text-sm text-slate-600">
                       <div><span className="font-medium">{user._count.history}</span> calculations</div>
                       <div className="text-xs text-slate-400">{user._count.favorites} favorites</div>
                     </td>
-                    <td className="px-6 py-4 text-sm text-slate-600">{new Date(user.createdAt).toLocaleDateString()}</td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4 text-sm text-slate-600">{new Date(user.createdAt).toLocaleDateString()}</td>
+                    <td className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4">
                       <div className="flex items-center justify-end gap-1">
                         <Link href={`/admin/users/${user.id}`} className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg"><Eye className="w-4 h-4" /></Link>
                         <Link href={`/admin/users/${user.id}/edit`} className="p-2 text-slate-400 hover:text-amber-600 hover:bg-amber-50 rounded-lg"><Pencil className="w-4 h-4" /></Link>
@@ -183,7 +183,7 @@ export default function UsersListPage() {
         </div>
 
         {total > pageSize && (
-          <div className="flex items-center justify-between px-6 py-4 border-t border-slate-200">
+          <div className="flex items-center justify-between px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4 border-t border-slate-200">
             <p className="text-sm text-slate-600">Showing {(page - 1) * pageSize + 1} to {Math.min(page * pageSize, total)} of {total}</p>
             <div className="flex items-center gap-2">
               <button onClick={() => setPage(page - 1)} disabled={page === 1} className="p-2 border border-slate-200 rounded-lg disabled:opacity-50 hover:bg-slate-50"><ChevronLeft className="w-4 h-4" /></button>

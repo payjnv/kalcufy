@@ -102,11 +102,11 @@ export default function ContactMessagesPage() {
   const unreadCount = messages.filter(m => !m.read).length;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Page Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Contact Messages</h1>
+          <h1 className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-slate-900">Contact Messages</h1>
           <p className="text-slate-600">
             {unreadCount > 0 ? `${unreadCount} unread messages` : "All messages read"}
           </p>

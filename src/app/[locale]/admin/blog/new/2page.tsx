@@ -75,7 +75,7 @@ function markdownToHtml(md: string): string {
     .replace(/`([^`]+)`/g, '<code class="bg-slate-100 text-pink-600 px-1.5 py-0.5 rounded text-sm font-mono">$1</code>')
     .replace(/^### (.+)$/gm, '<h3 class="text-lg font-bold text-slate-900 mt-6 mb-2">$1</h3>')
     .replace(/^## (.+)$/gm, '<h2 class="text-xl font-bold text-slate-900 mt-8 mb-3">$1</h2>')
-    .replace(/^# (.+)$/gm, '<h1 class="text-2xl font-bold text-slate-900 mt-8 mb-4">$1</h1>')
+    .replace(/^# (.+)$/gm, '<h1 class="text-lg sm:text-lg sm:text-2xl font-bold text-slate-900 mt-8 mb-4">$1</h1>')
     .replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>')
     .replace(/\*\*(.+?)\*\*/g, '<strong class="font-semibold">$1</strong>')
     .replace(/\*(.+?)\*/g, '<em class="italic">$1</em>')
@@ -180,7 +180,7 @@ function PostPreviewModal({ open, onClose, form, lang }: { open: boolean; onClos
         <div className="overflow-y-auto flex-1 p-8">
           {form.featuredImage && <img src={form.featuredImage} alt="" className="w-full h-56 object-cover rounded-2xl mb-8" />}
           <article className="max-w-2xl mx-auto">
-            <h1 className="text-3xl font-bold text-slate-900 mb-4 leading-tight">{title || "Untitled Post"}</h1>
+            <h1 className="text-xl sm:text-xl sm:text-3xl font-bold text-slate-900 mb-4 leading-tight">{title || "Untitled Post"}</h1>
             {excerpt && <p className="text-lg text-slate-500 mb-8 leading-relaxed">{excerpt}</p>}
             <hr className="mb-8 border-slate-200" />
             <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: markdownToHtml(content) }} />
@@ -341,7 +341,7 @@ export default function AdminBlogEditorPage() {
   );
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       <LinkModal open={showLinkM} onClose={() => setShowLinkM(false)} onInsert={(t, u) => ins(`[${t}](${u})`)} />
       <ImageModal open={showImgM} onClose={() => setShowImgM(false)} onInsert={(a, u) => ins(`![${a}](${u})\n`)} />
       <CalcEmbedModal open={showCalcM} onClose={() => setShowCalcM(false)} onInsert={(s) => ins(`\n[calculator:${s}]\n`)} />
@@ -353,7 +353,7 @@ export default function AdminBlogEditorPage() {
           <Link href="/en/admin/blog" className="p-2.5 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-xl transition-colors">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
           </Link>
-          <div><h1 className="text-2xl font-bold text-slate-900">{isEditing ? "Edit Post" : "New Post"}</h1><p className="text-slate-500 text-sm mt-0.5">5-language blog editor</p></div>
+          <div><h1 className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-slate-900">{isEditing ? "Edit Post" : "New Post"}</h1><p className="text-slate-500 text-sm mt-0.5">5-language blog editor</p></div>
         </div>
         <div className="flex items-center gap-2 flex-wrap">
           <div className="hidden lg:flex items-center gap-1 px-3 py-2 bg-slate-50 rounded-xl border border-slate-200">
@@ -504,7 +504,7 @@ export default function AdminBlogEditorPage() {
               </button>
             </div>
             {translateMsg && <div className={`mb-4 p-3 rounded-xl text-sm font-medium ${translateMsg.startsWith("✅") ? "bg-emerald-50 text-emerald-700" : translateMsg.startsWith("❌") ? "bg-red-50 text-red-700" : "bg-blue-50 text-blue-700"}`}>{translateMsg}</div>}
-            <div className="grid grid-cols-5 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
               {LANGS.map((l) => {
                 const st = ls(l.code); const c = form[lf("content", l.code)] as string; const cw = c.trim().split(/\s+/).filter(Boolean).length;
                 return (
@@ -524,7 +524,7 @@ export default function AdminBlogEditorPage() {
           {/* Status */}
           <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
             <h3 className="font-semibold text-slate-900 mb-4">📋 Publish</h3>
-            <div className="grid grid-cols-2 gap-2 mb-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4">
               {statusOpts.map((o) => (<button key={o.value} onClick={() => set("status", o.value)} className={`flex items-center gap-2 px-3 py-2.5 rounded-xl border text-sm font-medium transition-all ${form.status === o.value ? `${o.cls} border-current ring-1 ring-current/20` : "border-slate-200 text-slate-600 hover:bg-slate-50"}`}><span>{o.icon}</span>{o.label}</button>))}
             </div>
             {form.status === "SCHEDULED" && <div className="mb-4"><label className="block text-sm text-slate-600 mb-1">Schedule</label><input type="datetime-local" value={form.scheduledAt} onChange={(e) => set("scheduledAt", e.target.value)} className="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" /></div>}

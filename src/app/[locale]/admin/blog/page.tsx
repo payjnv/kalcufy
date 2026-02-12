@@ -400,11 +400,11 @@ export default function AdminBlogPage() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Header */}
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Content Management</h1>
+          <h1 className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-slate-900">Content Management</h1>
           <p className="text-slate-600 mt-1">Manage your blog posts, analytics, and content strategy</p>
         </div>
         <div className="flex items-center gap-3">
@@ -436,7 +436,7 @@ export default function AdminBlogPage() {
           <div className="flex items-start justify-between">
             <div>
               <p className="text-sm font-medium text-slate-600">Total Posts</p>
-              <p className="text-3xl font-bold text-slate-900 mt-1">{stats.total}</p>
+              <p className="text-xl sm:text-xl sm:text-3xl font-bold text-slate-900 mt-1">{stats.total}</p>
             </div>
             <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
               <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -461,7 +461,7 @@ export default function AdminBlogPage() {
           <div className="flex items-start justify-between">
             <div>
               <p className="text-sm font-medium text-slate-600">Total Views</p>
-              <p className="text-3xl font-bold text-slate-900 mt-1">{formatViews(stats.totalViews)}</p>
+              <p className="text-xl sm:text-xl sm:text-3xl font-bold text-slate-900 mt-1">{formatViews(stats.totalViews)}</p>
             </div>
             <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
               <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -471,7 +471,7 @@ export default function AdminBlogPage() {
             </div>
           </div>
           <div className="mt-4 pt-4 border-t border-slate-100">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
               <span className="text-sm text-slate-600">This month: {formatViews(stats.viewsThisMonth)}</span>
               <span className={`text-sm font-medium ${viewsChange >= 0 ? "text-emerald-700" : "text-red-600"}`}>
                 {viewsChange >= 0 ? "↑" : "↓"} {Math.abs(viewsChange)}%
@@ -488,7 +488,7 @@ export default function AdminBlogPage() {
           <div className="flex items-start justify-between">
             <div>
               <p className="text-sm font-medium text-slate-600">Avg. Reading Time</p>
-              <p className="text-3xl font-bold text-slate-900 mt-1">
+              <p className="text-xl sm:text-xl sm:text-3xl font-bold text-slate-900 mt-1">
                 {stats.avgReadingTime}<span className="text-lg font-normal text-slate-400"> min</span>
               </p>
             </div>
@@ -508,7 +508,7 @@ export default function AdminBlogPage() {
           <div className="flex items-start justify-between">
             <div>
               <p className="text-sm font-medium text-slate-600">Scheduled</p>
-              <p className="text-3xl font-bold text-slate-900 mt-1">{stats.scheduled}</p>
+              <p className="text-xl sm:text-xl sm:text-3xl font-bold text-slate-900 mt-1">{stats.scheduled}</p>
             </div>
             <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center">
               <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -523,7 +523,7 @@ export default function AdminBlogPage() {
       </div>
 
       {/* Top Performing Post & Quick Actions */}
-      <div className="grid lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {stats.topPost && (
           <div className="lg:col-span-2 bg-gradient-to-br from-slate-900 to-slate-800 rounded-xl p-6 text-white">
             <div className="flex items-start justify-between mb-4">
@@ -532,11 +532,11 @@ export default function AdminBlogPage() {
                   ⭐ Top Performing
                 </span>
               </div>
-              <span className="text-3xl font-bold">{formatViews(stats.topPost.views)}</span>
+              <span className="text-xl sm:text-xl sm:text-3xl font-bold">{formatViews(stats.topPost.views)}</span>
             </div>
             <h3 className="text-xl font-bold mb-2 line-clamp-2">{stats.topPost.titleEn}</h3>
             <p className="text-slate-400 text-sm mb-4 line-clamp-2">{stats.topPost.excerptEn || "No excerpt available"}</p>
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
               <div className="flex items-center gap-4 text-sm text-slate-400">
                 <span className="flex items-center gap-1">🕐 {stats.topPost.readingTime || 5} min read</span>
                 <span>{formatRelativeDate(stats.topPost.publishedAt)}</span>
@@ -619,7 +619,7 @@ export default function AdminBlogPage() {
       <div className="bg-white rounded-xl border border-slate-200 p-4">
         <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
           <div className="flex flex-col sm:flex-row gap-3 flex-1 w-full lg:w-auto">
-            <div className="relative flex-1 max-w-md">
+            <div className="relative flex-1 max-w-full sm:max-w-md">
               <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
@@ -898,7 +898,7 @@ export default function AdminBlogPage() {
 
       {/* Real Pagination */}
       {pagination.totalPages > 1 && (
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <p className="text-sm text-slate-600">
             Showing <span className="font-medium">{(pagination.page - 1) * pagination.limit + 1}</span>–
             <span className="font-medium">{Math.min(pagination.page * pagination.limit, pagination.total)}</span> of{" "}

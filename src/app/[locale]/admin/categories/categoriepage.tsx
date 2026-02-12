@@ -287,11 +287,11 @@ export default function CategoriesPage() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Calculator Categories</h1>
+          <h1 className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-slate-900">Calculator Categories</h1>
           <p className="text-slate-600">Organize your calculators into categories. Drag to reorder.</p>
         </div>
         <div className="flex items-center gap-3">
@@ -315,19 +315,19 @@ export default function CategoriesPage() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div className="bg-white rounded-xl p-4 border border-slate-200">
           <p className="text-sm text-slate-600">Total Categories</p>
-          <p className="text-2xl font-bold text-slate-900">{categories.length}</p>
+          <p className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-slate-900">{categories.length}</p>
         </div>
         <div className="bg-white rounded-xl p-4 border border-slate-200">
           <p className="text-sm text-slate-600">Active</p>
-          <p className="text-2xl font-bold text-emerald-600">{categories.filter(c => c.isActive).length}</p>
+          <p className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-emerald-600">{categories.filter(c => c.isActive).length}</p>
         </div>
         <div className="bg-white rounded-xl p-4 border border-slate-200">
           <p className="text-sm text-slate-600">In Menu</p>
-          <p className="text-2xl font-bold text-blue-600">{categories.filter(c => c.showInMenu).length}</p>
+          <p className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-blue-600">{categories.filter(c => c.showInMenu).length}</p>
         </div>
         <div className="bg-white rounded-xl p-4 border border-slate-200">
           <p className="text-sm text-slate-600">On Homepage</p>
-          <p className="text-2xl font-bold text-purple-600">{categories.filter(c => c.showInHome).length}</p>
+          <p className="text-lg sm:text-lg sm:text-xl sm:text-2xl font-bold text-purple-600">{categories.filter(c => c.showInHome).length}</p>
         </div>
       </div>
 
@@ -359,7 +359,7 @@ export default function CategoriesPage() {
                     : "hover:bg-slate-50"
                 }`}
               >
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                   <div className="flex items-center gap-4">
                     {/* Drag Handle */}
                     <div className="cursor-grab active:cursor-grabbing text-slate-400 hover:text-slate-600 flex flex-col items-center">
@@ -517,7 +517,7 @@ export default function CategoriesPage() {
               </div>
 
               {/* Name ES & PT */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-1">Name (Spanish)</label>
                   <input

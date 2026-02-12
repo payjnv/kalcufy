@@ -169,6 +169,12 @@ export async function POST(request: NextRequest) {
     const realIp = request.headers.get("x-real-ip") || "";
     if (fwdFor.includes("2600:4040:96ba:e00") || realIp.includes("2600:4040:96ba:e00")) {
       return NextResponse.json({ success: true, skipped: "owner" });
+
+    // ── Block owner (cookie — works on ANY device/network) ──
+    const ownerCookie = request.cookies.get("kalcufy_owner");
+    if (ownerCookie?.value === "1") {
+      return NextResponse.json({ success: true, skipped: "owner-cookie" });
+    }
     }
 
     // ── Parse body ──

@@ -361,7 +361,7 @@ export default function AdminCalculatorsPage() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
@@ -396,7 +396,7 @@ export default function AdminCalculatorsPage() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm">
             <p className="text-sm text-gray-500 mb-1">Total Calculators</p>
-            <p className="text-2xl font-bold text-gray-900">{data.totals.totalCalculators}</p>
+            <p className="text-lg sm:text-lg sm:text-2xl font-bold text-gray-900">{data.totals.totalCalculators}</p>
             <p className="text-xs text-gray-400 mt-1">
               {data.totals.activeCalculators} active
             </p>
@@ -404,7 +404,7 @@ export default function AdminCalculatorsPage() {
           <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm">
             <p className="text-sm text-gray-500 mb-1">Total Views</p>
             <div className="flex items-center gap-2">
-              <p className="text-2xl font-bold text-gray-900">{data.totals.totalViews.toLocaleString()}</p>
+              <p className="text-lg sm:text-lg sm:text-2xl font-bold text-gray-900">{data.totals.totalViews.toLocaleString()}</p>
               <ChangeIndicator value={data.totals.totalViewsChange} size="md" />
             </div>
             <p className="text-xs text-gray-400 mt-1">{getPrevPeriodLabel(period)}</p>
@@ -412,14 +412,14 @@ export default function AdminCalculatorsPage() {
           <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm">
             <p className="text-sm text-gray-500 mb-1">Total Calculations</p>
             <div className="flex items-center gap-2">
-              <p className="text-2xl font-bold text-gray-900">{data.totals.totalCalculations.toLocaleString()}</p>
+              <p className="text-lg sm:text-lg sm:text-2xl font-bold text-gray-900">{data.totals.totalCalculations.toLocaleString()}</p>
               <ChangeIndicator value={data.totals.totalCalcsChange} size="md" />
             </div>
             <p className="text-xs text-gray-400 mt-1">{getPrevPeriodLabel(period)}</p>
           </div>
           <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm">
             <p className="text-sm text-gray-500 mb-1">Conversion Rate</p>
-            <p className="text-2xl font-bold text-gray-900">{data.totals.overallConversionRate}%</p>
+            <p className="text-lg sm:text-lg sm:text-2xl font-bold text-gray-900">{data.totals.overallConversionRate}%</p>
             <p className="text-xs text-gray-400 mt-1">Views → Calculations</p>
           </div>
         </div>
@@ -468,25 +468,25 @@ export default function AdminCalculatorsPage() {
               <table className="w-full">
                 <thead>
                   <tr className="border-b border-gray-100 bg-gray-50/50">
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Calculator</th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Categories</th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Views</th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Calculations</th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Conv. Rate</th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Status</th>
-                    <th className="px-6 py-4 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider">Actions</th>
+                    <th className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Calculator</th>
+                    <th className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Categories</th>
+                    <th className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Views</th>
+                    <th className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Calculations</th>
+                    <th className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Conv. Rate</th>
+                    <th className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Status</th>
+                    <th className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-100">
                   {filteredCalculators.map((calc) => (
                     <tr key={calc.id} className={`hover:bg-gray-50/50 transition-colors ${!calc.isActive ? 'opacity-50' : ''}`}>
-                      <td className="px-6 py-4">
+                      <td className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4">
                         <div>
                           <p className="font-medium text-gray-900">{calc.name}</p>
                           <p className="text-xs text-gray-400">{calc.slug}</p>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4">
                         <div className="flex items-center gap-2">
                           {/* Show assigned categories */}
                           {(calcCategories[calc.slug]?.length || 0) > 0 ? (
@@ -522,19 +522,19 @@ export default function AdminCalculatorsPage() {
                           </button>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4">
                         <div className="flex items-center gap-2">
                           <span className="font-medium text-gray-900">{calc.views.toLocaleString()}</span>
                           <ChangeIndicator value={calc.viewsChange} />
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4">
                         <div className="flex items-center gap-2">
                           <span className="font-medium text-gray-900">{calc.calculations.toLocaleString()}</span>
                           <ChangeIndicator value={calc.calcsChange} />
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4">
                         <div className="flex items-center gap-2">
                           <div className="w-16 h-2 bg-gray-100 rounded-full overflow-hidden">
                             <div 
@@ -555,10 +555,10 @@ export default function AdminCalculatorsPage() {
                           </span>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4">
                         <ToggleSwitch calc={calc} />
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4">
                         <div className="flex items-center justify-end gap-1">
                           <Link
                             href={`/en/${calc.slug}`}
@@ -596,7 +596,7 @@ export default function AdminCalculatorsPage() {
               </div>
             )}
 
-            <div className="px-6 py-4 border-t border-gray-100 flex items-center justify-between bg-gray-50/50">
+            <div className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4 border-t border-gray-100 flex items-center justify-between bg-gray-50/50">
               <p className="text-sm text-gray-500">
                 Showing <span className="font-medium text-gray-900">{filteredCalculators.length}</span> of{" "}
                 <span className="font-medium text-gray-900">{data?.totals.totalCalculators || 0}</span> calculators
@@ -622,7 +622,7 @@ export default function AdminCalculatorsPage() {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-2xl w-full max-w-lg max-h-[90vh] overflow-hidden shadow-2xl">
             <div className="p-6 border-b border-gray-100">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                 <h2 className="text-lg font-semibold text-gray-900">Calculator Details</h2>
                 <button
                   onClick={() => setSelectedCalc(null)}
@@ -653,24 +653,24 @@ export default function AdminCalculatorsPage() {
                 </div>
               </div>
               
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="p-4 bg-purple-50 rounded-xl">
                   <p className="text-sm text-purple-700 mb-1">Views ({getPeriodLabel(period)})</p>
                   <div className="flex items-center gap-2">
-                    <p className="text-2xl font-bold text-purple-700">{selectedCalc.views.toLocaleString()}</p>
+                    <p className="text-lg sm:text-lg sm:text-2xl font-bold text-purple-700">{selectedCalc.views.toLocaleString()}</p>
                     <ChangeIndicator value={selectedCalc.viewsChange} size="md" />
                   </div>
                 </div>
                 <div className="p-4 bg-amber-50 rounded-xl">
                   <p className="text-sm text-amber-600 mb-1">Calculations</p>
                   <div className="flex items-center gap-2">
-                    <p className="text-2xl font-bold text-amber-800">{selectedCalc.calculations.toLocaleString()}</p>
+                    <p className="text-lg sm:text-lg sm:text-2xl font-bold text-amber-800">{selectedCalc.calculations.toLocaleString()}</p>
                     <ChangeIndicator value={selectedCalc.calcsChange} size="md" />
                   </div>
                 </div>
                 <div className="p-4 bg-green-50 rounded-xl">
                   <p className="text-sm text-green-600 mb-1">Conversion Rate</p>
-                  <p className={`text-2xl font-bold ${
+                  <p className={`text-lg sm:text-lg sm:text-2xl font-bold ${
                     selectedCalc.conversionRate >= 50 ? "text-green-700" :
                     selectedCalc.conversionRate >= 25 ? "text-yellow-600" :
                     "text-red-500"
@@ -678,7 +678,7 @@ export default function AdminCalculatorsPage() {
                 </div>
                 <div className="p-4 bg-blue-50 rounded-xl">
                   <p className="text-sm text-blue-600 mb-1">All-Time Views</p>
-                  <p className="text-2xl font-bold text-blue-700">{selectedCalc.allTimeViews.toLocaleString()}</p>
+                  <p className="text-lg sm:text-lg sm:text-2xl font-bold text-blue-700">{selectedCalc.allTimeViews.toLocaleString()}</p>
                 </div>
               </div>
 
@@ -717,7 +717,7 @@ export default function AdminCalculatorsPage() {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-2xl w-full max-w-md overflow-hidden shadow-2xl">
             <div className="p-6 border-b border-gray-100">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                 <div>
                   <h2 className="text-lg font-semibold text-gray-900">Assign Categories</h2>
                   <p className="text-sm text-gray-500 mt-1">{categoryModalCalc.name}</p>
@@ -733,7 +733,7 @@ export default function AdminCalculatorsPage() {
               </div>
             </div>
             
-            <div className="p-6">
+            <div className="p-3 sm:p-6">
               <p className="text-sm text-gray-600 mb-4">Select one or more categories for this calculator:</p>
               
               <div className="space-y-2 max-h-64 overflow-y-auto">

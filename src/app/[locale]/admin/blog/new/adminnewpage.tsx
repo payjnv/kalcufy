@@ -233,9 +233,9 @@ export default function AdminBlogEditorPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
         <div className="flex items-center gap-4">
           <Link
             href="/en/admin/blog"
@@ -277,7 +277,7 @@ export default function AdminBlogEditorPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Main Content */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-4 sm:space-y-6">
           {/* Language Tabs */}
           <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
             <div className="flex border-b border-slate-200">
@@ -436,7 +436,7 @@ export default function AdminBlogEditorPage() {
         </div>
 
         {/* Sidebar */}
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
           {/* Status & Publish */}
           <div className="bg-white rounded-xl border border-slate-200 p-5">
             <h3 className="font-medium text-slate-900 mb-4">Publish</h3>
