@@ -1,8 +1,7 @@
 // KALCUFY V4 - SITEMAP MULTILENGUAJE COMPLETO
-// Incluye: Páginas estáticas, Category Pages, Calculadoras V4 (solo activas), Blog Posts
+// Incluye: Páginas estáticas, Calculadoras V4 (solo activas), Blog Posts
 import { MetadataRoute } from 'next';
 import { SLUG_REGISTRY } from '@/engine/v4/slugs/registry';
-
 import { prisma } from '@/lib/prisma';
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.kalcufy.com';
@@ -11,10 +10,12 @@ type Locale = (typeof LOCALES)[number];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const entries: MetadataRoute.Sitemap = [];
-  const now = new Date();
+
+  // Fecha fija para páginas estáticas (actualizar manualmente cuando cambien)
+  const STATIC_LAST_MOD = new Date('2026-02-01');
 
   // ─────────────────────────────────────────────────────────────────────────
-  // 1. PÁGINAS ESTÁTICAS (cada idioma tiene su propia entrada)
+  // 1. PÁGINAS ESTÁTICAS
   // ─────────────────────────────────────────────────────────────────────────
   const staticPages = [
     { path: '', priority: 1.0, changeFreq: 'weekly' as const },
@@ -41,7 +42,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       const url = page.path ? `${BASE_URL}/${locale}/${page.path}` : `${BASE_URL}/${locale}`;
       entries.push({
         url,
-        lastModified: now,
+        lastModified: STATIC_LAST_MOD,
         changeFrequency: page.changeFreq,
         priority: page.priority,
         alternates: createStaticAlternates(page.path),
@@ -49,45 +50,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }
 
-  // DISABLED:   // ─────────────────────────────────────────────────────────────────────────
-  // DISABLED:   // 2. CATEGORY PAGES (for Google Sitelinks)
-  // DISABLED:   // ─────────────────────────────────────────────────────────────────────────
-  // DISABLED:   for (const cat of CATEGORY_PAGES) {
-  // DISABLED:     const alternates = {
-  // DISABLED:       languages: Object.fromEntries(
-  // DISABLED:         LOCALES.map((loc) => [loc, `${BASE_URL}/${loc}/${cat.slugs[loc] || cat.slugs.en}`])
-  // DISABLED:       ),
-  // DISABLED:     };
-  // DISABLED: 
-  // DISABLED:     for (const locale of LOCALES) {
-  // DISABLED:       entries.push({
-  // DISABLED:         url: `${BASE_URL}/${locale}/${cat.slugs[locale] || cat.slugs.en}`,
-  // DISABLED:         lastModified: now,
-  // DISABLED:         changeFrequency: 'weekly',
-  // DISABLED:         priority: 0.85,
-  // DISABLED:         alternates,
-  // DISABLED:       });
-  // DISABLED:     }
-  // DISABLED:   }
+  // ─────────────────────────────────────────────────────────────────────────
+  // 2. CALCULADORAS V4 (solo activas, con fecha real de DB)
+  // ─────────────────────────────────────────────────────────────────────────
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // 3. CALCULADORAS V4 (solo activas, sin drafts)
-  // ─────────────────────────────────────────────────────────────────────────
-  
-  let activeCalcSlugs: Set<string> = new Set();
+  const calcDateMap = new Map<string, Date>();
   try {
     const activeCalcs = await prisma.calculatorStatus.findMany({
       where: { isActive: true },
-      select: { slug: true },
+      select: { slug: true, updatedAt: true },
     });
-    activeCalcSlugs = new Set(activeCalcs.map(c => c.slug));
+    for (const c of activeCalcs) {
+      calcDateMap.set(c.slug, c.updatedAt);
+    }
   } catch (error) {
     console.error('Error fetching active calculators:', error);
   }
 
   for (const entry of SLUG_REGISTRY) {
     if (entry.category === 'drafts') continue;
-    if (activeCalcSlugs.size > 0 && !activeCalcSlugs.has(entry.slugs.en)) continue;
+    if (calcDateMap.size > 0 && !calcDateMap.has(entry.slugs.en)) continue;
+
+    const calcDate = calcDateMap.get(entry.slugs.en) || STATIC_LAST_MOD;
 
     const alternates = {
       languages: {
@@ -103,16 +87,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       const slug = entry.slugs[locale];
       entries.push({
         url: `${BASE_URL}/${locale}/${slug}`,
-        lastModified: now,
+        lastModified: calcDate,
         changeFrequency: 'monthly',
-        priority: 0.8,
+        priority: locale === 'en' ? 0.8 : 0.6,
         alternates,
       });
     }
   }
 
   // ─────────────────────────────────────────────────────────────────────────
-  // 4. BLOG POSTS (5 idiomas, solo idiomas que tienen slug propio)
+  // 3. BLOG POSTS (usa updatedAt real de la DB)
   // ─────────────────────────────────────────────────────────────────────────
   try {
     const posts = await prisma.post.findMany({
@@ -150,7 +134,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       for (const locale of availableLocales) {
         entries.push({
           url: `${BASE_URL}/${locale}/blog/${slugMap[locale]}`,
-          lastModified: post.updatedAt || now,
+          lastModified: post.updatedAt || STATIC_LAST_MOD,
           changeFrequency: 'weekly',
           priority: 0.7,
           alternates,

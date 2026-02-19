@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import type { Metadata } from "next";
 import { SLUG_REGISTRY, getEntryBySlug } from "@/engine/v4/slugs/registry";
 import CalculatorClient from "./client";
@@ -15,6 +15,18 @@ const BREADCRUMB_HOME: Record<string, string> = {
 const BREADCRUMB_CALCS: Record<string, string> = {
   en: "Calculators", es: "Calculadoras", pt: "Calculadoras", fr: "Calculateurs", de: "Rechner",
 };
+
+// --- Helper: find entry by slug in ANY locale, return entry + which locale it matched ---
+function findEntryInAnyLocale(slug: string): { entry: (typeof SLUG_REGISTRY)[number]; matchedLocale: string } | null {
+  for (const entry of SLUG_REGISTRY) {
+    for (const loc of LOCALES) {
+      if (entry.slugs[loc as keyof typeof entry.slugs] === slug) {
+        return { entry, matchedLocale: loc };
+      }
+    }
+  }
+  return null;
+}
 
 // --- SEO: Generate metadata from calculator config ---
 export async function generateMetadata({
@@ -148,6 +160,12 @@ export default async function CalculatorCatchAllPage({
   }
   const entry = getEntryBySlug(slug[0], locale);
   if (!entry) {
+    // --- SEO FIX: If slug exists in another locale, 301 redirect to correct slug ---
+    const found = findEntryInAnyLocale(slug[0]);
+    if (found) {
+      const correctSlug = found.entry.slugs[locale as keyof typeof found.entry.slugs] || found.entry.slugs.en;
+      permanentRedirect(`/${locale}/${correctSlug}`);
+    }
     notFound();
   }
 
