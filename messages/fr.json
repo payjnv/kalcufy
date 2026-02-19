@@ -174,7 +174,15 @@
       "stonesToKgConverter": "Stones to KG Converter",
       "tablespoonToMlConverter": "Tablespoons to mL Converter",
       "passwordGenerator": "Password Generator",
-      "loanCalculator": "Loan Calculateur de"
+      "loanCalculator": "Loan Calculateur de",
+      "investmentCalculator": "Investment Calculateur de",
+      "salaryConverter": "Salary Converter",
+      "inflationCalculator": "Inflation Calculateur de",
+      "retirementCalculator": "RetirementCalculateur de Calculator",
+      "interestCalculator": "Interest Calculateur de",
+      "incomeTaxCalculator": "Income Tax Calculateur de",
+      "paycheckCalculator": "Paycheck Calculateur de",
+      "savingsCalculator": "Savings Calculateur de"
     }
   },
   "home": {
@@ -745,6 +753,30 @@
       },
       "loanCalculator": {
         "desc": "Calculate loan calculator"
+      },
+      "investmentCalculator": {
+        "desc": "Calculate investment calculator"
+      },
+      "salaryConverter": {
+        "desc": "Calculate salary converter"
+      },
+      "inflationCalculator": {
+        "desc": "Calculate inflation calculator"
+      },
+      "retirementCalculator": {
+        "desc": "Calculate retirement calculator"
+      },
+      "interestCalculator": {
+        "desc": "Calculate interest calculator"
+      },
+      "incomeTaxCalculator": {
+        "desc": "Calculate income tax calculator"
+      },
+      "paycheckCalculator": {
+        "desc": "Calculate paycheck calculator"
+      },
+      "savingsCalculator": {
+        "desc": "Calculate savings calculator"
       }
     },
     "sortBy": "Trier par",

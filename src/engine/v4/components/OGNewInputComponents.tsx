@@ -227,8 +227,8 @@ export function NumberStepperInput({
   const containerClass = isError
     ? "border-2 border-red-400 bg-red-50/50"
     : isFocused 
-    ? "border-2 border-blue-400 shadow-sm bg-slate-50"
-    : "border border-slate-200 bg-slate-100 hover:bg-slate-200/70";
+    ? "border-2 border-blue-400 shadow-sm bg-white"
+    : "border border-slate-200 bg-white hover:border-slate-300";
 
   return (
     <div className="space-y-1 w-full">

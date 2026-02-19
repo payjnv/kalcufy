@@ -117,6 +117,14 @@ export const SLUG_REGISTRY: SlugEntry[] = [
   { id: "credit-card-payoff", category: "finance", slugs: { en: "credit-card-payoff-calculator", es: "calculadora-pago-tarjeta-credito", pt: "calculadora-quitacao-cartao-credito", fr: "calculateur-remboursement-carte-credit", de: "kreditkarten-tilgungs-rechner" } },
   { id: "password-generator", category: "technology", slugs: { en: "password-generator-calculator", es: "calculadora-generador-contrasenas", pt: "calculadora-gerador-senhas", fr: "calculateur-generateur-mots-de-passe", de: "passwort-generator-rechner" } },
   { id: "transfer-time", category: "technology", slugs: { en: "transfer-time-calculator", es: "calculadora-tiempo-transferencia", pt: "calculadora-tempo-transferencia", fr: "calculateur-temps-transfert", de: "uebertragungszeit-rechner" } },
+  { id: "investment-calculator", category: "finance", slugs: { en: "investment-calculator-calculator", es: "calculadora-inversiones", pt: "calculadora-investimento", fr: "calculateur-investissement", de: "investment-calculator-rechner" } },
+  { id: "salary-converter", category: "finance", slugs: { en: "salary-converter-calculator", es: "calculadora-convertidor-salarios", pt: "calculadora-salary-converter", fr: "calculateur-convertisseur-salaire", de: "gehalt-umrechner-rechner" } },
+  { id: "inflation-calculator", category: "finance", slugs: { en: "inflation-calculator-calculator", es: "calculadora-inflacion", pt: "calculadora-inflacao", fr: "calculateur-inflation", de: "inflations-rechner" } },
+  { id: "retirement-calculator", category: "finance", slugs: { en: "retirement-calculator-calculator", es: "calculadora-jubilacion", pt: "calculadora-aposentadoria", fr: "calculateur-retirement-calculator", de: "retirement-calculator-rechner" } },
+  { id: "interest-calculator", category: "finance", slugs: { en: "interest-calculator-calculator", es: "calculadora-interes", pt: "calculadora-juros", fr: "calculateur-interets", de: "zinsrechner" } },
+  { id: "income-tax-calculator", category: "finance", slugs: { en: "income-tax-calculator-calculator", es: "calculadora-impuesto-sobre-la-renta", pt: "calculadora-imposto-renda", fr: "calculateur-impot-revenu", de: "einkommensteuer-rechner" } },
+  { id: "paycheck-calculator", category: "finance", slugs: { en: "paycheck-calculator-calculator", es: "calculadora-sueldo-neto", pt: "calculadora-contracheque", fr: "calculateur-salaire-net", de: "gehaltsabrechnung-rechner" } },
+  { id: "savings-calculator", category: "finance", slugs: { en: "savings-calculator-calculator", es: "calculadora-ahorros", pt: "calculadora-poupanca", fr: "calculateur-epargne", de: "sparrechner-rechner" } },
 ]; // END SLUG_REGISTRY
 
 // Helper functions

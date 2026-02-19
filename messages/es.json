@@ -172,7 +172,15 @@
       "tablespoonToMlConverter": "Tablespoons to mL Converter",
       "creditCardPayoff": "Credit Card Payoff Calculadora de",
       "passwordGenerator": "Password Generator",
-      "loanCalculator": "Loan Calculadora de"
+      "loanCalculator": "Loan Calculadora de",
+      "investmentCalculator": "Investment Calculadora de",
+      "salaryConverter": "Salary Converter",
+      "inflationCalculator": "Inflation Calculadora de",
+      "retirementCalculator": "RetirementCalculadora de Calculator",
+      "interestCalculator": "Interest Calculadora de",
+      "incomeTaxCalculator": "Income Tax Calculadora de",
+      "paycheckCalculator": "Paycheck Calculadora de",
+      "savingsCalculator": "Savings Calculadora de"
     }
   },
   "home": {
@@ -737,6 +745,30 @@
       },
       "loanCalculator": {
         "desc": "Calculate loan calculator"
+      },
+      "investmentCalculator": {
+        "desc": "Calculate investment calculator"
+      },
+      "salaryConverter": {
+        "desc": "Calculate salary converter"
+      },
+      "inflationCalculator": {
+        "desc": "Calculate inflation calculator"
+      },
+      "retirementCalculator": {
+        "desc": "Calculate retirement calculator"
+      },
+      "interestCalculator": {
+        "desc": "Calculate interest calculator"
+      },
+      "incomeTaxCalculator": {
+        "desc": "Calculate income tax calculator"
+      },
+      "paycheckCalculator": {
+        "desc": "Calculate paycheck calculator"
+      },
+      "savingsCalculator": {
+        "desc": "Calculate savings calculator"
       }
     },
     "sortBy": "Ordenar por",
