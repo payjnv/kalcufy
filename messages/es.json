@@ -180,7 +180,13 @@
       "interestCalculator": "Interest Calculadora de",
       "incomeTaxCalculator": "Income Tax Calculadora de",
       "paycheckCalculator": "Paycheck Calculadora de",
-      "savingsCalculator": "Savings Calculadora de"
+      "savingsCalculator": "Savings Calculadora de",
+      "homeAffordabilityCalculator": "Home Affordability Calculadora de",
+      "homeAffordability": "Home Affordability Calculadora de",
+      "budgetCalculator": "Budget Calculadora de",
+      "netWorthCalculator": "Net Worth Calculadora de",
+      "rentVsBuyCalculator": "Rent vs Buy Calculadora de",
+      "simpleInterestCalculator": "Simple Interest Calculadora de"
     }
   },
   "home": {
@@ -769,6 +775,24 @@
       },
       "savingsCalculator": {
         "desc": "Calculate savings calculator"
+      },
+      "homeAffordabilityCalculator": {
+        "desc": "Calculate home affordability calculator"
+      },
+      "homeAffordability": {
+        "desc": "Calculate home affordability"
+      },
+      "budgetCalculator": {
+        "desc": "Calculate budget calculator"
+      },
+      "netWorthCalculator": {
+        "desc": "Calculate net worth calculator"
+      },
+      "rentVsBuyCalculator": {
+        "desc": "Calculate rent vs buy calculator"
+      },
+      "simpleInterestCalculator": {
+        "desc": "Calculate simple interest calculator"
       }
     },
     "sortBy": "Ordenar por",

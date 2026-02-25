@@ -24,6 +24,16 @@ export interface CategoryStat {
 // FINANCE (4)
 export const FINANCE_CALCULATORS: Calculator[] = [
   {
+    slug: "home-affordability-calculator",
+    name: "Home Affordability Calculator",
+    description: "Find out how much house you can afford based on income and local rates",
+    icon: "🏠",
+    color: "blue",
+    category: "finance",
+    isNew: true,
+    isPro: false,
+  },
+  {
     slug: "401k-calculator",
     name: "401k Calculator",
     description: "Plan your 401(k) retirement savings and employer match",

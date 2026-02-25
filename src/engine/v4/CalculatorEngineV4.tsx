@@ -606,7 +606,7 @@ export default function CalculatorEngineV4({
         const mergedUnits = { ...units, ...fieldUnits };
         // Build legacy values for backwards compatibility with old calculate() functions
         const legacyValues = buildLegacyValues(values, fieldUnits);
-        const result = calculate({ values: legacyValues, units: mergedUnits, unitSystem, mode: currentMode, t: translations, fieldUnits, locale });
+        const result = calculate({ values: legacyValues, units: mergedUnits, unitSystem, mode: currentMode, t: translations, fieldUnits, locale, country: detectedCountry });
         setResults(result);
         
         // Track first calculation
