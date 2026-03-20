@@ -189,7 +189,56 @@
       "simpleInterestCalculator": "Simple Interest Calculator",
       "christmasBonus": "Christmas Bonus Calculator",
       "severanceCalculator": "Severance Calculator",
-      "vatCalculator": "VAT Calculator"
+      "vatCalculator": "VAT Calculator",
+      "litersToGallons": "Liters to Gallons Converter",
+      "mlToOz": "mL to Fluid Ounces Converter",
+      "mlToCups": "mL to Cups Converter",
+      "kmhToMph": "KM/H to MPH Converter",
+      "squareMetersToSquareFeet": "Square Meters to Square Feet Converter",
+      "mlToTablespoons": "mL to Tablespoons Converter",
+      "litersToPints": "Liters to Pints Converter",
+      "teaspoonsToMl": "Teaspoons to mL Converter",
+      "gramsToOunces": "Grams to Ounces Converter",
+      "ouncesToGrams": "Ounces to Grams Converter",
+      "quartsToLiters": "Quarts to Liters Converter",
+      "hectaresToAcres": "Hectares to Acres Converter",
+      "acresToHectares": "Acres to Hectares Converter",
+      "yardsToMeters": "Yards to Meters Converter",
+      "metersToYards": "Meters to Yards Converter",
+      "bytesConverter": "Bytes Converter (MB, GB, TB)",
+      "mpgToKmPerLiter": "MPG to KM/L Converter",
+      "psiToBar": "PSI to Bar Converter",
+      "wattsToHorsepower": "Watts to Horsepower Converter",
+      "degreesToRadians": "Degrees to Radians Converter",
+      "hectareasToTareas": "Hectáreas to Tareas Converter (DR)",
+      "metrosCuadradosToTareas": "Metros Cuadrados to Tareas Converter",
+      "knotsToMph": "Knots to MPH Converter",
+      "torqueConverter": "Torque Converter (Nm to ft·lbf)",
+      "mlToTeaspoons": "mL to Teaspoons Converter",
+      "cupsToLiters": "Cups to Liters Converter",
+      "litersToCups": "Liters to Cups Converter",
+      "tablespoonsToCups": "Tablespoons to Cups Converter",
+      "ozToCups": "Fluid Ounces to Cups Converter",
+      "cupsToOz": "Cups to Fluid Ounces Converter",
+      "ouncesToPounds": "Ounces to Pounds Converter",
+      "poundsToOunces": "Pounds to Ounces Converter",
+      "kgToGrams": "Kilograms to Grams Converter",
+      "gramsToKg": "Grams to Kilograms Converter",
+      "caratsToGrams": "Carats to Grams Converter",
+      "mbpsToMbytes": "Mbps to MB/s Converter",
+      "kbToMb": "KB to MB Converter",
+      "mbToGb": "MB to GB Converter",
+      "kwhToBtu": "kWh to BTU Converter",
+      "btuToKwh": "BTU to kWh Converter",
+      "joulesToCalories": "Joules to Calories Converter",
+      "wattsToKilowatts": "Watts to Kilowatts Converter",
+      "kelvinConverter": "Kelvin Converter",
+      "barToPsi": "Bar to PSI Converter",
+      "radiansToDegrees": "Radians to Degrees Converter",
+      "horsepowerToWatts": "Horsepower to Watts Converter",
+      "cmToMm": "CM to MM Converter",
+      "mmToCm": "MM to CM Converter",
+      "kilowattsToWatts": "Kilowatts to Watts Converter"
     }
   },
   "home": {
@@ -805,6 +854,153 @@
       },
       "vatCalculator": {
         "desc": "Calculate vat calculator"
+      },
+      "litersToGallons": {
+        "desc": "Calculate liters to gallons"
+      },
+      "mlToOz": {
+        "desc": "Calculate ml to oz"
+      },
+      "mlToCups": {
+        "desc": "Calculate ml to cups"
+      },
+      "kmhToMph": {
+        "desc": "Calculate kmh to mph"
+      },
+      "squareMetersToSquareFeet": {
+        "desc": "Calculate square meters to square feet"
+      },
+      "mlToTablespoons": {
+        "desc": "Calculate ml to tablespoons"
+      },
+      "litersToPints": {
+        "desc": "Calculate liters to pints"
+      },
+      "teaspoonsToMl": {
+        "desc": "Calculate teaspoons to ml"
+      },
+      "gramsToOunces": {
+        "desc": "Calculate grams to ounces"
+      },
+      "ouncesToGrams": {
+        "desc": "Calculate ounces to grams"
+      },
+      "quartsToLiters": {
+        "desc": "Calculate quarts to liters"
+      },
+      "hectaresToAcres": {
+        "desc": "Calculate hectares to acres"
+      },
+      "acresToHectares": {
+        "desc": "Calculate acres to hectares"
+      },
+      "yardsToMeters": {
+        "desc": "Calculate yards to meters"
+      },
+      "metersToYards": {
+        "desc": "Calculate meters to yards"
+      },
+      "bytesConverter": {
+        "desc": "Calculate bytes converter"
+      },
+      "mpgToKmPerLiter": {
+        "desc": "Calculate mpg to km per liter"
+      },
+      "psiToBar": {
+        "desc": "Calculate psi to bar"
+      },
+      "wattsToHorsepower": {
+        "desc": "Calculate watts to horsepower"
+      },
+      "degreesToRadians": {
+        "desc": "Calculate degrees to radians"
+      },
+      "hectareasToTareas": {
+        "desc": "Calculate hectareas to tareas"
+      },
+      "metrosCuadradosToTareas": {
+        "desc": "Calculate metros cuadrados to tareas"
+      },
+      "knotsToMph": {
+        "desc": "Calculate knots to mph"
+      },
+      "torqueConverter": {
+        "desc": "Calculate torque converter"
+      },
+      "mlToTeaspoons": {
+        "desc": "Calculate ml to teaspoons"
+      },
+      "cupsToLiters": {
+        "desc": "Calculate cups to liters"
+      },
+      "litersToCups": {
+        "desc": "Calculate liters to cups"
+      },
+      "tablespoonsToCups": {
+        "desc": "Calculate tablespoons to cups"
+      },
+      "ozToCups": {
+        "desc": "Calculate oz to cups"
+      },
+      "cupsToOz": {
+        "desc": "Calculate cups to oz"
+      },
+      "ouncesToPounds": {
+        "desc": "Calculate ounces to pounds"
+      },
+      "poundsToOunces": {
+        "desc": "Calculate pounds to ounces"
+      },
+      "kgToGrams": {
+        "desc": "Calculate kg to grams"
+      },
+      "gramsToKg": {
+        "desc": "Calculate grams to kg"
+      },
+      "caratsToGrams": {
+        "desc": "Calculate carats to grams"
+      },
+      "mbpsToMbytes": {
+        "desc": "Calculate mbps to mbytes"
+      },
+      "kbToMb": {
+        "desc": "Calculate kb to mb"
+      },
+      "mbToGb": {
+        "desc": "Calculate mb to gb"
+      },
+      "kwhToBtu": {
+        "desc": "Calculate kwh to btu"
+      },
+      "btuToKwh": {
+        "desc": "Calculate btu to kwh"
+      },
+      "joulesToCalories": {
+        "desc": "Calculate joules to calories"
+      },
+      "wattsToKilowatts": {
+        "desc": "Calculate watts to kilowatts"
+      },
+      "kelvinConverter": {
+        "desc": "Calculate kelvin converter"
+      },
+      "barToPsi": {
+        "desc": "Calculate bar to psi"
+      },
+      "radiansToDegrees": {
+        "desc": "Calculate radians to degrees"
+      },
+      "horsepowerToWatts": {
+        "desc": "Calculate horsepower to watts"
+      },
+      "cmToMm": {
+        "desc": "Calculate cm to mm"
+      },
+      "mmToCm": {
+        "desc": "Calculate mm to cm"
+      },
+      "kilowattsToWatts": {
+        "desc": "Calculate kilowatts to watts"
       }
     },
     "sortBy": "Sort by",
@@ -1601,6 +1797,309 @@
     },
     "m2/L": {
       "name": "m²/liter"
+    },
+    "pt_us": {
+      "name": "Pints (US)"
+    },
+    "pt_uk": {
+      "name": "Pints (Imperial)"
+    },
+    "qt_us": {
+      "name": "Quarts (US)"
+    },
+    "qt_uk": {
+      "name": "Quarts (Imperial)"
+    },
+    "gal_us": {
+      "name": "Gallons (US)"
+    },
+    "gal_uk": {
+      "name": "Gallons (Imperial)"
+    },
+    "in3": {
+      "name": "Cubic Inches"
+    },
+    "hectares": {
+      "name": "Hectares"
+    },
+    "mg": {
+      "name": "Milligrams"
+    },
+    "ug": {
+      "name": "Micrograms"
+    },
+    "ton_metric": {
+      "name": "Metric Tons"
+    },
+    "ton_us": {
+      "name": "Short Tons (US)"
+    },
+    "ton_uk": {
+      "name": "Long Tons (UK)"
+    },
+    "quintal": {
+      "name": "Quintals"
+    },
+    "ms": {
+      "name": "Meters/second"
+    },
+    "kmh": {
+      "name": "Kilometers/hour"
+    },
+    "fts": {
+      "name": "Feet/second"
+    },
+    "mach": {
+      "name": "Mach"
+    },
+    "HP": {
+      "name": "Horsepower"
+    },
+    "PS": {
+      "name": "Pferdestärke (PS)"
+    },
+    "BTUh": {
+      "name": "BTU per hour"
+    },
+    "MW": {
+      "name": "Megawatts"
+    },
+    "mW": {
+      "name": "Milliwatts"
+    },
+    "hPa": {
+      "name": "Hectopascals"
+    },
+    "MPa": {
+      "name": "Megapascals"
+    },
+    "mbar": {
+      "name": "Millibar"
+    },
+    "inHg": {
+      "name": "Inches of Mercury"
+    },
+    "mN": {
+      "name": "Millinewtons"
+    },
+    "dyn": {
+      "name": "Dynes"
+    },
+    "ftlbf": {
+      "name": "Foot-pounds"
+    },
+    "inlbf": {
+      "name": "Inch-pounds"
+    },
+    "kgfm": {
+      "name": "Kilogram-force meters"
+    },
+    "kgfcm": {
+      "name": "Kilogram-force cm"
+    },
+    "ozfin": {
+      "name": "Ounce-force inches"
+    },
+    "kNm": {
+      "name": "Kilonewton-meters"
+    },
+    "mpg_us": {
+      "name": "Miles/gallon (US)"
+    },
+    "mpg_uk": {
+      "name": "Miles/gallon (UK)"
+    },
+    "kmL": {
+      "name": "Kilometers/liter"
+    },
+    "L100km": {
+      "name": "Liters/100km"
+    },
+    "ms2": {
+      "name": "Meters/s²"
+    },
+    "fts2": {
+      "name": "Feet/s²"
+    },
+    "kgm3": {
+      "name": "kg/m³"
+    },
+    "gcm3": {
+      "name": "g/cm³"
+    },
+    "gml": {
+      "name": "g/mL"
+    },
+    "lbft3": {
+      "name": "lb/ft³"
+    },
+    "gL": {
+      "name": "g/L"
+    },
+    "kgL": {
+      "name": "kg/L"
+    },
+    "mLmin": {
+      "name": "Milliliters/min"
+    },
+    "Lmin": {
+      "name": "Liters/minute"
+    },
+    "Lh": {
+      "name": "Liters/hour"
+    },
+    "m3h": {
+      "name": "Cubic m/hour"
+    },
+    "gal_min": {
+      "name": "Gallons/min (US)"
+    },
+    "cfm": {
+      "name": "Cubic feet/min"
+    },
+    "byte": {
+      "name": "Bytes"
+    },
+    "bit": {
+      "name": "Bits"
+    },
+    "pb": {
+      "name": "Petabytes"
+    },
+    "kib": {
+      "name": "Kibibytes"
+    },
+    "mib": {
+      "name": "Mebibytes"
+    },
+    "gib": {
+      "name": "Gibibytes"
+    },
+    "tib": {
+      "name": "Tebibytes"
+    },
+    "pib": {
+      "name": "Pebibytes"
+    },
+    "byte_s": {
+      "name": "Bytes/second"
+    },
+    "kb_s": {
+      "name": "Kilobytes/second"
+    },
+    "mb_s": {
+      "name": "Megabytes/second"
+    },
+    "gb_s": {
+      "name": "Gigabytes/second"
+    },
+    "mHz": {
+      "name": "Millihertz"
+    },
+    "THz": {
+      "name": "Terahertz"
+    },
+    "rpm": {
+      "name": "Revolutions/minute"
+    },
+    "klux": {
+      "name": "Kilolux"
+    },
+    "phot": {
+      "name": "Phots"
+    },
+    "nT": {
+      "name": "Nanotesla"
+    },
+    "uT": {
+      "name": "Microtesla"
+    },
+    "G": {
+      "name": "Gauss"
+    },
+    "uV": {
+      "name": "Microvolts"
+    },
+    "MV": {
+      "name": "Megavolts"
+    },
+    "nA": {
+      "name": "Nanoamperes"
+    },
+    "kA": {
+      "name": "Kiloamperes"
+    },
+    "mohm": {
+      "name": "Milliohms"
+    },
+    "ohm": {
+      "name": "Ohms"
+    },
+    "kohm": {
+      "name": "Kilohms"
+    },
+    "Mohm": {
+      "name": "Megaohms"
+    },
+    "arcmin": {
+      "name": "Arcminutes"
+    },
+    "arcsec": {
+      "name": "Arcseconds"
+    },
+    "turn": {
+      "name": "Turns (revolutions)"
+    },
+    "ns": {
+      "name": "Nanoseconds"
+    },
+    "us": {
+      "name": "Microseconds"
+    },
+    "wk": {
+      "name": "Weeks"
+    },
+    "d": {
+      "name": "Days"
+    },
+    "MJ": {
+      "name": "Megajoules"
+    },
+    "eV": {
+      "name": "Electronvolts"
+    },
+    "bdft": {
+      "name": "Board Feet"
+    },
+    "lnft": {
+      "name": "Linear Feet"
+    },
+    "sq": {
+      "name": "Squares (100ft²)"
+    },
+    "pct": {
+      "name": "Percent Grade"
+    },
+    "deg": {
+      "name": "Degrees"
+    },
+    "min_km": {
+      "name": "Minutes/km"
+    },
+    "min_mi": {
+      "name": "Minutes/mile"
+    },
+    "min_100m": {
+      "name": "Minutes/100m"
+    },
+    "continuously": {
+      "name": "Continuously"
+    },
+    "hourly": {
+      "name": "Hourly"
+    },
+    "total": {
+      "name": "Total"
     }
   }
 }

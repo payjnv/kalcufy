@@ -1411,6 +1411,309 @@
     },
     "m2/L": {
       "name": "m²/Liter"
+    },
+    "pt_us": {
+      "name": "Pints (US)"
+    },
+    "pt_uk": {
+      "name": "Pints (Imperial)"
+    },
+    "qt_us": {
+      "name": "Quarts (US)"
+    },
+    "qt_uk": {
+      "name": "Quarts (Imperial)"
+    },
+    "gal_us": {
+      "name": "Gallonen (US)"
+    },
+    "gal_uk": {
+      "name": "Gallonen (Imperial)"
+    },
+    "in3": {
+      "name": "Kubikzoll"
+    },
+    "hectares": {
+      "name": "Hektar"
+    },
+    "mg": {
+      "name": "Milligramm"
+    },
+    "ug": {
+      "name": "Mikrogramm"
+    },
+    "ton_metric": {
+      "name": "Metrische Tonnen"
+    },
+    "ton_us": {
+      "name": "Kurze Tonnen (US)"
+    },
+    "ton_uk": {
+      "name": "Lange Tonnen (UK)"
+    },
+    "quintal": {
+      "name": "Zentner"
+    },
+    "ms": {
+      "name": "Meter/Sekunde"
+    },
+    "kmh": {
+      "name": "Kilometer/Stunde"
+    },
+    "fts": {
+      "name": "Fuß/Sekunde"
+    },
+    "mach": {
+      "name": "Mach"
+    },
+    "HP": {
+      "name": "Pferdestärken"
+    },
+    "PS": {
+      "name": "Pferdestärke (PS)"
+    },
+    "BTUh": {
+      "name": "BTU pro Stunde"
+    },
+    "MW": {
+      "name": "Megawatt"
+    },
+    "mW": {
+      "name": "Milliwatt"
+    },
+    "hPa": {
+      "name": "Hektopascal"
+    },
+    "MPa": {
+      "name": "Megapascal"
+    },
+    "mbar": {
+      "name": "Millibar"
+    },
+    "inHg": {
+      "name": "Zoll Quecksilber"
+    },
+    "mN": {
+      "name": "Millinewton"
+    },
+    "dyn": {
+      "name": "Dyn"
+    },
+    "ftlbf": {
+      "name": "Fuß-Pfund"
+    },
+    "inlbf": {
+      "name": "Zoll-Pfund"
+    },
+    "kgfm": {
+      "name": "Kilogramm-Kraft Meter"
+    },
+    "kgfcm": {
+      "name": "Kilogramm-Kraft cm"
+    },
+    "ozfin": {
+      "name": "Unze-Kraft Zoll"
+    },
+    "kNm": {
+      "name": "Kilonewtonmeter"
+    },
+    "mpg_us": {
+      "name": "Meilen/Gallone (US)"
+    },
+    "mpg_uk": {
+      "name": "Meilen/Gallone (UK)"
+    },
+    "kmL": {
+      "name": "Kilometer/Liter"
+    },
+    "L100km": {
+      "name": "Liter/100km"
+    },
+    "ms2": {
+      "name": "Meter/s²"
+    },
+    "fts2": {
+      "name": "Fuß/s²"
+    },
+    "kgm3": {
+      "name": "kg/m³"
+    },
+    "gcm3": {
+      "name": "g/cm³"
+    },
+    "gml": {
+      "name": "g/mL"
+    },
+    "lbft3": {
+      "name": "lb/ft³"
+    },
+    "gL": {
+      "name": "g/L"
+    },
+    "kgL": {
+      "name": "kg/L"
+    },
+    "mLmin": {
+      "name": "Milliliter/min"
+    },
+    "Lmin": {
+      "name": "Liter/Minute"
+    },
+    "Lh": {
+      "name": "Liter/Stunde"
+    },
+    "m3h": {
+      "name": "Kubikmeter/Stunde"
+    },
+    "gal_min": {
+      "name": "Gallonen/min (US)"
+    },
+    "cfm": {
+      "name": "Kubikfuß/min"
+    },
+    "byte": {
+      "name": "Bytes"
+    },
+    "bit": {
+      "name": "Bits"
+    },
+    "pb": {
+      "name": "Petabytes"
+    },
+    "kib": {
+      "name": "Kibibytes"
+    },
+    "mib": {
+      "name": "Mebibytes"
+    },
+    "gib": {
+      "name": "Gibibytes"
+    },
+    "tib": {
+      "name": "Tebibytes"
+    },
+    "pib": {
+      "name": "Pebibytes"
+    },
+    "byte_s": {
+      "name": "Bytes/Sekunde"
+    },
+    "kb_s": {
+      "name": "Kilobytes/Sekunde"
+    },
+    "mb_s": {
+      "name": "Megabytes/Sekunde"
+    },
+    "gb_s": {
+      "name": "Gigabytes/Sekunde"
+    },
+    "mHz": {
+      "name": "Millihertz"
+    },
+    "THz": {
+      "name": "Terahertz"
+    },
+    "rpm": {
+      "name": "Umdrehungen/Minute"
+    },
+    "klux": {
+      "name": "Kilolux"
+    },
+    "phot": {
+      "name": "Phots"
+    },
+    "nT": {
+      "name": "Nanotesla"
+    },
+    "uT": {
+      "name": "Mikrotesla"
+    },
+    "G": {
+      "name": "Gauss"
+    },
+    "uV": {
+      "name": "Mikrovolt"
+    },
+    "MV": {
+      "name": "Megavolt"
+    },
+    "nA": {
+      "name": "Nanoampere"
+    },
+    "kA": {
+      "name": "Kiloampere"
+    },
+    "mohm": {
+      "name": "Milliohm"
+    },
+    "ohm": {
+      "name": "Ohm"
+    },
+    "kohm": {
+      "name": "Kilohm"
+    },
+    "Mohm": {
+      "name": "Megaohm"
+    },
+    "arcmin": {
+      "name": "Bogenminuten"
+    },
+    "arcsec": {
+      "name": "Bogensekunden"
+    },
+    "turn": {
+      "name": "Umdrehungen"
+    },
+    "ns": {
+      "name": "Nanosekunden"
+    },
+    "us": {
+      "name": "Mikrosekunden"
+    },
+    "wk": {
+      "name": "Wochen"
+    },
+    "d": {
+      "name": "Tage"
+    },
+    "MJ": {
+      "name": "Megajoule"
+    },
+    "eV": {
+      "name": "Elektronenvolt"
+    },
+    "bdft": {
+      "name": "Board Feet"
+    },
+    "lnft": {
+      "name": "Laufende Fuß"
+    },
+    "sq": {
+      "name": "Squares (100ft²)"
+    },
+    "pct": {
+      "name": "Prozent Steigung"
+    },
+    "deg": {
+      "name": "Grad"
+    },
+    "min_km": {
+      "name": "Minuten/km"
+    },
+    "min_mi": {
+      "name": "Minuten/Meile"
+    },
+    "min_100m": {
+      "name": "Minuten/100m"
+    },
+    "continuously": {
+      "name": "Kontinuierlich"
+    },
+    "hourly": {
+      "name": "Stündlich"
+    },
+    "total": {
+      "name": "Gesamt"
     }
   }
 }
