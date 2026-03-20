@@ -1,9 +1,10 @@
 import { MetadataRoute } from 'next';
 import { getSiteSettings } from '@/lib/site-settings';
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.kalcufy.com';
+
 export default function robots(): MetadataRoute.Robots {
   const settings = getSiteSettings();
-
   const rules: MetadataRoute.Robots['rules'] = [
     {
       userAgent: '*',
@@ -12,12 +13,10 @@ export default function robots(): MetadataRoute.Robots {
     },
   ];
 
-  // Parse custom rules (e.g. "User-agent: GPTBot\nDisallow: /")
   if (settings.robots.customRules) {
     const lines = settings.robots.customRules.split('\n');
     let currentAgent = '';
     let currentDisallow: string[] = [];
-
     for (const line of lines) {
       const trimmed = line.trim();
       if (trimmed.toLowerCase().startsWith('user-agent:')) {
@@ -37,7 +36,11 @@ export default function robots(): MetadataRoute.Robots {
 
   return {
     rules,
-    sitemap: `${settings.site.url}/sitemap.xml`,
+    sitemap: [
+      `${BASE_URL}/sitemap.xml`,
+      `${BASE_URL}/sitemap-pages.xml`,
+      `${BASE_URL}/sitemap-calculators.xml`,
+      `${BASE_URL}/sitemap-blog.xml`,
+    ],
   };
 }
-
