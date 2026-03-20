@@ -133,7 +133,7 @@ export const SLUG_REGISTRY: SlugEntry[] = [
   { id: "simple-interest-calculator", category: "finance", slugs: { en: "simple-interest-calculator", es: "calculadora-interes-simple", pt: "calculadora-juros-simples", fr: "calculateur-interet-simple", de: "einfacher-zins-rechner" } },
   { id: "christmas-bonus", category: "finance", slugs: { en: "christmas-bonus-calculator", es: "calculadora-aguinaldo", pt: "calculadora-decimo-terceiro-salario", fr: "calculateur-prime-noel", de: "weihnachtsgeld-rechner" } },
   { id: "severance-calculator", category: "finance", slugs: { en: "severance-calculator-calculator", es: "calculadora-finiquito-liquidacion", pt: "calculadora-rescisao-trabalho", fr: "calculateur-indemnites-licenciement", de: "abfindungs-rechner" } },
-  { id: "vat-calculator", category: "finance", slugs: { en: "vat-calculator-calculator", es: "vat-calculator", pt: "calculadora-vat-calculator", fr: "calculateur-vat-calculator", de: "vat-calculator-rechner" } },
+  { id: "vat-calculator", category: "finance", slugs: { en: "vat-calculator-calculator", es: "calculadora-iva", pt: "calculadora-iva", fr: "calculateur-tva", de: "mehrwertsteuer-rechner" } },
 ]; // END SLUG_REGISTRY
 
 // Helper functions
