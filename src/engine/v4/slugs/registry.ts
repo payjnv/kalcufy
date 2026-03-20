@@ -131,6 +131,9 @@ export const SLUG_REGISTRY: SlugEntry[] = [
   { id: "net-worth-calculator", category: "finance", slugs: { en: "net-worth-calculator", es: "calculadora-patrimonio-neto", pt: "calculadora-patrimonio-liquido", fr: "calculateur-valeur-nette", de: "nettovermoegen-rechner" } },
   { id: "rent-vs-buy-calculator", category: "finance", slugs: { en: "rent-vs-buy-calculator", es: "calculadora-alquilar-vs-comprar", pt: "calculadora-alugar-vs-comprar", fr: "calculateur-louer-vs-acheter", de: "mieten-vs-kaufen-rechner" } },
   { id: "simple-interest-calculator", category: "finance", slugs: { en: "simple-interest-calculator", es: "calculadora-interes-simple", pt: "calculadora-juros-simples", fr: "calculateur-interet-simple", de: "einfacher-zins-rechner" } },
+  { id: "christmas-bonus", category: "finance", slugs: { en: "christmas-bonus-calculator", es: "calculadora-aguinaldo", pt: "calculadora-decimo-terceiro-salario", fr: "calculateur-prime-noel", de: "weihnachtsgeld-rechner" } },
+  { id: "severance-calculator", category: "finance", slugs: { en: "severance-calculator-calculator", es: "calculadora-finiquito-liquidacion", pt: "calculadora-rescisao-trabalho", fr: "calculateur-indemnites-licenciement", de: "abfindungs-rechner" } },
+  { id: "vat-calculator", category: "finance", slugs: { en: "vat-calculator-calculator", es: "vat-calculator", pt: "calculadora-vat-calculator", fr: "calculateur-vat-calculator", de: "vat-calculator-rechner" } },
 ]; // END SLUG_REGISTRY
 
 // Helper functions

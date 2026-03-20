@@ -186,7 +186,10 @@
       "budgetCalculator": "Budget Calculadora de",
       "netWorthCalculator": "Net Worth Calculadora de",
       "rentVsBuyCalculator": "Rent vs Buy Calculadora de",
-      "simpleInterestCalculator": "Simple Interest Calculadora de"
+      "simpleInterestCalculator": "Simple Interest Calculadora de",
+      "christmasBonus": "Christmas Bonus Calculadora de",
+      "severanceCalculator": "Severance Calculadora de",
+      "vatCalculator": "VAT Calculadora de"
     }
   },
   "home": {
@@ -793,6 +796,15 @@
       },
       "simpleInterestCalculator": {
         "desc": "Calculate simple interest calculator"
+      },
+      "christmasBonus": {
+        "desc": "Calculate christmas bonus"
+      },
+      "severanceCalculator": {
+        "desc": "Calculate severance calculator"
+      },
+      "vatCalculator": {
+        "desc": "Calculate vat calculator"
       }
     },
     "sortBy": "Ordenar por",
