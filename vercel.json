@@ -1,15 +1,3314 @@
 {
   "redirects": [
     {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "kalcufy.com"
-        }
-      ],
-      "destination": "https://www.kalcufy.com/:path*",
-      "permanent": true
+      "source": "/es/auto-loan-calculator",
+      "destination": "/es/calculadora-prestamo-automotriz",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/auto-loan-calculator",
+      "destination": "/pt/calculadora-financiamento-veiculos",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/auto-loan-calculator",
+      "destination": "/fr/calculateur-pret-automobile",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/auto-loan-calculator",
+      "destination": "/de/autokredit-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/quadratic-formula-calculator",
+      "destination": "/es/calculadora-formula-cuadratica",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/quadratic-formula-calculator",
+      "destination": "/pt/calculadora-formula-quadratica",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/quadratic-formula-calculator",
+      "destination": "/fr/calculateur-formule-quadratique",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/quadratic-formula-calculator",
+      "destination": "/de/quadratische-formel-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/tip-calculator",
+      "destination": "/es/calculadora-tip",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/tip-calculator",
+      "destination": "/pt/calculadora-tip",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/tip-calculator",
+      "destination": "/fr/calculateur-tip",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/tip-calculator",
+      "destination": "/de/trinkgeld-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/age-calculator",
+      "destination": "/es/calculadora-edad",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/age-calculator",
+      "destination": "/pt/calculadora-idade",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/age-calculator",
+      "destination": "/fr/calculateur-age",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/age-calculator",
+      "destination": "/de/alter-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/body-fat-calculator",
+      "destination": "/es/calculadora-grasa-corporal",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/body-fat-calculator",
+      "destination": "/pt/calculadora-gordura-corporal",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/body-fat-calculator",
+      "destination": "/fr/calculateur-graisse-corporelle",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/body-fat-calculator",
+      "destination": "/de/koerperfett-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/caloric-deficit-calculator",
+      "destination": "/es/calculadora-deficit-calorico",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/caloric-deficit-calculator",
+      "destination": "/pt/calculadora-deficit-calorico",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/caloric-deficit-calculator",
+      "destination": "/fr/calculateur-deficit-calorique",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/caloric-deficit-calculator",
+      "destination": "/de/kaloriendefizit-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/maintenance-calories-calculator",
+      "destination": "/es/calculadora-calorias-mantenimiento",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/maintenance-calories-calculator",
+      "destination": "/pt/calculadora-calorias-manutencao",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/maintenance-calories-calculator",
+      "destination": "/fr/calculateur-calories-maintien",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/maintenance-calories-calculator",
+      "destination": "/de/erhaltungskalorien-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/one-rep-max-calculator",
+      "destination": "/es/calculadora-repeticion-maxima",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/one-rep-max-calculator",
+      "destination": "/pt/calculadora-uma-repeticao-maxima",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/one-rep-max-calculator",
+      "destination": "/fr/calculateur-repetition-maximale",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/one-rep-max-calculator",
+      "destination": "/de/ein-wiederholungs-maximum-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/bmi-calculator",
+      "destination": "/es/calculadora-indice-masa-corporal",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/bmi-calculator",
+      "destination": "/pt/calculadora-indice-massa-corporal",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/bmi-calculator",
+      "destination": "/fr/calculateur-indice-masse-corporelle",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/bmi-calculator",
+      "destination": "/de/koerpermassenindex-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/ideal-weight-calculator",
+      "destination": "/es/calculadora-peso-ideal",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/ideal-weight-calculator",
+      "destination": "/pt/calculadora-peso-ideal",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/ideal-weight-calculator",
+      "destination": "/fr/calculateur-poids-ideal",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/ideal-weight-calculator",
+      "destination": "/de/idealgewicht-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/keto-calculator",
+      "destination": "/es/calculadora-keto",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/keto-calculator",
+      "destination": "/pt/calculadora-keto",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/keto-calculator",
+      "destination": "/fr/calculateur-keto",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/keto-calculator",
+      "destination": "/de/keto-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/lean-body-mass-calculator",
+      "destination": "/es/calculadora-masa-corporal-magra",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/lean-body-mass-calculator",
+      "destination": "/pt/calculadora-massa-corporal-magra",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/lean-body-mass-calculator",
+      "destination": "/fr/calculateur-masse-corporelle-maigre",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/lean-body-mass-calculator",
+      "destination": "/de/magere-koerpermasse-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/macro-calculator",
+      "destination": "/es/calculadora-macronutrientes",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/macro-calculator",
+      "destination": "/pt/calculadora-macronutrientes",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/macro-calculator",
+      "destination": "/fr/calculateur-macronutriments",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/macro-calculator",
+      "destination": "/de/makronaehrstoff-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/water-intake-calculator",
+      "destination": "/es/calculadora-ingesta-agua",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/water-intake-calculator",
+      "destination": "/pt/calculadora-ingestao-agua",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/water-intake-calculator",
+      "destination": "/fr/calculateur-apport-hydrique",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/water-intake-calculator",
+      "destination": "/de/wasserbedarf-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/sleep-calculator",
+      "destination": "/es/calculadora-sueno",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/sleep-calculator",
+      "destination": "/pt/calculadora-sono",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/sleep-calculator",
+      "destination": "/fr/calculateur-sommeil",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/sleep-calculator",
+      "destination": "/de/schlaf-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/rest-day-calculator",
+      "destination": "/es/calculadora-dias-descanso",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/rest-day-calculator",
+      "destination": "/pt/calculadora-dia-descanso",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/rest-day-calculator",
+      "destination": "/fr/calculateur-jour-repos",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/rest-day-calculator",
+      "destination": "/de/ruhetag-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/running-pace-calculator",
+      "destination": "/es/calculadora-ritmo-carrera",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/running-pace-calculator",
+      "destination": "/pt/calculadora-ritmo-corrida",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/running-pace-calculator",
+      "destination": "/fr/calculateur-allure-course",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/running-pace-calculator",
+      "destination": "/de/lauftempo-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/protein-calculator",
+      "destination": "/es/calculadora-proteinas",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/protein-calculator",
+      "destination": "/pt/calculadora-proteina",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/protein-calculator",
+      "destination": "/fr/calculateur-proteines",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/protein-calculator",
+      "destination": "/de/protein-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/waist-to-height-ratio-calculator",
+      "destination": "/es/calculadora-relacion-cintura-altura",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/waist-to-height-ratio-calculator",
+      "destination": "/pt/calculadora-relacao-cintura-altura",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/waist-to-height-ratio-calculator",
+      "destination": "/fr/calculateur-ratio-taille-taille",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/waist-to-height-ratio-calculator",
+      "destination": "/de/taille-zu-groesse-verhaeltnis-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/heart-rate-zones-calculator",
+      "destination": "/es/calculadora-zonas-frecuencia-cardiaca",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/heart-rate-zones-calculator",
+      "destination": "/pt/calculadora-zonas-frequencia-cardiaca",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/heart-rate-zones-calculator",
+      "destination": "/fr/calculateur-zones-frequence-cardiaque",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/heart-rate-zones-calculator",
+      "destination": "/de/herzfrequenzzonen-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/weight-gain-calculator",
+      "destination": "/es/calculadora-aumento-peso",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/weight-gain-calculator",
+      "destination": "/pt/calculadora-ganho-peso",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/weight-gain-calculator",
+      "destination": "/fr/calculateur-prise-de-poids",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/weight-gain-calculator",
+      "destination": "/de/gewichtszunahme-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/weight-loss-calculator",
+      "destination": "/es/calculadora-perdida-peso",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/weight-loss-calculator",
+      "destination": "/pt/calculadora-perda-peso",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/weight-loss-calculator",
+      "destination": "/fr/calculateur-perte-poids",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/weight-loss-calculator",
+      "destination": "/de/gewichtsverlust-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/calories-burned-calculator",
+      "destination": "/es/calculadora-calorias-quemadas",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/calories-burned-calculator",
+      "destination": "/pt/calculadora-calorias-queimadas",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/calories-burned-calculator",
+      "destination": "/fr/calculateur-calories-brulees",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/calories-burned-calculator",
+      "destination": "/de/kalorienverbrauch-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/tdee-calculator",
+      "destination": "/es/calculadora-gasto-energetico-diario-total",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/tdee-calculator",
+      "destination": "/pt/calculadora-gasto-energetico-diario-total",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/tdee-calculator",
+      "destination": "/fr/calculateur-depense-energetique-totale-quotidienne",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/tdee-calculator",
+      "destination": "/de/gesamtenergieumsatz-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/calorie-calculator",
+      "destination": "/es/calculadora-calorias",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/calorie-calculator",
+      "destination": "/pt/calculadora-calorias",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/calorie-calculator",
+      "destination": "/fr/calculateur-calories",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/calorie-calculator",
+      "destination": "/de/kalorien-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/bmr-calculator",
+      "destination": "/es/calculadora-tmb",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/bmr-calculator",
+      "destination": "/pt/calculadora-taxa-metabolica-basal",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/bmr-calculator",
+      "destination": "/fr/calculateur-metabolisme-basal",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/bmr-calculator",
+      "destination": "/de/grundumsatz-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/pregnancy-due-date-calculator",
+      "destination": "/es/calculadora-fecha-parto-embarazo",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/pregnancy-due-date-calculator",
+      "destination": "/pt/calculadora-data-provavel-parto",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/pregnancy-due-date-calculator",
+      "destination": "/fr/calculateur-date-accouchement-grossesse",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/pregnancy-due-date-calculator",
+      "destination": "/de/schwangerschafts-geburtstermin-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/currency-converter-calculator",
+      "destination": "/es/calculadora-conversor-divisas",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/currency-converter-calculator",
+      "destination": "/pt/calculadora-conversor-moedas",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/currency-converter-calculator",
+      "destination": "/fr/calculateur-convertisseur-devises",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/currency-converter-calculator",
+      "destination": "/de/waehrungsumrechner-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/length-converter-calculator",
+      "destination": "/es/calculadora-conversor-longitud",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/length-converter-calculator",
+      "destination": "/pt/calculadora-conversor-comprimento",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/length-converter-calculator",
+      "destination": "/fr/calculateur-convertisseur-longueur",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/length-converter-calculator",
+      "destination": "/de/laengen-umrechner-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/cm-to-inches-calculator",
+      "destination": "/es/calculadora-centimetros-pulgadas",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/cm-to-inches-calculator",
+      "destination": "/pt/calculadora-cm-para-polegadas",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/cm-to-inches-calculator",
+      "destination": "/fr/calculateur-cm-vers-pouces",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/cm-to-inches-calculator",
+      "destination": "/de/zentimeter-zu-zoll-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/inches-to-cm-calculator",
+      "destination": "/es/calculadora-pulgadas-a-centimetros",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/inches-to-cm-calculator",
+      "destination": "/pt/calculadora-polegadas-para-cm",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/inches-to-cm-calculator",
+      "destination": "/fr/calculateur-pouces-vers-cm",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/inches-to-cm-calculator",
+      "destination": "/de/zoll-zu-cm-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/km-to-miles-calculator",
+      "destination": "/es/calculadora-conversion-kilometros-millas",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/km-to-miles-calculator",
+      "destination": "/pt/calculadora-quilometros-milhas",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/km-to-miles-calculator",
+      "destination": "/fr/calculateur-kilometres-miles",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/km-to-miles-calculator",
+      "destination": "/de/kilometer-zu-meilen-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/miles-to-km-calculator",
+      "destination": "/es/calculadora-convertir-millas-kilometros",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/miles-to-km-calculator",
+      "destination": "/pt/calculadora-milhas-para-quilometros",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/miles-to-km-calculator",
+      "destination": "/fr/calculateur-conversion-miles-kilometres",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/miles-to-km-calculator",
+      "destination": "/de/meilen-zu-km-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/meters-to-feet-calculator",
+      "destination": "/es/calculadora-metros-a-pies",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/meters-to-feet-calculator",
+      "destination": "/pt/calculadora-metros-para-pes",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/meters-to-feet-calculator",
+      "destination": "/fr/calculateur-metres-vers-pieds",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/meters-to-feet-calculator",
+      "destination": "/de/meter-zu-fuss-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/feet-to-meters-calculator",
+      "destination": "/es/calculadora-pies-metros",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/feet-to-meters-calculator",
+      "destination": "/pt/calculadora-pes-para-metros",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/feet-to-meters-calculator",
+      "destination": "/fr/calculateur-pieds-vers-metres",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/feet-to-meters-calculator",
+      "destination": "/de/fuss-zu-meter-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/mm-to-inches-calculator",
+      "destination": "/es/calculadora-milimetros-a-pulgadas",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/mm-to-inches-calculator",
+      "destination": "/pt/calculadora-mm-para-polegadas",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/mm-to-inches-calculator",
+      "destination": "/fr/calculateur-mm-vers-pouces",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/mm-to-inches-calculator",
+      "destination": "/de/millimeter-zu-zoll-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/inches-to-mm-calculator",
+      "destination": "/es/calculadora-pulgadas-milimetros",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/inches-to-mm-calculator",
+      "destination": "/pt/calculadora-polegadas-para-milimetros",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/inches-to-mm-calculator",
+      "destination": "/fr/calculateur-pouces-vers-millimetres",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/inches-to-mm-calculator",
+      "destination": "/de/zoll-zu-mm-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/cm-to-feet-calculator",
+      "destination": "/es/calculadora-centimetros-pies",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/cm-to-feet-calculator",
+      "destination": "/pt/calculadora-cm-para-pes",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/cm-to-feet-calculator",
+      "destination": "/fr/calculateur-cm-vers-pieds",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/cm-to-feet-calculator",
+      "destination": "/de/zentimeter-zu-fuss-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/feet-to-cm-calculator",
+      "destination": "/es/calculadora-pies-a-centimetros",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/feet-to-cm-calculator",
+      "destination": "/pt/calculadora-pes-para-cm",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/feet-to-cm-calculator",
+      "destination": "/fr/calculateur-pieds-vers-centimetres",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/feet-to-cm-calculator",
+      "destination": "/de/fuss-zu-cm-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/inches-to-feet-calculator",
+      "destination": "/es/calculadora-convertidor-pulgadas-pies",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/inches-to-feet-calculator",
+      "destination": "/pt/calculadora-polegadas-para-pes",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/inches-to-feet-calculator",
+      "destination": "/fr/calculateur-pouces-vers-pieds",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/inches-to-feet-calculator",
+      "destination": "/de/zoll-zu-fuss-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/kg-to-lbs-calculator",
+      "destination": "/es/calculadora-kilogramos-a-libras",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/kg-to-lbs-calculator",
+      "destination": "/pt/calculadora-kg-para-lbs",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/kg-to-lbs-calculator",
+      "destination": "/fr/calculateur-conversion-kg-vers-livres",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/kg-to-lbs-calculator",
+      "destination": "/de/kilogramm-zu-pfund-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/lbs-to-kg-calculator",
+      "destination": "/es/calculadora-libras-a-kilogramos",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/lbs-to-kg-calculator",
+      "destination": "/pt/calculadora-libras-para-quilogramas",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/lbs-to-kg-calculator",
+      "destination": "/fr/calculateur-livres-vers-kilogrammes",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/lbs-to-kg-calculator",
+      "destination": "/de/pfund-zu-kilogramm-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/celsius-to-fahrenheit-calculator",
+      "destination": "/es/calculadora-celsius-fahrenheit",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/celsius-to-fahrenheit-calculator",
+      "destination": "/pt/calculadora-celsius-para-fahrenheit",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/celsius-to-fahrenheit-calculator",
+      "destination": "/fr/calculateur-celsius-vers-fahrenheit",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/celsius-to-fahrenheit-calculator",
+      "destination": "/de/celsius-zu-fahrenheit-umrechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/fahrenheit-to-celsius-calculator",
+      "destination": "/es/calculadora-fahrenheit-celsius",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/fahrenheit-to-celsius-calculator",
+      "destination": "/pt/calculadora-fahrenheit-para-celsius",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/fahrenheit-to-celsius-calculator",
+      "destination": "/fr/calculateur-fahrenheit-vers-celsius",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/fahrenheit-to-celsius-calculator",
+      "destination": "/de/fahrenheit-zu-celsius-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/oz-to-ml-calculator",
+      "destination": "/es/calculadora-onzas-liquidas-mililitros",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/oz-to-ml-calculator",
+      "destination": "/pt/calculadora-oz-para-ml",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/oz-to-ml-calculator",
+      "destination": "/fr/calculateur-conversion-onces-millilitres",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/oz-to-ml-calculator",
+      "destination": "/de/oz-to-ml-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/paint-calculator",
+      "destination": "/es/calculadora-pintura",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/paint-calculator",
+      "destination": "/pt/calculadora-tinta",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/paint-calculator",
+      "destination": "/fr/calculateur-peinture",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/paint-calculator",
+      "destination": "/de/farb-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/concrete-calculator",
+      "destination": "/es/calculadora-concreto",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/concrete-calculator",
+      "destination": "/pt/calculadora-concreto",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/concrete-calculator",
+      "destination": "/fr/calculateur-beton",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/concrete-calculator",
+      "destination": "/de/beton-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/ip-subnet-calculator",
+      "destination": "/es/calculadora-subred-ip",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/ip-subnet-calculator",
+      "destination": "/pt/calculadora-sub-rede-ip",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/ip-subnet-calculator",
+      "destination": "/fr/calculateur-sous-reseau-ip",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/ip-subnet-calculator",
+      "destination": "/de/ip-subnetz-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/cidr-calculator",
+      "destination": "/es/calculadora-cidr",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/cidr-calculator",
+      "destination": "/pt/calculadora-cidr",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/cidr-calculator",
+      "destination": "/fr/calculateur-cidr",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/cidr-calculator",
+      "destination": "/de/cidr-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/bandwidth-calculator",
+      "destination": "/es/calculadora-ancho-banda",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/bandwidth-calculator",
+      "destination": "/pt/calculadora-largura-banda",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/bandwidth-calculator",
+      "destination": "/fr/calculateur-bande-passante",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/bandwidth-calculator",
+      "destination": "/de/bandbreiten-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/vlsm-calculator",
+      "destination": "/es/calculadora-vlsm-mascara-subred-longitud-variable",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/vlsm-calculator",
+      "destination": "/pt/calculadora-vlsm-mascaramento-sub-rede-comprimento-variavel",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/vlsm-calculator",
+      "destination": "/fr/calculateur-masquage-sous-reseau-longueur-variable",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/vlsm-calculator",
+      "destination": "/de/vlsm-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/password-strength-calculator",
+      "destination": "/es/calculadora-fuerza-contrasena",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/password-strength-calculator",
+      "destination": "/pt/calculadora-forca-senha",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/password-strength-calculator",
+      "destination": "/fr/calculateur-force-mot-de-passe",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/password-strength-calculator",
+      "destination": "/de/passwort-staerke-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/raid-calculator",
+      "destination": "/es/calculadora-raid",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/raid-calculator",
+      "destination": "/pt/calculadora-raid",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/raid-calculator",
+      "destination": "/fr/calculateur-raid",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/raid-calculator",
+      "destination": "/de/raid-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/psu-calculator",
+      "destination": "/es/calculadora-fuente-alimentacion",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/psu-calculator",
+      "destination": "/pt/calculadora-fonte-alimentacao",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/psu-calculator",
+      "destination": "/fr/calculateur-alimentation-pc",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/psu-calculator",
+      "destination": "/de/netzteil-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/intermittent-fasting-calculator",
+      "destination": "/es/calculadora-ayuno-intermitente",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/intermittent-fasting-calculator",
+      "destination": "/pt/calculadora-jejum-intermitente",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/intermittent-fasting-calculator",
+      "destination": "/fr/calculateur-jeune-intermittent",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/intermittent-fasting-calculator",
+      "destination": "/de/intermittierendes-fasten-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/ovulation-calculator",
+      "destination": "/es/calculadora-ovulacion",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/ovulation-calculator",
+      "destination": "/pt/calculadora-ovulacao",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/ovulation-calculator",
+      "destination": "/fr/calculateur-ovulation",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/ovulation-calculator",
+      "destination": "/de/eisprung-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/pregnancy-weight-gain-calculator",
+      "destination": "/es/calculadora-fecha-parto-embarazo",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/pregnancy-weight-gain-calculator",
+      "destination": "/pt/calculadora-data-prevista-parto",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/pregnancy-weight-gain-calculator",
+      "destination": "/fr/calculateur-date-accouchement",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/pregnancy-weight-gain-calculator",
+      "destination": "/de/schwangerschafts-geburtstermin-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/conception-date-calculator",
+      "destination": "/es/calculadora-fecha-concepcion",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/conception-date-calculator",
+      "destination": "/pt/calculadora-data-concepcao",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/conception-date-calculator",
+      "destination": "/fr/calculateur-date-conception",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/conception-date-calculator",
+      "destination": "/de/empfaengnisdatum-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/implantation-calculator",
+      "destination": "/es/calculadora-implantacion",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/implantation-calculator",
+      "destination": "/pt/calculadora-implantacao",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/implantation-calculator",
+      "destination": "/fr/calculateur-nidation",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/implantation-calculator",
+      "destination": "/de/einnistungs-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/chinese-gender-predictor-calculator",
+      "destination": "/es/calculadora-predictor-genero-chino",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/chinese-gender-predictor-calculator",
+      "destination": "/pt/calculadora-predictor-genero-chines",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/chinese-gender-predictor-calculator",
+      "destination": "/fr/calculateur-predicteur-genre-chinois",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/chinese-gender-predictor-calculator",
+      "destination": "/de/chinesischer-geschlechtsprediktor-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/hcg-calculator",
+      "destination": "/es/calculadora-hcg",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/hcg-calculator",
+      "destination": "/pt/calculadora-hcg",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/hcg-calculator",
+      "destination": "/fr/calculateur-hcg",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/hcg-calculator",
+      "destination": "/de/hcg-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/gallons-to-liters-calculator",
+      "destination": "/es/calculadora-galones-a-litros",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/gallons-to-liters-calculator",
+      "destination": "/pt/calculadora-galoes-para-litros",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/gallons-to-liters-calculator",
+      "destination": "/fr/calculateur-gallons-vers-litres",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/gallons-to-liters-calculator",
+      "destination": "/de/gallonen-zu-liter-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/cups-to-ml-calculator",
+      "destination": "/es/calculadora-tazas-mililitros",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/cups-to-ml-calculator",
+      "destination": "/pt/calculadora-xicaras-para-ml",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/cups-to-ml-calculator",
+      "destination": "/fr/calculateur-tasses-vers-ml",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/cups-to-ml-calculator",
+      "destination": "/de/tassen-zu-ml-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/square-feet-to-square-meters-calculator",
+      "destination": "/es/calculadora-pies-cuadrados-metros-cuadrados",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/square-feet-to-square-meters-calculator",
+      "destination": "/pt/calculadora-pes-quadrados-para-metros-quadrados",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/square-feet-to-square-meters-calculator",
+      "destination": "/fr/calculateur-pieds-carres-vers-metres-carres",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/square-feet-to-square-meters-calculator",
+      "destination": "/de/quadratfuss-zu-quadratmeter-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/mph-to-kmh-calculator",
+      "destination": "/es/calculadora-convertidor-millas-por-hora-kilometros",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/mph-to-kmh-calculator",
+      "destination": "/pt/calculadora-conversao-mph-kmh",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/mph-to-kmh-calculator",
+      "destination": "/fr/calculateur-mph-vers-kmh",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/mph-to-kmh-calculator",
+      "destination": "/de/meilen-pro-stunde-zu-kilometer-pro-stunde-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/date-calculator",
+      "destination": "/es/calculadora-fechas",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/date-calculator",
+      "destination": "/pt/calculadora-datas",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/date-calculator",
+      "destination": "/fr/calculateur-date",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/date-calculator",
+      "destination": "/de/datumsrechner-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/loan-calculator",
+      "destination": "/es/calculadora-prestamos",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/loan-calculator",
+      "destination": "/pt/calculadora-emprestimo",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/loan-calculator",
+      "destination": "/fr/calculateur-pret",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/loan-calculator",
+      "destination": "/de/darlehensrechner-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/percentage-calculator",
+      "destination": "/es/calculadora-porcentajes",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/percentage-calculator",
+      "destination": "/pt/calculadora-porcentagem",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/percentage-calculator",
+      "destination": "/fr/calculateur-pourcentage",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/percentage-calculator",
+      "destination": "/de/prozent-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/random-number-generator-calculator",
+      "destination": "/es/calculadora-generador-numeros-aleatorios",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/random-number-generator-calculator",
+      "destination": "/pt/calculadora-gerador-numeros-aleatorios",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/random-number-generator-calculator",
+      "destination": "/fr/calculateur-generateur-nombres-aleatoires",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/random-number-generator-calculator",
+      "destination": "/de/zufallszahlen-generator-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/cuadras-to-hectareas-converter-calculator",
+      "destination": "/es/calculadora-convertidor-cuadras-hectareas",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/cuadras-to-hectareas-converter-calculator",
+      "destination": "/pt/calculadora-conversor-cuadras-hectares",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/cuadras-to-hectareas-converter-calculator",
+      "destination": "/fr/calculateur-convertisseur-cuadras-hectares",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/cuadras-to-hectareas-converter-calculator",
+      "destination": "/de/cuadras-zu-hektar-umrechner-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/fanegadas-to-hectareas-converter-calculator",
+      "destination": "/es/calculadora-convertidor-fanegadas-hectareas",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/fanegadas-to-hectareas-converter-calculator",
+      "destination": "/pt/calculadora-conversor-fanegadas-hectares",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/fanegadas-to-hectareas-converter-calculator",
+      "destination": "/fr/calculateur-convertisseur-fanegadas-vers-hectares",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/fanegadas-to-hectareas-converter-calculator",
+      "destination": "/de/fanegadas-zu-hektar-umrechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/manzanas-to-hectareas-converter-calculator",
+      "destination": "/es/calculadora-conversor-manzanas-hectareas",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/manzanas-to-hectareas-converter-calculator",
+      "destination": "/pt/calculadora-conversor-manzanas-hectares",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/manzanas-to-hectareas-converter-calculator",
+      "destination": "/fr/calculateur-convertisseur-manzanas-vers-hectares",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/manzanas-to-hectareas-converter-calculator",
+      "destination": "/de/manzanas-zu-hektar-umrechner-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/tareas-to-metros-cuadrados-converter-calculator",
+      "destination": "/es/calculadora-convertidor-tareas-metros-cuadrados",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/tareas-to-metros-cuadrados-converter-calculator",
+      "destination": "/pt/calculadora-conversao-tareas-metros-quadrados",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/tareas-to-metros-cuadrados-converter-calculator",
+      "destination": "/fr/calculateur-convertisseur-tareas-metres-carres",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/tareas-to-metros-cuadrados-converter-calculator",
+      "destination": "/de/tareas-zu-quadratmetern-umrechner-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/varas-to-metros-converter-calculator",
+      "destination": "/es/calculadora-convertidor-varas-metros",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/varas-to-metros-converter-calculator",
+      "destination": "/pt/calculadora-conversor-varas-metros",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/varas-to-metros-converter-calculator",
+      "destination": "/fr/calculateur-convertisseur-varas-metres",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/varas-to-metros-converter-calculator",
+      "destination": "/de/varas-zu-meter-umrechner-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/discount-calculator",
+      "destination": "/es/calculadora-descuentos",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/discount-calculator",
+      "destination": "/pt/calculadora-desconto",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/discount-calculator",
+      "destination": "/fr/calculateur-remise",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/discount-calculator",
+      "destination": "/de/rabatt-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/gpa-calculator",
+      "destination": "/es/calculadora-promedio-puntos-calificacion",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/gpa-calculator",
+      "destination": "/pt/calculadora-media-pontos-gpa",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/gpa-calculator",
+      "destination": "/fr/calculateur-moyenne-points-cumules",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/gpa-calculator",
+      "destination": "/de/notendurchschnitt-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/grade-calculator",
+      "destination": "/es/calculadora-calificaciones",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/grade-calculator",
+      "destination": "/pt/calculadora-notas",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/grade-calculator",
+      "destination": "/fr/calculateur-notes",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/grade-calculator",
+      "destination": "/de/noten-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/time-calculator",
+      "destination": "/es/calculadora-tiempo",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/time-calculator",
+      "destination": "/pt/calculadora-tempo",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/time-calculator",
+      "destination": "/fr/calculateur-temps",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/time-calculator",
+      "destination": "/de/zeit-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/square-footage-calculator",
+      "destination": "/es/calculadora-pies-cuadrados",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/square-footage-calculator",
+      "destination": "/pt/calculadora-metragem-quadrada",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/square-footage-calculator",
+      "destination": "/fr/calculateur-surface-pieds-carres",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/square-footage-calculator",
+      "destination": "/de/quadratmeter-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/flooring-calculator",
+      "destination": "/es/calculadora-pisos",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/flooring-calculator",
+      "destination": "/pt/calculadora-piso",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/flooring-calculator",
+      "destination": "/fr/calculateur-revetement-sol",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/flooring-calculator",
+      "destination": "/de/bodenbelag-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/roofing-calculator",
+      "destination": "/es/calculadora-techado",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/roofing-calculator",
+      "destination": "/pt/calculadora-telhado",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/roofing-calculator",
+      "destination": "/fr/calculateur-toiture",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/roofing-calculator",
+      "destination": "/de/dachflaechen-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/savings-goal-calculator",
+      "destination": "/es/calculadora-meta-ahorro",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/savings-goal-calculator",
+      "destination": "/pt/calculadora-meta-poupanca",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/savings-goal-calculator",
+      "destination": "/fr/calculateur-objectif-epargne",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/savings-goal-calculator",
+      "destination": "/de/sparziel-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/drywall-calculator",
+      "destination": "/es/calculadora-paneles-yeso",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/drywall-calculator",
+      "destination": "/pt/calculadora-placas-gesso",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/drywall-calculator",
+      "destination": "/fr/calculateur-cloisons-seches",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/drywall-calculator",
+      "destination": "/de/trockenbau-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/mulch-gravel-calculator",
+      "destination": "/es/calculadora-mantillo-grava",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/mulch-gravel-calculator",
+      "destination": "/pt/calculadora-cobertura-morta-cascalho",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/mulch-gravel-calculator",
+      "destination": "/fr/calculateur-paillis-gravier",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/mulch-gravel-calculator",
+      "destination": "/de/mulch-kies-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/mortgage-calculator",
+      "destination": "/es/calculadora-hipoteca",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/mortgage-calculator",
+      "destination": "/pt/calculadora-financiamento-imobiliario",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/mortgage-calculator",
+      "destination": "/fr/calculateur-hypotheque",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/mortgage-calculator",
+      "destination": "/de/hypotheken-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/401k-calculator",
+      "destination": "/es/calculadora-401k",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/401k-calculator",
+      "destination": "/pt/calculadora-401k",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/401k-calculator",
+      "destination": "/fr/calculateur-401k",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/401k-calculator",
+      "destination": "/de/viernulleinskommensteueraufgeschobener-rentensparplan-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/amortization-calculator",
+      "destination": "/es/calculadora-amortizacion",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/amortization-calculator",
+      "destination": "/pt/calculadora-amortizacao",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/amortization-calculator",
+      "destination": "/fr/calculateur-amortissement",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/amortization-calculator",
+      "destination": "/de/tilgungs-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/btu-calculator",
+      "destination": "/es/calculadora-btu",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/btu-calculator",
+      "destination": "/pt/calculadora-btu",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/btu-calculator",
+      "destination": "/fr/calculateur-btu",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/btu-calculator",
+      "destination": "/de/btu-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/debt-payoff-calculator",
+      "destination": "/es/calculadora-pago-deudas",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/debt-payoff-calculator",
+      "destination": "/pt/calculadora-quitacao-dividas",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/debt-payoff-calculator",
+      "destination": "/fr/calculateur-remboursement-dettes",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/debt-payoff-calculator",
+      "destination": "/de/schulden-tilgungs-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/fence-calculator",
+      "destination": "/es/calculadora-cercas",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/fence-calculator",
+      "destination": "/pt/calculadora-cerca",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/fence-calculator",
+      "destination": "/fr/calculateur-cloture",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/fence-calculator",
+      "destination": "/de/zaun-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/tile-calculator",
+      "destination": "/es/calculadora-azulejos",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/tile-calculator",
+      "destination": "/pt/calculadora-azulejos",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/tile-calculator",
+      "destination": "/fr/calculateur-carrelage",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/tile-calculator",
+      "destination": "/de/tile-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/credit-card-interest-calculator",
+      "destination": "/es/calculadora-intereses-tarjeta-credito",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/credit-card-interest-calculator",
+      "destination": "/pt/calculadora-juros-cartao-credito",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/credit-card-interest-calculator",
+      "destination": "/fr/calculateur-interets-carte-credit",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/credit-card-interest-calculator",
+      "destination": "/de/kreditkarten-zins-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/personal-loan-calculator",
+      "destination": "/es/calculadora-prestamo-personal",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/personal-loan-calculator",
+      "destination": "/pt/calculadora-emprestimo-pessoal",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/personal-loan-calculator",
+      "destination": "/fr/calculateur-pret-personnel",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/personal-loan-calculator",
+      "destination": "/de/privatkredit-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/compound-interest-calculator",
+      "destination": "/es/calculadora-interes-compuesto",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/compound-interest-calculator",
+      "destination": "/pt/calculadora-juros-compostos",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/compound-interest-calculator",
+      "destination": "/fr/calculateur-interets-composes",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/compound-interest-calculator",
+      "destination": "/de/zinseszins-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/kg-to-stones-converter-calculator",
+      "destination": "/es/calculadora-convertidor-kg-stones",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/kg-to-stones-converter-calculator",
+      "destination": "/pt/calculadora-conversor-kg-para-stones",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/kg-to-stones-converter-calculator",
+      "destination": "/fr/calculateur-convertisseur-kg-vers-stones",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/kg-to-stones-converter-calculator",
+      "destination": "/de/kg-zu-stones-umrechner-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/pints-to-liters-converter-calculator",
+      "destination": "/es/calculadora-conversor-pintas-litros",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/pints-to-liters-converter-calculator",
+      "destination": "/pt/calculadora-conversor-pints-litros",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/pints-to-liters-converter-calculator",
+      "destination": "/fr/calculateur-convertisseur-pintes-vers-litres",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/pints-to-liters-converter-calculator",
+      "destination": "/de/pints-zu-liter-umrechner-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/stones-to-kg-converter-calculator",
+      "destination": "/es/calculadora-convertidor-stones-kg",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/stones-to-kg-converter-calculator",
+      "destination": "/pt/calculadora-conversor-stones-kg",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/stones-to-kg-converter-calculator",
+      "destination": "/fr/calculateur-convertisseur-stones-vers-kg",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/stones-to-kg-converter-calculator",
+      "destination": "/de/stone-zu-kg-umrechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/tablespoon-to-ml-converter-calculator",
+      "destination": "/es/calculadora-convertidor-cucharadas-a-ml",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/tablespoon-to-ml-converter-calculator",
+      "destination": "/pt/calculadora-conversor-colher-sopa-ml",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/tablespoon-to-ml-converter-calculator",
+      "destination": "/fr/calculateur-conversion-cuillere-soupe-ml",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/tablespoon-to-ml-converter-calculator",
+      "destination": "/de/essloeffel-zu-ml-umrechner-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/credit-card-payoff-calculator",
+      "destination": "/es/calculadora-pago-tarjeta-credito",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/credit-card-payoff-calculator",
+      "destination": "/pt/calculadora-quitacao-cartao-credito",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/credit-card-payoff-calculator",
+      "destination": "/fr/calculateur-remboursement-carte-credit",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/credit-card-payoff-calculator",
+      "destination": "/de/kreditkarten-tilgungs-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/password-generator-calculator",
+      "destination": "/es/calculadora-generador-contrasenas",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/password-generator-calculator",
+      "destination": "/pt/calculadora-gerador-senhas",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/password-generator-calculator",
+      "destination": "/fr/calculateur-generateur-mots-de-passe",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/password-generator-calculator",
+      "destination": "/de/passwort-generator-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/transfer-time-calculator",
+      "destination": "/es/calculadora-tiempo-transferencia",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/transfer-time-calculator",
+      "destination": "/pt/calculadora-tempo-transferencia",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/transfer-time-calculator",
+      "destination": "/fr/calculateur-temps-transfert",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/transfer-time-calculator",
+      "destination": "/de/uebertragungszeit-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/salary-converter-calculator",
+      "destination": "/es/calculadora-convertidor-salarios",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/salary-converter-calculator",
+      "destination": "/pt/calculadora-salary-converter",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/salary-converter-calculator",
+      "destination": "/fr/calculateur-convertisseur-salaire",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/salary-converter-calculator",
+      "destination": "/de/gehalt-umrechner-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/home-affordability-calculator",
+      "destination": "/es/calculadora-asequibilidad-vivienda",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/home-affordability-calculator",
+      "destination": "/pt/calculadora-acessibilidade-moradia",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/home-affordability-calculator",
+      "destination": "/fr/calculateur-accessibilite-logement",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/home-affordability-calculator",
+      "destination": "/de/erschwinglichkeit-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/student-loan-calculator",
+      "destination": "/es/calculadora-prestamo-estudiantil",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/student-loan-calculator",
+      "destination": "/pt/calculadora-student-loan",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/student-loan-calculator",
+      "destination": "/fr/calculateur-student-loan",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/student-loan-calculator",
+      "destination": "/de/student-loan-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/retirement-calculator",
+      "destination": "/es/calculadora-jubilacion",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/retirement-calculator",
+      "destination": "/pt/calculadora-aposentadoria",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/retirement-calculator",
+      "destination": "/fr/calculateur-retraite",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/retirement-calculator",
+      "destination": "/de/rentenrechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/savings-calculator",
+      "destination": "/es/calculadora-ahorros",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/savings-calculator",
+      "destination": "/pt/calculadora-poupanca",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/savings-calculator",
+      "destination": "/fr/calculateur-epargne",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/savings-calculator",
+      "destination": "/de/sparrechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/investment-calculator",
+      "destination": "/es/calculadora-inversiones",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/investment-calculator",
+      "destination": "/pt/calculadora-investimento",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/investment-calculator",
+      "destination": "/fr/calculateur-investissement",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/investment-calculator",
+      "destination": "/de/investitionsrechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/income-tax-calculator",
+      "destination": "/es/calculadora-impuesto-renta",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/income-tax-calculator",
+      "destination": "/pt/calculadora-imposto-renda",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/income-tax-calculator",
+      "destination": "/fr/calculateur-impot-revenu",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/income-tax-calculator",
+      "destination": "/de/einkommensteuerrechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/paycheck-calculator",
+      "destination": "/es/calculadora-nomina",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/paycheck-calculator",
+      "destination": "/pt/calculadora-contracheque",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/paycheck-calculator",
+      "destination": "/fr/calculateur-fiche-paie",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/paycheck-calculator",
+      "destination": "/de/gehaltsrechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/inflation-calculator",
+      "destination": "/es/calculadora-inflacion",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/inflation-calculator",
+      "destination": "/pt/calculadora-inflacao",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/inflation-calculator",
+      "destination": "/fr/calculateur-inflation",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/inflation-calculator",
+      "destination": "/de/inflationsrechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/interest-calculator",
+      "destination": "/es/calculadora-intereses",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/interest-calculator",
+      "destination": "/pt/calculadora-juros",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/interest-calculator",
+      "destination": "/fr/calculateur-interets",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/interest-calculator",
+      "destination": "/de/zinsrechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/net-worth-calculator",
+      "destination": "/es/calculadora-patrimonio-neto",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/net-worth-calculator",
+      "destination": "/pt/calculadora-patrimonio-liquido",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/net-worth-calculator",
+      "destination": "/fr/calculateur-valeur-nette",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/net-worth-calculator",
+      "destination": "/de/nettovermoegens-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/rent-vs-buy-calculator",
+      "destination": "/es/calculadora-alquilar-vs-comprar",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/rent-vs-buy-calculator",
+      "destination": "/pt/calculadora-alugar-vs-comprar",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/rent-vs-buy-calculator",
+      "destination": "/fr/calculateur-louer-vs-acheter",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/rent-vs-buy-calculator",
+      "destination": "/de/mieten-vs-kaufen-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/simple-interest-calculator",
+      "destination": "/es/calculadora-interes-simple",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/simple-interest-calculator",
+      "destination": "/pt/calculadora-juros-simples",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/simple-interest-calculator",
+      "destination": "/fr/calculateur-interets-simples",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/simple-interest-calculator",
+      "destination": "/de/einfacher-zinsrechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/fraction-calculator",
+      "destination": "/es/calculadora-fracciones",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/fraction-calculator",
+      "destination": "/pt/calculadora-fracoes",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/fraction-calculator",
+      "destination": "/fr/calculateur-fractions",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/fraction-calculator",
+      "destination": "/de/bruchrechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/rule-of-three-calculator",
+      "destination": "/es/calculadora-regla-de-tres",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/rule-of-three-calculator",
+      "destination": "/pt/calculadora-regra-de-tres",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/rule-of-three-calculator",
+      "destination": "/fr/calculateur-regle-de-trois",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/rule-of-three-calculator",
+      "destination": "/de/dreisatz-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/square-root-calculator",
+      "destination": "/es/calculadora-raiz-cuadrada",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/square-root-calculator",
+      "destination": "/pt/calculadora-raiz-quadrada",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/square-root-calculator",
+      "destination": "/fr/calculateur-racine-carree",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/square-root-calculator",
+      "destination": "/de/wurzel-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/unit-converter",
+      "destination": "/es/convertidor-unidades",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/unit-converter",
+      "destination": "/pt/conversor-unidades",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/unit-converter",
+      "destination": "/fr/convertisseur-unites",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/unit-converter",
+      "destination": "/de/einheiten-umrechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/fuel-cost-calculator",
+      "destination": "/es/calculadora-costo-combustible",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/fuel-cost-calculator",
+      "destination": "/pt/calculadora-custo-combustivel",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/fuel-cost-calculator",
+      "destination": "/fr/calculateur-cout-carburant",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/fuel-cost-calculator",
+      "destination": "/de/kraftstoffkosten-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/budget-calculator",
+      "destination": "/es/calculadora-presupuesto",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/budget-calculator",
+      "destination": "/pt/calculadora-orcamento",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/budget-calculator",
+      "destination": "/fr/calculateur-budget",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/budget-calculator",
+      "destination": "/de/budget-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/profit-margin-calculator",
+      "destination": "/es/calculadora-margen-beneficio",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/profit-margin-calculator",
+      "destination": "/pt/calculadora-margem-lucro",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/profit-margin-calculator",
+      "destination": "/fr/calculateur-marge-benefice",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/profit-margin-calculator",
+      "destination": "/de/gewinnmargen-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/step-calculator",
+      "destination": "/es/calculadora-pasos",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/step-calculator",
+      "destination": "/pt/calculadora-passos",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/step-calculator",
+      "destination": "/fr/calculateur-pas",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/step-calculator",
+      "destination": "/de/schritte-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/auto-loan-calculator",
+      "destination": "/en/auto-loan-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/quadratic-formula-calculator",
+      "destination": "/en/quadratic-formula-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/tip-calculator",
+      "destination": "/en/tip-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/age-calculator",
+      "destination": "/en/age-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/body-fat-calculator",
+      "destination": "/en/body-fat-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/caloric-deficit-calculator",
+      "destination": "/en/caloric-deficit-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/maintenance-calories-calculator",
+      "destination": "/en/maintenance-calories-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/one-rep-max-calculator",
+      "destination": "/en/one-rep-max-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/bmi-calculator",
+      "destination": "/en/bmi-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/ideal-weight-calculator",
+      "destination": "/en/ideal-weight-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/keto-calculator",
+      "destination": "/en/keto-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/lean-body-mass-calculator",
+      "destination": "/en/lean-body-mass-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/macro-calculator",
+      "destination": "/en/macro-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/water-intake-calculator",
+      "destination": "/en/water-intake-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/sleep-calculator",
+      "destination": "/en/sleep-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/rest-day-calculator",
+      "destination": "/en/rest-day-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/running-pace-calculator",
+      "destination": "/en/running-pace-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/protein-calculator",
+      "destination": "/en/protein-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/waist-to-height-ratio-calculator",
+      "destination": "/en/waist-to-height-ratio-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/heart-rate-zones-calculator",
+      "destination": "/en/heart-rate-zones-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/weight-gain-calculator",
+      "destination": "/en/weight-gain-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/weight-loss-calculator",
+      "destination": "/en/weight-loss-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/calories-burned-calculator",
+      "destination": "/en/calories-burned-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/tdee-calculator",
+      "destination": "/en/tdee-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/calorie-calculator",
+      "destination": "/en/calorie-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/bmr-calculator",
+      "destination": "/en/bmr-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/pregnancy-due-date-calculator",
+      "destination": "/en/pregnancy-due-date-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/currency-converter-calculator",
+      "destination": "/en/currency-converter-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/length-converter-calculator",
+      "destination": "/en/length-converter-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/cm-to-inches-calculator",
+      "destination": "/en/cm-to-inches-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/inches-to-cm-calculator",
+      "destination": "/en/inches-to-cm-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/km-to-miles-calculator",
+      "destination": "/en/km-to-miles-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/miles-to-km-calculator",
+      "destination": "/en/miles-to-km-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/meters-to-feet-calculator",
+      "destination": "/en/meters-to-feet-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/feet-to-meters-calculator",
+      "destination": "/en/feet-to-meters-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/mm-to-inches-calculator",
+      "destination": "/en/mm-to-inches-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/inches-to-mm-calculator",
+      "destination": "/en/inches-to-mm-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/cm-to-feet-calculator",
+      "destination": "/en/cm-to-feet-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/feet-to-cm-calculator",
+      "destination": "/en/feet-to-cm-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/inches-to-feet-calculator",
+      "destination": "/en/inches-to-feet-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/kg-to-lbs-calculator",
+      "destination": "/en/kg-to-lbs-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/lbs-to-kg-calculator",
+      "destination": "/en/lbs-to-kg-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/celsius-to-fahrenheit-calculator",
+      "destination": "/en/celsius-to-fahrenheit-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/fahrenheit-to-celsius-calculator",
+      "destination": "/en/fahrenheit-to-celsius-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/oz-to-ml-calculator",
+      "destination": "/en/oz-to-ml-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/paint-calculator",
+      "destination": "/en/paint-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/concrete-calculator",
+      "destination": "/en/concrete-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/ip-subnet-calculator",
+      "destination": "/en/ip-subnet-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/cidr-calculator",
+      "destination": "/en/cidr-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/bandwidth-calculator",
+      "destination": "/en/bandwidth-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/vlsm-calculator",
+      "destination": "/en/vlsm-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/password-strength-calculator",
+      "destination": "/en/password-strength-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/raid-calculator",
+      "destination": "/en/raid-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/psu-calculator",
+      "destination": "/en/psu-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/intermittent-fasting-calculator",
+      "destination": "/en/intermittent-fasting-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/ovulation-calculator",
+      "destination": "/en/ovulation-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/pregnancy-weight-gain-calculator",
+      "destination": "/en/pregnancy-weight-gain-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/conception-date-calculator",
+      "destination": "/en/conception-date-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/implantation-calculator",
+      "destination": "/en/implantation-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/chinese-gender-predictor-calculator",
+      "destination": "/en/chinese-gender-predictor-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/hcg-calculator",
+      "destination": "/en/hcg-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/gallons-to-liters-calculator",
+      "destination": "/en/gallons-to-liters-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/cups-to-ml-calculator",
+      "destination": "/en/cups-to-ml-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/square-feet-to-square-meters-calculator",
+      "destination": "/en/square-feet-to-square-meters-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/mph-to-kmh-calculator",
+      "destination": "/en/mph-to-kmh-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/date-calculator",
+      "destination": "/en/date-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/loan-calculator",
+      "destination": "/en/loan-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/percentage-calculator",
+      "destination": "/en/percentage-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/random-number-generator-calculator",
+      "destination": "/en/random-number-generator-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/cuadras-to-hectareas-converter-calculator",
+      "destination": "/en/cuadras-to-hectareas-converter-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/fanegadas-to-hectareas-converter-calculator",
+      "destination": "/en/fanegadas-to-hectareas-converter-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/manzanas-to-hectareas-converter-calculator",
+      "destination": "/en/manzanas-to-hectareas-converter-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/tareas-to-metros-cuadrados-converter-calculator",
+      "destination": "/en/tareas-to-metros-cuadrados-converter-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/varas-to-metros-converter-calculator",
+      "destination": "/en/varas-to-metros-converter-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/discount-calculator",
+      "destination": "/en/discount-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/gpa-calculator",
+      "destination": "/en/gpa-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/grade-calculator",
+      "destination": "/en/grade-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/time-calculator",
+      "destination": "/en/time-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/square-footage-calculator",
+      "destination": "/en/square-footage-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/flooring-calculator",
+      "destination": "/en/flooring-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/roofing-calculator",
+      "destination": "/en/roofing-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/savings-goal-calculator",
+      "destination": "/en/savings-goal-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/drywall-calculator",
+      "destination": "/en/drywall-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/mulch-gravel-calculator",
+      "destination": "/en/mulch-gravel-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/mortgage-calculator",
+      "destination": "/en/mortgage-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/401k-calculator",
+      "destination": "/en/401k-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/amortization-calculator",
+      "destination": "/en/amortization-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/btu-calculator",
+      "destination": "/en/btu-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/debt-payoff-calculator",
+      "destination": "/en/debt-payoff-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/fence-calculator",
+      "destination": "/en/fence-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/tile-calculator",
+      "destination": "/en/tile-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/credit-card-interest-calculator",
+      "destination": "/en/credit-card-interest-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/personal-loan-calculator",
+      "destination": "/en/personal-loan-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/compound-interest-calculator",
+      "destination": "/en/compound-interest-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/kg-to-stones-converter-calculator",
+      "destination": "/en/kg-to-stones-converter-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/pints-to-liters-converter-calculator",
+      "destination": "/en/pints-to-liters-converter-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/stones-to-kg-converter-calculator",
+      "destination": "/en/stones-to-kg-converter-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/tablespoon-to-ml-converter-calculator",
+      "destination": "/en/tablespoon-to-ml-converter-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/credit-card-payoff-calculator",
+      "destination": "/en/credit-card-payoff-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/password-generator-calculator",
+      "destination": "/en/password-generator-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/transfer-time-calculator",
+      "destination": "/en/transfer-time-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/salary-converter-calculator",
+      "destination": "/en/salary-converter-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/home-affordability-calculator",
+      "destination": "/en/home-affordability-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/student-loan-calculator",
+      "destination": "/en/student-loan-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/retirement-calculator",
+      "destination": "/en/retirement-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/savings-calculator",
+      "destination": "/en/savings-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/investment-calculator",
+      "destination": "/en/investment-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/income-tax-calculator",
+      "destination": "/en/income-tax-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/paycheck-calculator",
+      "destination": "/en/paycheck-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/inflation-calculator",
+      "destination": "/en/inflation-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/interest-calculator",
+      "destination": "/en/interest-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/net-worth-calculator",
+      "destination": "/en/net-worth-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/rent-vs-buy-calculator",
+      "destination": "/en/rent-vs-buy-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/simple-interest-calculator",
+      "destination": "/en/simple-interest-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/fraction-calculator",
+      "destination": "/en/fraction-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/rule-of-three-calculator",
+      "destination": "/en/rule-of-three-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/square-root-calculator",
+      "destination": "/en/square-root-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/unit-converter",
+      "destination": "/en/unit-converter",
+      "statusCode": 301
+    },
+    {
+      "source": "/fuel-cost-calculator",
+      "destination": "/en/fuel-cost-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/budget-calculator",
+      "destination": "/en/budget-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/profit-margin-calculator",
+      "destination": "/en/profit-margin-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/step-calculator",
+      "destination": "/en/step-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/hcg-calculator-calculator",
+      "destination": "/en/hcg-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/emergency-fund-calculator",
+      "destination": "/en/savings-goal-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/calculadora-test-auto",
+      "destination": "/pt/calculadora-financiamento-veiculos",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/calculadora-cetogenica",
+      "destination": "/pt/calculadora-keto",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/pregnancy-due-date-rechner",
+      "destination": "/de/schwangerschafts-geburtstermin-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/bandbreite-rechner",
+      "destination": "/de/bandbreiten-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/ein-wiederholungsmaximum-rechner",
+      "destination": "/de/ein-wiederholungs-maximum-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/running-pace-rechner",
+      "destination": "/de/lauftempo-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/lean-body-mass-rechner",
+      "destination": "/de/magere-koerpermasse-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/calculadora-raiz-cuadrada",
+      "destination": "/pt/calculadora-raiz-quadrada",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/calculadora-prestamo",
+      "destination": "/fr/calculateur-pret",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/calculadora-emprestimo-estudantil",
+      "destination": "/pt/calculadora-student-loan",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/calculadora-una-repeticion-maxima",
+      "destination": "/fr/calculateur-repetition-maximale",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/calculateur-waist-to-height-ratio",
+      "destination": "/fr/calculateur-ratio-taille-taille",
+      "statusCode": 301
+    },
+    {
+      "source": "/calculadora-tdee",
+      "destination": "/es/calculadora-gasto-energetico-diario-total",
+      "statusCode": 301
+    },
+    {
+      "source": "/calculateur-calories-maintenance",
+      "destination": "/fr/calculateur-calories-maintien",
+      "statusCode": 301
+    },
+    {
+      "source": "/calculadora-una-repeticion-maxima",
+      "destination": "/es/calculadora-repeticion-maxima",
+      "statusCode": 301
+    },
+    {
+      "source": "/calculadora-raiz-cuadrada",
+      "destination": "/es/calculadora-raiz-cuadrada",
+      "statusCode": 301
+    },
+    {
+      "source": "/calculadora-emprestimo-estudantil",
+      "destination": "/pt/calculadora-student-loan",
+      "statusCode": 301
+    },
+    {
+      "source": "/bandbreite-rechner",
+      "destination": "/de/bandbreiten-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/calculateur-calories-maintenance",
+      "destination": "/en/maintenance-calories-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/calculateur-calories-maintenance",
+      "destination": "/de/erhaltungskalorien-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/calculateur-calories-maintenance",
+      "destination": "/es/calculadora-calorias-mantenimiento",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/calculateur-calories-maintenance",
+      "destination": "/fr/calculateur-calories-maintien",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/calculateur-calories-maintenance",
+      "destination": "/pt/calculadora-calorias-manutencao",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/calculadora-tdee",
+      "destination": "/de/gesamtenergieumsatz-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/calculadora-tdee",
+      "destination": "/fr/calculateur-depense-energetique-totale-quotidienne",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/calculadora-raiz-cuadrada",
+      "destination": "/en/square-root-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/calculadora-fechas",
+      "destination": "/en/date-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/calculadora-emprestimo-estudantil",
+      "destination": "/en/student-loan-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/calculadora-zonas-frecuencia-cardiaca",
+      "destination": "/en/heart-rate-zones-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/calculadora-heart-rate-zones",
+      "destination": "/pt/calculadora-zonas-frequencia-cardiaca",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/cd-calculator",
+      "destination": "/pt/calculadora-meta-poupanca",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/quadratic-calculator",
+      "destination": "/en/quadratic-formula-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/quadratic-calculator",
+      "destination": "/es/calculadora-formula-cuadratica",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/quadratic-calculator",
+      "destination": "/fr/calculateur-formule-quadratique",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/quadratic-calculator",
+      "destination": "/de/quadratische-formel-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/quadratic-calculator",
+      "destination": "/pt/calculadora-formula-quadratica",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/calorie-deficit-calculator",
+      "destination": "/pt/calculadora-deficit-calorico",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/pregnancy-due-date-rechner",
+      "destination": "/pt/calculadora-data-provavel-parto",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/calculadora-gerador-numeros-aleatorios",
+      "destination": "/en/random-number-generator-calculator",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/forgot-password",
+      "destination": "/en/login",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/forgot-password",
+      "destination": "/en/login",
+      "statusCode": 301
+    },
+    {
+      "source": "/calculadora-prestamo-automotriz",
+      "destination": "/es/calculadora-prestamo-automotriz",
+      "statusCode": 301
+    },
+    {
+      "source": "/pregnancy-due-date-rechner",
+      "destination": "/de/schwangerschafts-geburtstermin-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/calculadora-pregnancy-due-date",
+      "destination": "/es/calculadora-fecha-parto-embarazo",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/calculadora-emprestimo-estudantil",
+      "destination": "/fr/calculateur-student-loan",
+      "statusCode": 301
+    },
+    {
+      "source": "/fr/calculadora-fechas",
+      "destination": "/fr/calculateur-date",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/random-number-generator",
+      "destination": "/es/calculadora-generador-numeros-aleatorios",
+      "statusCode": 301
+    },
+    {
+      "source": "/pt/random-number-generator",
+      "destination": "/pt/calculadora-gerador-numeros-aleatorios",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/random-number-generator",
+      "destination": "/de/zufallszahlen-generator-rechner",
+      "statusCode": 301
+    },
+    {
+      "source": "/de/unit-converter-calculator",
+      "destination": "/de/einheiten-umrechner",
+      "statusCode": 301
     }
   ]
 }
