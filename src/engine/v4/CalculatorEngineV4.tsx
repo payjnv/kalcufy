@@ -41,19 +41,19 @@ const CalculatorSidebar = dynamic(() => import("@/components/CalculatorSidebar")
 const AdBlock = dynamic(() => import("@/components/ads/AdBlock"), { ssr: false });
 const MobileAdContainer = dynamic(() => import("@/components/ads/MobileAdContainer"), { ssr: false });
 const SideSkyscraperAds = dynamic(() => import("@/components/ads/SideSkyscraperAds"), { ssr: false });
-const InfoCardV4 = dynamic(() => import("./components/InfoCardV4"), { ssr: false });
+import InfoCardV4 from "./components/InfoCardV4";
 const ChartV4 = dynamic(() => import("./components/ChartV4").then(m => ({ default: m.default })), { ssr: false });
 const MultiChartV4 = dynamic(() => import("./components/ChartV4").then(m => ({ default: m.MultiChartV4 })), { ssr: false });
-const ReferenceGridV4 = dynamic(() => import("./components/ReferenceGridV4"), { ssr: false });
-const DistributionBarsV4 = dynamic(() => import("./components/DistributionBarsV4"), { ssr: false });
+import ReferenceGridV4 from "./components/ReferenceGridV4";
+import DistributionBarsV4 from "./components/DistributionBarsV4";
 const CompareButton = dynamic(() => import("./internal-components").then(m => ({ default: m.CompareButton })), { ssr: false });
 const ComparePanel = dynamic(() => import("./internal-components").then(m => ({ default: m.ComparePanel })), { ssr: false });
 const SensitivityChart = dynamic(() => import("./internal-components").then(m => ({ default: m.SensitivityChart })), { ssr: false });
-const ProseSectionV4 = dynamic(() => import("./components/ProseSectionV4"), { ssr: false });
-const ConsiderationsListV4 = dynamic(() => import("./components/ConsiderationsListV4"), { ssr: false });
-const ExampleSectionV4 = dynamic(() => import("./components/ExampleSectionV4"), { ssr: false });
-const FAQAccordionV4 = dynamic(() => import("./components/FAQAccordionV4"), { ssr: false });
-const SourcesSectionV4 = dynamic(() => import("./components/SourcesSectionV4"), { ssr: false });
+import ProseSectionV4 from "./components/ProseSectionV4";
+import ConsiderationsListV4 from "./components/ConsiderationsListV4";
+import ExampleSectionV4 from "./components/ExampleSectionV4";
+import FAQAccordionV4 from "./components/FAQAccordionV4";
+import SourcesSectionV4 from "./components/SourcesSectionV4";
 
 // Dynamic import for rarely-used heavy component
 const DetailedTableModalV4 = dynamic(
