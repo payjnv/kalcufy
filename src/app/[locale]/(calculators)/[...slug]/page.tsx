@@ -121,6 +121,9 @@ async function getCalcInfo(entryId: string, locale: string) {
     .replace(/-/g, " ")
     .replace(/\b\w/g, (l: string) => l.toUpperCase());
   let subtitle = "";
+  let faqs: Array<{ question: string; answer: string }> = [];
+  let educationTexts: Array<{ title: string; content: string }> = [];
+  let sources: Array<{ label: string; url?: string }> = [];
 
   try {
     const mod = await import(`@/calculators/${entryId}/index`);
@@ -140,11 +143,89 @@ async function getCalcInfo(entryId: string, locale: string) {
       if (localeT) {
         name = (localeT.name as string) || name;
         subtitle = (localeT.subtitle as string) || "";
+
+        // Extract FAQs for SSR
+        const rawFaqs = localeT.faqs as Array<{ question: string; answer: string }> | undefined;
+        if (Array.isArray(rawFaqs)) {
+          faqs = rawFaqs.filter(f => f.question && f.answer);
+        }
+
+        // Extract education content for SSR
+        const eduSections = (c as any).educationSections as Array<{ id: string; type: string }> | undefined;
+        const eduTranslations = localeT.education as Record<string, { title?: string; content?: string; text?: string; items?: Array<{ title?: string; text?: string }> }> | undefined;
+        if (Array.isArray(eduSections) && eduTranslations) {
+          for (const section of eduSections) {
+            const eduT = eduTranslations[section.id];
+            if (eduT) {
+              if (section.type === "prose" && eduT.title && (eduT.content || eduT.text)) {
+                educationTexts.push({ title: eduT.title, content: (eduT.content || eduT.text) as string });
+              } else if (section.type === "cards" && eduT.title && Array.isArray(eduT.items)) {
+                const itemsText = eduT.items.map((it: any) => (it.title ? it.title + ": " : "") + (it.text || it.content || "")).join("\n");
+                if (itemsText) educationTexts.push({ title: eduT.title, content: itemsText });
+              }
+            }
+          }
+        }
+
+        // Extract sources for SSR
+        const rawSources = localeT.sources as Array<{ label: string; url?: string }> | undefined;
+        if (Array.isArray(rawSources)) {
+          sources = rawSources.filter(s => s.label);
+        }
       }
     }
   } catch {}
 
-  return { name, subtitle };
+  return { name, subtitle, faqs, educationTexts, sources };
+}
+
+
+// --- SSR Content: Rendered server-side so Google can index FAQs + Education ---
+function SSRContent({ faqs, educationTexts, sources }: {
+  faqs: Array<{ question: string; answer: string }>;
+  educationTexts: Array<{ title: string; content: string }>;
+  sources: Array<{ label: string; url?: string }>;
+}) {
+  if (faqs.length === 0 && educationTexts.length === 0) return null;
+  return (
+    <div className="container mx-auto px-2 sm:px-4 max-w-6xl py-8">
+      {educationTexts.length > 0 && (
+        <div className="mb-8 space-y-6">
+          {educationTexts.map((section, i) => (
+            <div key={i} className="bg-white rounded-2xl border border-slate-200 p-6">
+              <h2 className="text-lg font-bold text-slate-900 mb-3">{section.title}</h2>
+              <div className="text-slate-600 leading-relaxed whitespace-pre-line">{section.content}</div>
+            </div>
+          ))}
+        </div>
+      )}
+      {faqs.length > 0 && (
+        <div className="mb-8">
+          <h2 className="text-lg font-bold text-slate-900 mb-4">Frequently Asked Questions</h2>
+          <div className="space-y-3">
+            {faqs.map((faq, i) => (
+              <div key={i} className="bg-white rounded-xl border border-slate-200 p-5">
+                <h3 className="font-semibold text-slate-900 mb-2">{faq.question}</h3>
+                <p className="text-slate-600 leading-relaxed">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+      {sources.length > 0 && (
+        <div className="mb-8">
+          <h2 className="text-lg font-bold text-slate-900 mb-3">Sources</h2>
+          <ul className="list-disc pl-5 space-y-1 text-sm text-slate-600">
+            {sources.map((src, i) => (
+              <li key={i}>
+                {src.url ? <a href={src.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{src.label}</a> : src.label}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
 }
 
 // --- Page component ---
@@ -170,7 +251,7 @@ export default async function CalculatorCatchAllPage({
   }
 
   // Server-side: get calculator name & subtitle for SSR hero
-  const { name, subtitle } = await getCalcInfo(entry.id, locale);
+  const { name, subtitle, faqs, educationTexts, sources } = await getCalcInfo(entry.id, locale);
 
   return (
     <>
@@ -237,6 +318,9 @@ export default async function CalculatorCatchAllPage({
 
       {/* Client-rendered calculator (hides skeleton on mount) */}
       <CalculatorClient calcId={entry.id} locale={locale} />
+
+      {/* Server-rendered SEO content — Google sees this immediately */}
+      <SSRContent faqs={faqs} educationTexts={educationTexts} sources={sources} />
     </>
   );
 }
