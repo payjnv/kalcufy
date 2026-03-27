@@ -116,6 +116,7 @@ export default function AdminBlogPage() {
   const formatDate = (date: string | null) => {
     if (!date) return "-";
     return new Date(date).toLocaleDateString("en-US", {
+      timeZone: "America/New_York",
       month: "short",
       day: "numeric",
       year: "numeric",

@@ -363,7 +363,7 @@ export default function AdminBlogPage() {
     if (days === 1) return "Yesterday";
     if (days < 7) return `${days}d ago`;
     if (days < 30) return `${Math.floor(days / 7)}w ago`;
-    return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+    return d.toLocaleDateString("en-US", { timeZone: "America/New_York", month: "short", day: "numeric", year: "numeric" });
   };
 
   const formatViews = (views: number) => {

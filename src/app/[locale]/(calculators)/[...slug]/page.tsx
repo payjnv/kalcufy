@@ -201,7 +201,9 @@ function SSRContent({ faqs, educationTexts, sources }: {
       )}
       {faqs.length > 0 && (
         <div className="mb-8">
-          <h2 className="text-lg font-bold text-slate-900 mb-4">Frequently Asked Questions</h2>
+          <h2 className="text-lg font-bold text-slate-900 mb-4">{
+              ({ en: "Frequently Asked Questions", es: "Preguntas Frecuentes", pt: "Perguntas Frequentes", fr: "Questions Fréquentes", de: "Häufig Gestellte Fragen" } as Record<string,string>)[locale] || "Frequently Asked Questions"
+            }</h2>
           <div className="space-y-3">
             {faqs.map((faq, i) => (
               <div key={i} className="bg-white rounded-xl border border-slate-200 p-5">
@@ -214,7 +216,9 @@ function SSRContent({ faqs, educationTexts, sources }: {
       )}
       {sources.length > 0 && (
         <div className="mb-8">
-          <h2 className="text-lg font-bold text-slate-900 mb-3">Sources</h2>
+          <h2 className="text-lg font-bold text-slate-900 mb-3">{
+              ({ en: "Sources", es: "Fuentes", pt: "Fontes", fr: "Sources", de: "Quellen" } as Record<string,string>)[locale] || "Sources"
+            }</h2>
           <ul className="list-disc pl-5 space-y-1 text-sm text-slate-600">
             {sources.map((src, i) => (
               <li key={i}>

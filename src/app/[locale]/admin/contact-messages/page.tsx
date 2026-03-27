@@ -177,7 +177,7 @@ export default function ContactMessagesPage() {
                           {message.name}
                         </p>
                         <span className="text-xs text-slate-400 shrink-0">
-                          {new Date(message.createdAt).toLocaleDateString()}
+                          {new Date(message.createdAt).toLocaleDateString("en-US", { timeZone: "America/New_York", month: "short", day: "numeric", year: "numeric" })}
                         </span>
                       </div>
                       <p className="text-sm text-slate-600 truncate">{message.email}</p>
@@ -256,7 +256,7 @@ export default function ContactMessagesPage() {
               <div className="flex items-center gap-4 text-sm text-slate-500">
                 <span className="flex items-center gap-1">
                   <Clock className="w-4 h-4" />
-                  {new Date(selectedMessage.createdAt).toLocaleString()}
+                  {new Date(selectedMessage.createdAt).toLocaleString("en-US", { timeZone: "America/New_York", month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit", hour12: true })}
                 </span>
                 {selectedMessage.replied && (
                   <span className="flex items-center gap-1 text-green-600">

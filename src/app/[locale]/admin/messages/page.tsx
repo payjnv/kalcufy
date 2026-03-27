@@ -167,7 +167,7 @@ export default function MessagesPage() {
                         <CheckCircle className="w-4 h-4 text-green-500" />
                       )}
                       <span className="text-xs text-slate-400">
-                        {new Date(message.createdAt).toLocaleDateString()}
+                        {new Date(message.createdAt).toLocaleDateString("en-US", { timeZone: "America/New_York", month: "short", day: "numeric", year: "numeric" })}
                       </span>
                     </div>
                   </div>
@@ -201,7 +201,7 @@ export default function MessagesPage() {
                   <div className="flex items-center gap-2">
                     <span className="text-xs text-slate-400 flex items-center gap-1">
                       <Clock className="w-3 h-3" />
-                      {new Date(selectedMessage.createdAt).toLocaleString()}
+                      {new Date(selectedMessage.createdAt).toLocaleString("en-US", { timeZone: "America/New_York", month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit", hour12: true })}
                     </span>
                   </div>
                 </div>

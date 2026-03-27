@@ -131,8 +131,8 @@ export default function SubscriptionsPage() {
                       <span className={`px-2.5 py-1 text-xs font-medium rounded-full ${getStatusColor(sub.status)}`}>{sub.status}</span>
                       {sub.cancelAtPeriodEnd && <span className="text-xs text-amber-600 ml-2">(cancels at period end)</span>}
                     </td>
-                    <td className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4 text-sm text-slate-600">{sub.currentPeriodEnd ? new Date(sub.currentPeriodEnd).toLocaleDateString() : "-"}</td>
-                    <td className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4 text-sm text-slate-600">{new Date(sub.createdAt).toLocaleDateString()}</td>
+                    <td className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4 text-sm text-slate-600">{sub.currentPeriodEnd ? new Date(sub.currentPeriodEnd).toLocaleDateString("en-US", { timeZone: "America/New_York", month: "short", day: "numeric", year: "numeric" }) : "-"}</td>
+                    <td className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4 text-sm text-slate-600">{new Date(sub.createdAt).toLocaleDateString("en-US", { timeZone: "America/New_York", month: "short", day: "numeric", year: "numeric" })}</td>
                     <td className="px-3 sm:px-3 sm:px-6 py-2.5 sm:py-3 sm:py-4">
                       <Link href={`/admin/users/${sub.userId}`} className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg inline-block"><Eye className="w-4 h-4" /></Link>
                     </td>
