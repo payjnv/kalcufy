@@ -15,8 +15,8 @@ const DEFAULT_SETTINGS = {
     favicon: "/favicon.ico",
   },
   seo: {
-    titleTemplate: "%s | Kalcufy - Free Online Calculators",
-    defaultTitle: "Kalcufy - Free Online Calculators for Finance, Health & More",
+    titleTemplate: "%s | Kalcufy",
+    defaultTitle: "Kalcufy",
     defaultDescription: "Free online calculators for finance, health, math and everyday use. Professional tools with multi-language support.",
     defaultOgImage: "/og-default.png",
     defaultLocale: "en",

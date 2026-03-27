@@ -214,7 +214,7 @@ async function step1_translate() {
   const en = extractEnBlock(content);
   if (!en) { console.log('   ⚠ Cannot extract EN block'); return; }
   
-  const SLUG_EN = calcName + '-calculator';
+  const SLUG_EN = calcName.endsWith('-calculator') ? calcName : calcName + '-calculator';
   const translations = {};
   for (const lang of missing) {
     try {
@@ -284,7 +284,7 @@ async function step2_registry() {
   if (!fs.existsSync(REGISTRY)) { console.log('   ⚠ Not found'); return; }
   
   let r = fs.readFileSync(REGISTRY, 'utf-8');
-  const SLUG_EN = calcName + '-calculator';
+  const SLUG_EN = calcName.endsWith('-calculator') ? calcName : calcName + '-calculator';
   
   if (r.includes(`id: "${calcName}"`)) { 
     console.log('   ✓ Already exists'); 
@@ -344,7 +344,7 @@ function step3_config() {
   console.log('\n⚙️  Step 3: Updating calculators-config.ts...');
   if (!fs.existsSync(CALC_CONFIG)) { console.log('   ⚠ Not found'); return; }
   
-  const SLUG_EN = calcName + '-calculator';
+  const SLUG_EN = calcName.endsWith('-calculator') ? calcName : calcName + '-calculator';
   let c = fs.readFileSync(CALC_CONFIG, 'utf-8');
   if (c.includes(`slug: "${SLUG_EN}"`)) { console.log('   ✓ Already exists'); return; }
   
@@ -420,7 +420,7 @@ function step4_messages() {
 // ══════════════════════════════════════════════════════════════
 async function step5_database() {
   console.log('\n🗄️  Step 5: Adding to database...');
-  const SLUG_EN = calcName + '-calculator';
+  const SLUG_EN = calcName.endsWith('-calculator') ? calcName : calcName + '-calculator';
   try {
     await prisma.calculatorStatus.upsert({ where: { slug: SLUG_EN }, update: {}, create: { slug: SLUG_EN, isActive: true } });
     console.log('   ✓ Added');
@@ -431,7 +431,7 @@ async function step5_database() {
 // Main
 // ══════════════════════════════════════════════════════════════
 async function main() {
-  const SLUG_EN = calcName + '-calculator';
+  const SLUG_EN = calcName.endsWith('-calculator') ? calcName : calcName + '-calculator';
   console.log(`
 ╔══════════════════════════════════════════════════════════════════╗
 ║  INSTALLING: ${SLUG_EN.padEnd(50)}║

@@ -9,24 +9,24 @@ const LOCALES = ["en", "es", "pt", "fr", "de"] as const;
 
 const homeMeta: Record<string, { title: string; description: string }> = {
   en: {
-    title: "Kalcufy - 100+ Free Online Calculators | Fast & Accurate",
-    description: "Free, fast calculators for loans, mortgages, BMI, calories, compound interest and more. Make smarter decisions in seconds. Available in 5 languages.",
+    title: "Kalcufy",
+    description: "Make smarter decisions with fast, accurate calculators for finance, fitness, and everyday life. Simple, powerful, and built for real results.",
   },
   es: {
-    title: "Kalcufy - 100+ Calculadoras Online Gratis | Rápidas y Precisas",
-    description: "Calculadoras gratuitas y rápidas para préstamos, hipotecas, IMC, calorías, interés compuesto y más. Toma mejores decisiones en segundos. Disponible en 5 idiomas.",
+    title: "Kalcufy",
+    description: "Toma mejores decisiones con calculadoras rápidas y precisas para finanzas, salud y la vida diaria. Simple, potente y diseñado para resultados reales.",
   },
   pt: {
-    title: "Kalcufy - 100+ Calculadoras Online Grátis | Rápidas e Precisas",
-    description: "Calculadoras gratuitas e rápidas para empréstimos, financiamentos, IMC, calorias, juros compostos e mais. Tome decisões mais inteligentes em segundos. Disponível em 5 idiomas.",
+    title: "Kalcufy",
+    description: "Tome decisões mais inteligentes com calculadoras rápidas e precisas para finanças, saúde e o dia a dia. Simples, poderoso e feito para resultados reais.",
   },
   fr: {
-    title: "Kalcufy - 100+ Calculateurs en Ligne Gratuits | Rapides et Précis",
-    description: "Calculateurs gratuits et rapides pour prêts, hypothèques, IMC, calories, intérêts composés et plus. Prenez de meilleures décisions en quelques secondes. Disponible en 5 langues.",
+    title: "Kalcufy",
+    description: "Prenez de meilleures décisions avec des calculateurs rapides et précis pour la finance, la santé et le quotidien. Simple, puissant et conçu pour de vrais résultats.",
   },
   de: {
-    title: "Kalcufy - 100+ Kostenlose Online-Rechner | Schnell & Genau",
-    description: "Kostenlose, schnelle Rechner für Kredite, Hypotheken, BMI, Kalorien, Zinseszins und mehr. Treffen Sie klügere Entscheidungen in Sekunden. In 5 Sprachen verfügbar.",
+    title: "Kalcufy",
+    description: "Treffen Sie klügere Entscheidungen mit schnellen, präzisen Rechnern für Finanzen, Gesundheit und den Alltag. Einfach, leistungsstark und für echte Ergebnisse gebaut.",
   },
 };
 

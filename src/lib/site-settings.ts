@@ -13,7 +13,7 @@ export interface SiteSettings {
 const SETTINGS_PATH = path.join(process.cwd(), 'src', 'config', 'site-settings.json');
 const DEFAULTS: SiteSettings = {
   site: { name: 'Kalcufy', tagline: 'Free Online Calculators', url: 'https://www.kalcufy.com', logo: '/favicon.png', favicon: '/favicon.png' },
-  seo: { titleTemplate: '%s | Kalcufy', defaultTitle: 'Kalcufy - Free Online Calculators', defaultDescription: 'Free online calculators for finance, health, and everyday decisions. Mortgage, loans, BMI, calories and 40+ more tools.', defaultOgImage: '/og-default.png', defaultLocale: 'en', canonicalBase: 'https://www.kalcufy.com' },
+  seo: { titleTemplate: '%s | Kalcufy', defaultTitle: 'Kalcufy', defaultDescription: 'Make smarter decisions with fast, accurate calculators for finance, fitness, and everyday life. Simple, powerful, and built for real results.', defaultOgImage: '/og-default.png', defaultLocale: 'en', canonicalBase: 'https://www.kalcufy.com' },
   google: { searchConsoleId: '', analyticsId: '', adsenseId: '', tagManagerId: '' },
   social: { twitter: '', facebook: '', linkedin: '', github: '', youtube: '' },
   schema: { organizationName: 'Kalcufy', organizationLogo: 'https://www.kalcufy.com/favicon.png', contactEmail: '', foundingDate: '2024', sameAs: [] },
