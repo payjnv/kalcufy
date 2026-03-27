@@ -1,15 +1,15 @@
 {
   "site": {
     "name": "Kalcufy",
-    "tagline": "Free Online Calculators",
+    "tagline": "Fast, Accurate Calculators",
     "url": "https://www.kalcufy.com",
     "logo": "/favicon.png",
     "favicon": "/favicon.ico"
   },
   "seo": {
-    "titleTemplate": "%s | Kalcufy - Free Online Calculators",
-    "defaultTitle": "Kalcufy - Free Online Calculators for Finance, Health & More",
-    "defaultDescription": "Free online calculators for finance, health, math and everyday use. Professional tools with multi-language support.",
+    "titleTemplate": "%s | Kalcufy",
+    "defaultTitle": "Kalcufy",
+    "defaultDescription": "Make smarter decisions with fast, accurate calculators for finance, fitness, and everyday life. Simple, powerful, and built for real results.",
     "defaultOgImage": "/og-default.png",
     "defaultLocale": "en",
     "canonicalBase": "https://www.kalcufy.com"
