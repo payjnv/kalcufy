@@ -382,8 +382,8 @@ export default async function CalculatorCatchAllPage({
       {/* Client-rendered calculator (hides skeleton on mount) */}
       <CalculatorClient calcId={entry.id} locale={locale} />
 
-      {/* Server-rendered SEO content — Google sees this immediately */}
-      <SSRContent faqs={faqs} educationTexts={educationTexts} sources={sources} locale={locale} />
+      {/* Server-rendered SEO content — hidden when client mounts */}
+      <div id="calc-ssr-content"><SSRContent faqs={faqs} educationTexts={educationTexts} sources={sources} locale={locale} /></div>
     </>
   );
 }

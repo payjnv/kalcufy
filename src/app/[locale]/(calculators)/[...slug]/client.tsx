@@ -93,6 +93,8 @@ type Status = "loading" | "ready" | "not-found";
 /** Remove the server-rendered skeleton (keep the hero for LCP) */
 function removeSSRSkeleton() {
   const el = document.getElementById("calc-ssr-skeleton");
+    const ssrContent = document.getElementById("calc-ssr-content");
+    if (ssrContent) ssrContent.style.display = "none";
   if (el) el.remove();
 }
 
