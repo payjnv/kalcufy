@@ -181,10 +181,11 @@ async function getCalcInfo(entryId: string, locale: string) {
 
 
 // --- SSR Content: Rendered server-side so Google can index FAQs + Education ---
-function SSRContent({ faqs, educationTexts, sources }: {
+function SSRContent({ faqs, educationTexts, sources, locale }: {
   faqs: Array<{ question: string; answer: string }>;
   educationTexts: Array<{ title: string; content: string }>;
   sources: Array<{ label: string; url?: string }>;
+  locale: string;
 }) {
   if (faqs.length === 0 && educationTexts.length === 0) return null;
   return (
@@ -324,7 +325,7 @@ export default async function CalculatorCatchAllPage({
       <CalculatorClient calcId={entry.id} locale={locale} />
 
       {/* Server-rendered SEO content — Google sees this immediately */}
-      <SSRContent faqs={faqs} educationTexts={educationTexts} sources={sources} />
+      <SSRContent faqs={faqs} educationTexts={educationTexts} sources={sources} locale={locale} />
     </>
   );
 }
