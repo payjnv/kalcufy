@@ -41,6 +41,7 @@ export default function robots(): MetadataRoute.Robots {
       `${BASE_URL}/sitemap-pages.xml`,
       `${BASE_URL}/sitemap-calculators.xml`,
       `${BASE_URL}/sitemap-blog.xml`,
+    `${BASE_URL}/sitemap-categories.xml`,
     ],
   };
 }

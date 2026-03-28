@@ -1,4 +1,5 @@
 import { SLUG_REGISTRY } from '@/engine/v4/slugs/registry';
+import { CATEGORY_PAGES } from '@/lib/category-pages-config';
 import { prisma } from '@/lib/prisma';
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.kalcufy.com';
@@ -98,6 +99,19 @@ export async function getBlogSitemap() {
   return wrapUrlset(entries);
 }
 
+
+export async function getCategoryPagesSitemap() {
+  const entries: string[] = [];
+  for (const cat of CATEGORY_PAGES) {
+    const alts: Record<string, string> = {};
+    for (const l of LOCALES) alts[l] = `${BASE_URL}/${l}/${cat.slugs[l]}`;
+    for (const l of LOCALES) {
+      entries.push(urlEntry(`${BASE_URL}/${l}/${cat.slugs[l]}`, STATIC_LAST_MOD, 'weekly', 0.9, alts));
+    }
+  }
+  return wrapUrlset(entries);
+}
+
 export function getSitemapIndex() {
   return `<?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -109,6 +123,9 @@ export function getSitemapIndex() {
   </sitemap>
   <sitemap>
     <loc>${BASE_URL}/sitemap-blog.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>${BASE_URL}/sitemap-categories.xml</loc>
   </sitemap>
 </sitemapindex>`;
 }
