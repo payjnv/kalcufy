@@ -1,400 +1,640 @@
 import type { CalculatorConfigV4, CalculatorResults } from "@/engine/v4/types/engine.types";
 
+// ═══════════════════════════════════════════════════════════════════════
+// 🏦 SIMPLE INTEREST CALCULATOR — V2 Complete Rebuild
+// ═══════════════════════════════════════════════════════════════════════
+// FEATURES vs competitors (Calculator.net, CalculatorSoup, NerdWallet):
+//   ✅ 4 solve modes: Interest, Principal, Rate, Time
+//   ✅ Time unit: days, months, years
+//   ✅ Day convention: 360 (banker's) vs 365 (exact)
+//   ✅ Currency dropdown (32+ currencies, geo-detection)
+//   ✅ Year-by-year breakdown table (detailedTable)
+//   ✅ Simple vs Compound comparison
+//   ✅ Daily/monthly/yearly interest breakdown
+//   ✅ Area chart: balance growth over time
+//   ✅ NO competitor has all of this in one tool
+// ═══════════════════════════════════════════════════════════════════════
+
+// ─── Helpers ─────────────────────────────────────────────────────────
+function fmtC(val: number, sym: string): string {
+  if (val === 0) return `${sym}0.00`;
+  if (Math.abs(val) >= 1e9) return `${sym}${(val / 1e9).toFixed(2)}B`;
+  if (Math.abs(val) >= 1e6) return `${sym}${(val / 1e6).toFixed(2)}M`;
+  return `${sym}${val.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+}
+
+function fmtNum(val: number): string {
+  if (val === 0) return "0";
+  return val.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+const CURRENCY_SYMBOLS: Record<string, string> = {
+  USD: "$", EUR: "€", GBP: "£", MXN: "MX$", BRL: "R$", JPY: "¥",
+  INR: "₹", CAD: "C$", AUD: "A$", CHF: "CHF ", COP: "COL$",
+  ARS: "AR$", PEN: "S/", CLP: "CLP$", CNY: "¥", KRW: "₩",
+  SEK: "kr", NOK: "kr", DKK: "kr", NZD: "NZ$", ZAR: "R",
+  SGD: "S$", HKD: "HK$", TRY: "₺", PLN: "zł", THB: "฿",
+  TWD: "NT$", ILS: "₪", PHP: "₱", CZK: "Kč", IDR: "Rp",
+  MYR: "RM", DOP: "RD$",
+};
+
+// ═══════════════════════════════════════════════════════════════════════
+// CONFIG
+// ═══════════════════════════════════════════════════════════════════════
 export const simpleInterestCalculatorConfig: CalculatorConfigV4 = {
   id: "simple-interest-calculator",
   version: "4.0",
   category: "finance",
-  icon: "💰",
+  icon: "🏦",
 
   presets: [
-    {
-      id: "personalLoan",
-      icon: "💳",
-      values: { principal: 10000, rate: 8.5, timePeriod: 3, timeUnit: "years", mode: "loan" },
-    },
-    {
-      id: "savingsAccount",
-      icon: "🏦",
-      values: { principal: 5000, rate: 4.5, timePeriod: 12, timeUnit: "months", mode: "savings" },
-    },
-    {
-      id: "carLoan",
-      icon: "🚗",
-      values: { principal: 25000, rate: 6.9, timePeriod: 5, timeUnit: "years", mode: "loan" },
-    },
-    {
-      id: "shortTermCD",
-      icon: "📅",
-      values: { principal: 2000, rate: 5.2, timePeriod: 180, timeUnit: "days", mode: "savings" },
-    },
+    { id: "personalLoan", icon: "💳", values: { solveFor: "interest", principal: 10000, rate: 8.5, timeValue: 3, timeUnit: "years", dayConvention: "365" } },
+    { id: "savingsCD", icon: "🏦", values: { solveFor: "interest", principal: 25000, rate: 4.5, timeValue: 12, timeUnit: "months", dayConvention: "365" } },
+    { id: "carLoan", icon: "🚗", values: { solveFor: "interest", principal: 20000, rate: 6.9, timeValue: 5, timeUnit: "years", dayConvention: "365" } },
+    { id: "shortTerm", icon: "📅", values: { solveFor: "interest", principal: 5000, rate: 12, timeValue: 90, timeUnit: "days", dayConvention: "360" } },
   ],
 
   t: {
     en: {
       name: "Simple Interest Calculator",
       slug: "simple-interest-calculator",
-      subtitle: "Calculate simple interest on loans or savings. Find total interest earned or owed, final balance, and see how simple interest compares to compound interest over time.",
+      subtitle: "Calculate simple interest, principal, rate, or time. Compare simple vs compound interest and see year-by-year breakdowns.",
       breadcrumb: "Simple Interest",
+
       seo: {
-        title: "Simple Interest Calculator - I = Prt Formula | Free Tool",
-        description: "Free simple interest calculator using I = Prt. Calculate interest on loans or savings by days, months, or years. Compare simple vs compound interest with chart.",
-        shortDescription: "Calculate simple interest on loans and savings instantly.",
-        keywords: ["simple interest calculator", "simple interest formula", "I=Prt calculator", "simple interest loan", "simple vs compound interest"],
+        title: "Simple Interest Calculator I=Prt - Free Online Tool",
+        description: "Calculate simple interest using I=Prt formula. Solve for interest, principal, rate, or time. Compare with compound interest. Supports 32+ currencies and banker's 360/365 day convention.",
+        shortDescription: "Calculate simple interest with I=Prt formula. Solve for any variable.",
+        keywords: ["simple interest calculator", "I=Prt calculator", "simple interest formula", "interest calculator", "calculate simple interest", "loan interest calculator", "savings interest calculator", "free interest calculator"],
       },
-      ui: { yourInformation: "Your Details", calculate: "Calculate Interest", reset: "Reset", results: "Results" },
+
+      calculator: { yourInformation: "Interest Details" },
+      ui: { yourInformation: "Interest Details", calculate: "Calculate", reset: "Reset", results: "Results" },
+
       inputs: {
-        mode: {
-          label: "Calculation Mode",
-          helpText: "Loan: interest you owe. Savings: interest you earn.",
-          options: { loan: "💳 Loan (Interest Owed)", savings: "🏦 Savings (Interest Earned)" },
+        solveFor: {
+          label: "Solve For",
+          helpText: "Choose what you want to calculate",
+          options: {
+            interest: "💰 Interest Amount",
+            principal: "🏦 Principal Amount",
+            rate: "📊 Interest Rate",
+            time: "📅 Time Period",
+          },
         },
-        principal: { label: "Principal Amount", helpText: "The initial amount borrowed or deposited" },
-        rateLoan: { label: "Annual Interest Rate", helpText: "Simple interest rate per year. Personal loans: 6-20%, car loans: 5-10%, payday: much higher" },
-        rateSavings: { label: "Annual Interest Rate", helpText: "Rate earned on savings. High-yield savings: 4-5%, CDs: 4-6%, regular savings: 0.5-1%" },
-        timePeriod: { label: "Time Period", helpText: "How long the money is borrowed or invested" },
+        principal: {
+          label: "Principal Amount",
+          helpText: "The initial amount borrowed or invested",
+        },
+        rate: {
+          label: "Annual Interest Rate",
+          helpText: "The yearly interest rate as a percentage",
+        },
+        timeValue: {
+          label: "Time Period",
+          helpText: "How long the money is borrowed or invested",
+        },
         timeUnit: {
           label: "Time Unit",
-          helpText: "Choose the unit that matches your loan or savings term",
-          options: { days: "Days", months: "Months", years: "Years" },
+          helpText: "Select the time unit for your calculation",
+          options: {
+            days: "Days",
+            months: "Months",
+            years: "Years",
+          },
+        },
+        interest: {
+          label: "Interest Amount",
+          helpText: "The total interest earned or owed",
+        },
+        dayConvention: {
+          label: "Day Count Convention",
+          helpText: "365 = exact year, 360 = banker's year (used in some loans)",
+          options: {
+            "365": "365 days (Exact/Actual)",
+            "360": "360 days (Banker's Year)",
+          },
         },
       },
+
       results: {
         totalInterest: { label: "Total Interest" },
-        finalAmount: { label: "Final Amount" },
-        principal: { label: "Principal" },
-        effectiveRate: { label: "Effective Annual Rate" },
-        dailyInterest: { label: "Daily Interest" },
-        monthlyInterest: { label: "Monthly Interest" },
+        totalAmount: { label: "Total Amount (P + I)" },
+        principal: { label: "Principal Required" },
+        rate: { label: "Interest Rate Required" },
+        timePeriod: { label: "Time Period Required" },
       },
+
       presets: {
-        personalLoan: { label: "Personal Loan", description: "$10K at 8.5% for 3 years" },
-        savingsAccount: { label: "Savings Account", description: "$5K at 4.5% for 12 months" },
-        carLoan: { label: "Car Loan", description: "$25K at 6.9% for 5 years" },
-        shortTermCD: { label: "Short-Term CD", description: "$2K at 5.2% for 180 days" },
+        personalLoan: { label: "💳 Personal Loan", description: "$10K at 8.5% for 3 years" },
+        savingsCD: { label: "🏦 Savings CD", description: "$25K at 4.5% for 12 months" },
+        carLoan: { label: "🚗 Car Loan", description: "$20K at 6.9% for 5 years" },
+        shortTerm: { label: "📅 Short-Term", description: "$5K at 12% for 90 days (360)" },
       },
-      values: { "%": "%", "/yr": "/yr", "/mo": "/mo", "/day": "/day" },
+
+      values: {
+        "perDay": "per day",
+        "perMonth": "per month",
+        "perYear": "per year",
+        "years": "years",
+        "months": "months",
+        "days": "days",
+        "simple": "Simple Interest",
+        "compound": "Compound Interest",
+        "youSave": "You save",
+        "moreWith": "more with",
+      },
+
       formats: {
-        summary: "Interest: {interest} on {principal} over {time} — Total: {total}",
+        summary: "Principal: {principal} × {rate}% × {time} = {interest} interest → Total: {total}",
       },
-      chart: {
-        title: "Simple vs Compound Interest Over Time",
-        xLabel: "Year",
-        yLabel: "Balance ($)",
-        series: { simple: "Simple Interest", compound: "Compound Interest (monthly)" },
-      },
+
       infoCards: {
         breakdown: {
           title: "Interest Breakdown",
-          items: ["Total Interest", "Final Amount", "Principal", "Effective Annual Rate"],
+          items: [
+            { label: "Total Interest", valueKey: "totalInterest" },
+            { label: "Final Amount", valueKey: "totalAmount" },
+            { label: "Daily Interest", valueKey: "dailyInterest" },
+            { label: "Monthly Interest", valueKey: "monthlyInterest" },
+          ],
         },
-        perPeriod: {
-          title: "Interest Per Period",
-          items: ["Daily Interest", "Monthly Interest", "Total Interest", "Final Amount"],
+        comparison: {
+          title: "Simple vs Compound",
+          items: [
+            { label: "Simple Interest", valueKey: "simpleTotal" },
+            { label: "Compound Interest", valueKey: "compoundTotal" },
+            { label: "Difference", valueKey: "interestDifference" },
+            { label: "Effective Rate", valueKey: "effectiveRate" },
+          ],
         },
         tips: {
           title: "Smart Interest Tips",
           items: [
-            "Simple interest is calculated only on the original principal — unlike compound interest which grows on itself",
-            "Most car loans and personal loans use simple interest — paying early reduces total interest significantly",
-            "High-yield savings accounts (4-5% APY) use compound interest — always better for savers than simple interest accounts",
-            "Rule of 72: divide 72 by the interest rate to estimate how many years to double your money",
+            "Simple interest is calculated only on the original principal — unlike compound interest, which earns interest on interest.",
+            "Most car loans and personal loans use simple interest — paying early reduces total interest paid.",
+            "The 360-day banker's year slightly increases interest vs the 365-day exact method.",
+            "To quickly estimate: multiply principal × rate × years. For $10,000 at 5% for 3 years: $10,000 × 0.05 × 3 = $1,500.",
           ],
         },
       },
-      detailedTable: {
-        growthTable: {
-          button: "View Year-by-Year Breakdown",
-          title: "Year-by-Year Interest Breakdown",
-          columns: {
-            year: "Year",
-            simpleInterest: "Simple Interest Earned",
-            simpleBalance: "Simple Balance",
-            compoundBalance: "Compound Balance",
-            difference: "Compound Advantage",
-          },
-        },
-      },
+
       education: {
         whatIs: {
           title: "What Is Simple Interest?",
-          content: "Simple interest is calculated only on the original principal amount — it never compounds. The formula is I = P × r × t, where P is principal, r is the annual rate (as a decimal), and t is time in years. If you borrow $1,000 at 10% for 3 years, you owe $300 in interest ($1,000 × 0.10 × 3), for a total of $1,300. Unlike compound interest, the interest amount is the same every year — it doesn't grow on previously earned interest. This makes simple interest more predictable and easier to calculate, and it's commonly used for personal loans, auto loans, and some savings products.",
+          content: "Simple interest is a method of calculating interest where the charge is applied only to the original principal amount, not on accumulated interest. The formula is I = P × r × t, where I is interest, P is principal, r is the annual rate (as a decimal), and t is time in years. Unlike compound interest, simple interest grows linearly — you pay or earn the same amount of interest each period. Simple interest is commonly used for auto loans, personal loans, some student loans, and certificates of deposit (CDs). It favors borrowers because the total cost is lower than compound interest over the same period.",
         },
-        simpleVsCompound: {
-          title: "Simple Interest vs Compound Interest",
-          content: "The key difference: with simple interest, you earn (or owe) the same dollar amount every period. With compound interest, each period's interest is added to the principal, so the next period's interest is larger. For borrowers, simple interest is better — you pay less over time. For savers, compound interest is better — your money grows faster. Example: $10,000 at 5% for 10 years. Simple interest: $5,000 total interest, balance = $15,000. Compound interest (monthly): $6,470 total interest, balance = $16,470. The difference grows dramatically over longer time horizons and higher rates.",
+        howItWorks: {
+          title: "How to Calculate Simple Interest",
+          content: "The simple interest formula is I = P × r × t. To use it: (1) Convert the rate from percentage to decimal by dividing by 100 (e.g., 8.5% becomes 0.085). (2) Express time in years — if you have months, divide by 12; if days, divide by 365 (or 360 for banker's convention). (3) Multiply all three values. The total amount owed or earned is A = P + I = P(1 + rt). This calculator can also solve in reverse — given any three of the four variables (I, P, r, t), it finds the missing one.",
         },
-        whenUsed: {
-          title: "When Simple Interest Is Used",
+        considerations: {
+          title: "Important Considerations",
           items: [
-            { text: "Auto loans — most car loans in the U.S. use simple interest, so extra payments reduce principal directly and save interest", type: "info" },
-            { text: "Personal loans — fixed-term loans from banks, credit unions, and online lenders typically use simple interest", type: "info" },
-            { text: "Student loans — many federal student loans use simple interest, especially during grace periods", type: "info" },
-            { text: "Short-term loans — payday loans, bridge loans, and lines of credit often quote simple daily interest rates", type: "warning" },
-            { text: "Some savings bonds — Series I and EE bonds use a form of simple interest accrual in their early years", type: "info" },
-            { text: "Treasury bills — short-term government securities calculate returns using simple interest", type: "info" },
+            { text: "Simple interest charges are based only on the principal — you never pay interest on interest. This makes it cheaper than compound interest for borrowers.", type: "info" },
+            { text: "The 360-day (banker's year) convention slightly increases interest compared to the 365-day method. Some commercial loans and Treasury bills use 360 days.", type: "warning" },
+            { text: "Most real-world savings accounts use compound interest, not simple interest. CDs and bonds are common exceptions.", type: "warning" },
+            { text: "For loans: paying early reduces total interest because simple interest is calculated on remaining time, not accumulated interest.", type: "info" },
+            { text: "The effective annual rate for simple interest equals the stated rate. For compound interest, the effective rate is higher due to compounding.", type: "info" },
+            { text: "When comparing loan offers, check whether they use simple or compound interest — the difference can be significant over long terms.", type: "info" },
           ],
         },
-        howToSave: {
-          title: "How to Pay Less Interest on Simple Interest Loans",
+        formulas: {
+          title: "Simple Interest Formulas",
           items: [
-            { text: "Pay more than the minimum — on simple interest loans, extra payments reduce principal immediately, cutting future interest", type: "info" },
-            { text: "Pay early in the month — interest on daily simple interest loans accrues each day, so earlier payments = fewer days of interest", type: "info" },
-            { text: "Round up payments — rounding a $387 payment up to $400 saves hundreds over a multi-year loan term", type: "info" },
-            { text: "Avoid deferring payments — deferred payments still accrue daily interest that gets added to your balance", type: "warning" },
-            { text: "Refinance if rates drop — simple interest loans can often be refinanced without penalty", type: "info" },
-            { text: "Never miss a payment — late fees on simple interest loans are added to principal, increasing the base for future interest", type: "warning" },
+            { text: "Interest: I = P × r × t (principal × rate × time in years)", type: "info" },
+            { text: "Total Amount: A = P + I = P(1 + rt)", type: "info" },
+            { text: "Solve for Principal: P = I ÷ (r × t)", type: "info" },
+            { text: "Solve for Rate: r = I ÷ (P × t)", type: "info" },
+            { text: "Solve for Time: t = I ÷ (P × r)", type: "info" },
+            { text: "Time conversion: months ÷ 12 = years | days ÷ 365 = years", type: "info" },
           ],
         },
         examples: {
-          title: "Simple Interest Examples",
-          description: "Real-world examples using I = P × r × t",
+          title: "Calculation Examples",
+          description: "Step-by-step scenarios",
           examples: [
             {
-              title: "Car Loan: $20,000 at 6% for 4 Years",
+              title: "Personal Loan: $10,000 at 8.5% for 3 years",
               steps: [
-                "Principal (P) = $20,000 | Rate (r) = 6% = 0.06 | Time (t) = 4 years",
-                "Interest = P × r × t = $20,000 × 0.06 × 4 = $4,800",
-                "Total repaid = $20,000 + $4,800 = $24,800",
-                "Monthly payment = $24,800 ÷ 48 months = $516.67/month",
+                "Principal (P) = $10,000",
+                "Rate (r) = 8.5% = 0.085",
+                "Time (t) = 3 years",
+                "I = $10,000 × 0.085 × 3 = $2,550",
+                "Total = $10,000 + $2,550 = $12,550",
               ],
-              result: "You pay $4,800 in interest over 4 years. Making one extra $516 payment in year 1 saves ~$200 in total interest.",
+              result: "Total interest: $2,550. Monthly interest: $70.83. Daily: $2.33.",
             },
             {
-              title: "Savings: $5,000 at 4.5% for 18 Months",
+              title: "90-Day Note: $5,000 at 12% (Banker's 360)",
               steps: [
-                "Principal (P) = $5,000 | Rate (r) = 4.5% = 0.045 | Time (t) = 18 ÷ 12 = 1.5 years",
-                "Interest = P × r × t = $5,000 × 0.045 × 1.5 = $337.50",
-                "Final balance = $5,000 + $337.50 = $5,337.50",
-                "Monthly interest = $337.50 ÷ 18 = $18.75/month",
+                "Principal (P) = $5,000",
+                "Rate (r) = 12% = 0.12",
+                "Time (t) = 90 ÷ 360 = 0.25 years",
+                "I = $5,000 × 0.12 × 0.25 = $150",
+                "Total = $5,000 + $150 = $5,150",
               ],
-              result: "A $5,000 deposit at 4.5% simple interest for 18 months earns $337.50. A compound account at the same rate would earn ~$345.",
+              result: "Interest on 90-day note: $150. Using 365 days would give $147.95.",
             },
           ],
         },
       },
+
       faqs: [
-        { question: "What is the simple interest formula?", answer: "Simple interest uses I = P × r × t, where I is interest, P is principal, r is the annual rate as a decimal (5% = 0.05), and t is time in years. Total amount = A = P(1 + rt). Example: $1,000 at 8% for 2 years: I = $1,000 × 0.08 × 2 = $160, total = $1,160." },
-        { question: "How is simple interest different from compound interest?", answer: "Simple interest is calculated only on the original principal — the interest amount stays the same each period. Compound interest is calculated on principal plus accumulated interest, so it grows over time. For borrowers, simple interest is cheaper. For savers, compound interest earns more. Example: $10,000 at 5% for 10 years — simple: $5,000 interest. Compound monthly: $6,470 — 29% more." },
-        { question: "Do car loans use simple interest?", answer: "Yes, most auto loans in the U.S. use simple (actuarial) interest calculated daily on the outstanding balance. Each payment goes first to accrued interest, then reduces principal. This means extra payments or paying early significantly reduces total interest, since the principal drops faster." },
-        { question: "How do I calculate simple interest for months or days?", answer: "Convert time to years first. For months: t = months ÷ 12. For days: t = days ÷ 365. Example: 6 months = 0.5 years. $2,000 at 6% for 6 months: I = $2,000 × 0.06 × 0.5 = $60. This calculator handles the conversion automatically." },
-        { question: "Can I solve for principal, rate, or time?", answer: "Yes — the formula rearranges to: Principal = I ÷ (r × t). Rate = I ÷ (P × t). Time = I ÷ (P × r). Example: paid $300 interest at 5% over 3 years → principal = $300 ÷ (0.05 × 3) = $2,000." },
-        { question: "Is simple interest good for savings accounts?", answer: "Most banks use compound interest (daily or monthly) which is better for savers. Some CDs and bonds use simple interest. Always compare APY — a 5% APY compound account earns more than 5% simple interest over time. Today's high-yield savings accounts offer 4-5% APY with daily compounding." },
+        { question: "What is the simple interest formula?", answer: "The formula is I = P × r × t, where I = interest, P = principal (starting amount), r = annual interest rate as a decimal, and t = time in years. To get the total amount, use A = P(1 + rt)." },
+        { question: "What is the difference between simple and compound interest?", answer: "Simple interest is calculated only on the original principal. Compound interest is calculated on the principal PLUS accumulated interest. Over time, compound interest grows exponentially while simple interest grows linearly. For a $10,000 loan at 5% over 5 years: simple interest = $2,500, compound interest (monthly) = $2,834." },
+        { question: "What is the 360-day banker's year?", answer: "Some financial institutions use a 360-day year (12 months × 30 days) instead of the actual 365-day year. This slightly increases the interest charged because each day represents a larger fraction of the year (1/360 vs 1/365). It's common in commercial loans, Treasury bills, and some money market instruments." },
+        { question: "What types of loans use simple interest?", answer: "Auto loans, personal loans, some student loans, payday loans, and certificates of deposit (CDs) commonly use simple interest. Mortgages, credit cards, and most savings accounts use compound interest instead." },
+        { question: "How do I calculate interest for months instead of years?", answer: "Divide the number of months by 12 to convert to years. For example, 18 months = 18/12 = 1.5 years. Then use the standard formula: I = P × r × 1.5. This calculator handles the conversion automatically — just select 'Months' as the time unit." },
+        { question: "Can I solve for the interest rate or time period?", answer: "Yes! This calculator has 4 modes: solve for Interest (I = Prt), solve for Principal (P = I/rt), solve for Rate (r = I/Pt), and solve for Time (t = I/Pr). Select your desired mode from the 'Solve For' dropdown." },
+        { question: "Is simple interest better for borrowers or lenders?", answer: "Simple interest benefits borrowers because they pay less total interest than with compound interest. Lenders prefer compound interest because they earn more. As an investor, you want compound interest (or to reinvest simple interest earnings) to maximize returns." },
+        { question: "How is daily interest calculated?", answer: "Daily simple interest = (Principal × Annual Rate) ÷ 365 (or 360 for banker's convention). For a $10,000 loan at 6%: daily interest = ($10,000 × 0.06) ÷ 365 = $1.64 per day." },
       ],
-      references: [
-        { authors: "Investopedia", year: "2025", title: "Simple Interest Definition, Formula, and Example", source: "Investopedia", url: "https://www.investopedia.com/terms/s/simple_interest.asp" },
-        { authors: "Federal Reserve Bank of St. Louis", year: "2024", title: "Interest Rates and the Economy", source: "Federal Reserve Education", url: "https://www.stlouisfed.org/education" },
-      ],
+
       rating: { title: "Rate this Calculator", share: "Share", copied: "Copied!", copyLink: "Copy Link", clickToRate: "Click to rate", youRated: "You rated", stars: "stars", averageFrom: "average from", ratings: "ratings" },
       common: { home: "Home", calculators: "Calculators" },
-      buttons: { calculate: "Calculate Interest", reset: "Reset", pdf: "PDF", csv: "CSV", excel: "Excel", save: "Save", saved: "Saved", saving: "Saving..." },
-      share: { title: "Simple Interest Calculator", text: "Calculate simple interest with the I=Prt formula — loans, savings, and more." },
-      accessibility: { calculatorLabel: "Simple Interest Calculator", resultsLabel: "Simple Interest Results" },
-      sources: { title: "Sources" },
+      buttons: { calculate: "Calculate", reset: "Reset", pdf: "PDF", csv: "CSV", excel: "Excel", save: "Save", saved: "Saved", saving: "Saving..." },
+      share: { calculatedWith: "Calculated with Kalcufy.com" },
+      accessibility: { mobileResults: "Results", closeModal: "Close", openMenu: "Menu" },
+      sources: { title: "Sources & References" },
+
+      chart: {
+        title: "Balance Growth Over Time",
+        xLabel: "Period",
+        yLabel: "Amount",
+        series: {
+          principal: "Principal",
+          interest: "Interest",
+          compound: "If Compounded",
+        },
+      },
+
+      detailedTable: {
+        yearByYear: {
+          button: "View Year-by-Year Breakdown",
+          title: "Interest Accumulation Schedule",
+          columns: {
+            period: "Period",
+            startBalance: "Start Balance",
+            interest: "Interest Earned",
+            endBalance: "End Balance",
+            totalInterest: "Total Interest",
+          },
+        },
+      },
     },
   },
 
   inputs: [
     {
-      id: "mode",
+      id: "solveFor",
       type: "select",
-      defaultValue: "loan",
+      defaultValue: "interest",
       options: [
-        { value: "loan", label: "💳 Loan (Interest Owed)" },
-        { value: "savings", label: "🏦 Savings (Interest Earned)" },
+        { value: "interest" },
+        { value: "principal" },
+        { value: "rate" },
+        { value: "time" },
       ],
     },
-    { id: "principal", type: "number", defaultValue: null, placeholder: "10000", min: 1, max: 10000000, unitType: "currency", syncGroup: false },
-    { id: "rateLoan", type: "slider", defaultValue: 8.5, min: 0.1, max: 30, step: 0.1, suffix: "%", showWhen: { field: "mode", value: "loan" } },
-    { id: "rateSavings", type: "slider", defaultValue: 4.5, min: 0.1, max: 10, step: 0.1, suffix: "%", showWhen: { field: "mode", value: "savings" } },
+    {
+      id: "principal",
+      type: "number",
+      defaultValue: null,
+      placeholder: "10000",
+      min: 0,
+      unitType: "currency",
+      syncGroup: false,
+      autoConvert: false,
+      defaultUnit: "USD",
+    },
+    {
+      id: "interest",
+      type: "number",
+      defaultValue: null,
+      placeholder: "2550",
+      min: 0,
+      unitType: "currency",
+      syncGroup: false,
+      autoConvert: false,
+      defaultUnit: "USD",
+    },
+    {
+      id: "rate",
+      type: "slider",
+      defaultValue: 8.5,
+      min: 0.1,
+      max: 30,
+      step: 0.1,
+      suffix: "%",
+    },
+    {
+      id: "timeValue",
+      type: "number",
+      defaultValue: 3,
+      placeholder: "3",
+      min: 1,
+      max: 100,
+    },
     {
       id: "timeUnit",
       type: "select",
       defaultValue: "years",
       options: [
-        { value: "days", label: "Days" },
-        { value: "months", label: "Months" },
-        { value: "years", label: "Years" },
+        { value: "days" },
+        { value: "months" },
+        { value: "years" },
       ],
     },
-    { id: "timePeriod", type: "stepper", defaultValue: 3, min: 1, max: 1000, step: 1 },
+    {
+      id: "dayConvention",
+      type: "select",
+      defaultValue: "365",
+      options: [
+        { value: "365" },
+        { value: "360" },
+      ],
+    },
   ],
 
   inputGroups: [],
 
   results: [
-    { id: "totalInterest", type: "currency", primary: true, highlight: true },
-    { id: "finalAmount", type: "currency" },
-    { id: "principal", type: "currency" },
-    { id: "effectiveRate", type: "text" },
-    { id: "dailyInterest", type: "currency" },
-    { id: "monthlyInterest", type: "currency" },
+    { id: "totalInterest", type: "primary", format: "text" },
+    { id: "totalAmount", type: "secondary", format: "text" },
+    { id: "principal", type: "secondary", format: "text" },
+    { id: "rate", type: "secondary", format: "text" },
+    { id: "timePeriod", type: "secondary", format: "text" },
   ],
 
   infoCards: [
-    {
-      id: "breakdown",
-      type: "list",
-      icon: "💰",
-      items: [
-        { id: "totalInterest", valueKey: "totalInterest" },
-        { id: "finalAmount", valueKey: "finalAmount" },
-        { id: "principal", valueKey: "principal" },
-        { id: "effectiveRate", valueKey: "effectiveRate" },
-      ],
-    },
-    {
-      id: "perPeriod",
-      type: "list",
-      icon: "📅",
-      items: [
-        { id: "dailyInterest", valueKey: "dailyInterest" },
-        { id: "monthlyInterest", valueKey: "monthlyInterest" },
-        { id: "totalInterest", valueKey: "totalInterest" },
-        { id: "finalAmount", valueKey: "finalAmount" },
-      ],
-    },
+    { id: "breakdown", type: "list", icon: "💰", itemCount: 4 },
+    { id: "comparison", type: "list", icon: "📊", itemCount: 4 },
     { id: "tips", type: "horizontal", icon: "💡", itemCount: 4 },
   ],
 
-  detailedTable: {
-    id: "growthTable",
-    buttonLabel: "View Year-by-Year Breakdown",
-    buttonIcon: "📊",
-    modalTitle: "Year-by-Year Interest Breakdown",
-    columns: [
-      { id: "year", label: "Year", align: "center" },
-      { id: "simpleInterest", label: "Simple Interest Earned", align: "right", highlight: true },
-      { id: "simpleBalance", label: "Simple Balance", align: "right" },
-      { id: "compoundBalance", label: "Compound Balance", align: "right" },
-      { id: "difference", label: "Compound Advantage", align: "right" },
+  chart: {
+    id: "balanceGrowth",
+    type: "area",
+    xKey: "period",
+    height: 300,
+    stacked: true,
+    showGrid: true,
+    showLegend: true,
+    showTooltip: true,
+    yAxisFormat: "currency",
+    series: [
+      { key: "principal", type: "area", stackId: "balance", color: "#3b82f6" },
+      { key: "interest", type: "area", stackId: "balance", color: "#22c55e" },
+      { key: "compound", type: "line", color: "#f97316" },
     ],
   },
 
-  chart: {
-    id: "interestChart",
-    type: "line",
-    xKey: "year",
-    series: [
-      { key: "simple", color: "#3b82f6" },
-      { key: "compound", color: "#10b981" },
+  detailedTable: {
+    id: "yearByYear",
+    buttonLabel: "View Year-by-Year Breakdown",
+    buttonIcon: "📋",
+    modalTitle: "Interest Accumulation Schedule",
+    columns: [
+      { id: "period", label: "Period", align: "center" },
+      { id: "startBalance", label: "Start Balance", align: "right" },
+      { id: "interest", label: "Interest Earned", align: "right", highlight: true },
+      { id: "endBalance", label: "End Balance", align: "right" },
+      { id: "totalInterest", label: "Total Interest", align: "right" },
     ],
-    stacked: false,
   },
 
   referenceData: [],
 
   educationSections: [
     { id: "whatIs", type: "prose", icon: "📖" },
-    { id: "simpleVsCompound", type: "prose", icon: "⚡" },
-    { id: "whenUsed", type: "list", icon: "📋", itemCount: 6 },
-    { id: "howToSave", type: "list", icon: "💡", itemCount: 6 },
-    { id: "examples", type: "code-example", icon: "🧮", columns: 2, exampleCount: 2 },
+    { id: "howItWorks", type: "prose", icon: "⚙️" },
+    { id: "considerations", type: "list", icon: "📋", itemCount: 6 },
+    { id: "formulas", type: "list", icon: "🧮", itemCount: 6 },
+    { id: "examples", type: "code-example", icon: "💡", columns: 2, exampleCount: 2 },
   ],
 
-  faqs: [{ id: "0" }, { id: "1" }, { id: "2" }, { id: "3" }, { id: "4" }, { id: "5" }],
+  faqs: [{ id: "0" }, { id: "1" }, { id: "2" }, { id: "3" }, { id: "4" }, { id: "5" }, { id: "6" }, { id: "7" }],
 
   references: [
-    { authors: "Investopedia", year: "2025", title: "Simple Interest Definition, Formula, and Example", source: "Investopedia", url: "https://www.investopedia.com/terms/s/simple_interest.asp" },
-    { authors: "Federal Reserve Bank of St. Louis", year: "2024", title: "Interest Rates and the Economy", source: "Federal Reserve Education", url: "https://www.stlouisfed.org/education" },
+    { authors: "U.S. Securities and Exchange Commission", year: "2026", title: "Saving and Investing — Interest", source: "SEC Investor.gov", url: "https://www.investor.gov/introduction-investing/investing-basics/investment-products/savings-bonds" },
+    { authors: "Federal Reserve", year: "2026", title: "Consumer Credit and Interest Rates", source: "Federal Reserve Economic Data", url: "https://www.federalreserve.gov/releases/g19/current/" },
+    { authors: "Investopedia", year: "2026", title: "Simple Interest: Definition, Formula, and Examples", source: "Investopedia", url: "https://www.investopedia.com/terms/s/simple_interest.asp" },
   ],
 
-  hero: { showImage: true, showBadges: true, showReviews: true },
-  sidebar: { showRelated: true, showAds: true },
-  features: { history: true, favorites: true, share: true, export: true },
-  relatedCalculators: ["compound-interest-calculator", "loan-calculator", "savings-goal", "interest-calculator"],
-  ads: { enabled: true, slots: ["sidebar", "results-below"] },
+  hero: { badge: "Finance", badgeVariant: "blue" },
+  sidebar: {},
+  features: {},
+  relatedCalculators: ["compound-interest", "interest-calculator", "loan-calculator", "savings-calculator"],
+  ads: {},
 };
 
-export function calculateSimpleInterest(data: {
+// ═══════════════════════════════════════════════════════════════════════
+// CALCULATE FUNCTION
+// ═══════════════════════════════════════════════════════════════════════
+export function calculateSimpleInterestCalculator(data: {
   values: Record<string, unknown>;
   fieldUnits?: Record<string, string>;
   t?: Record<string, unknown>;
 }): CalculatorResults {
-  const { values, fieldUnits = {} } = data;
-  const currencyUnit = fieldUnits["principal"] ?? "USD";
-  const sym = currencyUnit === "EUR" ? "€" : currencyUnit === "GBP" ? "£" : currencyUnit === "BRL" ? "R$" : "$";
+  const { values, fieldUnits = {}, t } = data;
+  const v = (t?.values as Record<string, string>) || {};
 
-  const fmt = (n: number) => {
-    const abs = Math.abs(n);
-    const s = abs >= 1000000
-      ? `${(abs / 1000000).toFixed(2)}M`
-      : abs >= 1000
-      ? abs.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })
-      : abs.toFixed(2);
-    return n < 0 ? `-${sym}${s}` : `${sym}${s}`;
+  // ── Read inputs ───────────────────────────────────────────────────
+  const solveFor = (values.solveFor as string) || "interest";
+  const principal = values.principal as number | null;
+  const interestInput = values.interest as number | null;
+  const rate = values.rate as number | null;
+  const timeValue = values.timeValue as number | null;
+  const timeUnit = (values.timeUnit as string) || "years";
+  const dayConvention = parseInt((values.dayConvention as string) || "365");
+
+  // ── Currency ──────────────────────────────────────────────────────
+  const curr = fieldUnits.principal || fieldUnits.interest || "USD";
+  const sym = CURRENCY_SYMBOLS[curr] || "$";
+
+  // ── Convert time to years ─────────────────────────────────────────
+  function toYears(val: number, unit: string): number {
+    switch (unit) {
+      case "days": return val / dayConvention;
+      case "months": return val / 12;
+      case "years": return val;
+      default: return val;
+    }
+  }
+
+  function fromYears(yrs: number, unit: string): number {
+    switch (unit) {
+      case "days": return yrs * dayConvention;
+      case "months": return yrs * 12;
+      case "years": return yrs;
+      default: return yrs;
+    }
+  }
+
+  // ── Calculate based on mode ───────────────────────────────────────
+  let I: number;       // Interest
+  let P: number;       // Principal
+  let r: number;       // Rate (decimal)
+  let tYears: number;  // Time in years
+  let formulaUsed: string;
+  let solvedLabel: string;
+  let solvedValue: string;
+
+  switch (solveFor) {
+    case "interest": {
+      if (!principal || principal <= 0 || rate === null || rate <= 0 || !timeValue || timeValue <= 0) {
+        return { values: {}, formatted: {}, summary: "", isValid: false };
+      }
+      P = principal;
+      r = rate / 100;
+      tYears = toYears(timeValue, timeUnit);
+      I = P * r * tYears;
+      formulaUsed = `I = ${fmtC(P, sym)} × ${rate}% × ${fmtNum(tYears)} yr = ${fmtC(I, sym)}`;
+      solvedLabel = "totalInterest";
+      solvedValue = fmtC(I, sym);
+      break;
+    }
+    case "principal": {
+      if (!interestInput || interestInput <= 0 || rate === null || rate <= 0 || !timeValue || timeValue <= 0) {
+        return { values: {}, formatted: {}, summary: "", isValid: false };
+      }
+      I = interestInput;
+      r = rate / 100;
+      tYears = toYears(timeValue, timeUnit);
+      P = I / (r * tYears);
+      formulaUsed = `P = ${fmtC(I, sym)} ÷ (${rate}% × ${fmtNum(tYears)} yr) = ${fmtC(P, sym)}`;
+      solvedLabel = "principal";
+      solvedValue = fmtC(P, sym);
+      break;
+    }
+    case "rate": {
+      if (!principal || principal <= 0 || !interestInput || interestInput <= 0 || !timeValue || timeValue <= 0) {
+        return { values: {}, formatted: {}, summary: "", isValid: false };
+      }
+      P = principal;
+      I = interestInput;
+      tYears = toYears(timeValue, timeUnit);
+      r = I / (P * tYears);
+      const rPct = r * 100;
+      formulaUsed = `r = ${fmtC(I, sym)} ÷ (${fmtC(P, sym)} × ${fmtNum(tYears)} yr) = ${fmtNum(rPct)}%`;
+      solvedLabel = "rate";
+      solvedValue = `${fmtNum(rPct)}%`;
+      break;
+    }
+    case "time": {
+      if (!principal || principal <= 0 || !interestInput || interestInput <= 0 || rate === null || rate <= 0) {
+        return { values: {}, formatted: {}, summary: "", isValid: false };
+      }
+      P = principal;
+      I = interestInput;
+      r = rate / 100;
+      tYears = I / (P * r);
+      const tDisplay = tYears;
+      const yearsWhole = Math.floor(tDisplay);
+      const monthsRem = Math.round((tDisplay - yearsWhole) * 12);
+      formulaUsed = `t = ${fmtC(I, sym)} ÷ (${fmtC(P, sym)} × ${(r * 100).toFixed(1)}%) = ${fmtNum(tYears)} years`;
+      solvedLabel = "timePeriod";
+      solvedValue = monthsRem > 0 ? `${yearsWhole} years, ${monthsRem} months` : `${fmtNum(tYears)} years`;
+      break;
+    }
+    default:
+      return { values: {}, formatted: {}, summary: "", isValid: false };
+  }
+
+  const totalAmount = P + I;
+
+  // ── Breakdowns ────────────────────────────────────────────────────
+  const dailyInterest = I / (tYears * dayConvention);
+  const monthlyInterest = I / (tYears * 12);
+  const yearlyInterest = I / tYears;
+
+  // ── Compound interest comparison ──────────────────────────────────
+  const compoundAmount = P * Math.pow(1 + (r || (rate || 0) / 100) / 12, (tYears || 1) * 12);
+  const compoundInterest = compoundAmount - P;
+  const interestDiff = compoundInterest - I;
+  const effectiveRate = tYears > 0 ? ((I / P) / tYears) * 100 : 0;
+
+  // ── Chart data ────────────────────────────────────────────────────
+  const periods = Math.max(1, Math.ceil(tYears));
+  const chartData = [];
+  for (let yr = 0; yr <= periods; yr++) {
+    const simpleI = P * (r || 0) * yr;
+    const compA = P * Math.pow(1 + (r || 0) / 12, yr * 12);
+    chartData.push({
+      period: `Year ${yr}`,
+      principal: P,
+      interest: simpleI,
+      compound: compA,
+    });
+  }
+
+  // ── Year-by-year table ────────────────────────────────────────────
+  const tableData = [];
+  let cumInterest = 0;
+  for (let yr = 1; yr <= periods; yr++) {
+    const periodInterest = yr <= tYears
+      ? yearlyInterest
+      : yearlyInterest * (tYears - (yr - 1));
+    cumInterest += yr <= tYears ? yearlyInterest : Math.max(0, yearlyInterest * (tYears - (yr - 1)));
+    const startBal = P + (cumInterest - (yr <= tYears ? yearlyInterest : Math.max(0, yearlyInterest * (tYears - (yr - 1)))));
+    tableData.push({
+      period: `Year ${yr}`,
+      startBalance: fmtC(P + cumInterest - (yr <= tYears ? yearlyInterest : Math.max(0, periodInterest)), sym),
+      interest: fmtC(yr <= tYears ? yearlyInterest : Math.max(0, periodInterest), sym),
+      endBalance: fmtC(P + cumInterest, sym),
+      totalInterest: fmtC(cumInterest, sym),
+    });
+  }
+
+  // ── Format results ────────────────────────────────────────────────
+  const formatted: Record<string, string> = {
+    totalInterest: fmtC(I, sym),
+    totalAmount: fmtC(totalAmount, sym),
+    principal: fmtC(P, sym),
+    rate: solveFor === "rate" ? solvedValue : `${(r * 100).toFixed(1)}%`,
+    timePeriod: solveFor === "time" ? solvedValue : `${timeValue} ${timeUnit}`,
+
+    // InfoCard: breakdown
+    dailyInterest: fmtC(dailyInterest, sym),
+    monthlyInterest: fmtC(monthlyInterest, sym),
+    yearlyInterest: fmtC(yearlyInterest, sym),
+
+    // InfoCard: comparison
+    simpleTotal: fmtC(totalAmount, sym),
+    compoundTotal: fmtC(compoundAmount, sym),
+    interestDifference: `${fmtC(interestDiff, sym)} ${interestDiff > 0 ? "more" : "less"}`,
+    effectiveRate: `${fmtNum(effectiveRate)}% per year`,
+    formulaUsed,
   };
 
-  const principal = (values.principal as number) ?? 0;
-  const mode = (values.mode as string) ?? "loan";
-  const rate = mode === "savings"
-    ? ((values.rateSavings as number) ?? 4.5)
-    : ((values.rateLoan as number) ?? 8.5);
-  const timeUnit = (values.timeUnit as string) ?? "years";
-  const timePeriod = (values.timePeriod as number) ?? 1;
-
-  if (!principal || principal <= 0) {
-    return { values: {}, formatted: {}, summary: "", isValid: false };
-  }
-
-  // Convert time to years
-  let timeInYears: number;
-  if (timeUnit === "days") timeInYears = timePeriod / 365;
-  else if (timeUnit === "months") timeInYears = timePeriod / 12;
-  else timeInYears = timePeriod;
-
-  const r = rate / 100;
-
-  // I = P * r * t
-  const totalInterest = principal * r * timeInYears;
-  const finalAmount = principal + totalInterest;
-  const dailyInterest = principal * r / 365;
-  const monthlyInterest = principal * r / 12;
-
-  // Year-by-year table & chart data
-  const yearsToShow = Math.max(Math.ceil(timeInYears), 1);
-  const chartYears = Math.min(yearsToShow + 2, 10);
-  const chartData: Array<{ year: string; simple: number; compound: number }> = [];
-  const tableData: Array<{ year: string; simpleInterest: string; simpleBalance: string; compoundBalance: string; difference: string }> = [];
-
-  for (let y = 1; y <= chartYears; y++) {
-    const simpleBalance = principal + (principal * r * y);
-    const compoundBalance = principal * Math.pow(1 + r / 12, 12 * y);
-    const diff = compoundBalance - simpleBalance;
-
-    chartData.push({
-      year: `Y${y}`,
-      simple: Math.round(simpleBalance * 100) / 100,
-      compound: Math.round(compoundBalance * 100) / 100,
-    });
-
-    tableData.push({
-      year: `Year ${y}`,
-      simpleInterest: fmt(principal * r * y),
-      simpleBalance: fmt(simpleBalance),
-      compoundBalance: fmt(compoundBalance),
-      difference: `+${fmt(diff)}`,
-    });
-  }
-
-  const timeLabel = timeUnit === "days"
-    ? `${timePeriod} days`
-    : timeUnit === "months"
-    ? `${timePeriod} months`
-    : `${timePeriod} year${timePeriod !== 1 ? "s" : ""}`;
+  // ── Summary ───────────────────────────────────────────────────────
+  const f = (t?.formats as Record<string, string>) || {};
+  const summary = f.summary
+    ?.replace("{principal}", fmtC(P, sym))
+    ?.replace("{rate}", `${(r * 100).toFixed(1)}`)
+    ?.replace("{time}", `${fmtNum(tYears)} yr`)
+    ?.replace("{interest}", fmtC(I, sym))
+    ?.replace("{total}", fmtC(totalAmount, sym))
+    || `${fmtC(P, sym)} at ${(r * 100).toFixed(1)}% for ${fmtNum(tYears)} years = ${fmtC(I, sym)} interest`;
 
   return {
-    values: { totalInterest, finalAmount, principal, effectiveRate: rate, dailyInterest, monthlyInterest },
-    formatted: {
-      totalInterest: fmt(totalInterest),
-      finalAmount: fmt(finalAmount),
-      principal: fmt(principal),
-      effectiveRate: `${rate.toFixed(2)}% / yr`,
-      dailyInterest: fmt(dailyInterest),
-      monthlyInterest: fmt(monthlyInterest),
+    values: {
+      totalInterest: I,
+      totalAmount,
+      principal: P,
+      rate: r * 100,
+      timePeriod: tYears,
+      dailyInterest,
+      monthlyInterest,
     },
-    summary: `Interest: ${fmt(totalInterest)} on ${fmt(principal)} over ${timeLabel} — Total: ${fmt(finalAmount)}`,
+    formatted,
+    summary,
     isValid: true,
-    metadata: { chartData, tableData },
+    metadata: {
+      chartData,
+      tableData,
+    },
   };
 }
 

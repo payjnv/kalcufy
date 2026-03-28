@@ -1,15 +1,10 @@
-import { notFound } from "next/navigation";
-import type { Metadata } from "next";
 import Link from "next/link";
-import { CATEGORY_PAGES, getCategoryBySlug } from "@/lib/category-pages-config";
+import { getCategoryBySlug, CATEGORY_PAGES } from "@/lib/category-pages-config";
 import { SLUG_REGISTRY } from "@/engine/v4/slugs/registry";
-import { getCategoryIcon } from "@/config/category-icons";
 
-type Params = { locale: string; categorySlug: string };
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://www.kalcufy.com";
 const LOCALES = ["en", "es", "pt", "fr", "de"] as const;
 
-// ─── Breadcrumb translations ───
 const BREADCRUMB: Record<string, { home: string; calculators: string }> = {
   en: { home: "Home", calculators: "Calculators" },
   es: { home: "Inicio", calculators: "Calculadoras" },
@@ -23,50 +18,10 @@ const CALC_COUNT_LABEL: Record<string, string> = {
 };
 
 const TRY_IT: Record<string, string> = {
-  en: "Try it free →", es: "Pruébalo gratis →", pt: "Experimente grátis →", fr: "Essayez gratuitement →", de: "Kostenlos testen →",
+  en: "Try it free \u2192", es: "Pru\u00e9balo gratis \u2192", pt: "Experimente gr\u00e1tis \u2192",
+  fr: "Essayez gratuitement \u2192", de: "Kostenlos testen \u2192",
 };
 
-// ─── SEO Metadata ───
-export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
-  const { locale, categorySlug } = await params;
-  const cat = getCategoryBySlug(categorySlug);
-  if (!cat) return {};
-
-  const languages: Record<string, string> = {};
-  for (const loc of LOCALES) {
-    languages[loc] = `${BASE_URL}/${loc}/${cat.slugs[loc]}`;
-  }
-  languages["x-default"] = `${BASE_URL}/en/${cat.slugs.en}`;
-
-  return {
-    title: cat.titles[locale] || cat.titles.en,
-    description: cat.descriptions[locale] || cat.descriptions.en,
-    keywords: cat.keywords[locale] || cat.keywords.en,
-    alternates: {
-      canonical: `${BASE_URL}/${locale}/${cat.slugs[locale]}`,
-      languages,
-    },
-    openGraph: {
-      title: cat.titles[locale] || cat.titles.en,
-      description: cat.descriptions[locale] || cat.descriptions.en,
-      url: `${BASE_URL}/${locale}/${cat.slugs[locale]}`,
-      type: "website",
-      siteName: "Kalcufy",
-    },
-  };
-}
-
-// ─── Static params (all category slugs × all locales) ───
-export function generateStaticParams() {
-  return CATEGORY_PAGES.flatMap((cat) =>
-    LOCALES.map((locale) => ({
-      locale,
-      categorySlug: cat.slugs[locale],
-    }))
-  );
-}
-
-// ─── Helper: get calculator name from config ───
 async function getCalcName(entryId: string, locale: string): Promise<{ name: string; description: string }> {
   let name = entryId.replace(/-/g, " ").replace(/\b\w/g, (l: string) => l.toUpperCase());
   let description = "";
@@ -89,25 +44,11 @@ async function getCalcName(entryId: string, locale: string): Promise<{ name: str
   return { name, description };
 }
 
-// ─── Page Component ───
-export default async function CategoryPage({ params }: { params: Promise<Params> }) {
-  const { locale, categorySlug } = await params;
+export default async function CategoryPageContent({ locale, categorySlug }: { locale: string; categorySlug: string }) {
   const cat = getCategoryBySlug(categorySlug);
-  if (!cat) notFound();
+  if (!cat) return null;
 
-  // Check if this slug matches the current locale, redirect if not
-  const correctSlug = cat.slugs[locale] || cat.slugs.en;
-  if (categorySlug !== correctSlug) {
-    const { permanentRedirect } = await import("next/navigation");
-    permanentRedirect(`/${locale}/${correctSlug}`);
-  }
-
-  // Get calculators for this category
-  const entries = SLUG_REGISTRY.filter((e) =>
-    cat.registryCategory.includes(e.category)
-  );
-
-  // Load names for all calculators
+  const entries = SLUG_REGISTRY.filter((e) => cat.registryCategory.includes(e.category));
   const calcsWithNames = await Promise.all(
     entries.map(async (entry) => {
       const { name, description } = await getCalcName(entry.id, locale);
@@ -117,12 +58,12 @@ export default async function CategoryPage({ params }: { params: Promise<Params>
   );
 
   const subtitle = cat.subtitles[locale] || cat.subtitles.en;
-  const title = (cat.titles[locale] || cat.titles.en).split(" | ")[0]; // Remove "| Kalcufy"
+  const title = (cat.titles[locale] || cat.titles.en).split(" | ")[0].trim();
   const bc = BREADCRUMB[locale] || BREADCRUMB.en;
   const countLabel = CALC_COUNT_LABEL[locale] || "calculators";
-  const tryIt = TRY_IT[locale] || "Try it free →";
+  const tryIt = TRY_IT[locale] || "Try it free \u2192";
+  const correctSlug = cat.slugs[locale] || cat.slugs.en;
 
-  // CollectionPage schema
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
@@ -144,11 +85,8 @@ export default async function CategoryPage({ params }: { params: Promise<Params>
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
-
-      {/* Hero */}
       <section className="bg-gradient-to-b from-blue-50 to-white pt-4 pb-6 md:py-8">
         <div className="container mx-auto px-4 max-w-6xl">
-          {/* Breadcrumbs */}
           <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-slate-600 mb-4">
             <Link href={`/${locale}`} className="hover:text-blue-600 transition-colors">{bc.home}</Link>
             <span className="text-slate-400">/</span>
@@ -156,7 +94,6 @@ export default async function CategoryPage({ params }: { params: Promise<Params>
             <span className="text-slate-400">/</span>
             <span className="text-slate-900 font-medium">{title}</span>
           </nav>
-
           <div className="flex items-center gap-3 mb-3">
             <span className="text-3xl">{cat.icon}</span>
             <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900">{title}</h1>
@@ -165,31 +102,20 @@ export default async function CategoryPage({ params }: { params: Promise<Params>
           <p className="text-sm text-slate-500 mt-2">{calcsWithNames.length} {countLabel}</p>
         </div>
       </section>
-
-      {/* Calculator Grid */}
       <section className="py-8">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {calcsWithNames.map((calc) => (
-              <Link
-                key={calc.id}
-                href={`/${locale}/${calc.slug}`}
-                className="group bg-white rounded-xl border border-slate-200 p-5 hover:border-blue-300 hover:shadow-md transition-all"
-              >
-                <h2 className="font-semibold text-slate-900 group-hover:text-blue-600 transition-colors mb-2">
-                  {calc.name}
-                </h2>
-                {calc.description && (
-                  <p className="text-sm text-slate-500 line-clamp-2 mb-3">{calc.description}</p>
-                )}
+              <Link key={calc.id} href={`/${locale}/${calc.slug}`}
+                className="group bg-white rounded-xl border border-slate-200 p-5 hover:border-blue-300 hover:shadow-md transition-all">
+                <h2 className="font-semibold text-slate-900 group-hover:text-blue-600 transition-colors mb-2">{calc.name}</h2>
+                {calc.description && <p className="text-sm text-slate-500 line-clamp-2 mb-3">{calc.description}</p>}
                 <span className="text-sm font-medium text-blue-600">{tryIt}</span>
               </Link>
             ))}
           </div>
         </div>
       </section>
-
-      {/* SEO Text */}
       <section className="py-8 bg-slate-50">
         <div className="container mx-auto px-4 max-w-4xl">
           <h2 className="text-xl font-bold text-slate-900 mb-4">{title}</h2>

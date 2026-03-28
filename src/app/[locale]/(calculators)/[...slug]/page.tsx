@@ -1,6 +1,7 @@
 import { notFound, permanentRedirect } from "next/navigation";
 import type { Metadata } from "next";
 import { SLUG_REGISTRY, getEntryBySlug } from "@/engine/v4/slugs/registry";
+import { getCategoryBySlug, CATEGORY_PAGES } from "@/lib/category-pages-config";
 import CalculatorClient from "./client";
 import Link from "next/link";
 
@@ -108,11 +109,17 @@ export async function generateMetadata({
 }
 // --- Static params for build (all calculator slugs × all locales) ---
 export async function generateStaticParams() {
-  return SLUG_REGISTRY.flatMap((entry) =>
+  const calcParams = SLUG_REGISTRY.flatMap((entry) =>
     LOCALES.map((locale) => ({
       slug: [entry.slugs[locale]],
     }))
   );
+  const catParams = CATEGORY_PAGES.flatMap((cat) =>
+    LOCALES.map((locale) => ({
+      slug: [cat.slugs[locale]],
+    }))
+  );
+  return [...calcParams, ...catParams];
 }
 
 // --- Helper: extract calculator info server-side ---
@@ -293,6 +300,14 @@ export default async function CalculatorCatchAllPage({
   if (!slug || slug.length !== 1) {
     notFound();
   }
+  // Check if this is a category page
+  const categoryConfig = getCategoryBySlug(slug[0]);
+  if (categoryConfig) {
+    // Dynamic import to avoid circular deps
+    const { default: CategoryPageComponent } = await import("./CategoryPageContent");
+    return <CategoryPageComponent locale={locale} categorySlug={slug[0]} />;
+  }
+
   const entry = getEntryBySlug(slug[0], locale);
   if (!entry) {
     // --- SEO FIX: If slug exists in another locale, 301 redirect to correct slug ---
