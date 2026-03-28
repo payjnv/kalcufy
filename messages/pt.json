@@ -2021,6 +2021,9 @@
     },
     "total": {
       "name": "Total"
+    },
+    "yrs_mos": {
+      "name": "Anos / Meses"
     }
   }
 }

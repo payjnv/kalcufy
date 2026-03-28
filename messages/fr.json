@@ -2125,6 +2125,9 @@
     },
     "total": {
       "name": "Total"
+    },
+    "yrs_mos": {
+      "name": "Années / Mois"
     }
   }
 }
