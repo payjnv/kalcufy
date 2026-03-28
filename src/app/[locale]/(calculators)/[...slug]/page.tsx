@@ -180,6 +180,55 @@ async function getCalcInfo(entryId: string, locale: string) {
 }
 
 
+
+// --- Structured Data: FAQPage + SoftwareApplication schemas ---
+function buildCalculatorSchemas(
+  name: string, subtitle: string, locale: string,
+  faqs: Array<{ question: string; answer: string }>,
+  canonicalUrl: string, category: string
+) {
+  const schemas: object[] = [];
+
+  // FAQPage schema
+  if (faqs.length > 0) {
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqs.map(faq => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer,
+        },
+      })),
+    });
+  }
+
+  // SoftwareApplication schema (Calculator)
+  schemas.push({
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: name,
+    description: subtitle,
+    url: canonicalUrl,
+    applicationCategory: "UtilityApplication",
+    operatingSystem: "Web",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+    author: {
+      "@type": "Organization",
+      name: "Kalcufy",
+      url: "https://www.kalcufy.com",
+    },
+  });
+
+  return schemas;
+}
+
 // --- SSR Content: Rendered server-side so Google can index FAQs + Education ---
 function SSRContent({ faqs, educationTexts, sources, locale }: {
   faqs: Array<{ question: string; answer: string }>;
@@ -260,6 +309,15 @@ export default async function CalculatorCatchAllPage({
 
   return (
     <>
+
+      {/* Structured Data: FAQPage + Calculator */}
+      {(() => {
+        const canonicalSlug = entry.slugs[locale as keyof typeof entry.slugs] || entry.slugs.en;
+        const schemas = buildCalculatorSchemas(name, subtitle, locale, faqs, `${BASE_URL}/${locale}/${canonicalSlug}`, entry.category);
+        return schemas.map((schema, i) => (
+          <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+        ));
+      })()}
       {/* Server-rendered hero — STAYS permanently for LCP */}
       <section className="bg-gradient-to-b from-blue-50 to-white pt-4 pb-0 md:py-6 overflow-hidden">
         <div className="container mx-auto px-2 sm:px-4 max-w-6xl">
